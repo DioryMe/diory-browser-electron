@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { channels } from '../shared/constants';
+import NavBar from './NavBar'
+
 const { ipcRenderer } = window;
 
 class App extends Component {
@@ -21,8 +23,21 @@ class App extends Component {
 
   render() {
     const { appName, appVersion } = this.state;
+
+    const navbar = {
+      lenses: [
+        {name:'Map', icon: 'map'},
+        {name:'Timeline', icon: 'time'},
+        {name:'Graph', icon: 'graph'},
+      ],
+      search: {
+        placeholder: 'Search diories...',
+      }
+    }
+
     return (
       <div className="App">
+        <NavBar {...navbar}/>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>{appName} version {appVersion}</p>
