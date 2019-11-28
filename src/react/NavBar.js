@@ -11,17 +11,17 @@ const NavBar = ({back, forward, lenses, search, create}) => (
     <Pane display="flex">
       <SearchInput marginRight={16} width={150} {...search}/>
       <Tablist alignSelf="center">
-        {lenses.map(({id, name, icon, isSelected, onClick}) => (
+        {lenses.map(({id, text, data, state, onClick}) => (
           <Tab
             key={id}
             id={id}
             alignSelf="center"
-            isSelected={isSelected}
+            isSelected={state.selected}
             onSelect={onClick}
             aria-controls={`panel-${id}`}
           >
-            <Icon icon={icon} marginRight={4}/>
-            {name}
+            <Icon icon={data.icon} marginRight={4}/>
+            {text}
           </Tab>
         ))}
       </Tablist>
