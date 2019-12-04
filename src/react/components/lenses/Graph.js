@@ -8,9 +8,7 @@ const Graph = ({}) => (
 
 Graph.diory = {
   text: 'Graph',
-  data: {
-    icon: 'graph',
-  }
+  image: 'graph',
 }
 
 export default Graph

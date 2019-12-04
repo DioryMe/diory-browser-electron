@@ -8,9 +8,7 @@ const Timeline = ({}) => (
 
 Timeline.diory = {
   text: 'Timeline',
-  data: {
-    icon: 'time',
-  }
+  image: 'time',
 }
 
 export default Timeline

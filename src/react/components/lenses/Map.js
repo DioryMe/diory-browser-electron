@@ -8,9 +8,7 @@ const Map = ({}) => (
 
 Map.diory = {
   text:'Map',
-  data: {
-    icon: 'map',
-  },
+  image: 'map',
 }
 
 export default Map

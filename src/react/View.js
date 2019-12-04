@@ -4,7 +4,7 @@ import useLenses  from './lenses/useLenses'
 
 import NavBar from './components/NavBar'
 import Breadcrumb from './components/Breadcrumb'
-import SelectedLens from './lenses/SelectedLens'
+import Lens from './lenses/Lens'
 import Home from './Home'
 
 const App = () => {
@@ -12,9 +12,6 @@ const App = () => {
 
   const navbar = {
     lenses,
-    search: {
-      placeholder: 'Search diories...',
-    }
   }
   const history = [
     {id: '2019', text: '2019'},
@@ -26,9 +23,9 @@ const App = () => {
 
   return (
     <>
-      <NavBar {...navbar}/>
+      <NavBar lenses={lenses}/>
       <Breadcrumb diorys={history}/>
-      <SelectedLens/>
+      <Lens/>
       { !selectedLensId && <Home/>}
     </>
   );

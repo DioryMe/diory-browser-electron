@@ -2,7 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane, IconButton, SearchInput, Tablist, Tab, Icon } from 'evergreen-ui'
 
-const NavBar = ({back, forward, lenses, search, create}) => (
+const NavBar = ({
+  back,
+  forward,
+  lenses: { search, ...lenses } = {},
+  create
+}) => (
   <Pane display="flex" justifyContent="space-between" padding={8} background="tint2">
     <Pane display="flex" alignSelf="center">
       <IconButton appearance="minimal" icon="arrow-left" {...back}/>
@@ -11,17 +16,15 @@ const NavBar = ({back, forward, lenses, search, create}) => (
     <Pane display="flex">
       <SearchInput marginRight={16} width={150} {...search}/>
       <Tablist alignSelf="center">
-        {lenses.map(({id, text, data, state, onClick}) => (
+        {Object.values(lenses).map(({ diory, ...lens }) => (
           <Tab
-            key={id}
-            id={id}
+            {...lens}
+            key={diory.id}
             alignSelf="center"
-            isSelected={state.selected}
-            onSelect={onClick}
-            aria-controls={`panel-${id}`}
+            aria-controls={`panel-${diory.id}`}
           >
-            <Icon icon={data.icon} marginRight={4}/>
-            {text}
+            <Icon icon={diory.data.icon} marginRight={4}/>
+            {diory.text}
           </Tab>
         ))}
       </Tablist>
