@@ -1,12 +1,15 @@
 import React from 'react';
-import Channels from './Channels'
-import LensProvider from './lenses/LensProvider'
+import Channels from './components/Channels'
+import LensProvider from './components/lenses/LensProvider'
+import { StoreProvider } from './store'
 
 const Providers = ({children}) =>
   <Channels>
-    <LensProvider>
-      {children}
-    </LensProvider>
+    <StoreProvider>
+      <LensProvider>
+        {children}
+      </LensProvider>
+    </StoreProvider>
   </Channels>
 
 export default Providers
