@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { channels } from '../shared/constants';
+import { channels } from '../../shared/constants';
 const { ipcRenderer } = window;
 
 class Channels extends Component {
