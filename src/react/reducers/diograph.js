@@ -1,41 +1,48 @@
-import * as types from '../actions/actionTypes'
+import * as types from '../actions'
 import createReducer from './createReducer'
 
-import diograph from './diograph.json'
-
 export const initialState = {
-  diograph
+  diograph: {},
+  updated: false,
 }
 
-export const add = (state, { payload }) => ({
+export const setDiograph = (state, { payload }) => ({
   ...state,
-  diorys: [...state.diorys, payload.diory],
-});
+  diograph: payload.diograph,
+  updated: false,
+})
 
-export const remove = (state, { payload }) => ({
+export const addDiory = (state, { payload }) => ({
   ...state,
-  diorys: state.diorys.filter(t => t.id !== payload.diory.id),
-});
+  diograph: {
+    ...state.diograph,
+    [payload.diory.id]: payload.diory,
+  },
+  updated: true,
+})
 
-export const update = (state, { payload }) => ({
-  ...state,
-  diorys: state.diorys.map(t => (t.id === payload.diory.id ? payload.diory : t)),
-});
+export const removeDiory = (state, { payload }) => {
+  const { [payload.diory.id]: omit, ...diograph } = state.diograph
+  return ({
+    ...state,
+    diograph,
+    updated: true,
+  })
+};
 
-export const filter = (state, { payload }) => ({
+export const updateDiory = (state, { payload }) => ({
   ...state,
-  filter: payload.filter
-});
+  diograph: {
+    ...state.diograph,
+    [payload.diory.id]: payload.diory,
+  },
+  updated: true,
 
-export const showState = (state, { payload }) => ({
-  ...state,
-  state: payload.state
 });
 
 export default createReducer({
-  [types.ADD_DIORY]: add,
-  [types.REMOVE_DIORY]: remove,
-  [types.UPDATE_DIORY]: update,
-  [types.FILTER_DIORY]: filter,
-  [types.SHOW_STATE]: showState,
+  [types.SET_DIOGRAPH]: setDiograph,
+  [types.ADD_DIORY]: addDiory,
+  [types.REMOVE_DIORY]: removeDiory,
+  [types.UPDATE_DIORY]: updateDiory,
 });

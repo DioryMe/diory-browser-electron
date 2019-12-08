@@ -1,11 +1,18 @@
-import * as types from './actionTypes';
+import * as types from './index'
 
-export const addDiory = diory => ({ type: types.ADD_DIORY, payload: { diory } });
+export const setDiograph = diograph => ({
+  type: types.SET_DIOGRAPH,
+  payload: { diograph },
+})
 
-export const removeDiory = diory => ({ type: types.REMOVE_DIORY, payload: { diory } });
+export const addDiory = diory => ({ type: types.ADD_DIORY, payload: { diory } })
 
-export const udpateDiory = diory => ({ type: types.UPDATE_DIORY, payload: { diory } });
+export const removeDiory = diory => ({
+  type: types.REMOVE_DIORY,
+  payload: { diory },
+})
 
-export const filterDiory = filter => ({ type: types.FILTER_DIORY, payload: { filter } });
-
-export const showState = state => ({ type: types.SHOW_STATE, payload: { state } });
+export const updateDiory = diory => ({
+  type: types.UPDATE_DIORY,
+  payload: { diory },
+})
