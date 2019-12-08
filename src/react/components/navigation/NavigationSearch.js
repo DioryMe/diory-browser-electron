@@ -14,12 +14,13 @@ const useSearchInput = () => {
   return { searchInput }
 }
 
-const NavigationSearch = (props) => {
+const NavigationSearch = props => {
   const { searchInput } = useSearchInput()
   return (
     <Pane {...props}>
-      <SearchInput marginRight={16} width={150} {...searchInput}/>
-    </Pane>  )
+      <SearchInput marginRight={16} width={150} {...searchInput} />
+    </Pane>
+  )
 }
 
 export default NavigationSearch

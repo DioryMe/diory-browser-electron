@@ -1,10 +1,6 @@
 import React from 'react'
 
-const Timeline = ({}) => (
-  <div>
-    timeline
-  </div>
-)
+const Timeline = ({}) => <div>timeline</div>
 
 Timeline.diory = {
   text: 'Timeline',

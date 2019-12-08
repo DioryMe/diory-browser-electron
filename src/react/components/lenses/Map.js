@@ -1,15 +1,10 @@
 import React from 'react'
 
-const Map = ({}) => (
-  <div>
-    map
-  </div>
-)
+const Map = ({}) => <div>map</div>
 
 Map.diory = {
-  text:'Map',
+  text: 'Map',
   image: 'map',
 }
 
 export default Map
-

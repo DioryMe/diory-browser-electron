@@ -8,6 +8,7 @@
     "electron": "^7.1.2",
     "electron-builder": "^21.2.0",
     "evergreen-ui": "^4.21.5",
+    "prettier": "^1.19.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -54,5 +55,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true
   }
 }

@@ -15,32 +15,35 @@ const Lenses = {
   search: Search,
 }
 
-export const SelectedLens = (props) => {
-  const [{ selectedLensId }] = useStore((state => state.lenses))
+export const SelectedLens = props => {
+  const [{ selectedLensId }] = useStore(state => state.lenses)
   return selectedLensId ? createElement(Lenses[selectedLensId], props) : null
 }
 
 export const useLenses = () => {
-  const [{ selectedLensId }, dispatch] = useStore((state) => state.lenses)
+  const [{ selectedLensId }, dispatch] = useStore(state => state.lenses)
 
-  const toggleLens = (id) => {
-    const nextSelectedLensId = (id === selectedLensId) ? undefined : id
+  const toggleLens = id => {
+    const nextSelectedLensId = id === selectedLensId ? undefined : id
     dispatch(selectLens(nextSelectedLensId))
   }
 
-  const lenses = Object.entries(Lenses).reduce((obj, [id, Lens]) => ({
-    ...obj,
-    [id]: {
-      id,
-      key: id,
-      diory: Lens.diory,
-    }
-  }), {})
+  const lenses = Object.entries(Lenses).reduce(
+    (obj, [id, Lens]) => ({
+      ...obj,
+      [id]: {
+        id,
+        key: id,
+        diory: Lens.diory,
+      },
+    }),
+    {}
+  )
 
   return {
     ...lenses,
     selectedLensId,
-    selectLens: (id) => dispatch(selectLens(id)),
+    selectLens: id => dispatch(selectLens(id)),
     toggleLens,
   }
 }
