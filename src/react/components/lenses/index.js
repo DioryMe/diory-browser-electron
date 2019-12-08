@@ -34,13 +34,13 @@ export const useLenses = () => {
       id,
       key: id,
       diory: Lens.diory,
-      isSelected: id === selectedLensId,
-      onSelect: () => toggleLens(id),
     }
   }), {})
 
   return {
     ...lenses,
+    selectedLensId,
     selectLens: (id) => dispatch(selectLens(id)),
+    toggleLens,
   }
 }

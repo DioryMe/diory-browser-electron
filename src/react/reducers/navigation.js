@@ -2,17 +2,17 @@ import * as types from '../actions/actionTypes'
 import createReducer from './createReducer'
 
 export const initialState = {
-  focus: undefined,
+  focus: '/',
   backward: [],
   forward: [],
 }
 
-export const setFocus = (state, { payload }) => ({
+export const setFocus = (state, {payload}) => ({
   ...state,
   focus: payload.focus,
   backward: [state.focus, ...state.backward],
   forward: [],
-});
+})
 
 export const goBackward = (state) => {
   const [focus, ...backward] = state.backward
@@ -22,7 +22,7 @@ export const goBackward = (state) => {
     backward,
     forward: [state.focus, ...state.forward],
   })
-};
+}
 
 export const goForward = (state) => {
   const [focus, ...forward] = state.forward
@@ -32,10 +32,16 @@ export const goForward = (state) => {
     backward: [state.focus, ...state.backward],
     forward,
   })
-};
+}
+
+export const goHome = (state) => ({
+  ...state,
+  focus: initialState.focus,
+})
 
 export default createReducer({
   [types.SET_FOCUS]: setFocus,
   [types.GO_BACKWARD]: goBackward,
   [types.GO_FORWARD]: goForward,
-});
+  [types.GO_HOME]: goHome,
+})

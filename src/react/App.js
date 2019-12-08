@@ -7,7 +7,7 @@ import reducer, { initialState } from './reducers'
 import addMiddleware from './middleware/addMiddleware'
 import { initial, final } from './middleware/logger'
 
-import NavBar from './components/NavBar'
+import NavBar from './components/navigation/NavigationBar'
 import View from './components/View'
 
 const reducerWithMiddleware = addMiddleware([
