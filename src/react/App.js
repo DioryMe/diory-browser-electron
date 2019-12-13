@@ -1,7 +1,8 @@
 import React from 'react';
-import Channels from './components/Channels'
 
 import { StateProvider } from './store'
+import { ChannelProvider } from'./channels'
+
 import reducer, { initialState } from './reducers'
 
 import addMiddleware from './middleware/addMiddleware'
@@ -17,13 +18,13 @@ const reducerWithMiddleware = addMiddleware([
 ])
 
 const App = () =>
-  <Channels>
-    <StateProvider reducer={reducerWithMiddleware} initialState={initialState}>
+  <StateProvider reducer={reducerWithMiddleware} initialState={initialState}>
+    <ChannelProvider>
       <div className="App">
         <NavBar/>
         <View/>
       </div>
-    </StateProvider>
-  </Channels>
+    </ChannelProvider>
+  </StateProvider>
 
-export default App;
+export default App
