@@ -1,8 +1,8 @@
-import * as types from '../actions/actionTypes'
+import * as types from '../actions'
 import createReducer from './createReducer'
 
 export const initialState = {
-  selectedLensId: undefined,
+  selectedLensId: 'files',
   lenses: [],
 }
 

@@ -1,4 +1,4 @@
-import * as types from './actionTypes';
+import * as types from './index';
 
 export const setFocus = focus => ({ type: types.SET_FOCUS, payload: { focus } });
 
