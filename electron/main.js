@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const url = require('url');
 const { channels } = require('../src/shared/constants');
+const diograph = require('../public/2017/diograph.json');
 
 let mainWindow;
 
@@ -43,5 +44,12 @@ ipcMain.on(channels.APP_INFO, (event) => {
   event.sender.send(channels.APP_INFO, {
     appName: app.getName(),
     appVersion: app.getVersion(),
+  });
+});
+
+ipcMain.on(channels.DIOGRAPH, (event) => {
+  event.sender.send(channels.DIOGRAPH, {
+    id: '/',
+    diograph,
   });
 });
