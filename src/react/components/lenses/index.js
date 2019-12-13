@@ -3,12 +3,14 @@ import { createElement } from 'react'
 import { useStore } from '../../store'
 import { selectLens } from '../../actions/lenses'
 
+import Files from './Files'
 import Graph from './Graph'
 import Map from './Map'
 import Timeline from './Timeline'
 import Search from './Search'
 
 const Lenses = {
+  files: Files,
   graph: Graph,
   map: Map,
   timeline: Timeline,

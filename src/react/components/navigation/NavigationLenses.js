@@ -3,9 +3,9 @@ import { Pane, Tablist, Tab, Icon } from 'evergreen-ui'
 import { useLenses } from '../lenses'
 
 const useNavigationLenses = () => {
-  const { map, timeline, graph, selectedLensId, toggleLens } = useLenses()
+  const { files, map, timeline, graph, selectedLensId, toggleLens } = useLenses()
 
-  const lenses = [map, timeline, graph].map(lens => ({
+  const lenses = [map, timeline, graph, files].map(lens => ({
     ...lens,
     isSelected: lens.id === selectedLensId,
     onSelect: () => toggleLens(lens.id),
