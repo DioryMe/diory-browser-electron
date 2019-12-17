@@ -1,10 +1,12 @@
 import React, { createContext, useContext } from 'react';
-import useDiographChannel from './diograph'
+import useHomeChannel from './home'
+import useRoomChannel from './room'
 
 export const ChannelContext = createContext();
 
 export const ChannelProvider = ({ children }) => {
-  useDiographChannel()
+  useHomeChannel()
+  useRoomChannel()
 
   return (
     <ChannelContext.Provider
