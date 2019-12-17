@@ -1,5 +1,7 @@
 import * as types from './index';
 
+export const enterRoom = room => ({ type: types.ENTER_ROOM, payload: { room } });
+
 export const setFocus = focus => ({ type: types.SET_FOCUS, payload: { focus } });
 
 export const goBackward = () => ({ type: types.GO_BACKWARD });
