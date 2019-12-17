@@ -2,7 +2,7 @@ import * as types from '../actions'
 import createReducer from './createReducer'
 
 export const initialState = {
-  selectedLensId: 'files',
+  selectedLensId: undefined,
   lenses: [],
 }
 

@@ -1,11 +1,11 @@
 import React from 'react'
 import { Pane } from 'evergreen-ui'
-import { useFocus } from '../../hooks'
-import Diory from '../diories/Diory'
-import Image from '../diories/Image'
+import { useFocusDiory } from '../hooks'
+import Diory from './diories/Diory'
+import Image from './diories/Image'
 
-const useFocusDiory = () => {
-  const { diory, diorys, setFocus } = useFocus()
+const useRoom = () => {
+  const { diory, diorys, setFocus } = useFocusDiory()
   return {
     diory,
     diorys: diorys.map(diory => ({
@@ -19,8 +19,11 @@ const getBackgroundImage = (image, content) => content
   ? `linear-gradient(rgba(255, 255, 255, 0.8),rgba(255, 255, 255, 0.8)), url(${encodeURI(image)})`
   : `url(${encodeURI(image)})`
 
-const Files = () => {
-  const { diory, diorys } = useFocusDiory()
+const Room = () => {
+  const { diory, diorys } = useRoom()
+  if (!diory) {
+    return <div>loading</div>
+  }
   return (
     <Pane
       height="100%"
@@ -51,9 +54,9 @@ const Files = () => {
     </Pane>  )
 }
 
-Files.diory = {
-  text: 'Files',
+Room.diory = {
+  text: 'Room',
   image: 'folder-close',
 }
 
-export default Files
+export default Room

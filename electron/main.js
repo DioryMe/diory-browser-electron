@@ -44,9 +44,13 @@ ipcMain.on(channels.HOME, (event) => {
   event.sender.send(channels.HOME, home);
 });
 
-ipcMain.on(channels.DIOGRAPH, (event) => {
-  event.sender.send(channels.DIOGRAPH, {
-    id: '/',
-    diograph,
-  });
+const getRoom = id => {
+  const path = Object.entries(home.rooms)
+    .find(([key, room]) => id === room.id)[0]
+  const diograph = require(`../public/${path}/diograph.json`)
+  return { id, diograph }
+}
+
+ipcMain.on(channels.ROOM, (event, id) => {
+  event.sender.send(channels.ROOM, getRoom(id));
 });
