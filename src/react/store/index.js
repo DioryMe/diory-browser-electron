@@ -10,7 +10,7 @@ export const StateProvider = ({ reducer, initialState, children }) => (
 )
 
 export const useStore = (selector) => {
-  const [state, dispatch] = useContext(StateContext);
-  const selectedState = selector(state);
+  const [state, dispatch] = useContext(StateContext)
+  const selectedState = selector ? selector(state) : state
   return [selectedState, dispatch]
 }
