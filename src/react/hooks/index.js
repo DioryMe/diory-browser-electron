@@ -1,3 +1,3 @@
 export { useDiorys } from './useDiorys'
-export { useFocus } from './useFocus'
+export { useFocusDiory } from './useFocusDiory'
 export { useDocumentTitle } from './useDocumentTitle'

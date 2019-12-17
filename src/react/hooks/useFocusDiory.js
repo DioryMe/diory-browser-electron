@@ -1,11 +1,11 @@
 import { setFocus } from '../actions/navigation'
 import { useStore } from '../store'
 
-export const useFocus = () => {
+export const useFocusDiory = () => {
   const [{ focus }, dispatch] = useStore((state) => state.navigation)
   const [{ diograph }] = useStore((state) => state.diograph)
   const { links = {} } = diograph[focus] || {}
-  const diorys = Object.entries(links).map(([key, { id }]) => ({ key, id: id || key, ...diograph[id || key]}))
+  const diorys = Object.entries(links).map(([key, { id }]) => ({ key, ...diograph[id]}))
 
   return {
     diory: diograph[focus],
