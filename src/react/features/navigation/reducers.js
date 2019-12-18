@@ -9,56 +9,56 @@ export const initialState = {
   path: [],
 }
 
-export const enterRoom = (state, {payload}) => ({
+export const enterRoom = (state, { payload }) => ({
   ...state,
   room: payload.room,
   focus: payload.room,
   backward: [[]],
   forward: [],
-  path: [payload.room]
+  path: [payload.room],
 })
 
-export const setFocus = (state, {payload}) => ({
+export const setFocus = (state, { payload }) => ({
   ...state,
   focus: payload.focus,
   backward: [[state.room, state.focus], ...state.backward],
   forward: [],
-  path: [...state.path, payload.focus]
+  path: [...state.path, payload.focus],
 })
 
-export const goBackward = (state) => {
-  const [[room,focus], ...backward] = state.backward
-  return ({
+export const goBackward = state => {
+  const [[room, focus], ...backward] = state.backward
+  return {
     ...state,
     room,
     focus,
     backward,
     forward: [[state.room, state.focus], ...state.forward],
-    path: [...state.path].slice(0,-1)
-  })
+    path: [...state.path].slice(0, -1),
+  }
 }
 
-export const goForward = (state) => {
-  const [[room,focus], ...forward] = state.forward
-  return ({
+export const goForward = state => {
+  const [[room, focus], ...forward] = state.forward
+  return {
     ...state,
     room,
     focus,
     backward: [[state.room, state.focus], ...state.backward],
     forward,
-    path: [...state.path, focus]
-  })
+    path: [...state.path, focus],
+  }
 }
 
-export const goHome = (state) => {
-  return ({
+export const goHome = state => {
+  return {
     ...state,
     room: undefined,
     focus: undefined,
     backward: [[state.room, state.focus], ...state.backward],
     forward: [],
     path: [],
-  })
+  }
 }
 
 export default createReducer({

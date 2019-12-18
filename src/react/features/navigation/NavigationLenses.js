@@ -3,14 +3,18 @@ import { Pane, Tablist, Tab, Icon } from 'evergreen-ui'
 import { useLenses } from '../lenses/hooks'
 
 const useNavigationLenses = () => {
-  const { lenses: { search, ...lenses }, selectedLensId, toggleLens } = useLenses()
+  const {
+    lenses: { search, ...lenses },
+    selectedLensId,
+    toggleLens,
+  } = useLenses()
 
   return {
     lenses: Object.values(lenses).map(lens => ({
       ...lens,
       isSelected: lens.id === selectedLensId,
       onSelect: () => toggleLens(lens.id),
-    }))
+    })),
   }
 }
 

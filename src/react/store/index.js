@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useReducer } from 'react'
 
-export const StateContext = createContext();
+export const StateContext = createContext()
 
 export const StateProvider = ({ reducer, initialState, children }) => (
   <StateContext.Provider
@@ -9,7 +9,7 @@ export const StateProvider = ({ reducer, initialState, children }) => (
   />
 )
 
-export const useStore = (selector) => {
+export const useStore = selector => {
   const [state, dispatch] = useContext(StateContext)
   const selectedState = selector ? selector(state) : state
   return [selectedState, dispatch]
