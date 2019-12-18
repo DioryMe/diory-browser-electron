@@ -1,12 +1,10 @@
 {
   "name": "diory-browser-electron",
   "version": "0.1.0",
-  "productName": "Electron Create React App Example",
+  "productName": "Diory - Digital Memory Browser",
   "main": "electron/main.js",
   "private": true,
   "dependencies": {
-    "electron": "^7.1.2",
-    "electron-builder": "^21.2.0",
     "evergreen-ui": "^4.21.5",
     "prettier": "^1.19.1",
     "prop-types": "^15.7.2",
@@ -15,6 +13,10 @@
     "react-scripts": "3.2.0",
     "ui-box": "^3.0.2",
     "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "electron": "^7.1.2",
+    "electron-builder": "^21.2.0"
   },
   "homepage": "./",
   "scripts": {
@@ -39,8 +41,8 @@
     ],
     "publish": {
       "provider": "github",
-      "repo": "electron-cra-example",
-      "owner": "johndyer24"
+      "repo": "diory-browser-electron",
+      "owner": "dioryme"
     }
   },
   "eslintConfig": {

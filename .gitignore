@@ -7,9 +7,11 @@
 
 # testing
 /coverage
+/data
 
 # production
 /build
+/dist
 
 # idea
 .idea
