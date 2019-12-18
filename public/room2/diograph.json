@@ -1,0 +1,29 @@
+{
+  "room2": {
+    "id": "room2",
+    "text": "Room 2",
+    "links": {
+      "link1": {
+        "id": "diory1"
+      },
+      "link2": {
+        "id": "diory2"
+      },
+      "link3": {
+        "id": "diory3"
+      }
+    }
+  },
+  "diory1": {
+    "id": "diory1",
+    "text": "Diory 1"
+  },
+  "diory2": {
+    "id": "diory2",
+    "text": "Diory 2"
+  },
+  "diory3": {
+    "id": "diory3",
+    "text": "Diory 3"
+  }
+}

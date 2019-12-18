@@ -48,7 +48,7 @@ const Room = () => {
           alignSelf="center"
           color="white"
           fontWeight="bold"
-          background="white"
+          background="grey"
           aria-controls={`panel-${diory.id}`}
         />
       ))}
