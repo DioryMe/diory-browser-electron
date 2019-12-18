@@ -19,10 +19,10 @@
   "homepage": "./",
   "scripts": {
     "start": "export BROWSER=none && PORT=3300 react-scripts start",
-    "start-win": "set BROWSER=none && react-scripts start",
     "start-electron": "export ELECTRON_START_URL=http://localhost:3300 && electron .",
-    "start-electron-win": "set ELECTRON_START_URL=http://localhost:3300 && electron .",
     "start-electron-dev-tools": "DEV_TOOLS=true export ELECTRON_START_URL=http://localhost:3300 && electron .",
+    "start-win": "set BROWSER=none && react-scripts start",
+    "start-electron-win": "set ELECTRON_START_URL=http://localhost:3300 && electron .",
     "clean": "rm -rf build dist",
     "clean-win": "rmdir build /S /Q & rmdir dist/S /Q",
     "build": "react-scripts build",

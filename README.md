@@ -1,4 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and is based on 
+[Building a production electron/create-react-app application with shared code using electron-builder](https://medium.com/@johndyer24/building-a-production-electron-create-react-app-application-with-shared-code-using-electron-builder-c1f70f0e2649)
+## Requirements
+
+Node version 
 
 ## Available Scripts
 
@@ -6,12 +10,26 @@ In the project directory, you can run:
 
 ### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Launches the React development server to compile and serve the React code in realtime.<br />
+The “BROWSER” environment variable “none” prevents the app from opening in the browser on launch.<br />
 
-The page will reload if you make edits.<br />
+The app will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
+### `yarn start-electron`
+
+Starts the main Electron process and runs the react app in the renderer process.
+Run after `yarn start`
+
+### `yarn start-electron-dev-tools`
+
+Opens development tools for the Electron app.
+
+### `yarn start-win`
+### `start-electron-win`
+
+Same for Windows computer.
+    
 ### `yarn test`
 
 Launches the test runner in the interactive watch mode.<br />
