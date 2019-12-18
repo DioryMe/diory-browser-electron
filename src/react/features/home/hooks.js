@@ -5,7 +5,7 @@ import  { setRooms } from './actions'
 
 const { ipcRenderer } = window
 
-const useHomeChannel = () => {
+export const useHomeChannel = () => {
   const [{}, dispatch] = useStore()
   useEffect(() => {
     ipcRenderer.send(channels.HOME)
@@ -13,5 +13,3 @@ const useHomeChannel = () => {
     return () => ipcRenderer.removeAllListeners(channels.HOME)
   },[ dispatch])
 }
-
-export default useHomeChannel

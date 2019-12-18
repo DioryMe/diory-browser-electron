@@ -1,10 +1,11 @@
 import React from 'react'
 import { Pane } from 'evergreen-ui'
-import { useFocusDiory } from './hooks'
+import { useRoomChannel, useFocusDiory } from './hooks'
 import Diory from '../../components/diories/Diory'
 import Image from '../../components/diories/Image'
 
 const useRoom = () => {
+  useRoomChannel()
   const { diory, diorys, setFocus } = useFocusDiory()
   return {
     diory,

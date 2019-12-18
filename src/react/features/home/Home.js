@@ -1,10 +1,13 @@
 import React from 'react'
 import { Pane, Heading } from 'evergreen-ui'
 import { useStore } from '../../store'
-import Image from '../../components/diories/Image'
 import { enterRoom } from '../navigation/actions'
+import { useHomeChannel } from './hooks'
+
+import Image from '../../components/diories/Image'
 
 const useHome = () => {
+  useHomeChannel()
   const [{ rooms }, dispatch] = useStore(state => state.home)
   const [{ room: roomId }] = useStore(state => state.navigation)
   return {
