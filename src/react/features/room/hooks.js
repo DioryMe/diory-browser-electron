@@ -14,7 +14,6 @@ export const useRoomChannel = () => {
     if (room) {
       ipcRenderer.send(channels.ROOM, room)
       ipcRenderer.on(channels.ROOM, (event, data) => {
-        console.log(data)
         const { diograph } = data
         dispatch(setDiograph(diograph))
       })
@@ -24,13 +23,12 @@ export const useRoomChannel = () => {
 }
 
 export const useFocusDiory = () => {
-  const [{ focus, next }, dispatch] = useStore((state) => state.navigation)
+  const [{ focus }, dispatch] = useStore((state) => state.navigation)
   const [{ diograph }] = useStore((state) => state.room)
   const diory = diograph[focus]
   return {
     diory,
     diorys: useDiorys(diory && diory.links),
-    nextDiory: diograph[next],
-    setFocus: (id) => dispatch(setFocus(id))
+    setFocus: (props) => dispatch(setFocus(props))
   }
 }

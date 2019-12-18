@@ -1,18 +1,24 @@
 import React from 'react'
-import { Pane } from 'evergreen-ui'
+import { Heading, Pane } from 'evergreen-ui'
+import { useStore } from '../../store'
+import { goLeft, goRight } from '../navigation/actions'
 import { useRoomChannel, useFocusDiory } from './hooks'
 import Diory from '../../components/diories/Diory'
 import Image from '../../components/diories/Image'
 
 const useRoom = () => {
   useRoomChannel()
+  const dispatch = useStore()[1]
   const { diory, diorys, setFocus } = useFocusDiory()
+  const context = diorys.map(({ id }) => id)
   return {
     diory,
     diorys: diorys.map(diory => ({
       diory,
-      onClick: ({ diory }) => setFocus(diory.id),
-    }))
+      onClick: ({ diory }) => setFocus({ focus: diory.id, context }),
+    })),
+    onLeftClick: () => dispatch(goLeft()),
+    onRightClick: () => dispatch(goRight()),
   }
 }
 
@@ -21,7 +27,7 @@ const getBackgroundImage = (image, content) => content
   : `url(${encodeURI(image)})`
 
 const Room = () => {
-  const { diory, diorys } = useRoom()
+  const { diory, diorys, onLeftClick, onRightClick } = useRoom()
   if (!diory) {
     return <div>loading</div>
   }
@@ -36,6 +42,7 @@ const Room = () => {
         backgroundImage={getBackgroundImage(diory.image, diorys.length)}
         zIndex={-1}
       />
+      {!diorys.length && <Heading margin={16} color="darkgrey" fontWeight="bold">{diory.text}</Heading>}
       {diorys.map(({diory, onClick}) => (
         <Diory
           key={diory.id}
@@ -52,6 +59,8 @@ const Room = () => {
           aria-controls={`panel-${diory.id}`}
         />
       ))}
+      <div onClick={onLeftClick} style={{ position: 'absolute', left: 0, top: 50, bottom: 0, width: '100px' }}/>
+      <div onClick={onRightClick} style={{ position: 'absolute', right: 0, top: 50, bottom: 0, width: '100px' }}/>
     </Pane>  )
 }
 
