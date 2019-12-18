@@ -40,8 +40,8 @@ const Room = () => {
           key={diory.id}
           diory={diory}
           onClick={onClick}
-          flex="1 0 200px"
-          height={120}
+          flex="1 0 240px"
+          height={160}
           margin={24}
           elevation={2}
           alignSelf="center"
