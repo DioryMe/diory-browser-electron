@@ -11,7 +11,9 @@ const useHome = () => {
   const [{ rooms }, dispatch] = useStore(state => state.home)
   const [{ room: roomId }] = useStore(state => state.navigation)
   return {
-    rooms: Object.values(rooms).map(room => ({ ...room, inside: room.id === roomId})),
+    rooms: Object.values(rooms).map(room => ({
+      ...room,
+      boxShadow: room.id === roomId ? '0 0 40px #ec4c47' : ''})),
     onClick: (id) => dispatch(enterRoom(id)),
   }
 }
@@ -33,15 +35,15 @@ const Home = () => {
         backgroundImage={getBackgroundImage(image, rooms.length)}
         zIndex={-1}
       />
-      {rooms.map(({ id, key, text, image, inside }) => (
+      {rooms.map(({ id, text, image, ...diory }) => (
         <Pane
+          {...diory}
           id={id}
-          key={key}
+          key={id}
           flex="1 0 240px"
           height={160}
           margin={24}
           elevation={1}
-          boxShadow={inside && '0 0 40px #ec4c47'}
           alignSelf="center"
           background="white"
           onClick={() => onClick(id)}

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Map = ({}) => <div>map</div>
+const Map = () => <div>map</div>
 
 Map.diory = {
   text: 'Map',

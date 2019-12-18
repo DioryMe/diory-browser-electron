@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Search = ({}) => <div>search</div>
+const Search = () => <div>search</div>
 
 Search.diory = {
   text: 'Search',
