@@ -1,8 +1,8 @@
 import React from 'react'
 import { Heading, Pane } from 'evergreen-ui'
 import { useStore } from '../../store'
-import { goLeft, goRight } from '../navigation/actions'
 import { useRoomChannel, useFocusDiory } from './hooks'
+import { useLeft, useRight, useBackward } from '../navigation/hooks'
 import Diory from '../../components/diories/Diory'
 import Image from '../../components/diories/Image'
 
@@ -11,14 +11,17 @@ const useRoom = () => {
   const dispatch = useStore()[1]
   const { diory, diorys, setFocus } = useFocusDiory()
   const context = diorys.map(({ id }) => id)
+  const { onLeft } = useLeft()
+  const { onRight } = useRight()
+  const { onBackward } = useBackward()
   return {
     diory,
     diorys: diorys.map(diory => ({
       diory,
       onClick: ({ diory }) => setFocus({ focus: diory.id, context }),
     })),
-    onLeftClick: () => dispatch(goLeft()),
-    onRightClick: () => dispatch(goRight()),
+    onLeftClick: onLeft || onBackward,
+    onRightClick: onRight || onBackward,
   }
 }
 
