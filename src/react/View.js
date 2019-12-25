@@ -3,7 +3,7 @@ import { useStore } from './store'
 
 import SelectedLens from './features/lenses/SelectedLens'
 import Room from './features/room/Room'
-import Home from './features/home/Home'
+import HomeView from './features/home/HomeView'
 
 const View = () => {
   const [{ selectedLensId }] = useStore(state => state.lenses)
@@ -17,7 +17,7 @@ const View = () => {
     return <Room/>
   }
 
-  return <Home />
+  return <HomeView />
 }
 
 export default View
