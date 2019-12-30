@@ -14,7 +14,7 @@ const useDioryLatLng = () => {
     .map(({ longitude }) => longitude)
   const latitudesAndLongitudesExists = latitudes.length && longitudes.length
   return {
-    center: {
+    center: diory.latitude && diory.longitude && {
       lat: diory.latitude,
       lng: diory.longitude,
     },
@@ -29,27 +29,52 @@ const useDioryLatLng = () => {
   }
 }
 
-const useMapBounds = mapRef => {
+// TODO: Use store for map data
+let initialBounds = true
+const useInitialMapBounds = mapRef => {
   const { center, min, max } = useDioryLatLng()
 
+  if (!mapRef.current) {
+    initialBounds = true
+  }
   useEffect(() => {
-    if (mapRef.current && min && max) {
-      mapRef.current.flyToBounds([min, max])
-    } else {
-      mapRef.current.flyTo(center, 15)
+    if (initialBounds) {
+      if (mapRef.current) {
+        if (min && max) {
+          mapRef.current.fitBounds([min, max])
+        } else if (center) {
+          mapRef.current.setView(center, 15)
+        } else {
+          mapRef.current.fitWorld()
+        }
+        initialBounds = false
+      }
+    }
+  }, [mapRef, center, min, max])
+}
+
+const useMapBounds = mapRef => {
+  const { center, min, max } = useDioryLatLng()
+  useEffect(() => {
+    if (mapRef.current) {
+      if (min && max) {
+        mapRef.current.flyToBounds([min, max])
+      }
+      else if (center) {
+        mapRef.current.flyTo(center, 15)
+      }
+      else {
+        mapRef.current.fitWorld()
+      }
     }
   }, [mapRef, center, min, max])
 }
 
 export const useMap = id => {
-  const { center } = useDioryLatLng()
-
   const mapRef = useRef(null)
   useEffect(() => {
     if (!mapRef.current) {
       mapRef.current = L.map(id, {
-        center,
-        zoom: 5,
         layers: [
           L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution:
@@ -58,8 +83,9 @@ export const useMap = id => {
         ],
       })
     }
-  }, [id, mapRef, center])
+  }, [id, mapRef])
 
+  useInitialMapBounds(mapRef)
   useMapBounds(mapRef)
   return mapRef
 }
@@ -96,13 +122,20 @@ export const useDioryMarker = mapRef => {
 
   const markerRef = useRef(null)
   useEffect(() => {
-    if (markerRef.current) {
-      markerRef.current
-        .closePopup()
-        .setLatLng(center)
-        .openPopup()
-    } else {
-      markerRef.current = L.marker(center).addTo(mapRef.current)
+    if (center) {
+      if (markerRef.current) {
+        markerRef.current
+          .closePopup()
+          .setLatLng(center)
+          .openPopup()
+      } else {
+        markerRef.current = L.marker(center).addTo(mapRef.current)
+      }
+    }
+    else {
+      if (markerRef.current) {
+        markerRef.current.remove()
+      }
     }
   }, [mapRef, markerRef, center])
 
