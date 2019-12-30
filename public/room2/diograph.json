@@ -1,7 +1,8 @@
 {
   "room2": {
     "id": "room2",
-    "text": "Room 2",
+    "text": "Tampere",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Downtown_Tampere4.jpg",
     "links": {
       "link1": {
         "id": "diory1"
@@ -16,14 +17,23 @@
   },
   "diory1": {
     "id": "diory1",
-    "text": "Diory 1"
+    "text": "Keskustori",
+    "latitude": "61.4978",
+    "longitude": "23.7610",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Tampere_-_Keskustori.jpg/800px-Tampere_-_Keskustori.jpg"
   },
   "diory2": {
     "id": "diory2",
-    "text": "Diory 2"
+    "text": "Frenkell",
+    "latitude": "61.4998",
+    "longitude": "23.7630",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Frenckell_factory1.jpg"
   },
   "diory3": {
     "id": "diory3",
-    "text": "Diory 3"
+    "text": "Hämeenkatu",
+    "latitude": "61.4978",
+    "longitude": "23.7630",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Tampere_Hameenkatu.png"
   }
 }
