@@ -63,10 +63,3 @@ export const useRight = () => {
     onRight: () => dispatch(goSide({ focus: rightSibling }))
   }
 }
-
-export const useBackward = () => {
-  const [, dispatch] = useStore(state => state.navigation)
-  return {
-    onBackward: () => dispatch(goBackward())
-  }
-}

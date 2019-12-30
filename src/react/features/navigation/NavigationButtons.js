@@ -6,20 +6,16 @@ import { goHome, goBackward, goForward } from './actions'
 
 const useNavigationButtons = () => {
   const [{ backward, forward }, dispatch] = useStore(state => state.navigation)
-  const backwardDiorys = useDiorys(backward)
-  const forwardDiorys = useDiorys(forward)
   return {
     home: {
       onClick: () => dispatch(goHome()),
     },
     back: {
-      diorys: backwardDiorys,
-      disabled: !backwardDiorys.length,
+      disabled: !backward.length,
       onClick: () => dispatch(goBackward()),
     },
     forward: {
-      diorys: forwardDiorys,
-      disabled: !forwardDiorys.length,
+      disabled: !forward.length,
       onClick: () => dispatch(goForward()),
     },
   }
