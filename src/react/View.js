@@ -10,6 +10,10 @@ const View = () => {
   const [{ selectedLensId }] = useStore(state => state.lenses)
   const [{ room }] = useStore(state => state.navigation)
 
+  if (!room) {
+    return <HomeView />
+  }
+
   if (selectedLensId) {
     return (
       <FullScreenView marginTop={48}>
@@ -18,11 +22,7 @@ const View = () => {
     )
   }
 
-  if (room) {
-    return <Room />
-  }
-
-  return <HomeView />
+  return <Room />
 }
 
 export default View

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Pane, Tablist, Tab, Icon } from 'evergreen-ui'
+import { useStore } from '../../store'
 import { useLenses } from '../lenses/hooks'
 
 const useNavigationLenses = () => {
@@ -8,9 +9,10 @@ const useNavigationLenses = () => {
     selectedLensId,
     toggleLens,
   } = useLenses()
+  const [{ room }] = useStore(state => state.navigation)
 
   return {
-    lenses: Object.values(lenses).map(lens => ({
+    lenses: room && Object.values(lenses).map(lens => ({
       ...lens,
       isSelected: lens.id === selectedLensId,
       onSelect: () => toggleLens(lens.id),
@@ -20,7 +22,7 @@ const useNavigationLenses = () => {
 
 const NavigationLenses = props => {
   const { lenses } = useNavigationLenses()
-  return (
+  return !lenses ? null : (
     <Pane {...props}>
       <Tablist alignSelf="center">
         {lenses.map(({ diory, ...lens }) => (
