@@ -19,16 +19,16 @@ export const useRoomChannel = () => {
       })
     }
     return () => ipcRenderer.removeAllListeners(channels.ROOM)
-  },[room, dispatch])
+  }, [room, dispatch])
 }
 
 export const useFocusDiory = () => {
-  const [{ focus }, dispatch] = useStore((state) => state.navigation)
-  const [{ diograph }] = useStore((state) => state.room)
+  const [{ focus }, dispatch] = useStore(state => state.navigation)
+  const [{ diograph }] = useStore(state => state.room)
   const diory = diograph[focus]
   return {
     diory,
     diorys: useDiorys(diory && diory.links),
-    setFocus: (props) => dispatch(setFocus(props))
+    setFocus: props => dispatch(setFocus(props)),
   }
 }

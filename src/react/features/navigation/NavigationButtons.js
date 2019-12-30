@@ -1,6 +1,5 @@
 import React from 'react'
 import { Pane, IconButton } from 'evergreen-ui'
-import { useDiorys } from '../../hooks'
 import { useStore } from '../../store'
 import { goHome, goBackward, goForward } from './actions'
 

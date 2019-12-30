@@ -23,12 +23,12 @@ export const addDiory = (state, { payload }) => ({
 
 export const removeDiory = (state, { payload }) => {
   const { [payload.diory.id]: omit, ...diograph } = state.diograph
-  return ({
+  return {
     ...state,
     diograph,
     updated: true,
-  })
-};
+  }
+}
 
 export const updateDiory = (state, { payload }) => ({
   ...state,
@@ -37,12 +37,11 @@ export const updateDiory = (state, { payload }) => ({
     [payload.diory.id]: payload.diory,
   },
   updated: true,
-
-});
+})
 
 export default createReducer({
   [types.SET_DIOGRAPH]: setDiograph,
   [types.ADD_DIORY]: addDiory,
   [types.REMOVE_DIORY]: removeDiory,
   [types.UPDATE_DIORY]: updateDiory,
-});
+})

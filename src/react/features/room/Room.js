@@ -25,9 +25,12 @@ const useRoom = () => {
   }
 }
 
-const getBackgroundImage = (image, content) => content
-  ? `linear-gradient(rgba(255, 255, 255, 0.8),rgba(255, 255, 255, 0.8)), url(${encodeURI(image)})`
-  : `url(${encodeURI(image)})`
+const getBackgroundImage = (image, content) =>
+  content
+    ? `linear-gradient(rgba(255, 255, 255, 0.8),rgba(255, 255, 255, 0.8)), url(${encodeURI(
+        image
+      )})`
+    : `url(${encodeURI(image)})`
 
 const Room = () => {
   const { diory, diorys, onLeftClick, onRightClick } = useRoom()
@@ -35,18 +38,17 @@ const Room = () => {
     return <div>loading</div>
   }
   return (
-    <Pane
-      height="100%"
-      display="flex"
-      flexWrap="wrap"
-      padding={24}
-    >
+    <Pane height="100%" display="flex" flexWrap="wrap" padding={24}>
       <Image
         backgroundImage={getBackgroundImage(diory.image, diorys.length)}
         zIndex={-1}
       />
-      {!diorys.length && <Heading margin={16} color="darkgrey" fontWeight="bold">{diory.text}</Heading>}
-      {diorys.map(({diory, onClick}) => (
+      {!diorys.length && (
+        <Heading margin={16} color="darkgrey" fontWeight="bold">
+          {diory.text}
+        </Heading>
+      )}
+      {diorys.map(({ diory, onClick }) => (
         <Diory
           key={diory.id}
           diory={diory}
@@ -62,9 +64,28 @@ const Room = () => {
           aria-controls={`panel-${diory.id}`}
         />
       ))}
-      <div onClick={onLeftClick} style={{ position: 'absolute', left: 0, top: 50, bottom: 0, width: '100px' }}/>
-      <div onClick={onRightClick} style={{ position: 'absolute', right: 0, top: 50, bottom: 0, width: '100px' }}/>
-    </Pane>  )
+      <div
+        onClick={onLeftClick}
+        style={{
+          position: 'absolute',
+          left: 0,
+          top: 50,
+          bottom: 0,
+          width: '100px',
+        }}
+      />
+      <div
+        onClick={onRightClick}
+        style={{
+          position: 'absolute',
+          right: 0,
+          top: 50,
+          bottom: 0,
+          width: '100px',
+        }}
+      />
+    </Pane>
+  )
 }
 
 Room.diory = {

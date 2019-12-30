@@ -23,12 +23,12 @@ export const addRoom = (state, { payload }) => ({
 
 export const removeRoom = (state, { payload }) => {
   const { [payload.room.id]: omit, ...rooms } = state.rooms
-  return ({
+  return {
     ...state,
     rooms,
     updated: true,
-  })
-};
+  }
+}
 
 export const updateRoom = (state, { payload }) => ({
   ...state,
@@ -37,12 +37,11 @@ export const updateRoom = (state, { payload }) => ({
     [payload.room.id]: payload.room,
   },
   updated: true,
-
-});
+})
 
 export default createReducer({
   [types.SET_ROOMS]: setRooms,
   [types.ADD_ROOM]: addRoom,
   [types.REMOVE_ROOM]: removeRoom,
   [types.UPDATE_ROOM]: updateRoom,
-});
+})

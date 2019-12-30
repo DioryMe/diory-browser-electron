@@ -12,7 +12,7 @@ const DioryGrid = ({ diory, diorys, onClick, children, ...props }) => {
       flexWrap="wrap"
       {...props}
     >
-      {diorys.map(({diory, onClick}) => (
+      {diorys.map(({ diory, onClick }) => (
         <Diory
           key={diory.id}
           diory={diory}
@@ -26,8 +26,7 @@ const DioryGrid = ({ diory, diorys, onClick, children, ...props }) => {
           fontWeight="bold"
           background="white"
           aria-controls={`panel-${diory.id}`}
-        >
-        </Diory>
+        ></Diory>
       ))}
     </Diory>
   )

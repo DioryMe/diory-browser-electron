@@ -4,4 +4,4 @@ module.exports = {
     ROOM: 'room',
     DIORY: 'diory',
   },
-};
+}

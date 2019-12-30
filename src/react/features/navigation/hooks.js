@@ -1,16 +1,19 @@
 import { useEffect } from 'react'
 import { useStore } from '../../store'
-import { goSide, goBackward } from './actions'
+import { goSide } from './actions'
 
 export const useDocumentTitle = () => {
   const [{ diograph }] = useStore(state => state.room)
   const [{ path }] = useStore(state => state.navigation)
   useEffect(() => {
-    document.title = ['Home'].concat(path
-      .map(id => diograph[id])
-      .filter(diory => !!diory)
-      .map(({ id, text }) => text || id)
-    ).join(' / ')
+    document.title = ['Home']
+      .concat(
+        path
+          .map(id => diograph[id])
+          .filter(diory => !!diory)
+          .map(({ id, text }) => text || id)
+      )
+      .join(' / ')
   }, [path, diograph])
 }
 
@@ -42,9 +45,9 @@ export const useLeft = () => {
   if (focusIndex === 0) {
     return {}
   }
-  const leftSibling = sibligns[focusIndex-1]
+  const leftSibling = sibligns[focusIndex - 1]
   return {
-    onLeft: () => dispatch(goSide({ focus: leftSibling }))
+    onLeft: () => dispatch(goSide({ focus: leftSibling })),
   }
 }
 
@@ -58,8 +61,8 @@ export const useRight = () => {
   if (focusIndex === sibligns.length - 1) {
     return {}
   }
-  const rightSibling = sibligns[focusIndex+1]
+  const rightSibling = sibligns[focusIndex + 1]
   return {
-    onRight: () => dispatch(goSide({ focus: rightSibling }))
+    onRight: () => dispatch(goSide({ focus: rightSibling })),
   }
 }

@@ -30,7 +30,9 @@ export const goSide = (state, { payload }) => ({
   ...state,
   focus: payload.focus,
   forward: [],
-  path: Object.assign([], state.path, {[state.path.length - 1]: payload.focus})
+  path: Object.assign([], state.path, {
+    [state.path.length - 1]: payload.focus,
+  }),
 })
 
 export const goBackward = state => {

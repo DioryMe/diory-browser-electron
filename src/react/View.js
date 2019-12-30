@@ -13,13 +13,13 @@ const View = () => {
   if (selectedLensId) {
     return (
       <FullScreenView marginTop={48}>
-        <SelectedLens/>
+        <SelectedLens />
       </FullScreenView>
     )
   }
 
   if (room) {
-    return <Room/>
+    return <Room />
   }
 
   return <HomeView />
