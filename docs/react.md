@@ -20,5 +20,14 @@ Code is tested by feature.
 - stories -> cucumber
 
 
+## Map lens
+Leaflet library with openstreetmap tiles
++ Open source and free
++ Easy and comprehensive API
+- Plain javascript
+- Interaction with popups
+- CSS import in index.html
+= Consider changing to react-leaflet
+
 
 
