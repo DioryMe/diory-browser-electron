@@ -93,7 +93,7 @@ export const useMap = id => {
 const getDioryPopup = diory => {
   const image = `<img src="${diory.image}" height="150px"/>`
   const text = `<div>${diory.text || ''}</div>`
-  return `<div>${image + text}</div>`
+  return `<div style="overflow: hidden">${image + text}</div>`
 }
 
 const useDioryPopup = markerRef => {
@@ -112,7 +112,11 @@ const useDioryPopup = markerRef => {
 
   useEffect(() => {
     if (markerRef.current) {
-      markerRef.current.bindPopup(popupRef.current).openPopup()
+      markerRef.current
+        .bindPopup(popupRef.current, {
+          maxWidth: 'auto'
+        })
+        .openPopup()
     }
   }, [markerRef])
 }
@@ -160,7 +164,9 @@ export const useDiorysMarkers = mapRef => {
         const latLng = [diory.latitude, diory.longitude]
         const marker = L.marker(latLng)
           .addTo(mapRef.current)
-          .bindPopup(popup)
+          .bindPopup(popup, {
+            maxWidth: 'auto'
+          })
           .on('click', () => {
             if (!popup.isOpen()) {
               dispatch(setFocus({ focus: diory.id }))
