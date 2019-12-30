@@ -1,5 +1,5 @@
 import Graph from './components/Graph'
-import Map from './components/map/Map'
+import Map from './map/Map'
 import Timeline from './components/Timeline'
 import Search from './components/Search'
 

@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
 import L from 'leaflet'
-import { useStore } from '../../../../store'
-import { useFocusDiory } from '../../../room/hooks'
-import { setFocus } from '../../../navigation/actions'
+import { useStore } from '../../../store'
+import { useFocusDiory } from '../../room/hooks'
+import { setFocus } from '../../navigation/actions'
 
 const getAverage = (array = []) => array.length ? array.reduce((a,b) => a + b, 0) / array.length : undefined
 
@@ -137,7 +137,6 @@ export const useDioryMarker = mapRef => {
 
   const markerRef = useRef(null)
   useEffect(() => {
-    console.log(markerRef.current, center)
     if (markerRef.current) {
       if (center) {
         markerRef.current
