@@ -47,7 +47,7 @@ export const useLeft = () => {
   }
   const leftSibling = sibligns[focusIndex - 1]
   return {
-    onLeft: () => dispatch(goSide({ focus: leftSibling })),
+    onClick: () => dispatch(goSide({ focus: leftSibling })),
   }
 }
 
@@ -63,6 +63,6 @@ export const useRight = () => {
   }
   const rightSibling = sibligns[focusIndex + 1]
   return {
-    onRight: () => dispatch(goSide({ focus: rightSibling })),
+    onClick: () => dispatch(goSide({ focus: rightSibling })),
   }
 }

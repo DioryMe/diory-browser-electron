@@ -2,8 +2,7 @@ import React from 'react'
 import { Heading, Pane } from 'evergreen-ui'
 import { useStore } from '../../store'
 import { useRoomChannel, useFocusDiory } from './hooks'
-import { useLeft, useRight } from '../navigation/hooks'
-import { goBackward, setFocus } from '../navigation/actions'
+import { setFocus } from '../navigation/actions'
 import Diory from '../../components/diories/Diory'
 import Image from '../../components/diories/Image'
 
@@ -11,17 +10,12 @@ const useRoom = () => {
   useRoomChannel()
   const dispatch = useStore()[1]
   const { diory, diorys } = useFocusDiory()
-  const { onLeft } = useLeft()
-  const { onRight } = useRight()
-  const onBackward = () => dispatch(goBackward())
   return {
     diory,
     diorys: diorys.map(diory => ({
       diory,
       onClick: ({ diory }) => dispatch(setFocus({ focus: diory.id })),
-    })),
-    onLeftClick: onLeft || onBackward,
-    onRightClick: onRight || onBackward,
+    }))
   }
 }
 
@@ -33,7 +27,7 @@ const getBackgroundImage = (image, content) =>
     : `url(${encodeURI(image)})`
 
 const Room = () => {
-  const { diory, diorys, onLeftClick, onRightClick } = useRoom()
+  const { diory, diorys } = useRoom()
   if (!diory) {
     return <div>loading</div>
   }
@@ -64,26 +58,6 @@ const Room = () => {
           aria-controls={`panel-${diory.id}`}
         />
       ))}
-      <div
-        onClick={onLeftClick}
-        style={{
-          position: 'absolute',
-          left: 0,
-          top: 50,
-          bottom: 0,
-          width: '100px',
-        }}
-      />
-      <div
-        onClick={onRightClick}
-        style={{
-          position: 'absolute',
-          right: 0,
-          top: 50,
-          bottom: 0,
-          width: '100px',
-        }}
-      />
     </Pane>
   )
 }
