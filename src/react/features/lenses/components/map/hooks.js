@@ -4,6 +4,8 @@ import { useStore } from '../../../../store'
 import { useFocusDiory } from '../../../room/hooks'
 import { setFocus } from '../../../navigation/actions'
 
+const getAverage = (array = []) => array.length ? array.reduce((a,b) => a + b, 0) / array.length : undefined
+
 const useDioryLatLng = () => {
   const { diory, diorys } = useFocusDiory()
   const latitudes = diorys
@@ -12,11 +14,13 @@ const useDioryLatLng = () => {
   const longitudes = diorys
     .filter(({ longitude }) => longitude)
     .map(({ longitude }) => longitude)
-  const latitudesAndLongitudesExists = latitudes.length && longitudes.length
+  const latitudesAndLongitudesExists = latitudes.length > 1 && longitudes.length > 1
+  const lat = diory.latitude || getAverage(latitudes)
+  const lng = diory.longitude || getAverage(longitudes)
   return {
-    center: diory.latitude && diory.longitude && {
-      lat: diory.latitude,
-      lng: diory.longitude,
+    center: lat && lng && {
+      lat,
+      lng,
     },
     max: latitudesAndLongitudesExists && [
       Math.max(...latitudes),
@@ -113,8 +117,8 @@ const useDioryPopup = markerRef => {
   useEffect(() => {
     if (markerRef.current) {
       markerRef.current
-        .bindPopup(popupRef.current, {
-          maxWidth: 'auto'
+        .bindPopup(getDioryPopup(diory), {
+          maxWidth: 'auto',
         })
         .openPopup()
     }
@@ -157,21 +161,24 @@ export const useDiorysMarkers = mapRef => {
     diorys
       .filter(({ latitude, longitude }) => latitude && longitude)
       .forEach(diory => {
-        const popup = L.popup({
-          closeButton: false,
-        }).setContent(getDioryPopup(diory))
+        const popup = L
+          .popup({
+            closeButton: false,
+          })
+          .setContent(getDioryPopup(diory))
 
         const latLng = [diory.latitude, diory.longitude]
         const marker = L.marker(latLng)
           .addTo(mapRef.current)
           .bindPopup(popup, {
-            maxWidth: 'auto'
+            maxWidth: 'auto',
           })
           .on('click', () => {
             if (!popup.isOpen()) {
               dispatch(setFocus({ focus: diory.id }))
             }
           })
+
         diorysMarkers.current.push(marker)
       })
   }, [mapRef, diorys, dispatch])
