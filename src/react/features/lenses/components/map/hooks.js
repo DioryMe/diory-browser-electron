@@ -100,29 +100,36 @@ const getDioryPopup = diory => {
   return `<div style="overflow: hidden">${image + text}</div>`
 }
 
-const useDioryPopup = markerRef => {
-  const { diory } = useFocusDiory()
-
-  const popupRef = useRef(null)
+// TODO: Find a better way to update popup width on image load
+const useUpdatePopup = mapRef => {
   useEffect(() => {
-    if (popupRef.current) {
-      popupRef.current.setContent(getDioryPopup(diory))
-    } else {
-      popupRef.current = L.popup({
-        closeButton: false,
-      }).setContent(getDioryPopup(diory))
-    }
-  }, [diory])
+    document.querySelector('.leaflet-popup-pane').addEventListener('load', function(event) {
+      const
+        tagName = event.target.tagName,
+        popup = mapRef.current._popup
+
+      if (tagName === 'IMG' && popup && !popup._updated) {
+        popup._updated = true // Assumes only 1 image per Popup.
+        popup.update()
+      }
+    }, true) // Capture the load event, because it does not bubble.
+  }, [mapRef])
+}
+
+const useDioryPopup = (markerRef, mapRef) => {
+  const { diory } = useFocusDiory()
 
   useEffect(() => {
     if (markerRef.current) {
       markerRef.current
         .bindPopup(getDioryPopup(diory), {
-          maxWidth: 'auto',
+          maxWidth: 500,
         })
         .openPopup()
     }
-  }, [markerRef])
+  }, [diory, markerRef])
+
+  useUpdatePopup(mapRef)
 }
 
 export const useDioryMarker = mapRef => {
@@ -130,24 +137,27 @@ export const useDioryMarker = mapRef => {
 
   const markerRef = useRef(null)
   useEffect(() => {
-    if (center) {
-      if (markerRef.current) {
+    console.log(markerRef.current, center)
+    if (markerRef.current) {
+      if (center) {
         markerRef.current
           .closePopup()
           .setLatLng(center)
-          .openPopup()
-      } else {
-        markerRef.current = L.marker(center).addTo(mapRef.current)
       }
-    }
-    else {
-      if (markerRef.current) {
+      else {
         markerRef.current.remove()
+        markerRef.current = null
+      }
+    } else {
+      if (center) {
+        markerRef.current = L
+          .marker(center)
+          .addTo(mapRef.current)
       }
     }
   }, [mapRef, markerRef, center])
 
-  useDioryPopup(markerRef)
+  useDioryPopup(markerRef, mapRef)
 }
 
 export const useDiorysMarkers = mapRef => {
@@ -171,7 +181,7 @@ export const useDiorysMarkers = mapRef => {
         const marker = L.marker(latLng)
           .addTo(mapRef.current)
           .bindPopup(popup, {
-            maxWidth: 'auto',
+            maxWidth: 500,
           })
           .on('click', () => {
             if (!popup.isOpen()) {
