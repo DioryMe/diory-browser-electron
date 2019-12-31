@@ -1,8 +1,8 @@
 {
   "room2": {
     "id": "room2",
-    "text": "Tampere",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Downtown_Tampere4.jpg",
+    "text": "My Life",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/99/The_love_of_my_life.jpg",
     "links": {
       "link1": {
         "id": "diory1"
@@ -12,28 +12,101 @@
       },
       "link3": {
         "id": "diory3"
+      },
+      "places": {
+        "id": "placesId"
       }
     }
   },
   "diory1": {
     "id": "diory1",
+    "text": "People"
+  },
+  "diory2": {
+    "id": "diory2",
+    "text": "Events"
+  },
+  "diory3": {
+    "id": "diory3",
+    "text": "Things"
+  },
+  "placesId": {
+    "id": "placesId",
+    "text": "My Places",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/The_earth_at_night.jpg/800px-The_earth_at_night.jpg",
+    "links": {
+      "link1": {
+        "id": "place0"
+      },
+      "link2": {
+        "id": "place10"
+      },
+      "link3": {
+        "id": "place20"
+      },
+      "link4": {
+        "id": "place30"
+      }
+    }
+  },
+  "place0": {
+    "id": "place0",
+    "text": "Tampere",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Downtown_Tampere4.jpg",
+    "latitude": "61.4988",
+    "longitude": "23.7620",
+    "links": {
+      "link1": {
+        "id": "place1"
+      },
+      "link2": {
+        "id": "place2"
+      },
+      "link3": {
+        "id": "place3"
+      }
+    }
+  },
+  "place1": {
+    "id": "place1",
     "text": "Keskustori",
     "latitude": "61.4978",
     "longitude": "23.7610",
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Tampere_-_Keskustori.jpg/800px-Tampere_-_Keskustori.jpg"
   },
-  "diory2": {
-    "id": "diory2",
+  "place2": {
+    "id": "place2",
     "text": "Frenkell",
     "latitude": "61.4998",
     "longitude": "23.7630",
     "image": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Frenckell_factory1.jpg"
   },
-  "diory3": {
-    "id": "diory3",
+  "place3": {
+    "id": "place3",
     "text": "Hämeenkatu",
     "latitude": "61.4978",
     "longitude": "23.7630",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Tampere_Hameenkatu.png"
+  },
+  "place10": {
+    "id": "place10",
+    "text": "Keskustori",
+    "latitude": "60.4878",
+    "longitude": "23.7710",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Tampere_-_Keskustori.jpg/800px-Tampere_-_Keskustori.jpg"
+  },
+  "place20": {
+    "id": "place20",
+    "text": "Frenkell",
+    "latitude": "62.4798",
+    "longitude": "22.6030",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Frenckell_factory1.jpg"
+  },
+  "place30": {
+    "id": "place30",
+    "text": "Hämeenkatu",
+    "latitude": "61.5178",
+    "longitude": "25.6530",
     "image": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Tampere_Hameenkatu.png"
   }
 }
