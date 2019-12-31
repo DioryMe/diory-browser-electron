@@ -1,11 +1,11 @@
 import React from 'react';
-import { useMap, useDioryMarker, useDiorysMarkers } from './hooks'
+import { useMapMarkers } from './useMapMarkers'
+import { useMap } from './useMap'
 
 const Map = () => {
   const id = 'mapId'
   const map = useMap(id)
-  useDioryMarker(map)
-  useDiorysMarkers(map)
+  useMapMarkers(map)
 
   return <div id={id} style={{ height: '100%' }}/>
 }

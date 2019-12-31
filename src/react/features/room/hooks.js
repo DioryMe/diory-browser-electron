@@ -3,7 +3,6 @@ import { channels } from '../../../shared/constants'
 import { useStore } from '../../store'
 import { useDiorys } from '../../hooks'
 
-import { setFocus } from '../navigation/actions'
 import { setDiograph } from './actions'
 
 const { ipcRenderer } = window
@@ -23,12 +22,11 @@ export const useRoomChannel = () => {
 }
 
 export const useFocusDiory = () => {
-  const [{ focus }, dispatch] = useStore(state => state.navigation)
+  const [{ focus }] = useStore(state => state.navigation)
   const [{ diograph }] = useStore(state => state.room)
   const diory = diograph[focus]
   return {
     diory,
     diorys: useDiorys(diory && diory.links),
-    setFocus: props => dispatch(setFocus(props)),
   }
 }
