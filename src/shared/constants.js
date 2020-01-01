@@ -1,8 +1,8 @@
 module.exports = {
   channels: {
     HOME: 'home',
-    ROOM: 'room',
     DIORY: 'diory',
-    UPDATE_ROOM: 'UPDATE_ROOM'
+    GET_ROOM: 'GET_ROOM',
+    SAVE_ROOM: 'SAVE_ROOM'
   },
 }

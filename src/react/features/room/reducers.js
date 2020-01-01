@@ -43,7 +43,7 @@ export const updateDiory = (state, { payload }) => ({
   updated: true,
 })
 
-export const updateRoomSuccess = (state) => ({
+export const saveRoomSuccess = (state) => ({
   ...state,
   updated: false,
 })
@@ -53,5 +53,5 @@ export default createReducer({
   [types.ADD_DIORY]: addDiory,
   [types.REMOVE_DIORY]: removeDiory,
   [types.UPDATE_DIORY]: updateDiory,
-  [types.UPDATE_ROOM_SUCCESS]: updateRoomSuccess,
+  [types.SAVE_ROOM_SUCCESS]: saveRoomSuccess,
 })

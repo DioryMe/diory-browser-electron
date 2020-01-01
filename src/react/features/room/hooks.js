@@ -3,38 +3,35 @@ import { channels } from '../../../shared/constants'
 import { useStore } from '../../store'
 import { useDiorys } from '../../hooks'
 
-import { setDiograph } from './actions'
 import * as types from './actionsTypes'
 
-import { updateRoom } from '../../lib/ipcClient'
-
-const { ipcRenderer } = window
+import { fetchData } from '../../lib/ipcClient'
 
 export const useRoomChannel = () => {
-  const [{ room }, dispatch] = useStore(state => state.navigation)
+  const [{ roomId }, dispatch] = useStore(state => state.navigation)
   useEffect(() => {
-    if (room) {
-      ipcRenderer.send(channels.ROOM, room)
-      ipcRenderer.on(channels.ROOM, (event, data) => {
-        const { diograph } = data
-        dispatch(setDiograph(diograph))
-      })
+    if (roomId) {
+      console.log(roomId)
+      fetchData(channels.GET_ROOM, roomId)
+        .then(({ diograph }) => dispatch({
+          type: types.SET_DIOGRAPH,
+          payload: { diograph },
+        }))
     }
-    return () => ipcRenderer.removeAllListeners(channels.ROOM)
-  }, [room, dispatch])
+  }, [roomId, dispatch])
 }
 
 export const useDiograph = () => {
   const [{ diograph, updated }, dispatch] = useStore(state => state.room)
-  const [{ room }] = useStore(state => state.navigation)
+  const [{ roomId }] = useStore(state => state.navigation)
   useEffect(() => {
     if (updated) {
-      dispatch({ type: types.UPDATE_ROOM_BEGIN })
-      updateRoom({ id: room, diograph })
-        .then(() => dispatch({ type: types.UPDATE_ROOM_SUCCESS }))
-        .catch(() => dispatch({ type: types.UPDATE_ROOM_FAILURE }))
+      dispatch({ type: types.SAVE_ROOM_BEGIN })
+      fetchData(channels.SAVE_ROOM, { id: roomId, diograph })
+        .then(() => dispatch({ type: types.SAVE_ROOM_SUCCESS }))
+        .catch(() => dispatch({ type: types.SAVE_ROOM_FAILURE }))
     }
-  }, [updated, room, diograph, dispatch])
+  }, [updated, roomId, diograph, dispatch])
 }
 
 export const useFocusDiory = () => {

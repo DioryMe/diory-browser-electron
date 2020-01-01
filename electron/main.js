@@ -52,15 +52,15 @@ const getRoom = id => {
   return { id, diograph }
 }
 
-ipcMain.on(channels.ROOM, (event, id) => {
-  event.sender.send(channels.ROOM, getRoom(id));
+ipcMain.on(channels.GET_ROOM, (event, id) => {
+  event.sender.send(channels.GET_ROOM, getRoom(id));
 });
 
-ipcMain.on(channels.UPDATE_ROOM, (event, { id, diograph }) => {
+ipcMain.on(channels.SAVE_ROOM, (event, { id, diograph }) => {
   fs.writeFile(`./public/${id}/diograph.json`, JSON.stringify(diograph), function(err) {
     if(err) {
-      return event.sender.send(channels.UPDATE_ROOM, null, err);
+      return event.sender.send(channels.SAVE_ROOM, null, err);
     }
-    event.sender.send(channels.UPDATE_ROOM, true);
+    event.sender.send(channels.SAVE_ROOM, true);
   });
 });
