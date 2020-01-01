@@ -14,3 +14,7 @@ export const useStore = selector => {
   const selectedState = selector ? selector(state) : state
   return [selectedState, dispatch]
 }
+
+export const useDispatch = () => {
+  return useContext(StateContext)[1]
+}

@@ -1,8 +1,9 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import L from 'leaflet'
 import { useStore } from '../../../store'
 import { useFocusDiory } from '../../room/hooks'
 import { setFocus } from '../../navigation/actions'
+import { updateDiory } from '../../room/actions'
 import { getLocationData } from './getLocationData'
 
 const createMapPopup = ({ diory = {} }) => {
@@ -33,7 +34,10 @@ const createMapMarker = ({ diory, diorys, dispatch }) => {
         dispatch(setFocus({ focus: diory.id }))
       }
     })
-    .on('dragend', () => console.log(marker.getLatLng()))
+    .on('dragend', () => {
+      const { lat: latitude, lng: longitude } = marker.getLatLng()
+      dispatch(updateDiory({ id: diory.id, latitude, longitude }))
+    })
 
   return marker
 }
@@ -51,26 +55,25 @@ const useDioryMarker = mapRef => {
     }
 
     return () => marker && marker.remove()
-  }, [diory, diorys, dispatch])
+  }, [mapRef, diory, diorys, dispatch])
 }
 
 const useDiorysMarkers = mapRef => {
   const { diorys } = useFocusDiory()
   const dispatch = useStore()[1]
 
-  const markerRefs = useRef([])
   useEffect(() => {
+    const markers = []
     diorys
       .filter(({ latitude, longitude }) => latitude && longitude)
       .forEach((diory) => {
         const marker = createMapMarker({ diory, dispatch })
           .addTo(mapRef.current)
-
-        markerRefs.current.push(marker)
+        markers.push(marker)
       })
 
-    return () => markerRefs.current.forEach(marker => marker.remove())
-  }, [diorys, dispatch])
+    return () => markers.forEach(marker => marker.remove())
+  }, [mapRef, diorys, dispatch])
 }
 
 // TODO: Find a better way to update popup width on image load

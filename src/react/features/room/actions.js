@@ -5,7 +5,10 @@ export const setDiograph = diograph => ({
   payload: { diograph },
 })
 
-export const addDiory = diory => ({ type: types.ADD_DIORY, payload: { diory } })
+export const addDiory = diory => ({
+  type: types.ADD_DIORY,
+  payload: { diory },
+})
 
 export const removeDiory = diory => ({
   type: types.REMOVE_DIORY,

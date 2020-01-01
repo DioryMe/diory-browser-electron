@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import L from 'leaflet'
-import { useDiory } from '../../../hooks'
+import { useDiory, useCompare } from '../../../hooks'
 import { useStore } from '../../../store'
 import { getLocationData } from './getLocationData'
 
@@ -34,9 +34,11 @@ const useInitialMapBounds = mapRef => {
 }
 
 const useMapBounds = mapRef => {
+  const [{ focus }] = useStore(state => state.navigation)
+  const focusChanged = useCompare(focus)
   const { center, min, max } = useFocusLocation()
   useEffect(() => {
-    if (mapRef.current) {
+    if (mapRef.current && focusChanged) {
       if (min && max) {
         mapRef.current.flyToBounds([min, max])
       }
@@ -47,7 +49,7 @@ const useMapBounds = mapRef => {
         mapRef.current.fitWorld()
       }
     }
-  }, [mapRef, center, min, max])
+  }, [mapRef, focusChanged, center, min, max])
 }
 
 export const useMap = id => {

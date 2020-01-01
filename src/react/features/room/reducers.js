@@ -2,6 +2,7 @@ import * as types from './actionsTypes'
 import createReducer from '../../store/createReducer'
 
 export const initialState = {
+  id: null,
   diograph: {},
   updated: false,
 }
@@ -34,7 +35,10 @@ export const updateDiory = (state, { payload }) => ({
   ...state,
   diograph: {
     ...state.diograph,
-    [payload.diory.id]: payload.diory,
+    [payload.diory.id]: {
+      ...state.diograph[payload.diory.id],
+      ...payload.diory,
+    },
   },
   updated: true,
 })
