@@ -1,10 +1,10 @@
 import React from 'react';
 import { useMapMarkers } from './useMapMarkers'
 import { useMap } from './useMap'
-import { useDiograph} from '../../room/hooks'
+import { useSaveRoom} from '../../room/hooks'
 
 const Map = () => {
-  useDiograph()
+  useSaveRoom()
 
   const id = 'mapId'
   const map = useMap(id)

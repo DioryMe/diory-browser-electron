@@ -1,13 +1,13 @@
 import React from 'react'
 import { Heading, Pane } from 'evergreen-ui'
 import { useStore } from '../../store'
-import { useRoomChannel, useFocusDiory } from './hooks'
+import { useGetRoom, useFocusDiory } from './hooks'
 import { setFocus } from '../navigation/actions'
 import Diory from '../../components/diories/Diory'
 import Image from '../../components/diories/Image'
 
 const useRoom = () => {
-  useRoomChannel()
+  useGetRoom()
   const dispatch = useStore()[1]
   const { diory, diorys } = useFocusDiory()
   return {

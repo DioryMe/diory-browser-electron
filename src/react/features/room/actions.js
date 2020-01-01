@@ -1,10 +1,5 @@
 import * as types from './actionsTypes'
 
-export const setDiograph = diograph => ({
-  type: types.SET_DIOGRAPH,
-  payload: { diograph },
-})
-
 export const addDiory = diory => ({
   type: types.ADD_DIORY,
   payload: { diory },

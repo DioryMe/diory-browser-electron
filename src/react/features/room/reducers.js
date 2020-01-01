@@ -7,8 +7,9 @@ export const initialState = {
   updated: false,
 }
 
-export const setDiograph = (state, { payload }) => ({
+export const getRoom = (state, { payload }) => ({
   ...state,
+  id: payload.id,
   diograph: payload.diograph,
   updated: false,
 })
@@ -49,7 +50,7 @@ export const saveRoomSuccess = (state) => ({
 })
 
 export default createReducer({
-  [types.SET_DIOGRAPH]: setDiograph,
+  [types.GET_ROOM]: getRoom,
   [types.ADD_DIORY]: addDiory,
   [types.REMOVE_DIORY]: removeDiory,
   [types.UPDATE_DIORY]: updateDiory,

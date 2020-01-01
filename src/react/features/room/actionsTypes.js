@@ -1,4 +1,4 @@
-export const SET_DIOGRAPH = 'SET_DIOGRAPH'
+export const GET_ROOM = 'GET_ROOM'
 
 export const ADD_DIORY = 'ADD_DIORY'
 export const UPDATE_DIORY = 'UPDATE_DIORY'

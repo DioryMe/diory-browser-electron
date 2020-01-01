@@ -7,31 +7,30 @@ import * as types from './actionsTypes'
 
 import { fetchData } from '../../lib/ipcClient'
 
-export const useRoomChannel = () => {
+export const useGetRoom = () => {
   const [{ roomId }, dispatch] = useStore(state => state.navigation)
   useEffect(() => {
     if (roomId) {
       console.log(roomId)
       fetchData(channels.GET_ROOM, roomId)
-        .then(({ diograph }) => dispatch({
-          type: types.SET_DIOGRAPH,
-          payload: { diograph },
+        .then(({ id, diograph }) => dispatch({
+          type: types.GET_ROOM,
+          payload: { id, diograph },
         }))
     }
   }, [roomId, dispatch])
 }
 
-export const useDiograph = () => {
-  const [{ diograph, updated }, dispatch] = useStore(state => state.room)
-  const [{ roomId }] = useStore(state => state.navigation)
+export const useSaveRoom = () => {
+  const [{ id, diograph, updated }, dispatch] = useStore(state => state.room)
   useEffect(() => {
     if (updated) {
       dispatch({ type: types.SAVE_ROOM_BEGIN })
-      fetchData(channels.SAVE_ROOM, { id: roomId, diograph })
+      fetchData(channels.SAVE_ROOM, { id, diograph })
         .then(() => dispatch({ type: types.SAVE_ROOM_SUCCESS }))
         .catch(() => dispatch({ type: types.SAVE_ROOM_FAILURE }))
     }
-  }, [updated, roomId, diograph, dispatch])
+  }, [updated, id, diograph, dispatch])
 }
 
 export const useFocusDiory = () => {
