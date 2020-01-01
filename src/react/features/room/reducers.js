@@ -39,9 +39,15 @@ export const updateDiory = (state, { payload }) => ({
   updated: true,
 })
 
+export const updateRoomSuccess = (state) => ({
+  ...state,
+  updated: false,
+})
+
 export default createReducer({
   [types.SET_DIOGRAPH]: setDiograph,
   [types.ADD_DIORY]: addDiory,
   [types.REMOVE_DIORY]: removeDiory,
   [types.UPDATE_DIORY]: updateDiory,
+  [types.UPDATE_ROOM_SUCCESS]: updateRoomSuccess,
 })

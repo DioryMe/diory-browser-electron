@@ -4,6 +4,9 @@ import { useStore } from '../../store'
 import { useDiorys } from '../../hooks'
 
 import { setDiograph } from './actions'
+import * as types from './actionsTypes'
+
+import { updateRoom } from '../../lib/ipcClient'
 
 const { ipcRenderer } = window
 
@@ -19,6 +22,19 @@ export const useRoomChannel = () => {
     }
     return () => ipcRenderer.removeAllListeners(channels.ROOM)
   }, [room, dispatch])
+}
+
+export const useDiograph = () => {
+  const [{ diograph, updated }, dispatch] = useStore(state => state.room)
+  const [{ room }] = useStore(state => state.navigation)
+  useEffect(() => {
+    if (updated) {
+      dispatch({ type: types.UPDATE_ROOM_BEGIN })
+      updateRoom({ id: room, diograph })
+        .then(() => dispatch({ type: types.UPDATE_ROOM_SUCCESS }))
+        .catch(() => dispatch({ type: types.UPDATE_ROOM_FAILURE }))
+    }
+  }, [updated, room, diograph, dispatch])
 }
 
 export const useFocusDiory = () => {

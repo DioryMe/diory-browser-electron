@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const url = require('url');
+const fs = require('fs');
 const { channels } = require('../src/shared/constants');
 const home = require('../public/home.json');
 
@@ -53,4 +54,13 @@ const getRoom = id => {
 
 ipcMain.on(channels.ROOM, (event, id) => {
   event.sender.send(channels.ROOM, getRoom(id));
+});
+
+ipcMain.on(channels.UPDATE_ROOM, (event, { id, diograph }) => {
+  fs.writeFile(`./public/${id}/diograph.json`, JSON.stringify(diograph), function(err) {
+    if(err) {
+      return event.sender.send(channels.UPDATE_ROOM, null, err);
+    }
+    event.sender.send(channels.UPDATE_ROOM, true);
+  });
 });
