@@ -9,10 +9,10 @@ const useNavigationLenses = () => {
     selectedLensId,
     toggleLens,
   } = useLenses()
-  const [{ room }] = useStore(state => state.navigation)
+  const [{ roomId }] = useStore(state => state.navigation)
 
   return {
-    lenses: room && Object.values(lenses).map(lens => ({
+    lenses: roomId && Object.values(lenses).map(lens => ({
       ...lens,
       isSelected: lens.id === selectedLensId,
       onSelect: () => toggleLens(lens.id),

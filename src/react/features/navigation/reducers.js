@@ -2,7 +2,7 @@ import * as types from './actionsTypes'
 import createReducer from '../../store/createReducer'
 
 export const initialState = {
-  room: undefined,
+  roomId: undefined,
   focus: undefined,
   backward: [],
   forward: [],
@@ -11,17 +11,17 @@ export const initialState = {
 
 export const enterRoom = (state, { payload }) => ({
   ...state,
-  room: payload.room,
-  focus: payload.room,
+  roomId: payload.roomId,
+  focus: payload.roomId,
   backward: [[]],
   forward: [],
-  path: [payload.room],
+  path: [payload.roomId],
 })
 
 export const setFocus = (state, { payload }) => ({
   ...state,
   focus: payload.focus,
-  backward: [[state.room, state.focus], ...state.backward],
+  backward: [[state.roomId, state.focus], ...state.backward],
   forward: [],
   path: [...state.path, payload.focus],
 })
@@ -36,24 +36,24 @@ export const goSide = (state, { payload }) => ({
 })
 
 export const goBackward = state => {
-  const [[room, focus], ...backward] = state.backward
+  const [[roomId, focus], ...backward] = state.backward
   return {
     ...state,
-    room,
+    roomId,
     focus,
     backward,
-    forward: [[state.room, state.focus], ...state.forward],
+    forward: [[state.roomId, state.focus], ...state.forward],
     path: [...state.path].slice(0, -1),
   }
 }
 
 export const goForward = state => {
-  const [[room, focus], ...forward] = state.forward
+  const [[roomId, focus], ...forward] = state.forward
   return {
     ...state,
-    room,
+    roomId,
     focus,
-    backward: [[state.room, state.focus], ...state.backward],
+    backward: [[state.roomId, state.focus], ...state.backward],
     forward,
     path: [...state.path, focus],
   }
@@ -62,9 +62,9 @@ export const goForward = state => {
 export const goHome = state => {
   return {
     ...state,
-    room: undefined,
+    roomId: undefined,
     focus: undefined,
-    backward: [[state.room, state.focus], ...state.backward],
+    backward: [[state.roomId, state.focus], ...state.backward],
     forward: [],
     path: [],
   }
