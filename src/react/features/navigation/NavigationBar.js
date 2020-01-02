@@ -1,14 +1,10 @@
 import React from 'react'
 import { Pane } from 'evergreen-ui'
-import { useDocumentTitle } from './hooks'
 import NavigationButtons from './NavigationButtons'
 import NavigationLenses from './NavigationLenses'
 import NavigationSearch from './NavigationSearch'
-import NavigationToLeft from './NavigationToLeft'
-import NavigationToRight from './NavigationToRight'
 
 const NavigationBar = () => {
-  useDocumentTitle()
   return (
     <>
       <Pane
@@ -21,8 +17,6 @@ const NavigationBar = () => {
         <NavigationLenses display="flex" />
         <NavigationSearch />
       </Pane>
-      <NavigationToLeft />
-      <NavigationToRight />
     </>
   )
 }
