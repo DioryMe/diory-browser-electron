@@ -1,20 +1,8 @@
-import React, { createContext, useContext, useReducer } from 'react'
+import reducers from '../features/reducers'
+import combineReducers from './combineReducers'
 
-export const StateContext = createContext()
+export const reducer = combineReducers(reducers)
 
-export const StateProvider = ({ reducer, initialState, children }) => (
-  <StateContext.Provider
-    value={useReducer(reducer, initialState)}
-    children={children}
-  />
-)
+export { default as initialState } from '../features/initialState'
 
-export const useStore = selector => {
-  const [state, dispatch] = useContext(StateContext)
-  const selectedState = selector ? selector(state) : state
-  return [selectedState, dispatch]
-}
-
-export const useDispatch = () => {
-  return useContext(StateContext)[1]
-}
+export { StoreProvider, useStore, useDispatch } from './StoreContext'

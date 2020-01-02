@@ -1,22 +1,21 @@
 import React from 'react'
 
-import { StateProvider } from './store'
 import { reducerWithMiddleware } from './middleware'
-import reducer, { initialState } from './store/reducers'
+import { StoreProvider, reducer, initialState } from './store'
 
-import NavBar from './features/navigation/NavigationBar'
+import Controller from './Controller'
 import View from './View'
 
 const App = () => (
-  <StateProvider
+  <StoreProvider
     reducer={reducerWithMiddleware(reducer)}
     initialState={initialState}
   >
     <div className="App">
-      <NavBar />
+      <Controller />
       <View />
     </div>
-  </StateProvider>
+  </StoreProvider>
 )
 
 export default App
