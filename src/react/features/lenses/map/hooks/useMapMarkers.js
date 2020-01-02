@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import L from 'leaflet'
-import { useStore } from '../../../store'
-import { useFocusDiory } from '../../room/hooks'
-import { setFocus } from '../../navigation/actions'
-import { updateDiory } from '../../room/actions'
+import { useStore } from '../../../../store'
+import { useFocusDiory } from '../../../room/hooks'
+import { setFocus } from '../../../navigation/actions'
+import { updateDiory } from '../../../room/actions'
 import { getLocationData } from './getLocationData'
 
 const createMapPopup = ({ diory = {} }) => {

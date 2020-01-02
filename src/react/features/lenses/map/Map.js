@@ -1,6 +1,5 @@
 import React from 'react';
-import { useMapMarkers } from './useMapMarkers'
-import { useMap } from './useMap'
+import { useMap, useMapMarkers } from './hooks'
 import { useSaveRoom} from '../../room/hooks'
 
 const Map = () => {

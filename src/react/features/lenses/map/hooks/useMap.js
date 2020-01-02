@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import L from 'leaflet'
-import { useDiory, useCompare } from '../../../hooks'
-import { useStore } from '../../../store'
+import { useDiory, useCompare } from '../../../../hooks'
+import { useStore } from '../../../../store'
 import { getLocationData } from './getLocationData'
 
 const useFocusLocation = () => {
