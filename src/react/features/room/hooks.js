@@ -34,11 +34,6 @@ export const useSaveRoom = () => {
   }, [updated, id, diograph, dispatch])
 }
 
-// const path = Object.entries(home.rooms)
-//   .find(([key, room]) => id === room.id)[0]
-// const diograph = require(`../public/${path}/diograph.json`)
-// return { id, diograph }
-
 export const useFocusDiory = () => {
   const [{ focus }] = useStore(state => state.navigation)
   const [{ diograph }] = useStore(state => state.room)
