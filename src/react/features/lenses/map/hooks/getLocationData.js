@@ -7,7 +7,7 @@ export const getLocationData = ({ diory, diorys = []}) => {
   const longitudes = diorys
     .filter(({ longitude }) => longitude)
     .map(({ longitude }) => longitude)
-  const latitudesAndLongitudesExists = latitudes.length > 1 && longitudes.length > 1
+  const latitudesAndLongitudesExists = latitudes.length && longitudes.length
   const lat = diory.latitude || getAverage(latitudes)
   const lng = diory.longitude || getAverage(longitudes)
   return {
@@ -16,12 +16,12 @@ export const getLocationData = ({ diory, diorys = []}) => {
       lng,
     },
     max: latitudesAndLongitudesExists && [
-      Math.max(...latitudes),
-      Math.max(...longitudes),
+      Math.max(...latitudes, diory.latitude),
+      Math.max(...longitudes, diory.longitude),
     ],
     min: latitudesAndLongitudesExists && [
-      Math.min(...latitudes),
-      Math.min(...longitudes),
+      Math.min(...latitudes, diory.latitude),
+      Math.min(...longitudes, diory.longitude),
     ],
   }
 }
