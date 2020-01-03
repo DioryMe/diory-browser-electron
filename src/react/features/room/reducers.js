@@ -1,20 +1,22 @@
 import * as types from './actionsTypes'
 import createReducer from '../../store/createReducer'
+import { promiseActionReducer } from '../../utils'
 
 export const initialState = {
   id: null,
   diograph: {},
   updated: false,
+  saving: false,
 }
 
-export const getRoom = (state, { payload }) => ({
+const getRoom = (state, { payload }) => ({
   ...state,
   id: payload.id,
   diograph: payload.diograph,
   updated: false,
 })
 
-export const addDiory = (state, { payload }) => ({
+const addDiory = (state, { payload }) => ({
   ...state,
   diograph: {
     ...state.diograph,
@@ -23,7 +25,7 @@ export const addDiory = (state, { payload }) => ({
   updated: true,
 })
 
-export const removeDiory = (state, { payload }) => {
+const removeDiory = (state, { payload }) => {
   const { [payload.diory.id]: omit, ...diograph } = state.diograph
   return {
     ...state,
@@ -32,7 +34,7 @@ export const removeDiory = (state, { payload }) => {
   }
 }
 
-export const updateDiory = (state, { payload }) => ({
+const updateDiory = (state, { payload }) => ({
   ...state,
   diograph: {
     ...state.diograph,
@@ -54,5 +56,6 @@ export default createReducer({
   [types.ADD_DIORY]: addDiory,
   [types.REMOVE_DIORY]: removeDiory,
   [types.UPDATE_DIORY]: updateDiory,
-  [types.SAVE_ROOM_SUCCESS]: saveRoomSuccess,
+  [types.ADD_LINK]: addLink,
+  ...promiseActionReducer(types.SAVE_ROOM, 'saving', 'saved', 'updated')
 })

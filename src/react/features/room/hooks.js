@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
+import { debounceDispatchActionPromise } from '../../utils'
 import { channels } from '../../../shared/constants'
-import { useStore } from '../../store'
+import { useDispatch, useStore } from '../../store'
 import { useDiorys } from '../../hooks'
 
 import * as types from './actionsTypes'
@@ -11,7 +12,6 @@ export const useGetRoom = () => {
   const [{ roomId }, dispatch] = useStore(state => state.navigation)
   useEffect(() => {
     if (roomId) {
-      console.log(roomId)
       fetchData(channels.GET_ROOM, roomId)
         .then(({ id, diograph }) => dispatch({
           type: types.GET_ROOM,
@@ -22,13 +22,11 @@ export const useGetRoom = () => {
 }
 
 export const useSaveRoom = () => {
-  const [{ id, diograph, updated }, dispatch] = useStore(state => state.room)
+  const [{ id, diograph, updated }] = useStore(state => state.room)
+  const dispatch = useDispatch()
   useEffect(() => {
     if (updated) {
-      dispatch({ type: types.SAVE_ROOM_BEGIN })
-      fetchData(channels.SAVE_ROOM, { id, diograph })
-        .then(() => dispatch({ type: types.SAVE_ROOM_SUCCESS }))
-        .catch(() => dispatch({ type: types.SAVE_ROOM_FAILURE }))
+      debounceDispatchActionPromise(dispatch, types.SAVE_ROOM, () => fetchData(channels.SAVE_ROOM, { id, diograph }))
     }
   }, [updated, id, diograph, dispatch])
 }
