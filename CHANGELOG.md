@@ -1,3 +1,9 @@
+## 0.2.1 (January 3, 2020)
+
+### Map lens
+
+* Add, move and remove locations on map
+
 ## 0.2.0 (December 30, 2019)
 
 ### Map lens
