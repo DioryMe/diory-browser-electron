@@ -1,6 +1,7 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useDispatch, useStore } from '../../../store'
-import { addDiory, addLink } from '../../room/actions'
+import { setFocus } from '../../navigation/actions'
+import { addDiory, removeDiory, addLink } from '../../room/actions'
 
 const getTileURL = ({ lat, lng, zoom }) => {
   const latRad = lat * Math.PI / 180
@@ -30,8 +31,68 @@ const useAddLocation = mapRef => {
   }, [mapRef, active, focus, dispatch])
 }
 
+const useRemoveLocation = mapRef => {
+  const [{ active }] = useStore(state => state.operations)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    mapRef.current
+      .eachLayer(marker => {
+        if (marker.dioryId) {
+          function removeMarker() {
+            marker.remove()
+            dispatch(removeDiory({ id: marker.dioryId }))
+          }
+          if (active === 'removeLocation') {
+            marker.off('click')
+            marker.on('click', removeMarker)
+          }
+        }
+      })
+  }, [mapRef, active, dispatch])
+}
+
+const useSetFocus = mapRef => {
+  const [{ focus }] = useStore(state => state.navigation)
+  const [{ active }] = useStore(state => state.operations)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    mapRef.current
+      .eachLayer(marker => {
+        if (marker.dioryId) {
+          if (!active) {
+            marker.off('click')
+            marker.on('click', () => {
+              if (marker.isPopupOpen()) {
+                dispatch(setFocus({ focus: marker.dioryId }))
+              }
+            })
+          }
+        }
+      })
+  }, [mapRef, focus, active, dispatch])
+}
+
+const useTogglePopup = mapRef => {
+  const [{ focus }] = useStore(state => state.navigation)
+  const [{ active }] = useStore(state => state.operations)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    mapRef.current
+      .eachLayer(marker => {
+        if (marker.dioryId) {
+          marker.on('click', () => {
+            marker.togglePopup()
+          })
+        }
+      })
+  }, [mapRef, focus, active, dispatch])
+}
+
 export const useMapOperations = (mapRef) => {
   useAddLocation(mapRef)
+  useRemoveLocation(mapRef)
+  useSetFocus(mapRef)
+  useTogglePopup(mapRef)
 }
 
 export const operations = [{
@@ -39,5 +100,11 @@ export const operations = [{
   text: 'Add location',
   data: {
     icon: 'plus'
+  }
+},{
+  id: 'removeLocation',
+  text: 'Remove location',
+  data: {
+    icon: 'minus'
   }
 }]
