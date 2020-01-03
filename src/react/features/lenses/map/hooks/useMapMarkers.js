@@ -28,6 +28,7 @@ const createMapMarker = ({ diory, diorys, dispatch }) => {
     .marker(center, { draggable: true })
     .bindPopup(popup, {
       maxWidth: 500,
+      autoPan: false,
     })
     .on('click', () => {
       if (!popup.isOpen()) {

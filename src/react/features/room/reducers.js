@@ -46,10 +46,23 @@ const updateDiory = (state, { payload }) => ({
   updated: true,
 })
 
-export const saveRoomSuccess = (state) => ({
-  ...state,
-  updated: false,
-})
+const addLink = (state, { payload }) => {
+  const diory = state.diograph[payload.diory.id]
+  return ({
+    ...state,
+    diograph: {
+      ...state.diograph,
+      [payload.diory.id]: {
+        ...diory,
+        links: {
+          ...diory.links,
+          [payload.diory.link]: { id: payload.diory.link }
+        },
+      },
+    },
+    updated: true,
+  })
+}
 
 export default createReducer({
   [types.GET_ROOM]: getRoom,
