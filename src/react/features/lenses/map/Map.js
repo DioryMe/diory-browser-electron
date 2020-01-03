@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSaveRoom} from '../../room/hooks'
 import { useMap, useMapMarkers } from './hooks'
-import { useMapOperations, operations } from './operations'
+import { useMapOperations, buttons } from './operations'
 
 const Map = () => {
   useSaveRoom()
@@ -19,6 +19,6 @@ Map.diory = {
   image: 'map',
 }
 
-Map.operations = operations
+Map.buttons = buttons
 
 export default Map

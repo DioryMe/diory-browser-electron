@@ -7,11 +7,11 @@ import OperationButton from './OperationButton'
 const useOperationsBar = () => {
   const { active, onSelect, onClear } = useOperations()
   const [{ selectedLensId }] = useStore(state => state.lenses)
-  const { operations } = useLenses()
+  const { operationButtons } = useLenses()
 
   let buttons = []
   if (selectedLensId){
-    buttons = operations[selectedLensId]
+    buttons = operationButtons[selectedLensId]
   }
 
   return {
@@ -27,9 +27,18 @@ const useOperationsBar = () => {
 const OperationsBar = () => {
   const { buttons } = useOperationsBar()
   return (
-    <>
+    <div
+      style={{
+        position: 'fixed',
+        zIndex: 1000,
+        bottom: 0,
+        cursor: 'pointer',
+        left: 0,
+        padding: 8,
+      }}
+    >
       { buttons.map(button => <OperationButton {...button} />)}
-    </>
+    </div>
   )
 }
 

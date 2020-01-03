@@ -6,23 +6,16 @@ const getActiveProps = (active) => active && {
   intent: 'success',
 }
 
-const OperationButton = ({ active, onClick }) => (
-  <div
-    onClick={onClick}
-    style={{
-      position: 'fixed',
-      zIndex: 1000,
-      bottom: 0,
-      cursor: 'pointer',
-      left: 0,
-      padding: 16,
-    }}>
+const OperationButton = ({ data, active, onClick }) => (
+  <div>
     <IconButton
       {...getActiveProps(active)}
-      icon="plus"
+      icon={ data.icon }
       iconSize={24}
       height={56}
+      margin={8}
       borderRadius={'50%'}
+      onClick={onClick}
     />
   </div>
 )
