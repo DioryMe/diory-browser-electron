@@ -25,14 +25,10 @@ const createMapMarker = ({ diory, diorys, dispatch }) => {
 
   const popup = createMapPopup({ diory })
   const marker = L
-    .marker(center, { draggable: true })
+    .marker(center)
     .bindPopup(popup, {
       maxWidth: 500,
       autoPan: false,
-    })
-    .on('dragend', () => {
-      const { lat: latitude, lng: longitude } = marker.getLatLng()
-      dispatch(updateDiory({ id: diory.id, latitude, longitude }))
     })
 
   marker.dioryId = diory.id
@@ -63,6 +59,8 @@ const useDioryMarker = mapRef => {
             autoPan: false,
           })
           .openPopup()
+
+        markerRef.current.dioryId = diory.id
       }
     }
   }, [mapRef, diory, diorys, focusChanged, dispatch])
