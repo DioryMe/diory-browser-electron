@@ -1,19 +1,35 @@
 import React from 'react'
+import { useStore } from '../../store'
+import { useLenses } from '../lenses/hooks'
 import { useOperations } from './hooks'
 import OperationButton from './OperationButton'
 
 const useOperationsBar = () => {
   const { active, onSelect, onClear } = useOperations()
+  const [{ selectedLensId }] = useStore(state => state.lenses)
+  const { operations } = useLenses()
+
+  let buttons = []
+  if (selectedLensId){
+    buttons = operations[selectedLensId]
+  }
+
   return {
-    active,
-    onClick: (operationId) => active ? onClear() : onSelect(operationId)
+    buttons: buttons.map(button => ({
+      ...button,
+      key: button.id,
+      active: button.id === active,
+      onClick: () => button.id === active ? onClear() : onSelect(button.id)
+    }))
   }
 }
 
 const OperationsBar = () => {
-  const { active, onClick } = useOperationsBar()
+  const { buttons } = useOperationsBar()
   return (
-    <OperationButton active={active} onClick={onClick} />
+    <>
+      { buttons.map(button => <OperationButton {...button} />)}
+    </>
   )
 }
 

@@ -1,6 +1,11 @@
 import React from 'react'
 import { IconButton } from 'evergreen-ui'
 
+const getActiveProps = (active) => active && {
+  appearance: 'primary',
+  intent: 'success',
+}
+
 const OperationButton = ({ active, onClick }) => (
   <div
     onClick={onClick}
@@ -13,9 +18,8 @@ const OperationButton = ({ active, onClick }) => (
       padding: 16,
     }}>
     <IconButton
+      {...getActiveProps(active)}
       icon="plus"
-      appearance={active && 'primary'}
-      intent={active && 'success'}
       iconSize={24}
       height={56}
       borderRadius={'50%'}

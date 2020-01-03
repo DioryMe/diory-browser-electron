@@ -1,6 +1,6 @@
 import { createElement } from 'react'
 import { useStore } from '../../store'
-import Lenses from './Lenses'
+import Lenses from './index'
 
 const SelectedLens = props => {
   const [{ selectedLensId }] = useStore(state => state.lenses)
