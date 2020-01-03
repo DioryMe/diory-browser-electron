@@ -43,3 +43,13 @@ export const addLink = diory => ({
     }
   },
 })
+
+export const removeLink = diory => ({
+  type: types.REMOVE_LINK,
+  payload: {
+    diory: {
+      ...diory,
+      modified: new Date().toISOString(),
+    }
+  },
+})

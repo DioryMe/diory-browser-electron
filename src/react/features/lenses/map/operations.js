@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useStore } from '../../../store'
 import { setFocus } from '../../navigation/actions'
-import { addDiory, removeDiory, addLink, updateDiory } from '../../room/actions'
+import { addDiory, updateDiory, removeDiory, addLink, removeLink } from '../../room/actions'
 
 const getTileURL = ({ lat, lng, zoom }) => {
   const latRad = lat * Math.PI / 180
@@ -55,6 +55,7 @@ const useMoveLocation = mapRef => {
 }
 
 const useRemoveLocation = mapRef => {
+  const [{ focus }] = useStore(state => state.navigation)
   const [{ active }] = useStore(state => state.operations)
   const dispatch = useDispatch()
   useEffect(() => {
@@ -63,7 +64,9 @@ const useRemoveLocation = mapRef => {
         if (marker.dioryId) {
           function removeMarker() {
             marker.remove()
-            dispatch(removeDiory({ id: marker.dioryId }))
+            marker.dioryId === focus
+              ? dispatch(removeDiory({ id: marker.dioryId }))
+              : dispatch(removeLink({ id: focus, link: marker.dioryId }))
           }
           if (active === 'removeLocation') {
             marker.off('click')
@@ -71,7 +74,7 @@ const useRemoveLocation = mapRef => {
           }
         }
       })
-  }, [mapRef, active, dispatch])
+  }, [mapRef, focus, active, dispatch])
 }
 
 const useSetFocus = mapRef => {
