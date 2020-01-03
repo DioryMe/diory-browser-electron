@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useStore } from '../../store'
 import { useLenses } from '../lenses/hooks'
 import { useOperations } from './hooks'
 import OperationButton from './OperationButton'
 
 const useOperationsBar = () => {
+  const [open, setOpen] = useState(false)
   const { active, onSelect, onClear } = useOperations()
   const [{ selectedLensId }] = useStore(state => state.lenses)
   const { operationButtons } = useLenses()
@@ -13,19 +14,25 @@ const useOperationsBar = () => {
   if (selectedLensId){
     buttons = operationButtons[selectedLensId]
   }
+  const clearAndClose = () => {
+    onClear()
+    setOpen(false)
+  }
 
   return {
+    tool: !open && buttons.length > 1,
+    showTools: () => setOpen(true),
     buttons: buttons.map(button => ({
       ...button,
       key: button.id,
       active: button.id === active,
-      onClick: () => button.id === active ? onClear() : onSelect(button.id)
+      onClick: () => button.id === active ? clearAndClose() : onSelect(button.id)
     }))
   }
 }
 
 const OperationsBar = () => {
-  const { buttons } = useOperationsBar()
+  const { tool, showTools, buttons } = useOperationsBar()
   return (
     <div
       style={{
@@ -37,7 +44,8 @@ const OperationsBar = () => {
         padding: 8,
       }}
     >
-      { buttons.map(button => <OperationButton {...button} />)}
+      { tool && <OperationButton data={{ icon: 'wrench' }} onClick={showTools}/>}
+      { !tool && buttons.map(button => <OperationButton {...button} />)}
     </div>
   )
 }
