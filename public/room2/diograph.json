@@ -1,1 +1,113 @@
-{"diory1":{"id":"diory1","text":"People"},"diory2":{"id":"diory2","text":"Events"},"diory3":{"id":"diory3","text":"Things"},"place0":{"id":"place0","image":"https://upload.wikimedia.org/wikipedia/commons/2/21/Downtown_Tampere4.jpg","latitude":"61.4988","links":{"link1":{"id":"place1"},"link2":{"id":"place2"},"link3":{"id":"place3"}},"longitude":"23.7620","text":"Tampere"},"place1":{"id":"place1","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Tampere_-_Keskustori.jpg/800px-Tampere_-_Keskustori.jpg","latitude":"61.4978","longitude":"23.7610","text":"Keskustori"},"place10":{"id":"place10","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Tampere_-_Keskustori.jpg/800px-Tampere_-_Keskustori.jpg","latitude":60.174818526089766,"longitude":24.79974746704102,"text":"Espoo"},"place2":{"id":"place2","image":"https://upload.wikimedia.org/wikipedia/commons/c/c0/Frenckell_factory1.jpg","latitude":"61.4998","longitude":"23.7630","text":"Frenkell"},"place20":{"id":"place20","image":"https://upload.wikimedia.org/wikipedia/commons/c/c0/Frenckell_factory1.jpg","latitude":62.78025554503146,"longitude":22.861518859863285,"text":"Seinäjoki"},"place3":{"id":"place3","image":"https://upload.wikimedia.org/wikipedia/commons/b/b5/Tampere_Hameenkatu.png","latitude":"61.4978","longitude":"23.7630","text":"Hämeenkatu"},"place30":{"id":"place30","image":"https://upload.wikimedia.org/wikipedia/commons/b/b5/Tampere_Hameenkatu.png","latitude":62.6100875510537,"longitude":23.599662780761722,"text":"Alavus"},"placesId":{"id":"placesId","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/The_earth_at_night.jpg/800px-The_earth_at_night.jpg","latitude":61.64816245852389,"links":{"link1":{"id":"place0"},"link2":{"id":"place10"},"link3":{"id":"place20"},"link4":{"id":"place30"}},"longitude":26.059570312500004,"text":"My Places"},"room2":{"id":"room2","image":"https://upload.wikimedia.org/wikipedia/commons/9/99/The_love_of_my_life.jpg","links":{"link1":{"id":"diory1"},"link2":{"id":"diory2"},"link3":{"id":"diory3"},"places":{"id":"placesId"}},"text":"My Diory"}}
+{
+  "2020-01-03T21:17:42.792Z": {
+    "id": "2020-01-03T21:17:42.792Z",
+    "text": "Joensuu",
+    "image": "http://a.tile.osm.org/9/298/140.png",
+    "latitude": 62.60724443389266,
+    "longitude": 29.778442382812504,
+    "modified": "2020-01-03T21:17:42.793Z"
+  },
+  "2020-01-03T21:17:54.088Z": {
+    "id": "2020-01-03T21:17:54.088Z",
+    "text": "Helsinki",
+    "image": "http://a.tile.osm.org/14/9327/4742.png",
+    "latitude": 60.17037863792087,
+    "longitude": 24.941368103027347,
+    "modified": "2020-01-03T21:17:54.088Z"
+  },
+  "diory1": {
+    "id": "diory1",
+    "text": "People"
+  },
+  "diory2": {
+    "id": "diory2",
+    "text": "Events"
+  },
+  "diory3": {
+    "id": "diory3",
+    "text": "Things"
+  },
+  "place0": {
+    "id": "place0",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Downtown_Tampere4.jpg",
+    "latitude": "61.4988",
+    "links": {
+      "link1": {
+        "id": "place1"
+      },
+      "link2": {
+        "id": "place2"
+      },
+      "link3": {
+        "id": "place3"
+      }
+    },
+    "longitude": "23.7620",
+    "text": "Tampere"
+  },
+  "place1": {
+    "id": "place1",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Tampere_-_Keskustori.jpg/800px-Tampere_-_Keskustori.jpg",
+    "latitude": "61.4978",
+    "longitude": "23.7610",
+    "text": "Keskustori"
+  },
+  "place2": {
+    "id": "place2",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Frenckell_factory1.jpg",
+    "latitude": "61.4998",
+    "longitude": "23.7630",
+    "text": "Frenkell"
+  },
+  "place3": {
+    "id": "place3",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Tampere_Hameenkatu.png",
+    "latitude": "61.4978",
+    "longitude": "23.7630",
+    "text": "Hämeenkatu"
+  },
+  "placesId": {
+    "id": "placesId",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/The_earth_at_night.jpg/800px-The_earth_at_night.jpg",
+    "latitude": 61.54364147554998,
+    "links": {
+      "2020-01-03T21:17:42.792Z": {
+        "id": "2020-01-03T21:17:42.792Z"
+      },
+      "2020-01-03T21:17:54.088Z": {
+        "id": "2020-01-03T21:17:54.088Z"
+      },
+      "link1": {
+        "id": "place0"
+      }
+    },
+    "longitude": 26.883544921875004,
+    "modified": "2020-01-03T21:18:32.588Z",
+    "text": "My Places"
+  },
+  "room2": {
+    "id": "room2",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/99/The_love_of_my_life.jpg",
+    "latitude": 62.29638657096601,
+    "links": {
+      "2020-01-03T09:30:27.907Z": {
+        "id": "2020-01-03T09:30:27.907Z"
+      },
+      "link1": {
+        "id": "diory1"
+      },
+      "link2": {
+        "id": "diory2"
+      },
+      "link3": {
+        "id": "diory3"
+      },
+      "places": {
+        "id": "placesId"
+      }
+    },
+    "longitude": 26.09982490539551,
+    "modified": "2020-01-03T14:03:04.751Z",
+    "text": "My Diory"
+  }
+}
