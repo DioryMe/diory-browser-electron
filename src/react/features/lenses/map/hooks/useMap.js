@@ -1,18 +1,13 @@
 import { useEffect, useRef } from 'react'
 import L from 'leaflet'
-import { useDiory, useCompare } from '../../../../hooks'
-import { useStore } from '../../../../store'
+import { useCompare } from '../../../../hooks'
+import { useFocusDiory } from '../../../room/hooks'
 import { getLocationData } from './getLocationData'
-
-const useFocusLocation = () => {
-  const [{ focus }] = useStore(state => state.navigation)
-  return getLocationData(useDiory(focus))
-}
 
 // TODO: Use store for map data
 let initialBounds = true
 const useInitialMapBounds = mapRef => {
-  const { center, min, max } = useFocusLocation()
+  const { diory, diorys } = useFocusDiory()
 
   if (!mapRef.current) {
     initialBounds = true
@@ -20,6 +15,7 @@ const useInitialMapBounds = mapRef => {
   useEffect(() => {
     if (initialBounds) {
       if (mapRef.current) {
+        const { center, min, max } = getLocationData({ diory, diorys })
         if (min && max) {
           mapRef.current.fitBounds([min, max])
         } else if (center) {
@@ -30,15 +26,15 @@ const useInitialMapBounds = mapRef => {
         initialBounds = false
       }
     }
-  }, [mapRef, center, min, max])
+  }, [mapRef, diory, diorys])
 }
 
 const useMapBounds = mapRef => {
-  const [{ focus }] = useStore(state => state.navigation)
-  const focusChanged = useCompare(focus)
-  const { center, min, max } = useFocusLocation()
+  const { diory, diorys } = useFocusDiory()
+  const focusChanged = useCompare(diory.id)
   useEffect(() => {
     if (mapRef.current && focusChanged) {
+      const { center, min, max } = getLocationData({ diory, diorys })
       if (min && max) {
         mapRef.current.flyToBounds([min, max])
       }
@@ -49,7 +45,7 @@ const useMapBounds = mapRef => {
         mapRef.current.fitWorld()
       }
     }
-  }, [mapRef, focusChanged, center, min, max])
+  }, [mapRef, focusChanged, diory, diorys])
 }
 
 export const useMap = id => {

@@ -1,9 +1,7 @@
 import { useEffect, useRef } from 'react'
 import L from 'leaflet'
 import { useCompare } from '../../../../hooks'
-import { useStore } from '../../../../store'
 import { useFocusDiory } from '../../../room/hooks'
-import { updateDiory } from '../../../room/actions'
 import { getLocationData } from './getLocationData'
 
 const createMapPopup = ({ diory = {} }) => {
@@ -17,7 +15,7 @@ const createMapPopup = ({ diory = {} }) => {
     .setContent(content)
 }
 
-const createMapMarker = ({ diory, diorys, dispatch }) => {
+const createMapMarker = ({ diory, diorys }) => {
   const { center } = getLocationData({ diory, diorys })
   if (!center) {
     return null
@@ -38,13 +36,12 @@ const createMapMarker = ({ diory, diorys, dispatch }) => {
 
 const useDioryMarker = mapRef => {
   const { diory, diorys } = useFocusDiory()
-  const dispatch = useStore()[1]
   const focusChanged = useCompare(diory.id)
 
   const markerRef = useRef(null)
   useEffect(() => {
     if (!markerRef.current) {
-      markerRef.current = createMapMarker({ diory, diorys, dispatch })
+      markerRef.current = createMapMarker({ diory, diorys })
         .addTo(mapRef.current)
     }
     const { center } = getLocationData({ diory, diorys })
@@ -63,12 +60,11 @@ const useDioryMarker = mapRef => {
         markerRef.current.dioryId = diory.id
       }
     }
-  }, [mapRef, diory, diorys, focusChanged, dispatch])
+  }, [mapRef, diory, diorys, focusChanged])
 }
 
 const useDiorysMarkers = mapRef => {
   const { diorys } = useFocusDiory()
-  const dispatch = useStore()[1]
 
   const markerRefs = useRef([])
   useEffect(() => {
@@ -82,11 +78,11 @@ const useDiorysMarkers = mapRef => {
     const newMarkers = diorys
       .filter(({ id }) => !markerRefs.current.map(({ dioryId }) => dioryId).includes(id))
       .filter(({ latitude, longitude }) => latitude && longitude)
-      .map((diory) => createMapMarker({ diory, dispatch }).addTo(mapRef.current))
+      .map((diory) => createMapMarker({ diory }).addTo(mapRef.current))
 
     markerRefs.current = oldMarkers.concat(newMarkers)
 
-  }, [mapRef, markerRefs, diorys, dispatch])
+  }, [mapRef, markerRefs, diorys])
 }
 
 // TODO: Find a better way to update popup width on image load

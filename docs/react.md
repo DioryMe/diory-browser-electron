@@ -29,5 +29,10 @@ Leaflet library with openstreetmap tiles
 - CSS import in index.html
 = Consider changing to react-leaflet
 
+Bounds
+1. Locations of links and diory
+2. Center and zoom 15
+3. Earth
+
 
 
