@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSaveRoom} from '../../room/hooks'
+import React from 'react'
+import { useSaveRoom } from '../../room/hooks'
 import { useMap, useMapMarkers } from './hooks'
 import { useMapOperations, buttons } from './operations'
 
@@ -11,7 +11,7 @@ const Map = () => {
   useMapMarkers(map)
   useMapOperations(map)
 
-  return <div id={id} style={{ height: '100%' }}/>
+  return <div id={id} style={{ height: '100%' }} />
 }
 
 Map.diory = {

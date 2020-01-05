@@ -1,6 +1,9 @@
-const getAverage = (array = []) => array.length ? array.reduce((a,b) => parseFloat(a) + parseFloat(b), 0) / array.length : undefined
+const getAverage = (array = []) =>
+  array.length
+    ? array.reduce((a, b) => parseFloat(a) + parseFloat(b), 0) / array.length
+    : undefined
 
-export const getLocationData = ({ diory, diorys = []}) => {
+export const getLocationData = ({ diory, diorys = [] }) => {
   const latitudes = diorys
     .filter(({ latitude }) => latitude)
     .map(({ latitude }) => latitude)
@@ -11,10 +14,11 @@ export const getLocationData = ({ diory, diorys = []}) => {
   const lat = diory.latitude || getAverage(latitudes)
   const lng = diory.longitude || getAverage(longitudes)
   return {
-    center: lat && lng && {
-      lat,
-      lng,
-    },
+    center: lat &&
+      lng && {
+        lat,
+        lng,
+      },
     max: latitudesAndLongitudesExists && [
       Math.max(...latitudes, diory.latitude),
       Math.max(...longitudes, diory.longitude),

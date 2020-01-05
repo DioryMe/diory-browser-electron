@@ -15,7 +15,7 @@ const useRoom = () => {
     diorys: diorys.map(diory => ({
       diory,
       onClick: ({ diory }) => dispatch(setFocus({ focus: diory.id })),
-    }))
+    })),
   }
 }
 
