@@ -11,7 +11,7 @@ const useOperationsBar = () => {
   const { operationButtons } = useLenses()
 
   let buttons = []
-  if (selectedLensId){
+  if (selectedLensId) {
     buttons = operationButtons[selectedLensId]
   }
   const clearAndClose = () => {
@@ -26,8 +26,9 @@ const useOperationsBar = () => {
       ...button,
       key: button.id,
       active: button.id === active,
-      onClick: () => button.id === active ? clearAndClose() : onSelect(button.id)
-    }))
+      onClick: () =>
+        button.id === active ? clearAndClose() : onSelect(button.id),
+    })),
   }
 }
 
@@ -44,8 +45,10 @@ const OperationsBar = () => {
         padding: 8,
       }}
     >
-      { tool && <OperationButton data={{ icon: 'wrench' }} onClick={showTools}/>}
-      { !tool && buttons.map(button => <OperationButton {...button} />)}
+      {tool && (
+        <OperationButton data={{ icon: 'wrench' }} onClick={showTools} />
+      )}
+      {!tool && buttons.map(button => <OperationButton {...button} />)}
     </div>
   )
 }

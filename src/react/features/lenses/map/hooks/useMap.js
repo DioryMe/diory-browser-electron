@@ -37,11 +37,9 @@ const useMapBounds = mapRef => {
       const { center, min, max } = getLocationData({ diory, diorys })
       if (min && max) {
         mapRef.current.flyToBounds([min, max])
-      }
-      else if (center) {
+      } else if (center) {
         mapRef.current.flyTo(center, 15)
-      }
-      else {
+      } else {
         mapRef.current.fitWorld()
       }
     }

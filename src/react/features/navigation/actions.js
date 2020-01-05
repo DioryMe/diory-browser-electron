@@ -1,6 +1,9 @@
 import * as types from './actionsTypes'
 
-export const enterRoom = roomId => ({ type: types.ENTER_ROOM, payload: { roomId } })
+export const enterRoom = roomId => ({
+  type: types.ENTER_ROOM,
+  payload: { roomId },
+})
 
 export const setFocus = ({ focus }) => ({
   type: types.SET_FOCUS,

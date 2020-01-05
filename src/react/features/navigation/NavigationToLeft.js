@@ -4,9 +4,7 @@ import NavigationSideways from './NavigationSideways'
 
 const NavigationToLeft = () => {
   const { onClick } = useLeft()
-  return !onClick ? null : (
-    <NavigationSideways left onClick={onClick} />
-  )
+  return !onClick ? null : <NavigationSideways left onClick={onClick} />
 }
 
 export default NavigationToLeft

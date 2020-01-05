@@ -12,11 +12,12 @@ export const useGetRoom = () => {
   const [{ roomId }, dispatch] = useStore(state => state.navigation)
   useEffect(() => {
     if (roomId) {
-      fetchData(channels.GET_ROOM, roomId)
-        .then(({ id, diograph }) => dispatch({
+      fetchData(channels.GET_ROOM, roomId).then(({ id, diograph }) =>
+        dispatch({
           type: types.GET_ROOM,
           payload: { id, diograph },
-        }))
+        })
+      )
     }
   }, [roomId, dispatch])
 }
@@ -26,7 +27,9 @@ export const useSaveRoom = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     if (updated) {
-      debounceDispatchActionPromise(dispatch, types.SAVE_ROOM, () => fetchData(channels.SAVE_ROOM, { id, diograph }))
+      debounceDispatchActionPromise(dispatch, types.SAVE_ROOM, () =>
+        fetchData(channels.SAVE_ROOM, { id, diograph })
+      )
     }
   }, [updated, id, diograph, dispatch])
 }

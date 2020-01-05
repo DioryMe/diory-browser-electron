@@ -6,22 +6,22 @@ export const addDiory = diory => ({
     diory: {
       ...diory,
       modified: new Date().toISOString(),
-    }
+    },
   },
 })
 
 export const removeDiory = diory => {
   const now = new Date().toISOString()
-  return ({
+  return {
     type: types.REMOVE_DIORY,
     payload: {
       diory: {
         ...diory,
         modified: now,
         deleted: now,
-      }
+      },
     },
-  })
+  }
 }
 
 export const updateDiory = diory => ({
@@ -30,7 +30,7 @@ export const updateDiory = diory => ({
     diory: {
       ...diory,
       modified: new Date().toISOString(),
-    }
+    },
   },
 })
 
@@ -40,7 +40,7 @@ export const addLink = diory => ({
     diory: {
       ...diory,
       modified: new Date().toISOString(),
-    }
+    },
   },
 })
 
@@ -50,6 +50,6 @@ export const removeLink = diory => ({
     diory: {
       ...diory,
       modified: new Date().toISOString(),
-    }
+    },
   },
 })

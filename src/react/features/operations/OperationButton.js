@@ -1,16 +1,17 @@
 import React from 'react'
 import { IconButton } from 'evergreen-ui'
 
-const getActiveProps = (active) => active && {
-  appearance: 'primary',
-  intent: 'success',
-}
+const getActiveProps = active =>
+  active && {
+    appearance: 'primary',
+    intent: 'success',
+  }
 
 const OperationButton = ({ data, active, onClick }) => (
   <div>
     <IconButton
       {...getActiveProps(active)}
-      icon={ data.icon }
+      icon={data.icon}
       iconSize={24}
       height={56}
       margin={8}

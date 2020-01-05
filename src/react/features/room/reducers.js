@@ -48,7 +48,7 @@ const updateDiory = (state, { payload }) => ({
 
 const addLink = (state, { payload }) => {
   const diory = state.diograph[payload.diory.id]
-  return ({
+  return {
     ...state,
     diograph: {
       ...state.diograph,
@@ -56,18 +56,18 @@ const addLink = (state, { payload }) => {
         ...diory,
         links: {
           ...diory.links,
-          [payload.diory.link]: { id: payload.diory.link }
+          [payload.diory.link]: { id: payload.diory.link },
         },
       },
     },
     updated: true,
-  })
+  }
 }
 
 const removeLink = (state, { payload }) => {
   const diory = state.diograph[payload.diory.id]
   const { [payload.diory.link]: omit, ...links } = diory.links
-  return ({
+  return {
     ...state,
     diograph: {
       ...state.diograph,
@@ -77,7 +77,7 @@ const removeLink = (state, { payload }) => {
       },
     },
     updated: true,
-  })
+  }
 }
 
 export default createReducer({
@@ -87,5 +87,5 @@ export default createReducer({
   [types.UPDATE_DIORY]: updateDiory,
   [types.ADD_LINK]: addLink,
   [types.REMOVE_LINK]: removeLink,
-  ...promiseActionReducer(types.SAVE_ROOM, 'saving', 'saved', 'updated')
+  ...promiseActionReducer(types.SAVE_ROOM, 'saving', 'saved', 'updated'),
 })
