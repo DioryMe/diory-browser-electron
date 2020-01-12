@@ -5,7 +5,19 @@
   "main": "electron/main.js",
   "private": true,
   "dependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/polyfill": "^7.7.0",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
+    "@babel/register": "^7.7.7",
+    "chai": "^4.2.0",
+    "cucumber": "^6.0.5",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "evergreen-ui": "^4.21.5",
+    "expect": "^24.9.0",
+    "husky": "^3.1.0",
+    "jsdom": "^15.2.1",
     "leaflet": "^1.6.0",
     "prettier": "^1.19.1",
     "prop-types": "^15.7.2",
@@ -33,6 +45,8 @@
     "build-electron-win": "mkdir build/src && robocopy electron build/electron /S & robocopy src/shared build/src/shared /S",
     "package": "electron-builder build --mac --win -c.extraMetadata.main=build/electron/main.js --publish never",
     "test": "react-scripts test",
+    "cucumber": "./node_modules/.bin/cucumber-js src/react/features/**/*.feature -r src/react/utils/cucumber --require-module @babel/register --require-module @babel/polyfill",
+    "cucumber-only": "./node_modules/.bin/cucumber-js src/react/features/**/*.feature --tags @only -r src/react/utils/cucumber --require-module @babel/register --require-module @babel/polyfill",
     "eject": "react-scripts eject"
   },
   "build": {
@@ -59,6 +73,12 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
     ]
   },
   "prettier": {
