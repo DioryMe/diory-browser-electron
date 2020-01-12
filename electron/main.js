@@ -41,8 +41,8 @@ app.on('activate', function () {
   }
 });
 
-ipcMain.on(channels.HOME, (event) => {
-  event.sender.send(channels.HOME, home);
+ipcMain.on(channels.GET_HOME, (event) => {
+  event.sender.send(channels.GET_HOME, home);
 });
 
 const getRoom = id => {
