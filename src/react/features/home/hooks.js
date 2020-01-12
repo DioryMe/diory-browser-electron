@@ -8,8 +8,8 @@ const { ipcRenderer } = window
 export const useHomeChannel = () => {
   const dispatch = useStore()[1]
   useEffect(() => {
-    ipcRenderer.send(channels.HOME)
-    ipcRenderer.on(channels.HOME, (event, { rooms }) =>
+    ipcRenderer.send(channels.GET_HOME)
+    ipcRenderer.on(channels.GET_HOME, (event, { rooms }) =>
       dispatch(setRooms(rooms))
     )
     return () => ipcRenderer.removeAllListeners(channels.HOME)
