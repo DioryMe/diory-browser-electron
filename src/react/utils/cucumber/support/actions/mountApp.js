@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import App from '../../../App'
+import App from '../../../../App'
 
-export default function() {
+export function mountApp() {
   this.app = mount(<App />)
 }

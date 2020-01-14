@@ -15,11 +15,41 @@
     },
     "diory1": {
       "id": "diory1",
-      "text": "Diory 1"
+      "text": "Diory 1",
+      "links": {
+        "link11": {
+          "id": "diory11"
+        },
+        "link12": {
+          "id": "diory12"
+        },
+        "link13": {
+          "id": "diory13"
+        },
+        "link14": {
+          "id": "diory14"
+        }
+      }
     },
     "diory2": {
       "id": "diory2",
       "text": "Diory 2"
+    },
+    "diory11": {
+      "id": "diory11",
+      "text": "Diory 11"
+    },
+    "diory12": {
+      "id": "diory12",
+      "text": "Diory 12"
+    },
+    "diory13": {
+      "id": "diory13",
+      "text": "Diory 13"
+    },
+    "diory14": {
+      "id": "diory14",
+      "text": "Diory 14"
     }
   }
 }
