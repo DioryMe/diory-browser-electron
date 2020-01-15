@@ -19,20 +19,20 @@ Feature: Room
     Then I see 4 linked diorys
 
   @pending
-  Scenario: Adding a room
+  Scenario: Adding a diory
     Given I select tools
     And I select the add tool
     And I select a folder
-    Then I see a new room
+    Then I see a new diory
 
   @pending
-  Scenario: Moving a room
+  Scenario: Moving a diory
     When I select tools
     And I select the move tool
-    Then my rooms are in new order
+    Then my diorys are in new order
 
   @pending
-  Scenario: Removing a room
+  Scenario: Removing a diory
     When I select tools
     And I select the remove tool
-    Then I do not see the room
+    Then I do not see the diory
