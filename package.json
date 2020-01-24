@@ -13,7 +13,10 @@
     "react-dom": "^16.12.0",
     "react-scripts": "3.2.0",
     "ui-box": "^3.0.2",
-    "uuid": "^3.3.3"
+    "uuid": "^3.3.3",
+    "exifreader": "^2.13.0",
+    "jasmine": "^3.5.0",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "electron": "^7.1.2",
@@ -32,7 +35,7 @@
     "build-electron": "mkdir build/src && cp -r electron/. build/electron && cp -r src/shared/. build/src/shared",
     "build-electron-win": "mkdir build/src && robocopy electron build/electron /S & robocopy src/shared build/src/shared /S",
     "package": "electron-builder build --mac --win -c.extraMetadata.main=build/electron/main.js --publish never",
-    "test": "react-scripts test",
+    "test": "jasmine electron/spec/*.js && react-scripts test",
     "eject": "react-scripts eject"
   },
   "build": {
