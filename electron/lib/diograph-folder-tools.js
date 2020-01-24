@@ -27,7 +27,8 @@ exports.listFiles = async function(folderPath) {
 
 exports.generateDiographJSON = async function(folderPath) {
   let diographJSON = {
-    name: path.basename(folderPath)
+    name: path.basename(folderPath),
+    background: folderPath
   }
   let filePathList = await this.listFiles(folderPath)
   let dioryList = filePathList.map(filePath => {

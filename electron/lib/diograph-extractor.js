@@ -3,7 +3,8 @@ const path = require('path')
 
 exports.getDiograph = function(filePath) {
   let basicInfo = {
-    name: path.basename(filePath)
+    name: path.basename(filePath),
+    background: filePath
   }
   let extname = path.extname(filePath)
   if (extname == '.jpg') {
