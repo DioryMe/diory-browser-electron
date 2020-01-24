@@ -70,9 +70,8 @@ ipcMain.on(channels.SAVE_ROOM, (event, { id, diograph }) => {
 });
 
 ipcMain.on(channels.CREATE_ROOM, (event, filePath) => {
-  let diographData = { room1: { id: filePath } }
-  // FolderTools.generateDiographJSON('/app/spec/example-folder').then(diograph => {
-  //   console.log(diograph)
-  // })
-  event.reply(channels.CREATE_ROOM, diographData)
+  FolderTools.generateDiographJSON(filePath).then(diographData => {
+    console.log(diographData)
+    event.reply(channels.CREATE_ROOM, diographData)
+  })
 })
