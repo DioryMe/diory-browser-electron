@@ -67,3 +67,8 @@ ipcMain.on(channels.SAVE_ROOM, (event, { id, diograph }) => {
     event.sender.send(channels.SAVE_ROOM, true);
   });
 });
+
+ipcMain.on(channels.CREATE_ROOM, (event, filePath) => {
+  let diographData = { room1: { id: filePath } }
+  event.reply(channels.CREATE_ROOM, diographData)
+})

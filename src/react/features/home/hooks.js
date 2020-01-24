@@ -15,3 +15,13 @@ export const useHomeChannel = () => {
     return () => ipcRenderer.removeAllListeners(channels.HOME)
   }, [dispatch])
 }
+
+export const addNewRoom = () => {
+  window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then(result => {
+    let filePath = result.filePaths[0]
+    ipcRenderer.send(channels.CREATE_ROOM, filePath)
+    ipcRenderer.on(channels.CREATE_ROOM, (event, diographData) => {
+      console.log(diographData)
+    })
+  })
+}

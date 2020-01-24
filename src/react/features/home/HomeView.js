@@ -2,7 +2,7 @@ import React from 'react'
 import { Pane } from 'evergreen-ui'
 import { useStore } from '../../store'
 import { enterRoom } from '../navigation/actions'
-import { useHomeChannel } from './hooks'
+import { useHomeChannel, addNewRoom } from './hooks'
 
 import Image from '../../components/diories/Image'
 import Room from '../../components/Room'
@@ -36,6 +36,9 @@ const HomeView = () => {
       {rooms.map(room => (
         <Room {...room} />
       ))}
+      <div>
+        <button onClick={addNewRoom}>Add new room</button>
+      </div>
     </Pane>
   )
 }
