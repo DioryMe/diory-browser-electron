@@ -4,6 +4,7 @@ const url = require('url');
 const fs = require('fs');
 const { channels } = require('../src/shared/constants');
 const home = require('../public/home.json');
+const FolderTools = require('./lib/diograph-folder-tools')
 
 let mainWindow;
 
@@ -70,5 +71,8 @@ ipcMain.on(channels.SAVE_ROOM, (event, { id, diograph }) => {
 
 ipcMain.on(channels.CREATE_ROOM, (event, filePath) => {
   let diographData = { room1: { id: filePath } }
+  // FolderTools.generateDiographJSON('/app/spec/example-folder').then(diograph => {
+  //   console.log(diograph)
+  // })
   event.reply(channels.CREATE_ROOM, diographData)
 })
