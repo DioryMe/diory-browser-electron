@@ -18,7 +18,9 @@ describe('getImageInfo', () => {
   it('returns image info object', () => {
     let imageInfo = EXIF.getImageInfo(imagePath)
     let expectedObject = {
-      dateStart: '2008:11:01 21:15:11',
+      id: '2008-11-01T21:15:11.000Z',
+      date: '2008-11-01T21:15:11.000Z',
+      image: imagePath,
       latitude: 43.464455,
       longitude: 11.881478333333334
     }

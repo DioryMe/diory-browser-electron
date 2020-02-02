@@ -72,8 +72,8 @@ ipcMain.on(channels.SAVE_ROOM, (event, { id, diograph }) => {
 ipcMain.on(channels.CREATE_ROOM, (event, filePath) => {
   // DEFAULT PATH IS EXAMPLE-FOLDER PATH
   filePath = path.join(__dirname, 'spec/example-folder')
-  FolderTools.generateDiographJSON(filePath).then(diographData => {
-    console.log(diographData)
-    event.reply(channels.CREATE_ROOM, diographData)
+  FolderTools.generateRoom(filePath).then(room => {
+    console.log(room)
+    event.reply(channels.CREATE_ROOM, room)
   })
 })

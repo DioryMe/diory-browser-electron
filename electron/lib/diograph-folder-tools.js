@@ -25,15 +25,11 @@ exports.listFiles = async function(folderPath) {
   return this.getFiles(folderPath)
 }
 
-exports.generateDiographJSON = async function(folderPath) {
-  let diographJSON = {
-    name: path.basename(folderPath),
-    background: folderPath
+exports.generateRoom = async function(folderPath) {
+  const filePathList = await this.listFiles(folderPath)
+  return {
+    id: folderPath,
+    diograph: filePathList
+      .map(Extractor.createDiory)
   }
-  let filePathList = await this.listFiles(folderPath)
-  let dioryList = filePathList.map(filePath => {
-    return Extractor.getDiograph(filePath)
-  })
-  diographJSON['diories'] = dioryList
-  return diographJSON
 }

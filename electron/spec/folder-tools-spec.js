@@ -12,7 +12,6 @@ describe('listFiles', () => {
   it('prints out', testAsync(async function() {
     let folderPath = path.join(__dirname, 'example-folder')
     let expectedFileList = [
-      path.join(__dirname, 'example-folder', '.DS_Store'),
       path.join(__dirname, 'example-folder', 'Shopping @ Tampere/socks.jpg'),
       path.join(__dirname, 'example-folder', 'Shopping @ Tampere'),
       path.join(__dirname, 'example-folder', 'car.jpg'),
@@ -44,20 +43,22 @@ describe('generateDiographJSON', () => {
     spyOn(FolderTools, 'listFiles').and.returnValue(shortenedFileList)
 
     let expectedDiographJSON = {
-      name: 'example-folder',
-      diories: [
+      id: 'example-folder',
+      diograph: [
         {
-          name: 'example.jpg',
-          dateStart: '2008:11:01 21:15:11',
+          id: '2008-11-01T21:15:11.000Z',
+          image: '/Users/op/2019/diory-browser-electron/electron/spec/example-folder/example.jpg',
+          date: '2008-11-01T21:15:11.000Z',
           latitude: 43.464455,
           longitude: 11.881478333333334
         },
         {
-          name: 'some-other-file.txt'
+          id: '/Users/op/2019/diory-browser-electron/electron/spec/example-folder/some-other-file.txt',
+          text: 'some-other-file.txt'
         }
       ]
     }
-    FolderTools.generateDiographJSON('example-folder').then(diographJSON => {
+    FolderTools.generateRoom('example-folder').then(diographJSON => {
       expect(expectedDiographJSON).toEqual(diographJSON)
     })
   })
