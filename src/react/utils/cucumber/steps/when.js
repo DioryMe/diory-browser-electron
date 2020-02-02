@@ -7,6 +7,9 @@ import { navigateHome } from '../support/actions/navigateHome'
 import { navigateLeft } from '../support/actions/navigateLeft'
 import { navigateRight } from '../support/actions/navigateRight'
 import { selectRoom } from '../support/actions/selectRoom'
+import { selectItem } from '../support/actions/selectItem'
+import { selectIdItem } from '../support/actions/selectIdItem'
+import { selectModifierIdItem } from '../support/actions/selectModifierIdItem'
 import { takeInFocus } from '../support/actions/takeInFocus'
 
 When('I go home', mountApp)
@@ -19,17 +22,6 @@ When('I navigate(d) to home', navigateHome)
 When('I navigate(d) to right', navigateRight)
 When('I navigate(d) to left', navigateLeft)
 
-When('I select tools', function() {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending'
-})
-
-When('I select the {word} tool', function(tool) {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending'
-})
-
-When('I select a folder', function() {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending'
-})
+When('I select {word} {word}', selectItem)
+When('I select {word} {int} {word} on {word}', selectIdItem)
+When('I select {word} {word} {word}', selectModifierIdItem)

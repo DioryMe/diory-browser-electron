@@ -29,11 +29,15 @@
         "link14": {
           "id": "diory14"
         }
-      }
+      },
+      "latitude": "1",
+      "longitude": "1"
     },
     "diory2": {
       "id": "diory2",
-      "text": "Diory 2"
+      "text": "Diory 2",
+      "latitude": "2",
+      "longitude": "2"
     },
     "diory11": {
       "id": "diory11",

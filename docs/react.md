@@ -23,7 +23,7 @@ Test higher in the tree
 - types -> typescript --checkJS (?)
 - format -> prettier
 - logic -> jest
-- feature -> cucumber
+- feature -> cucumber, jsdom (spectron?)
 - ui -> storybook, snapshot
 
 

@@ -3,5 +3,8 @@ import { mount } from 'enzyme'
 import App from '../../../../App'
 
 export function mountApp() {
-  this.app = mount(<App />)
+  const div = global.document.createElement('div')
+  global.document.body.appendChild(div)
+
+  this.app = mount(<App />, { attachTo: div })
 }
