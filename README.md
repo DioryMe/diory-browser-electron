@@ -1,8 +1,17 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and is based on 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and is based on
 [Building a production electron/create-react-app application with shared code using electron-builder](https://medium.com/@johndyer24/building-a-production-electron-create-react-app-application-with-shared-code-using-electron-builder-c1f70f0e2649)
+
+## Get started
+
+1. Install Node 12 and yarn
+1. `yarn install`
+1. `yarn start` (in one terminal tab)
+1. `yarn start-electron` (in another terminal tab)
+1. Electron app is launched and loads `http://localhost:3300` to its window
+
 ## Requirements
 
-Node version 
+Node version 12
 
 ## Available Scripts
 
@@ -29,7 +38,7 @@ Opens development tools for the Electron app.
 ### `start-electron-win`
 
 Same for Windows computer.
-    
+
 ### `yarn test`
 
 Launches the test runner in the interactive watch mode.<br />
