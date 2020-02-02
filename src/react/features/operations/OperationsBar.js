@@ -20,8 +20,8 @@ const useOperationsBar = () => {
   }
 
   return {
-    tool: !open && buttons.length > 1,
-    showTools: () => setOpen(true),
+    tools: !open && buttons.length > 1,
+    showButtons: () => setOpen(true),
     buttons: buttons.map(button => ({
       ...button,
       key: button.id,
@@ -33,7 +33,7 @@ const useOperationsBar = () => {
 }
 
 const OperationsBar = () => {
-  const { tool, showTools, buttons } = useOperationsBar()
+  const { tools, showButtons, buttons } = useOperationsBar()
   return (
     <div
       style={{
@@ -45,10 +45,14 @@ const OperationsBar = () => {
         padding: 8,
       }}
     >
-      {tool && (
-        <OperationButton data={{ icon: 'wrench' }} onClick={showTools} />
+      {tools && (
+        <OperationButton
+          id="tools"
+          data={{ icon: 'wrench' }}
+          onClick={showButtons}
+        />
       )}
-      {!tool && buttons.map(button => <OperationButton {...button} />)}
+      {!tools && buttons.map(button => <OperationButton {...button} />)}
     </div>
   )
 }

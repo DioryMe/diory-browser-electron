@@ -28,7 +28,7 @@ const useAddLocation = mapRef => {
   useEffect(() => {
     mapRef.current.off('click')
 
-    if (active === 'addLocation') {
+    if (active === 'add') {
       mapRef.current.on('click', ({ latlng }) => {
         const { lat, lng } = latlng
         const id = new Date().toISOString()
@@ -51,7 +51,7 @@ const useMoveLocation = mapRef => {
   useEffect(() => {
     mapRef.current.eachLayer(marker => {
       if (marker.dioryId) {
-        if (active === 'moveLocation') {
+        if (active === 'move') {
           marker.dragging.enable()
           marker.on('dragend', () => {
             const { lat: latitude, lng: longitude } = marker.getLatLng()
@@ -79,7 +79,7 @@ const useRemoveLocation = mapRef => {
             ? dispatch(removeDiory({ id: marker.dioryId }))
             : dispatch(removeLink({ id: focus, link: marker.dioryId }))
         }
-        if (active === 'removeLocation') {
+        if (active === 'remove') {
           marker.off('click')
           marker.on('click', removeMarker)
         }
@@ -135,21 +135,21 @@ export const useMapOperations = mapRef => {
 
 export const buttons = [
   {
-    id: 'addLocation',
+    id: 'add',
     text: 'Add location',
     data: {
       icon: 'plus',
     },
   },
   {
-    id: 'removeLocation',
+    id: 'remove',
     text: 'Remove location',
     data: {
       icon: 'minus',
     },
   },
   {
-    id: 'moveLocation',
+    id: 'move',
     text: 'Move location',
     data: {
       icon: 'move',

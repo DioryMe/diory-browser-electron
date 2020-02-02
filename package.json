@@ -47,8 +47,8 @@
     "package": "electron-builder build --mac --win -c.extraMetadata.main=build/electron/main.js --publish never",
     "lint": "eslint ./src/. --ext .js",
     "test": "react-scripts test",
-    "cucumber": "./node_modules/.bin/cucumber-js src/react/features/**/*.feature -r src/react/utils/cucumber --require-module @babel/register --require-module @babel/polyfill",
-    "cucumber-only": "./node_modules/.bin/cucumber-js src/react/features/**/*.feature --tags @only -r src/react/utils/cucumber --require-module @babel/register --require-module @babel/polyfill",
+    "cucumber": "./node_modules/.bin/cucumber-js src/react -r src/react/utils/cucumber --require-module @babel/register --require-module @babel/polyfill",
+    "cucumber-only": "./node_modules/.bin/cucumber-js src/react/features --tags @only -r src/react/utils/cucumber --require-module @babel/register --require-module @babel/polyfill",
     "eject": "react-scripts eject"
   },
   "build": {

@@ -7,8 +7,11 @@ const getActiveProps = active =>
     intent: 'success',
   }
 
-const OperationButton = ({ data, active, onClick }) => (
-  <div>
+const OperationButton = ({ id, data, active, onClick }) => (
+  <div
+    data-testid={id + '-button' + (active ? '--active' : '')}
+    onClick={onClick}
+  >
     <IconButton
       {...getActiveProps(active)}
       icon={data.icon}
@@ -16,7 +19,6 @@ const OperationButton = ({ data, active, onClick }) => (
       height={56}
       margin={8}
       borderRadius={'50%'}
-      onClick={onClick}
     />
   </div>
 )
