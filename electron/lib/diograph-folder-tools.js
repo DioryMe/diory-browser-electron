@@ -25,11 +25,23 @@ exports.listFiles = async function(folderPath) {
   return this.getFiles(folderPath)
 }
 
-exports.generateRoom = async function(folderPath) {
+function arrayToObject(obj, item) {
+  return {
+    ...obj,
+    [item.id]: item,
+  }
+}
+
+exports.generateDiograph = async function(folderPath) {
   const filePathList = await this.listFiles(folderPath)
+  return filePathList
+    .map(Extractor.createDiory)
+    .reduce(arrayToObject, {})
+}
+
+exports.generateRoom = async function(folderPath) {
   return {
     id: folderPath,
-    diograph: filePathList
-      .map(Extractor.createDiory)
+    text: path.basename(folderPath),
   }
 }

@@ -46,15 +46,23 @@ ipcMain.on(channels.GET_HOME, (event) => {
   event.sender.send(channels.GET_HOME, home);
 });
 
-const getRoom = id => {
-  const path = Object.entries(home.rooms)
-    .find(([key, room]) => id === room.id)[0]
-  const diograph = require(`../public/${path}/diograph.json`)
+const getRoom = async (id) => {
+  const paths = Object.entries(home.rooms)
+    .find(([key, room]) => id === room.id)
+  if (paths) {
+    const diograph = require(`../public/${paths[0]}/diograph.json`)
+    return { id, diograph }
+  }
+
+  const diograph = await FolderTools.generateDiograph(id)
   return { id, diograph }
 }
 
 ipcMain.on(channels.GET_ROOM, (event, id) => {
-  event.sender.send(channels.GET_ROOM, getRoom(id));
+  getRoom(id).then(room => {
+    console.log(room)
+    event.sender.send(channels.GET_ROOM, room);
+  })
 });
 
 ipcMain.on(channels.SAVE_ROOM, (event, { id, diograph }) => {
