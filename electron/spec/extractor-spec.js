@@ -4,12 +4,12 @@ const path = require('path')
 describe('getDiry', () => {
 
   it('works with image', () => {
-    let imagePath = path.join(__dirname, 'example-folder/example.jpg')
-    let diograph = Extractor.createDiory(imagePath)
+    let filePath = path.join(__dirname, 'example-folder/example.jpg')
+    let diograph = Extractor.createDiory({ filePath })
     let expectedObject = {
       id: '2008-11-01T21:15:11.000Z',
       date: '2008-11-01T21:15:11.000Z',
-      image: imagePath,
+      image: filePath,
       latitude: 43.464455,
       longitude: 11.881478333333334
     }
@@ -18,7 +18,7 @@ describe('getDiry', () => {
 
   it('works with non-image', () => {
     let filePath = path.join(__dirname, 'example-folder/some-other-file.txt')
-    let diograph = Extractor.createDiory(filePath)
+    let diograph = Extractor.createDiory({ filePath })
     let expectedObject = {
       id: filePath,
       text: 'some-other-file.txt'

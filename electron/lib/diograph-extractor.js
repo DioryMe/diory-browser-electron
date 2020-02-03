@@ -9,7 +9,18 @@ function extractImageFile(filePath) {
   return EXIF.getImageInfo(filePath)
 }
 
-exports.createDiory = function(filePath) {
+function getLinks(links) {
+  return links && {
+    links: links.reduce((obj, { filePath }) => ({
+      ...obj,
+      [path.basename(filePath)] : {
+        id: isImage(filePath) ? extractImageFile(filePath).id : filePath
+      }
+    }), {})
+  }
+}
+
+exports.createDiory = function({ filePath, links }) {
   if (isImage(filePath)) {
     return extractImageFile(filePath)
   }
@@ -17,5 +28,6 @@ exports.createDiory = function(filePath) {
   return {
     id: filePath,
     text: path.basename(filePath),
+    ...getLinks(links),
   }
 }
