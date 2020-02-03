@@ -1,29 +1,34 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { channels } from '../../../shared/constants'
+import { fetchData } from '../../lib/ipcClient'
 import { useStore } from '../../store'
-import { setRooms } from './actions'
-
-const { ipcRenderer } = window
+import { addRoom, setRooms } from './actions'
 
 export const useHomeChannel = () => {
   const dispatch = useStore()[1]
   useEffect(() => {
-    ipcRenderer.send(channels.GET_HOME)
-    ipcRenderer.on(channels.GET_HOME, (event, { rooms }) =>
+    fetchData(channels.GET_HOME).then(({ rooms }) =>
       dispatch(setRooms(rooms))
     )
-    return () => ipcRenderer.removeAllListeners(channels.HOME)
   }, [dispatch])
 }
 
-export const addNewRoom = () => {
-  let filePath
-  // FILE DIALOG IS NOT USED BECAUSE BACKEND USES DEFAULT EXAMPLE-FOLDER FILEPATH
-  // window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then(result => {
+export const useAddRoom = () => {
+  const dispatch = useStore()[1]
+
+  const addNewRoom = useCallback(() => {
+    let filePath
+    // FILE DIALOG IS NOT USED BECAUSE BACKEND USES DEFAULT EXAMPLE-FOLDER FILEPATH
+    // window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then(result => {
     // let filePath = result.filePaths[0]
-    ipcRenderer.send(channels.CREATE_ROOM, filePath)
-    ipcRenderer.on(channels.CREATE_ROOM, (event, diographData) => {
-      console.log(diographData)
+    fetchData(channels.CREATE_ROOM, filePath).then(room => {
+      dispatch(addRoom(room))
     })
-  // })
+    // })
+
+  }, [dispatch])
+
+  return {
+    addNewRoom
+  }
 }

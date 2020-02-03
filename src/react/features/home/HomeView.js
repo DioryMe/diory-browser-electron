@@ -2,7 +2,7 @@ import React from 'react'
 import { Pane } from 'evergreen-ui'
 import { useStore } from '../../store'
 import { enterRoom } from '../navigation/actions'
-import { useHomeChannel, addNewRoom } from './hooks'
+import { useHomeChannel, useAddRoom } from './hooks'
 
 import Image from '../../components/diories/Image'
 import Room from '../../components/Room'
@@ -27,6 +27,7 @@ const getBackgroundImage = (image, content) =>
 
 const HomeView = () => {
   const { image, rooms } = useHome()
+  const { addNewRoom } = useAddRoom()
   return (
     <Pane height="100%" display="flex" flexWrap="wrap" padding={24}>
       <Image
