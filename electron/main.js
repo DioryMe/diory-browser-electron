@@ -9,11 +9,6 @@ const FolderTools = require('./lib/diograph-folder-tools')
 let mainWindow;
 
 function createWindow () {
-  const startUrl = process.env.ELECTRON_START_URL || url.format({
-    pathname: path.join(__dirname, '../index.html'),
-    protocol: 'file:',
-    slashes: true,
-  });
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
@@ -21,7 +16,7 @@ function createWindow () {
       preload: path.join(__dirname, 'preload.js'),
     },
   });
-  mainWindow.loadURL(startUrl);
+  mainWindow.loadFile('build/index.html');
   mainWindow.on('closed', function () {
     mainWindow = null;
   });
