@@ -15,10 +15,24 @@ function createWindow () {
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
-  });
-  mainWindow.loadFile('build/index.html');
+  })
+
+  // Enable hot-reload of React stuff while running Electron app
+  // - disables showing images from external folder
+  //    - it tries to load them from localhost:3300 which fails
+  mainWindow.loadURL(process.env.ELECTRON_START_URL || url.format({
+    pathname: path.join(__dirname, '../index.html'),
+    protocol: 'file:',
+    slashes: true,
+  }))
+
+  // Enable showing images from external folder
+  // - disables using localhost:3300 & React hot-reload
+  // - requires running `yarn run build`
+  // mainWindow.loadFile('build/index.html')
+
   mainWindow.on('closed', function () {
-    mainWindow = null;
+    mainWindow = null
   });
   process.env.DEV_TOOLS && mainWindow.webContents.openDevTools()
 }
