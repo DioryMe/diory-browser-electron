@@ -63,8 +63,7 @@ const Home = () => {
 
 function openFileDialog() {
   window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then(result => {
-    console.logämk(result.filePaths[0])
-    // $('input').val(result.filePaths[0])
+    console.log(result.filePaths[0])
   })
 }
 

@@ -17,15 +17,12 @@ export const useAddRoom = () => {
   const dispatch = useStore()[1]
 
   const addNewRoom = useCallback(() => {
-    let filePath
-    // FILE DIALOG IS NOT USED BECAUSE BACKEND USES DEFAULT EXAMPLE-FOLDER FILEPATH
-    // window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then(result => {
-    // let filePath = result.filePaths[0]
-    fetchData(channels.CREATE_ROOM, filePath).then(room => {
-      dispatch(addRoom(room))
+    window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then(result => {
+      let filePath = result.filePaths[0]
+      fetchData(channels.CREATE_ROOM, filePath).then(room => {
+        dispatch(addRoom(room))
+      })
     })
-    // })
-
   }, [dispatch])
 
   return {
