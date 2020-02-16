@@ -7,9 +7,11 @@ import { addRoom, setRooms } from './actions'
 export const useHomeChannel = () => {
   const dispatch = useStore()[1]
   useEffect(() => {
-    fetchData(channels.GET_HOME).then(({ rooms }) =>
+    ipcRenderer.send(channels.GET_HOME)
+    ipcRenderer.on(channels.GET_HOME, (event, { rooms }) =>
       dispatch(setRooms(rooms))
     )
+    return () => ipcRenderer.removeAllListeners(channels.HOME)
   }, [dispatch])
 }
 
