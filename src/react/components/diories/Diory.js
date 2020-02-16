@@ -29,7 +29,7 @@ const Diory = ({ diory, onClick, children, ...props }) => {
           <Image
             image={image}
             style={style.image}
-            backgroundImage={getBackgroundImage(image, text)}
+            backgroundImage={getBackgroundImage(image, text, '0, 0, 0, 0.2')}
           />
         )}
         {text && (

@@ -1,6 +1,6 @@
-export const getBackgroundImage = (image, text) =>
+export const getBackgroundImage = (image, text, gradient='255, 255, 255, 0.8') =>
   text
-    ? `linear-gradient(rgba(255, 255, 255, 0.8),rgba(255, 255, 255, 0.8)), url("${encodeURI(
+    ? `linear-gradient(rgba(${gradient}),rgba(${gradient})), url("${encodeURI(
         image
       )}")`
     : `url("${encodeURI(image)}")`
