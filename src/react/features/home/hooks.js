@@ -7,11 +7,17 @@ import { addRoom, setRooms } from './actions'
 export const useHomeChannel = () => {
   const dispatch = useStore()[1]
   useEffect(() => {
+    // FIXME: For some reason this doesn't work...
+    // fetchData(channels.GET_HOME).then(({ rooms }) => {
+    //   dispatch(setRooms(rooms))
+    // })
+    // ...but with this tests pass but localhost:3300 doesn't work...
     ipcRenderer.send(channels.GET_HOME)
     ipcRenderer.on(channels.GET_HOME, (event, { rooms }) =>
       dispatch(setRooms(rooms))
     )
     return () => ipcRenderer.removeAllListeners(channels.HOME)
+    // end of FIXME
   }, [dispatch])
 }
 
