@@ -14,10 +14,17 @@ Each feature can contain:
 - specs
 - styles
 
-Code is tested by feature.
-- ui -> storybook
-- logic -> enzyme
-- stories -> cucumber
+## Write tests. Not too many. Mostly integration (feature)
+Do not test implementation details.
+Do as little as possible
+Test higher in the tree
+
+- code -> eslint
+- types -> typescript --checkJS (?)
+- format -> prettier
+- logic -> jest
+- feature -> cucumber, jsdom (spectron?)
+- ui -> storybook, snapshot
 
 
 ## Map lens

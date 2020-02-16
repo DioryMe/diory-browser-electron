@@ -1,8 +1,9 @@
 import React from 'react'
 import { Icon } from 'evergreen-ui'
 
-const NavigationSideways = ({ icon, left, right, onClick }) => (
+const NavigationSideways = ({ left, right, onClick }) => (
   <div
+    data-testid={`navigate-${left ? 'left' : 'right'}`}
     onClick={onClick}
     style={{
       position: 'fixed',

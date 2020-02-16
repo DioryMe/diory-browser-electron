@@ -23,13 +23,14 @@ const getBackgroundImage = (image, text) =>
     : `url(${encodeURI(image)})`
 
 const Diory = ({ diory, onClick, children, ...props }) => {
-  const { text, image, style = {} } = diory
+  const { id, text, image, style = {} } = diory
   return (
-    <Box {...props}>
-      <Box
-        {...defaultStyle.container}
-        onClick={event => onClick && onClick({ diory, event })}
-      >
+    <Box
+      id={id}
+      {...props}
+      onClick={event => onClick && onClick({ diory, event })}
+    >
+      <Box {...defaultStyle.container}>
         {image && (
           <Image
             image={image}

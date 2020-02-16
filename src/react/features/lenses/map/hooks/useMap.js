@@ -59,6 +59,11 @@ export const useMap = id => {
         ],
       })
     }
+
+    return () => {
+      mapRef.current.off()
+      mapRef.current.remove()
+    }
   }, [id, mapRef])
 
   useInitialMapBounds(mapRef)

@@ -30,6 +30,11 @@ const createMapMarker = ({ diory, diorys }) => {
   return marker
 }
 
+const addDataTestIdToMarker = id => marker => {
+  marker._icon.setAttribute('data-testid', id)
+  return marker
+}
+
 const useDioryMarker = mapRef => {
   const { diory, diorys } = useFocusDiory()
   const focusChanged = useCompare(diory.id)
@@ -37,9 +42,12 @@ const useDioryMarker = mapRef => {
   const markerRef = useRef(null)
   useEffect(() => {
     if (!markerRef.current) {
-      markerRef.current = createMapMarker({ diory, diorys }).addTo(
-        mapRef.current
-      )
+      const marker = createMapMarker({ diory, diorys })
+      if (marker) {
+        markerRef.current = addDataTestIdToMarker('diory-marker')(
+          marker.addTo(mapRef.current)
+        )
+      }
     }
     const { center } = getLocationData({ diory, diorys })
     if (markerRef.current && center) {
@@ -80,6 +88,7 @@ const useDiorysMarkers = mapRef => {
       )
       .filter(({ latitude, longitude }) => latitude && longitude)
       .map(diory => createMapMarker({ diory }).addTo(mapRef.current))
+      .map(addDataTestIdToMarker('linked-diory-marker'))
 
     markerRefs.current = oldMarkers.concat(newMarkers)
   }, [mapRef, markerRefs, diorys])

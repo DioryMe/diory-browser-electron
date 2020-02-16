@@ -3,29 +3,31 @@ const getAverage = (array = []) =>
     ? array.reduce((a, b) => parseFloat(a) + parseFloat(b), 0) / array.length
     : undefined
 
-export const getLocationData = ({ diory, diorys = [] }) => {
-  const latitudes = diorys
-    .filter(({ latitude }) => latitude)
-    .map(({ latitude }) => latitude)
-  const longitudes = diorys
-    .filter(({ longitude }) => longitude)
-    .map(({ longitude }) => longitude)
-  const latitudesAndLongitudesExists = latitudes.length && longitudes.length
+const concat = (array = [], item) =>
+  typeof item !== 'undefined' ? array.concat(item) : array
+
+export const getLocationData = ({ diory = {}, diorys = [] }) => {
+  const locations = diorys.filter(
+    ({ latitude, longitude }) => latitude && longitude
+  )
+  const latitudes = diorys.map(({ latitude }) => latitude)
+  const longitudes = diorys.map(({ longitude }) => longitude)
   const lat = diory.latitude || getAverage(latitudes)
   const lng = diory.longitude || getAverage(longitudes)
+  const latitudesAndLongitudesExists = locations.length || undefined
   return {
     center: lat &&
       lng && {
         lat,
         lng,
       },
-    max: latitudesAndLongitudesExists && [
-      Math.max(...latitudes, diory.latitude),
-      Math.max(...longitudes, diory.longitude),
-    ],
-    min: latitudesAndLongitudesExists && [
-      Math.min(...latitudes, diory.latitude),
-      Math.min(...longitudes, diory.longitude),
-    ],
+    min: latitudesAndLongitudesExists && {
+      lat: Math.min(...concat(latitudes, diory.latitude)),
+      lng: Math.min(...concat(longitudes, diory.longitude)),
+    },
+    max: latitudesAndLongitudesExists && {
+      lat: Math.max(...concat(latitudes, diory.latitude)),
+      lng: Math.max(...concat(longitudes, diory.longitude)),
+    },
   }
 }
