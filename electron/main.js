@@ -56,10 +56,8 @@ ipcMain.on(channels.GET_HOME, (event) => {
 });
 
 const getRoom = async (id) => {
-  const paths = Object.entries(home.rooms)
-    .find(([key, room]) => id === room.id)
-  if (paths) {
-    const diograph = require(`../public/${paths[0]}/diograph.json`)
+  if (fs.existsSync(id)) {
+    const diograph = require(`${id}/diograph.json`)
     return { id, diograph }
   }
 
