@@ -49,7 +49,7 @@
     "build-electron-win": "mkdir build/src && robocopy electron build/electron /S & robocopy src/shared build/src/shared /S",
     "package": "electron-builder build --mac --win -c.extraMetadata.main=build/electron/main.js --publish never",
     "lint": "eslint ./src/. --ext .js",
-    "test": "jasmine electron/spec/*.js && react-scripts test",
+    "test": "jasmine electron/spec/*.js && react-scripts test --watchAll=false && yarn cucumber",
     "cucumber": "./node_modules/.bin/cucumber-js src/react -r src/react/utils/cucumber --require-module @babel/register --require-module @babel/polyfill",
     "cucumber-only": "./node_modules/.bin/cucumber-js src/react/features --tags @only -r src/react/utils/cucumber --require-module @babel/register --require-module @babel/polyfill",
     "eject": "react-scripts eject"
