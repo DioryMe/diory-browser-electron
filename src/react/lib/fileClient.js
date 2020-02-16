@@ -5,7 +5,7 @@ export const fetchFile = (channel) => {
     GET_ROOM: require('../../diograph.json'),
   }[channel]
 
-  if (data) {
+  if (!data) {
     return Promise.reject()
   }
 
