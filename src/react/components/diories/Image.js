@@ -13,9 +13,9 @@ const defaultStyle = {
   backgroundRepeat: 'no-repeat',
 }
 
-const Image = ({ image, style, ...props }) => (
+const Image = ({ image, style, backgroundImage, ...props }) => (
   <Box
-    backgroundImage={`url(${encodeURI(image)})`}
+    backgroundImage={backgroundImage}
     {...defaultStyle}
     {...style}
     {...props}
@@ -25,6 +25,7 @@ const Image = ({ image, style, ...props }) => (
 Image.propTypes = {
   image: PropTypes.string,
   style: PropTypes.object,
+  backgroundImage: PropTypes.string
 }
 
 export default Image

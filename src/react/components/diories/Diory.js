@@ -17,10 +17,10 @@ const defaultStyle = {
 
 const getBackgroundImage = (image, text) =>
   text
-    ? `linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)), url(${encodeURI(
+    ? `linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)), url("${encodeURI(
         image
-      )})`
-    : `url(${encodeURI(image)})`
+      )}")`
+    : `url("${encodeURI(image)}")`
 
 const Diory = ({ diory, onClick, children, ...props }) => {
   const { id, text, image, style = {} } = diory
