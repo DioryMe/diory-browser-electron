@@ -77,7 +77,7 @@ ipcMain.on(channels.GET_ROOM, (event, id) => {
 ipcMain.on(channels.SAVE_ROOM, (event, { id, diograph }) => {
   const data = JSON.stringify(diograph)
   console.log('Saving room', id)
-  fs.writeFile(`./public/${id}/diograph.json`, data, function(err) {
+  fs.writeFile(`${id}/diograph.json`, data, function(err) {
     if(err) {
       console.log(err)
       return event.sender.send(channels.SAVE_ROOM, null, err);
