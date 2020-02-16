@@ -74,23 +74,34 @@ ipcMain.on(channels.GET_ROOM, (event, id) => {
   })
 });
 
-ipcMain.on(channels.SAVE_ROOM, (event, { id, diograph }) => {
+const saveRoom = async (id, diograph, callback) => {
   const data = JSON.stringify(diograph)
   console.log('Saving room', id)
-  fs.writeFile(`${id}/diograph.json`, data, function(err) {
+  fs.writeFile(`${id}/diograph.json`, data, callback)
+}
+
+ipcMain.on(channels.SAVE_ROOM, (event, { id, diograph }) => {
+  saveRoom(id, diograph, err => {
     if(err) {
       console.log(err)
       return event.sender.send(channels.SAVE_ROOM, null, err);
     }
     event.sender.send(channels.SAVE_ROOM, true);
-  });
+  })
 });
 
 ipcMain.on(channels.CREATE_ROOM, (event, filePath) => {
   // DEFAULT PATH IS EXAMPLE-FOLDER PATH
   // filePath = path.join(__dirname, 'spec/example-folder')
   FolderTools.generateRoom(filePath).then(room => {
-    console.log(room)
-    event.reply(channels.CREATE_ROOM, room)
+    getRoom(room.id).then(retrievedRoom => {
+      saveRoom(retrievedRoom.id, retrievedRoom.diograph, err => {
+        if(err) {
+          console.log(err)
+          return event.sender.send(channels.CREATE_ROOM, null, err);
+        }
+        event.reply(channels.CREATE_ROOM, room)
+      })
+    })
   })
 })
