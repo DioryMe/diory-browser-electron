@@ -3,6 +3,7 @@ import Box from 'ui-box'
 import PropTypes from 'prop-types'
 
 import Image from './Image'
+import { getBackgroundImage } from '../../lib/utils'
 
 const defaultStyle = {
   container: {
@@ -14,13 +15,6 @@ const defaultStyle = {
     padding: '16px',
   },
 }
-
-const getBackgroundImage = (image, text) =>
-  text
-    ? `linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)), url("${encodeURI(
-        image
-      )}")`
-    : `url("${encodeURI(image)}")`
 
 const Diory = ({ diory, onClick, children, ...props }) => {
   const { id, text, image, style = {} } = diory

@@ -6,6 +6,7 @@ import { useHomeChannel, useAddRoom } from './hooks'
 
 import Image from '../../components/diories/Image'
 import Room from '../../components/Room'
+import { getBackgroundImage } from '../../lib/utils'
 
 const useHome = () => {
   useHomeChannel()
@@ -17,13 +18,6 @@ const useHome = () => {
     })),
   }
 }
-
-const getBackgroundImage = (image, content) =>
-  content
-    ? `linear-gradient(rgba(255, 255, 255, 0.8),rgba(255, 255, 255, 0.8)), url(${encodeURI(
-        image
-      )})`
-    : `url(${encodeURI(image)})`
 
 const HomeView = () => {
   const { image, rooms } = useHome()

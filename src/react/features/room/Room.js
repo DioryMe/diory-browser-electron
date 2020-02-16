@@ -5,6 +5,7 @@ import { useGetRoom, useFocusDiory } from './hooks'
 import { setFocus } from '../navigation/actions'
 import Diory from '../../components/diories/Diory'
 import Image from '../../components/diories/Image'
+import { getBackgroundImage } from '../../lib/utils'
 
 const useRoom = () => {
   useGetRoom()
@@ -18,13 +19,6 @@ const useRoom = () => {
     })),
   }
 }
-
-const getBackgroundImage = (image, content) =>
-  content
-    ? `linear-gradient(rgba(255, 255, 255, 0.8),rgba(255, 255, 255, 0.8)), url(${encodeURI(
-        image
-      )})`
-    : `url(${encodeURI(image)})`
 
 const Room = () => {
   const { diory, diorys } = useRoom()
