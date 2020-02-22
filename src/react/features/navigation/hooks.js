@@ -29,7 +29,7 @@ export const useParent = () => {
 
 export const useSiblings = () => {
   const parent = useParent()
-  if (!parent) {
+  if (!parent || !parent.links) {
     return []
   }
   return Object.values(parent.links).map(({ id }) => id)
