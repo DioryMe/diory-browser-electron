@@ -56,7 +56,16 @@ ipcMain.on(channels.GET_HOME, (event) => {
 });
 
 const getRoom = async (id) => {
-  if (fs.existsSync(id)) {
+  let folderPath = id
+  let diographJSONPath = `${id}/diograph.json`
+
+  // With FileDialog you shouldn't be able to choose a folderPath that doesn't exist but...
+  if (!fs.existsSync(folderPath)) {
+    return null
+  }
+
+  // No need to read the whole folder if diograph.json exists
+  if (fs.existsSync(diographJSONPath)) {
     const diograph = require(`${id}/diograph.json`)
     return { id, diograph }
   }
