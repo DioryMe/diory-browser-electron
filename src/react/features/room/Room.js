@@ -20,6 +20,8 @@ const useRoom = () => {
   }
 }
 
+const MAX_NUMBER_OF_DIORYS_PER_VIEW = 100
+
 const Room = () => {
   const { diory, diorys } = useRoom()
   if (!diory) {
@@ -42,7 +44,7 @@ const Room = () => {
           {diory.text}
         </Heading>
       )}
-      {diorys.map(({ diory, onClick }) => (
+      {diorys.slice(0, MAX_NUMBER_OF_DIORYS_PER_VIEW).map(({ diory, onClick }) => (
         <Diory
           key={diory.id}
           diory={diory}

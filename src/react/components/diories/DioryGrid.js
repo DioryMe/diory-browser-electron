@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Diory from './Diory'
 
+const MAX_NUMBER_OF_DIORYS_PER_VIEW = 100
+
 const DioryGrid = ({ diory, diorys, onClick, children, ...props }) => {
   return (
     <Diory
@@ -12,7 +14,7 @@ const DioryGrid = ({ diory, diorys, onClick, children, ...props }) => {
       flexWrap="wrap"
       {...props}
     >
-      {diorys.map(({ diory, onClick }) => (
+      {diorys.slice(0, MAX_NUMBER_OF_DIORYS_PER_VIEW).map(({ diory, onClick }) => (
         <Diory
           key={diory.id}
           diory={diory}
