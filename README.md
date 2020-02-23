@@ -15,8 +15,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 1. Enable loadFile in main.js
 1. Install Node 12 and yarn
 1. `yarn install`
-1. `yarn run build`
-1. `yarn start-electron`
+1. `yarn run build && yarn start-electron`
 1. Electron app is launched and loads `./build` folder to its window
 
 ## Requirements
