@@ -14,7 +14,7 @@ export const getLocationData = ({ diory = {}, diorys = [] }) => {
   const longitudes = diorys.map(({ longitude }) => longitude)
   const lat = diory.latitude || getAverage(latitudes)
   const lng = diory.longitude || getAverage(longitudes)
-  const latitudesAndLongitudesExists = locations.length || undefined
+  const latitudesAndLongitudesExists = (locations.length && diory.latitude && diory.longitude) || undefined
   return {
     center: lat &&
       lng && {
