@@ -2,7 +2,7 @@ const EXIF = require('./diograph-exif')
 const path = require('path')
 
 function isImage(filePath) {
-  return path.extname(filePath) === '.jpg'
+  return ['.jpg', '.jpeg'].includes(path.extname(filePath).toLowerCase())
 }
 
 function extractImageFile(filePath) {
