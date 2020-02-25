@@ -49,12 +49,20 @@ function getLongitude(tags) {
 }
 
 exports.getImageInfo = function(path='example.jpg') {
-  const tags = this.readExifTags(path)
-  return {
-    id: getId(tags),
-    image: path,
-    ...getDate(tags),
-    ...getLatitude(tags),
-    ...getLongitude(tags),
+  try {
+    const tags = this.readExifTags(path)
+    return {
+      id: getId(tags),
+      image: path,
+      ...getDate(tags),
+      ...getLatitude(tags),
+      ...getLongitude(tags),
+    }
+  } catch(error) {
+    console.log(`Error getImageInfo ${path}: ${error}`)
+    return {
+      id: path,
+      image: path
+    }
   }
 }
