@@ -1,5 +1,7 @@
-const fs = require('fs');
+const fs = require('fs')
+const util = require('util')
 const FolderTools = require('../lib/diograph-folder-tools')
+const writeFilePromise = util.promisify(fs.writeFile)
 
 const getRoom = async (id) => {
   let folderPath = id
@@ -20,10 +22,10 @@ const getRoom = async (id) => {
   return { id, diograph }
 }
 
-const saveRoom = async (id, diograph, callback) => {
+const saveRoom = async (id, diograph) => {
   const data = JSON.stringify(diograph)
   console.log('Saving room', id)
-  fs.writeFile(`${id}/diograph.json`, data, callback)
+  return writeFilePromise(`${id}/diograph.json`, data)
 }
 
 exports.getRoom = getRoom
