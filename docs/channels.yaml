@@ -1,0 +1,40 @@
+swagger: "2.0"
+info:
+  version: "2020-03-07"
+  title: "Diory demo app ipc definitions"
+channels:
+  GET_HOME:
+    get:
+      description: "Get home from backend"
+      request:
+      responses:
+        success:
+          description: "Home with rooms"
+          schema:
+            type: "object"
+            properties:
+              id:
+                type: "string"
+              rooms:
+                type: "object"
+                properties:
+                  {path}:
+                    type: "object"
+                    schema:
+                      $ref: "#/definitions/diory"
+        error:
+          description: "Error response"
+          schema:
+            type: "string"
+            description: "Error message"
+definitions:
+  diory:
+    type: "object"
+    description: "Diory"
+    properties:
+      id:
+        type: "string"
+      text:
+        type: "string"
+      image:
+        type: "string"
