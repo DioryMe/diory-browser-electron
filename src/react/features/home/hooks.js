@@ -34,6 +34,6 @@ export const useAddRoom = () => {
   }, [dispatch])
 
   return {
-    addNewRoom
+    addNewRoom,
   }
 }

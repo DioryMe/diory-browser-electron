@@ -18,9 +18,7 @@ const Room = ({ room: { id, image, text, ...diory }, onClick }) => (
       alignSelf="center"
       onClick={onClick}
       aria-controls={`panel-${id}`}
-      backgroundImage={`linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.1)), url(${encodeURI(
-        image
-      )})`}
+      backgroundImage={`linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.1)), url(${encodeURI(image)})`}
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
       backgroundColor="pink"

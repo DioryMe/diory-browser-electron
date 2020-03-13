@@ -27,9 +27,7 @@ export const useSaveRoom = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     if (updated) {
-      debounceDispatchActionPromise(dispatch, types.SAVE_ROOM, () =>
-        fetchData(channels.SAVE_ROOM, { id, diograph })
-      )
+      debounceDispatchActionPromise(dispatch, types.SAVE_ROOM, () => fetchData(channels.SAVE_ROOM, { id, diograph }))
     }
   }, [updated, id, diograph, dispatch])
 }

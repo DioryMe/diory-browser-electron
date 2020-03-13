@@ -24,10 +24,7 @@ const HomeView = () => {
   const { addNewRoom } = useAddRoom()
   return (
     <Pane height="100%" display="flex" flexWrap="wrap" padding={24}>
-      <Image
-        backgroundImage={getBackgroundImage(image, rooms.length)}
-        zIndex={-1}
-      />
+      <Image backgroundImage={getBackgroundImage(image, rooms.length)} zIndex={-1} />
       {rooms.map(room => (
         <Room {...room} />
       ))}
