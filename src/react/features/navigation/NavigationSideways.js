@@ -17,11 +17,7 @@ const NavigationSideways = ({ left, right, onClick }) => (
       right: right && 0,
     }}
   >
-    <Icon
-      icon={`chevron-${left ? 'left' : 'right'}`}
-      color="disabled"
-      size={48}
-    />
+    <Icon icon={`chevron-${left ? 'left' : 'right'}`} color="disabled" size={48} />
   </div>
 )
 
