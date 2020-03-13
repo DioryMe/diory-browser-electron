@@ -2,6 +2,7 @@ const Extractor = require('../lib/diograph-extractor')
 const path = require('path')
 
 describe('getDiry', () => {
+
   it('works with image', () => {
     let filePath = path.join(__dirname, 'example-folder/example.jpg')
     let diograph = Extractor.createDiory({ filePath })
@@ -10,7 +11,7 @@ describe('getDiry', () => {
       date: '2008-11-01T21:15:11.000Z',
       image: filePath,
       latitude: 43.464455,
-      longitude: 11.881478333333334,
+      longitude: 11.881478333333334
     }
     expect(diograph).toEqual(expectedObject)
   })
@@ -20,8 +21,13 @@ describe('getDiry', () => {
     let diograph = Extractor.createDiory({ filePath })
     let expectedObject = {
       id: filePath,
-      text: 'some-other-file.txt',
+      text: 'some-other-file.txt'
     }
     expect(diograph).toEqual(expectedObject)
   })
+
 })
+
+
+
+

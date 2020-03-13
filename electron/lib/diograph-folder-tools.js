@@ -4,17 +4,15 @@ const fs = require('fs')
 
 // Copy-pasted from:
 // - https://stackoverflow.com/questions/5827612/node-js-fs-readdir-recursive-directory-search
-const { resolve } = require('path')
-const { readdir } = require('fs').promises
+const { resolve } = require('path');
+const { readdir } = require('fs').promises;
 
 async function getFiles(dir) {
-  const dirents = await readdir(dir, { withFileTypes: true })
-  const files = await Promise.all(
-    dirents.map(dirent => {
-      const filePath = resolve(dir, dirent.name)
-      return dirent.isDirectory() ? getFiles(filePath) : { filePath }
-    })
-  )
+  const dirents = await readdir(dir, { withFileTypes: true });
+  const files = await Promise.all(dirents.map((dirent) => {
+    const filePath = resolve(dir, dirent.name);
+    return dirent.isDirectory() ? getFiles(filePath) : { filePath }
+  }));
   const links = Array.prototype.concat(...files)
   return links.concat([{ filePath: dir, links }])
 }
@@ -22,7 +20,7 @@ async function getFiles(dir) {
 
 exports.listFiles = async function(folderPath) {
   if (!(fs.existsSync(folderPath) && fs.lstatSync(folderPath).isDirectory())) {
-    console.log('NOT A FOLDER PATH')
+    console.log("NOT A FOLDER PATH")
     return
   }
   return getFiles(folderPath)
@@ -37,7 +35,9 @@ function arrayToObject(obj, item) {
 
 exports.generateDiograph = async function(folderPath) {
   const filePathList = await this.listFiles(folderPath)
-  return filePathList.map(Extractor.createDiory).reduce(arrayToObject, {})
+  return filePathList
+    .map(Extractor.createDiory)
+    .reduce(arrayToObject, {})
 }
 
 exports.generateRoom = async function(folderPath) {

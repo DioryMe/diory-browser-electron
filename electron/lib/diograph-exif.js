@@ -2,7 +2,7 @@ const fs = require('fs')
 const ExifReader = require('exifreader')
 const _ = require('lodash')
 
-exports.readExifTags = function(path = 'example.jpg') {
+exports.readExifTags = function(path='example.jpg') {
   const data = fs.readFileSync(path)
   const tags = ExifReader.load(data.buffer)
   return tags
@@ -48,7 +48,7 @@ function getLongitude(tags) {
   return longitude && { longitude }
 }
 
-exports.getImageInfo = function(path = 'example.jpg') {
+exports.getImageInfo = function(path='example.jpg') {
   try {
     const tags = this.readExifTags(path)
     return {
@@ -58,11 +58,11 @@ exports.getImageInfo = function(path = 'example.jpg') {
       ...getLatitude(tags),
       ...getLongitude(tags),
     }
-  } catch (error) {
+  } catch(error) {
     console.log(`Error getImageInfo ${path}: ${error}`)
     return {
       id: path,
-      image: path,
+      image: path
     }
   }
 }

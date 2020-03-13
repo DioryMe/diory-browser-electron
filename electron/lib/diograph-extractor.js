@@ -10,19 +10,14 @@ function extractImageFile(filePath) {
 }
 
 function getLinks(links) {
-  return (
-    links && {
-      links: links.reduce(
-        (obj, { filePath }) => ({
-          ...obj,
-          [path.basename(filePath)]: {
-            id: isImage(filePath) ? extractImageFile(filePath).id : filePath,
-          },
-        }),
-        {}
-      ),
-    }
-  )
+  return links && {
+    links: links.reduce((obj, { filePath }) => ({
+      ...obj,
+      [path.basename(filePath)] : {
+        id: isImage(filePath) ? extractImageFile(filePath).id : filePath
+      }
+    }), {})
+  }
 }
 
 exports.createDiory = function({ filePath, links }) {
