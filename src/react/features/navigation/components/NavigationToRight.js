@@ -1,5 +1,5 @@
 import React from 'react'
-import { useRight } from './hooks'
+import { useRight } from '../hooks'
 import NavigationSideways from './NavigationSideways'
 
 const NavigationToRight = () => {

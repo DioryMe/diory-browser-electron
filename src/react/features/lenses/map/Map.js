@@ -1,11 +1,8 @@
 import React from 'react'
-import { useSaveRoom } from '../../room/hooks'
 import { useMap, useMapMarkers } from './hooks'
 import { useMapOperations, buttons } from './operations'
 
 const Map = () => {
-  useSaveRoom()
-
   const id = 'mapId'
   const map = useMap(id)
   useMapMarkers(map)
