@@ -2,21 +2,24 @@ const FolderTools = require('../lib/diograph-folder-tools')
 const path = require('path')
 
 function fakeAsync(runAsync) {
-  return (done) => {
-    runAsync().then(done, e => { fail(e); done(); });
-  };
+  return done => {
+    runAsync().then(done, e => {
+      fail(e)
+      done()
+    })
+  }
 }
 
 describe('listFiles', () => {
-
   it('prints out', fakeAsync(async function() {
     const folderPath = path.join(__dirname, 'example-folder')
     let fileList = await FolderTools.listFiles(folderPath)
 
     const expectedFolderFiles = [
       { filePath: path.join(__dirname, 'example-folder', 'Shopping @ Tampere/socks.jpg') },
-      { filePath: path.join(__dirname, 'example-folder', 'Shopping @ Tampere'),
-        links: [ { filePath: path.join(__dirname, 'example-folder', 'Shopping @ Tampere', 'socks.jpg') } ]
+      {
+        filePath: path.join(__dirname, 'example-folder', 'Shopping @ Tampere'),
+        links: [{ filePath: path.join(__dirname, 'example-folder', 'Shopping @ Tampere', 'socks.jpg') }],
       },
       { filePath: path.join(__dirname, 'example-folder', 'car.jpg') },
       { filePath: path.join(__dirname, 'example-folder', 'example.jpg') },
@@ -24,7 +27,7 @@ describe('listFiles', () => {
     ]
     const expectedFolder = {
       filePath: path.join(__dirname, 'example-folder'),
-      links: expectedFolderFiles
+      links: expectedFolderFiles,
     }
     expect(fileList).toEqual([...expectedFolderFiles, expectedFolder])
   }))
@@ -34,9 +37,7 @@ describe('listFiles', () => {
     let fileList = await FolderTools.listFiles(nonFolderPath)
     expect(fileList).toEqual(undefined)
   }))
-
 })
-
 
 describe('generateRoom', () => {
   it('generates room from folder path', () => {
@@ -72,12 +73,12 @@ describe('generateDiograph', () => {
         image: path.join(__dirname, 'example-folder', 'example.jpg'),
         date: '2008-11-01T21:15:11.000Z',
         latitude: 43.464455,
-        longitude: 11.881478333333334
+        longitude: 11.881478333333334,
       },
       [path.join(__dirname, 'example-folder', 'some-other-file.txt')]: {
         id: path.join(__dirname, 'example-folder', 'some-other-file.txt'),
-        text: 'some-other-file.txt'
-      }
+        text: 'some-other-file.txt',
+      },
     }
     FolderTools.generateDiograph('example-folder').then(diographJSON => {
       expect(expectedDiographJSON).toEqual(diographJSON)
