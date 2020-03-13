@@ -1,6 +1,6 @@
 import React from 'react'
 import { Pane, SearchInput } from 'evergreen-ui'
-import { useLenses } from '../lenses/hooks'
+import { useLenses } from '../../lenses/hooks'
 
 const useSearchInput = () => {
   const { search, selectLens } = useLenses()

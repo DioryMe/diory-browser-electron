@@ -1,7 +1,7 @@
 import React from 'react'
 import { Pane, IconButton } from 'evergreen-ui'
-import { useStore } from '../../store'
-import { goHome, goBackward, goForward } from './actions'
+import { useStore } from '../../../store'
+import { goHome, goBackward, goForward } from '../actions'
 
 const useNavigationButtons = () => {
   const [{ backward, forward }, dispatch] = useStore(state => state.navigation)

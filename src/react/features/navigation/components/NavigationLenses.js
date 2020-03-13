@@ -1,7 +1,7 @@
 import React from 'react'
 import { Pane, Tablist, Tab, Icon } from 'evergreen-ui'
-import { useStore } from '../../store'
-import { useLenses } from '../lenses/hooks'
+import { useStore } from '../../../store'
+import { useLenses } from '../../lenses/hooks'
 
 const useNavigationLenses = () => {
   const {
