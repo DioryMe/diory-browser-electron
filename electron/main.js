@@ -1,14 +1,14 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
-const path = require('path');
-const url = require('url');
-const fs = require('fs');
-const { channels } = require('../src/shared/constants');
-const home = require('../public/home.json');
+const { app, BrowserWindow, ipcMain } = require('electron')
+const path = require('path')
+const url = require('url')
+const fs = require('fs')
+const { channels } = require('../src/shared/constants')
+const home = require('../public/home.json')
 const FolderTools = require('./lib/diograph-folder-tools')
 
-let mainWindow;
+let mainWindow
 
-function createWindow () {
+function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
@@ -26,38 +26,41 @@ function createWindow () {
     // Enable loadURL: hot-reload of React stuff while running Electron app
     // - disables showing images from external folder
     //    - it tries to load them from localhost:3300 which fails
-    mainWindow.loadURL(process.env.ELECTRON_START_URL || url.format({
-      pathname: path.join(__dirname, '../index.html'),
-      protocol: 'file:',
-      slashes: true,
-    }))
+    mainWindow.loadURL(
+      process.env.ELECTRON_START_URL ||
+        url.format({
+          pathname: path.join(__dirname, '../index.html'),
+          protocol: 'file:',
+          slashes: true,
+        })
+    )
   }
 
-  mainWindow.on('closed', function () {
+  mainWindow.on('closed', function() {
     mainWindow = null
-  });
+  })
   process.env.DEV_TOOLS && mainWindow.webContents.openDevTools()
 }
 
-app.on('ready', createWindow);
+app.on('ready', createWindow)
 
-app.on('window-all-closed', function () {
+app.on('window-all-closed', function() {
   if (process.platform !== 'darwin') {
-    app.quit();
+    app.quit()
   }
-});
+})
 
-app.on('activate', function () {
+app.on('activate', function() {
   if (mainWindow === null) {
-    createWindow();
+    createWindow()
   }
-});
+})
 
-ipcMain.on(channels.GET_HOME, (event) => {
-  event.sender.send(channels.GET_HOME, home);
-});
+ipcMain.on(channels.GET_HOME, event => {
+  event.sender.send(channels.GET_HOME, home)
+})
 
-const getRoom = async (id) => {
+const getRoom = async id => {
   let folderPath = id
   let diographJSONPath = `${id}/diograph.json`
 
@@ -79,9 +82,9 @@ const getRoom = async (id) => {
 ipcMain.on(channels.GET_ROOM, (event, id) => {
   getRoom(id).then(room => {
     console.log(room)
-    event.sender.send(channels.GET_ROOM, room);
+    event.sender.send(channels.GET_ROOM, room)
   })
-});
+})
 
 const saveRoom = async (id, diograph, callback) => {
   const data = JSON.stringify(diograph)
@@ -91,13 +94,13 @@ const saveRoom = async (id, diograph, callback) => {
 
 ipcMain.on(channels.SAVE_ROOM, (event, { id, diograph }) => {
   saveRoom(id, diograph, err => {
-    if(err) {
+    if (err) {
       console.log(err)
-      return event.sender.send(channels.SAVE_ROOM, null, err);
+      return event.sender.send(channels.SAVE_ROOM, null, err)
     }
-    event.sender.send(channels.SAVE_ROOM, true);
+    event.sender.send(channels.SAVE_ROOM, true)
   })
-});
+})
 
 ipcMain.on(channels.CREATE_ROOM, (event, filePath) => {
   // DEFAULT PATH IS EXAMPLE-FOLDER PATH
@@ -105,9 +108,9 @@ ipcMain.on(channels.CREATE_ROOM, (event, filePath) => {
   FolderTools.generateRoom(filePath).then(room => {
     getRoom(room.id).then(retrievedRoom => {
       saveRoom(retrievedRoom.id, retrievedRoom.diograph, err => {
-        if(err) {
+        if (err) {
           console.log(err)
-          return event.sender.send(channels.CREATE_ROOM, null, err);
+          return event.sender.send(channels.CREATE_ROOM, null, err)
         }
         event.reply(channels.CREATE_ROOM, room)
       })
