@@ -1,10 +1,15 @@
 const getAverage = (array = []) =>
-  array.length ? array.reduce((a, b) => parseFloat(a) + parseFloat(b), 0) / array.length : undefined
+  array.length
+    ? array.reduce((a, b) => parseFloat(a) + parseFloat(b), 0) / array.length
+    : undefined
 
-const concat = (array = [], item) => (typeof item !== 'undefined' ? array.concat(item) : array)
+const concat = (array = [], item) =>
+  typeof item !== 'undefined' ? array.concat(item) : array
 
 export const getLocationData = ({ diory = {}, diorys = [] }) => {
-  const locations = diorys.filter(({ latitude, longitude }) => latitude && longitude)
+  const locations = diorys.filter(
+    ({ latitude, longitude }) => latitude && longitude
+  )
   const latitudes = diorys.map(({ latitude }) => latitude)
   const longitudes = diorys.map(({ longitude }) => longitude)
   const lat = diory.latitude || getAverage(latitudes)

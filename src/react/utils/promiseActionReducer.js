@@ -1,4 +1,9 @@
-export function promiseActionReducer(actionType, progressKey, successKey, failureKey) {
+export function promiseActionReducer(
+  actionType,
+  progressKey,
+  successKey,
+  failureKey
+) {
   return {
     [actionType + '_BEGIN']: state => ({
       ...state,

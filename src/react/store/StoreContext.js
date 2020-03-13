@@ -3,7 +3,10 @@ import React, { createContext, useContext, useReducer } from 'react'
 const StoreContext = createContext()
 
 export const StoreProvider = ({ reducer, initialState, children }) => (
-  <StoreContext.Provider value={useReducer(reducer, initialState)} children={children} />
+  <StoreContext.Provider
+    value={useReducer(reducer, initialState)}
+    children={children}
+  />
 )
 
 export const useStore = selector => {

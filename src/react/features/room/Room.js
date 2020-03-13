@@ -28,8 +28,17 @@ const Room = () => {
     return <div>loading</div>
   }
   return (
-    <Pane id={diory.id} height="100%" display="flex" flexWrap="wrap" padding={24}>
-      <Image backgroundImage={getBackgroundImage(diory.image, diorys.length)} zIndex={-1} />
+    <Pane
+      id={diory.id}
+      height="100%"
+      display="flex"
+      flexWrap="wrap"
+      padding={24}
+    >
+      <Image
+        backgroundImage={getBackgroundImage(diory.image, diorys.length)}
+        zIndex={-1}
+      />
       {!diorys.length && (
         <Heading margin={16} color="darkgrey" fontWeight="bold">
           {diory.text}

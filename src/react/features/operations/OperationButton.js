@@ -8,7 +8,10 @@ const getActiveProps = active =>
   }
 
 const OperationButton = ({ id, data, active, onClick }) => (
-  <div data-testid={id + '-button' + (active ? '--active' : '')} onClick={onClick}>
+  <div
+    data-testid={id + '-button' + (active ? '--active' : '')}
+    onClick={onClick}
+  >
     <IconButton
       {...getActiveProps(active)}
       icon={data.icon}
