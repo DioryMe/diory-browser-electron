@@ -1,7 +1,7 @@
 const FolderTools = require('../lib/diograph-folder-tools')
 const path = require('path')
 
-function testAsync(runAsync) {
+function fakeAsync(runAsync) {
   return (done) => {
     runAsync().then(done, e => { fail(e); done(); });
   };
@@ -9,7 +9,7 @@ function testAsync(runAsync) {
 
 describe('listFiles', () => {
 
-  it('prints out', testAsync(async function() {
+  it('prints out', fakeAsync(async function() {
     const folderPath = path.join(__dirname, 'example-folder')
     let fileList = await FolderTools.listFiles(folderPath)
 
@@ -29,7 +29,7 @@ describe('listFiles', () => {
     expect(fileList).toEqual([...expectedFolderFiles, expectedFolder])
   }))
 
-  it('throws an error if non-directory given', testAsync(async function() {
+  it('throws an error if non-directory given', fakeAsync(async function() {
     let nonFolderPath = path.join(__dirname, 'definitely-not-a-folder')
     let fileList = await FolderTools.listFiles(nonFolderPath)
     expect(fileList).toEqual(undefined)
