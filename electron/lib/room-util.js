@@ -14,8 +14,11 @@ const getRoom = async (id) => {
 
   // No need to read the whole folder if diograph.json exists
   if (fs.existsSync(diographJSONPath)) {
-    const diograph = require(`${id}/diograph.json`)
-    return { id, diograph }
+    const raw = fs.readFileSync(diographJSONPath)
+    return {
+      id,
+      diograph: JSON.parse(raw)
+    }
   }
 
   const diograph = await FolderTools.generateDiograph(id)
