@@ -36,6 +36,7 @@ module.exports = {
     'no-unused-vars': ['warn'], // todo
     'indent': ['warn'], // todo
     'prefer-const': ['warn'], // todo
+    'dot-notation': ['warn'], // todo
     'max-len': ['warn'],
     'import/newline-after-import': ['warn'],
     'react/prop-types': ['warn'],
@@ -74,5 +75,7 @@ module.exports = {
     'import/no-extraneous-dependencies': ['warn'],
     'consistent-return': ['warn'],
     'import/no-cycle': ['warn'],
+    'import/order': ['warn'],
+    'no-prototype-builtins': ['warn'],
   },
 };
