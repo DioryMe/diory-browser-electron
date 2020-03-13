@@ -1,6 +1,8 @@
 const FolderTools = require('../lib/diograph-folder-tools')
 const path = require('path')
 
+// eslint-disable no-undef
+
 function fakeAsync(runAsync) {
   return done => {
     runAsync().then(done, e => {
