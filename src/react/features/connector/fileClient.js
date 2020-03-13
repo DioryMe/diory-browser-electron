@@ -1,8 +1,8 @@
-export const fetchFile = (channel) => {
+export const fetchFile = channel => {
   // TODO: Find good place for static data
   const data = {
-    GET_HOME: require('../../home.json'),
-    GET_ROOM: require('../../diograph.json'),
+    GET_HOME: require('../../../home.json'),
+    GET_ROOM: require('../../../diograph.json'),
   }[channel]
 
   if (!data) {

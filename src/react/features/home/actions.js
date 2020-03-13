@@ -5,7 +5,10 @@ export const setRooms = rooms => ({
   payload: { rooms },
 })
 
-export const addRoom = room => ({ type: types.ADD_ROOM, payload: { room } })
+export const addRoom = room => ({
+  type: types.ADD_ROOM,
+  payload: { room },
+})
 
 export const removeRoom = room => ({
   type: types.REMOVE_ROOM,
