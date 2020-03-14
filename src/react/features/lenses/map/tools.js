@@ -23,7 +23,7 @@ const getTileURL = ({ lat, lng, zoom }) => {
 
 const useAddLocation = mapRef => {
   const [{ focus }] = useStore(state => state.navigation)
-  const [{ active }] = useStore(state => state.operations)
+  const [{ active }] = useStore(state => state.tools)
   const dispatch = useDispatch()
   useEffect(() => {
     mapRef.current.off('click')
@@ -46,7 +46,7 @@ const useAddLocation = mapRef => {
 }
 
 const useMoveLocation = mapRef => {
-  const [{ active }] = useStore(state => state.operations)
+  const [{ active }] = useStore(state => state.tools)
   const dispatch = useDispatch()
   useEffect(() => {
     mapRef.current.eachLayer(marker => {
@@ -68,7 +68,7 @@ const useMoveLocation = mapRef => {
 
 const useRemoveLocation = mapRef => {
   const [{ focus }] = useStore(state => state.navigation)
-  const [{ active }] = useStore(state => state.operations)
+  const [{ active }] = useStore(state => state.tools)
   const dispatch = useDispatch()
   useEffect(() => {
     mapRef.current.eachLayer(marker => {
@@ -90,7 +90,7 @@ const useRemoveLocation = mapRef => {
 
 const useSetFocus = mapRef => {
   const [{ focus }] = useStore(state => state.navigation)
-  const [{ active }] = useStore(state => state.operations)
+  const [{ active }] = useStore(state => state.tools)
   const dispatch = useDispatch()
   useEffect(() => {
     mapRef.current.eachLayer(marker => {
@@ -112,7 +112,7 @@ const useSetFocus = mapRef => {
 
 const useTogglePopup = mapRef => {
   const [{ focus }] = useStore(state => state.navigation)
-  const [{ active }] = useStore(state => state.operations)
+  const [{ active }] = useStore(state => state.tools)
   const dispatch = useDispatch()
   useEffect(() => {
     mapRef.current.eachLayer(marker => {
@@ -125,7 +125,7 @@ const useTogglePopup = mapRef => {
   }, [mapRef, focus, active, dispatch])
 }
 
-export const useMapOperations = mapRef => {
+export const useMapTools = mapRef => {
   useAddLocation(mapRef)
   useMoveLocation(mapRef)
   useRemoveLocation(mapRef)
