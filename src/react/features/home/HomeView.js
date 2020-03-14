@@ -6,7 +6,7 @@ import { enterRoom } from '../navigation/actions'
 
 import Image from '../../components/diories/Image'
 import Room from '../../components/Room'
-import { getBackgroundImage } from '../../lib/utils'
+import { getBackgroundImage } from '../../components/utils'
 
 const useHome = () => {
   const [{ rooms }, dispatch] = useStore(state => state.home)
