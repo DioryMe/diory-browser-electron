@@ -5,7 +5,7 @@ import { useFocusDiory } from './hooks'
 import { setFocus } from '../navigation/actions'
 import Diory from '../../components/diories/Diory'
 import Image from '../../components/diories/Image'
-import { getBackgroundImage } from '../../lib/utils'
+import { getBackgroundImage } from '../../components/utils'
 
 const useRoom = () => {
   const dispatch = useDispatch()

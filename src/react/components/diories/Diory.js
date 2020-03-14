@@ -3,7 +3,7 @@ import Box from 'ui-box'
 import PropTypes from 'prop-types'
 
 import Image from './Image'
-import { getBackgroundImage } from '../../lib/utils'
+import { getBackgroundImage } from '../utils'
 
 const defaultStyle = {
   container: {
