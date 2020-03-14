@@ -7,7 +7,7 @@ const getActiveProps = active =>
     intent: 'success',
   }
 
-const OperationButton = ({ id, data, active, onClick }) => (
+const ToolButton = ({ id, data, active, onClick }) => (
   <div
     data-testid={id + '-button' + (active ? '--active' : '')}
     onClick={onClick}
@@ -23,4 +23,4 @@ const OperationButton = ({ id, data, active, onClick }) => (
   </div>
 )
 
-export default OperationButton
+export default ToolButton

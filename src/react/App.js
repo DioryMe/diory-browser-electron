@@ -6,7 +6,7 @@ import { useDocumentTitle } from './features/navigation/hooks'
 import { useChannel } from './features/connector/hooks'
 
 import Navigation from './features/navigation/Navigation'
-import Tools from './features/tools/Tools'
+import ToolsBar from './features/tools/ToolsBar'
 import View from './View'
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
   return (
     <div className="App">
       <Navigation />
-      <Tools />
+      <ToolsBar />
       <View />
     </div>
   )

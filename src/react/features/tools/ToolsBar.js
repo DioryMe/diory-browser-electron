@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 import { useStore } from '../../store'
 import { useLenses } from '../lenses/hooks'
-import { useOperations } from './hooks'
-import OperationButton from './OperationButton'
+import { useTools } from './hooks'
+import ToolButton from './ToolButton'
 
-const useOperationsBar = () => {
+const useToolsBar = () => {
   const [open, setOpen] = useState(false)
-  const { active, onSelect, onClear } = useOperations()
+  const { active, onSelect, onClear } = useTools()
   const [{ selectedLensId }] = useStore(state => state.lenses)
-  const { operationButtons } = useLenses()
+  const { toolButtons } = useLenses()
 
   let buttons = []
   if (selectedLensId) {
-    buttons = operationButtons[selectedLensId]
+    buttons = toolButtons[selectedLensId]
   }
   const clearAndClose = () => {
     onClear()
@@ -32,8 +32,8 @@ const useOperationsBar = () => {
   }
 }
 
-const OperationsBar = () => {
-  const { tools, showButtons, buttons } = useOperationsBar()
+const ToolsBar = () => {
+  const { tools, showButtons, buttons } = useToolsBar()
   return (
     <div
       style={{
@@ -46,15 +46,15 @@ const OperationsBar = () => {
       }}
     >
       {tools && (
-        <OperationButton
+        <ToolButton
           id="tools"
           data={{ icon: 'wrench' }}
           onClick={showButtons}
         />
       )}
-      {!tools && buttons.map(button => <OperationButton {...button} />)}
+      {!tools && buttons.map(button => <ToolButton {...button} />)}
     </div>
   )
 }
 
-export default OperationsBar
+export default ToolsBar
