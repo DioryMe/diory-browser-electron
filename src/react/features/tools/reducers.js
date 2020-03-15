@@ -1,5 +1,5 @@
 import * as types from './actionsTypes'
-import createReducer from '../../store/createReducer'
+import { createReducer } from '../../store'
 
 export const initialState = {
   active: null,
