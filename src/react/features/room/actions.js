@@ -5,6 +5,11 @@ export const getRoom = ({ id, diograph }) => ({
   payload: { id, diograph },
 })
 
+export const saveRoom = ({ id, diograph }) => ({
+  type: types.SAVE_ROOM,
+  payload: { id, diograph },
+})
+
 export const addDiory = diory => ({
   type: types.ADD_DIORY,
   payload: {
