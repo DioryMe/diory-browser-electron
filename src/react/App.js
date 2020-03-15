@@ -1,6 +1,8 @@
 import React from 'react'
 import { reducerWithMiddleware } from './utils/middleware'
-import { StoreProvider, reducer, initialState } from './store'
+import { StoreProvider } from './store/StoreContext'
+import { reducer } from './store/reducer'
+import { initialState } from './store/initialState'
 
 import { useDocumentTitle } from './features/navigation/hooks'
 import { useChannel } from './features/connector/hooks'
