@@ -5,7 +5,7 @@ import { initialState as navigation } from '../features/navigation/reducers'
 import { initialState as tools } from '../features/tools/reducers'
 import { initialState as room } from '../features/room/reducers'
 
-export default {
+export const initialState = {
   connector,
   home,
   lenses,
