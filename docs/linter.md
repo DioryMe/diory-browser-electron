@@ -6,11 +6,15 @@
 
 ## TODO
 
+[ ] Turn warnings into errors (remove rules from .eslintrc.js) by fixing issues in code
+
 [ ] Turn off Prettier line length rule and add Eslint warning for it
 
 ## Changelog
 
 ### 2020-03-23
+
+Initial linter, no code changes made.
 
 **Changed**
 
