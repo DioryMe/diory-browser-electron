@@ -8,6 +8,7 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
+    'plugin:prettier/recommended'
   ],
   globals: {
     Atomics: 'readonly',
@@ -22,7 +23,8 @@ module.exports = {
   },
   plugins: [
     'react',
-    'jest'
+    'jest',
+    'prettier'
   ],
   rules: {
     'semi': ['off'],
