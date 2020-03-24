@@ -32,6 +32,7 @@
     "uuid": "^3.3.3"
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.8.3",
     "electron": "^7.1.2",
     "electron-builder": "^21.2.0",
     "eslint": "^6.8.0",
@@ -61,6 +62,8 @@
     "eslint": "eslint ./{src,electron}/. --ext .js",
     "prettier": "prettier --write '{electron,src}/**/*.{js,jsx,json,css,scss,md}'",
     "test": "react-scripts test",
+    "test-react": "react-scripts test",
+    "test-electron": "jest --detectOpenHandles electron/**/*.js --watch --verbose",
     "cucumber": "./node_modules/.bin/cucumber-js src/react -r src/react/utils/cucumber --require-module @babel/register --require-module @babel/polyfill",
     "cucumber-only": "./node_modules/.bin/cucumber-js src/react/features --tags @only -r src/react/utils/cucumber --require-module @babel/register --require-module @babel/polyfill",
     "eject": "react-scripts eject"
@@ -95,6 +98,9 @@
     "presets": [
       "@babel/preset-env",
       "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-runtime"
     ]
   },
   "prettier": {
