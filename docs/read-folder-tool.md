@@ -11,3 +11,11 @@ Compose diograph.json from folder contents
 1. Read image EXIF-data
 1. Compose diograph object/json
 1. Save diograph.json file
+
+
+## Open questions
+
+### Diory
+
+- id: created time ?
+
