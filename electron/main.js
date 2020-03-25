@@ -1,11 +1,7 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const glob = require('glob');
 const url = require('url');
-const fs = require('fs');
-const { channels } = require('../src/shared/constants');
-const home = require('../public/home.json');
-const FolderTools = require('./lib/diograph-folder-tools')
 
 let mainWindow;
 
