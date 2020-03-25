@@ -18,7 +18,7 @@ links:
 ```
 id: uri
 rooms:
-    [path]: diory
+    [id]: diory
 ```
 Diory is in the room diograph with room id
 
