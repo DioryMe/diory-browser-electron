@@ -14,9 +14,7 @@ export const useSaveRoom = () => {
   const promiseDispatch = usePromiseDispatch()
   useEffect(() => {
     if (updated) {
-      promiseDispatch(saveRoom, () =>
-        connect(channels.SAVE_ROOM, { path, room: { id, diograph } })
-      )
+      promiseDispatch(saveRoom, () => connect(channels.SAVE_ROOM, { path, room: { id, diograph } }))
     }
   }, [updated, path, id, diograph, promiseDispatch])
 }
