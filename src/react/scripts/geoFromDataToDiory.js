@@ -29,19 +29,22 @@ const getDiorys = diorys =>
   )
 
 const flattenDiograph = diograph => {
-  const results = Object.entries(diograph).reduce((obj, [key, { data, ...diory }]) => {
-    if (data) {
-      const { geo: { zoom, ...geo } = {} } = data
+  const results = Object.entries(diograph).reduce(
+    (obj, [key, { data, ...diory }]) => {
+      if (data) {
+        const { geo: { zoom, ...geo } = {} } = data
+        return {
+          ...obj,
+          [key]: { ...diory, ...geo },
+        }
+      }
       return {
         ...obj,
-        [key]: { ...diory, ...geo },
+        [diory.id]: diory,
       }
-    }
-    return {
-      ...obj,
-      [diory.id]: diory,
-    }
-  }, {})
+    },
+    {}
+  )
 
   console.log(JSON.stringify(results))
 }

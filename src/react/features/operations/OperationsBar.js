@@ -26,7 +26,8 @@ const useOperationsBar = () => {
       ...button,
       key: button.id,
       active: button.id === active,
-      onClick: () => (button.id === active ? clearAndClose() : onSelect(button.id)),
+      onClick: () =>
+        button.id === active ? clearAndClose() : onSelect(button.id),
     })),
   }
 }
@@ -44,7 +45,13 @@ const OperationsBar = () => {
         padding: 8,
       }}
     >
-      {tools && <OperationButton id="tools" data={{ icon: 'wrench' }} onClick={showButtons} />}
+      {tools && (
+        <OperationButton
+          id="tools"
+          data={{ icon: 'wrench' }}
+          onClick={showButtons}
+        />
+      )}
       {!tools && buttons.map(button => <OperationButton {...button} />)}
     </div>
   )

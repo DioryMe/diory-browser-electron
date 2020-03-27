@@ -7,7 +7,10 @@ import Controller from './Controller'
 import View from './View'
 
 const App = () => (
-  <StoreProvider reducer={reducerWithMiddleware(reducer)} initialState={initialState}>
+  <StoreProvider
+    reducer={reducerWithMiddleware(reducer)}
+    initialState={initialState}
+  >
     <div className="App">
       <Controller />
       <View />
