@@ -11,15 +11,13 @@ export const useAddRoom = () => {
   const dispatch = useDispatch()
 
   const addNewRoom = useCallback(() => {
-    window.nativeFileDialog
-      .showOpenDialog({ properties: ['openDirectory'] })
-      .then(result => {
-        const path = result.filePaths[0]
-        connect(channels.ADD_ROOM, path).then(room => {
-          dispatch(addPath(room.id, path))
-          dispatch(addRoom(room))
-        })
+    window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then(result => {
+      const path = result.filePaths[0]
+      connect(channels.ADD_ROOM, path).then(room => {
+        dispatch(addPath(room.id, path))
+        dispatch(addRoom(room))
       })
+    })
   }, [dispatch])
 
   return {

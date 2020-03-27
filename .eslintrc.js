@@ -29,6 +29,7 @@ module.exports = {
   rules: {
     'semi': ['off'],
     'arrow-parens': ['off'],
+    'no-console': ['off'],
     'operator-linebreak': ['error', 'after'],
     'react/jsx-filename-extension': ['off'], // ok?
     'comma-dangle': ['off'], // maybe

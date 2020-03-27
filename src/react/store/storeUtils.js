@@ -23,18 +23,11 @@ export const usePromiseDispatch = () => {
         dispatch(action(data))
         dispatch({ type: actionType + '_SUCCESS' })
       })
-      .catch(error =>
-        dispatch({ type: actionType + '_FAILURE', payload: { error } })
-      )
+      .catch(error => dispatch({ type: actionType + '_FAILURE', payload: { error } }))
   }
 }
 
-export const promiseReducers = (
-  actionType,
-  progressKey,
-  successKey,
-  failureKey
-) => ({
+export const promiseReducers = (actionType, progressKey, successKey, failureKey) => ({
   [actionType + '_BEGIN']: state => ({
     ...state,
     [progressKey]: true,

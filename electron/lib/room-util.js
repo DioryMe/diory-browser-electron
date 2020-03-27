@@ -3,7 +3,7 @@ const util = require('util')
 const FolderTools = require('../lib/diograph-folder-tools')
 const writeFilePromise = util.promisify(fs.writeFile)
 
-const getRoom = async (id) => {
+const getRoom = async id => {
   let folderPath = id
   let diographJSONPath = `${id}/diograph.json`
 
@@ -17,7 +17,7 @@ const getRoom = async (id) => {
     const raw = fs.readFileSync(diographJSONPath)
     return {
       id,
-      diograph: JSON.parse(raw)
+      diograph: JSON.parse(raw),
     }
   }
 

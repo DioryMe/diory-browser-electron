@@ -7,6 +7,6 @@ ipcMain.on(channels.GET_ROOM, (event, path) => {
   getRoom(path).then(room => {
     console.log(JSON.stringify(room, null, 2))
     console.log('--------')
-    event.sender.send(channels.GET_ROOM, room);
+    event.sender.send(channels.GET_ROOM, room)
   })
-});
+})

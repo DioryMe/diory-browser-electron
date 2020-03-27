@@ -24,10 +24,7 @@ const App = () => {
 }
 
 const AppWithStore = () => (
-  <StoreProvider
-    reducer={reducerWithMiddleware(reducer)}
-    initialState={initialState}
-  >
+  <StoreProvider reducer={reducerWithMiddleware(reducer)} initialState={initialState}>
     <App />
   </StoreProvider>
 )

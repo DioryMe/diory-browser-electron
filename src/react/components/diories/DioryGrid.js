@@ -6,14 +6,7 @@ const MAX_NUMBER_OF_DIORYS_PER_VIEW = 100
 
 const DioryGrid = ({ diory, diorys, onClick, children, ...props }) => {
   return (
-    <Diory
-      diory={diory}
-      onClick={onClick}
-      height="100%"
-      display="flex"
-      flexWrap="wrap"
-      {...props}
-    >
+    <Diory diory={diory} onClick={onClick} height="100%" display="flex" flexWrap="wrap" {...props}>
       {diorys.slice(0, MAX_NUMBER_OF_DIORYS_PER_VIEW).map(({ diory, onClick }) => (
         <Diory
           key={diory.id}

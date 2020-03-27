@@ -39,9 +39,7 @@ function arrayToObject(obj, item) {
 exports.generateDiograph = async function(folderPath) {
   const filePathList = await this.listFiles(folderPath)
 
-  const diograph = filePathList
-    .map(Extractor.createDiory)
-    .reduce(arrayToObject, {})
+  const diograph = filePathList.map(Extractor.createDiory).reduce(arrayToObject, {})
 
   await saveRoom(folderPath, diograph)
   return diograph

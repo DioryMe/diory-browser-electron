@@ -54,8 +54,8 @@ app.on('activate', function() {
 })
 
 function loadChannels() {
-  const files = glob.sync(path.join(__dirname, 'channels/**/*.js'));
-  files.forEach((file) => require(file));
+  const files = glob.sync(path.join(__dirname, 'channels/**/*.js'))
+  files.forEach(file => require(file))
 }
 
 loadChannels()
