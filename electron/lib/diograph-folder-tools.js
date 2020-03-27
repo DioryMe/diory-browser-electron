@@ -1,7 +1,7 @@
 const Extractor = require('./diograph-extractor')
 const path = require('path')
 const fs = require('fs')
-const { saveRoom } = require('../lib/room-util')
+const { saveRoom } = require('./room-util')
 
 // Copy-pasted from:
 // - https://stackoverflow.com/questions/5827612/node-js-fs-readdir-recursive-directory-search

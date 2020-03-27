@@ -1,6 +1,6 @@
 const fs = require('fs')
 const util = require('util')
-const FolderTools = require('../lib/diograph-folder-tools')
+const FolderTools = require('./diograph-folder-tools')
 const writeFilePromise = util.promisify(fs.writeFile)
 
 const getRoom = async id => {
