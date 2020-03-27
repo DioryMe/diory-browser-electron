@@ -1,15 +1,12 @@
 import React from 'react'
-import { useSaveRoom } from '../../room/hooks'
 import { useMap, useMapMarkers } from './hooks'
-import { useMapOperations, buttons } from './operations'
+import { useMapTools, buttons } from './tools'
 
 const Map = () => {
-  useSaveRoom()
-
   const id = 'mapId'
   const map = useMap(id)
   useMapMarkers(map)
-  useMapOperations(map)
+  useMapTools(map)
 
   return <div id={id} style={{ height: '100%' }} />
 }

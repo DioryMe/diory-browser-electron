@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import L from 'leaflet'
-import { useCompare } from '../../../../hooks'
+import { useCompare } from '../../../../utils/useCompare'
 import { useFocusDiory } from '../../../room/hooks'
 import { getLocationData } from './getLocationData'
 

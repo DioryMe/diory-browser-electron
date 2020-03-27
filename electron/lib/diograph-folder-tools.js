@@ -1,6 +1,7 @@
 const Extractor = require('./diograph-extractor')
 const path = require('path')
 const fs = require('fs')
+const { saveRoom } = require('../lib/room-util')
 
 // Copy-pasted from:
 // - https://stackoverflow.com/questions/5827612/node-js-fs-readdir-recursive-directory-search
@@ -37,7 +38,13 @@ function arrayToObject(obj, item) {
 
 exports.generateDiograph = async function(folderPath) {
   const filePathList = await this.listFiles(folderPath)
-  return filePathList.map(Extractor.createDiory).reduce(arrayToObject, {})
+
+  const diograph = filePathList
+    .map(Extractor.createDiory)
+    .reduce(arrayToObject, {})
+
+  await saveRoom(folderPath, diograph)
+  return diograph
 }
 
 exports.generateRoom = async function(folderPath) {

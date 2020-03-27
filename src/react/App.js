@@ -1,21 +1,35 @@
 import React from 'react'
+import { reducerWithMiddleware } from './utils/middleware'
+import { StoreProvider } from './store/StoreContext'
+import { reducer } from './store/reducer'
+import { initialState } from './store/initialState'
 
-import { reducerWithMiddleware } from './middleware'
-import { StoreProvider, reducer, initialState } from './store'
+import { useDocumentTitle } from './features/navigation/hooks'
+import { useChannel } from './features/connector/hooks'
 
-import Controller from './Controller'
+import Navigation from './features/navigation/Navigation'
+import ToolsBar from './features/tools/ToolsBar'
 import View from './View'
 
-const App = () => (
+const App = () => {
+  useDocumentTitle()
+  useChannel()
+  return (
+    <div className="App">
+      <Navigation />
+      <ToolsBar />
+      <View />
+    </div>
+  )
+}
+
+const AppWithStore = () => (
   <StoreProvider
     reducer={reducerWithMiddleware(reducer)}
     initialState={initialState}
   >
-    <div className="App">
-      <Controller />
-      <View />
-    </div>
+    <App />
   </StoreProvider>
 )
 
-export default App
+export default AppWithStore

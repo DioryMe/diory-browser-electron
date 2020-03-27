@@ -1,6 +1,5 @@
 import * as types from './actionsTypes'
-import createReducer from '../../store/createReducer'
-import { promiseActionReducer } from '../../utils'
+import { promiseReducers, createReducer } from '../../store'
 
 export const initialState = {
   id: null,
@@ -87,5 +86,5 @@ export default createReducer({
   [types.UPDATE_DIORY]: updateDiory,
   [types.ADD_LINK]: addLink,
   [types.REMOVE_LINK]: removeLink,
-  ...promiseActionReducer(types.SAVE_ROOM, 'saving', 'saved', 'updated'),
+  ...promiseReducers(types.SAVE_ROOM, 'saving', 'saved', 'updated'),
 })

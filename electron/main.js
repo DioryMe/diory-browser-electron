@@ -1,10 +1,7 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
+const { app, BrowserWindow } = require('electron')
 const path = require('path')
+const glob = require('glob')
 const url = require('url')
-const fs = require('fs')
-const { channels } = require('../src/shared/constants')
-const home = require('../public/home.json')
-const FolderTools = require('./lib/diograph-folder-tools')
 
 let mainWindow
 
@@ -56,64 +53,9 @@ app.on('activate', function() {
   }
 })
 
-ipcMain.on(channels.GET_HOME, event => {
-  event.sender.send(channels.GET_HOME, home)
-})
-
-const getRoom = async id => {
-  let folderPath = id
-  let diographJSONPath = `${id}/diograph.json`
-
-  // With FileDialog you shouldn't be able to choose a folderPath that doesn't exist but...
-  if (!fs.existsSync(folderPath)) {
-    return null
-  }
-
-  // No need to read the whole folder if diograph.json exists
-  if (fs.existsSync(diographJSONPath)) {
-    const diograph = require(`${id}/diograph.json`)
-    return { id, diograph }
-  }
-
-  const diograph = await FolderTools.generateDiograph(id)
-  return { id, diograph }
+function loadChannels() {
+  const files = glob.sync(path.join(__dirname, 'channels/**/*.js'));
+  files.forEach((file) => require(file));
 }
 
-ipcMain.on(channels.GET_ROOM, (event, id) => {
-  getRoom(id).then(room => {
-    console.log(room)
-    event.sender.send(channels.GET_ROOM, room)
-  })
-})
-
-const saveRoom = async (id, diograph, callback) => {
-  const data = JSON.stringify(diograph)
-  console.log('Saving room', id)
-  fs.writeFile(`${id}/diograph.json`, data, callback)
-}
-
-ipcMain.on(channels.SAVE_ROOM, (event, { id, diograph }) => {
-  saveRoom(id, diograph, err => {
-    if (err) {
-      console.log(err)
-      return event.sender.send(channels.SAVE_ROOM, null, err)
-    }
-    event.sender.send(channels.SAVE_ROOM, true)
-  })
-})
-
-ipcMain.on(channels.CREATE_ROOM, (event, filePath) => {
-  // DEFAULT PATH IS EXAMPLE-FOLDER PATH
-  // filePath = path.join(__dirname, 'spec/example-folder')
-  FolderTools.generateRoom(filePath).then(room => {
-    getRoom(room.id).then(retrievedRoom => {
-      saveRoom(retrievedRoom.id, retrievedRoom.diograph, err => {
-        if (err) {
-          console.log(err)
-          return event.sender.send(channels.CREATE_ROOM, null, err)
-        }
-        event.reply(channels.CREATE_ROOM, room)
-      })
-    })
-  })
-})
+loadChannels()
