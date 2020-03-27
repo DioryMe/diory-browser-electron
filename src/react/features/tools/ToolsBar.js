@@ -26,8 +26,7 @@ const useToolsBar = () => {
       ...button,
       key: button.id,
       active: button.id === active,
-      onClick: () =>
-        button.id === active ? clearAndClose() : onSelect(button.id),
+      onClick: () => (button.id === active ? clearAndClose() : onSelect(button.id)),
     })),
   }
 }
@@ -45,13 +44,7 @@ const ToolsBar = () => {
         padding: 8,
       }}
     >
-      {tools && (
-        <ToolButton
-          id="tools"
-          data={{ icon: 'wrench' }}
-          onClick={showButtons}
-        />
-      )}
+      {tools && <ToolButton id="tools" data={{ icon: 'wrench' }} onClick={showButtons} />}
       {!tools && buttons.map(button => <ToolButton {...button} />)}
     </div>
   )

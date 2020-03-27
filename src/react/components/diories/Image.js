@@ -14,12 +14,7 @@ const defaultStyle = {
 }
 
 const Image = ({ image, style, backgroundImage, ...props }) => (
-  <Box
-    backgroundImage={backgroundImage}
-    {...defaultStyle}
-    {...style}
-    {...props}
-  />
+  <Box backgroundImage={backgroundImage} {...defaultStyle} {...style} {...props} />
 )
 
 Image.propTypes = {
