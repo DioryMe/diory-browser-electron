@@ -25,7 +25,7 @@ const Image = ({ image, style, backgroundImage, ...props }) => (
 Image.propTypes = {
   image: PropTypes.string,
   style: PropTypes.object,
-  backgroundImage: PropTypes.string
+  backgroundImage: PropTypes.string,
 }
 
 export default Image

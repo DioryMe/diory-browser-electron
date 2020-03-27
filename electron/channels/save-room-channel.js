@@ -9,8 +9,8 @@ ipcMain.on(channels.SAVE_ROOM, (event, { path, room: { id, diograph } }) => {
       console.log(JSON.stringify(diograph, null, 2))
       event.sender.send(channels.SAVE_ROOM, true)
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err)
-      return event.sender.send(channels.SAVE_ROOM, null, err);
+      return event.sender.send(channels.SAVE_ROOM, null, err)
     })
-});
+})
