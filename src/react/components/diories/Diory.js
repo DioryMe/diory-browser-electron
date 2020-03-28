@@ -19,7 +19,7 @@ const defaultStyle = {
 const Diory = ({ diory, onClick, children, ...props }) => {
   const { id, text, image, style = {} } = diory
   return (
-    <Box id={id} {...props} onClick={event => onClick && onClick({ diory, event })}>
+    <Box id={id} {...props} onClick={(event) => onClick && onClick({ diory, event })}>
       <Box {...defaultStyle.container}>
         {image && (
           <Image image={image} style={style.image} backgroundImage={getBackgroundImage(image, text, '0, 0, 0, 0.2')} />

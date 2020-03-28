@@ -1,6 +1,6 @@
 import { After } from 'cucumber'
 
-After(function() {
+After(function () {
   if (this.app) {
     this.app.detach()
   }

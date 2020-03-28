@@ -1,7 +1,7 @@
 import React from 'react'
 import { IconButton } from 'evergreen-ui'
 
-const getActiveProps = active =>
+const getActiveProps = (active) =>
   active && {
     appearance: 'primary',
     intent: 'success',

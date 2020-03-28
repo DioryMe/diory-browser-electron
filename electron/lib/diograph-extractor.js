@@ -25,7 +25,7 @@ function getLinks(links) {
   )
 }
 
-exports.createDiory = function({ filePath, links }) {
+exports.createDiory = function ({ filePath, links }) {
   if (isImage(filePath)) {
     return extractImageFile(filePath)
   }

@@ -4,8 +4,8 @@ const path = require('path')
 /* eslint-disable no-undef */
 
 function fakeAsync(runAsync) {
-  return done => {
-    runAsync().then(done, e => {
+  return (done) => {
+    runAsync().then(done, (e) => {
       fail(e)
       done()
     })
@@ -13,7 +13,7 @@ function fakeAsync(runAsync) {
 }
 
 describe('listFiles', () => {
-  it('prints out', fakeAsync(async function() {
+  it('prints out', fakeAsync(async function () {
     const folderPath = path.join(__dirname, 'example-folder')
     let fileList = await FolderTools.listFiles(folderPath)
 
@@ -34,7 +34,7 @@ describe('listFiles', () => {
     expect(fileList).toEqual([...expectedFolderFiles, expectedFolder])
   }))
 
-  it('throws an error if non-directory given', fakeAsync(async function() {
+  it('throws an error if non-directory given', fakeAsync(async function () {
     let nonFolderPath = path.join(__dirname, 'definitely-not-a-folder')
     let fileList = await FolderTools.listFiles(nonFolderPath)
     expect(fileList).toEqual(undefined)
@@ -54,7 +54,7 @@ describe('generateRoom', () => {
       id: 'example-folder',
       text: 'example-folder',
     }
-    FolderTools.generateRoom('example-folder').then(diographJSON => {
+    FolderTools.generateRoom('example-folder').then((diographJSON) => {
       expect(expectedDiographJSON).toEqual(diographJSON)
     })
   })
@@ -82,7 +82,7 @@ describe('generateDiograph', () => {
         text: 'some-other-file.txt',
       },
     }
-    FolderTools.generateDiograph('example-folder').then(diographJSON => {
+    FolderTools.generateDiograph('example-folder').then((diographJSON) => {
       expect(expectedDiographJSON).toEqual(diographJSON)
     })
   })

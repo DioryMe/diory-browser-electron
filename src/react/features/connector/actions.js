@@ -1,6 +1,6 @@
 import * as types from './actionsTypes'
 
-export const setPaths = rooms => ({
+export const setPaths = (rooms) => ({
   type: types.SET_PATHS,
   payload: { rooms },
 })

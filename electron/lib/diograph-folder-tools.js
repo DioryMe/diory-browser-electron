@@ -11,7 +11,7 @@ const { readdir } = require('fs').promises
 async function getFiles(dir) {
   const dirents = await readdir(dir, { withFileTypes: true })
   const files = await Promise.all(
-    dirents.map(dirent => {
+    dirents.map((dirent) => {
       const filePath = resolve(dir, dirent.name)
       return dirent.isDirectory() ? getFiles(filePath) : { filePath }
     })
@@ -21,7 +21,7 @@ async function getFiles(dir) {
 }
 // end of copy-paste
 
-exports.listFiles = async function(folderPath) {
+exports.listFiles = async function (folderPath) {
   if (!(fs.existsSync(folderPath) && fs.lstatSync(folderPath).isDirectory())) {
     console.log('NOT A FOLDER PATH')
     return
@@ -36,7 +36,7 @@ function arrayToObject(obj, item) {
   }
 }
 
-exports.generateDiograph = async function(folderPath) {
+exports.generateDiograph = async function (folderPath) {
   const filePathList = await this.listFiles(folderPath)
 
   const diograph = filePathList.map(Extractor.createDiory).reduce(arrayToObject, {})
@@ -45,7 +45,7 @@ exports.generateDiograph = async function(folderPath) {
   return diograph
 }
 
-exports.generateRoom = async function(folderPath) {
+exports.generateRoom = async function (folderPath) {
   return {
     id: folderPath,
     text: path.basename(folderPath),

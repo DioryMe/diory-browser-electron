@@ -23,17 +23,17 @@ Then('I see {word} {int} {word} on {word}', expectDioryItemOnContainer)
 Then('{word} {word} is active', expectItemIsActive)
 Then('{word} {word} is not active', expectItemIsNotActive)
 
-Then('I see a new {word}', function() {
+Then('I see a new {word}', function () {
   // Write code here that turns the phrase above into concrete actions
   return 'pending'
 })
 
-Then('my {word} are in new order', function() {
+Then('my {word} are in new order', function () {
   // Write code here that turns the phrase above into concrete actions
   return 'pending'
 })
 
-Then('I do not see the {word}', function() {
+Then('I do not see the {word}', function () {
   // Write code here that turns the phrase above into concrete actions
   return 'pending'
 })

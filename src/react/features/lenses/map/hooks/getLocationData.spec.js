@@ -71,7 +71,7 @@ describe('getLocationData', () => {
       },
     ]
 
-    noDioryLocation.forEach(diory => {
+    noDioryLocation.forEach((diory) => {
       it('returns undefined center', () => {
         const { center } = getLocationData({ diory })
         expect(center).toBe(undefined)

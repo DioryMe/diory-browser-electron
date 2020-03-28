@@ -33,7 +33,7 @@ function createWindow() {
     )
   }
 
-  mainWindow.on('closed', function() {
+  mainWindow.on('closed', function () {
     mainWindow = null
   })
   process.env.DEV_TOOLS && mainWindow.webContents.openDevTools()
@@ -41,13 +41,13 @@ function createWindow() {
 
 app.on('ready', createWindow)
 
-app.on('window-all-closed', function() {
+app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
     app.quit()
   }
 })
 
-app.on('activate', function() {
+app.on('activate', function () {
   if (mainWindow === null) {
     createWindow()
   }
@@ -55,7 +55,7 @@ app.on('activate', function() {
 
 function loadChannels() {
   const files = glob.sync(path.join(__dirname, 'channels/**/*.js'))
-  files.forEach(file => require(file))
+  files.forEach((file) => require(file))
 }
 
 loadChannels()

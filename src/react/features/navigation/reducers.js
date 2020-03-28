@@ -35,7 +35,7 @@ export const goSide = (state, { payload }) => ({
   }),
 })
 
-export const goBackward = state => {
+export const goBackward = (state) => {
   const [[roomId, focus], ...backward] = state.backward
   return {
     ...state,
@@ -47,7 +47,7 @@ export const goBackward = state => {
   }
 }
 
-export const goForward = state => {
+export const goForward = (state) => {
   const [[roomId, focus], ...forward] = state.forward
   return {
     ...state,
@@ -59,7 +59,7 @@ export const goForward = state => {
   }
 }
 
-export const goHome = state => {
+export const goHome = (state) => {
   return {
     ...state,
     roomId: undefined,

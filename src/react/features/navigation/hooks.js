@@ -3,14 +3,14 @@ import { useStore } from '../../store'
 import { goSide } from './actions'
 
 export const useDocumentTitle = () => {
-  const [{ diograph }] = useStore(state => state.room)
-  const [{ path }] = useStore(state => state.navigation)
+  const [{ diograph }] = useStore((state) => state.room)
+  const [{ path }] = useStore((state) => state.navigation)
   useEffect(() => {
     document.title = ['Home']
       .concat(
         path
-          .map(id => diograph[id])
-          .filter(diory => !!diory)
+          .map((id) => diograph[id])
+          .filter((diory) => !!diory)
           .map(({ id, text }) => text || id)
       )
       .join(' / ')
@@ -18,8 +18,8 @@ export const useDocumentTitle = () => {
 }
 
 export const useParent = () => {
-  const [{ backward }] = useStore(state => state.navigation)
-  const [{ diograph }] = useStore(state => state.room)
+  const [{ backward }] = useStore((state) => state.navigation)
+  const [{ diograph }] = useStore((state) => state.room)
   if (!backward.length) {
     return null
   }
@@ -37,7 +37,7 @@ export const useSiblings = () => {
 
 export const useLeft = () => {
   const sibligns = useSiblings()
-  const [{ focus }, dispatch] = useStore(state => state.navigation)
+  const [{ focus }, dispatch] = useStore((state) => state.navigation)
   if (!sibligns.length) {
     return {}
   }
@@ -53,7 +53,7 @@ export const useLeft = () => {
 
 export const useRight = () => {
   const sibligns = useSiblings()
-  const [{ focus }, dispatch] = useStore(state => state.navigation)
+  const [{ focus }, dispatch] = useStore((state) => state.navigation)
   if (!sibligns.length) {
     return {}
   }
