@@ -2,10 +2,7 @@ version: '3'
 
 services:
   react:
-    container_name: react
-    image: node:12.13
-    working_dir: /app
-    command: bash -c "yarn install && yarn start"
+    build: .
     volumes:
       - .:/app
       - /app/node_modules
