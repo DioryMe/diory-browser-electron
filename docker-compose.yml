@@ -2,7 +2,6 @@ version: '3'
 
 services:
   react:
-    build: .
     container_name: react
     image: node:12.13
     working_dir: /app
