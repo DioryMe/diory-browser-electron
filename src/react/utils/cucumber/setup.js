@@ -9,14 +9,6 @@ global.expect = expect
 const { JSDOM } = require('jsdom')
 const jsdom = new JSDOM('<!doctype html><html><body></body></html>', {})
 const { window } = jsdom
-window.ipcRenderer = {
-  send: (channel, data) => {},
-  on: (channel, callback) => {
-    const data = require(`./src/react/features/connector/mockResponses`)
-    callback('event', data, null)
-  },
-  removeAllListeners: (channel) => {},
-}
 
 global.window = window
 global.document = window.document
