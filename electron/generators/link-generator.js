@@ -1,13 +1,13 @@
-import { basename } from 'path'
+const { basename } = require('path')
 
-export function generateFileLink(filePath = '', { id }) {
+exports.generateFileLink = function generateFileLink(filePath = '', { id }) {
   const path = basename(filePath)
   return {
     [path]: { id }
   }
 }
 
-export function generateFolderLink(filePath = '', { id }) {
+exports.generateFolderLink = function generateFolderLink(filePath = '', { id }) {
   const path = basename(filePath)
   return {
     [path]: { id }

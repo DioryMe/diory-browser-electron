@@ -1,7 +1,7 @@
-import { readFolder } from '../readers/folder-reader'
-import { readFile } from '../readers/file-reader'
-import { generateDiograph } from './diograph-generator'
-import { generateFileDiory, generateFolderDiory } from './diory-generator'
+const { readFolder } = require('../readers/folder-reader')
+const { readFile } = require('../readers/file-reader')
+const { generateDiograph } = require('./diograph-generator')
+const { generateFileDiory, generateFolderDiory } = require('./diory-generator')
 
 jest.mock('../readers/folder-reader')
 jest.mock('../readers/file-reader')

@@ -1,8 +1,8 @@
-import { existsSync, lstatSync, promises, statSync } from 'fs'
-import { basename } from 'path'
-import { isFile, isFolder, getPath } from './dirent-reader'
+const { existsSync, lstatSync, promises, statSync } = require('fs')
+const { basename } = require('path')
+const { isFile, isFolder, getPath } = require('./dirent-reader')
 
-export async function readPaths(folderPath) {
+exports.readPaths = async function readPaths(folderPath) {
   if (!(existsSync(folderPath) && lstatSync(folderPath).isDirectory())) {
     throw new Error(`Path is not folder ${folderPath}`)
   }
@@ -13,7 +13,7 @@ export async function readPaths(folderPath) {
   }
 }
 
-export function readFolder(folderPath = '') {
+exports.readFolder = function readFolder(folderPath = '') {
   const folderStats = statSync(folderPath) || {}
   return {
     name: basename(folderPath),

@@ -42,7 +42,7 @@ function getLongitude({ GPSLongitude = {}}) {
   return longitude && { longitude }
 }
 
-function readImage(imagePath) {
+exports.readImage = function readImage(imagePath) {
   if (!imagePath) {
     return
   }
@@ -58,5 +58,3 @@ function readImage(imagePath) {
     console.info(`Error reading image ${imagePath}: ${error}`)
   }
 }
-
-exports.readImage = readImage

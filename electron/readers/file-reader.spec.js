@@ -1,5 +1,5 @@
-import { statSync } from 'fs'
-import { readFile, resolveFileType } from './file-reader'
+const { statSync } = require('fs')
+const { readFile, resolveFileType } = require('./file-reader')
 
 jest.mock('fs')
 

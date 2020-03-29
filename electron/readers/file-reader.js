@@ -1,5 +1,5 @@
-import { statSync } from 'fs'
-import { extname, parse } from 'path'
+const { statSync } = require('fs')
+const { extname, parse } = require('path')
 
 const fileTypes = {
   image: ['.jpg', '.jpeg', '.png'],
@@ -7,7 +7,7 @@ const fileTypes = {
   text: ['.txt', '.md'],
 }
 
-export function resolveFileType(filePath = '') {
+exports.resolveFileType = function resolveFileType(filePath = '') {
   const fileType = Object.entries(fileTypes)
     .find(([, extnames]) => extnames.includes(extname(filePath)))
   if (fileType) {
@@ -15,7 +15,7 @@ export function resolveFileType(filePath = '') {
   }
 }
 
-export function readFile(filePath = '') {
+exports.readFile = function readFile(filePath = '') {
   const fileStats = statSync(filePath) || {}
   return {
     name: parse(filePath).name,

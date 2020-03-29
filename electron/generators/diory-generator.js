@@ -1,6 +1,6 @@
-import { resolveFileType, readFile } from '../readers/file-reader'
-import { readFolder } from '../readers/folder-reader'
-import { readImage } from '../readers/image-reader'
+const { resolveFileType, readFile } = require('../readers/file-reader')
+const { readFolder } = require('../readers/folder-reader')
+const { readImage } = require('../readers/image-reader')
 
 function readFileData(type, filePath) {
   switch (type) {
@@ -18,13 +18,13 @@ function generateDiory({ name, created, modified }) {
   }
 }
 
-export function generateFileDiory(filePath) {
+exports.generateFileDiory = function generateFileDiory(filePath) {
   const type = resolveFileType(filePath)
   const fileData = readFileData(type, filePath) || {}
   return generateDiory(fileData)
 }
 
-export function generateFolderDiory(folderPath) {
+exports.generateFolderDiory = function generateFolderDiory(folderPath) {
   const folder = readFolder(folderPath) || {}
   return generateDiory(folder)
 }

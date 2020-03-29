@@ -1,7 +1,7 @@
-import { setIdAsKey, isEmpty, reduceValuesToArraysPromise } from '../lib/utils'
-import { readPaths } from '../readers/folder-reader'
-import { generateFileDiory, generateFolderDiory } from './diory-generator'
-import { generateFileLink, generateFolderLink } from './link-generator'
+const { setIdAsKey, isEmpty, reduceValuesToArraysPromise } = require('../lib/utils')
+const { readPaths } = require('../readers/folder-reader')
+const { generateFileDiory, generateFolderDiory } = require('./diory-generator')
+const { generateFileLink, generateFolderLink } = require('./link-generator')
 
 async function generateFileDiographAndLink(filePath) {
   const diory = generateFileDiory(filePath)
@@ -45,7 +45,7 @@ async function generateFolderDiographAndLink(folderPath) {
   }
 }
 
-export async function generateDiograph(folderPath) {
+exports.generateDiograph = async function generateDiograph(folderPath) {
   const { diograph } = await generateFolderDiographAndLink(folderPath)
   return diograph
 }
