@@ -60,7 +60,7 @@
     "package": "electron-builder build --mac --win -c.extraMetadata.main=build/electron/main.js --publish never",
     "eslint": "eslint ./{src,electron}/. --ext .js",
     "prettier": "prettier --write '{electron,src}/**/*.{js,jsx,json,css,scss,md}'",
-    "test": "jasmine electron/spec/*.js && react-scripts test --watchAll=false && yarn cucumber",
+    "test": "react-scripts test",
     "cucumber": "./node_modules/.bin/cucumber-js src/react -r src/react/utils/cucumber --require-module @babel/register --require-module @babel/polyfill",
     "cucumber-only": "./node_modules/.bin/cucumber-js src/react/features --tags @only -r src/react/utils/cucumber --require-module @babel/register --require-module @babel/polyfill",
     "eject": "react-scripts eject"
