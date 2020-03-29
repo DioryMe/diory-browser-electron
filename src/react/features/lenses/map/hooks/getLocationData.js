@@ -5,11 +5,11 @@ const concat = (array = [], item) => (typeof item !== 'undefined' ? array.concat
 
 export const getLocationData = ({ diory = {}, diorys = [] }) => {
   const locations = diorys.filter(({ latitude, longitude }) => latitude && longitude)
-  const latitudes = diorys.map(({ latitude }) => latitude)
-  const longitudes = diorys.map(({ longitude }) => longitude)
+  const latitudes = locations.map(({ latitude }) => latitude)
+  const longitudes = locations.map(({ longitude }) => longitude)
   const lat = diory.latitude || getAverage(latitudes)
   const lng = diory.longitude || getAverage(longitudes)
-  const latitudesAndLongitudesExists = (locations.length && diory.latitude && diory.longitude) || undefined
+  const latitudesAndLongitudesExists = locations.length
   return {
     center: lat &&
       lng && {

@@ -48,6 +48,10 @@ describe('getLocationData', () => {
   describe('given no diory location', () => {
     const noDioryLocation = [
       {
+        latitude: undefined,
+        longitude: undefined,
+      },
+      {
         latitude: 'some-latitude',
       },
       {
@@ -132,10 +136,66 @@ describe('getLocationData', () => {
     })
   })
 
-  describe('given no locations of diorys', () => {
+  describe('given some locations of diorys', () => {
     const noDiorysLocation = [
       {
         diorys: [
+          {},
+          {
+            latitude: 10,
+            longitude: 10,
+          },
+          {
+            longitude: 20,
+          },
+        ],
+      },
+      {
+        diorys: [
+          {},
+          {
+            latitude: 10,
+            longitude: 10,
+          },
+          {
+            latitude: 20,
+            longitude: 20,
+          },
+          {
+            latitude: undefined,
+            longitude: undefined,
+          },
+          {
+            latitude: 10,
+            longitude: NaN,
+          },
+        ],
+      },
+    ]
+
+    noDiorysLocation.forEach(({ diorys }) => {
+      it.only('returns min and max of defined locations', () => {
+        const { min, max } = getLocationData({ diorys })
+        expect(min).toStrictEqual({
+          lat: expect.any(Number),
+          lng: expect.any(Number),
+        })
+        expect(max).toStrictEqual({
+          lat: expect.any(Number),
+          lng: expect.any(Number),
+        })
+      })
+    })
+  })
+
+  describe('given no locations of diorys', () => {
+    const noDiorysLocation = [
+      {
+        diorys: [],
+      },
+      {
+        diorys: [
+          {},
           {
             latitude: 10,
           },
