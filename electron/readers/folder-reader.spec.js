@@ -1,6 +1,6 @@
-import { join } from 'path'
-import { statSync } from 'fs'
-import { readPaths, readFolder } from './folder-reader'
+const { join } = require('path')
+const { statSync } = require('fs')
+const { readPaths, readFolder } = require('./folder-reader')
 
 jest.mock('fs', () => ({
   ...jest.requireActual('fs'),

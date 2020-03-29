@@ -1,4 +1,4 @@
-import { generateFileLink, generateFolderLink } from './link-generator'
+const { generateFileLink, generateFolderLink } = require('./link-generator')
 
 describe('link-generator', () => {
   let act

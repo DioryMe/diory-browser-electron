@@ -4,7 +4,7 @@ const { load } = require('exifreader')
 jest.mock('fs')
 jest.mock('exifreader')
 
-import { readImage } from './image-reader'
+const { readImage } = require('./image-reader')
 
 describe('image-reader', () => {
   let act

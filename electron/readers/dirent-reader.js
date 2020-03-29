@@ -1,13 +1,13 @@
-import { resolve } from 'path'
+const { resolve } = require('path')
 
-export function isFile(dirent) {
+exports.isFile = function isFile(dirent) {
   return dirent.isFile()
 }
 
-export function isFolder(dirent) {
+exports.isFolder = function isFolder(dirent) {
   return dirent.isDirectory()
 }
 
-export function getPath(folderPath) {
+exports.getPath = function getPath(folderPath) {
   return (dirent) => resolve(folderPath, dirent.name)
 }
