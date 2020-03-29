@@ -2,14 +2,8 @@ import { readPaths } from '../readers/folder-reader'
 import { generateFileDiory, generateFolderDiory } from './diory-generator'
 import { generateDiograph } from './diograph-generator'
 
-jest.mock('../readers/folder-reader', () => ({
-  readPaths: jest.fn().mockResolvedValue({}),
-}))
-
-jest.mock('./diory-generator', () => ({
-  generateFileDiory: jest.fn().mockResolvedValue(),
-  generateFolderDiory: jest.fn().mockReturnValue(),
-}))
+jest.mock('../readers/folder-reader')
+jest.mock('./diory-generator')
 
 describe('diograph-generator', () => {
   let act
@@ -26,8 +20,10 @@ describe('diograph-generator', () => {
       paths = {}
       folderDiory = {}
       act = async () => {
+        readPaths.mockResolvedValue({})
         readPaths.mockResolvedValueOnce(paths)
-        generateFolderDiory.mockReturnValueOnce(folderDiory)
+        generateFileDiory.mockResolvedValue()
+        generateFolderDiory.mockReturnValue(folderDiory)
         return await generateDiograph(folderPath)
       }
     })

@@ -16,7 +16,7 @@ async function generateFileDiographAndLink(filePath) {
 }
 
 async function generateFolderDiographAndLink(folderPath) {
-  const { files = [], subfolders = [] } = await readPaths(folderPath)
+  const { files = [], subfolders = [] } = await readPaths(folderPath) || {}
 
   const [filesDiograph, fileLinks] =
     await reduceValuesToArraysPromise(generateFileDiographAndLink)(files)
