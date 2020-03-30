@@ -32,3 +32,11 @@ Requirements:
   * Running `yarn install` locally (creates `node_modules` folder)
   * Node 12 locally (`nvm use 12`)
 
+
+## Changelog
+
+### 2020-03-30
+
+**Added**:
+* Initial docker environment with docker-compose.yml and Dockerfile
+* Initial description of our development-environment (this doc)
