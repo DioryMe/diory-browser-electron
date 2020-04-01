@@ -1,11 +1,11 @@
 const { join } = require('path')
 const { statSync } = require('fs')
-const { readPaths, readFolder } = require('./folder-reader')
+const { readPaths, readFolder } = require('./folder-reader')
 
 jest.mock('fs', () => ({
   ...jest.requireActual('fs'),
-  statSync: jest.fn()
-}));
+  statSync: jest.fn(),
+}))
 
 describe('folder-reader', () => {
   let act
@@ -59,16 +59,20 @@ describe('folder-reader', () => {
       expect(statSync).toHaveBeenCalledWith('some-folderPath')
     })
 
-    it('returns folder created time', async () => {
-      folderStats.ctime = 'some-folderStats-ctime'
+    it('returns folder birth time', async () => {
+      folderStats.birthtime = {
+        toISOString: jest.fn().mockReturnValue('some-folderStats-birthtime'),
+      }
 
       const folder = act()
 
-      expect(folder.created).toEqual('some-folderStats-ctime')
+      expect(folder.created).toEqual('some-folderStats-birthtime')
     })
 
     it('returns folder modified time', async () => {
-      folderStats.mtime = 'some-folderStats-mtime'
+      folderStats.mtime = {
+        toISOString: jest.fn().mockReturnValue('some-folderStats-mtime'),
+      }
 
       const folder = act()
 
@@ -80,7 +84,7 @@ describe('folder-reader', () => {
 
       const folder = act()
 
-      expect(folder.name).toEqual('some-folderName')
+      expect(folder.text).toEqual('some-folderName')
     })
   })
 })

@@ -33,16 +33,20 @@ describe('file-reader', () => {
       expect(statSync).toHaveBeenCalledWith('some-filePath')
     })
 
-    it('returns file created time', async () => {
-      fileStats.ctime = 'some-fileStats-ctime'
+    it('returns file birth time', async () => {
+      fileStats.birthtime = {
+        toISOString: jest.fn().mockReturnValue('some-fileStats-birthtime'),
+      }
 
       const file = act()
 
-      expect(file.created).toEqual('some-fileStats-ctime')
+      expect(file.created).toEqual('some-fileStats-birthtime')
     })
 
     it('returns file modified time', async () => {
-      fileStats.mtime = 'some-fileStats-mtime'
+      fileStats.mtime = {
+        toISOString: jest.fn().mockReturnValue('some-fileStats-mtime'),
+      }
 
       const file = act()
 
@@ -54,7 +58,7 @@ describe('file-reader', () => {
 
       const file = act()
 
-      expect(file.name).toEqual('some-fileName')
+      expect(file.text).toEqual('some-fileName')
     })
   })
 
@@ -98,13 +102,7 @@ describe('file-reader', () => {
     })
 
     describe('given type is not defined', () => {
-      const undefinedTypes = [
-        ['.some'],
-        [''],
-        [undefined],
-        [null],
-        ['noDot'],
-      ]
+      const undefinedTypes = [['.some'], [''], [undefined], [null], ['noDot']]
 
       undefinedTypes.forEach(([extension]) => {
         it(`sets ${extension} type as undefined`, () => {
