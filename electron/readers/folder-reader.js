@@ -6,7 +6,7 @@ exports.readPaths = async function readPaths(folderPath) {
   if (!(existsSync(folderPath) && lstatSync(folderPath).isDirectory())) {
     throw new Error(`Path is not folder ${folderPath}`)
   }
-  const dirents = await promises.readdir(folderPath, { withFileTypes: true });
+  const dirents = await promises.readdir(folderPath, { withFileTypes: true })
   return {
     files: dirents.filter(isFile).map(getPath(folderPath)),
     subfolders: dirents.filter(isFolder).map(getPath(folderPath)),
@@ -14,10 +14,10 @@ exports.readPaths = async function readPaths(folderPath) {
 }
 
 exports.readFolder = function readFolder(folderPath = '') {
-  const folderStats = statSync(folderPath) || {}
+  const { birthtime, mtime } = statSync(folderPath) || {}
   return {
-    name: basename(folderPath),
-    created: folderStats.ctime,
-    modified: folderStats.mtime,
+    text: basename(folderPath),
+    created: birthtime && birthtime.toISOString(),
+    modified: mtime && mtime.toISOString(),
   }
 }

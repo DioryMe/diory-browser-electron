@@ -15,9 +15,7 @@ function getDateTime(dateTime) {
 }
 
 function getDate({ DateTime, DateTimeOriginal }) {
-  const date =
-    getDateTime(DateTime) ||
-    getDateTime(DateTimeOriginal)
+  const date = getDateTime(DateTime) || getDateTime(DateTimeOriginal)
   return date && { date }
 }
 
@@ -26,9 +24,7 @@ function getIsoDate(isoDate) {
 }
 
 function getCreated({ DateCreated, CreateDate }) {
-  const created =
-    getIsoDate(DateCreated) ||
-    getIsoDate(CreateDate)
+  const created = getIsoDate(DateCreated) || getIsoDate(CreateDate)
   return created && { created }
 }
 
@@ -37,7 +33,7 @@ function getLatitude({ GPSLatitude = {} }) {
   return latitude && { latitude }
 }
 
-function getLongitude({ GPSLongitude = {}}) {
+function getLongitude({ GPSLongitude = {} }) {
   const longitude = GPSLongitude.description
   return longitude && { longitude }
 }
@@ -49,12 +45,13 @@ exports.readImage = function readImage(imagePath) {
   try {
     const tags = readExifTags(imagePath)
     return {
+      image: imagePath,
       ...getDate(tags),
-      ...getCreated(tags),
       ...getLatitude(tags),
       ...getLongitude(tags),
+      ...getCreated(tags),
     }
-  } catch(error) {
+  } catch (error) {
     console.info(`Error reading image ${imagePath}: ${error}`)
   }
 }
