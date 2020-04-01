@@ -1,28 +1,45 @@
-const { setIdAsKey, isEmpty, reduceValuesToArraysPromise } = require('../lib/utils')
+const { isEmpty, asyncReduce } = require('../lib/utils')
 const { readPaths } = require('../readers/folder-reader')
 const { generateFileDiory, generateFolderDiory } = require('./diory-generator')
 const { generateFileLink, generateFolderLink } = require('./link-generator')
 
+function addToDiograph(diory) {
+  return (
+    diory.id && {
+      [diory.id]: diory,
+    }
+  )
+}
+
 async function generateFileDiographAndLink(filePath) {
   const diory = generateFileDiory(filePath)
+
+  const diograph = addToDiograph(diory)
   const link = generateFileLink(filePath, diory)
 
-  return {
-    diograph: {
-      ...setIdAsKey(diory),
-    },
-    ...(link && { link }),
-  }
+  return [diograph, link]
 }
 
 async function generateFolderDiographAndLink(folderPath) {
-  const { files = [], subfolders = [] } = await readPaths(folderPath) || {}
+  const { id, diograph } = await generateDiograph(folderPath)
 
-  const [filesDiograph, fileLinks] =
-    await reduceValuesToArraysPromise(generateFileDiographAndLink)(files)
+  const diory = diograph[id]
+  const link = generateFolderLink(folderPath, diory)
 
-  const [foldersDiograph, folderLinks] =
-    await reduceValuesToArraysPromise(generateFolderDiographAndLink)(subfolders)
+  return [diograph, link]
+}
+
+async function generateDiograph(folderPath) {
+  const { files = [], subfolders = [] } = (await readPaths(folderPath)) || {}
+
+  const [filesDiograph, fileLinks] = await asyncReduce(generateFileDiographAndLink)(files)
+
+  const [foldersDiograph, folderLinks] = await asyncReduce(generateFolderDiographAndLink)(subfolders)
+
+  const diograph = {
+    ...filesDiograph,
+    ...foldersDiograph,
+  }
 
   const links = {
     ...folderLinks,
@@ -33,19 +50,14 @@ async function generateFolderDiographAndLink(folderPath) {
     ...generateFolderDiory(folderPath),
     ...(!isEmpty(links) && { links }),
   }
-  const link = generateFolderLink(folderPath, diory)
 
   return {
+    id: diory.id,
     diograph: {
-      ...filesDiograph,
-      ...foldersDiograph,
-      ...setIdAsKey(diory),
+      ...diograph,
+      ...addToDiograph(diory),
     },
-    ...(link && { link }),
   }
 }
 
-exports.generateDiograph = async function generateDiograph(folderPath) {
-  const { diograph } = await generateFolderDiographAndLink(folderPath)
-  return diograph
-}
+exports.generateDiograph = generateDiograph
