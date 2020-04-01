@@ -14,9 +14,10 @@ describe('link-generator', () => {
       }
     })
 
-    describe('given file path', () => {
+    describe('given file path and diory id', () => {
       beforeEach(() => {
         filePath = 'some-filePath/some-fileName'
+        diory.id = 'some-diory-id'
       })
 
       it('sets file name as link key', () => {
@@ -26,8 +27,6 @@ describe('link-generator', () => {
       })
 
       it('sets diory id as link id', () => {
-        diory.id = 'some-diory-id'
-
         const link = act()
 
         expect(link['some-fileName'].id).toEqual('some-diory-id')
@@ -46,9 +45,10 @@ describe('link-generator', () => {
       }
     })
 
-    describe('given folder path', () => {
+    describe('given folder path and diory id', () => {
       beforeEach(() => {
         folderPath = 'some-folderPath/some-folderName'
+        diory.id = 'some-diory-id'
       })
 
       it('sets folder name as link key', () => {
@@ -58,8 +58,6 @@ describe('link-generator', () => {
       })
 
       it('sets diory id as link id', () => {
-        diory.id = 'some-diory-id'
-
         const link = act()
 
         expect(link['some-folderName'].id).toEqual('some-diory-id')

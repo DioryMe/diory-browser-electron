@@ -49,7 +49,7 @@ describe('diograph-generator', () => {
         })
 
         it('adds folder diory to diograph with id as key', async () => {
-          const diograph = await act()
+          const { diograph } = await act()
 
           expect(diograph['some-folderDiory-id']).toStrictEqual({ id: 'some-folderDiory-id' })
         })
@@ -57,7 +57,7 @@ describe('diograph-generator', () => {
 
       describe('given folder diory does not have id', () => {
         it('does not add folder diory to diograph', async () => {
-          const diograph = await act()
+          const { diograph } = await act()
 
           expect(Object.keys(diograph).length).toEqual(0)
         })
@@ -71,7 +71,7 @@ describe('diograph-generator', () => {
 
       const testCases = [
         {
-          file: ['some-file'],
+          files: ['some-file'],
         },
         {
           files: ['first-file', 'second-file'],
@@ -94,7 +94,6 @@ describe('diograph-generator', () => {
 
       testCases.forEach(({ files = [], subfolders = [] }) => {
         describe(`given folder has ${files.length} files and ${subfolders.length} subfolders`, () => {
-
           beforeEach(() => {
             paths = { files, subfolders }
           })
@@ -102,7 +101,7 @@ describe('diograph-generator', () => {
           it('generates file diorys', async () => {
             await act()
 
-            files.forEach((file) => {
+            files.forEach(file => {
               expect(generateFileDiory).toHaveBeenCalledWith(file)
             })
           })
@@ -110,26 +109,25 @@ describe('diograph-generator', () => {
           it('generates subfolder diorys', async () => {
             await act()
 
-            subfolders.forEach((subfolder) => {
+            subfolders.forEach(subfolder => {
               expect(generateFolderDiory).toHaveBeenCalledWith(subfolder)
             })
           })
 
           describe('given diorys have ids', () => {
             beforeEach(() => {
-              files.forEach((fileDiory) => {
+              files.forEach(fileDiory => {
                 generateFileDiory.mockReturnValueOnce({ id: `${fileDiory}-id` })
               })
-              subfolders.forEach((folderDiory) => {
+              subfolders.forEach(folderDiory => {
                 generateFolderDiory.mockReturnValueOnce({ id: `${folderDiory}-id` })
               })
             })
 
             it('adds diorys to diograph with id as key', async () => {
-              const diograph = await act()
-
+              const { diograph } = await act()
               const diorys = [...files, ...subfolders]
-              diorys.forEach((diory) => {
+              diorys.forEach(diory => {
                 expect(diograph[`${diory}-id`]).toStrictEqual({ id: `${diory}-id` })
               })
             })
@@ -140,15 +138,13 @@ describe('diograph-generator', () => {
               })
 
               it('adds links from folder diory to diorys with file name as key', async () => {
-                const diograph = await act()
+                const { diograph } = await act()
 
-                files.forEach((file) => {
-                  expect(diograph['some-folderDiory-id'].links[file])
-                    .toStrictEqual({ id: `${file}-id` })
+                files.forEach(file => {
+                  expect(diograph['some-folderDiory-id'].links[file]).toStrictEqual({ id: `${file}-id` })
                 })
-                subfolders.forEach((subfolder) => {
-                  expect(diograph['some-folderDiory-id'].links[subfolder])
-                    .toStrictEqual({ id: `${subfolder}-id` })
+                subfolders.forEach(subfolder => {
+                  expect(diograph['some-folderDiory-id'].links[subfolder]).toStrictEqual({ id: `${subfolder}-id` })
                 })
               })
             })
@@ -156,7 +152,7 @@ describe('diograph-generator', () => {
 
           describe('given folder diory does not have id', () => {
             it('does not add subfolder diorys to diograph', async () => {
-              const diograph = await act()
+              const { diograph } = await act()
 
               expect(Object.keys(diograph).length).toEqual(0)
             })

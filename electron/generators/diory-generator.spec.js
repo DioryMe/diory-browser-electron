@@ -1,17 +1,21 @@
 const { readFolder } = require('../readers/folder-reader')
-const { readFile } = require('../readers/file-reader')
+const { resolveFileType, readFile } = require('../readers/file-reader')
+const { readImage } = require('../readers/image-reader')
 const { generateDiograph } = require('./diograph-generator')
 const { generateFileDiory, generateFolderDiory } = require('./diory-generator')
 
 jest.mock('../readers/folder-reader')
 jest.mock('../readers/file-reader')
+jest.mock('../readers/image-reader')
 
 describe('diory-generator', () => {
   let act
 
   describe('generateFileDiory', () => {
     let filePath
+    let type
     let file
+    let image
 
     it('renders with undefined values', async () => {
       generateFileDiory()
@@ -19,8 +23,11 @@ describe('diory-generator', () => {
 
     beforeEach(() => {
       file = {}
+      image = {}
       act = () => {
-        readFile.mockReturnValueOnce(file)
+        resolveFileType.mockReturnValue(type)
+        readFile.mockReturnValue(file)
+        readImage.mockReturnValue(image)
         return generateFileDiory(filePath)
       }
     })
@@ -45,20 +52,71 @@ describe('diory-generator', () => {
       expect(diory.id).toEqual('some-file-created')
     })
 
-    it('sets file name to diory text', async () => {
-      file.name = 'some-file-name'
+    const fileData = ['text', 'image', 'date', 'latitude', 'longitude', 'created', 'modified']
 
-      const diory = act()
+    fileData.forEach(prop => {
+      it(`sets file ${prop} to diory ${prop}`, async () => {
+        file[prop] = `some-file-${prop}`
 
-      expect(diory.text).toEqual('some-file-name')
+        const diory = act()
+
+        expect(diory[prop]).toEqual(`some-file-${prop}`)
+      })
     })
 
-    it('sets file modified time to diory modified', async () => {
-      file.modified = 'some-file-modified'
+    describe('given image file', () => {
+      beforeEach(() => {
+        type = 'image'
+        image = {}
+      })
 
-      const diory = act()
+      describe('given file data', () => {
+        const fileData = ['created', 'modified']
 
-      expect(diory.modified).toEqual('some-file-modified')
+        beforeEach(() => {
+          fileData.forEach(prop => {
+            file[prop] = `some-file-${prop}`
+          })
+        })
+
+        fileData.forEach(prop => {
+          it(`sets file ${prop} to diory ${prop}`, async () => {
+            const diory = act()
+
+            expect(diory[prop]).toEqual(`some-file-${prop}`)
+          })
+        })
+
+        describe('given image data', () => {
+          it('reads image', async () => {
+            filePath = 'some-imagePath'
+
+            await act()
+
+            expect(readImage).toHaveBeenCalledWith('some-imagePath')
+          })
+
+          it('sets image created time to diory id', async () => {
+            image.created = 'some-image-created'
+
+            const diory = act()
+
+            expect(diory.id).toEqual('some-image-created')
+          })
+
+          const imageData = ['image', 'date', 'latitude', 'longitude', 'created']
+
+          imageData.forEach(prop => {
+            it(`sets image ${prop} to diory ${prop}`, async () => {
+              image[prop] = `some-image-${prop}`
+
+              const diory = act()
+
+              expect(diory[prop]).toEqual(`some-image-${prop}`)
+            })
+          })
+        })
+      })
     })
   })
 
@@ -98,20 +156,16 @@ describe('diory-generator', () => {
       expect(diory.id).toEqual('some-folder-created')
     })
 
-    it('sets folder name to diory text', async () => {
-      folder.name = 'some-folder-name'
+    const dioryProps = ['text', 'image', 'date', 'latitude', 'longitude', 'created', 'modified']
 
-      const diory = act()
+    dioryProps.forEach(prop => {
+      it(`sets folder ${prop} to diory ${prop}`, async () => {
+        folder[prop] = `some-folder-${prop}`
 
-      expect(diory.text).toEqual('some-folder-name')
-    })
+        const diory = act()
 
-    it('sets folder modified time to diory modified', async () => {
-      folder.modified = 'some-folder-modified'
-
-      const diory = act()
-
-      expect(diory.modified).toEqual('some-folder-modified')
+        expect(diory[prop]).toEqual(`some-folder-${prop}`)
+      })
     })
   })
 })
