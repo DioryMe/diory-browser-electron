@@ -16,6 +16,26 @@ Compose diograph.json from folder contents
 ## Open questions
 
 ### Diory
+### Id
+- id can be anything
+- uuid
+- content hash -> ipfs -> new versions using ipns
+- created time, great for timeline
 
-- id: created time ?
+### Text
+File name
+Image: no text
 
+
+### Image
+Folder image
+
+
+### Latitude
+### Longitude
+Folder location
+
+
+## Skipped files
+Start with dot?
+diograph.json
