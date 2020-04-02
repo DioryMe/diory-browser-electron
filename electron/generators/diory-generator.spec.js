@@ -124,6 +124,7 @@ describe('diory-generator', () => {
 
   describe('generateFolderDiory', () => {
     let folderPath
+    let linkedDiorys
     let folder
 
     it('renders with undefined values', async () => {
@@ -134,7 +135,7 @@ describe('diory-generator', () => {
       folder = {}
       act = () => {
         readFolder.mockReturnValueOnce(folder)
-        return generateFolderDiory(folderPath)
+        return generateFolderDiory(folderPath, linkedDiorys)
       }
     })
 
@@ -158,7 +159,15 @@ describe('diory-generator', () => {
       expect(diory.id).toEqual('some-uuid')
     })
 
-    const folderData = ['text', 'image', 'date', 'latitude', 'longitude', 'created', 'modified']
+    it('sets first image from linked diorys', async () => {
+      linkedDiorys = [{ some: 'image' }, { image: 'first-image' }, { image: 'second-image' }]
+
+      const diory = act()
+
+      expect(diory.image).toEqual('first-image')
+    })
+
+    const folderData = ['text', 'date', 'latitude', 'longitude', 'created', 'modified']
 
     folderData.forEach(prop => {
       it(`sets folder ${prop} to diory ${prop}`, async () => {
