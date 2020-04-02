@@ -3,6 +3,10 @@ const { readPaths } = require('../readers/folder-reader')
 const { generateFileDiory, generateFolderDiory } = require('./diory-generator')
 const { generateFileLink, generateFolderLink } = require('./link-generator')
 
+function getDiorys(diograph, links) {
+  return Object.values(links).map(({ id }) => diograph[id])
+}
+
 function addToDiograph(diory) {
   return (
     diory.id && {
@@ -46,8 +50,9 @@ async function generateDiograph(folderPath) {
     ...fileLinks,
   }
 
+  const linkedDiorys = getDiorys(diograph, links)
   const diory = {
-    ...generateFolderDiory(folderPath),
+    ...generateFolderDiory(folderPath, linkedDiorys),
     ...(!isEmpty(links) && { links }),
   }
 

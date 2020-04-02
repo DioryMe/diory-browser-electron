@@ -40,7 +40,7 @@ describe('diograph-generator', () => {
       it('generates folder diory', async () => {
         await act()
 
-        expect(generateFolderDiory).toHaveBeenCalledWith('some-folderPath')
+        expect(generateFolderDiory).toHaveBeenCalledWith('some-folderPath', [])
       })
 
       describe('given folder diory has id', () => {
@@ -110,7 +110,7 @@ describe('diograph-generator', () => {
             await act()
 
             subfolders.forEach(subfolder => {
-              expect(generateFolderDiory).toHaveBeenCalledWith(subfolder)
+              expect(generateFolderDiory).toHaveBeenCalledWith(subfolder, [])
             })
           })
 
