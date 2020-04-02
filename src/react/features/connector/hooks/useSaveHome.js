@@ -14,7 +14,7 @@ export const useSaveHome = () => {
   useEffect(() => {
     if (updated) {
       debounce(
-        promiseDispatch(saveRoom, () => connect(channels.SAVE_HOME, { rooms })),
+        // promiseDispatch(saveRoom, () => connect(channels.SAVE_HOME, { rooms })),
         500
       )
     }
