@@ -35,6 +35,7 @@
     "@babel/plugin-transform-runtime": "^7.8.3",
     "electron": "^7.1.2",
     "electron-builder": "^21.2.0",
+    "electron-reload": "^1.5.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.10.1",
@@ -43,14 +44,17 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^2.5.0"
+    "eslint-plugin-react-hooks": "^2.5.0",
+    "jest-electron": "^0.1.11",
+    "nodemon": "^2.0.2",
+    "cross-env": "^7.0.2"
   },
   "homepage": "./",
   "scripts": {
     "start": "export BROWSER=none && PORT=3300 react-scripts start",
     "start-electron": "export ELECTRON_START_URL=http://localhost:3300 && electron .",
-    "start-electron-dev-build": "yarn build && DEV_BUILD=true electron .",
-    "start-electron-dev-tools": "DEV_TOOLS=true export ELECTRON_START_URL=http://localhost:3300 && electron .",
+    "start-electron-dev-build": "yarn build && electron .",
+    "start-electron-dev-tools": "DEV_TOOLS=true export ELECTRON_START_URL=http://localhost:3300 && cross-env nodemon --exec electron .",
     "start-win": "set BROWSER=none && react-scripts start",
     "start-electron-win": "set ELECTRON_START_URL=http://localhost:3300 && electron .",
     "clean": "rm -rf build dist",
