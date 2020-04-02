@@ -1,3 +1,4 @@
+const uuid = require('uuid')
 const { resolveFileType, readFile } = require('../readers/file-reader')
 const { readFolder } = require('../readers/folder-reader')
 const { readImage } = require('../readers/image-reader')
@@ -18,7 +19,7 @@ function readFileData(type, filePath) {
 
 function generateDiory({ text, date, image, latitude, longitude, created, modified }) {
   return {
-    id: created,
+    id: uuid(),
     ...(text && { text }),
     ...(image && { image }),
     ...(date && { date }),

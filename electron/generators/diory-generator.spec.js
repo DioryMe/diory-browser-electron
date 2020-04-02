@@ -1,9 +1,11 @@
+const uuid = require('uuid')
 const { readFolder } = require('../readers/folder-reader')
 const { resolveFileType, readFile } = require('../readers/file-reader')
 const { readImage } = require('../readers/image-reader')
 const { generateDiograph } = require('./diograph-generator')
 const { generateFileDiory, generateFolderDiory } = require('./diory-generator')
 
+jest.mock('uuid')
 jest.mock('../readers/folder-reader')
 jest.mock('../readers/file-reader')
 jest.mock('../readers/image-reader')
@@ -44,12 +46,12 @@ describe('diory-generator', () => {
       expect(readFile).toHaveBeenCalledWith('some-filePath')
     })
 
-    it('sets file created time to diory id', async () => {
-      file.created = 'some-file-created'
+    it('sets uid to diory id', async () => {
+      uuid.mockReturnValue('some-uuid')
 
       const diory = act()
 
-      expect(diory.id).toEqual('some-file-created')
+      expect(diory.id).toEqual('some-uuid')
     })
 
     const fileData = ['text', 'image', 'date', 'latitude', 'longitude', 'created', 'modified']
@@ -96,12 +98,12 @@ describe('diory-generator', () => {
             expect(readImage).toHaveBeenCalledWith('some-imagePath')
           })
 
-          it('sets image created time to diory id', async () => {
-            image.created = 'some-image-created'
+          it('sets uid to diory id', async () => {
+            uuid.mockReturnValue('some-uuid')
 
             const diory = act()
 
-            expect(diory.id).toEqual('some-image-created')
+            expect(diory.id).toEqual('some-uuid')
           })
 
           const imageData = ['image', 'date', 'latitude', 'longitude', 'created']
@@ -148,12 +150,12 @@ describe('diory-generator', () => {
       expect(readFolder).toHaveBeenCalledWith('some-folderPath')
     })
 
-    it('sets folder created time to diory id', async () => {
-      folder.created = 'some-folder-created'
+    it('sets uid to diory id', async () => {
+      uuid.mockReturnValue('some-uuid')
 
       const diory = act()
 
-      expect(diory.id).toEqual('some-folder-created')
+      expect(diory.id).toEqual('some-uuid')
     })
 
     const dioryProps = ['text', 'image', 'date', 'latitude', 'longitude', 'created', 'modified']
