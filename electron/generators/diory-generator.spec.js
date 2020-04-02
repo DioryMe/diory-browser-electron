@@ -106,7 +106,7 @@ describe('diory-generator', () => {
             expect(diory.id).toEqual('some-uuid')
           })
 
-          const imageData = ['image', 'date', 'latitude', 'longitude', 'created']
+          const imageData = ['image', 'date', 'latitude', 'longitude', 'created', 'modified']
 
           imageData.forEach(prop => {
             it(`sets image ${prop} to diory ${prop}`, async () => {
@@ -158,9 +158,9 @@ describe('diory-generator', () => {
       expect(diory.id).toEqual('some-uuid')
     })
 
-    const dioryProps = ['text', 'image', 'date', 'latitude', 'longitude', 'created', 'modified']
+    const folderData = ['text', 'image', 'date', 'latitude', 'longitude', 'created', 'modified']
 
-    dioryProps.forEach(prop => {
+    folderData.forEach(prop => {
       it(`sets folder ${prop} to diory ${prop}`, async () => {
         folder[prop] = `some-folder-${prop}`
 
