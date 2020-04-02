@@ -17,17 +17,15 @@ exports.reduceValuesToArraysPromise = function reduceValuesToArraysPromise(async
   }
 }
 
-exports.asyncReduce = function asyncReduce(asyncFunc) {
-  return async array => {
-    const promises = await Promise.all(array.map(asyncFunc))
-    return promises.reduce(
-      ([obj1, obj2], [item1, item2]) => [
-        { ...obj1, ...item1 },
-        { ...obj2, ...item2 },
-      ],
-      [{}, {}]
-    )
-  }
+exports.promiseAllReduce = async function promiseAllReduce(asyncArray) {
+  const promises = await Promise.all(asyncArray)
+  return promises.reduce(
+    ([obj1, obj2], [item1, item2]) => [
+      { ...obj1, ...item1 },
+      { ...obj2, ...item2 },
+    ],
+    [{}, {}]
+  )
 }
 
 exports.removeUndefined = function removeUndefined(props) {

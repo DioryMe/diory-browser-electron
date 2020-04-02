@@ -1,4 +1,4 @@
-const { isEmpty, asyncReduce } = require('../lib/utils')
+const { isEmpty, promiseAllReduce } = require('../lib/utils')
 const { readPaths } = require('../readers/folder-reader')
 const { generateFileDiory, generateFolderDiory } = require('./diory-generator')
 const { generateFileLink, generateFolderLink } = require('./link-generator')
@@ -32,9 +32,9 @@ async function generateFolderDiographAndLink(folderPath) {
 async function generateDiograph(folderPath) {
   const { files = [], subfolders = [] } = (await readPaths(folderPath)) || {}
 
-  const [filesDiograph, fileLinks] = await asyncReduce(generateFileDiographAndLink)(files)
+  const [filesDiograph, fileLinks] = await promiseAllReduce(files.map(generateFileDiographAndLink))
 
-  const [foldersDiograph, folderLinks] = await asyncReduce(generateFolderDiographAndLink)(subfolders)
+  const [foldersDiograph, folderLinks] = await promiseAllReduce(subfolders.map(generateFolderDiographAndLink))
 
   const diograph = {
     ...filesDiograph,
