@@ -8,7 +8,9 @@ const fileTypes = {
 }
 
 exports.resolveFileType = function resolveFileType(filePath = '') {
-  const fileType = Object.entries(fileTypes).find(([, extnames]) => extnames.includes(extname(filePath)))
+  const fileType = Object.entries(fileTypes).find(([, extnames]) =>
+    extnames.includes(extname(filePath))
+  )
   if (fileType) {
     return fileType[0]
   }

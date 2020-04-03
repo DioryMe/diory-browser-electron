@@ -9,9 +9,7 @@ describe('link-generator', () => {
 
     beforeEach(() => {
       diory = {}
-      act = () => {
-        return generateFileLink(filePath, diory)
-      }
+      act = () => generateFileLink(filePath, diory)
     })
 
     describe('given file path and diory id', () => {
@@ -40,9 +38,7 @@ describe('link-generator', () => {
 
     beforeEach(() => {
       diory = {}
-      act = () => {
-        return generateFolderLink(folderPath, diory)
-      }
+      act = () => generateFolderLink(folderPath, diory)
     })
 
     describe('given folder path and diory id', () => {

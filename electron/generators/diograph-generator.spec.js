@@ -24,7 +24,7 @@ describe('diograph-generator', () => {
         readPaths.mockResolvedValueOnce(paths)
         generateFileDiory.mockResolvedValue()
         generateFolderDiory.mockReturnValue(folderDiory)
-        return await generateDiograph(folderPath)
+        return generateDiograph(folderPath)
       }
     })
 
@@ -119,8 +119,8 @@ describe('diograph-generator', () => {
               files.forEach(fileDiory => {
                 generateFileDiory.mockReturnValueOnce({ id: `${fileDiory}-id` })
               })
-              subfolders.forEach(folderDiory => {
-                generateFolderDiory.mockReturnValueOnce({ id: `${folderDiory}-id` })
+              subfolders.forEach(subfolderDiory => {
+                generateFolderDiory.mockReturnValueOnce({ id: `${subfolderDiory}-id` })
               })
             })
 
@@ -141,10 +141,14 @@ describe('diograph-generator', () => {
                 const { diograph } = await act()
 
                 files.forEach(file => {
-                  expect(diograph['some-folderDiory-id'].links[file]).toStrictEqual({ id: `${file}-id` })
+                  expect(diograph['some-folderDiory-id'].links[file]).toStrictEqual({
+                    id: `${file}-id`,
+                  })
                 })
                 subfolders.forEach(subfolder => {
-                  expect(diograph['some-folderDiory-id'].links[subfolder]).toStrictEqual({ id: `${subfolder}-id` })
+                  expect(diograph['some-folderDiory-id'].links[subfolder]).toStrictEqual({
+                    id: `${subfolder}-id`,
+                  })
                 })
               })
             })

@@ -38,7 +38,9 @@ async function generateDiograph(folderPath) {
 
   const [filesDiograph, fileLinks] = await promiseAllReduce(files.map(generateFileDiographAndLink))
 
-  const [foldersDiograph, folderLinks] = await promiseAllReduce(subfolders.map(generateFolderDiographAndLink))
+  const [foldersDiograph, folderLinks] = await promiseAllReduce(
+    subfolders.map(generateFolderDiographAndLink)
+  )
 
   const diograph = {
     ...filesDiograph,
