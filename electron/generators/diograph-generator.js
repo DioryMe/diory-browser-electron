@@ -25,7 +25,7 @@ async function generateFileDiographAndLink(filePath) {
 }
 
 async function generateFolderDiographAndLink(folderPath) {
-  const { id, diograph } = await generateDiograph(folderPath)
+  const { id, diograph } = await generateDiograph(folderPath) // eslint-disable-line  no-use-before-define
 
   const folderDiory = diograph[id]
   const folderLink = generateFolderLink(folderPath, folderDiory)
