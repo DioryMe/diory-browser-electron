@@ -75,7 +75,9 @@ const useDiorysMarkers = mapRef => {
       .filter(({ dioryId }) => !diorys.map(({ id }) => id).includes(dioryId))
       .map(marker => marker.remove())
 
-    const oldMarkers = markerRefs.current.filter(({ dioryId }) => diorys.map(({ id }) => id).includes(dioryId))
+    const oldMarkers = markerRefs.current.filter(({ dioryId }) =>
+      diorys.map(({ id }) => id).includes(dioryId)
+    )
 
     const newMarkers = diorys
       .filter(({ id }) => !markerRefs.current.map(({ dioryId }) => dioryId).includes(id))
