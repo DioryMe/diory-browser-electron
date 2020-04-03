@@ -2,7 +2,6 @@ const uuid = require('uuid')
 const { readFolder } = require('../readers/folder-reader')
 const { resolveFileType, readFile } = require('../readers/file-reader')
 const { readImage } = require('../readers/image-reader')
-const { generateDiograph } = require('./diograph-generator')
 const { generateFileDiory, generateFolderDiory } = require('./diory-generator')
 
 jest.mock('uuid')
@@ -52,18 +51,6 @@ describe('diory-generator', () => {
       const diory = act()
 
       expect(diory.id).toEqual('some-uuid')
-    })
-
-    const fileData = ['text', 'image', 'date', 'latitude', 'longitude', 'created', 'modified']
-
-    fileData.forEach(prop => {
-      it(`sets file ${prop} to diory ${prop}`, async () => {
-        file[prop] = `some-file-${prop}`
-
-        const diory = act()
-
-        expect(diory[prop]).toEqual(`some-file-${prop}`)
-      })
     })
 
     describe('given image file', () => {
@@ -117,6 +104,20 @@ describe('diory-generator', () => {
               expect(diory[prop]).toEqual(`some-image-${prop}`)
             })
           })
+        })
+      })
+    })
+
+    describe('given other file', () => {
+      const fileData = ['text', 'image', 'date', 'latitude', 'longitude', 'created', 'modified']
+
+      fileData.forEach(prop => {
+        it(`sets file ${prop} to diory ${prop}`, async () => {
+          file[prop] = `some-file-${prop}`
+
+          const diory = act()
+
+          expect(diory[prop]).toEqual(`some-file-${prop}`)
         })
       })
     })

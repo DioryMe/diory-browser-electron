@@ -70,9 +70,7 @@ describe('file-reader', () => {
     })
 
     beforeEach(() => {
-      act = () => {
-        return resolveFileType(filePath)
-      }
+      act = () => resolveFileType(filePath)
     })
 
     it('renders with empty responses', async () => {
@@ -94,9 +92,9 @@ describe('file-reader', () => {
         it(`sets ${extension} type as ${type}`, () => {
           filePath = `some-filePath/some-fileName${extension}`
 
-          const type = act()
+          const fileType = act()
 
-          expect(type).toEqual(type)
+          expect(fileType).toEqual(type)
         })
       })
     })

@@ -69,6 +69,7 @@ describe('image-reader', () => {
   })
 })
 
+// eslint-disable-next-line  no-unused-vars
 const exampleTags = [
   {
     'Bits Per Sample': { value: 8, description: '8' },

@@ -19,8 +19,6 @@ const getRoom = async id => {
       diograph: JSON.parse(raw),
     }
   }
-
-  return { id, diograph }
 }
 
 const saveRoom = async (id, diograph) => {

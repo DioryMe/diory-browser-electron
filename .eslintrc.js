@@ -30,7 +30,7 @@ module.exports = {
     'semi': ['off'],
     'arrow-parens': ['off'],
     'no-console': ['off'],
-    'operator-linebreak': ['error', 'after'],
+    'operator-linebreak': ['off'], // prettier
     'react/jsx-filename-extension': ['off'], // ok?
     'comma-dangle': ['off'], // maybe
     'import/prefer-default-export': ['off'], // maybe
@@ -43,15 +43,15 @@ module.exports = {
     'max-len': ['warn'],
     'import/newline-after-import': ['warn'],
     'react/prop-types': ['warn'],
-    'object-curly-newline': ['warn'],
+    'object-curly-newline': ['off'], // prettier
     'react/require-default-props': ['warn'],
     'react/forbid-prop-types': ['warn'],
     'react/jsx-props-no-spreading': ['warn'],
     'react/button-has-type': ['warn'],
     'no-param-reassign': ['warn'],
     'no-use-before-define': ['warn'],
-    'function-paren-newline': ['warn'],
-    'implicit-arrow-linebreak': ['warn'],
+    'function-paren-newline': ['off'], // prettier
+    'implicit-arrow-linebreak': ['off'], // prettier
     'space-before-function-paren': ['warn'],
     'prefer-rest-params': ['warn'],
     'one-var': ['warn'],
@@ -60,7 +60,6 @@ module.exports = {
     'prefer-arrow-callback': ['warn'],
     'arrow-body-style': ['warn'],
     'react/no-children-prop': ['warn'],
-    'operator-linebreak': ['warn'],
     'jsx-a11y/no-static-element-interactions': ['warn'],
     'import/no-dynamic-require': ['warn'],
     'space-infix-ops': ['warn'],
@@ -76,7 +75,7 @@ module.exports = {
     'react/jsx-closing-tag-location': ['warn'],
     'react/self-closing-comp': ['warn'],
     'import/no-extraneous-dependencies': ['warn'],
-    'consistent-return': ['warn'],
+    'consistent-return': ['off'], // Personal opinion
     'import/no-cycle': ['warn'],
     'import/order': ['warn'],
     'no-prototype-builtins': ['warn'],

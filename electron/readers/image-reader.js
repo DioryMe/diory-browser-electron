@@ -11,7 +11,7 @@ function getDateTime(dateTime) {
     return
   }
   const [year, month, date, hour, min, sec] = dateTime.value[0].split(/\D/)
-  return [year, month, date].join('-') + 'T' + [hour, min, sec].join(':') + '.000Z'
+  return `${[year, month, date].join('-')}T${[hour, min, sec].join(':')}.000Z`
 }
 
 function getDate({ DateTime, DateTimeOriginal }) {
@@ -20,7 +20,7 @@ function getDate({ DateTime, DateTimeOriginal }) {
 }
 
 function getIsoDate(isoDate) {
-  return isoDate && isoDate.value.slice(0, 23) + 'Z'
+  return isoDate && isoDate.value.slice(0, 23) + 'Z' // eslint-disable-line prefer-template
 }
 
 function getCreated({ DateCreated, CreateDate }) {
