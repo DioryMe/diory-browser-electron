@@ -40,7 +40,7 @@ module.exports = {
     'indent': ['warn'], // todo
     'prefer-const': ['warn'], // todo
     'dot-notation': ['warn'], // todo
-    'max-len': ['warn'],
+    'max-len': ['off'],  // prettier
     'import/newline-after-import': ['warn'],
     'react/prop-types': ['warn'],
     'object-curly-newline': ['off'], // prettier
