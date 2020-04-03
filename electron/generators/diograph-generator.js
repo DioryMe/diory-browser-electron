@@ -16,21 +16,21 @@ function addToDiograph(diory) {
 }
 
 async function generateFileDiographAndLink(filePath) {
-  const diory = generateFileDiory(filePath)
+  const fileDiory = generateFileDiory(filePath)
 
-  const diograph = addToDiograph(diory)
-  const link = generateFileLink(filePath, diory)
+  const fileDiograph = addToDiograph(fileDiory)
+  const fileLink = generateFileLink(filePath, fileDiory)
 
-  return [diograph, link]
+  return [fileDiograph, fileLink]
 }
 
 async function generateFolderDiographAndLink(folderPath) {
   const { id, diograph } = await generateDiograph(folderPath)
 
-  const diory = diograph[id]
-  const link = generateFolderLink(folderPath, diory)
+  const folderDiory = diograph[id]
+  const folderLink = generateFolderLink(folderPath, folderDiory)
 
-  return [diograph, link]
+  return [diograph, folderLink]
 }
 
 async function generateDiograph(folderPath) {

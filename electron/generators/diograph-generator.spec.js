@@ -7,158 +7,161 @@ jest.mock('./diory-generator')
 
 describe('diograph-generator', () => {
   let act
-  let folderPath
-  let paths
-  let folderDiory
 
-  it('renders with undefined values', async () => {
-    await generateDiograph()
-  })
+  describe('generateDiograph', () => {
+    let folderPath
+    let paths
+    let folderDiory
 
-  describe('given responses', () => {
-    beforeEach(() => {
-      paths = {}
-      folderDiory = {}
-      act = async () => {
-        readPaths.mockResolvedValue({})
-        readPaths.mockResolvedValueOnce(paths)
-        generateFileDiory.mockResolvedValue()
-        generateFolderDiory.mockReturnValue(folderDiory)
-        return generateDiograph(folderPath)
-      }
+    it('renders with undefined values', async () => {
+      await generateDiograph()
     })
 
-    it('renders with empty responses', async () => {
-      await act()
-    })
-
-    describe('given a folderPath', () => {
+    describe('given responses', () => {
       beforeEach(() => {
-        folderPath = 'some-folderPath'
+        paths = {}
+        folderDiory = {}
+        act = async () => {
+          readPaths.mockResolvedValue({})
+          readPaths.mockResolvedValueOnce(paths)
+          generateFileDiory.mockResolvedValue()
+          generateFolderDiory.mockReturnValue(folderDiory)
+          return generateDiograph(folderPath)
+        }
       })
 
-      it('generates folder diory', async () => {
+      it('renders with empty responses', async () => {
         await act()
-
-        expect(generateFolderDiory).toHaveBeenCalledWith('some-folderPath', [])
       })
 
-      describe('given folder diory has id', () => {
+      describe('given a folderPath', () => {
         beforeEach(() => {
-          folderDiory.id = 'some-folderDiory-id'
+          folderPath = 'some-folderPath'
         })
 
-        it('adds folder diory to diograph with id as key', async () => {
-          const { diograph } = await act()
+        it('generates folder diory', async () => {
+          await act()
 
-          expect(diograph['some-folderDiory-id']).toStrictEqual({ id: 'some-folderDiory-id' })
+          expect(generateFolderDiory).toHaveBeenCalledWith('some-folderPath', [])
         })
-      })
 
-      describe('given folder diory does not have id', () => {
-        it('does not add folder diory to diograph', async () => {
-          const { diograph } = await act()
-
-          expect(Object.keys(diograph).length).toEqual(0)
-        })
-      })
-
-      it('reads file and subfolder paths from folder', async () => {
-        await act()
-
-        expect(readPaths).toHaveBeenCalledWith('some-folderPath')
-      })
-
-      const testCases = [
-        {
-          files: ['some-file'],
-        },
-        {
-          files: ['first-file', 'second-file'],
-        },
-        {
-          subfolders: ['some-subfolder'],
-        },
-        {
-          subfolders: ['first-subfolder', 'second-subfolder'],
-        },
-        {
-          files: ['some-file'],
-          subfolders: ['some-subfolder'],
-        },
-        {
-          files: ['first-file', 'second-file'],
-          subfolders: ['first-subfolder', 'second-subfolder'],
-        },
-      ]
-
-      testCases.forEach(({ files = [], subfolders = [] }) => {
-        describe(`given folder has ${files.length} files and ${subfolders.length} subfolders`, () => {
+        describe('given folder diory has id', () => {
           beforeEach(() => {
-            paths = { files, subfolders }
+            folderDiory.id = 'some-folderDiory-id'
           })
 
-          it('generates file diorys', async () => {
-            await act()
+          it('adds folder diory to diograph with id as key', async () => {
+            const { diograph } = await act()
 
-            files.forEach(file => {
-              expect(generateFileDiory).toHaveBeenCalledWith(file)
-            })
+            expect(diograph['some-folderDiory-id']).toStrictEqual({ id: 'some-folderDiory-id' })
           })
+        })
 
-          it('generates subfolder diorys', async () => {
-            await act()
+        describe('given folder diory does not have id', () => {
+          it('does not add folder diory to diograph', async () => {
+            const { diograph } = await act()
 
-            subfolders.forEach(subfolder => {
-              expect(generateFolderDiory).toHaveBeenCalledWith(subfolder, [])
-            })
+            expect(Object.keys(diograph).length).toEqual(0)
           })
+        })
 
-          describe('given diorys have ids', () => {
+        it('reads file and subfolder paths from folder', async () => {
+          await act()
+
+          expect(readPaths).toHaveBeenCalledWith('some-folderPath')
+        })
+
+        const testCases = [
+          {
+            files: ['some-file'],
+          },
+          {
+            files: ['first-file', 'second-file'],
+          },
+          {
+            subfolders: ['some-subfolder'],
+          },
+          {
+            subfolders: ['first-subfolder', 'second-subfolder'],
+          },
+          {
+            files: ['some-file'],
+            subfolders: ['some-subfolder'],
+          },
+          {
+            files: ['first-file', 'second-file'],
+            subfolders: ['first-subfolder', 'second-subfolder'],
+          },
+        ]
+
+        testCases.forEach(({ files = [], subfolders = [] }) => {
+          describe(`given folder has ${files.length} files and ${subfolders.length} subfolders`, () => {
             beforeEach(() => {
-              files.forEach(fileDiory => {
-                generateFileDiory.mockReturnValueOnce({ id: `${fileDiory}-id` })
-              })
-              subfolders.forEach(subfolderDiory => {
-                generateFolderDiory.mockReturnValueOnce({ id: `${subfolderDiory}-id` })
+              paths = { files, subfolders }
+            })
+
+            it('generates file diorys', async () => {
+              await act()
+
+              files.forEach(file => {
+                expect(generateFileDiory).toHaveBeenCalledWith(file)
               })
             })
 
-            it('adds diorys to diograph with id as key', async () => {
-              const { diograph } = await act()
-              const diorys = [...files, ...subfolders]
-              diorys.forEach(diory => {
-                expect(diograph[`${diory}-id`]).toStrictEqual({ id: `${diory}-id` })
+            it('generates subfolder diorys', async () => {
+              await act()
+
+              subfolders.forEach(subfolder => {
+                expect(generateFolderDiory).toHaveBeenCalledWith(subfolder, [])
               })
             })
 
-            describe('given folder diory has id', () => {
+            describe('given diorys have ids', () => {
               beforeEach(() => {
-                folderDiory.id = 'some-folderDiory-id'
+                files.forEach(fileDiory => {
+                  generateFileDiory.mockReturnValueOnce({ id: `${fileDiory}-id` })
+                })
+                subfolders.forEach(subfolderDiory => {
+                  generateFolderDiory.mockReturnValueOnce({ id: `${subfolderDiory}-id` })
+                })
               })
 
-              it('adds links from folder diory to diorys with file name as key', async () => {
+              it('adds diorys to diograph with id as key', async () => {
+                const { diograph } = await act()
+                const diorys = [...files, ...subfolders]
+                diorys.forEach(diory => {
+                  expect(diograph[`${diory}-id`]).toStrictEqual({ id: `${diory}-id` })
+                })
+              })
+
+              describe('given folder diory has id', () => {
+                beforeEach(() => {
+                  folderDiory.id = 'some-folderDiory-id'
+                })
+
+                it('adds links from folder diory to diorys with file name as key', async () => {
+                  const { diograph } = await act()
+
+                  files.forEach(file => {
+                    expect(diograph['some-folderDiory-id'].links[file]).toStrictEqual({
+                      id: `${file}-id`,
+                    })
+                  })
+                  subfolders.forEach(subfolder => {
+                    expect(diograph['some-folderDiory-id'].links[subfolder]).toStrictEqual({
+                      id: `${subfolder}-id`,
+                    })
+                  })
+                })
+              })
+            })
+
+            describe('given folder diory does not have id', () => {
+              it('does not add subfolder diorys to diograph', async () => {
                 const { diograph } = await act()
 
-                files.forEach(file => {
-                  expect(diograph['some-folderDiory-id'].links[file]).toStrictEqual({
-                    id: `${file}-id`,
-                  })
-                })
-                subfolders.forEach(subfolder => {
-                  expect(diograph['some-folderDiory-id'].links[subfolder]).toStrictEqual({
-                    id: `${subfolder}-id`,
-                  })
-                })
+                expect(Object.keys(diograph).length).toEqual(0)
               })
-            })
-          })
-
-          describe('given folder diory does not have id', () => {
-            it('does not add subfolder diorys to diograph', async () => {
-              const { diograph } = await act()
-
-              expect(Object.keys(diograph).length).toEqual(0)
             })
           })
         })
