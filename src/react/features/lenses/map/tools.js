@@ -7,7 +7,9 @@ const getTileURL = ({ lat, lng, zoom }) => {
   const latRad = (lat * Math.PI) / 180
   const xtile = parseInt(Math.floor(((lng + 180) / 360) * (1 << zoom)))
   const ytile = parseInt(
-    Math.floor(((1 - Math.log(Math.tan(latRad) + 1 / Math.cos(latRad)) / Math.PI) / 2) * (1 << zoom))
+    Math.floor(
+      ((1 - Math.log(Math.tan(latRad) + 1 / Math.cos(latRad)) / Math.PI) / 2) * (1 << zoom)
+    )
   )
   return `${zoom}/${xtile}/${ytile}`
 }
