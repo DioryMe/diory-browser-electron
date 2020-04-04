@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`diograph-generator generateDiograph generates diograph 1`] = `
+exports[`diograph-generator generateDiograph generates diograph from example folder 1`] = `
 Object {
   "uuid-0": Object {
     "created": "2020-04-02T17:57:14.568Z",
