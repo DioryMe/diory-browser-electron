@@ -74,7 +74,7 @@ module.exports = {
     'prefer-destructuring': ['warn'],
     'react/jsx-closing-tag-location': ['warn'],
     'react/self-closing-comp': ['warn'],
-    'import/no-extraneous-dependencies': ['warn'],
+    'import/no-extraneous-dependencies': ['warn', {"devDependencies": true}],
     'consistent-return': ['off'], // Personal opinion
     'import/no-cycle': ['warn'],
     'import/order': ['warn'],
