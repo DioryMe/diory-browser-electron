@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`diograph-generator generateDiograph generates diograph 1`] = `
+Object {
+  "uuid-0": Object {
+    "created": "2020-04-02T17:57:14.568Z",
+    "date": "2008-11-01T21:15:11.000Z",
+    "id": "uuid-0",
+    "image": "/Users/op/2019/diory-browser-electron/electron/readers/example-folder/other-image.jpg",
+    "latitude": 43.464455,
+    "longitude": 11.881478333333334,
+    "modified": "2020-04-02T17:57:14.569Z",
+  },
+  "uuid-1": Object {
+    "created": "2020-04-02T17:57:14.572Z",
+    "date": "2019-11-25T19:58:24.000Z",
+    "id": "uuid-1",
+    "image": "/Users/op/2019/diory-browser-electron/electron/readers/example-folder/some-image.jpg",
+    "modified": "2020-04-02T17:57:14.572Z",
+  },
+  "uuid-2": Object {
+    "created": "2020-04-02T17:57:14.573Z",
+    "id": "uuid-2",
+    "modified": "2020-04-02T17:57:14.573Z",
+    "text": "some-text",
+  },
+  "uuid-3": Object {
+    "created": "2020-04-02T17:57:14.570Z",
+    "date": "2019-10-27T14:40:43.000Z",
+    "id": "uuid-3",
+    "image": "/Users/op/2019/diory-browser-electron/electron/readers/example-folder/some-folder/some-folder-image.jpg",
+    "latitude": 61.49578611111111,
+    "longitude": 23.76756111111111,
+    "modified": "2020-04-02T17:57:14.571Z",
+  },
+  "uuid-4": Object {
+    "created": "2020-03-30T19:12:32.523Z",
+    "id": "uuid-4",
+    "image": "/Users/op/2019/diory-browser-electron/electron/readers/example-folder/some-folder/some-folder-image.jpg",
+    "links": Object {
+      "some-folder-image.jpg": Object {
+        "id": "uuid-3",
+      },
+    },
+    "modified": "2020-04-02T17:57:14.570Z",
+    "text": "some-folder",
+  },
+  "uuid-5": Object {
+    "created": "2020-03-30T19:12:32.523Z",
+    "id": "uuid-5",
+    "image": "/Users/op/2019/diory-browser-electron/electron/readers/example-folder/some-folder/some-folder-image.jpg",
+    "links": Object {
+      "other-image.jpg": Object {
+        "id": "uuid-0",
+      },
+      "some-folder": Object {
+        "id": "uuid-4",
+      },
+      "some-image.jpg": Object {
+        "id": "uuid-1",
+      },
+      "some-text.txt": Object {
+        "id": "uuid-2",
+      },
+    },
+    "modified": "2020-04-02T17:57:14.573Z",
+    "text": "example-folder",
+  },
+}
+`;
