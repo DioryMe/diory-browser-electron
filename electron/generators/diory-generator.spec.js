@@ -23,6 +23,7 @@ describe('diory-generator', () => {
     })
 
     beforeEach(() => {
+      type = undefined
       file = {}
       image = {}
       act = () => {
@@ -112,7 +113,7 @@ describe('diory-generator', () => {
       const fileData = ['text', 'image', 'date', 'latitude', 'longitude', 'created', 'modified']
 
       fileData.forEach(prop => {
-        it.only(`sets file ${prop} to diory ${prop}`, async () => {
+        it(`sets file ${prop} to diory ${prop}`, async () => {
           file[prop] = `some-file-${prop}`
 
           const diory = act()
