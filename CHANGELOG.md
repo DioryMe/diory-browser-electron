@@ -1,3 +1,30 @@
+## 0.3.3 (April 5, 2020)
+
+### DDA-6: Generate diograph from folders and subfolders
+
+* Create recursive diograph generator
+
+## 0.3.2 (March 27, 2020)
+
+### Add linter and github actions
+
+* Setup eslint rules and plugins
+    * Airbnb
+    * Prettier 
+* Setup github actions
+ 
+## 0.3.1 (March 15, 2020)
+
+### DDA-11: Create connector feature
+
+* Restructure hooks and add connector feature
+
+## 0.3.0 (February 25, 2020)
+
+### Folder reader
+
+* Read folder and generate diograph
+
 ## 0.2.1 (January 3, 2020)
 
 ### Map lens
