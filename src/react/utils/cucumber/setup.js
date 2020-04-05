@@ -12,7 +12,7 @@ const { window } = jsdom
 window.ipcRenderer = {
   send: (channel, data) => {},
   on: (channel, callback) => {
-    const data = require(`./src/react/features/connector/mockResponses`)
+    const data = require(`../../features/connector/mockResponses/${channel}.json`)
     callback('event', data, null)
   },
   removeAllListeners: channel => {},
