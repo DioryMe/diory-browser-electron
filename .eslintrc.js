@@ -47,7 +47,7 @@ module.exports = {
     'object-curly-newline': ['off'], // prettier
     'react/require-default-props': ['warn'],
     'react/forbid-prop-types': ['warn'],
-    'react/jsx-props-no-spreading': ['warn'],
+    'react/jsx-props-no-spreading': ['off'], // personal opinion
     'react/button-has-type': ['warn'],
     'no-param-reassign': ['warn'],
     'no-use-before-define': ['warn'],
