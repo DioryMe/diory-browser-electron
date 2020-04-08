@@ -1,12 +1,11 @@
 import { useStore } from '../../store'
-
-import * as types from './actionsTypes'
+import { setActive, setInactive } from './actions'
 
 export const useTools = () => {
   const [{ active }, dispatch] = useStore((state) => state.tools)
   return {
     active,
-    onSelect: (toolId) => dispatch({ type: types.SET_ACTIVE, payload: { active: toolId } }),
-    onClear: () => dispatch({ type: types.SET_INACTIVE }),
+    onSelect: (toolId) => dispatch(setActive(toolId)),
+    onClear: () => dispatch(setInactive()),
   }
 }
