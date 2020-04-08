@@ -1,12 +1,27 @@
 import React from 'react'
-import { useMap, useMapMarkers } from './hooks'
-import { useMapTools, buttons } from './tools'
+
+import { useMap } from './hooks/useMap'
+import { useMapMarkers } from './hooks/useMapMarkers'
+import { useSetFocus } from './hooks/useSetFocus'
+import { useTogglePopup } from './hooks/useTogglePopup'
+
+import { useAddLocation } from './tools/useAddLocation'
+import { useMoveLocation } from './tools/useMoveLocation'
+import { useRemoveLocation } from './tools/useRemoveLocation'
+
+import buttons from './tools/buttons'
 
 const Map = () => {
   const id = 'mapId'
+
   const map = useMap(id)
   useMapMarkers(map)
-  useMapTools(map)
+  useSetFocus(map)
+  useTogglePopup(map)
+
+  useAddLocation(map)
+  useMoveLocation(map)
+  useRemoveLocation(map)
 
   return <div id={id} style={{ height: '100%' }} />
 }
