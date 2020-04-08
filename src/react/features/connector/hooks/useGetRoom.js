@@ -14,7 +14,9 @@ export const useGetRoom = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     if (roomId) {
-      connect(channels.GET_ROOM, path).then((room) => dispatch(getRoom(room)))
+      connect(channels.GET_ROOM, path).then(({ diograph }) =>
+        dispatch(getRoom({ id: roomId, diograph }))
+      )
     }
   }, [roomId, path, dispatch])
 }
