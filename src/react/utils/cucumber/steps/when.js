@@ -26,12 +26,12 @@ When('I select {word} {word}', selectItem)
 When('I select {word} {int} {word} on {word}', selectIdItem)
 When('I select {word} {word} {word}', selectModifierIdItem)
 
-When('I move diory on map', function () {
+When('I move diory on map', () => {
   // Write code here that turns the phrase above into concrete actions
   return 'pending'
 })
 
-When('I select tools', function () {
+When('I select tools', () => {
   // Write code here that turns the phrase above into concrete actions
   return 'pending'
 })

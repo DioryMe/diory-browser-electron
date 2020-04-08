@@ -26,6 +26,7 @@ module.exports = {
     'jest',
     'prettier'
   ],
+  ignorePatterns: ['*.css', '*.feature', '*.json', '**/electron/readers/example-folder/**/*'],
   rules: {
     'semi': ['off'],
     'arrow-parens': ['off'],
