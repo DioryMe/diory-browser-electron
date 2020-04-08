@@ -1,7 +1,6 @@
 import React from 'react'
 import { Pane } from 'evergreen-ui'
 import { useStore } from '../../store'
-import { useAddRoom } from '../connector/hooks'
 import { enterRoom } from '../navigation/actions'
 
 import Image from '../../components/diories/Image'
@@ -20,16 +19,12 @@ const useHome = () => {
 
 const HomeView = () => {
   const { image, rooms } = useHome()
-  const { addNewRoom } = useAddRoom()
   return (
     <Pane height="100%" display="flex" flexWrap="wrap" padding={24}>
       <Image backgroundImage={getBackgroundImage(image, rooms.length)} zIndex={-1} />
       {rooms.map((room) => (
         <Room {...room} />
       ))}
-      <div>
-        <button onClick={addNewRoom}>Add new room</button>
-      </div>
     </Pane>
   )
 }
