@@ -5,20 +5,20 @@ import { reducer } from './store/reducer'
 import { initialState } from './store/initialState'
 
 import { useDocumentTitle } from './features/navigation/hooks'
-import { useChannel } from './features/connector/hooks'
 
+import Connector from './features/connector/Connector'
 import Navigation from './features/navigation/Navigation'
 import ToolsBar from './features/tools/ToolsBar'
 import View from './View'
 
 const App = () => {
   useDocumentTitle()
-  useChannel()
   return (
     <div className="App">
       <Navigation />
       <ToolsBar />
       <View />
+      <Connector />
     </div>
   )
 }
