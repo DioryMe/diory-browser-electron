@@ -15,7 +15,7 @@ export const useDispatchAction = (action) => {
 
 export const usePromiseDispatch = () => {
   const dispatch = useDispatch()
-  return (action, connect) => {
+  return (connect, action) => {
     const actionType = action({}).type
     dispatch({ type: actionType + '_BEGIN' })
     connect()
@@ -27,22 +27,22 @@ export const usePromiseDispatch = () => {
   }
 }
 
-export const promiseReducers = (actionType, progressKey, successKey, failureKey) => ({
+export const promiseReducers = (actionType, triggerKey, progressKey, successKey, errorKey) => ({
   [actionType + '_BEGIN']: (state) => ({
     ...state,
+    [triggerKey]: false,
     [progressKey]: true,
   }),
   [actionType + '_SUCCESS']: (state) => ({
     ...state,
     [progressKey]: false,
     [successKey]: true,
-    [failureKey]: false,
+    [errorKey]: false,
   }),
   [actionType + '_FAILURE']: (state, { payload }) => ({
     ...state,
-    error: payload.error,
     [progressKey]: false,
     [successKey]: false,
-    [failureKey]: true,
+    [errorKey]: payload.error,
   }),
 })
