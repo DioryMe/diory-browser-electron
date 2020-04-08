@@ -1,38 +1,57 @@
 import React, { useState } from 'react'
 import { useStore } from '../../store'
 import { useLenses } from '../lenses/hooks'
+import connectorButtons from '../connector/tools/buttons'
 import { useTools } from './hooks'
 import ToolButton from './ToolButton'
 
 const useToolsBar = () => {
   const [open, setOpen] = useState(false)
   const { active, onSelect, onClear } = useTools()
-  const [{ selectedLensId }] = useStore((state) => state.lenses)
-  const { toolButtons } = useLenses()
+  const [{ roomId }] = useStore((state) => state.navigation)
+  const { lensButtons } = useLenses()
 
-  let buttons = []
-  if (selectedLensId) {
-    buttons = toolButtons[selectedLensId]
-  }
-  const clearAndClose = () => {
+  function clearAndClose() {
     onClear()
     setOpen(false)
   }
 
-  return {
-    tools: !open && buttons.length > 1,
-    showButtons: () => setOpen(true),
-    buttons: buttons.map((button) => ({
-      ...button,
-      key: button.id,
-      active: button.id === active,
-      onClick: () => (button.id === active ? clearAndClose() : onSelect(button.id)),
-    })),
+  let buttons = []
+  if (lensButtons) {
+    buttons = lensButtons
+  } else if (!roomId) {
+    buttons = connectorButtons
   }
+
+  if (open || buttons.length === 1) {
+    return {
+      buttons: buttons.map((button) => ({
+        ...button,
+        active: button.id === active,
+        onClick: () => (button.id === active ? clearAndClose() : onSelect(button.id)),
+      })),
+    }
+  }
+
+  if (buttons.length > 1) {
+    return {
+      buttons: [
+        {
+          id: 'tools',
+          data: {
+            icon: 'wrench',
+          },
+          onClick: () => setOpen(true),
+        },
+      ],
+    }
+  }
+
+  return { buttons: [] }
 }
 
 const ToolsBar = () => {
-  const { tools, showButtons, buttons } = useToolsBar()
+  const { buttons } = useToolsBar()
   return (
     <div
       style={{
@@ -44,8 +63,9 @@ const ToolsBar = () => {
         padding: 8,
       }}
     >
-      {tools && <ToolButton id="tools" data={{ icon: 'wrench' }} onClick={showButtons} />}
-      {!tools && buttons.map((button) => <ToolButton {...button} />)}
+      {buttons.map((button) => (
+        <ToolButton key={button.id} {...button} />
+      ))}
     </div>
   )
 }

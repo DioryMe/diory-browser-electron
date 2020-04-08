@@ -22,17 +22,11 @@ export const useLenses = () => {
     {}
   )
 
-  const toolButtons = Object.entries(Lenses).reduce(
-    (obj, [id, Lens]) => ({
-      ...obj,
-      [id]: Lens.buttons,
-    }),
-    {}
-  )
+  const lensButtons = selectedLensId && Lenses[selectedLensId].buttons
 
   return {
     lenses,
-    toolButtons,
+    lensButtons,
     selectedLensId,
     selectLens: (id) => dispatch(selectLens(id)),
     toggleLens,
