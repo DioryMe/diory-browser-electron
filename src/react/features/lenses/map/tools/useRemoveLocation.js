@@ -10,15 +10,14 @@ export const useRemoveLocation = mapRef => {
   useEffect(() => {
     mapRef.current.eachLayer(marker => {
       if (marker.dioryId) {
-        function removeMarker() {
-          marker.remove()
-          marker.dioryId === focus
-            ? dispatch(removeDiory({ id: marker.dioryId }))
-            : dispatch(removeLink({ id: focus, link: marker.dioryId }))
-        }
         if (buttons.MAP_REMOVE_LOCATION === active) {
           marker.off('click')
-          marker.on('click', removeMarker)
+          marker.on('click', () => {
+            marker.remove()
+            marker.dioryId === focus
+              ? dispatch(removeDiory({ id: marker.dioryId }))
+              : dispatch(removeLink({ id: focus, link: marker.dioryId }))
+          })
         }
       }
     })
