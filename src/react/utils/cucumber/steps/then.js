@@ -23,17 +23,42 @@ Then('I see {word} {int} {word} on {word}', expectDioryItemOnContainer)
 Then('{word} {word} is active', expectItemIsActive)
 Then('{word} {word} is not active', expectItemIsNotActive)
 
-Then('I see a new {word}', function() {
+Then('I see a new {word}', function () {
   // Write code here that turns the phrase above into concrete actions
   return 'pending'
 })
 
-Then('my {word} are in new order', function() {
+Then('my {word} are in new order', function () {
   // Write code here that turns the phrase above into concrete actions
   return 'pending'
 })
 
-Then('I do not see the {word}', function() {
+Then('I do not see the {word}', function () {
+  // Write code here that turns the phrase above into concrete actions
+  return 'pending'
+})
+
+Then('diory location is saved to diograph', function () {
+  // Write code here that turns the phrase above into concrete actions
+  return 'pending'
+})
+
+Then('room {int} has {int} linked diory', function (int, int2) {
+  // Write code here that turns the phrase above into concrete actions
+  return 'pending'
+})
+
+Then('{word} is saved to diograph', function () {
+  // Write code here that turns the phrase above into concrete actions
+  return 'pending'
+})
+
+Then('I diorys is moved to location', function () {
+  // Write code here that turns the phrase above into concrete actions
+  return 'pending'
+})
+
+Then('diory {int} marker is not on map', function (int) {
   // Write code here that turns the phrase above into concrete actions
   return 'pending'
 })
