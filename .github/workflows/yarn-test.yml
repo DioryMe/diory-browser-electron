@@ -3,7 +3,7 @@
 
 name: Tests (yarn test)
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   build:
