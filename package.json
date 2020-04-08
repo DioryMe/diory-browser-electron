@@ -121,6 +121,10 @@
       "pre-commit": "lint-staged"
     }
   },
+  "nodemonConfig": {
+    "ignore": ["public/*", "docs/*"],
+    "delay": "2000"
+  },
   "lint-staged": {
     "{electron,src}/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
       "prettier --write",

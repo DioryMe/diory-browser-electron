@@ -15,7 +15,6 @@ const getRoom = async (path) => {
   if (fs.existsSync(diographJSONPath)) {
     const raw = fs.readFileSync(diographJSONPath)
     return {
-      id,
       diograph: JSON.parse(raw),
     }
   }
