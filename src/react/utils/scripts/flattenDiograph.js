@@ -1,6 +1,6 @@
 import uuid from 'uuid'
 
-const getData = diorys =>
+const getData = (diorys) =>
   Object.entries(diorys).reduce((obj, [key, diory]) => {
     const id = diory.id || uuid()
     return {
@@ -9,7 +9,7 @@ const getData = diorys =>
     }
   }, {})
 
-const getLinks = diorys =>
+const getLinks = (diorys) =>
   Object.entries(diorys).reduce(
     (obj, [key, { id }]) => ({
       ...obj,
@@ -18,7 +18,7 @@ const getLinks = diorys =>
     {}
   )
 
-const getDiorys = diorys =>
+const getDiorys = (diorys) =>
   Object.values(diorys).reduce(
     (obj, diory) => ({
       ...obj,
@@ -27,7 +27,7 @@ const getDiorys = diorys =>
     {}
   )
 
-const flattenDiograph = diograph => {
+const flattenDiograph = (diograph) => {
   const results = Object.entries(diograph).reduce((obj, [key, { diorys, ...diory }]) => {
     if (diorys) {
       const data = getData(diorys)

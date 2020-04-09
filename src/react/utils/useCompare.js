@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-export const useCompare = value => {
+export const useCompare = (value) => {
   const ref = useRef()
   useEffect(() => {
     ref.current = value

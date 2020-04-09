@@ -10,7 +10,7 @@ export const saveRoom = ({ id, diograph }) => ({
   payload: { id, diograph },
 })
 
-export const addDiory = diory => ({
+export const addDiory = (diory) => ({
   type: types.ADD_DIORY,
   payload: {
     diory: {
@@ -20,7 +20,7 @@ export const addDiory = diory => ({
   },
 })
 
-export const removeDiory = diory => {
+export const removeDiory = (diory) => {
   const now = new Date().toISOString()
   return {
     type: types.REMOVE_DIORY,
@@ -34,7 +34,7 @@ export const removeDiory = diory => {
   }
 }
 
-export const updateDiory = diory => ({
+export const updateDiory = (diory) => ({
   type: types.UPDATE_DIORY,
   payload: {
     diory: {
@@ -44,7 +44,7 @@ export const updateDiory = diory => ({
   },
 })
 
-export const addLink = diory => ({
+export const addLink = (diory) => ({
   type: types.ADD_LINK,
   payload: {
     diory: {
@@ -54,7 +54,7 @@ export const addLink = diory => ({
   },
 })
 
-export const removeLink = diory => ({
+export const removeLink = (diory) => ({
   type: types.REMOVE_LINK,
   payload: {
     diory: {

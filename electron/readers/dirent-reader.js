@@ -9,5 +9,5 @@ exports.isFolder = function isFolder(dirent) {
 }
 
 exports.getPath = function getPath(folderPath) {
-  return dirent => resolve(folderPath, dirent.name)
+  return (dirent) => resolve(folderPath, dirent.name)
 }

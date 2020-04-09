@@ -3,9 +3,9 @@ import { selectLens } from './actions'
 import Lenses from './index'
 
 export const useLenses = () => {
-  const [{ selectedLensId }, dispatch] = useStore(state => state.lenses)
+  const [{ selectedLensId }, dispatch] = useStore((state) => state.lenses)
 
-  const toggleLens = id => {
+  const toggleLens = (id) => {
     const nextSelectedLensId = id === selectedLensId ? undefined : id
     dispatch(selectLens(nextSelectedLensId))
   }
@@ -34,7 +34,7 @@ export const useLenses = () => {
     lenses,
     toolButtons,
     selectedLensId,
-    selectLens: id => dispatch(selectLens(id)),
+    selectLens: (id) => dispatch(selectLens(id)),
     toggleLens,
   }
 }

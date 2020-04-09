@@ -11,7 +11,7 @@ function valuesToArrays([obj1, obj2], obj) {
 }
 
 exports.reduceValuesToArraysPromise = function reduceValuesToArraysPromise(asyncFunc) {
-  return async array => {
+  return async (array) => {
     const promises = await Promise.all(array.map(asyncFunc))
     return promises.reduce(valuesToArrays, [{}, {}])
   }
@@ -30,7 +30,7 @@ exports.promiseAllReduce = async function promiseAllReduce(asyncArray) {
 
 exports.removeUndefined = function removeUndefined(props) {
   return Object.keys(props)
-    .filter(key => props[key])
+    .filter((key) => props[key])
     .reduce(
       (obj, key) => ({
         ...obj,

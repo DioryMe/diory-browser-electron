@@ -37,7 +37,7 @@ exports.generateFileDiory = function generateFileDiory(filePath) {
 }
 
 function getFirstImage(linkedDiorys) {
-  return linkedDiorys.map(({ image }) => image).find(image => image)
+  return linkedDiorys.map(({ image }) => image).find((image) => image)
 }
 
 exports.generateFolderDiory = function generateFolderDiory(folderPath, linkedDiorys = []) {

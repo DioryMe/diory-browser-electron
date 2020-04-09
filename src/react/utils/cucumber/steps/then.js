@@ -58,7 +58,7 @@ Then('I diorys is moved to location', () => {
   return 'pending'
 })
 
-Then('diory {int} marker is not on map', int => {
+Then('diory {int} marker is not on map', (int) => {
   // Write code here that turns the phrase above into concrete actions
   return 'pending'
 })

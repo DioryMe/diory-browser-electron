@@ -8,7 +8,7 @@ export const initial = (state, action) => {
   return state
 }
 
-export const final = state => {
+export const final = (state) => {
   console.log('NextState:')
   console.log(state)
   return state

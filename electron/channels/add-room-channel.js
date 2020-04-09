@@ -12,7 +12,7 @@ ipcMain.on(channels.ADD_ROOM, (event, path) => {
       .then(() => {
         event.reply(channels.ADD_ROOM, diograph[id])
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err)
         return event.sender.send(channels.ADD_ROOM, null, err)
       })

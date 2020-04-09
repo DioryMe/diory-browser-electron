@@ -7,7 +7,7 @@ import ToolButton from './ToolButton'
 const useToolsBar = () => {
   const [open, setOpen] = useState(false)
   const { active, onSelect, onClear } = useTools()
-  const [{ selectedLensId }] = useStore(state => state.lenses)
+  const [{ selectedLensId }] = useStore((state) => state.lenses)
   const { toolButtons } = useLenses()
 
   let buttons = []
@@ -22,7 +22,7 @@ const useToolsBar = () => {
   return {
     tools: !open && buttons.length > 1,
     showButtons: () => setOpen(true),
-    buttons: buttons.map(button => ({
+    buttons: buttons.map((button) => ({
       ...button,
       key: button.id,
       active: button.id === active,
@@ -45,7 +45,7 @@ const ToolsBar = () => {
       }}
     >
       {tools && <ToolButton id="tools" data={{ icon: 'wrench' }} onClick={showButtons} />}
-      {!tools && buttons.map(button => <ToolButton {...button} />)}
+      {!tools && buttons.map((button) => <ToolButton {...button} />)}
     </div>
   )
 }
