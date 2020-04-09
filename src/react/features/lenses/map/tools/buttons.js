@@ -8,6 +8,7 @@ export default [
     text: 'Add location',
     data: {
       icon: 'plus',
+      testid: 'add',
     },
   },
   {
@@ -15,6 +16,7 @@ export default [
     text: 'Remove location',
     data: {
       icon: 'minus',
+      testid: 'remove',
     },
   },
   {
@@ -22,6 +24,7 @@ export default [
     text: 'Move location',
     data: {
       icon: 'move',
+      testid: 'move',
     },
   },
 ]

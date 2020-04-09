@@ -7,8 +7,8 @@ const getActiveProps = (active) =>
     intent: 'success',
   }
 
-const ToolButton = ({ id, data, active, onClick }) => (
-  <div data-testid={id + '-button' + (active ? '--active' : '')} onClick={onClick}>
+const ToolButton = ({ data, active, onClick }) => (
+  <div data-testid={data.testid + '-button' + (active ? '--active' : '')} onClick={onClick}>
     <IconButton
       {...getActiveProps(active)}
       icon={data.icon}
