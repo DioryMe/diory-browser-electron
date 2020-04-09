@@ -40,6 +40,7 @@ const useToolsBar = () => {
           id: 'tools',
           data: {
             icon: 'wrench',
+            testid: 'tools',
           },
           onClick: () => setOpen(true),
         },

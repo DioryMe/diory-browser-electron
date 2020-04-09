@@ -3,38 +3,38 @@
 exports[`diograph-generator generateDiograph generates diograph from example folder 1`] = `
 Object {
   "uuid-0": Object {
-    "created": "2020-04-02T17:57:14.568Z",
+    "created": "2020-04-09T18:55:36.839Z",
     "date": "2008-11-01T21:15:11.000Z",
     "id": "uuid-0",
     "image": "/Users/op/2019/diory-browser-electron/electron/readers/example-folder/other-image.jpg",
     "latitude": 43.464455,
     "longitude": 11.881478333333334,
-    "modified": "2020-04-02T17:57:14.569Z",
+    "modified": "2020-04-09T18:55:36.841Z",
   },
   "uuid-1": Object {
-    "created": "2020-04-02T17:57:14.572Z",
+    "created": "2020-04-09T18:55:36.843Z",
     "date": "2019-11-25T19:58:24.000Z",
     "id": "uuid-1",
     "image": "/Users/op/2019/diory-browser-electron/electron/readers/example-folder/some-image.jpg",
-    "modified": "2020-04-02T17:57:14.572Z",
+    "modified": "2020-04-09T18:55:36.843Z",
   },
   "uuid-2": Object {
-    "created": "2020-04-02T17:57:14.573Z",
+    "created": "2020-04-09T18:55:36.844Z",
     "id": "uuid-2",
-    "modified": "2020-04-02T17:57:14.573Z",
+    "modified": "2020-04-09T18:55:36.844Z",
     "text": "some-text",
   },
   "uuid-3": Object {
-    "created": "2020-04-02T17:57:14.570Z",
+    "created": "2020-04-09T18:55:36.842Z",
     "date": "2019-10-27T14:40:43.000Z",
     "id": "uuid-3",
     "image": "/Users/op/2019/diory-browser-electron/electron/readers/example-folder/some-folder/some-folder-image.jpg",
     "latitude": 61.49578611111111,
     "longitude": 23.76756111111111,
-    "modified": "2020-04-02T17:57:14.571Z",
+    "modified": "2020-04-09T18:55:36.843Z",
   },
   "uuid-4": Object {
-    "created": "2020-03-30T19:12:32.523Z",
+    "created": "2020-04-09T18:55:36.842Z",
     "id": "uuid-4",
     "image": "/Users/op/2019/diory-browser-electron/electron/readers/example-folder/some-folder/some-folder-image.jpg",
     "links": Object {
@@ -42,11 +42,11 @@ Object {
         "id": "uuid-3",
       },
     },
-    "modified": "2020-04-02T17:57:14.570Z",
+    "modified": "2020-04-09T18:55:36.842Z",
     "text": "some-folder",
   },
   "uuid-5": Object {
-    "created": "2020-03-30T19:12:32.523Z",
+    "created": "2020-04-09T18:55:36.839Z",
     "id": "uuid-5",
     "image": "/Users/op/2019/diory-browser-electron/electron/readers/example-folder/some-folder/some-folder-image.jpg",
     "links": Object {
@@ -63,7 +63,7 @@ Object {
         "id": "uuid-2",
       },
     },
-    "modified": "2020-04-02T17:57:14.573Z",
+    "modified": "2020-04-09T18:55:36.844Z",
     "text": "example-folder",
   },
 }
