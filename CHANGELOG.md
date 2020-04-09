@@ -1,3 +1,11 @@
+## 0.3.4 (April 9, 2020)
+
+### DDA-17: Add room to home
+
+* Add room -tool for connector
+* Tool button refactoring
+* Use path to save room
+
 ## 0.3.3 (April 5, 2020)
 
 ### DDA-6: Generate diograph from folders and subfolders
