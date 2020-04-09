@@ -7,8 +7,8 @@ import Room from './features/room/Room'
 import HomeView from './features/home/HomeView'
 
 const View = () => {
-  const [{ selectedLensId }] = useStore(state => state.lenses)
-  const [{ roomId }] = useStore(state => state.navigation)
+  const [{ selectedLensId }] = useStore((state) => state.lenses)
+  const [{ roomId }] = useStore((state) => state.navigation)
 
   if (!roomId) {
     return <HomeView />

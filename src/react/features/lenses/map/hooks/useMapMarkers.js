@@ -30,12 +30,12 @@ const createMapMarker = ({ diory, diorys }) => {
   return marker
 }
 
-const addDataTestIdToMarker = id => marker => {
+const addDataTestIdToMarker = (id) => (marker) => {
   marker._icon.setAttribute('data-testid', id)
   return marker
 }
 
-const useDioryMarker = mapRef => {
+const useDioryMarker = (mapRef) => {
   const { diory, diorys } = useFocusDiory()
   const focusChanged = useCompare(diory.id)
 
@@ -66,14 +66,14 @@ const useDioryMarker = mapRef => {
   }, [mapRef, diory, diorys, focusChanged])
 }
 
-const useDiorysMarkers = mapRef => {
+const useDiorysMarkers = (mapRef) => {
   const { diorys } = useFocusDiory()
 
   const markerRefs = useRef([])
   useEffect(() => {
     markerRefs.current
       .filter(({ dioryId }) => !diorys.map(({ id }) => id).includes(dioryId))
-      .map(marker => marker.remove())
+      .map((marker) => marker.remove())
 
     const oldMarkers = markerRefs.current.filter(({ dioryId }) =>
       diorys.map(({ id }) => id).includes(dioryId)
@@ -82,7 +82,7 @@ const useDiorysMarkers = mapRef => {
     const newMarkers = diorys
       .filter(({ id }) => !markerRefs.current.map(({ dioryId }) => dioryId).includes(id))
       .filter(({ latitude, longitude }) => latitude && longitude)
-      .map(diory => createMapMarker({ diory }).addTo(mapRef.current))
+      .map((diory) => createMapMarker({ diory }).addTo(mapRef.current))
       .map(addDataTestIdToMarker('linked-diory-marker'))
 
     markerRefs.current = oldMarkers.concat(newMarkers)
@@ -90,11 +90,11 @@ const useDiorysMarkers = mapRef => {
 }
 
 // TODO: Find a better way to update popup width on image load
-const useUpdatePopup = mapRef => {
+const useUpdatePopup = (mapRef) => {
   useEffect(() => {
     document.querySelector('.leaflet-popup-pane').addEventListener(
       'load',
-      function(event) {
+      function (event) {
         const tagName = event.target.tagName,
           popup = mapRef.current._popup
 
@@ -108,7 +108,7 @@ const useUpdatePopup = mapRef => {
   }, [mapRef])
 }
 
-export const useMapMarkers = mapRef => {
+export const useMapMarkers = (mapRef) => {
   useDioryMarker(mapRef)
   useDiorysMarkers(mapRef)
   useUpdatePopup(mapRef)

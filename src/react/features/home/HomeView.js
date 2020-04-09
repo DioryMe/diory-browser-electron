@@ -9,9 +9,9 @@ import Room from '../../components/Room'
 import { getBackgroundImage } from '../../components/utils'
 
 const useHome = () => {
-  const [{ rooms }, dispatch] = useStore(state => state.home)
+  const [{ rooms }, dispatch] = useStore((state) => state.home)
   return {
-    rooms: Object.values(rooms).map(room => ({
+    rooms: Object.values(rooms).map((room) => ({
       room,
       onClick: () => dispatch(enterRoom(room.id)),
     })),
@@ -24,7 +24,7 @@ const HomeView = () => {
   return (
     <Pane height="100%" display="flex" flexWrap="wrap" padding={24}>
       <Image backgroundImage={getBackgroundImage(image, rooms.length)} zIndex={-1} />
-      {rooms.map(room => (
+      {rooms.map((room) => (
         <Room {...room} />
       ))}
       <div>

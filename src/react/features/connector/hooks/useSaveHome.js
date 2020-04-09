@@ -9,7 +9,7 @@ import { channels } from '../../../../shared/constants'
 import { debounce } from '../../../utils'
 
 export const useSaveHome = () => {
-  const [{ rooms, updated }] = useStore(state => state.home)
+  const [{ rooms, updated }] = useStore((state) => state.home)
   const promiseDispatch = usePromiseDispatch()
   useEffect(() => {
     if (updated) {

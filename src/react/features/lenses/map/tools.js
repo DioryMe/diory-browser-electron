@@ -14,9 +14,9 @@ const getTileURL = ({ lat, lng, zoom }) => {
   return `${zoom}/${xtile}/${ytile}`
 }
 
-const useAddLocation = mapRef => {
-  const [{ focus }] = useStore(state => state.navigation)
-  const [{ active }] = useStore(state => state.tools)
+const useAddLocation = (mapRef) => {
+  const [{ focus }] = useStore((state) => state.navigation)
+  const [{ active }] = useStore((state) => state.tools)
   const dispatch = useDispatch()
   useEffect(() => {
     mapRef.current.off('click')
@@ -38,11 +38,11 @@ const useAddLocation = mapRef => {
   }, [mapRef, active, focus, dispatch])
 }
 
-const useMoveLocation = mapRef => {
-  const [{ active }] = useStore(state => state.tools)
+const useMoveLocation = (mapRef) => {
+  const [{ active }] = useStore((state) => state.tools)
   const dispatch = useDispatch()
   useEffect(() => {
-    mapRef.current.eachLayer(marker => {
+    mapRef.current.eachLayer((marker) => {
       if (marker.dioryId) {
         if (active === 'move') {
           marker.dragging.enable()
@@ -59,12 +59,12 @@ const useMoveLocation = mapRef => {
   }, [mapRef, active, dispatch])
 }
 
-const useRemoveLocation = mapRef => {
-  const [{ focus }] = useStore(state => state.navigation)
-  const [{ active }] = useStore(state => state.tools)
+const useRemoveLocation = (mapRef) => {
+  const [{ focus }] = useStore((state) => state.navigation)
+  const [{ active }] = useStore((state) => state.tools)
   const dispatch = useDispatch()
   useEffect(() => {
-    mapRef.current.eachLayer(marker => {
+    mapRef.current.eachLayer((marker) => {
       if (marker.dioryId) {
         function removeMarker() {
           marker.remove()
@@ -81,12 +81,12 @@ const useRemoveLocation = mapRef => {
   }, [mapRef, focus, active, dispatch])
 }
 
-const useSetFocus = mapRef => {
-  const [{ focus }] = useStore(state => state.navigation)
-  const [{ active }] = useStore(state => state.tools)
+const useSetFocus = (mapRef) => {
+  const [{ focus }] = useStore((state) => state.navigation)
+  const [{ active }] = useStore((state) => state.tools)
   const dispatch = useDispatch()
   useEffect(() => {
-    mapRef.current.eachLayer(marker => {
+    mapRef.current.eachLayer((marker) => {
       if (marker.dioryId) {
         if (!active) {
           marker.off('click')
@@ -103,12 +103,12 @@ const useSetFocus = mapRef => {
   }, [mapRef, focus, active, dispatch])
 }
 
-const useTogglePopup = mapRef => {
-  const [{ focus }] = useStore(state => state.navigation)
-  const [{ active }] = useStore(state => state.tools)
+const useTogglePopup = (mapRef) => {
+  const [{ focus }] = useStore((state) => state.navigation)
+  const [{ active }] = useStore((state) => state.tools)
   const dispatch = useDispatch()
   useEffect(() => {
-    mapRef.current.eachLayer(marker => {
+    mapRef.current.eachLayer((marker) => {
       if (marker.dioryId) {
         marker.on('click', () => {
           marker.togglePopup()
@@ -118,7 +118,7 @@ const useTogglePopup = mapRef => {
   }, [mapRef, focus, active, dispatch])
 }
 
-export const useMapTools = mapRef => {
+export const useMapTools = (mapRef) => {
   useAddLocation(mapRef)
   useMoveLocation(mapRef)
   useRemoveLocation(mapRef)

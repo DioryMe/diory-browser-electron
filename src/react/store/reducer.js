@@ -5,7 +5,7 @@ import navigation from '../features/navigation/reducers'
 import tools from '../features/tools/reducers'
 import room from '../features/room/reducers'
 
-const combineReducers = reducers => (state, action) =>
+const combineReducers = (reducers) => (state, action) =>
   Object.entries(reducers).reduce(
     (obj, [key, reducer]) => ({
       ...obj,

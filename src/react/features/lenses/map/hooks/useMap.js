@@ -6,7 +6,7 @@ import { getLocationData } from './getLocationData'
 
 // TODO: Use store for map data
 let initialBounds = true
-const useInitialMapBounds = mapRef => {
+const useInitialMapBounds = (mapRef) => {
   const { diory, diorys } = useFocusDiory()
 
   if (!mapRef.current) {
@@ -29,7 +29,7 @@ const useInitialMapBounds = mapRef => {
   }, [mapRef, diory, diorys])
 }
 
-const useMapBounds = mapRef => {
+const useMapBounds = (mapRef) => {
   const { diory, diorys } = useFocusDiory()
   const focusChanged = useCompare(diory.id)
   useEffect(() => {
@@ -46,7 +46,7 @@ const useMapBounds = mapRef => {
   }, [mapRef, focusChanged, diory, diorys])
 }
 
-export const useMap = id => {
+export const useMap = (id) => {
   const mapRef = useRef(null)
   useEffect(() => {
     if (!mapRef.current) {
