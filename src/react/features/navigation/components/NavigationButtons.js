@@ -4,7 +4,7 @@ import { useStore } from '../../../store'
 import { goHome, goBackward, goForward } from '../actions'
 
 const useNavigationButtons = () => {
-  const [{ backward, forward }, dispatch] = useStore(state => state.navigation)
+  const [{ backward, forward }, dispatch] = useStore((state) => state.navigation)
   return {
     home: {
       onClick: () => dispatch(goHome()),
@@ -20,7 +20,7 @@ const useNavigationButtons = () => {
   }
 }
 
-const NavigationButtons = props => {
+const NavigationButtons = (props) => {
   const { home, back, forward } = useNavigationButtons()
   return (
     <Pane {...props}>

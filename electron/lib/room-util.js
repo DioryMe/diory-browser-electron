@@ -2,7 +2,7 @@ const fs = require('fs')
 const util = require('util')
 const writeFilePromise = util.promisify(fs.writeFile)
 
-const getRoom = async id => {
+const getRoom = async (id) => {
   let folderPath = id
   let diographJSONPath = `${id}/diograph.json`
 

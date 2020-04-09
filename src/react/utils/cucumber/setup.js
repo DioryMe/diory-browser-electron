@@ -15,7 +15,7 @@ window.ipcRenderer = {
     const data = require(`../../features/connector/mockResponses/${channel}.json`)
     callback('event', data, null)
   },
-  removeAllListeners: channel => {},
+  removeAllListeners: (channel) => {},
 }
 
 global.window = window
@@ -24,10 +24,10 @@ global.navigator = {
   userAgent: 'node.js',
   platform: '',
 }
-global.requestAnimationFrame = function(callback) {
+global.requestAnimationFrame = function (callback) {
   return setTimeout(callback, 0)
 }
-global.cancelAnimationFrame = function(id) {
+global.cancelAnimationFrame = function (id) {
   clearTimeout(id)
 }
 

@@ -7,8 +7,8 @@ import { connect } from '../client'
 import { channels } from '../../../../shared/constants'
 
 export const useSaveRoom = () => {
-  const [{ id, diograph, updated }] = useStore(state => state.room)
-  const [{ paths }] = useStore(state => state.connector)
+  const [{ id, diograph, updated }] = useStore((state) => state.room)
+  const [{ paths }] = useStore((state) => state.connector)
   const path = paths[id]
 
   const promiseDispatch = usePromiseDispatch()

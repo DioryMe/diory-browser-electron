@@ -14,7 +14,7 @@ const useSearchInput = () => {
   return { searchInput }
 }
 
-const NavigationSearch = props => {
+const NavigationSearch = (props) => {
   const { searchInput } = useSearchInput()
   return (
     <Pane {...props}>

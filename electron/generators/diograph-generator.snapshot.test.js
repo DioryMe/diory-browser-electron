@@ -19,7 +19,7 @@ describe('diograph-generator', () => {
     it('generates diograph from example folder', async () => {
       const exampleFolderPath = join(__dirname, '../readers/example-folder')
       const amountOfCases = getNumberOfFilesAndFolders(exampleFolderPath) + 1
-      getArray(amountOfCases).forEach(id => {
+      getArray(amountOfCases).forEach((id) => {
         uuid.mockReturnValueOnce(`uuid-${id}`)
       })
 

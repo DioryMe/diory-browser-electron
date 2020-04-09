@@ -103,7 +103,7 @@ describe('diograph-generator', () => {
             it('generates file diorys', async () => {
               await act()
 
-              files.forEach(file => {
+              files.forEach((file) => {
                 expect(generateFileDiory).toHaveBeenCalledWith(file)
               })
             })
@@ -111,17 +111,17 @@ describe('diograph-generator', () => {
             it('generates subfolder diorys', async () => {
               await act()
 
-              subfolders.forEach(subfolder => {
+              subfolders.forEach((subfolder) => {
                 expect(generateFolderDiory).toHaveBeenCalledWith(subfolder, [])
               })
             })
 
             describe('given diorys have ids', () => {
               beforeEach(() => {
-                files.forEach(fileDiory => {
+                files.forEach((fileDiory) => {
                   generateFileDiory.mockReturnValueOnce({ id: `${fileDiory}-id` })
                 })
-                subfolders.forEach(subfolderDiory => {
+                subfolders.forEach((subfolderDiory) => {
                   generateFolderDiory.mockReturnValueOnce({ id: `${subfolderDiory}-id` })
                 })
               })
@@ -129,7 +129,7 @@ describe('diograph-generator', () => {
               it('adds diorys to diograph with id as key', async () => {
                 const { diograph } = await act()
                 const diorys = [...files, ...subfolders]
-                diorys.forEach(diory => {
+                diorys.forEach((diory) => {
                   expect(diograph[`${diory}-id`]).toStrictEqual({ id: `${diory}-id` })
                 })
               })
@@ -142,12 +142,12 @@ describe('diograph-generator', () => {
                 it('adds links from folder diory to diorys with file name as key', async () => {
                   const { diograph } = await act()
 
-                  files.forEach(file => {
+                  files.forEach((file) => {
                     expect(diograph['some-folderDiory-id'].links[file]).toStrictEqual({
                       id: `${file}-id`,
                     })
                   })
-                  subfolders.forEach(subfolder => {
+                  subfolders.forEach((subfolder) => {
                     expect(diograph['some-folderDiory-id'].links[subfolder]).toStrictEqual({
                       id: `${subfolder}-id`,
                     })

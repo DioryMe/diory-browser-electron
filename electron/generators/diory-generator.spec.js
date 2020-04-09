@@ -64,12 +64,12 @@ describe('diory-generator', () => {
         const fileData = ['created', 'modified']
 
         beforeEach(() => {
-          fileData.forEach(prop => {
+          fileData.forEach((prop) => {
             file[prop] = `some-file-${prop}`
           })
         })
 
-        fileData.forEach(prop => {
+        fileData.forEach((prop) => {
           it(`sets file ${prop} to diory ${prop}`, async () => {
             const diory = act()
 
@@ -96,7 +96,7 @@ describe('diory-generator', () => {
 
           const imageData = ['image', 'date', 'latitude', 'longitude', 'created', 'modified']
 
-          imageData.forEach(prop => {
+          imageData.forEach((prop) => {
             it(`sets image ${prop} to diory ${prop}`, async () => {
               image[prop] = `some-image-${prop}`
 
@@ -112,7 +112,7 @@ describe('diory-generator', () => {
     describe('given other file', () => {
       const fileData = ['text', 'image', 'date', 'latitude', 'longitude', 'created', 'modified']
 
-      fileData.forEach(prop => {
+      fileData.forEach((prop) => {
         it(`sets file ${prop} to diory ${prop}`, async () => {
           file[prop] = `some-file-${prop}`
 
@@ -171,7 +171,7 @@ describe('diory-generator', () => {
 
     const folderData = ['text', 'date', 'latitude', 'longitude', 'created', 'modified']
 
-    folderData.forEach(prop => {
+    folderData.forEach((prop) => {
       it(`sets folder ${prop} to diory ${prop}`, async () => {
         folder[prop] = `some-folder-${prop}`
 
