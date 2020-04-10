@@ -3,10 +3,6 @@
 ## Known issues
 
 * [ ] .env file is needed to set CI=true and SKIP_PREFLIGHT_CHECK=true => remove it asap
-* [ ] When running e.g. `yarn upgrade --latest` in container, yarn.lock is not modified
-* [ ] Husky is not working in container, so local yarn install is required
-  * Error "Can't find Husky, skipping pre-commit hook You can reinstall it using 'npm install husky --save-dev' or delete this hook"
-  * Needs git config to container, add new volume: `\~/.gitconfig:/etc/gitconfig`
 
 ## Docker
 
@@ -27,11 +23,6 @@ root@af26de6f61ae:/app# yarn eslint
 ## Husky
 
 Pre-commit hook that runs Prettier
-
-Requirements:
-  * Running `yarn install` locally (creates `node_modules` folder)
-  * Node 12 locally (`nvm use 12`)
-
 
 ## Changelog
 
