@@ -6,6 +6,7 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+      - ~/.gitconfig:/etc/gitconfig
     environment:
       NODE_ENV: ${NODE_ENV:-development}
     ports:
