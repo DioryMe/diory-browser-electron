@@ -14,9 +14,9 @@ const getTileURL = ({ lat, lng, zoom }) => {
   return `${zoom}/${xtile}/${ytile}`
 }
 
-export const useAddLocation = mapRef => {
-  const [{ focus }] = useStore(state => state.navigation)
-  const [{ active }] = useStore(state => state.tools)
+export const useAddLocation = (mapRef) => {
+  const [{ focus }] = useStore((state) => state.navigation)
+  const [{ active }] = useStore((state) => state.tools)
   const dispatch = useDispatch()
   useEffect(() => {
     mapRef.current.off('click')

@@ -2,12 +2,12 @@ import { useEffect } from 'react'
 import { useDispatch, useStore } from '../../../../store'
 import { setFocus } from '../../../navigation/actions'
 
-export const useSetFocus = mapRef => {
-  const [{ focus }] = useStore(state => state.navigation)
-  const [{ active }] = useStore(state => state.tools)
+export const useSetFocus = (mapRef) => {
+  const [{ focus }] = useStore((state) => state.navigation)
+  const [{ active }] = useStore((state) => state.tools)
   const dispatch = useDispatch()
   useEffect(() => {
-    mapRef.current.eachLayer(marker => {
+    mapRef.current.eachLayer((marker) => {
       if (marker.dioryId) {
         if (!active) {
           marker.off('click')

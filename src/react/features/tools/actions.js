@@ -1,6 +1,6 @@
 import * as types from './actionsTypes'
 
-export const setActive = active => ({
+export const setActive = (active) => ({
   type: types.SET_ACTIVE,
   payload: { active },
 })

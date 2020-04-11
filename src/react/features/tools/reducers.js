@@ -10,7 +10,7 @@ export const setActive = (state, { payload }) => ({
   active: payload.active,
 })
 
-export const setInactive = state => ({
+export const setInactive = (state) => ({
   ...state,
   active: null,
 })
