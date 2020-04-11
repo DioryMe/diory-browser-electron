@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { useStore, usePromiseDispatch } from '../../../store'
 
-import { saveRoom } from '../../room/actions'
-
-import { connect } from '../client'
-import { channels } from '../../../../shared/constants'
+// import { saveRoom } from '../../room/actions'
+//
+// import { connect } from '../client'
+// import { channels } from '../../../../shared/constants'
 
 import { debounce } from '../../../utils'
 
@@ -14,7 +14,7 @@ export const useSaveHome = () => {
   useEffect(() => {
     if (updated) {
       debounce(
-        // promiseDispatch(saveRoom, () => connect(channels.SAVE_HOME, { rooms })),
+        // promiseDispatch(saveHome, () => connect(channels.SAVE_HOME, { rooms })),
         500
       )
     }
