@@ -11,6 +11,10 @@
 ### DDA-6: Generate diograph from folders and subfolders
 
 * Create recursive diograph generator
+    - [x] Create diorys from folders, subfolders, files and photos
+    - [x] Convert Jasmine tests to Jest tests => use Jest also for backend testing
+    - [ ] Resolve data from photos to folders
+        - [x] Folder image from first image
 
 ## 0.3.2 (March 27, 2020)
 
