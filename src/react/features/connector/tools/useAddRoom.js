@@ -18,9 +18,9 @@ export const useAddRoom = () => {
   useEffect(() => {
     if (buttons.ADD_ROOM === active) {
       dispatch(setInactive())
-      window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then(result => {
+      window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then((result) => {
         const path = result.filePaths[0]
-        connect(channels.ADD_ROOM, path).then(room => {
+        connect(channels.ADD_ROOM, path).then((room) => {
           dispatch(addPath(room.id, path))
           dispatch(addRoom(room))
         })

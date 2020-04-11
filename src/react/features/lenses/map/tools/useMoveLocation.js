@@ -3,11 +3,11 @@ import { useDispatch, useStore } from '../../../../store'
 import { updateDiory } from '../../../room/actions'
 import * as buttons from './buttons'
 
-export const useMoveLocation = mapRef => {
-  const [{ active }] = useStore(state => state.tools)
+export const useMoveLocation = (mapRef) => {
+  const [{ active }] = useStore((state) => state.tools)
   const dispatch = useDispatch()
   useEffect(() => {
-    mapRef.current.eachLayer(marker => {
+    mapRef.current.eachLayer((marker) => {
       if (marker.dioryId) {
         if (buttons.MAP_MOVE_LOCATION === active) {
           marker.dragging.enable()
