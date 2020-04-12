@@ -4,11 +4,7 @@ import { useStore } from '../../../store'
 import { useLenses } from '../../lenses/hooks'
 
 const useNavigationLenses = () => {
-  const {
-    lenses: { search, ...lenses },
-    selectedLensId,
-    toggleLens,
-  } = useLenses()
+  const { lenses, selectedLensId, toggleLens } = useLenses()
   const [{ roomId }] = useStore((state) => state.navigation)
 
   return {
