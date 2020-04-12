@@ -1,9 +1,13 @@
 import React from 'react'
-import Box from 'ui-box'
 import PropTypes from 'prop-types'
+import Box from 'ui-box'
+import { Pane, Icon } from 'evergreen-ui'
 
 import Image from './Image'
 import { getBackgroundImage } from '../utils'
+
+const colors = ['#5bc0eb', '#fcd600', '#9bc53d', '#e55934', '#fa7921']
+const getRandom = (array) => array[Math.floor(Math.random() * array.length)]
 
 const defaultStyle = {
   container: {
@@ -17,10 +21,10 @@ const defaultStyle = {
 }
 
 const Diory = ({ diory, onClick, children, ...props }) => {
-  const { id, text, image, style = {} } = diory
+  const { id, text, image, style = {}, data } = diory
   return (
     <Box id={id} {...props} onClick={(event) => onClick && onClick({ diory, event })}>
-      <Box {...defaultStyle.container}>
+      <Box {...defaultStyle.container} background={getRandom(colors)}>
         {image && (
           <Image
             image={image}
@@ -32,6 +36,11 @@ const Diory = ({ diory, onClick, children, ...props }) => {
           <Box {...defaultStyle.text} {...style.text}>
             {text}
           </Box>
+        )}
+        {data && data.icon && (
+          <Pane>
+            <Icon key="icon" size={80} style={{ width: '100%', opacity: 0.8 }} {...data} />
+          </Pane>
         )}
       </Box>
       {children}
