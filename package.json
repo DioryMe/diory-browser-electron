@@ -55,6 +55,7 @@
   "homepage": "./",
   "scripts": {
     "start": "export BROWSER=none && PORT=3300 react-scripts start",
+    "start-browser": "PORT=3301 react-scripts start",
     "start-electron": "export ELECTRON_START_URL=http://localhost:3300 && electron .",
     "build-and-start-electron": "yarn build && electron .",
     "start-electron-dev-tools": "DEV_TOOLS=true export ELECTRON_START_URL=http://localhost:3300 && cross-env nodemon --exec electron .",
@@ -123,7 +124,7 @@
   },
   "nodemonConfig": {
     "ignore": ["public/*", "docs/*"],
-    "delay": "2000"
+    "delay": 2000
   },
   "lint-staged": {
     "{electron,src}/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
