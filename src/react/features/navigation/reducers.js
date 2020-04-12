@@ -18,13 +18,19 @@ export const enterRoom = (state, { payload }) => ({
   path: [payload.roomId],
 })
 
-export const setFocus = (state, { payload }) => ({
-  ...state,
-  focus: payload.focus,
-  backward: [[state.roomId, state.focus], ...state.backward],
-  forward: [],
-  path: [...state.path, payload.focus],
-})
+export const setFocus = (state, { payload }) => {
+  if (payload.focus === state.focus) {
+    return state
+  }
+
+  return {
+    ...state,
+    focus: payload.focus,
+    backward: [[state.roomId, state.focus], ...state.backward],
+    forward: [],
+    path: [...state.path, payload.focus],
+  }
+}
 
 export const goSide = (state, { payload }) => ({
   ...state,

@@ -1,14 +1,16 @@
 import React from 'react'
 import { Pane, SearchInput } from 'evergreen-ui'
-import { useLenses } from '../../lenses/hooks'
+import { useDispatch, useStore } from '../../../store'
+import { useSearchTool } from '../../room/tools/useSearchTool'
 
 const useSearchInput = () => {
-  const { search, selectLens } = useLenses()
+  const [{ roomId }] = useStore((state) => state.navigation)
+  const { onFocus, onChange } = useSearchTool()
 
-  const searchInput = {
-    ...search,
-    placeholder: 'Search diories...',
-    onFocus: () => selectLens(search.id),
+  const searchInput = roomId && {
+    placeholder: 'Search your diory',
+    onFocus: ({ target: { value } }) => onFocus(value),
+    onChange: ({ target: { value } }) => onChange(value),
   }
 
   return { searchInput }
@@ -16,11 +18,7 @@ const useSearchInput = () => {
 
 const NavigationSearch = (props) => {
   const { searchInput } = useSearchInput()
-  return (
-    <Pane {...props}>
-      {searchInput.id && <SearchInput marginRight={16} width={150} {...searchInput} />}
-    </Pane>
-  )
+  return <Pane {...props}>{searchInput && <SearchInput width={200} {...searchInput} />}</Pane>
 }
 
 export default NavigationSearch
