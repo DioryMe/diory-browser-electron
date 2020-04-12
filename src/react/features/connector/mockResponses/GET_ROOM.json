@@ -4,6 +4,8 @@
     "room1": {
       "id": "room1",
       "text": "Room 1",
+      "latitude": 60.17037863792087,
+      "longitude": 24.941368103027347,
       "links": {
         "link1": {
           "id": "diory1"
@@ -30,14 +32,14 @@
           "id": "diory14"
         }
       },
-      "latitude": "1",
-      "longitude": "1"
+      "latitude": 61,
+      "longitude": 26
     },
     "diory2": {
       "id": "diory2",
       "text": "Diory 2",
-      "latitude": "2",
-      "longitude": "2"
+      "latitude": 62,
+      "longitude": 27
     },
     "diory11": {
       "id": "diory11",

@@ -1,5 +1,4 @@
-export const fetchFile = (channel) => {
-  // TODO: Find good place for static data
+export const mockResponse = (channel) => {
   const data = {
     GET_HOME: require('./mockResponses/GET_HOME.json'),
     GET_ROOM: require('./mockResponses/GET_ROOM.json'),

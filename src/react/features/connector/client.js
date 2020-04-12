@@ -1,10 +1,10 @@
-import { fetchFile } from './fileClient'
+import { mockResponse } from './client.mock'
 
 const { ipcRenderer } = window
 
 export const connect = (channel, params) => {
   if (!ipcRenderer) {
-    return fetchFile(channel, params)
+    return mockResponse(channel, params)
   }
 
   return new Promise((resolve, reject) => {
