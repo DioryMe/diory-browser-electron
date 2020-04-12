@@ -39,11 +39,11 @@ export const useSearchTool = () => {
 
   const dispatch = useDispatch()
 
-  if (!diograph[SEARCH_TOOL_ID]) {
-    dispatch(addDiory({ id: SEARCH_TOOL_ID }))
-  }
-
   const onFocus = (query) => {
+    if (!diograph[SEARCH_TOOL_ID]) {
+      dispatch(addDiory({ id: SEARCH_TOOL_ID }))
+    }
+
     dispatch(updateSearchDiory(query))
     dispatch(setFocus({ focus: SEARCH_TOOL_ID }))
   }

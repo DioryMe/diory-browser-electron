@@ -1,6 +1,6 @@
 import React from 'react'
 import { Pane, SearchInput } from 'evergreen-ui'
-import { useDispatch, useStore } from '../../../store'
+import { useStore } from '../../../store'
 import { useSearchTool } from '../../room/tools/useSearchTool'
 
 const useSearchInput = () => {
