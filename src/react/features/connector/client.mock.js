@@ -1,7 +1,10 @@
+import GET_HOME from './mockResponses/GET_HOME.json'
+import GET_ROOM from './mockResponses/GET_ROOM.json'
+
 export const mockResponse = (channel) => {
   const data = {
-    GET_HOME: require('./mockResponses/GET_HOME.json'),
-    GET_ROOM: require('./mockResponses/GET_ROOM.json'),
+    GET_HOME,
+    GET_ROOM,
   }[channel]
 
   if (!data) {
