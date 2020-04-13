@@ -14,17 +14,6 @@ const diographToLinks = (diograph, diory) => ({
   },
 })
 
-const useSearchDiory = () => {
-  const [{ diograph }] = useStore((state) => state.room)
-
-  const dispatch = useDispatch()
-  useEffect(() => {
-    if (!diograph[SEARCH_TOOL_ID]) {
-      dispatch(addDiory({ id: SEARCH_TOOL_ID }))
-    }
-  }, [diograph, dispatch])
-}
-
 const getFilteredLinks = (diograph, query = '') =>
   Object.values(diograph)
     .filter(({ id }) => id !== SEARCH_TOOL_ID)
@@ -34,7 +23,6 @@ const getFilteredLinks = (diograph, query = '') =>
 const useUpdateSearchDiory = () => {
   const [{ diograph }] = useStore((state) => state.room)
   const [{ textFilter }] = useStore((state) => state.filters)
-  const [{ focus }] = useStore((state) => state.navigation)
 
   const textFilterChanged = useCompare(textFilter)
   const dispatch = useDispatch()
@@ -47,16 +35,29 @@ const useUpdateSearchDiory = () => {
           links: getFilteredLinks(diograph, textFilter),
         })
       )
-      if (SEARCH_TOOL_ID !== focus) {
-        dispatch(setFocus({ focus: SEARCH_TOOL_ID }))
-      }
     }
-  }, [textFilterChanged, textFilter, diograph, focus, dispatch])
+  }, [textFilterChanged, textFilter, diograph, dispatch])
 }
 
 export const useSearchTool = () => {
-  useSearchDiory()
   useUpdateSearchDiory()
+}
+
+export const useTurnOnSearchTool = () => {
+  const [{ diograph }] = useStore((state) => state.room)
+  const [{ focus }] = useStore((state) => state.navigation)
+
+  const dispatch = useDispatch()
+  const turnOn = () => {
+    if (!diograph[SEARCH_TOOL_ID]) {
+      dispatch(addDiory({ id: SEARCH_TOOL_ID }))
+    }
+    if (SEARCH_TOOL_ID !== focus) {
+      dispatch(setFocus({ focus: SEARCH_TOOL_ID }))
+    }
+  }
+
+  return { turnOn }
 }
 
 export const useSearchInputValue = () => {

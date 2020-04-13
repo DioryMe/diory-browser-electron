@@ -1,12 +1,16 @@
 import React from 'react'
 import { Heading, Pane } from 'evergreen-ui'
 import { useDispatch } from '../../store'
-import { useFocusDiory } from './hooks'
+
 import { setFocus } from '../navigation/actions'
+
+import { useFilters } from '../filters/hooks'
+import { useSearchTool } from './tools/useSearchTool'
+import { useFocusDiory } from './hooks'
+
 import Diory from '../../components/diories/Diory'
 import Image from '../../components/diories/Image'
 import { getBackgroundImage } from '../../components/utils'
-import { useSearchTool } from './tools/useSearchTool'
 
 const useRoom = () => {
   const dispatch = useDispatch()
@@ -23,6 +27,7 @@ const useRoom = () => {
 const MAX_NUMBER_OF_DIORYS_PER_VIEW = 100
 
 const Room = () => {
+  useFilters()
   useSearchTool()
   const { diory, diorys } = useRoom()
   if (!diory) {
