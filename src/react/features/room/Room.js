@@ -6,6 +6,7 @@ import { setFocus } from '../navigation/actions'
 import Diory from '../../components/diories/Diory'
 import Image from '../../components/diories/Image'
 import { getBackgroundImage } from '../../components/utils'
+import { useSearchTool } from './tools/useSearchTool'
 
 const useRoom = () => {
   const dispatch = useDispatch()
@@ -22,6 +23,7 @@ const useRoom = () => {
 const MAX_NUMBER_OF_DIORYS_PER_VIEW = 100
 
 const Room = () => {
+  useSearchTool()
   const { diory, diorys } = useRoom()
   if (!diory) {
     return <div>loading</div>
