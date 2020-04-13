@@ -18,7 +18,6 @@ const useSearchInput = () => {
       turnOn()
     },
     onChange: ({ target: { value } }) => setTextFilter(value),
-    onClear: () => setTextFilter(''),
   }
 
   return { searchInput }
