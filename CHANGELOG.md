@@ -1,3 +1,13 @@
+## 0.3.5 (April 13, 2020)
+
+### DDA-20: Filter diorys by text
+
+* Filter diorys by text in room
+   - [x] Search input in navbar
+   - [x] Show search results in grid
+   - [x] Show search results in map
+   - [x] Take a search result into focus
+
 ## 0.3.4 (April 9, 2020)
 
 ### DDA-17: Add room to home
