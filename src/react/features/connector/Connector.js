@@ -4,6 +4,7 @@ import { useGetRoom } from './hooks/useGetRoom'
 import { useSaveRoom } from './hooks/useSaveRoom'
 
 import { useAddRoom } from './tools/useAddRoom'
+import { useGenerateDiograph } from './tools/useGenerateDiograph'
 
 const Connector = () => {
   useGetHome()
@@ -11,6 +12,7 @@ const Connector = () => {
   useSaveRoom()
 
   useAddRoom()
+  useGenerateDiograph()
 
   return <div data-testid="connector" />
 }
