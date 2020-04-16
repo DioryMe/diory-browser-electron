@@ -21,19 +21,20 @@ const defaultStyle = {
 }
 
 const Diory = ({ diory, onClick, children, ...props }) => {
-  const { id, text, image, style = {}, data } = diory
+  const { id, text, image, style: dioryStyle = {}, data } = diory
+  const { image: styleImage, text: styleText, ...style } = dioryStyle
   return (
-    <Box id={id} {...props} onClick={(event) => onClick && onClick({ diory, event })}>
+    <Box id={id} {...props} onClick={(event) => onClick && onClick({ diory, event })} {...style}>
       <Box {...defaultStyle.container} background={getRandom(colors)}>
         {image && (
           <Image
             image={image}
-            style={style.image}
+            style={styleImage}
             backgroundImage={getBackgroundImage(image, text, '0, 0, 0, 0.2')}
           />
         )}
         {text && (
-          <Box {...defaultStyle.text} {...style.text}>
+          <Box {...defaultStyle.text} {...styleText}>
             {text}
           </Box>
         )}

@@ -26,7 +26,7 @@ const useRoom = () => {
 
 const MAX_NUMBER_OF_DIORYS_PER_VIEW = 100
 
-const Room = () => {
+const RoomView = () => {
   useFilters()
   useSearchTool()
   const { diory, diorys } = useRoom()
@@ -48,12 +48,11 @@ const Room = () => {
           onClick={onClick}
           flex="1 0 240px"
           height={160}
-          margin={24}
+          padding={24}
           elevation={2}
           alignSelf="center"
           color="white"
           fontWeight="bold"
-          background="grey"
           aria-controls={`panel-${diory.id}`}
         />
       ))}
@@ -61,9 +60,9 @@ const Room = () => {
   )
 }
 
-Room.diory = {
+RoomView.diory = {
   text: 'Room',
   image: 'folder-close',
 }
 
-export default Room
+export default RoomView
