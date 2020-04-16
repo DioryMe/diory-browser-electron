@@ -4,8 +4,6 @@ import { useDispatch } from '../../store'
 
 import { setFocus } from '../navigation/actions'
 
-import { useFilters } from '../filters/hooks'
-import { useSearchTool } from './tools/useSearchTool'
 import { useFocusDiory } from './hooks'
 
 import Diory from '../../components/diories/Diory'
@@ -27,8 +25,6 @@ const useRoom = () => {
 const MAX_NUMBER_OF_DIORYS_PER_VIEW = 100
 
 const RoomView = () => {
-  useFilters()
-  useSearchTool()
   const { diory, diorys } = useRoom()
   if (!diory) {
     return <div>loading</div>
