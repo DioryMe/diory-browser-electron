@@ -3,7 +3,7 @@ import { useStore } from './store'
 
 import FullScreenView from './components/FullScreenView'
 import SelectedLens from './features/lenses/SelectedLens'
-import Room from './features/room/Room'
+import RoomView from './features/room/RoomView'
 import HomeView from './features/home/HomeView'
 
 const View = () => {
@@ -22,7 +22,7 @@ const View = () => {
     )
   }
 
-  return <Room />
+  return <RoomView />
 }
 
 export default View
