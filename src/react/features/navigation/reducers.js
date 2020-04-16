@@ -13,7 +13,7 @@ export const enterRoom = (state, { payload }) => ({
   ...state,
   roomId: payload.roomId,
   focus: payload.roomId,
-  backward: [[]],
+  backward: [],
   forward: [],
   path: [payload.roomId],
 })
@@ -68,8 +68,8 @@ export const goForward = (state) => {
 export const goHome = (state) => {
   return {
     ...state,
-    roomId: undefined,
-    focus: undefined,
+    roomId: state.roomId,
+    focus: state.roomId,
     backward: [[state.roomId, state.focus], ...state.backward],
     forward: [],
     path: [],
