@@ -3,47 +3,11 @@ import { useDispatch, useStore } from '../../../store'
 import { useCompare } from '../../../utils/useCompare'
 
 import { setFocus } from '../../navigation/actions'
-import { addDiory, updateDiory } from '../actions'
+import { addDiory, updateDiory } from '../../room/actions'
 
 const SEARCH_TOOL_ID = 'SEARCH_TOOL_ID'
 
-const diographToLinks = (diograph, diory) => ({
-  ...diograph,
-  [diory.id]: {
-    id: diory.id,
-  },
-})
-
-const getFilteredLinks = (diograph, query = '') =>
-  Object.values(diograph)
-    .filter(({ id }) => id !== SEARCH_TOOL_ID)
-    .filter(({ text }) => !query || (text && text.toLowerCase().includes(query.toLowerCase())))
-    .reduce(diographToLinks, {})
-
-const useUpdateSearchDiory = () => {
-  const [{ diograph }] = useStore((state) => state.room)
-  const [{ textFilter }] = useStore((state) => state.filters)
-
-  const textFilterChanged = useCompare(textFilter)
-  const dispatch = useDispatch()
-  useEffect(() => {
-    if (textFilterChanged) {
-      dispatch(
-        updateDiory({
-          id: SEARCH_TOOL_ID,
-          text: `Search: ${textFilter}`,
-          links: getFilteredLinks(diograph, textFilter),
-        })
-      )
-    }
-  }, [textFilterChanged, textFilter, diograph, dispatch])
-}
-
-export const useSearchTool = () => {
-  useUpdateSearchDiory()
-}
-
-export const useTurnOnSearchTool = () => {
+export const useTurnOnTextFilter = () => {
   const [{ diograph }] = useStore((state) => state.room)
   const [{ focus }] = useStore((state) => state.navigation)
 
@@ -60,11 +24,43 @@ export const useTurnOnSearchTool = () => {
   return { turnOn }
 }
 
-export const useSearchInputValue = () => {
+export const useTextFilterValue = () => {
   const [{ textFilter }] = useStore((state) => state.filters)
   const [{ focus }] = useStore((state) => state.navigation)
 
   return {
-    searchInputValue: SEARCH_TOOL_ID === focus ? textFilter : '',
+    textFilterValue: SEARCH_TOOL_ID === focus ? textFilter : '',
   }
+}
+
+const diographToLinks = (diograph, diory) => ({
+  ...diograph,
+  [diory.id]: {
+    id: diory.id,
+  },
+})
+
+const getFilteredLinks = (diograph, query = '') =>
+  Object.values(diograph)
+    .filter(({ id }) => id !== SEARCH_TOOL_ID)
+    .filter(({ text }) => !query || (text && text.toLowerCase().includes(query.toLowerCase())))
+    .reduce(diographToLinks, {})
+
+export const useTextFilter = () => {
+  const [{ diograph }] = useStore((state) => state.room)
+  const [{ textFilter }] = useStore((state) => state.filters)
+
+  const textFilterChanged = useCompare(textFilter)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    if (textFilterChanged) {
+      dispatch(
+        updateDiory({
+          id: SEARCH_TOOL_ID,
+          text: `Search: ${textFilter}`,
+          links: getFilteredLinks(diograph, textFilter),
+        })
+      )
+    }
+  }, [textFilterChanged, textFilter, diograph, dispatch])
 }

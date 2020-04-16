@@ -9,6 +9,7 @@ import { useDocumentTitle } from './features/navigation/hooks'
 import Connector from './features/connector/Connector'
 import Navigation from './features/navigation/Navigation'
 import ToolsBar from './features/tools/ToolsBar'
+import Filters from './features/filters/Filters'
 import View from './View'
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
       <ToolsBar />
       <View />
       <Connector />
+      <Filters />
     </div>
   )
 }
