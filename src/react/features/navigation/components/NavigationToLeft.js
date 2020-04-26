@@ -1,10 +1,10 @@
 import React from 'react'
-import { useLeft } from '../hooks'
+import { useGoSide } from '../hooks'
 import NavigationSideways from './NavigationSideways'
 
 const NavigationToLeft = () => {
-  const { onClick } = useLeft()
-  return !onClick ? null : <NavigationSideways left onClick={onClick} />
+  const { goLeft } = useGoSide()
+  return !goLeft ? null : <NavigationSideways left onClick={goLeft} />
 }
 
 export default NavigationToLeft
