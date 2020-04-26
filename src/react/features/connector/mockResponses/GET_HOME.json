@@ -12,5 +12,11 @@
       "text": "My Life",
       "image": "https://upload.wikimedia.org/wikipedia/commons/9/99/The_love_of_my_life.jpg"
     }
+  },
+  "data": {
+    "focus": {
+      "room": "room1",
+      "diory": "diory1"
+    }
   }
 }
