@@ -3,10 +3,12 @@ Feature: Home
   Background:
     Given I am at home
 
+  @pending
   Scenario: Rooms at home
     Given I have 2 rooms
     Then I see 2 rooms
 
+  @pending
   Scenario: Entering a room
     When I enter room 1
     Then I am in room 1
