@@ -11,11 +11,10 @@ import { channels } from '../../../../shared/constants'
 export const useGetHome = () => {
   const dispatch = useDispatch()
   useEffect(() => {
-    connect(channels.GET_HOME).then(({ rooms }) => {
+    connect(channels.GET_HOME).then(({ rooms, data }) => {
       dispatch(setPaths(rooms))
       dispatch(setRooms(rooms))
-      const roomId = Object.values(rooms)[0].id
-      dispatch(enterRoom(roomId))
+      dispatch(enterRoom(data.focus.room))
     })
   }, [dispatch])
 }
