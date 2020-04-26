@@ -14,9 +14,9 @@ export const homeButtons = [
 export const roomButtons = [
   {
     id: GENERATE_DIOGRAPH,
-    text: 'Generate diograph',
+    text: 'Opeh folder',
     data: {
-      icon: 'plus',
+      icon: 'folder-open',
     },
   },
 ]
