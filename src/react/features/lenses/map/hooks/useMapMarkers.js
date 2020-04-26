@@ -5,9 +5,13 @@ import { useFocusDiory } from '../../../room/hooks'
 import { getLocationData } from './getLocationData'
 
 const createMapPopup = ({ diory = {} }) => {
-  const image = `<img src="${diory.image}" height="150px"/>`
-  const text = `<div>${diory.text || ''}</div>`
-  const content = `<div style="overflow: hidden">${image + text}</div>`
+  const elements = [
+    diory.image && `<img src="${diory.image}" width="150px"/>`,
+    diory.text && `<div>${diory.text}</div>`,
+  ]
+    .filter(Boolean)
+    .join('')
+  const content = `<div style="overflow: hidden; height: 100px}">${elements}</div>`
   return L.popup({
     closeButton: false,
   }).setContent(content)
