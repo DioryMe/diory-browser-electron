@@ -14,15 +14,6 @@ const getRoom = (state, { payload }) => ({
   updated: false,
 })
 
-const addDiograph = (state, { payload }) => ({
-  ...state,
-  diograph: {
-    ...state.diograph,
-    ...payload.diograph,
-  },
-  updated: true,
-})
-
 const addDiory = (state, { payload }) => ({
   ...state,
   diograph: {
@@ -89,7 +80,6 @@ const removeLink = (state, { payload }) => {
 
 export default createReducer({
   [types.GET_ROOM]: getRoom,
-  [types.ADD_DIOGRAPH]: addDiograph,
   [types.ADD_DIORY]: addDiory,
   [types.REMOVE_DIORY]: removeDiory,
   [types.UPDATE_DIORY]: updateDiory,
