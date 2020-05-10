@@ -1,4 +1,4 @@
-import { useStore } from '../../../store'
+import { useDispatch, useStore } from '../../../store'
 
 import { setFocus } from '../../navigation/actions'
 import { addDiory } from '../../room/actions'
@@ -8,10 +8,10 @@ import { TEXT_FILTER_DIORY_ID } from './textFilterDioryId'
 
 export const useTextFilter = () => {
   const [{ diograph }] = useStore((state) => state.room)
-  const [{ roomId }] = useStore((state) => state.navigation)
   const [{ focus }] = useStore((state) => state.navigation)
   const [{ textFilter }] = useStore((state) => state.filters)
 
+  const dispatch = useDispatch()
   return {
     value: TEXT_FILTER_DIORY_ID === focus ? textFilter : '',
     setTextFilter: (value) => dispatch(setTextFilter(value)),

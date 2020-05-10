@@ -23,7 +23,6 @@ const getFilteredLinks = (diograph, query = '') =>
 export const useTextFilterEffects = () => {
   const [{ diograph }] = useStore((state) => state.room)
   const [{ roomId }] = useStore((state) => state.navigation)
-  const [{ focus }] = useStore((state) => state.navigation)
   const [{ textFilter }] = useStore((state) => state.filters)
 
   const dispatch = useDispatch()
@@ -39,7 +38,7 @@ export const useTextFilterEffects = () => {
     if (textFilterChanged) {
       dispatch(
         updateDiory({
-          id: SEARCH_TOOL_ID,
+          id: TEXT_FILTER_DIORY_ID,
           text: `Search: ${textFilter}`,
           links: getFilteredLinks(diograph, textFilter),
         })
