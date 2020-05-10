@@ -2,27 +2,9 @@ import { useEffect } from 'react'
 import { useDispatch, useStore } from '../../../store'
 import { useCompare } from '../../../utils/useCompare'
 
-import { setFocus } from '../../navigation/actions'
-import { addDiory, updateDiory } from '../../room/actions'
+import { updateDiory } from '../../room/actions'
 
 const SEARCH_TOOL_ID = 'SEARCH_TOOL_ID'
-
-export const useTurnOnTextFilter = () => {
-  const [{ diograph }] = useStore((state) => state.room)
-  const [{ focus }] = useStore((state) => state.navigation)
-
-  const dispatch = useDispatch()
-  const turnOn = () => {
-    if (!diograph[SEARCH_TOOL_ID]) {
-      dispatch(addDiory({ id: SEARCH_TOOL_ID }))
-    }
-    if (SEARCH_TOOL_ID !== focus) {
-      dispatch(setFocus({ focus: SEARCH_TOOL_ID }))
-    }
-  }
-
-  return { turnOn }
-}
 
 export const useTextFilterValue = () => {
   const [{ textFilter }] = useStore((state) => state.filters)
