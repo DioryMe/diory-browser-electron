@@ -17,7 +17,7 @@ export const useOpenFolder = () => {
   const { active } = useTools()
   const dispatch = useDispatch()
   useEffect(() => {
-    if (buttons.GENERATE_DIOGRAPH === active) {
+    if (buttons.GENERATE_DIOGRAPH_BUTTON === active) {
       dispatch(setInactive())
       window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then((result) => {
         const path = result.filePaths[0]

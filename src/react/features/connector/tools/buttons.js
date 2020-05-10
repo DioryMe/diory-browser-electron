@@ -1,5 +1,5 @@
 export const ADD_ROOM = 'ADD_ROOM'
-export const GENERATE_DIOGRAPH = 'GENERATE_DIOGRAPH'
+export const GENERATE_DIOGRAPH_BUTTON = 'GENERATE_DIOGRAPH_BUTTON'
 
 export const homeButtons = [
   {
@@ -13,7 +13,7 @@ export const homeButtons = [
 
 export const roomButtons = [
   {
-    id: GENERATE_DIOGRAPH,
+    id: GENERATE_DIOGRAPH_BUTTON,
     text: 'Opeh folder',
     data: {
       icon: 'folder-open',
