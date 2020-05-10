@@ -1,27 +1,19 @@
 import React from 'react'
 import { Pane, SearchInput } from 'evergreen-ui'
-import { useDispatch, useStore } from '../../../store'
+import { useStore } from '../../../store'
 
-import { setTextFilter } from '../../filters/actions'
-
-import { useTextFilterValue } from '../../filters/hooks/useTextFilter'
-import { useTurnOnFilters } from '../../filters/hooks/useTurnOnFilters'
+import { useTextFilter } from '../../filters/hooks/useTextFilter'
 
 const useSearchInput = () => {
   const [{ roomId }] = useStore((state) => state.navigation)
 
-  const { textFilterValue } = useTextFilterValue()
-  const { turnOnFilters } = useTurnOnFilters()
+  const { turnOn, setTextFilter, value } = useTextFilter()
 
-  const dispatch = useDispatch()
   const searchInput = roomId && {
-    value: textFilterValue,
+    value,
     placeholder: 'Search your diory',
-    onFocus: ({ target: { value } }) => {
-      dispatch(setTextFilter(value))
-      turnOnFilters()
-    },
-    onChange: ({ target: { value } }) => dispatch(setTextFilter(value)),
+    onFocus: ({ target: { value } }) => turnOn(value),
+    onChange: ({ target: { value } }) => setTextFilter(value),
   }
 
   return { searchInput }

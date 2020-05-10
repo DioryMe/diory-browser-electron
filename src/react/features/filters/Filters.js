@@ -1,10 +1,8 @@
 import React from 'react'
-import { useTextFilter } from './hooks/useTextFilter'
-import { useResetTextFilter } from './hooks/useResetTextFilter'
+import { useTextFilterEffects } from './hooks/useTextFilterEffects'
 
 const Filters = () => {
-  useTextFilter()
-  useResetTextFilter()
+  useTextFilterEffects()
 
   return <div data-testid="filters" />
 }
