@@ -28,11 +28,13 @@ Feature: Map lens
     And diory 1 has 4 links
     Then I see 4 markers on map
 
+  @pending
   Scenario: Selecting tool
     When I select tools button
     And I select add button
     Then add button is active
 
+  @pending
   Scenario: Deselecting tool
     Given I select tools button
     And I select add button
