@@ -1,4 +1,4 @@
-import * as types from './actionsTypes'
+import { ENTER_ROOM, GO_SIDE, GO_HOME, SET_FOCUS, GO_BACKWARD, GO_FORWARD } from './actionsTypes'
 import { createReducer } from '../../store'
 
 export const initialState = {
@@ -77,10 +77,10 @@ export const goHome = (state) => {
 }
 
 export default createReducer({
-  [types.ENTER_ROOM]: enterRoom,
-  [types.SET_FOCUS]: setFocus,
-  [types.GO_BACKWARD]: goBackward,
-  [types.GO_FORWARD]: goForward,
-  [types.GO_HOME]: goHome,
-  [types.GO_SIDE]: goSide,
+  [ENTER_ROOM]: enterRoom,
+  [SET_FOCUS]: setFocus,
+  [GO_BACKWARD]: goBackward,
+  [GO_FORWARD]: goForward,
+  [GO_HOME]: goHome,
+  [GO_SIDE]: goSide,
 })

@@ -1,4 +1,4 @@
-import * as types from './actionsTypes'
+import { SET_PATHS, REMOVE_PATH, UPDATE_PATH, ADD_PATH } from './actionsTypes'
 import { createReducer } from '../../store'
 
 export const initialState = {
@@ -46,8 +46,8 @@ export const updatePath = (state, { payload }) => ({
 })
 
 export default createReducer({
-  [types.SET_PATHS]: setPaths,
-  [types.ADD_PATH]: addPath,
-  [types.REMOVE_PATH]: removePath,
-  [types.UPDATE_PATH]: updatePath,
+  [SET_PATHS]: setPaths,
+  [ADD_PATH]: addPath,
+  [REMOVE_PATH]: removePath,
+  [UPDATE_PATH]: updatePath,
 })

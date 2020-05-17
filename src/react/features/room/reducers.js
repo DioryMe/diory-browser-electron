@@ -1,4 +1,12 @@
-import * as types from './actionsTypes'
+import {
+  GET_ROOM,
+  ADD_DIORY,
+  ADD_LINK,
+  REMOVE_DIORY,
+  REMOVE_LINK,
+  SAVE_ROOM,
+  UPDATE_DIORY,
+} from './actionsTypes'
 import { promiseReducers, createReducer } from '../../store'
 
 export const initialState = {
@@ -79,11 +87,11 @@ const removeLink = (state, { payload }) => {
 }
 
 export default createReducer({
-  [types.GET_ROOM]: getRoom,
-  [types.ADD_DIORY]: addDiory,
-  [types.REMOVE_DIORY]: removeDiory,
-  [types.UPDATE_DIORY]: updateDiory,
-  [types.ADD_LINK]: addLink,
-  [types.REMOVE_LINK]: removeLink,
-  ...promiseReducers(types.SAVE_ROOM, 'updated', 'saving', 'saved', 'error'),
+  [GET_ROOM]: getRoom,
+  [ADD_DIORY]: addDiory,
+  [REMOVE_DIORY]: removeDiory,
+  [UPDATE_DIORY]: updateDiory,
+  [ADD_LINK]: addLink,
+  [REMOVE_LINK]: removeLink,
+  ...promiseReducers(SAVE_ROOM, 'updated', 'saving', 'saved', 'error'),
 })

@@ -1,4 +1,4 @@
-import * as types from './actionsTypes'
+import { SELECT_LENS } from './actionsTypes'
 import { createReducer } from '../../store'
 
 export const initialState = {
@@ -12,5 +12,5 @@ export const selectLens = (state, { payload }) => ({
 })
 
 export default createReducer({
-  [types.SELECT_LENS]: selectLens,
+  [SELECT_LENS]: selectLens,
 })

@@ -1,4 +1,4 @@
-import * as types from './actionsTypes'
+import { SET_ACTIVE, SET_INACTIVE } from './actionsTypes'
 import { createReducer } from '../../store'
 
 export const initialState = {
@@ -16,6 +16,6 @@ export const setInactive = (state) => ({
 })
 
 export default createReducer({
-  [types.SET_ACTIVE]: setActive,
-  [types.SET_INACTIVE]: setInactive,
+  [SET_ACTIVE]: setActive,
+  [SET_INACTIVE]: setInactive,
 })

@@ -1,10 +1,10 @@
-import * as types from './actionsTypes'
+import { SET_ACTIVE, SET_INACTIVE } from './actionsTypes'
 
 export const setActive = (active) => ({
-  type: types.SET_ACTIVE,
+  type: SET_ACTIVE,
   payload: { active },
 })
 
 export const setInactive = () => ({
-  type: types.SET_INACTIVE,
+  type: SET_INACTIVE,
 })

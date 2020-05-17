@@ -1,4 +1,4 @@
-import * as types from './actionsTypes'
+import { SET_TEXT_FILTER } from './actionsTypes'
 import { createReducer } from '../../store'
 
 export const initialState = {
@@ -11,5 +11,5 @@ export const setTextFilter = (state, { payload }) => ({
 })
 
 export default createReducer({
-  [types.SET_TEXT_FILTER]: setTextFilter,
+  [SET_TEXT_FILTER]: setTextFilter,
 })
