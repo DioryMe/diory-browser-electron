@@ -1,3 +1,10 @@
+## 0.3.6 (May 17, 2020)
+
+### DDA-22: Getting started without home
+
+- Show only one room
+- Change room by opening another folder
+   
 ## 0.3.5 (April 13, 2020)
 
 ### DDA-20: Filter diorys by text
