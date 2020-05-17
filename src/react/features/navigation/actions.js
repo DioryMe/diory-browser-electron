@@ -1,22 +1,22 @@
-import * as types from './actionsTypes'
+import { ENTER_ROOM, GO_FORWARD, GO_BACKWARD, SET_FOCUS, GO_HOME, GO_SIDE } from './actionsTypes'
 
 export const enterRoom = (roomId) => ({
-  type: types.ENTER_ROOM,
+  type: ENTER_ROOM,
   payload: { roomId },
 })
 
 export const setFocus = ({ focus }) => ({
-  type: types.SET_FOCUS,
+  type: SET_FOCUS,
   payload: { focus },
 })
 
-export const goBackward = () => ({ type: types.GO_BACKWARD })
+export const goBackward = () => ({ type: GO_BACKWARD })
 
-export const goForward = () => ({ type: types.GO_FORWARD })
+export const goForward = () => ({ type: GO_FORWARD })
 
-export const goHome = () => ({ type: types.GO_HOME })
+export const goHome = () => ({ type: GO_HOME })
 
 export const goSide = ({ focus }) => ({
-  type: types.GO_SIDE,
+  type: GO_SIDE,
   payload: { focus },
 })

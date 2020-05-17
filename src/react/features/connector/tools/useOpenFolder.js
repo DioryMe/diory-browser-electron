@@ -10,14 +10,14 @@ import { useTools } from '../../tools/hooks'
 import { connect } from '../client'
 import { channels } from '../../../../shared/constants'
 
-import * as buttons from './buttons'
+import { GENERATE_DIOGRAPH_BUTTON } from './buttons'
 
 export const useOpenFolder = () => {
   const [{ focus }] = useStore((state) => state.navigation)
   const { active } = useTools()
   const dispatch = useDispatch()
   useEffect(() => {
-    if (buttons.GENERATE_DIOGRAPH_BUTTON === active) {
+    if (GENERATE_DIOGRAPH_BUTTON === active) {
       dispatch(setInactive())
       window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then((result) => {
         const path = result.filePaths[0]

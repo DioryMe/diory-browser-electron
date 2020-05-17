@@ -1,3 +1,3 @@
-import * as types from './actionsTypes'
+import { SELECT_LENS } from './actionsTypes'
 
-export const selectLens = (id) => ({ type: types.SELECT_LENS, payload: { id } })
+export const selectLens = (id) => ({ type: SELECT_LENS, payload: { id } })

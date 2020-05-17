@@ -1,16 +1,24 @@
-import * as types from './actionsTypes'
+import {
+  GET_ROOM,
+  UPDATE_DIORY,
+  SAVE_ROOM,
+  REMOVE_LINK,
+  REMOVE_DIORY,
+  ADD_LINK,
+  ADD_DIORY,
+} from './actionsTypes'
 
 export const getRoom = ({ id, diograph }) => ({
-  type: types.GET_ROOM,
+  type: GET_ROOM,
   payload: { id, diograph },
 })
 
 export const saveRoom = () => ({
-  type: types.SAVE_ROOM,
+  type: SAVE_ROOM,
 })
 
 export const addDiory = (diory) => ({
-  type: types.ADD_DIORY,
+  type: ADD_DIORY,
   payload: {
     diory: {
       ...diory,
@@ -22,7 +30,7 @@ export const addDiory = (diory) => ({
 export const removeDiory = (diory) => {
   const now = new Date().toISOString()
   return {
-    type: types.REMOVE_DIORY,
+    type: REMOVE_DIORY,
     payload: {
       diory: {
         ...diory,
@@ -34,7 +42,7 @@ export const removeDiory = (diory) => {
 }
 
 export const updateDiory = (diory) => ({
-  type: types.UPDATE_DIORY,
+  type: UPDATE_DIORY,
   payload: {
     diory: {
       ...diory,
@@ -44,7 +52,7 @@ export const updateDiory = (diory) => ({
 })
 
 export const addLink = (diory) => ({
-  type: types.ADD_LINK,
+  type: ADD_LINK,
   payload: {
     diory: {
       ...diory,
@@ -54,7 +62,7 @@ export const addLink = (diory) => ({
 })
 
 export const removeLink = (diory) => ({
-  type: types.REMOVE_LINK,
+  type: REMOVE_LINK,
   payload: {
     diory: {
       ...diory,

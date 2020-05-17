@@ -1,6 +1,6 @@
-import * as types from './actionsTypes'
+import { SET_TEXT_FILTER } from './actionsTypes'
 
 export const setTextFilter = (textFilter) => ({
-  type: types.SET_TEXT_FILTER,
+  type: SET_TEXT_FILTER,
   payload: { textFilter },
 })
