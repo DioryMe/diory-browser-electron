@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useStore } from '../../store'
 import { useLenses } from '../lenses/hooks'
-import { homeButtons, roomButtons } from '../connector/tools/buttons'
+import { roomButtons } from '../connector/tools/buttons'
 import { useTools } from './hooks'
 import ToolButton from './ToolButton'
 
@@ -21,8 +21,6 @@ const useToolsBar = () => {
     buttons = lensButtons
   } else if (roomId) {
     buttons = roomButtons
-  } else if (!roomId) {
-    buttons = homeButtons
   }
 
   if (open || buttons.length === 1) {
