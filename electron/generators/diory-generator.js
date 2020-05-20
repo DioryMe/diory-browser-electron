@@ -1,4 +1,4 @@
-const uuid = require('uuid')
+const { v4: uuid } = require('uuid')
 const { resolveFileType, readFile } = require('../readers/file-reader')
 const { readFolder } = require('../readers/folder-reader')
 const { readImage } = require('../readers/image-reader')

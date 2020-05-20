@@ -4,6 +4,7 @@ const { ipcRenderer } = window
 
 export const connect = (channel, params) => {
   if (!ipcRenderer) {
+    console.log('Using mock response')
     return mockResponse(channel, params)
   }
 

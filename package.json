@@ -5,6 +5,7 @@
   "main": "electron/main.js",
   "private": true,
   "dependencies": {
+    "electron-store": "^5.1.1",
     "evergreen-ui": "^4.24.0",
     "exifreader": "^2.13.0",
     "glob": "^7.1.6",
@@ -15,7 +16,7 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.2.0",
     "ui-box": "^3.2.0",
-    "uuid": "^3.3.3"
+    "uuid": "^7.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -123,7 +124,10 @@
     }
   },
   "nodemonConfig": {
-    "ignore": ["public/*", "docs/*"],
+    "ignore": [
+      "public/*",
+      "docs/*"
+    ],
     "delay": 2000
   },
   "lint-staged": {
