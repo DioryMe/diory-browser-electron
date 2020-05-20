@@ -2,6 +2,7 @@ const { ipcMain } = require('electron')
 const { channels } = require('../../src/shared/constants')
 const { generateDiograph } = require('../generators/diograph-generator')
 const { saveRoom } = require('../lib/room-util')
+const UserDataStore = require('electron-store')
 
 ipcMain.on(channels.GENERATE_DIOGRAPH, (event, path) => {
   console.log('GENERATE_DIOGRAPH', path)
@@ -10,6 +11,15 @@ ipcMain.on(channels.GENERATE_DIOGRAPH, (event, path) => {
     console.log('--------')
     saveRoom(path, diograph)
       .then(() => {
+        const store = new UserDataStore()
+        store.set({
+          roomInFocus: {
+            roomId: id,
+            path: path,
+            dioryIdInFocus: id,
+          },
+        })
+        console.log(id)
         event.reply(channels.GENERATE_DIOGRAPH, diograph[id])
       })
       .catch((err) => {
