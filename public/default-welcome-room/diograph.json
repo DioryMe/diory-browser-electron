@@ -1,0 +1,23 @@
+{
+  "welcome-room": {
+    "id": "welcome-room",
+    "image": "",
+    "links": {
+      "welcome-diory": {
+        "id": "welcome-diory"
+      }
+    },
+    "modified": "2020-01-03T14:03:04.751Z"
+  },
+  "welcome-diory": {
+    "id": "welcome-diory",
+    "image": "",
+    "links": {
+      "tampere": {
+        "id": "tampere"
+      }
+    },
+    "modified": "2020-01-03T14:03:04.751Z",
+    "text": "Welcome to Diory"
+  }
+}
