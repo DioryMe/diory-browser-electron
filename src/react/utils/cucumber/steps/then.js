@@ -1,5 +1,4 @@
 import { Then } from 'cucumber'
-import { expectRoomsInView } from '../support/view/expectRoomsInView'
 import { expectDiorysInView } from '../support/view/expectDiorysInView'
 import { expectDioryOnContainer } from '../support/view/expectDioryOnContainer'
 import { expectDioryItemOnContainer } from '../support/view/expectDioryItemOnContainer'
@@ -9,7 +8,6 @@ import { expectItemIsActive } from '../support/view/expectItemIsActive'
 import { expectItemIsNotActive } from '../support/view/expectItemIsNotActive'
 import { expectNotInView } from '../support/view/expectNotInView'
 
-Then('I see {int} room(s)', expectRoomsInView)
 Then('I see {int} diory(s)', expectDiorysInView)
 Then('I see {int} linked diory(s)', expectDiorysInView)
 Then('I am in {word} {int}', expectInFocus)

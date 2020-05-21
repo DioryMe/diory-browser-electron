@@ -2,12 +2,11 @@ Feature: Navigation
 
   Background:
     Given I am at home
-    And I enter room 1
     And I take diory 1 in focus
 
   Scenario: Navigate backward
     When I navigate backward
-    Then I am in room 1
+    Then I am at home
 
   Scenario: Navigate forward
     And I navigated backward

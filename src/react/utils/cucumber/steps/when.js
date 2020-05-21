@@ -6,14 +6,12 @@ import { navigateForward } from '../support/actions/navigateForward'
 import { navigateHome } from '../support/actions/navigateHome'
 import { navigateLeft } from '../support/actions/navigateLeft'
 import { navigateRight } from '../support/actions/navigateRight'
-import { selectRoom } from '../support/actions/selectRoom'
 import { selectItem } from '../support/actions/selectItem'
 import { selectIdItem } from '../support/actions/selectIdItem'
 import { selectModifierIdItem } from '../support/actions/selectModifierIdItem'
 import { takeInFocus } from '../support/actions/takeInFocus'
 
 When('I go home', mountApp)
-When('I enter room {int}', selectRoom)
 When('I take {word} {int} in focus', takeInFocus)
 
 When('I navigate(d) backward', navigateBackward)
