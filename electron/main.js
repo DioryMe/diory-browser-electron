@@ -52,4 +52,6 @@ function loadChannels() {
   files.forEach((file) => require(file))
 }
 
+console.log(`User data: ${app.getPath('userData')}/config.json`)
+
 loadChannels()
