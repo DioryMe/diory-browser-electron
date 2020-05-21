@@ -20,6 +20,7 @@ ipcMain.on(channels.GENERATE_DIOGRAPH, (event, path) => {
           },
         })
         console.log(id)
+        console.log(diograph[id])
         event.reply(channels.GENERATE_DIOGRAPH, diograph[id])
       })
       .catch((err) => {

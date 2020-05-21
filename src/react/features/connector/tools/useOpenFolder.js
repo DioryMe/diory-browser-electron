@@ -22,6 +22,10 @@ export const useOpenFolder = () => {
       window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then((result) => {
         const path = result.filePaths[0]
         connect(channels.GENERATE_DIOGRAPH, path).then(({ id }) => {
+          console.log('Open folder')
+          console.log(id)
+          console.log(path)
+          console.log('---------')
           dispatch(addPath(id, path))
           dispatch(enterRoom(id))
         })
