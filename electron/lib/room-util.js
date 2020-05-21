@@ -1,10 +1,11 @@
 const fs = require('fs')
 const util = require('util')
+
 const writeFilePromise = util.promisify(fs.writeFile)
 
 const getRoom = async (path) => {
-  let folderPath = path
-  let diographJSONPath = `${path}/diograph.json`
+  const folderPath = path
+  const diographJSONPath = `${path}/diograph.json`
 
   // With FileDialog you shouldn't be able to choose a folderPath that doesn't exist but...
   if (!fs.existsSync(folderPath)) {
