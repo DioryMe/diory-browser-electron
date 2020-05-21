@@ -7,7 +7,9 @@ const { saveRoom } = require('../lib/room-util')
 ipcMain.on(channels.GENERATE_DIOGRAPH, (event, path) => {
   console.log('GENERATE_DIOGRAPH', path)
   generateDiograph(path).then(({ id, diograph }) => {
-    console.log(id, diograph)
+    console.log(id)
+    console.log(diograph)
+    console.log(path)
     console.log('--------')
     saveRoom(path, diograph)
       .then(() => {
@@ -19,9 +21,7 @@ ipcMain.on(channels.GENERATE_DIOGRAPH, (event, path) => {
             path,
           },
         })
-        console.log(id)
-        console.log(diograph[id])
-        event.reply(channels.GENERATE_DIOGRAPH, diograph[id])
+        event.reply(channels.GENERATE_DIOGRAPH, { id, diograph, path })
       })
       .catch((err) => {
         console.log(err)

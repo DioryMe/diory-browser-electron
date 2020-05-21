@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useStore } from '../../../store'
 
 import { enterRoom } from '../../navigation/actions'
+import { getRoom } from '../../room/actions'
 import { setInactive } from '../../tools/actions'
 import { addPath } from '../actions'
 
@@ -21,13 +22,15 @@ export const useOpenFolder = () => {
       dispatch(setInactive())
       window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then((result) => {
         const path = result.filePaths[0]
-        connect(channels.GENERATE_DIOGRAPH, path).then(({ id }) => {
-          console.log('Open folder')
-          console.log(id)
-          console.log(path)
-          console.log('---------')
+        connect(channels.GENERATE_DIOGRAPH, path).then(({ id, diograph, path }) => {
+          if (!diograph[id]) {
+            console.log(diograph)
+            throw new Error(`RoomId ${id} not found from generated diograph`)
+          }
+
           dispatch(addPath(id, path))
           dispatch(enterRoom(id))
+          dispatch(getRoom({ id, diograph }))
         })
       })
     }
