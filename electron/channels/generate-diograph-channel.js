@@ -6,8 +6,8 @@ const { saveRoom } = require('../lib/room-util')
 
 ipcMain.on(channels.GENERATE_DIOGRAPH, (event, path) => {
   console.log('GENERATE_DIOGRAPH', path)
-  generateDiograph(path).then(({ roomId, diograph }) => {
-    console.log(roomId, diograph)
+  generateDiograph(path).then(({ id, diograph }) => {
+    console.log(id, diograph)
     console.log('--------')
     saveRoom(path, diograph)
       .then(() => {
@@ -15,12 +15,12 @@ ipcMain.on(channels.GENERATE_DIOGRAPH, (event, path) => {
         const store = new UserDataStore()
         store.set({
           roomInFocus: {
-            roomId,
+            id,
             path,
           },
         })
-        console.log(roomId)
-        event.reply(channels.GENERATE_DIOGRAPH, diograph[roomId])
+        console.log(id)
+        event.reply(channels.GENERATE_DIOGRAPH, diograph[id])
       })
       .catch((err) => {
         console.log(err)
