@@ -93,3 +93,12 @@
 
 * Home, backward and forward navigation
 * Left and right navigation
+
+### Focus
+* Show diory with linked diorys
+
+### Path
+* Show path from home
+
+### Channels
+- Get data from node backend
