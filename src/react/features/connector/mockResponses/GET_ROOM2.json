@@ -1,7 +1,5 @@
 {
-  "roomId": "welcome-room",
-  "path": "./public/development-content-room",
-  "dioryIdInFocus": "3e2ddc49-b3b6-4212-8a0a-80b9150a57ae",
+  "id": "welcome-room",
   "diograph": {
     "welcome-room": {
       "id": "welcome-room",
