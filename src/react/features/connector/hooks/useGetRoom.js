@@ -19,7 +19,7 @@ export const useGetRoom = () => {
       // Convert path & roomId to a format that setPaths understand
       const rooms = {
         [path]: {
-          id: id,
+          id,
         },
       }
 
