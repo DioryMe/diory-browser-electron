@@ -8,8 +8,8 @@ ipcMain.on(channels.GET_ROOM, (event) => {
   // - if nothing found from user data fallback to default welcome-room
   const store = new UserDataStore()
   const defaultRoom = {
-    id: 'room1',
-    path: './public/room1',
+    id: 'welcome-room',
+    path: './public/default-welcome-room',
   }
   const roomInFocus = store.get('roomInFocus') || defaultRoom
 
