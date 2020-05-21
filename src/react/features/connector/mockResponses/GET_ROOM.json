@@ -1,263 +1,59 @@
 {
-  "roomId": "welcome-room",
-  "path": "./public/development-content-room",
-  "dioryIdInFocus": "3e2ddc49-b3b6-4212-8a0a-80b9150a57ae",
+  "id": "room1",
   "diograph": {
-    "welcome-room": {
-      "id": "welcome-room",
-      "image": "",
-      "links": {
-        "tampere": {
-          "id": "tampere"
-        },
-        "kayaking-at-potomac": {
-          "id": "f1470597-1a3c-4a76-8546-2c29591a6846"
-        }
-      },
-      "modified": "2020-01-03T14:03:04.751Z"
-    },
-    "tampere": {
-      "id": "tampere",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Downtown_Tampere4.jpg",
-      "latitude": 61.49883164008703,
+    "room1": {
+      "id": "room1",
+      "text": "Room 1",
       "links": {
         "link1": {
-          "id": "keskustori"
+          "id": "diory1"
         },
         "link2": {
-          "id": "frenkell"
+          "id": "diory2"
+        }
+      }
+    },
+    "diory1": {
+      "id": "diory1",
+      "text": "Diory 1",
+      "links": {
+        "link11": {
+          "id": "diory11"
         },
-        "link3": {
-          "id": "hameenkatu"
+        "link12": {
+          "id": "diory12"
+        },
+        "link13": {
+          "id": "diory13"
+        },
+        "link14": {
+          "id": "diory14"
         }
       },
-      "longitude": 23.76080989837647,
-      "modified": "2020-01-03T21:44:25.345Z",
-      "text": "Tampere"
+      "latitude": "1",
+      "longitude": "1"
     },
-    "keskustori": {
-      "id": "keskustori",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Tampere_-_Keskustori.jpg/800px-Tampere_-_Keskustori.jpg",
-      "latitude": 61.49768995940461,
-      "longitude": 23.760348558425907,
-      "modified": "2020-01-03T21:45:00.791Z",
-      "text": "Keskustori"
+    "diory2": {
+      "id": "diory2",
+      "text": "Diory 2",
+      "latitude": "2",
+      "longitude": "2"
     },
-    "frenkell": {
-      "id": "frenkell",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Frenckell_factory1.jpg",
-      "latitude": 61.50011150135485,
-      "longitude": 23.763899803161625,
-      "modified": "2020-01-03T21:44:56.115Z",
-      "text": "Frenkell"
+    "diory11": {
+      "id": "diory11",
+      "text": "Diory 11"
     },
-    "hameenkatu": {
-      "id": "hameenkatu",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Tampere_Hameenkatu.png",
-      "latitude": 61.49785379059735,
-      "longitude": 23.762902021408085,
-      "modified": "2020-01-03T21:44:58.285Z",
-      "text": "Hämeenkatu"
+    "diory12": {
+      "id": "diory12",
+      "text": "Diory 12"
     },
-    "c7fd9a27-d7c1-4b8e-b896-71a885fde1e5": {
-      "id": "c7fd9a27-d7c1-4b8e-b896-71a885fde1e5",
-      "image": "development-content-room/Kayaking at Potomac/PIXNIO-53350-6177x4118.jpeg",
-      "date": "2014-09-20T17:44:52.000Z",
-      "created": "2016-06-04T10:32:12Z",
-      "modified": "2020-04-19T18:36:23.000Z"
+    "diory13": {
+      "id": "diory13",
+      "text": "Diory 13"
     },
-    "c1d56e38-a85a-42d7-8d79-f4e07806417b": {
-      "id": "c1d56e38-a85a-42d7-8d79-f4e07806417b",
-      "image": "development-content-room/Kayaking at Potomac/PIXNIO-53541-1782x1188.jpeg",
-      "date": "2013-06-25T23:11:49.000Z",
-      "created": "2016-06-04T10:32:12Z",
-      "modified": "2020-04-19T18:34:46.000Z"
-    },
-    "b40c52d4-16e3-409b-b494-0691126c5669": {
-      "id": "b40c52d4-16e3-409b-b494-0691126c5669",
-      "image": "development-content-room/Kayaking at Potomac/PIXNIO-53543-1782x1188.jpeg",
-      "date": "2013-06-25T23:11:09.000Z",
-      "created": "2016-06-04T10:32:12Z",
-      "modified": "2020-04-19T18:33:36.000Z"
-    },
-    "a013d29c-b4ff-482d-89cc-97191b9de8b1": {
-      "id": "a013d29c-b4ff-482d-89cc-97191b9de8b1",
-      "image": "development-content-room/Kayaking at Potomac/PIXNIO-53549-1782x1188.jpeg",
-      "date": "2013-06-26T01:26:12.000Z",
-      "created": "2016-06-04T10:32:12Z",
-      "modified": "2020-04-19T18:32:01.000Z"
-    },
-    "eaf58f1f-af8e-4e10-9fa3-2b937b94d01c": {
-      "id": "eaf58f1f-af8e-4e10-9fa3-2b937b94d01c",
-      "image": "development-content-room/Kayaking at Potomac/PIXNIO-53551-1782x1188.jpeg",
-      "date": "2013-06-26T01:31:59.000Z",
-      "created": "2016-06-04T10:32:12Z",
-      "modified": "2020-04-19T18:31:51.000Z"
-    },
-    "53d67955-5303-47f5-a44d-4de3dde61aa8": {
-      "id": "53d67955-5303-47f5-a44d-4de3dde61aa8",
-      "image": "development-content-room/Kayaking at Potomac/PIXNIO-53553-1782x1188.jpeg",
-      "date": "2013-06-26T13:40:22.000Z",
-      "created": "2016-06-04T10:32:12Z",
-      "modified": "2020-04-19T18:31:04.000Z"
-    },
-    "ed3f3cac-0a11-4372-97d3-217d52157035": {
-      "id": "ed3f3cac-0a11-4372-97d3-217d52157035",
-      "image": "development-content-room/Kayaking at Potomac/PIXNIO-53555-1782x1188.jpeg",
-      "date": "2013-06-26T13:02:31.000Z",
-      "created": "2016-06-04T10:32:12Z",
-      "modified": "2020-04-19T18:30:30.000Z"
-    },
-    "3a74359d-70b5-4c41-b28f-a6b2d2a1d3ea": {
-      "id": "3a74359d-70b5-4c41-b28f-a6b2d2a1d3ea",
-      "image": "development-content-room/Kayaking at Potomac/PIXNIO-54298-5970x3980.jpeg",
-      "date": "2012-06-25T14:27:29.000Z",
-      "created": "2016-06-04T10:32:12Z",
-      "modified": "2020-04-19T18:33:59.000Z"
-    },
-    "b6530d02-2430-4288-88b7-e875185cf2ee": {
-      "id": "b6530d02-2430-4288-88b7-e875185cf2ee",
-      "image": "development-content-room/Kayaking at Potomac/PIXNIO-54348-6177x4118.jpeg",
-      "date": "2012-09-25T10:59:28.000Z",
-      "created": "2016-06-04T10:32:12Z",
-      "modified": "2020-04-19T18:32:33.000Z"
-    },
-    "8b7e92ae-42ed-4d80-b9e4-1ed9c62cf0d9": {
-      "id": "8b7e92ae-42ed-4d80-b9e4-1ed9c62cf0d9",
-      "image": "development-content-room/Kayaking at Potomac/PIXNIO-54360-6177x4118.jpeg",
-      "date": "2012-06-25T02:19:41.000Z",
-      "created": "2016-06-04T10:32:12Z",
-      "modified": "2020-04-19T18:33:01.000Z"
-    },
-    "78e966b3-26e6-4dd9-afbe-8fbe62dc396c": {
-      "id": "78e966b3-26e6-4dd9-afbe-8fbe62dc396c",
-      "image": "development-content-room/Kayaking at Potomac/PIXNIO-54454-6138x4092.jpeg",
-      "date": "2012-06-25T14:19:12.000Z",
-      "created": "2016-06-04T10:32:12Z",
-      "modified": "2020-04-19T18:32:14.000Z"
-    },
-    "08e19501-6844-4072-941c-59f46de75538": {
-      "id": "08e19501-6844-4072-941c-59f46de75538",
-      "image": "development-content-room/Kayaking at Potomac/Jane/PIXNIO-12656-2816x2112.jpeg",
-      "created": "2020-05-17T15:49:05.845Z",
-      "modified": "2020-05-17T15:49:05.979Z"
-    },
-    "10b4eebb-6abb-4816-bbbb-c48a43a2f6f6": {
-      "id": "10b4eebb-6abb-4816-bbbb-c48a43a2f6f6",
-      "image": "development-content-room/Kayaking at Potomac/Jane/PIXNIO-12662-2816x2112.jpeg",
-      "created": "2020-05-17T15:49:01.175Z",
-      "modified": "2020-05-17T15:49:01.711Z"
-    },
-    "7dcfdc36-ef20-483f-8de7-c958c188a4a1": {
-      "id": "7dcfdc36-ef20-483f-8de7-c958c188a4a1",
-      "image": "development-content-room/Kayaking at Potomac/Jane/PIXNIO-12700-2816x2112.jpeg",
-      "created": "2020-05-17T15:49:09.224Z",
-      "modified": "2020-05-17T15:49:09.390Z"
-    },
-    "3e2ddc49-b3b6-4212-8a0a-80b9150a57ae": {
-      "id": "3e2ddc49-b3b6-4212-8a0a-80b9150a57ae",
-      "text": "Jane",
-      "image": "development-content-room/Kayaking at Potomac/Jane/PIXNIO-12656-2816x2112.jpeg",
-      "created": "2020-05-17T16:03:52.473Z",
-      "modified": "2020-05-17T16:04:03.620Z",
-      "links": {
-        "PIXNIO-12656-2816x2112.jpeg": {
-          "id": "08e19501-6844-4072-941c-59f46de75538"
-        },
-        "PIXNIO-12662-2816x2112.jpeg": {
-          "id": "10b4eebb-6abb-4816-bbbb-c48a43a2f6f6"
-        },
-        "PIXNIO-12700-2816x2112.jpeg": {
-          "id": "7dcfdc36-ef20-483f-8de7-c958c188a4a1"
-        }
-      }
-    },
-    "e296cf72-bce3-4e78-b3a1-2381fb1239ba": {
-      "id": "e296cf72-bce3-4e78-b3a1-2381fb1239ba",
-      "image": "development-content-room/Kayaking at Potomac/Mary/PIXNIO-53747-4118x3088.jpeg",
-      "date": "2016-06-11T09:21:43.000Z",
-      "created": "2016-06-04T10:32:12Z",
-      "modified": "2020-04-19T18:58:20.790Z"
-    },
-    "a2164506-4d83-4dc6-9495-c07a778773e5": {
-      "id": "a2164506-4d83-4dc6-9495-c07a778773e5",
-      "image": "development-content-room/Kayaking at Potomac/Mary/PIXNIO-53789-4118x6177.jpeg",
-      "date": "2014-06-03T12:07:11.000Z",
-      "created": "2016-06-04T10:32:12Z",
-      "modified": "2020-04-19T18:57:07.682Z"
-    },
-    "e72ad1b7-8623-4226-8e9d-0f11e49fd85b": {
-      "id": "e72ad1b7-8623-4226-8e9d-0f11e49fd85b",
-      "image": "development-content-room/Kayaking at Potomac/Mary/PIXNIO-53799-6177x4118.jpeg",
-      "date": "2014-06-03T11:54:35.000Z",
-      "created": "2016-06-04T10:32:12Z",
-      "modified": "2020-04-19T18:57:28.636Z"
-    },
-    "e07c2f1d-5f5a-488a-a505-34f7b9f55105": {
-      "id": "e07c2f1d-5f5a-488a-a505-34f7b9f55105",
-      "text": "Mary",
-      "image": "development-content-room/Kayaking at Potomac/Mary/PIXNIO-53747-4118x3088.jpeg",
-      "created": "2020-05-17T16:03:44.704Z",
-      "modified": "2020-05-17T16:03:58.614Z",
-      "links": {
-        "PIXNIO-53747-4118x3088.jpeg": {
-          "id": "e296cf72-bce3-4e78-b3a1-2381fb1239ba"
-        },
-        "PIXNIO-53789-4118x6177.jpeg": {
-          "id": "a2164506-4d83-4dc6-9495-c07a778773e5"
-        },
-        "PIXNIO-53799-6177x4118.jpeg": {
-          "id": "e72ad1b7-8623-4226-8e9d-0f11e49fd85b"
-        }
-      }
-    },
-    "f1470597-1a3c-4a76-8546-2c29591a6846": {
-      "id": "f1470597-1a3c-4a76-8546-2c29591a6846",
-      "text": "Kayaking at Potomac",
-      "image": "development-content-room/Kayaking at Potomac/PIXNIO-54454-6138x4092.jpeg",
-      "created": "2020-04-19T18:47:25.152Z",
-      "modified": "2020-05-17T16:43:15.089Z",
-      "links": {
-        "Jane": {
-          "id": "3e2ddc49-b3b6-4212-8a0a-80b9150a57ae"
-        },
-        "Mary": {
-          "id": "e07c2f1d-5f5a-488a-a505-34f7b9f55105"
-        },
-        "PIXNIO-53350-6177x4118.jpeg": {
-          "id": "c7fd9a27-d7c1-4b8e-b896-71a885fde1e5"
-        },
-        "PIXNIO-53541-1782x1188.jpeg": {
-          "id": "c1d56e38-a85a-42d7-8d79-f4e07806417b"
-        },
-        "PIXNIO-53543-1782x1188.jpeg": {
-          "id": "b40c52d4-16e3-409b-b494-0691126c5669"
-        },
-        "PIXNIO-53549-1782x1188.jpeg": {
-          "id": "a013d29c-b4ff-482d-89cc-97191b9de8b1"
-        },
-        "PIXNIO-53551-1782x1188.jpeg": {
-          "id": "eaf58f1f-af8e-4e10-9fa3-2b937b94d01c"
-        },
-        "PIXNIO-53553-1782x1188.jpeg": {
-          "id": "53d67955-5303-47f5-a44d-4de3dde61aa8"
-        },
-        "PIXNIO-53555-1782x1188.jpeg": {
-          "id": "ed3f3cac-0a11-4372-97d3-217d52157035"
-        },
-        "PIXNIO-54298-5970x3980.jpeg": {
-          "id": "3a74359d-70b5-4c41-b28f-a6b2d2a1d3ea"
-        },
-        "PIXNIO-54348-6177x4118.jpeg": {
-          "id": "b6530d02-2430-4288-88b7-e875185cf2ee"
-        },
-        "PIXNIO-54360-6177x4118.jpeg": {
-          "id": "8b7e92ae-42ed-4d80-b9e4-1ed9c62cf0d9"
-        },
-        "PIXNIO-54454-6138x4092.jpeg": {
-          "id": "78e966b3-26e6-4dd9-afbe-8fbe62dc396c"
-        }
-      }
+    "diory14": {
+      "id": "diory14",
+      "text": "Diory 14"
     }
   }
 }
