@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch } from '../../../store'
 
 import { getRoom } from '../../room/actions'
-import { setPaths } from '../actions'
+import { addPath } from '../actions'
 import { enterRoom } from '../../navigation/actions'
 
 import { connect } from '../client'
@@ -16,14 +16,7 @@ export const useGetRoom = () => {
         throw new Error(`Couldn't load diograph from path ${path}`)
       }
 
-      // Convert path & roomId to a format that setPaths understand
-      const rooms = {
-        [path]: {
-          id,
-        },
-      }
-
-      dispatch(setPaths(rooms))
+      dispatch(addPath(id, path))
       dispatch(enterRoom(id))
       dispatch(getRoom({ id, diograph }))
     })
