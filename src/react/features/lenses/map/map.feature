@@ -2,7 +2,6 @@ Feature: Map lens
 
   Background:
     Given I am at home
-    And I enter room 1
     And I select map lens
 
   @pending

@@ -2,12 +2,6 @@ Feature: Room
 
   Background:
     Given I am at home
-    When I enter room 1
-    Then I am in room 1
-
-  Scenario: Diorys in room
-    Given room 1 has 2 links
-    Then I see 2 linked diorys
 
   Scenario: Diory in focus
     When I take diory 1 in focus
