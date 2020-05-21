@@ -1,3 +1,10 @@
+## 0.3.7 (May 21, 2020)
+
+### DDA-23: Clean code for release
+- Remove home
+- Remove multiple folders in room
+- Remove map tools
+
 ## 0.3.6 (May 17, 2020)
 
 ### DDA-22: Getting started without home
@@ -7,13 +14,12 @@
    
 ## 0.3.5 (April 13, 2020)
 
-### DDA-20: Filter diorys by text
+### DDA-20: Filter diorys by text in room
 
-* Filter diorys by text in room
-   - [x] Search input in navbar
-   - [x] Show search results in grid
-   - [x] Show search results in map
-   - [x] Take a search result into focus
+- Search input in navbar
+- Show search results in grid
+- Show search results in map
+- Take a search result into focus
 
 ## 0.3.4 (April 9, 2020)
 
