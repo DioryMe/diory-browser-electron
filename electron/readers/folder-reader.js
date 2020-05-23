@@ -1,6 +1,6 @@
 const { existsSync, lstatSync, promises, statSync } = require('fs')
 const { basename } = require('path')
-const { isFile, isFolder, getPath } = require('./dirent-reader')
+const { isValid, isFile, isFolder, getPath } = require('./dirent-reader')
 
 exports.readPaths = async function readPaths(folderPath) {
   if (!(existsSync(folderPath) && lstatSync(folderPath).isDirectory())) {
@@ -8,7 +8,7 @@ exports.readPaths = async function readPaths(folderPath) {
   }
   const dirents = await promises.readdir(folderPath, { withFileTypes: true })
   return {
-    files: dirents.filter(isFile).map(getPath(folderPath)),
+    files: dirents.filter(isFile).filter(isValid).map(getPath(folderPath)),
     subfolders: dirents.filter(isFolder).map(getPath(folderPath)),
   }
 }
