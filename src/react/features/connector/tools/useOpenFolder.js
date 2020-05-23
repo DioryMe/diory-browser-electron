@@ -23,6 +23,12 @@ export const useOpenFolder = () => {
       window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then((result) => {
         const path = result.filePaths[0]
         connect(channels.GENERATE_DIOGRAPH, path).then(({ id, diograph, path }) => {
+          console.log('---------')
+          console.log('OPEN FOLDER')
+          console.log(id)
+          console.log(diograph)
+          console.log(path)
+
           if (!diograph[id]) {
             console.log(diograph)
             throw new Error(`RoomId ${id} not found from generated diograph`)
