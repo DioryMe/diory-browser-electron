@@ -1,9 +1,10 @@
-FROM node:12.13
+FROM node:12.14
 
-ADD package.json /app/
+RUN mkdir /app
+COPY package.json /app
 WORKDIR /app
 RUN yarn install
 
-ADD . /app
+COPY . .
 
 CMD yarn start
