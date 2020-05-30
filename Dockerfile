@@ -1,9 +1,11 @@
 FROM node:12.14
 
 RUN mkdir /app
-COPY package.json /app
 WORKDIR /app
-RUN yarn install
+
+COPY package.json package.json
+RUN yarn install && mv node_modules /node_modules
+RUN ln -s /node_modules/ node_modules
 
 COPY . .
 
