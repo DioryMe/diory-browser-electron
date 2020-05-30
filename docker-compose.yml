@@ -1,7 +1,8 @@
 version: '3'
 
 services:
-  react:
+  build:
+    container_name: build
     build: .
     volumes:
       - .:/app

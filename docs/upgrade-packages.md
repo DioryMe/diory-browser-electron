@@ -4,8 +4,10 @@ Updgrading packages should be as easy as possible. We assume that our test suite
 
 ## Default process, the happy path
 
-```shell
-$ docker-compose run --rm react yarn upgrade --latest
+1. Remove the resolutions
+
+2. ```shell
+$ docker-compose exec build yarn upgrade --latest
 $ git commit package.json yarn.lock -m "Upgrade packages: yarn upgrade --latest"
 ```
 
@@ -44,7 +46,7 @@ Node version should be updated every time Electron moves on using the next Node 
 
 ### How often this should be done?
 
-At least once a quarter OR when major
+At least once a quarter OR when another major version of Electron or React is published (e.g. 10 when we have 8)
 
 ### Why we should do this?
 
