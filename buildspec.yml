@@ -1,0 +1,15 @@
+version: 0.2
+
+# https://github.com/aws/aws-codebuild-docker-images/issues/164
+
+phases:
+  install:
+    commands:
+      - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2&
+      - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
+  build:
+    commands:
+        - docker run --rm --env ELECTRON_CACHE="/root/.cache/electron" --env ELECTRON_BUILDER_CACHE="/root/.cache/electron-builder" -v "${PWD}:/project" -v "${PWD##*/}-node-modules:/project/node_modules" -v "~/.cache/electron:/root/.cache/electron" -v "~/.cache/electron-builder:/root/.cache/electron-builder" electronuserland/builder:wine /bin/bash -c "yarn && yarn build && yarn build-electron && yarn package-win-linux"
+        - aws s3 cp dist/*.exe s3://jvalanen-codebuild-test
+        - aws s3 cp dist/*.AppImage s3://jvalanen-codebuild-test
+        - aws s3 cp dist/*.snap s3://jvalanen-codebuild-test
