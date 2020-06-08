@@ -1,7 +1,7 @@
 const { resolve } = require('path')
 
 exports.isValid = function isValid(dirent) {
-  return dirent.name != 'diograph.json' && dirent.name != '.DS_Store'
+  return dirent.name !== 'diograph.json' && dirent.name !== '.DS_Store'
 }
 exports.isFile = function isFile(dirent) {
   return dirent.isFile()
