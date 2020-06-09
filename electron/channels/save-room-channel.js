@@ -3,7 +3,7 @@ const { channels } = require('../../src/shared/constants')
 const { saveRoom } = require('../lib/room-util')
 
 ipcMain.on(channels.SAVE_ROOM, (event, { path, room: { id, diograph } }) => {
-  console.log('Backend IPC: SAVE_ROOM', path, room)
+  console.log('Backend IPC: SAVE_ROOM', path, id)
 
   saveRoom(path, diograph)
     .then(() => {
