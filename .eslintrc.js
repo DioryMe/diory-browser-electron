@@ -3,13 +3,9 @@ module.exports = {
     browser: true,
     es6: true,
     node: true,
-    'jest/globals': true
+    'jest/globals': true,
   },
-  extends: [
-    'plugin:react/recommended',
-    'airbnb',
-    'plugin:prettier/recommended'
-  ],
+  extends: ['plugin:react/recommended', 'airbnb', 'plugin:prettier/recommended'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -21,14 +17,10 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-    'jest',
-    'prettier'
-  ],
+  plugins: ['react', 'jest', 'prettier'],
   ignorePatterns: ['*.css', '*.feature', '*.json', '**/electron/readers/example-folder/**/*'],
   rules: {
-    'semi': ['off'],
+    semi: ['off'],
     'arrow-parens': ['off'],
     'no-console': ['off'],
     'operator-linebreak': ['off'], // prettier
@@ -38,10 +30,10 @@ module.exports = {
     'prefer-template': ['warn'], // todo
     'no-shadow': ['warn'], // todo
     'no-unused-vars': ['warn'], // todo
-    'indent': ['warn'], // todo
+    indent: ['warn'], // todo
     'prefer-const': ['warn'], // todo
     'dot-notation': ['warn'], // todo
-    'max-len': ['off'],  // prettier
+    'max-len': ['off'], // prettier
     'import/newline-after-import': ['warn'],
     'react/prop-types': ['warn'],
     'object-curly-newline': ['off'], // prettier
@@ -57,7 +49,7 @@ module.exports = {
     'prefer-rest-params': ['warn'],
     'one-var': ['warn'],
     'global-require': ['warn'],
-    'quotes': ['warn'],
+    quotes: ['warn'],
     'prefer-arrow-callback': ['warn'],
     'arrow-body-style': ['warn'],
     'react/no-children-prop': ['warn'],
@@ -67,7 +59,7 @@ module.exports = {
     'no-confusing-arrow': ['warn'],
     'react/jsx-curly-brace-presence': ['warn'],
     'jsx-a11y/click-events-have-key-events': ['warn'],
-    'radix': ['warn'],
+    radix: ['warn'],
     'no-bitwise': ['warn'],
     'no-underscore-dangle': ['warn'],
     'no-inner-declarations': ['warn'],
@@ -75,10 +67,10 @@ module.exports = {
     'prefer-destructuring': ['warn'],
     'react/jsx-closing-tag-location': ['warn'],
     'react/self-closing-comp': ['warn'],
-    'import/no-extraneous-dependencies': ['warn', {"devDependencies": true}],
+    'import/no-extraneous-dependencies': ['warn', { devDependencies: true }],
     'consistent-return': ['off'], // Personal opinion
     'import/no-cycle': ['warn'],
     'import/order': ['warn'],
     'no-prototype-builtins': ['warn'],
   },
-};
+}
