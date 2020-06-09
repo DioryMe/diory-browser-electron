@@ -5,12 +5,8 @@ const { generateDiograph } = require('../generators/diograph-generator')
 const { saveRoom } = require('../lib/room-util')
 
 ipcMain.on(channels.GENERATE_DIOGRAPH, (event, path) => {
-  console.log('GENERATE_DIOGRAPH', path)
+  console.log('Backend IPC: GENERATE_DIOGRAPH', path)
   generateDiograph(path).then(({ id, diograph }) => {
-    console.log(id)
-    console.log(diograph)
-    console.log(path)
-    console.log('--------')
     saveRoom(path, diograph)
       .then(() => {
         // Store current roomId to user data

@@ -4,6 +4,7 @@ const { channels } = require('../../src/shared/constants')
 const { getRoom } = require('../lib/room-util')
 
 ipcMain.on(channels.GET_ROOM, (event) => {
+  console.log('Backend IPC: GET_ROOM')
   // Retrieve current roomId and path from user data
   // - if nothing found from user data fallback to default welcome-room
   const store = new UserDataStore()
@@ -13,11 +14,9 @@ ipcMain.on(channels.GET_ROOM, (event) => {
   }
   const roomInFocus = store.get('roomInFocus') || defaultRoom
 
-  console.log('GET_ROOM', roomInFocus)
+  console.log('Room in focus:', roomInFocus)
 
   getRoom(roomInFocus.path).then((diograph) => {
-    console.log(diograph)
-    console.log('--------')
     roomInFocus.diograph = diograph.diograph
     event.sender.send(channels.GET_ROOM, roomInFocus)
   })

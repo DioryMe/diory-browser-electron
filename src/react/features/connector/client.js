@@ -9,6 +9,7 @@ export const connect = (channel, params) => {
   }
 
   return new Promise((resolve, reject) => {
+    console.log('Frontend IPC send', channel, params)
     ipcRenderer.send(channel, params)
     ipcRenderer.on(channel, (event, success, err) => {
       if (err) {
