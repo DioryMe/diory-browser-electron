@@ -11,14 +11,14 @@ function createWindow() {
     width: 1200,
     height: 800,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(__dirname, 'electron/preload.js'),
     },
   })
 
   mainWindow.loadURL(
     process.env.ELECTRON_START_URL ||
       url.format({
-        pathname: path.join(__dirname, '../build/index.html'),
+        pathname: path.join(__dirname, 'build/index.html'),
         protocol: 'file:',
         slashes: true,
       })
@@ -48,7 +48,7 @@ app.on('activate', () => {
 })
 
 function loadChannels() {
-  const files = glob.sync(path.join(__dirname, 'channels/**/*.js'))
+  const files = glob.sync(path.join(__dirname, 'electron/channels/**/*.js'))
   files.forEach((file) => require(file))
 }
 
