@@ -1,3 +1,4 @@
+// const path = require('path')
 const { ipcMain } = require('electron')
 const UserDataStore = require('electron-store')
 const { channels } = require('../../src/shared/constants')
@@ -10,6 +11,10 @@ ipcMain.on(channels.GET_ROOM, (event) => {
   const store = new UserDataStore()
   const defaultRoom = {
     id: 'welcome-room',
+    // FIXME: Figure out how to allow local & binary use
+    // package-* scripts want it this way...
+    // NOTE: Enable require('path') on top!
+    // path: path.join(__dirname, 'default-welcome-room'),
     path: './public/default-welcome-room',
   }
   const roomInFocus = store.get('roomInFocus') || defaultRoom
