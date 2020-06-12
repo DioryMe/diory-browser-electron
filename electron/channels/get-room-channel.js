@@ -14,7 +14,7 @@ ipcMain.on(channels.GET_ROOM, (event) => {
     // FIXME: Figure out how to allow local & binary use
     // package-* scripts want it this way...
     // NOTE: Enable require('path') on top!
-    // path: path.join(__dirname, 'default-welcome-room'),
+    // path: path.join(__dirname, '../../default-welcome-room'),
     path: './public/default-welcome-room',
   }
   const roomInFocus = store.get('roomInFocus') || defaultRoom
