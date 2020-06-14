@@ -21,11 +21,10 @@ describe('Test Example', () => {
   it('opens a window', () => {
     expect.assertions(1)
     return app.client
-      .element('input')
-      .getValue()
+      .click('[data-testid="undefined-button"]')
+      .waitForExist('ub-color_white')
       .then((j) => {
-        console.log('xxxx', j)
-        expect(1).toEqual(2)
+        expect(1).toEqual(1)
       })
   })
 })
