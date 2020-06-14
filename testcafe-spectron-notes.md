@@ -21,7 +21,7 @@ Logging is needed
 
 Run tests:
 ```
-testcafe "electron:." electron/spec/e2e.test.js
+testcafe "electron:." electron/spec/testcafe-e2e.test.js
 npx jest electron/spec/spectron-e2e.test.js
 ```
 
