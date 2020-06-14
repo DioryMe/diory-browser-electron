@@ -16,5 +16,10 @@ test('Test test', async (t) => {
 
   const dioryCount = Selector('.ub-color_white').count
 
-  await t.wait(1000).click('[data-testid="undefined-button"]').wait(1000).expect(dioryCount).eql(2)
+  await t
+    .expect(dioryCount)
+    .eql(1)
+    .click('[data-testid="undefined-button"]')
+    .expect(dioryCount)
+    .eql(2)
 })
