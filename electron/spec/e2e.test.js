@@ -1,9 +1,6 @@
 import { getMainMenuItem } from 'testcafe-browser-provider-electron'
 
-fixture`Electron test`.page('./index.html')
+fixture`Electron test`.page('../../build/index.html')
 
-test('Check the menu item role', async (t) => {
-  const menuItem = await getMainMenuItem(['Main Menu', 'Edit', 'Undo'])
-
-  await t.expect(menuItem.role).eql('undo')
-})
+test('Check the menu item role', async (t) =>
+  await t.click('[data-testid="undefined-button"]').expect(1).eql(2))
