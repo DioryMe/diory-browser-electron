@@ -34,3 +34,11 @@ Tarvittais logitusta, että tuota^ voisi selvitellä tarkemmin.
 
 Spectron can't interact with dialogs:
 https://github.com/electron-userland/spectron/issues/23
+
+
+Toimii samalla tavalla kuin t.setNativeDialogHandler
+- ei toiminut esimerkki, tulee yhä window.nativeFileDialog.showOpenDialog(...).then is not a function
+
+=> tästä voisi rapsata bugin, jos jaksais
+
+
