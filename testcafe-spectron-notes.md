@@ -42,3 +42,6 @@ Toimii samalla tavalla kuin t.setNativeDialogHandler
 => tästä voisi rapsata bugin, jos jaksais
 
 
+---
+
+Tätä alkaa käyttää: https://devexpress.github.io/testcafe/documentation/reference/configuration-file.html

@@ -1,19 +1,20 @@
-fixture`Electron test`.page('../../build/index.html')
-
+import { Selector } from 'testcafe'
 import { setElectronDialogHandler } from 'testcafe-browser-provider-electron'
 
 fixture`Electron test`.page('../../build/index.html')
 
 test('Test test', async (t) => {
-  await setElectronDialogHandler((type, browserWindow, options) => {
-    //browserWindow, options are standard arguments of the opening dialog, you can use it for your purposes
-    if (type !== 'open-dialog') {
-      return
-    }
+  // await setElectronDialogHandler((type, browserWindow, options) => {
+  //   //browserWindow, options are standard arguments of the opening dialog, you can use it for your purposes
+  //   if (type !== 'open-dialog') {
+  //     return
+  //   }
 
-    //it returns the file path from the open dialog
-    return ['./development-content-room']
-  })
+  //   //it returns the file path from the open dialog
+  //   return ['./development-content-room']
+  // })
 
-  await t.click('[data-testid="undefined-button"]').expect(1).eql(2)
+  const dioryCount = Selector('.ub-color_white').count
+
+  await t.wait(1000).click('[data-testid="undefined-button"]').wait(1000).expect(dioryCount).eql(2)
 })
