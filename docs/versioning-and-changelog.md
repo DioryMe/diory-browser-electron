@@ -20,6 +20,9 @@ Version doesn't need to be changed if
 ### How to bump the version?
 
 1. Change the version in package.json
+```
+docker-compose run --rm build yarn version
+```
 2. Make an entry to CHANGELOG.md file
 3. Trigger building new packages (optional)
 
