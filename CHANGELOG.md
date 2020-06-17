@@ -1,3 +1,22 @@
+
+## 1.0.0 (June 20, 2020)
+
+Release candidate for Release 1 milestone.
+
+## 0.3.8 (June 17, 2020)
+
+### DDA-25: Store roomInFocus with electron-store
+- Read config.json from \~/Library/Application Support/Diory - Digital Memory Browser/
+- Fallback to welcome room if config.json file is not found
+- Saves roomInFocus every time a new diograph is generated
+
+### Other
+- Ignore .DS_Store and diograph.json when generating the diograph
+- Update packages: Electron 9, Node 12.14, yarn 1.21 etc.
+- Initial build pipeline for app packages
+- Improved Docker environment
+- Improved logging
+
 ## 0.3.7 (May 21, 2020)
 
 ### DDA-23: Clean code for release
@@ -11,7 +30,7 @@
 
 - Show only one room
 - Change room by opening another folder
-   
+
 ## 0.3.5 (April 13, 2020)
 
 ### DDA-20: Filter diorys by text in room
@@ -45,9 +64,9 @@
 
 * Setup eslint rules and plugins
     * Airbnb
-    * Prettier 
+    * Prettier
 * Setup github actions
- 
+
 ## 0.3.1 (March 15, 2020)
 
 ### DDA-11: Create connector feature
