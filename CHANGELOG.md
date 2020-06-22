@@ -3,6 +3,32 @@
 
 Release candidate for Release 1 milestone.
 
+### Features
+##### Navigation
+- focus
+- path
+- history
+- backward, forward, next, previous
+
+##### Room
+- focus diory in fullscreen
+- linked diorys in grid
+
+##### Map lens
+- focus diory in map
+- linked diorys in map
+
+##### Folder connector
+- select folder
+- generate diograph from files and subfolders
+- save diograph to folder
+- load diograph from folder
+
+##### Text filter
+- search query input
+- search diorys with query in text
+- results as linked diorys
+
 ## 0.3.8 (June 17, 2020)
 
 ### DDA-25: Store roomInFocus with electron-store
