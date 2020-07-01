@@ -1,0 +1,222 @@
+# FIXME: Create Cloudwatch event from S3 object and pass the key as MacBinary
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  CodePipeline which
+  1) triggers from S3 PUT action,
+  2) retrieves source code from Github,
+  3) builds new binaries
+  4) updates website and the latest links
+Parameters:
+  BranchName:
+    Description: GitHub branch name
+    Type: String
+    Default: website
+  RepositoryName:
+    Description: GitHub repository name
+    Type: String
+    Default: diory-browser-electron
+  MacBinary:
+    Description: Key of the uploaded Mac binary which triggered the pipeline
+    Type: String
+    Default: 's3://dda-downloads/Diory - Digital Memory Browser-0.3.7.dmg'
+Resources:
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      AccessControl: PublicRead
+      BucketName: dda-downloads
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html
+    DeletionPolicy: Retain
+  CodePipelineArtifactStoreBucket:
+    Type: 'AWS::S3::Bucket'
+  DioryDemoAppPipeline:
+    Type: 'AWS::CodePipeline::Pipeline'
+    Properties:
+      Name: DioryDemoApp-build-pipeline
+      RoleArn: !GetAtt
+        - CodePipelineServiceRole
+        - Arn
+      Stages:
+        - Name: Source
+          Actions:
+            - Name: SourceAction
+              ActionTypeId:
+                Category: Source
+                Owner: ThirdParty
+                Version: 1
+                Provider: GitHub
+              OutputArtifacts:
+                - Name: SourceOutput
+              Configuration:
+                Owner: please-add-this-manually
+                Repo: !Ref RepositoryName
+                Branch: !Ref BranchName
+                OAuthToken: please-add-this-manually
+                PollForSourceChanges: false
+              RunOrder: 1
+        - Name: BuildWindowsBinary
+          Actions:
+            - Name: BuildWindowsBinary
+              InputArtifacts:
+                - Name: SourceOutput
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Version: 1
+                Provider: CodeBuild
+              OutputArtifacts:
+                - Name: WindowsBinary
+              Configuration:
+                # FIXME: Implement the real CodeBuild projects
+                ProjectName: BuildWindowsBinary
+              RunOrder: 2
+        - Name: UpdateWebsite
+          Actions:
+            - Name: UpdateWebsite
+              InputArtifacts:
+                - Name: SourceOutput
+                # - Name: WindowsBinary
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Version: 1
+                Provider: CodeBuild
+              Configuration:
+                # FIXME: Implement the real CodeBuild projects
+                ProjectName: UpdateWebsite
+                # PrimarySource: SourceOutput
+              RunOrder: 3
+      ArtifactStore:
+        Type: S3
+        Location: !Ref CodePipelineArtifactStoreBucket
+  CodePipelineServiceRole:
+    # If this is not enough this can be copied:
+    # https://console.aws.amazon.com/iam/home?region=eu-central-1#/roles/AWSCodePipelineServiceRole-eu-central-1-DDA-test
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - codepipeline.amazonaws.com
+            Action: 'sts:AssumeRole'
+          - Effect: Allow
+            Principal:
+              Service:
+                - codebuild.amazonaws.com
+            Action: 'sts:AssumeRole'
+      Path: /
+      Policies:
+        - PolicyName: AWS-CodePipeline-Service-3
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 'codebuild:BatchGetBuilds'
+                  - 'codebuild:StartBuild'
+                Resource: '*'
+              - Effect: Allow
+                Action:
+                  - 'iam:PassRole'
+                Resource: '*'
+              - Effect: Allow
+                Action:
+                  # FIXME: Allow only to one bucket
+                  - 's3:*'
+                  - 'ssm:*'
+                Resource: '*'
+  CodeBuildServiceRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - codepipeline.amazonaws.com
+            Action: 'sts:AssumeRole'
+          - Effect: Allow
+            Principal:
+              Service:
+                - codebuild.amazonaws.com
+            Action: 'sts:AssumeRole'
+      Policies:
+        - PolicyName: AWS-CodeBuild-Service-3
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource:
+                  - arn:aws:logs:*:*:log-group:/aws/codebuild/*
+              - Effect: Allow
+                Action:
+                  - 's3:*'
+                Resource:
+                  - !GetAtt S3Bucket.Arn
+                  - !Sub "${S3Bucket.Arn}/*"
+                  - !GetAtt CodePipelineArtifactStoreBucket.Arn
+                  - !Sub "${CodePipelineArtifactStoreBucket.Arn}/*"
+                  # - arn:aws:s3:::codepipeline-eu-central-1-*
+                  # - arn:aws:s3:::jvalanen-codebuild-test
+  BuildWindowsBinary:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: BuildWindowsBinary
+      ServiceRole: !GetAtt CodeBuildServiceRole.Arn
+      Artifacts:
+        Type: CODEPIPELINE
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: electronuserland/builder:wine
+        EnvironmentVariables:
+          - Name: WEBSITE_BUCKET
+            Value: !Sub "${S3Bucket}"
+          - Name: WINDOWS_BINARY_FILENAME
+            Value: "Diory - Digital Memory Browser Setup 1.0.0.exe"
+      Source:
+        Type: CODEPIPELINE
+        BuildSpec: aws/buildspec-buildwindowsbinary.yml
+  UpdateWebsite:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: UpdateWebsite
+      ServiceRole: !GetAtt CodeBuildServiceRole.Arn
+      Artifacts:
+        Type: CODEPIPELINE
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/standard:4.0
+        EnvironmentVariables:
+          - Name: WEBSITE_BUCKET
+            Value: !Sub "${S3Bucket}"
+          - Name: WINDOWS_BINARY_FILENAME
+            Value: "Diory - Digital Memory Browser Setup 1.0.0.exe"
+          - Name: MAC_BINARY_FILENAME
+            Value: "Diory - Digital Memory Browser-0.3.7.dmg"
+      Source:
+        Type: CODEPIPELINE
+        BuildSpec: aws/buildspec-updatewebsite.yml
+Outputs:
+  WebsiteURL:
+    Value: !GetAtt
+      - S3Bucket
+      - WebsiteURL
+    Description: URL for the website
+  MacBinary:
+    Value: MacBinary
+    Description: URL for the MacOS binary
+  WindowsBinary:
+    Value: WindowsBinary
+    Description: URL for the Windows binary
