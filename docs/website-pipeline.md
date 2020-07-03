@@ -1,10 +1,26 @@
+# Website & pipeline
+
+Our website is basically just a place to download our app for MacOS and Windows.
+
+## How to update?
+
+1. Merge the code you want to use to 'develop' branch
+2. Generate new MacOS app (see app-packages.md for details) and upload it to S3
 ```
-aws sts get-session-token --serial-number arn-of-the-mfa-device --token-code code-from-token
-export AWS_ACCESS_KEY_ID=RoleAccessKeyID
-export AWS_SECRET_ACCESS_KEY=RoleSecretKey
-export AWS_SESSION_TOKEN=RoleSessionToken
-aws s3 ls
+aws s3 cp Diory\ -\ Digital\ Memory\ Browser-0.3.7.dmg s3://dda-downloads
 ```
+3. Update the version number to MAC_BINARY_FILENAME and WINDOWS_BINARY_FILENAME in the build-pipeline-cf.yaml
+4. Trigger the pipeline from the aws console by clicking "Release change": https://eu-north-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/DioryDemoApp-build-pipeline/view?region=eu-north-1
+
+## Website
+
+There's only one real page, `index.html` which is found under `/website`
+
+latest-mac.html and latest-win.html are for easy redirecting to the latest version. They are uploaded and redirection are reset to the latest version every time we build new binaries.
+
+## Cloudformation deploy
+
+If you need to change the resources (=cloudformation template), you can deploy it with the following command:
 
 ```
 aws cloudformation deploy \
@@ -12,14 +28,3 @@ aws cloudformation deploy \
   --stack-name dda-build-pipeline \
   --capabilities CAPABILITY_IAM
 ```
-
-```
-aws s3 cp ./website/index.html s3://dda-downloads --acl public-read
-
-aws s3 cp ./website/latest-mac.html s3://dda-downloads --acl public-read \
-  --website-redirect "/Diory - Digital Memory Browser-0.3.7.dmg"
-
-aws s3 cp ./website/latest-win.html s3://dda-downloads --acl public-read \
-  --website-redirect "/Diory - Digital Memory Browser-0.3.7.dmg"
-```
-
