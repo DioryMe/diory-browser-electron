@@ -7,7 +7,7 @@ Our website is basically just a place to download our app for MacOS and Windows.
 1. Merge the code you want to use to 'develop' branch
 2. Generate new MacOS app (see app-packages.md for details) and upload it to S3
 ```
-aws s3 cp Diory\ -\ Digital\ Memory\ Browser-0.3.7.dmg s3://dda-downloads
+aws s3 cp Diory\ -\ Digital\ Memory\ Browser-0.3.7.dmg s3://dda-downloads --acl public-read
 ```
 3. Update the version number to MAC_BINARY_FILENAME and WINDOWS_BINARY_FILENAME in the build-pipeline-cf.yaml
 4. Trigger the pipeline from the aws console by clicking "Release change": https://eu-north-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/DioryDemoApp-build-pipeline/view?region=eu-north-1
