@@ -14,7 +14,7 @@ docker-compose up
 Same container can be used e.g. debugging Github Action stuff
 ```
 # Get inside of container
-$ docker-compose run --rm react bash
+$ docker-compose run --rm build bash
 
 # Run the same command as Github Action
 root@af26de6f61ae:/app# yarn eslint
