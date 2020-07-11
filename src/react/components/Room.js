@@ -24,7 +24,7 @@ const Room = ({ room: { id, image, text, ...diory }, onClick }) => (
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
       backgroundColor="pink"
-      boxShadow={`inset 0px -2px 50px -5px rgba(0,0,0,0.6), 0px 0px 30px 10px rgba(0,0,0,0.4)`}
+      boxShadow="inset 0px -2px 50px -5px rgba(0,0,0,0.6), 0px 0px 30px 10px rgba(0,0,0,0.4)"
     >
       <Box padding={16} color="white" fontWeight="bold">
         {text}

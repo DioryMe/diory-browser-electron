@@ -65,16 +65,14 @@ export const goForward = (state) => {
   }
 }
 
-export const goHome = (state) => {
-  return {
-    ...state,
-    roomId: state.roomId,
-    focus: state.roomId,
-    backward: [[state.roomId, state.focus], ...state.backward],
-    forward: [],
-    path: [],
-  }
-}
+export const goHome = (state) => ({
+  ...state,
+  roomId: state.roomId,
+  focus: state.roomId,
+  backward: [[state.roomId, state.focus], ...state.backward],
+  forward: [],
+  path: [],
+})
 
 export default createReducer({
   [ENTER_ROOM]: enterRoom,

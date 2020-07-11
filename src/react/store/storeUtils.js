@@ -15,28 +15,28 @@ export const useDispatchAction = (action) => {
 
 export const promiseDispatch = (dispatch, promise, action) => {
   const actionType = action({}).type
-  dispatch({ type: actionType + '_BEGIN' })
+  dispatch({ type: `${actionType}_BEGIN` })
   promise
     .then((data) => {
       dispatch(action(data))
-      dispatch({ type: actionType + '_SUCCESS' })
+      dispatch({ type: `${actionType}_SUCCESS` })
     })
-    .catch((error) => dispatch({ type: actionType + '_FAILURE', payload: { error } }))
+    .catch((error) => dispatch({ type: `${actionType}_FAILURE`, payload: { error } }))
 }
 
 export const promiseReducers = (actionType, triggerKey, progressKey, successKey, errorKey) => ({
-  [actionType + '_BEGIN']: (state) => ({
+  [`${actionType}_BEGIN`]: (state) => ({
     ...state,
     [triggerKey]: false,
     [progressKey]: true,
   }),
-  [actionType + '_SUCCESS']: (state) => ({
+  [`${actionType}_SUCCESS`]: (state) => ({
     ...state,
     [progressKey]: false,
     [successKey]: true,
     [errorKey]: false,
   }),
-  [actionType + '_FAILURE']: (state, { payload }) => ({
+  [`${actionType}_FAILURE`]: (state, { payload }) => ({
     ...state,
     [progressKey]: false,
     [successKey]: false,
