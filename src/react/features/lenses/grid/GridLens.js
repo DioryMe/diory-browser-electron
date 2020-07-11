@@ -34,14 +34,6 @@ const GridLens = () => {
           {diory.text}
         </Heading>
       )}
-      {!diorys.length &&
-        (diory.image.toLowerCase().includes('.mov') ||
-          diory.image.toLowerCase().includes('.mp4') ||
-          diory.image.toLowerCase().includes('.avi')) && (
-          <video controls width="250">
-            <source src={diory.image} type="video/mp4" />
-          </video>
-        )}
       {diorys.slice(0, MAX_NUMBER_OF_DIORYS_PER_VIEW).map(({ diory, onClick }) => (
         <Diory
           key={diory.id}
