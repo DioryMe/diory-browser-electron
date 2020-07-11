@@ -8,7 +8,14 @@ const ToolView = () => {
   const [{ focus }] = useStore((state) => state.navigation)
   const [{ diograph }] = useStore((state) => state.room)
   const diory = diograph[focus]
-  if (diory && diory.image) {
+
+  if (
+    diory &&
+    diory.image &&
+    (diory.image.toLowerCase().includes('.mov') ||
+      diory.image.toLowerCase().includes('.mp4') ||
+      diory.image.toLowerCase().includes('.avi'))
+  ) {
     const selectedToolId = 'video'
     const SelectedTool = Tools[selectedToolId]
     return selectedToolId ? <SelectedTool /> : null

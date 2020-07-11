@@ -8,14 +8,11 @@ const Video = () => {
   const diory = diograph[focus]
 
   return (
-    // {!diorys.length &&
-    //   (diory.image.toLowerCase().includes('.mov') ||
-    //     diory.image.toLowerCase().includes('.mp4') ||
-    //     diory.image.toLowerCase().includes('.avi')) && (
-    <video controls width="250">
-      <source src={diory.image} type="video/mp4" />
-    </video>
-    // )}
+    <center>
+      <video controls height="480">
+        <source src={diory.image} type="video/mp4" />
+      </video>
+    </center>
   )
 }
 
