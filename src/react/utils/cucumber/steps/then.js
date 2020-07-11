@@ -21,42 +21,58 @@ Then('I see {word} {int} {word} on {word}', expectDioryItemOnContainer)
 Then('{word} {word} is active', expectItemIsActive)
 Then('{word} {word} is not active', expectItemIsNotActive)
 
-Then('I see a new {word}', () => {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending'
-})
+Then(
+  'I see a new {word}',
+  () =>
+    // Write code here that turns the phrase above into concrete actions
+    'pending'
+)
 
-Then('my {word} are in new order', () => {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending'
-})
+Then(
+  'my {word} are in new order',
+  () =>
+    // Write code here that turns the phrase above into concrete actions
+    'pending'
+)
 
-Then('I do not see the {word}', () => {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending'
-})
+Then(
+  'I do not see the {word}',
+  () =>
+    // Write code here that turns the phrase above into concrete actions
+    'pending'
+)
 
-Then('diory location is saved to diograph', () => {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending'
-})
+Then(
+  'diory location is saved to diograph',
+  () =>
+    // Write code here that turns the phrase above into concrete actions
+    'pending'
+)
 
-Then('room {int} has {int} linked diory', (int, int2) => {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending'
-})
+Then(
+  'room {int} has {int} linked diory',
+  (int, int2) =>
+    // Write code here that turns the phrase above into concrete actions
+    'pending'
+)
 
-Then('{word} is saved to diograph', () => {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending'
-})
+Then(
+  '{word} is saved to diograph',
+  () =>
+    // Write code here that turns the phrase above into concrete actions
+    'pending'
+)
 
-Then('I diorys is moved to location', () => {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending'
-})
+Then(
+  'I diorys is moved to location',
+  () =>
+    // Write code here that turns the phrase above into concrete actions
+    'pending'
+)
 
-Then('diory {int} marker is not on map', (int) => {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending'
-})
+Then(
+  'diory {int} marker is not on map',
+  (int) =>
+    // Write code here that turns the phrase above into concrete actions
+    'pending'
+)

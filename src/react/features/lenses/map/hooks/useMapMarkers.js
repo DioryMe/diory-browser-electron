@@ -98,9 +98,9 @@ const useUpdatePopup = (mapRef) => {
   useEffect(() => {
     document.querySelector('.leaflet-popup-pane').addEventListener(
       'load',
-      function (event) {
-        const tagName = event.target.tagName,
-          popup = mapRef.current._popup
+      (event) => {
+        const { tagName } = event.target
+        const popup = mapRef.current._popup
 
         if (tagName === 'IMG' && popup && !popup._updated) {
           popup._updated = true // Assumes only 1 image per Popup.
