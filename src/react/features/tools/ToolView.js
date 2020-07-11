@@ -4,9 +4,17 @@ import { useStore } from '../../store'
 import Tools from './index'
 
 const ToolView = () => {
-  const [{ selectedToolId }] = useStore((state) => state.tools)
-  const SelectedTool = Tools[selectedToolId]
-  return selectedToolId ? <SelectedTool /> : null
+  // const [{ selectedToolId }] = useStore((state) => state.tools)
+  const [{ focus }] = useStore((state) => state.navigation)
+  const [{ diograph }] = useStore((state) => state.room)
+  const diory = diograph[focus]
+  if (diory && diory.image) {
+    const selectedToolId = 'video'
+    const SelectedTool = Tools[selectedToolId]
+    return selectedToolId ? <SelectedTool /> : null
+  } else {
+    return null
+  }
 }
 
 export default ToolView
