@@ -8,12 +8,6 @@ export default {
   component: TextInput,
 }
 
-const actions = {
-  onFocus: action('onFocus'),
-  onChange: action('onChange'),
-  onBlur: action('onBlur'),
-}
-
 const texts = {
   label: 'A text input',
   description: 'This is a description.',
@@ -21,16 +15,24 @@ const texts = {
   placeholder: 'Placeholder text',
 }
 
-export const withTexts = () => <TextInput {...actions} {...texts} />
+const actions = {
+  onFocus: action('onFocus'),
+  onChange: action('onChange'),
+  onBlur: action('onBlur'),
+}
 
-export const required = () => <TextInput {...actions} {...texts} required />
+export const withTexts = () => <TextInput {...texts} {...actions} />
+
+export const withoutTexts = () => <TextInput {...actions} />
+
+export const required = () => <TextInput label={texts.label} required {...actions} />
 
 export const invalid = () => (
   <TextInput
-    {...actions}
-    {...texts}
+    label={texts.label}
     required
-    isInvalid={true}
+    isInvalid
     validationMessage="This field is required"
+    {...actions}
   />
 )
