@@ -1,5 +1,7 @@
-import Map from './map/Map'
+import GridLens from './grid/GridLens'
+import MapLens from './map/MapLens'
 
 export default {
-  map: Map,
+  grid: GridLens,
+  map: MapLens,
 }
