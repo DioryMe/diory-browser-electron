@@ -3,27 +3,28 @@ import { action } from '@storybook/addon-actions'
 
 import Modal from './Modal'
 
-const ModalWithActions = (props) => (
-  <Modal onCancel={action('cancel clicked')} onDone={action('done clicked')} {...props} />
-)
-
 export default {
   title: 'Modal',
-  component: ModalWithActions,
+  component: Modal,
+}
+
+const actions = {
+  onCancel: action('onCancel'),
+  onDone: action('onDone'),
 }
 
 export const isShown = () => (
   <div>
-    <ModalWithActions isShown={true}>
+    <Modal {...actions} isShown={true}>
       <div>Modal content</div>
-    </ModalWithActions>
+    </Modal>
   </div>
 )
 
 export const isNotShown = () => (
   <div>
-    <ModalWithActions isShown={false}>
+    <Modal {...actions} isShown={false}>
       <div>Modal content</div>
-    </ModalWithActions>
+    </Modal>
   </div>
 )
