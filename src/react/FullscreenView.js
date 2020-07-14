@@ -10,7 +10,7 @@ const FullscreenView = () => {
   const { diory } = useFocusDiory()
 
   return fullscreen ? (
-    <Fullscreen top={48} zIndex={1000}>
+    <Fullscreen zIndex={1000}>
       <Diory diory={diory} height={'100%'} />
     </Fullscreen>
   ) : null

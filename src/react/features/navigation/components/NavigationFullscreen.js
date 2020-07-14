@@ -22,13 +22,14 @@ const useFullscreen = () => {
         },
       }
   return {
+    top: fullscreen ? 0 : '48px',
     icon,
     onClick: () => dispatch(setFullscreen(!fullscreen)),
   }
 }
 
 const NavigationFullscreen = () => {
-  const { icon, onClick } = useFullscreen()
+  const { top, icon, onClick } = useFullscreen()
   return (
     <div
       data-testid="navigation-fullscreen"
@@ -36,7 +37,7 @@ const NavigationFullscreen = () => {
       style={{
         position: 'fixed',
         zIndex: 10000,
-        top: 48,
+        top,
         right: 0,
         height: 50,
         width: 50,

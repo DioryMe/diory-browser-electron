@@ -5,7 +5,7 @@ import NavigationLenses from './NavigationLenses'
 import NavigationSearch from './NavigationSearch'
 
 const NavigationBar = () => (
-  <Pane display="flex" justifyContent="space-between" padding={8} background="tint2">
+  <Pane display="flex" justifyContent="space-between" padding={8} background="tint2" zIndex={10000}>
     <NavigationButtons display="flex" alignSelf="center" />
     <NavigationLenses display="flex" />
     <NavigationSearch />
