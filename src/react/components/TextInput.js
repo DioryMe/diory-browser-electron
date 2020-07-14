@@ -10,6 +10,13 @@ const TextInput = ({ onChange, ...props }) => (
 TextInput.defaultProps = {
   isInvalid: false,
   required: false,
+  label: undefined,
+  description: undefined,
+  placeholder: undefined,
+  hint: undefined,
+  validationMessage: undefined,
+  value: undefined,
+  onChange: () => {},
 }
 
 TextInput.propTypes = {

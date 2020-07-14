@@ -22,6 +22,8 @@ const Modal = ({ isShown, onCancel, onDone, ...props }) => (
 Modal.defaultProps = {
   isShown: true,
   confirmLabel: 'Done',
+  onCancel: () => {},
+  onDone: () => {},
 }
 
 Modal.propTypes = {
