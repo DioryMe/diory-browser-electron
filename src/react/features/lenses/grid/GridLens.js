@@ -1,14 +1,14 @@
 import React from 'react'
 import { Heading, Pane } from 'evergreen-ui'
-import { useDispatch } from '../../store'
+import { useDispatch } from '../../../store'
 
-import { setFocus } from '../navigation/actions'
+import { setFocus } from '../../navigation/actions'
 
-import { useFocusDiory } from './hooks'
+import { useFocusDiory } from '../../room/hooks'
 
-import Diory from '../../components/diories/Diory'
-import Image from '../../components/diories/Image'
-import { getBackgroundImage } from '../../components/utils'
+import Diory from '../../../components/diories/Diory'
+import Image from '../../../components/diories/Image'
+import { getBackgroundImage } from '../../../components/utils'
 
 const useRoom = () => {
   const dispatch = useDispatch()
@@ -24,11 +24,8 @@ const useRoom = () => {
 
 const MAX_NUMBER_OF_DIORYS_PER_VIEW = 100
 
-const RoomView = () => {
+const GridLens = () => {
   const { diory, diorys } = useRoom()
-  if (!diory) {
-    return <div>loading</div>
-  }
   return (
     <Pane id={diory.id} height="100%" display="flex" flexWrap="wrap" padding={24}>
       <Image backgroundImage={getBackgroundImage(diory.image, diorys.length)} zIndex={-1} />
@@ -56,9 +53,9 @@ const RoomView = () => {
   )
 }
 
-RoomView.diory = {
-  text: 'Room',
-  image: 'folder-close',
+GridLens.diory = {
+  text: 'Grid',
+  image: 'grid-view',
 }
 
-export default RoomView
+export default GridLens
