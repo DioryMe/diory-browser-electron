@@ -15,7 +15,7 @@ const actions = {
 
 export const isShown = () => (
   <div>
-    <Modal {...actions} isShown={true}>
+    <Modal {...actions} isShown>
       <div>Modal content</div>
     </Modal>
   </div>
