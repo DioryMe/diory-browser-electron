@@ -7,7 +7,7 @@ const NavigationSideways = ({ left, right, onClick }) => (
     onClick={onClick}
     style={{
       position: 'fixed',
-      zIndex: 1000,
+      zIndex: 10000,
       top: '50%',
       transform: 'translate(0, -50%)',
       height: 50,
