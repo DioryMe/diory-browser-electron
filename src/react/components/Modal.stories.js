@@ -15,15 +15,25 @@ const actions = {
 
 export const isShown = () => (
   <div>
-    <Modal {...actions} isShown>
-      <div>Modal content</div>
-    </Modal>
+    <Modal {...actions} isShown />
   </div>
 )
 
 export const isNotShown = () => (
   <div>
-    <Modal {...actions} isShown={false}>
+    <Modal {...actions} isShown={false} />
+  </div>
+)
+
+export const withTitle = () => (
+  <div>
+    <Modal isShown title="Modal title" {...actions} />
+  </div>
+)
+
+export const withContent = () => (
+  <div>
+    <Modal isShown {...actions}>
       <div>Modal content</div>
     </Modal>
   </div>
