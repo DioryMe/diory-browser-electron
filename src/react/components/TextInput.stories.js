@@ -21,18 +21,20 @@ const actions = {
   onBlur: action('onBlur'),
 }
 
+export const initially = () => <TextInput {...actions} />
+
+export const withValue = () => <TextInput value="Some value" {...actions} />
+
 export const withTexts = () => <TextInput {...texts} {...actions} />
 
-export const withoutTexts = () => <TextInput {...actions} />
+export const withRequiredIcon = () => <TextInput label={texts.label} required {...actions} />
 
-export const required = () => <TextInput label={texts.label} required {...actions} />
+export const withInvalidNotifications = () => (
+  <TextInput label={texts.label} isInvalid validationMessage="This field is invalid" {...actions} />
+)
 
-export const invalid = () => (
-  <TextInput
-    label={texts.label}
-    required
-    isInvalid
-    validationMessage="This field is required"
-    {...actions}
-  />
+export const withJsonValidation = () => <TextInput format="object" {...actions} />
+
+export const withObjectValue = () => (
+  <TextInput value={{ some: 'object' }} format="object" {...actions} />
 )
