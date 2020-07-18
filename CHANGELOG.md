@@ -1,5 +1,11 @@
+## 1.1.0 (July 18, 2020)
 
-## 1.0.0 (June 20, 2020)
+### DDA-45: Fullscreen view
+- Create fullscreen button to navigation
+- Add fullscreen state to navigation
+- Create fullscreen view
+
+# 1.0.0 (June 20, 2020)
 
 Release candidate for Release 1 milestone.
 
