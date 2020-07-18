@@ -1,3 +1,9 @@
+## 1.1.1 (July 18, 2020)
+
+### DDA-46: Storybook
+- Set up storybook
+- Create Modal and TextInput components
+
 ## 1.1.0 (July 18, 2020)
 
 ### DDA-45: Fullscreen view
