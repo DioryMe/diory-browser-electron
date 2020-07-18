@@ -1,11 +1,11 @@
 import React from 'react'
 import { action } from '@storybook/addon-actions'
 
-import { View } from './View'
+import { EditView } from './EditView'
 
 export default {
   title: 'Edit Tool',
-  component: View,
+  component: EditView,
 }
 
 const actions = {
@@ -14,9 +14,9 @@ const actions = {
   onCancel: action('onCancel'),
 }
 
-export const initially = () => <View {...actions} />
+export const initially = () => <EditView />
 
-export const isShown = () => <View {...actions} isShown />
+export const isShownWithActions = () => <EditView {...actions} isShown />
 
 const diory = {
   id: 'some-id',
@@ -24,7 +24,7 @@ const diory = {
   image: 'Some image url string',
   style: { some: 'style object' },
   location: { some: 'location object' },
-  date: 'Some data string',
+  date: 'Some date string',
 }
 
-export const withDiory = () => <View {...actions} isShown diory={diory} />
+export const isShownWithDiory = () => <EditView isShown diory={diory} />

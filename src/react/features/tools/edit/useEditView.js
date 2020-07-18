@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import { useDispatch, useStore } from '../../../store'
 
@@ -8,7 +8,7 @@ import { setInactive } from '../actions'
 
 import { EDIT_TOOL } from './button'
 
-export const useView = () => {
+export const useEditView = () => {
   const [updatedDiory, setDiory] = useState({})
   const { diory } = useFocusDiory()
 
