@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import Modal from '../../../components/Modal'
 import TextInput from '../../../components/TextInput'
 
-import { useView } from './useView'
+import { useEditView } from './useEditView'
 
 const fields = [
   {
@@ -34,35 +34,20 @@ const fields = [
   },
 ]
 
-const stringifyValue = (value, format) => {
-  if (format === 'object') {
-    return JSON.stringify(value)
-  }
-
-  return value
-}
-
-const parseValue = (value, format) => {
-  if (format === 'object') {
-    return JSON.parse(value)
-  }
-
-  return value
-}
-
-export const View = ({ diory, isShown, onChange, onDone, onCancel }) => (
-  <Modal title={diory.id} isShown={isShown} onDone={onDone} onCancel={onCancel}>
+export const EditView = ({ diory, isShown, onChange, onDone, onCancel }) => (
+  <Modal title={`Edit diory ${diory.id}`} isShown={isShown} onDone={onDone} onCancel={onCancel}>
     {fields.map(({ label, key, format }) => (
       <TextInput
         label={label}
-        value={stringifyValue(diory[key], format)}
-        onChange={(value) => onChange(key, parseValue(value, format))}
+        format={format}
+        value={diory[key]}
+        onChange={(value) => onChange(key, value)}
       />
     ))}
   </Modal>
 )
 
-View.defaultProps = {
+EditView.defaultProps = {
   diory: {},
   isShown: false,
   onChange: () => {},
@@ -70,7 +55,7 @@ View.defaultProps = {
   onCancel: () => {},
 }
 
-View.propTypes = {
+EditView.propTypes = {
   diory: PropTypes.shape({
     id: PropTypes.string,
     text: PropTypes.string,
@@ -85,6 +70,6 @@ View.propTypes = {
   onCancel: PropTypes.func,
 }
 
-const ViewWithHook = () => <View {...useView()} />
+const EditViewWithHooks = () => <EditView {...useEditView()} />
 
-export default ViewWithHook
+export default EditViewWithHooks
