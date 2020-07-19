@@ -1,46 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import Modal from '../../../components/Modal'
 import TextInput from '../../../components/TextInput'
 
-import { useEditView } from './useEditView'
-
-const fields = [
-  {
-    label: 'Text',
-    key: 'text',
-    format: 'string',
-  },
-  {
-    label: 'Image',
-    key: 'image',
-    format: 'string',
-  },
-  {
-    label: 'Style',
-    key: 'style',
-    format: 'object',
-  },
-  {
-    label: 'Location',
-    key: 'location',
-    format: 'object',
-  },
-  {
-    label: 'Date',
-    key: 'date',
-    format: 'object',
-  },
-]
-
-export const EditView = ({ diory, isShown, onChange, onDone, onCancel }) => (
-  <Modal title={`Edit diory ${diory.id}`} isShown={isShown} onDone={onDone} onCancel={onCancel}>
-    {fields.map(({ label, key, format }) => (
+const EditView = ({ title, fields, isShown, onChange, onDone, onCancel }) => (
+  <Modal title={title} isShown={isShown} onDone={onDone} onCancel={onCancel}>
+    {fields.map(({ key, label, format, value }) => (
       <TextInput
         label={label}
         format={format}
-        value={diory[key]}
+        value={value}
         onChange={(value) => onChange(key, value)}
       />
     ))}
@@ -48,7 +18,8 @@ export const EditView = ({ diory, isShown, onChange, onDone, onCancel }) => (
 )
 
 EditView.defaultProps = {
-  diory: {},
+  title: '',
+  fields: [],
   isShown: false,
   onChange: () => {},
   onDone: () => {},
@@ -56,20 +27,19 @@ EditView.defaultProps = {
 }
 
 EditView.propTypes = {
-  diory: PropTypes.shape({
-    id: PropTypes.string,
-    text: PropTypes.string,
-    image: PropTypes.string,
-    style: PropTypes.object,
-    location: PropTypes.object,
-    date: PropTypes.string,
-  }),
+  title: PropTypes.string,
+  fields: PropTypes.arrayOf([
+    PropTypes.shape({
+      key: PropTypes.string,
+      label: PropTypes.string,
+      format: PropTypes.string,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object]),
+    }),
+  ]),
   isShown: PropTypes.bool,
   onChange: PropTypes.func,
   onDone: PropTypes.func,
   onCancel: PropTypes.func,
 }
 
-const EditViewWithHooks = () => <EditView {...useEditView()} />
-
-export default EditViewWithHooks
+export default EditView

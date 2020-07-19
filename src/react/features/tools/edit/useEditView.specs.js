@@ -1,5 +1,5 @@
 import { useEditView } from './useEditView'
 
-describe('useView', () => {
+describe('useEditView', () => {
   it('executes', () => {})
 })
