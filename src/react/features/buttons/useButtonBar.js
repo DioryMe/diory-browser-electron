@@ -1,38 +1,21 @@
 import { useState } from 'react'
 import { useStore } from '../../store'
-import { roomButtons } from '../connector/buttons'
-import { useLenses } from '../lenses/hooks'
 import { useTools } from '../tools/hooks'
+
+const useButtons = () => {
+  const [{ buttons }] = useStore((state) => state.buttons)
+  return {
+    buttons: Object.values(buttons),
+  }
+}
 
 export const useButtonBar = () => {
   const [open, setOpen] = useState(false)
   const { active, onSelect, onClear } = useTools()
-  const [{ roomId }] = useStore((state) => state.navigation)
-  const { lensButtons } = useLenses()
 
-  function clearAndClose() {
-    onClear()
-    setOpen(false)
-  }
+  const { buttons } = useButtons()
 
-  let buttons = []
-  if (lensButtons) {
-    buttons = lensButtons
-  } else if (roomId) {
-    buttons = roomButtons
-  }
-
-  if (open || buttons.length === 1) {
-    return {
-      buttons: buttons.map((button) => ({
-        ...button,
-        active: button.id === active,
-        onClick: () => (button.id === active ? clearAndClose() : onSelect(button.id)),
-      })),
-    }
-  }
-
-  if (buttons.length > 1) {
+  if (!open && buttons.length > 1) {
     return {
       buttons: [
         {
@@ -47,5 +30,18 @@ export const useButtonBar = () => {
     }
   }
 
-  return { buttons: [] }
+  return {
+    buttons: buttons.map((button) => ({
+      ...button,
+      active: button.id === active,
+      onClick: () => {
+        if (button.id !== active) {
+          return onSelect(button.id)
+        }
+
+        onClear()
+        setOpen(false)
+      },
+    })),
+  }
 }

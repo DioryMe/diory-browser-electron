@@ -1,3 +1,4 @@
+import buttons from '../features/buttons/reducers'
 import connector from '../features/connector/reducers'
 import filters from '../features/filters/reducers'
 import lenses from '../features/lenses/reducers'
@@ -15,6 +16,7 @@ const combineReducers = (reducers) => (state, action) =>
   )
 
 export const reducer = combineReducers({
+  buttons,
   connector,
   filters,
   lenses,
