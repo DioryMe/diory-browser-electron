@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import { IconButton } from 'evergreen-ui'
 
 const getActiveProps = (active) =>
@@ -7,7 +9,7 @@ const getActiveProps = (active) =>
     intent: 'success',
   }
 
-const ToolButton = ({ data, active, onClick }) => (
+const Button = ({ data, active, onClick }) => (
   <div data-testid={`${data.testid}-button${active ? '--active' : ''}`} onClick={onClick}>
     <IconButton
       {...getActiveProps(active)}
@@ -20,4 +22,16 @@ const ToolButton = ({ data, active, onClick }) => (
   </div>
 )
 
-export default ToolButton
+Button.defaultProps = {
+  data: {},
+  active: false,
+  onClick: () => {},
+}
+
+Button.propTypes = {
+  data: PropTypes.object,
+  active: PropTypes.bool,
+  onClick: PropTypes.func,
+}
+
+export default Button

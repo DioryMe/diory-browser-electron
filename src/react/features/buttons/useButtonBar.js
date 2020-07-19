@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useStore } from '../../store'
+import { roomButtons } from '../connector/buttons'
 import { useLenses } from '../lenses/hooks'
-import { roomButtons } from '../connector/tools/buttons'
-import { useTools } from './hooks'
-import ToolButton from './ToolButton'
+import { useTools } from '../tools/hooks'
 
-const useToolsBar = () => {
+export const useButtonBar = () => {
   const [open, setOpen] = useState(false)
   const { active, onSelect, onClear } = useTools()
   const [{ roomId }] = useStore((state) => state.navigation)
@@ -50,25 +49,3 @@ const useToolsBar = () => {
 
   return { buttons: [] }
 }
-
-const ToolsBar = () => {
-  const { buttons } = useToolsBar()
-  return (
-    <div
-      style={{
-        position: 'fixed',
-        zIndex: 1000,
-        bottom: 0,
-        cursor: 'pointer',
-        left: 0,
-        padding: 8,
-      }}
-    >
-      {buttons.map((button) => (
-        <ToolButton key={button.id} {...button} />
-      ))}
-    </div>
-  )
-}
-
-export default ToolsBar

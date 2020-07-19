@@ -6,21 +6,19 @@ import { initialState } from './store/initialState'
 
 import Connector from './features/connector/Connector'
 import Navigation from './features/navigation/Navigation'
-import ToolsBar from './features/tools/ToolsBar'
+import ButtonBar from './features/buttons/ButtonBar'
 import Filters from './features/filters/Filters'
 import View from './View'
 
-const App = () => {
-  return (
-    <div className="App">
-      <Navigation />
-      <ToolsBar />
-      <View />
-      <Connector />
-      <Filters />
-    </div>
-  )
-}
+const App = () => (
+  <div className="App">
+    <Navigation />
+    <ButtonBar />
+    <View />
+    <Connector />
+    <Filters />
+  </div>
+)
 
 const AppWithStore = () => (
   <StoreProvider reducer={reducerWithMiddleware(reducer)} initialState={initialState}>
