@@ -4,10 +4,10 @@ import { StoreProvider } from './store/StoreContext'
 import { reducer } from './store/reducer'
 import { initialState } from './store/initialState'
 
-import Connector from './features/connector/Connector'
-import Navigation from './features/navigation/Navigation'
 import ButtonBar from './features/buttons/ButtonBar'
+import Connector from './features/connector/Connector'
 import Filters from './features/filters/Filters'
+import Navigation from './features/navigation/Navigation'
 import View from './View'
 
 const App = () => (
