@@ -2,13 +2,16 @@ import React from 'react'
 import { useGetRoom } from './hooks/useGetRoom'
 import { useSaveRoom } from './hooks/useSaveRoom'
 
-import { useOpenFolder } from './tools/useOpenFolder'
+import { useOpenRoom } from './hooks/useOpenRoom'
+
+import { useButtons } from './buttons'
 
 const Connector = () => {
   useGetRoom()
   useSaveRoom()
+  useOpenRoom()
 
-  useOpenFolder()
+  useButtons()
 
   return <div data-testid="connector" />
 }

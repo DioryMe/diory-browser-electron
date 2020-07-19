@@ -11,7 +11,7 @@ const FullscreenView = () => {
 
   return fullscreen ? (
     <Fullscreen zIndex={1000}>
-      <Diory diory={diory} height={'100%'} />
+      <Diory diory={diory} height="100%" />
     </Fullscreen>
   ) : null
 }
