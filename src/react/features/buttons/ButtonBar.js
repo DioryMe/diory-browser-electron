@@ -26,7 +26,7 @@ ButtonBar.defaultProps = {
 }
 
 ButtonBar.propTypes = {
-  buttons: PropTypes.object,
+  buttons: PropTypes.array,
 }
 
 const ButtonBarWithHooks = () => <ButtonBar {...useButtonBar()} />

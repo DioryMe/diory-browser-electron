@@ -8,6 +8,7 @@ const EditView = ({ title, fields, isShown, onChange, onDone, onCancel }) => (
   <Modal title={title} isShown={isShown} onDone={onDone} onCancel={onCancel}>
     {fields.map(({ key, label, format, value }) => (
       <TextInput
+        key={key}
         label={label}
         format={format}
         value={value}
@@ -28,14 +29,14 @@ EditView.defaultProps = {
 
 EditView.propTypes = {
   title: PropTypes.string,
-  fields: PropTypes.arrayOf([
+  fields: PropTypes.arrayOf(
     PropTypes.shape({
       key: PropTypes.string,
       label: PropTypes.string,
       format: PropTypes.string,
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object]),
-    }),
-  ]),
+    })
+  ),
   isShown: PropTypes.bool,
   onChange: PropTypes.func,
   onDone: PropTypes.func,
