@@ -4,7 +4,7 @@ import EditTool from './edit/EditTool'
 
 const ToolsView = () => (
   <>
-    <EditTool/>
+    <EditTool />
   </>
 )
 
