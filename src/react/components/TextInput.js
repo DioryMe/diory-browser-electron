@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import { TextInputField } from 'evergreen-ui'
 
 function stringifyValue(value, format) {
+  if (!value) {
+    return ''
+  }
+
   if (format === 'object') {
     return JSON.stringify(value)
   }
@@ -11,15 +15,11 @@ function stringifyValue(value, format) {
   return value
 }
 
-function parseValue(value, format) {
-  if (format === 'object') {
-    return JSON.parse(value)
+function validateValue(value, format) {
+  if (!value) {
+    return true
   }
 
-  return value
-}
-
-function validateValue(value, format) {
   if (format === 'object') {
     try {
       JSON.parse(value)
@@ -31,30 +31,48 @@ function validateValue(value, format) {
   return true
 }
 
-const useValidation = (format, onChange) => {
+function parseValue(value, format) {
+  if (!value) {
+    return
+  }
+
+  if (format === 'object') {
+    return JSON.parse(value)
+  }
+
+  return value
+}
+
+const useValidation = (initialValue, format) => {
+  const [validatedValue, setValue] = useState('')
   const [isInvalid, setIsInvalid] = useState(false)
 
+  useEffect(() => {
+    setValue(stringifyValue(initialValue, format))
+  }, [initialValue, format])
+
   return {
-    validatedOnChange: (updatedValue) => {
-      const isValid = validateValue(updatedValue, format)
+    validatedValue,
+    validate: (nextValue, onChange) => {
+      setValue(nextValue)
+      const isValid = validateValue(nextValue, format)
       setIsInvalid(!isValid)
       if (isValid) {
-        onChange(parseValue(updatedValue, format))
+        onChange(parseValue(nextValue, format))
       }
     },
     isInvalid,
-    validationMessage: isInvalid && `Invalid ${format}`,
   }
 }
 
 const TextInput = ({ format, value, onChange, ...props }) => {
-  const { validatedOnChange, isInvalid, validationMessage } = useValidation(format, onChange)
+  const { validatedValue, validate, isInvalid } = useValidation(value, format)
   return (
     <TextInputField
-      value={stringifyValue(value, format)}
-      onChange={({ target: { value } }) => validatedOnChange(value)}
+      value={validatedValue}
+      onChange={({ target: { value } }) => validate(value, onChange)}
       isInvalid={isInvalid}
-      validationMessage={validationMessage}
+      validationMessage={isInvalid && `Invalid ${format}`}
       {...props}
     />
   )
@@ -80,7 +98,7 @@ TextInput.propTypes = {
   hint: PropTypes.string,
   validationMessage: PropTypes.string,
   format: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.number]),
   onChange: PropTypes.func,
 }
 
