@@ -30,7 +30,7 @@ const NavigationLenses = (props) => {
             aria-controls={`panel-${lens.id}`}
             data-testid={`${lens.id}-lens`}
           >
-            <Icon icon={diory.image} marginRight={4} />
+            <Icon icon={diory.image} marginRight={4} size={16} />
             {diory.text}
           </Tab>
         ))}
