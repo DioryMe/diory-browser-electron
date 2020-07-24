@@ -27,7 +27,7 @@ export default [
   {
     key: 'date',
     label: 'Date',
-    format: 'object',
+    format: 'string',
   },
   {
     key: 'data',
