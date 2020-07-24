@@ -36,7 +36,7 @@ const NavigationFullscreen = () => {
       onClick={onClick}
       style={{
         position: 'fixed',
-        zIndex: 10000,
+        zIndex: 30,
         top,
         right: 0,
         height: 50,
