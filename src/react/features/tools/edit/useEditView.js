@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { useDispatch } from '../../../store'
 
@@ -11,6 +11,10 @@ import fields from './fields'
 export const useEditView = () => {
   const [updatedFields, setFields] = useState({})
   const { diory } = useFocusDiory()
+
+  useEffect(() => {
+    setFields({})
+  }, [diory])
 
   const updatedDiory = { ...diory, ...updatedFields }
   const dispatch = useDispatch()
