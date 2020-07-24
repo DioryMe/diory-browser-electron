@@ -17,7 +17,7 @@ const View = () => {
     <>
       <LensView />
       <FullscreenView />
-      <ToolsView/>
+      <ToolsView />
     </>
   )
 }
