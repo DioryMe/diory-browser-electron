@@ -29,4 +29,9 @@ export default [
     label: 'Date',
     format: 'object',
   },
+  {
+    key: 'data',
+    label: 'Data',
+    format: 'object',
+  },
 ]

@@ -15,7 +15,7 @@ const MapLens = () => {
   useTogglePopup(map)
 
   return (
-    <Fullscreen marginTop={48}>
+    <Fullscreen marginTop={48} zIndex={10}>
       <div id={id} style={{ height: '100%' }} />
     </Fullscreen>
   )
