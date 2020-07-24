@@ -12,12 +12,9 @@ export const EditTool = () => {
   useEditButtons()
   const [{ active }] = useStore((state) => state.tools)
   const props = useEditView()
+  const isShown = EDIT_TOOL_BUTTON === active
 
-  return EDIT_TOOL_BUTTON === active ?
-    <EditView
-      {...props}
-      isShown={active}
-    /> : null
+  return isShown ? <EditView {...props} isShown={isShown} /> : null
 }
 
 export default EditTool

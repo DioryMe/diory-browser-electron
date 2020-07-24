@@ -8,7 +8,7 @@ export const ButtonBar = ({ buttons }) => (
   <div
     style={{
       position: 'fixed',
-      zIndex: 1000,
+      zIndex: 15,
       bottom: 0,
       cursor: 'pointer',
       left: 0,
