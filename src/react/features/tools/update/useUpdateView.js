@@ -7,7 +7,7 @@ import { setOpen } from '../../buttons/actions'
 
 import fields from './fields'
 
-export const useEditView = (diory = {}) => {
+export const useUpdateView = (diory = {}) => {
   const [updatedFields, setFields] = useState({})
 
   const updatedDiory = { ...diory, ...updatedFields }

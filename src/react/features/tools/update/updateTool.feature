@@ -1,26 +1,26 @@
-Feature: Edit tool
+Feature: Update tool
 
   Background:
     Given I am at home
     And I select tools button
-    And I select edit button
+    And I select update button
 
 #  @pending
-#  Scenario: Edit tool shown
-#    Then edit tool is active
+#  Scenario: Update tool shown
+#    Then update tool is active
 #
 #  @pending
-#  Scenario: Edit text
+#  Scenario: Update text
 #    When I add some text to text field
 #    Then I see some text in text field
 #
 #  @pending
-#  Scenario: Edit image
+#  Scenario: Update image
 #    When I add some image to image field
 #    Then I see some image in image field
 #
 #  @pending
-#  Scenario: Edit style
+#  Scenario: Update style
 #    When I add style object to style field
 #    Then I see style object in style field
 #
@@ -30,22 +30,22 @@ Feature: Edit tool
 #    Then I see invalid object notification in style field
 #
 #  @pending
-#  Scenario: Edit longitude
+#  Scenario: Update longitude
 #    When I add 123 longitude to longitude field
 #    Then I see 123 longitude in longitude field
 #
 #  @pending
-#  Scenario: Edit latitude
+#  Scenario: Update latitude
 #    When I add 234 to latitude field
 #    Then I see 234 in latitude field
 #
 #  @pending
-#  Scenario: Edit date
+#  Scenario: Update date
 #    When I add some date to date field
 #    Then I see some date in date field
 #
 #  @pending
-#  Scenario: Edit data
+#  Scenario: Update data
 #    When I add data object to data field
 #    Then I see data object in data field
 #
@@ -58,26 +58,26 @@ Feature: Edit tool
 #  Scenario: Update diory
 #    Given I add some text to text field
 #    When I click done button
-#    Then edit tool is closed
+#    Then update tool is closed
 #    And I see some text in focus diory
 #
 #  @pending
-#  Scenario: Cancel editing from cancel button
+#  Scenario: Cancel updateing from cancel button
 #    Given I add some text to text field
 #    When I click cancel button
-#    Then edit tool is closed
+#    Then update tool is closed
 #    And I do not see some text in focus diory
 #
 #  @pending
-#  Scenario: Cancel editing from close button
+#  Scenario: Cancel updateing from close button
 #    Given I add some text to text field
 #    When I click close button
-#    Then edit tool is closed
+#    Then update tool is closed
 #    And I do not see some text in focus diory
 #
 #  @pending
-#  Scenario: Cancel editing by clicking outside
+#  Scenario: Cancel updateing by clicking outside
 #    Given I add some text to text field
 #    When I click outside the modal
-#    Then edit tool is closed
+#    Then update tool is closed
 #    And I do not see some text in focus diory

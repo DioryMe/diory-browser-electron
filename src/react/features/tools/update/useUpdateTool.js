@@ -3,7 +3,7 @@ import { useFocusDiory } from '../../room/hooks'
 
 import { updateDiory } from '../../room/actions'
 
-export const useEditTool = () => {
+export const useUpdateTool = () => {
   const { diory } = useFocusDiory()
 
   const dispatch = useDispatch()
