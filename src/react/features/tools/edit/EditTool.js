@@ -1,20 +1,30 @@
 import React from 'react'
 
 import { useStore } from '../../../store'
-import { useEditButtons } from './useEditButtons'
+import { useButtons } from '../../buttons/useButtons'
+import { useEditTool } from './useEditTool'
 import { useEditView } from './useEditView'
 
 import EditView from './EditView'
 
-import { EDIT_TOOL_BUTTON } from './buttons'
+import buttons, { EDIT_TOOL_BUTTON } from './buttons'
 
 const EditTool = () => {
-  useEditButtons()
+  useButtons(buttons)
+
   const [{ active }] = useStore((state) => state.tools)
-  const props = useEditView()
   const isShown = EDIT_TOOL_BUTTON === active
 
-  return isShown ? <EditView {...props} isShown={isShown} /> : null
+  const { diory, onDone: onEditToolDone } = useEditTool()
+  const { updatedFields, onDone: onEditViewDone, ...editViewProps } = useEditView(diory)
+  const onDone = () => {
+    onEditToolDone(updatedFields)
+    onEditViewDone()
+  }
+
+  return isShown ? (
+    <EditView title="Edit diory" isShown={isShown} {...editViewProps} onDone={onDone} />
+  ) : null
 }
 
 export default EditTool

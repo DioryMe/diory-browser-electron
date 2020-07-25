@@ -1,35 +1,30 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { useDispatch } from '../../../store'
-import { updateDiory } from '../../room/actions'
-import { useFocusDiory } from '../../room/hooks'
 
 import { setInactive } from '../actions'
 import { setOpen } from '../../buttons/actions'
 
 import fields from './fields'
 
-export const useEditView = () => {
+export const useEditView = (diory = {}) => {
   const [updatedFields, setFields] = useState({})
-  const { diory } = useFocusDiory()
-
-  useEffect(() => {
-    setFields({})
-  }, [diory])
 
   const updatedDiory = { ...diory, ...updatedFields }
   const dispatch = useDispatch()
   return {
     fields: fields.map((field) => ({ ...field, value: updatedDiory[field.key] })),
     onChange: (key, value) => setFields({ ...updatedFields, [key]: value }),
-    onDone: () => {
-      dispatch(updateDiory({ id: diory.id, ...updatedFields }))
-      dispatch(setInactive())
-      dispatch(setOpen(false))
-    },
     onCancel: () => {
       dispatch(setInactive())
       dispatch(setOpen(false))
+      setFields({})
     },
+    onDone: () => {
+      dispatch(setInactive())
+      dispatch(setOpen(false))
+      setFields({})
+    },
+    updatedFields,
   }
 }
