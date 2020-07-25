@@ -1,9 +1,9 @@
 import {
   GET_ROOM,
-  ADD_DIORY,
-  ADD_LINK,
-  REMOVE_DIORY,
-  REMOVE_LINK,
+  CREATE_DIORY,
+  CREATE_LINK,
+  DELETE_DIORY,
+  DELETE_LINK,
   SAVE_ROOM,
   UPDATE_DIORY,
 } from './actionsTypes'
@@ -22,7 +22,7 @@ const getRoom = (state, { payload }) => ({
   updated: false,
 })
 
-const addDiory = (state, { payload }) => ({
+const createDiory = (state, { payload }) => ({
   ...state,
   diograph: {
     ...state.diograph,
@@ -31,7 +31,7 @@ const addDiory = (state, { payload }) => ({
   updated: true,
 })
 
-const removeDiory = (state, { payload }) => {
+const deleteDiory = (state, { payload }) => {
   const { [payload.diory.id]: omit, ...diograph } = state.diograph
   return {
     ...state,
@@ -52,7 +52,7 @@ const updateDiory = (state, { payload }) => ({
   updated: true,
 })
 
-const addLink = (state, { payload }) => {
+const createLink = (state, { payload }) => {
   const diory = state.diograph[payload.diory.id]
   return {
     ...state,
@@ -60,9 +60,10 @@ const addLink = (state, { payload }) => {
       ...state.diograph,
       [payload.diory.id]: {
         ...diory,
+        ...payload.diory,
         links: {
           ...diory.links,
-          [payload.diory.link]: { id: payload.diory.link },
+          [payload.link.id]: { id: payload.link.id },
         },
       },
     },
@@ -70,9 +71,9 @@ const addLink = (state, { payload }) => {
   }
 }
 
-const removeLink = (state, { payload }) => {
+const deleteLink = (state, { payload }) => {
   const diory = state.diograph[payload.diory.id]
-  const { [payload.diory.link]: omit, ...links } = diory.links
+  const { [payload.diory.link.id]: omit, ...links } = diory.links
   return {
     ...state,
     diograph: {
@@ -88,10 +89,10 @@ const removeLink = (state, { payload }) => {
 
 export default createReducer({
   [GET_ROOM]: getRoom,
-  [ADD_DIORY]: addDiory,
-  [REMOVE_DIORY]: removeDiory,
+  [CREATE_DIORY]: createDiory,
+  [DELETE_DIORY]: deleteDiory,
   [UPDATE_DIORY]: updateDiory,
-  [ADD_LINK]: addLink,
-  [REMOVE_LINK]: removeLink,
+  [CREATE_LINK]: createLink,
+  [DELETE_LINK]: deleteLink,
   ...promiseReducers(SAVE_ROOM, 'updated', 'saving', 'saved', 'error'),
 })
