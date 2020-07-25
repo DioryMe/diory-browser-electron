@@ -1,11 +1,12 @@
-import { ADD_BUTTONS, REMOVE_BUTTONS } from './actionsTypes'
+import { ADD_BUTTONS, REMOVE_BUTTONS, SET_OPEN } from './actionsTypes'
 import { createReducer } from '../../store'
 
 export const initialState = {
   buttons: {},
+  open: false,
 }
 
-export const addButtons = (state, { payload }) => ({
+const addButtons = (state, { payload }) => ({
   ...state,
   buttons: payload.buttons.reduce(
     (initialButtons, button) => ({
@@ -16,7 +17,7 @@ export const addButtons = (state, { payload }) => ({
   ),
 })
 
-export const removeButtons = (state, { payload }) => ({
+const removeButtons = (state, { payload }) => ({
   ...state,
   buttons: payload.buttons.reduce((initialButtons, button) => {
     const { [button.id]: remove, ...buttons } = initialButtons
@@ -24,7 +25,13 @@ export const removeButtons = (state, { payload }) => ({
   }, state.buttons),
 })
 
+const setOpen = (state, { payload }) => ({
+  ...state,
+  open: payload.open,
+})
+
 export default createReducer({
   [ADD_BUTTONS]: addButtons,
   [REMOVE_BUTTONS]: removeButtons,
+  [SET_OPEN]: setOpen,
 })

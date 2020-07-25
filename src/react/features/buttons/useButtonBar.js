@@ -1,6 +1,7 @@
-import { useState } from 'react'
-import { useStore } from '../../store'
+import { useDispatch, useStore } from '../../store'
 import { useTools } from '../tools/hooks'
+
+import { setOpen } from './actions'
 
 const useButtons = () => {
   const [{ buttons }] = useStore((state) => state.buttons)
@@ -10,10 +11,11 @@ const useButtons = () => {
 }
 
 export const useButtonBar = () => {
-  const [open, setOpen] = useState(false)
+  const [{ open }] = useStore((state) => state.buttons)
   const { active, onSelect, onClear } = useTools()
 
   const { buttons } = useButtons()
+  const dispatch = useDispatch()
 
   if (!open && buttons.length > 1) {
     return {
@@ -24,7 +26,7 @@ export const useButtonBar = () => {
             icon: 'wrench',
             testid: 'tools',
           },
-          onClick: () => setOpen(true),
+          onClick: () => dispatch(setOpen(true)),
         },
       ],
     }
@@ -40,7 +42,7 @@ export const useButtonBar = () => {
         }
 
         onClear()
-        setOpen(false)
+        dispatch(setOpen(false))
       },
     })),
   }
