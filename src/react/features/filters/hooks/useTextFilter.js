@@ -1,7 +1,7 @@
 import { useDispatch, useStore } from '../../../store'
 
 import { setFocus } from '../../navigation/actions'
-import { addDiory } from '../../room/actions'
+import { createDiory } from '../../room/actions'
 import { setTextFilter } from '../actions'
 
 import { TEXT_FILTER_DIORY_ID } from './textFilterDioryId'
@@ -17,7 +17,7 @@ export const useTextFilter = () => {
     setTextFilter: (value) => dispatch(setTextFilter(value)),
     turnOn: (value) => {
       if (!diograph[TEXT_FILTER_DIORY_ID]) {
-        dispatch(addDiory({ id: TEXT_FILTER_DIORY_ID }))
+        dispatch(createDiory({ id: TEXT_FILTER_DIORY_ID }))
       }
       if (TEXT_FILTER_DIORY_ID !== focus) {
         dispatch(setFocus({ focus: TEXT_FILTER_DIORY_ID }))
