@@ -1,6 +1,6 @@
 const { join } = require('path')
 const glob = require('glob')
-const uuid = require('uuid')
+const { v4: uuid } = require('uuid')
 
 const { generateDiograph } = require('./diograph-generator')
 
