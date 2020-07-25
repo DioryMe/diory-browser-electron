@@ -1,10 +1,12 @@
 import React from 'react'
 
-import EditTool from './edit/EditTool'
+import CreateTool from './create/CreateTool'
+import UpdateTool from './update/UpdateTool'
 
 const ToolsView = () => (
   <>
-    <EditTool />
+    <CreateTool />
+    <UpdateTool />
   </>
 )
 
