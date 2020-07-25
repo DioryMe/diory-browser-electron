@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 
 import { useDispatch } from '../../../store'
-
 import { updateDiory } from '../../room/actions'
 import { useFocusDiory } from '../../room/hooks'
+
 import { setInactive } from '../actions'
+import { setOpen } from '../../buttons/actions'
 
 import fields from './fields'
 
@@ -24,7 +25,11 @@ export const useEditView = () => {
     onDone: () => {
       dispatch(updateDiory({ id: diory.id, ...updatedFields }))
       dispatch(setInactive())
+      dispatch(setOpen(false))
     },
-    onCancel: () => dispatch(setInactive()),
+    onCancel: () => {
+      dispatch(setInactive())
+      dispatch(setOpen(false))
+    },
   }
 }
