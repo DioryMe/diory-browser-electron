@@ -33,4 +33,6 @@ const fields = [
   },
 ]
 
+export const isShownWithTitle = () => <EditView {...actions} isShown title="Diory id" />
+
 export const isShownWithFields = () => <EditView {...actions} isShown fields={fields} />
