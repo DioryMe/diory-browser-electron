@@ -6,6 +6,7 @@ export default [
     text: 'Edit',
     data: {
       icon: 'edit',
+      testid: 'edit',
     },
   },
 ]
