@@ -8,7 +8,7 @@ import EditView from './EditView'
 
 import { EDIT_TOOL_BUTTON } from './buttons'
 
-export const EditTool = () => {
+const EditTool = () => {
   useEditButtons()
   const [{ active }] = useStore((state) => state.tools)
   const props = useEditView()
