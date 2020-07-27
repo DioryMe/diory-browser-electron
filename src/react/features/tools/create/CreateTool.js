@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useStore } from '../../../store'
 import { useUpdateView } from '../update/useUpdateView'
-import { useCreateTool } from './useCreateTool'
+import { useCreateTool } from './useCreateTool'
 import { useButtons } from '../../buttons/useButtons'
 
 import UpdateView from '../update/UpdateView'
@@ -22,7 +22,9 @@ const CreateTool = () => {
     onUpdateViewDone()
   }
 
-  return isShown ? <UpdateView  title="Create diory" isShown={isShown} {...updateViewProps} onDone={onDone} /> : null
+  return isShown ? (
+    <UpdateView title="Create diory" isShown={isShown} {...updateViewProps} onDone={onDone} />
+  ) : null
 }
 
 export default CreateTool
