@@ -55,28 +55,28 @@ Feature: Create tool
 #    Then I see invalid object notification in style field
 #
 #  @pending
-#  Scenario: Update diory
+#  Scenario: Create diory
 #    Given I create some text to text field
 #    When I click done button
 #    Then create tool is closed
 #    And I see some text in focus diory
 #
 #  @pending
-#  Scenario: Cancel createing from cancel button
+#  Scenario: Cancel creating from cancel button
 #    Given I create some text to text field
 #    When I click cancel button
 #    Then create tool is closed
 #    And I do not see some text in focus diory
 #
 #  @pending
-#  Scenario: Cancel createing from close button
+#  Scenario: Cancel creating from close button
 #    Given I create some text to text field
 #    When I click close button
 #    Then create tool is closed
 #    And I do not see some text in focus diory
 #
 #  @pending
-#  Scenario: Cancel createing by clicking outside
+#  Scenario: Cancel creating by clicking outside
 #    Given I create some text to text field
 #    When I click outside the modal
 #    Then create tool is closed
