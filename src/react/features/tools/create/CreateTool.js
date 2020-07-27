@@ -1,29 +1,28 @@
 import React from 'react'
 
-import { useStore } from '../../../store'
 import { useUpdateView } from '../update/useUpdateView'
 import { useCreateTool } from './useCreateTool'
 import { useButtons } from '../../buttons/useButtons'
 
 import UpdateView from '../update/UpdateView'
 
-import buttons, { CREATE_TOOL_BUTTON } from './buttons'
+import buttons from './buttons'
 
 const CreateTool = () => {
   useButtons(buttons)
-
-  const [{ active }] = useStore((state) => state.tools)
-  const isShown = CREATE_TOOL_BUTTON === active
-
+  const { isShown, onDone: onCreateToolDone } = useCreateTool()
   const { updatedFields, onDone: onUpdateViewDone, ...updateViewProps } = useUpdateView()
-  const { onDone: onCreateToolDone } = useCreateTool()
-  const onDone = () => {
-    onCreateToolDone(updatedFields)
-    onUpdateViewDone()
-  }
 
   return isShown ? (
-    <UpdateView title="Create diory" isShown={isShown} {...updateViewProps} onDone={onDone} />
+    <UpdateView
+      {...updateViewProps}
+      title="Create diory"
+      isShown={isShown}
+      onDone={() => {
+        onCreateToolDone(updatedFields)
+        onUpdateViewDone()
+      }}
+    />
   ) : null
 }
 
