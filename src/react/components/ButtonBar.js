@@ -25,7 +25,9 @@ ButtonBar.defaultProps = {
 }
 
 ButtonBar.propTypes = {
-  buttons: PropTypes.array,
+  buttons: PropTypes.arrayOf({
+    id: PropTypes.string,
+  }),
 }
 
 export default ButtonBar
