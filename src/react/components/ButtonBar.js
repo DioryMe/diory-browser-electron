@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Button from './Button'
 
-const ButtonBarView = ({ buttons }) => (
+const ButtonBar = ({ buttons }) => (
   <div
     style={{
       position: 'fixed',
@@ -20,12 +20,12 @@ const ButtonBarView = ({ buttons }) => (
   </div>
 )
 
-ButtonBarView.defaultProps = {
+ButtonBar.defaultProps = {
   buttons: [],
 }
 
-ButtonBarView.propTypes = {
+ButtonBar.propTypes = {
   buttons: PropTypes.array,
 }
 
-export default ButtonBarView
+export default ButtonBar

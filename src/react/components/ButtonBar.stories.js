@@ -1,21 +1,21 @@
 import React from 'react'
 import { action } from '@storybook/addon-actions'
 
-import ButtonBarView from './ButtonBarView'
+import ButtonBar from './ButtonBar'
 
 export default {
   title: 'Button bar',
-  component: ButtonBarView,
+  component: ButtonBar,
 }
 
 const actions = {
   onClick: action('onClick'),
 }
 
-export const initially = () => <ButtonBarView />
+export const initially = () => <ButtonBar />
 
 export const withOneButton = () => (
-  <ButtonBarView
+  <ButtonBar
     buttons={[
       {
         id: 'tools',
@@ -29,7 +29,7 @@ export const withOneButton = () => (
 )
 
 export const withSeveralButtonsClosed = () => (
-  <ButtonBarView
+  <ButtonBar
     buttons={[
       {
         id: 'tools',
@@ -43,7 +43,7 @@ export const withSeveralButtonsClosed = () => (
 )
 
 export const withSeveralButtonsOpen = () => (
-  <ButtonBarView
+  <ButtonBar
     buttons={[
       {
         id: 'tools',

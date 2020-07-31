@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useButtons } from '../../buttons/useButtons'
+import { useButtons } from '../../buttons'
 
 import { useGetRoomEffect } from './effects/useGetRoomEffect'
 import { useSaveRoomEffect } from './effects/useSaveRoomEffect'
