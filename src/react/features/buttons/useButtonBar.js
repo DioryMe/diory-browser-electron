@@ -3,7 +3,7 @@ import { useTools } from '../tools/hooks'
 
 import { setOpen } from './actions'
 
-const useButtons = () => {
+const useButtonsArray = () => {
   const [{ buttons }] = useStore((state) => state.buttons)
   return {
     buttons: Object.values(buttons),
@@ -14,7 +14,7 @@ export const useButtonBar = () => {
   const [{ open }] = useStore((state) => state.buttons)
   const { active, onSelect, onClear } = useTools()
 
-  const { buttons } = useButtons()
+  const { buttons } = useButtonsArray()
   const dispatch = useDispatch()
 
   if (!open && buttons.length > 1) {
