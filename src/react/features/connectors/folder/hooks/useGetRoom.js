@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
-import { useDispatch } from '../../../store'
+import { useDispatch } from '../../../../store'
 
-import { getRoom } from '../../room/actions'
-import { addPath } from '../actions'
-import { enterRoom } from '../../navigation/actions'
+import { getRoom } from '../../../room/actions'
+import { addPath } from '../../actions'
+import { enterRoom } from '../../../navigation/actions'
 
 import { connect } from '../client'
-import { channels } from '../../../../shared/constants'
+import { channels } from '../../../../../shared/constants'
 
 export const useGetRoom = () => {
   const dispatch = useDispatch()

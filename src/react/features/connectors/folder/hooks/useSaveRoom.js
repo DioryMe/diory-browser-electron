@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
-import { useStore, promiseDispatch, useDispatch } from '../../../store'
-import { debounce } from '../../../utils'
+import { useStore, promiseDispatch, useDispatch } from '../../../../store'
+import { debounce } from '../../../../utils'
 
-import { saveRoom } from '../../room/actions'
+import { saveRoom } from '../../../room/actions'
 
 import { connect } from '../client'
-import { channels } from '../../../../shared/constants'
+import { channels } from '../../../../../shared/constants'
 
 const debouncePromiseDispatch = debounce(promiseDispatch, 1000)
 
