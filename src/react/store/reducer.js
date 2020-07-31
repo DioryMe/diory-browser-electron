@@ -1,5 +1,5 @@
 import buttons from '../features/buttons/reducers'
-import connector from '../features/connectors/reducers'
+import connector from '../features/connectors/folder/reducers'
 import filters from '../features/filters/reducers'
 import lenses from '../features/lenses/reducers'
 import navigation from '../features/navigation/reducers'

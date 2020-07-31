@@ -2,13 +2,13 @@ import { useEffect } from 'react'
 import { useDispatch } from '../../../../store'
 
 import { getRoom } from '../../../room/actions'
-import { addPath } from '../../actions'
+import { addPath } from '../actions'
 import { enterRoom } from '../../../navigation/actions'
 
-import { connect } from '../client'
+import { connect } from '../client/client'
 import { channels } from '../../../../../shared/constants'
 
-export const useGetRoom = () => {
+export const useGetRoomEffect = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     connect(channels.GET_ROOM).then(({ id, path, diograph }) => {
