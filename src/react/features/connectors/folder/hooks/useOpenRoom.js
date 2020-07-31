@@ -1,15 +1,15 @@
 import { useEffect } from 'react'
-import { useDispatch } from '../../../store'
+import { useDispatch } from '../../../../store'
 
-import { enterRoom } from '../../navigation/actions'
-import { getRoom } from '../../room/actions'
-import { setInactive } from '../../tools/actions'
-import { addPath } from '../actions'
+import { enterRoom } from '../../../navigation/actions'
+import { getRoom } from '../../../room/actions'
+import { setInactive } from '../../../tools/actions'
+import { addPath } from '../../actions'
 
-import { useTools } from '../../tools/hooks'
+import { useTools } from '../../../tools/hooks'
 
 import { connect } from '../client'
-import { channels } from '../../../../shared/constants'
+import { channels } from '../../../../../shared/constants'
 
 import { OPEN_ROOM_BUTTON } from '../buttons'
 
