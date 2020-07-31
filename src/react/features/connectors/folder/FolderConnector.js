@@ -2,18 +2,18 @@ import React from 'react'
 
 import { useButtons } from '../../buttons/useButtons'
 
-import { useGetRoom } from './hooks/useGetRoom'
-import { useSaveRoom } from './hooks/useSaveRoom'
-import { useOpenRoom } from './hooks/useOpenRoom'
+import { useGetRoomEffect } from './effects/useGetRoomEffect'
+import { useSaveRoomEffect } from './effects/useSaveRoomEffect'
+import { useOpenRoomButton } from './buttons/useOpenRoomButton'
 
-import { buttons } from './buttons'
+import { buttons } from './buttons/buttons'
 
 const FolderConnector = () => {
   useButtons(buttons)
+  useOpenRoomButton()
 
-  useGetRoom()
-  useSaveRoom()
-  useOpenRoom()
+  useGetRoomEffect()
+  useSaveRoomEffect()
 
   return <div data-testid="connector" />
 }
