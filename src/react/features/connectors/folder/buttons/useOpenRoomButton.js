@@ -4,16 +4,16 @@ import { useDispatch } from '../../../../store'
 import { enterRoom } from '../../../navigation/actions'
 import { getRoom } from '../../../room/actions'
 import { setInactive } from '../../../tools/actions'
-import { addPath } from '../../actions'
+import { addPath } from '../actions'
 
 import { useTools } from '../../../tools/hooks'
 
-import { connect } from '../client'
+import { connect } from '../client/client'
 import { channels } from '../../../../../shared/constants'
 
-import { OPEN_ROOM_BUTTON } from '../buttons'
+import { OPEN_ROOM_BUTTON } from './buttons'
 
-export const useOpenRoom = () => {
+export const useOpenRoomButton = () => {
   const { active } = useTools()
   const dispatch = useDispatch()
   useEffect(() => {

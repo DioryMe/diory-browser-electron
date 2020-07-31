@@ -1,5 +1,5 @@
 import { SET_PATHS, REMOVE_PATH, UPDATE_PATH, ADD_PATH } from './actionsTypes'
-import { createReducer } from '../../store'
+import { createReducer } from '../../../store'
 
 export const initialState = {
   paths: {},
