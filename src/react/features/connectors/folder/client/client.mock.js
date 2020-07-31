@@ -1,4 +1,4 @@
-import GET_ROOM from './hooks/mockResponses/GET_ROOM.json'
+import GET_ROOM from './mockResponses/GET_ROOM.json'
 
 export const mockResponse = (channel) => {
   const data = {

@@ -4,12 +4,12 @@ import { debounce } from '../../../../utils'
 
 import { saveRoom } from '../../../room/actions'
 
-import { connect } from '../client'
+import { connect } from '../client/client'
 import { channels } from '../../../../../shared/constants'
 
 const debouncePromiseDispatch = debounce(promiseDispatch, 1000)
 
-export const useSaveRoom = () => {
+export const useSaveRoomEffect = () => {
   const [{ id, diograph, updated }] = useStore((state) => state.room)
   const [{ paths }] = useStore((state) => state.connector)
   const path = paths[id]

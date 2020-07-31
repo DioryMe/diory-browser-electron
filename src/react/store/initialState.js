@@ -1,5 +1,5 @@
 import { initialState as buttons } from '../features/buttons/reducers'
-import { initialState as connector } from '../features/connectors/reducers'
+import { initialState as connector } from '../features/connectors/folder/reducers'
 import { initialState as filters } from '../features/filters/reducers'
 import { initialState as lenses } from '../features/lenses/reducers'
 import { initialState as navigation } from '../features/navigation/reducers'
