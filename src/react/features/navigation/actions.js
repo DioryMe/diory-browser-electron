@@ -8,9 +8,9 @@ import {
   SET_FULLSCREEN,
 } from './actionsTypes'
 
-export const enterRoom = (roomId) => ({
+export const enterRoom = ({ id }) => ({
   type: ENTER_ROOM,
-  payload: { roomId },
+  payload: { id },
 })
 
 export const setFocus = ({ focus }) => ({

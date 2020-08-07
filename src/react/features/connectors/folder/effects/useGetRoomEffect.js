@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch } from '../../../../store'
+import { enterRoom } from '../../../navigation/actions'
 import { updateConnection } from '../../actions'
 import { useConnections } from '../../useConnections'
 
@@ -18,6 +19,7 @@ export const useGetRoomEffect = () => {
         dispatch(updateConnection({ address, connect: false }))
         getRoomClient({ address })
           .then((room) => dispatch(getRoom(room)))
+          .then((room) => dispatch(enterRoom(room)))
           .then(() => dispatch(updateConnection({ address, connected: true })))
       })
   }, [connections, dispatch])
