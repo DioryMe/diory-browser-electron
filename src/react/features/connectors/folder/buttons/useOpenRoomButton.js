@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch } from '../../../../store'
 
 import { enterRoom } from '../../../navigation/actions'
-import { getRoom } from '../../../room/actions'
+import { getRoom, updateRoom } from '../../../room/actions'
 import { setInactive } from '../../../tools/actions'
 import { addPath } from '../actions'
 
@@ -32,6 +32,7 @@ export const useOpenRoomButton = () => {
           dispatch(addPath(id, path))
           dispatch(enterRoom(id))
           dispatch(getRoom({ id, diograph }))
+          dispatch(updateRoom())
         })
       })
     }

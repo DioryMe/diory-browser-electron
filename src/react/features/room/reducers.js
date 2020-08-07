@@ -1,5 +1,6 @@
 import {
   GET_ROOM,
+  UPDATE_ROOM,
   CREATE_DIORY,
   CREATE_LINK,
   DELETE_DIORY,
@@ -20,6 +21,11 @@ const getRoom = (state, { payload }) => ({
   id: payload.id,
   diograph: payload.diograph,
   updated: false,
+})
+
+const updateRoom = (state) => ({
+  ...state,
+  updated: true,
 })
 
 const createDiory = (state, { payload }) => ({
@@ -89,6 +95,7 @@ const deleteLink = (state, { payload }) => {
 
 export default createReducer({
   [GET_ROOM]: getRoom,
+  [UPDATE_ROOM]: updateRoom,
   [CREATE_DIORY]: createDiory,
   [DELETE_DIORY]: deleteDiory,
   [UPDATE_DIORY]: updateDiory,

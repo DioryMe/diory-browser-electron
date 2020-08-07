@@ -1,6 +1,7 @@
 import {
   GET_ROOM,
   SAVE_ROOM,
+  UPDATE_ROOM,
   CREATE_DIORY,
   UPDATE_DIORY,
   DELETE_DIORY,
@@ -15,6 +16,10 @@ export const getRoom = ({ id, diograph }) => ({
 
 export const saveRoom = () => ({
   type: SAVE_ROOM,
+})
+
+export const updateRoom = () => ({
+  type: UPDATE_ROOM,
 })
 
 export const createDiory = (diory) => ({
