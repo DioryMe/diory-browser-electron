@@ -9,6 +9,7 @@
     "electron-store": "^5.2.0",
     "exifreader": "^3.11.2",
     "glob": "^7.1.6",
+    "ipfs": "^0.48.1",
     "lodash": "^4.17.15",
     "uuid": "^8.1.0"
   },
