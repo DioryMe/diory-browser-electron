@@ -16,10 +16,11 @@ export const useDispatchAction = (action) => {
 export const promiseDispatch = (dispatch, promise, action) => {
   const actionType = action({}).type
   dispatch({ type: `${actionType}_BEGIN` })
-  promise
+  return promise
     .then((data) => {
       dispatch(action(data))
       dispatch({ type: `${actionType}_SUCCESS` })
+      return data
     })
     .catch((error) => dispatch({ type: `${actionType}_FAILURE`, payload: { error } }))
 }
