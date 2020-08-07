@@ -20,11 +20,11 @@ export const initialState = {
 
 export const enterRoom = (state, { payload }) => ({
   ...state,
-  roomId: payload.roomId,
-  focus: payload.roomId,
+  roomId: payload.id,
+  focus: payload.id,
   backward: [],
   forward: [],
-  path: [payload.roomId],
+  path: [payload.id],
 })
 
 export const setFocus = (state, { payload }) => {
