@@ -26,12 +26,12 @@ export const useSaveRoomEffect = () => {
 
   const dispatch = useDispatch()
   useEffect(() => {
-    if (updated) {
+    if (updated && ipfs) {
       debouncePromiseDispatch(
         dispatch,
         saveRoomToIpfs(ipfs, { id, diograph }),
         saveRoom,
       )
     }
-  }, [updated, id, diograph, dispatch])
+  }, [updated, ipfs, id, diograph, dispatch])
 }

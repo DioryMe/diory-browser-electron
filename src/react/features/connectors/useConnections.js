@@ -5,6 +5,6 @@ export const useConnections = (connectorId) => {
   return {
     connections: Object.entries(connections)
       .filter(([address]) => address.startsWith(`/${connectorId}/`))
-      .map(([address, room]) => ({ address, room })),
+      .map(([address, { room, connected }]) => ({ address, room, connected })),
   }
 }

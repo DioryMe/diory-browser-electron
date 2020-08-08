@@ -1,13 +1,12 @@
 import { useEffect } from 'react'
 
-import { promiseDispatch, useDispatch } from '../../../../store'
+import { promiseDispatch, useDispatch, useStore } from '../../../../store'
 
 import { useConnections } from '../../useConnections'
 import { useIpfsFactory } from '../client/useIpfsFactory'
 
+import { updateConnection } from '../../actions'
 import { getRoom } from '../../../room/actions'
-import { enterRoom } from '../../../navigation/actions'
-
 import { getDiograph } from '../client/client'
 
 async function getRoomFromIpfs(ipfs, { address, room }) {
@@ -27,14 +26,16 @@ export const useGetRoomEffect = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     if (ipfs) {
-      connections.forEach((connection) => {
-        promiseDispatch(
-          dispatch,
-          getRoomFromIpfs(ipfs, connection),
-          getRoom
-        ).then(({ id }) => dispatch(enterRoom({ id })))
-
-      })
+      connections
+        .filter(({ connected }) => !connected)
+        .forEach((connection) => {
+          dispatch(updateConnection({ ...connection, connected: true }))
+          promiseDispatch(
+            dispatch,
+            getRoomFromIpfs(ipfs, connection),
+            getRoom
+          )
+        })
     }
-  }, [ipfs, dispatch])
+  }, [ipfs, connections, dispatch])
 }
