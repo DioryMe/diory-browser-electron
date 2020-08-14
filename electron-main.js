@@ -15,13 +15,12 @@ function createWindow() {
     },
   })
 
+  const indexHtmlPath = process.env.BINARY_BUILD ? 'index.html' : 'build/index.html'
+
   mainWindow.loadURL(
     process.env.ELECTRON_START_URL ||
       url.format({
-        // FIXME: Figure out how to allow local & binary use
-        // package-* scripts want it this way...
-        // pathname: path.join(__dirname, 'index.html'),
-        pathname: path.join(__dirname, 'build/index.html'),
+        pathname: path.join(__dirname, indexHtmlPath),
         protocol: 'file:',
         slashes: true,
       })

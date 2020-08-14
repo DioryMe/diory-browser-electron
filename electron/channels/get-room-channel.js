@@ -1,4 +1,4 @@
-// const path = require('path')
+const path = require('path')
 const { ipcMain } = require('electron')
 const UserDataStore = require('electron-store')
 const { channels } = require('../../src/shared/constants')
@@ -9,13 +9,12 @@ ipcMain.on(channels.GET_ROOM, (event) => {
   // Retrieve current roomId and path from user data
   // - if nothing found from user data fallback to default welcome-room
   const store = new UserDataStore()
+  const defaultWelcomeRoomPath = process.env.BINARY_BUILD
+    ? path.join(__dirname, '../../default-welcome-room')
+    : './public/default-welcome-room'
   const defaultRoom = {
     id: 'welcome-room',
-    // FIXME: Figure out how to allow local & binary use
-    // package-* scripts want it this way...
-    // NOTE: Enable require('path') on top!
-    // path: path.join(__dirname, '../../default-welcome-room'),
-    path: './public/default-welcome-room',
+    path: defaultWelcomeRoomPath,
   }
   const roomInFocus = store.get('roomInFocus') || defaultRoom
 
