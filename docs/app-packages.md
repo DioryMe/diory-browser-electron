@@ -7,9 +7,6 @@ Creating a distributable package a.k.a. binary file.
 We use electron-builder package to package our app. Everything is currently done with the default settings (including default icons).
 
 Steps:
-1. Change default-welcome-room path in `electron/channels/get-room-channel.js`
-1. Enable / uncomment the path module require on top of `electron/channels/get-room-channel.js`
-1. Change index.html path in `electron-main.js`
 1. Run script which builds the React code and creates MacOS .dmg file
 ```
 ./package-mac.sh
