@@ -1,6 +1,7 @@
 import buttons from '../features/buttons/reducers'
 import connectors from '../features/connectors/reducers'
 import filters from '../features/filters/reducers'
+import home from '../features/home/reducers'
 import lenses from '../features/lenses/reducers'
 import navigation from '../features/navigation/reducers'
 import tools from '../features/tools/reducers'
@@ -19,6 +20,7 @@ export const reducer = combineReducers({
   buttons,
   connectors,
   filters,
+  home,
   lenses,
   navigation,
   tools,
