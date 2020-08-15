@@ -22,6 +22,8 @@ latest-mac.html and latest-win.html are for easy redirecting to the latest versi
 
 If you need to change the resources (=cloudformation template), you can deploy it with the following command:
 
+NOTE: You need to re-authenticate Github and remove the Github webhook after each deploy.
+
 ```
 aws cloudformation deploy \
   --template-file aws/build-pipeline-cf.yaml \

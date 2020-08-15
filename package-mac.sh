@@ -1,4 +1,5 @@
 # !/bin/bash
+set -e
 
 echo "Login to AWS... (did you remember to set AWS_TOKEN_CODE?)"
 export AWS_LOGIN_TMP=$(aws sts get-session-token --serial-number arn:aws:iam::037977746924:mfa/jvalanen-private --token-code $AWS_TOKEN_CODE)
