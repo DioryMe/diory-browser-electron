@@ -9,15 +9,19 @@ Parameters:
   BranchName:
     Description: GitHub branch name
     Type: String
-    Default: website
+    Default: master
   RepositoryName:
     Description: GitHub repository name
     Type: String
     Default: diory-browser-electron
-  MacBinary:
-    Description: Key of the uploaded Mac binary which triggered the pipeline
+  MacBinaryFilename:
+    Description: S3 key which is used on website
     Type: String
-    Default: 's3://dda-downloads/Diory - Digital Memory Browser-0.3.7.dmg'
+    Default: 'Diory - Digital Memory Browser-0.3.7.dmg'
+  WindowsBinaryFilename:
+    Description: S3 key which is used on website
+    Type: String
+    Default: 'Diory - Digital Memory Browser-1.0.0.exe'
 Resources:
   S3Bucket:
     Type: 'AWS::S3::Bucket'
@@ -180,7 +184,7 @@ Resources:
           - Name: WEBSITE_BUCKET
             Value: !Sub "${S3Bucket}"
           - Name: WINDOWS_BINARY_FILENAME
-            Value: "Diory - Digital Memory Browser Setup 1.0.0.exe"
+            Value: !Ref WindowsBinaryFilename
       Source:
         Type: CODEPIPELINE
         BuildSpec: aws/buildspec-buildwindowsbinary.yml
@@ -199,9 +203,9 @@ Resources:
           - Name: WEBSITE_BUCKET
             Value: !Sub "${S3Bucket}"
           - Name: WINDOWS_BINARY_FILENAME
-            Value: "Diory - Digital Memory Browser Setup 1.0.0.exe"
+            Value: !Ref WindowsBinaryFilename
           - Name: MAC_BINARY_FILENAME
-            Value: "Diory - Digital Memory Browser-1.0.0.dmg"
+            Value: !Ref MacBinaryFilename
       Source:
         Type: CODEPIPELINE
         BuildSpec: aws/buildspec-updatewebsite.yml
