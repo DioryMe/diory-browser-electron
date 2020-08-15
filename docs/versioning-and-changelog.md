@@ -24,7 +24,8 @@ Version doesn't need to be changed if
 docker-compose run --rm build yarn version
 ```
 2. Make an entry to CHANGELOG.md file
-3. Trigger building new packages (optional)
+3. Change version to WINDOWS_BINARY_FILENAME and MAC_BINARY_FILENAMES in build-pipeline-cf.yaml
+3. Trigger building new packages, see app-packages (optional, is done automatically from master)
 
 
 ## Changelog
