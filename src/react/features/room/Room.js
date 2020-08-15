@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { useUpdateButton } from './buttons/useUpdateButton'
 
 const Room = () => {

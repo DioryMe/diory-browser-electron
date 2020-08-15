@@ -9,23 +9,20 @@ const getActiveProps = (active) =>
     intent: 'success',
   }
 
-const Button = ({ data, active, onClick }) => (
-  <div
-    role="button"
+const Button = ({ data, active, onClick, ...props }) => (
+  <IconButton
+    {...getActiveProps(active)}
+    icon={data.icon}
+    iconSize={24}
+    height={56}
+    margin={8}
+    borderRadius="50%"
     onClick={onClick}
     onKeyDown={onClick}
-    data-testid={`${data.testid}-button${active ? '--active' : ''}`}
     tabIndex={0}
-  >
-    <IconButton
-      {...getActiveProps(active)}
-      icon={data.icon}
-      iconSize={24}
-      height={56}
-      margin={8}
-      borderRadius="50%"
-    />
-  </div>
+    data-testid={`${data.testid}-button${active ? '--active' : ''}`}
+    {...props}
+  />
 )
 
 Button.defaultProps = {
