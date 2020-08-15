@@ -5,19 +5,23 @@ import { StoreProvider } from './store/StoreContext'
 import { reducer } from './store/reducer'
 import { initialState } from './store/initialState'
 
-import Buttons from './features/buttons'
-import Connectors from './features/connectors/Connectors'
-import Filters from './features/filters/Filters'
 import Navigation from './features/navigation/Navigation'
+import Filters from './features/filters/Filters'
+import Buttons from './features/buttons'
 import View from './View'
+import Home from './features/home/Home'
+import Room from './features/room/Room'
+import Connectors from './features/connectors/Connectors'
 
 const App = () => (
   <div className="App">
     <Navigation />
-    <Buttons />
-    <View />
-    <Connectors />
     <Filters />
+    <View />
+    <Home />
+    <Room />
+    <Buttons />
+    <Connectors />
   </div>
 )
 
