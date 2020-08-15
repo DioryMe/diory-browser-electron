@@ -1,16 +1,15 @@
 import { useEffect } from 'react'
 
-import { promiseDispatch, useDispatch, useStore } from '../../../../store'
+import { useDispatch } from '../../../../store'
 
 import { useConnections } from '../../useConnections'
 import { useIpfsFactory } from '../client/useIpfsFactory'
 
 import { updateConnection } from '../../actions'
 import { getRoom } from '../../../room/actions'
-import { getDiograph } from '../client/client'
+import { getDiograph } from '../client/client'
 
 async function getRoomFromIpfs(ipfs, { address, room }) {
-  console.log('GET_ROOM', { address, room })
   const diograph = await getDiograph(ipfs, address)
 
   return {
@@ -20,22 +19,18 @@ async function getRoomFromIpfs(ipfs, { address, room }) {
 }
 
 export const useGetRoomEffect = () => {
-  const { connections } = useConnections('ipns')
+  const { connections } = useConnections('ipfs')
   const { ipfs } = useIpfsFactory()
 
   const dispatch = useDispatch()
   useEffect(() => {
-    if (ipfs) {
-      connections
-        .filter(({ connected }) => !connected)
-        .forEach((connection) => {
-          dispatch(updateConnection({ ...connection, connected: true }))
-          promiseDispatch(
-            dispatch,
-            getRoomFromIpfs(ipfs, connection),
-            getRoom
-          )
-        })
-    }
-  }, [ipfs, connections, dispatch])
+    connections
+      .filter(({ connect }) => connect)
+      .forEach(({ address, room }) => {
+        dispatch(updateConnection({ address, connect: false }))
+        getRoomFromIpfs(ipfs, { address, room })
+          .then((room) => dispatch(getRoom(room)))
+          .then(() => dispatch(updateConnection({ address, connected: true })))
+      })
+  }, [connections, dispatch])
 }

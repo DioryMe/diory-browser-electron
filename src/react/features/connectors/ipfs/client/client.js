@@ -15,13 +15,19 @@ async function ipfsCat(ipfs, cid) {
 }
 
 export async function getDiograph(ipfs, address) {
+  console.log('-------------')
+  console.log('IPFS client getDiograph request:', address)
   const cid = await resolveCid(ipfs, address)
   const ipfsDiograph = await ipfsCat(ipfs, cid)
 
   const diograph = {}
-  await Promise.all(Object.entries(ipfsDiograph).map(async ([id, dioryCid]) => {
-    diograph[id] = await ipfsCat(ipfs, dioryCid)
-  }))
+  await Promise.all(
+    Object.entries(ipfsDiograph).map(async ([id, dioryCid]) => {
+      diograph[id] = await ipfsCat(ipfs, dioryCid)
+    })
+  )
+  console.log('-------------')
+  console.log('IPFS client getDiograph response:', diograph)
   return diograph
 }
 
@@ -31,12 +37,20 @@ async function publishToIpns(ipfs, cid) {
 }
 
 export async function saveDiograph(ipfs, diograph) {
+  console.log('-------------')
+  console.log('IPFS client saveDiograph request:', diograph)
+
   const ipfsDiograph = {}
-  await Promise.all(Object.entries(diograph).map(async ([id, diory]) => {
-    const { cid } = await ipfs.add(JSON.stringify(diory))
-    ipfsDiograph[id] = `/ipfs/${cid.toString()}`
-  }))
+  await Promise.all(
+    Object.entries(diograph).map(async ([id, diory]) => {
+      const { cid } = await ipfs.add(JSON.stringify(diory))
+      ipfsDiograph[id] = `/ipfs/${cid.toString()}`
+    })
+  )
   const { cid } = await ipfs.add(JSON.stringify(ipfsDiograph))
   const ipnsCid = await publishToIpns(ipfs, cid)
+
+  console.log('-------------')
+  console.log('IPFS client saveDiograph response:', `/ipns/${ipnsCid}`)
   return `/ipns/${ipnsCid}`
 }

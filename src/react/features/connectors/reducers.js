@@ -7,16 +7,7 @@ import {
 import { createReducer } from '../../store'
 
 export const initialState = {
-  connections: {
-    '/file//Users/op/2020/diory/IPFS': {
-      room: '11909355-48ed-475b-86a9-a47dbd15c492',
-      connected: false,
-    },
-    '/ipns/QmahMVyKf4xpE6mwPTPqZ3eo4Z1xYJnhGAFmjc9kFuMhou': {
-      room: '11909355-48ed-475b-86a9-a47dbd15c492',
-      connected: false,
-    },
-  },
+  connections: {},
   updated: false,
 }
 
@@ -32,7 +23,7 @@ const addConnection = (state, { payload }) => ({
     ...state.connections,
     [payload.address]: {
       room: payload.room,
-      connected: false,
+      connector: payload.connector,
     },
   },
   updated: true,
@@ -47,11 +38,11 @@ const removeConnection = (state, { payload }) => {
   }
 }
 
-const updateConnection = (state, { payload: { address, room, connected } }) => ({
+const updateConnection = (state, { payload: { address, ...props } }) => ({
   ...state,
   connections: {
     ...state.connections,
-    [address]: { room, connected },
+    [address]: { ...state.connections[address], ...props },
   },
   updated: false,
 })
