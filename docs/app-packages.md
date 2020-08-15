@@ -7,6 +7,7 @@ Creating a distributable package a.k.a. binary file.
 We use electron-builder package to package our app. Everything is currently done with the default settings (including default icons).
 
 Steps:
+1. Commit new WINDOWS_BINARY_FILENAME & MAC_BINARY_FILENAMES to build-pipeline-cf.yaml
 1. Set AWS_TOKEN_CODE from your Authenticator (jvalanen-private)
 ```
 export AWS_TOKEN_CODE=123123
