@@ -201,7 +201,7 @@ Resources:
           - Name: WINDOWS_BINARY_FILENAME
             Value: "Diory - Digital Memory Browser Setup 1.0.0.exe"
           - Name: MAC_BINARY_FILENAME
-            Value: "Diory - Digital Memory Browser-0.3.7.dmg"
+            Value: "Diory - Digital Memory Browser-1.0.0.dmg"
       Source:
         Type: CODEPIPELINE
         BuildSpec: aws/buildspec-updatewebsite.yml
