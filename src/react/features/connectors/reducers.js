@@ -7,29 +7,29 @@ import {
 import { createReducer } from '../../store'
 
 export const initialState = {
-  connections: {
-    '/file//Users/op/2020/diory/IPFS': '11909355-48ed-475b-86a9-a47dbd15c492',
-    '/ipns/QmahMVyKf4xpE6mwPTPqZ3eo4Z1xYJnhGAFmjc9kFuMhou': '11909355-48ed-475b-86a9-a47dbd15c492',
-  },
+  connections: {},
   updated: false,
 }
 
-export const setConnections = (state, { payload }) => ({
+const setConnections = (state, { payload }) => ({
   ...state,
   connections: payload.connections,
-  updated: false,
+  updated: true,
 })
 
-export const addConnection = (state, { payload }) => ({
+const addConnection = (state, { payload }) => ({
   ...state,
   connections: {
     ...state.connections,
-    [payload.address]: payload.room,
+    [payload.address]: {
+      room: payload.room,
+      connector: payload.connector,
+    },
   },
   updated: true,
 })
 
-export const removeConnection = (state, { payload }) => {
+const removeConnection = (state, { payload }) => {
   const { [payload.address]: omit, ...connections } = state.connections
   return {
     ...state,
@@ -38,17 +38,14 @@ export const removeConnection = (state, { payload }) => {
   }
 }
 
-export const updateConnection = (state, { payload }) => {
-  const { [payload.previousAddress]: omit, ...connections } = state.connections
-  return {
-    ...state,
-    connections: {
-      ...connections,
-      [payload.nextAddress]: payload.room,
-    },
-    updated: true,
-  }
-}
+const updateConnection = (state, { payload: { address, ...props } }) => ({
+  ...state,
+  connections: {
+    ...state.connections,
+    [address]: { ...state.connections[address], ...props },
+  },
+  updated: false,
+})
 
 export default createReducer({
   [SET_CONNECTIONS]: setConnections,

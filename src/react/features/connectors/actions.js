@@ -20,7 +20,7 @@ export const removeConnection = ({ address, room }) => ({
   payload: { address, room },
 })
 
-export const updateConnection = (previousAddress, nextAddress, room) => ({
+export const updateConnection = (connection) => ({
   type: UPDATE_CONNECTION,
-  payload: { previousAddress, nextAddress, room },
+  payload: connection,
 })

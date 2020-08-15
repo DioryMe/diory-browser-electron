@@ -3,25 +3,22 @@ import { useStore, promiseDispatch, useDispatch } from '../../../../store'
 import { debounce } from '../../../../utils'
 
 import { saveRoom } from '../../../room/actions'
+import { useConnections } from '../../useConnections'
 
-import { connect } from '../client/client'
-import { channels } from '../../../../../shared/constants'
+import { saveRoomClient } from '../client/client'
 
 const debouncePromiseDispatch = debounce(promiseDispatch, 1000)
 
 export const useSaveRoomEffect = () => {
   const [{ id, diograph, updated }] = useStore((state) => state.room)
-  const [{ paths }] = useStore((state) => state.connector)
-  const path = paths[id]
+  const { connections } = useConnections('file')
+  const [address] = connections.map(({ address }) => address)
+  const [connected] = connections.map(({ connected }) => connected)
 
   const dispatch = useDispatch()
   useEffect(() => {
-    if (updated) {
-      debouncePromiseDispatch(
-        dispatch,
-        connect(channels.SAVE_ROOM, { path, room: { id, diograph } }),
-        saveRoom
-      )
+    if (updated && connected) {
+      debouncePromiseDispatch(dispatch, saveRoomClient(address, { id, diograph }), saveRoom)
     }
-  }, [updated, path, id, diograph, dispatch])
+  }, [updated, connected, address, id, diograph, dispatch])
 }
