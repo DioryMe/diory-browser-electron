@@ -1,24 +1,24 @@
 import { useEffect } from 'react'
 import { useDispatch } from '../../../../store'
+import { updateConnection } from '../../actions'
+import { useConnections } from '../../useConnections'
 
 import { getRoom } from '../../../room/actions'
-import { addPath } from '../actions'
-import { enterRoom } from '../../../navigation/actions'
 
-import { connect } from '../client/client'
-import { channels } from '../../../../../shared/constants'
+import { getRoomClient } from '../client/client'
 
 export const useGetRoomEffect = () => {
+  const { connections } = useConnections('file')
+
   const dispatch = useDispatch()
   useEffect(() => {
-    connect(channels.GET_ROOM).then(({ id, path, diograph }) => {
-      if (!diograph) {
-        throw new Error(`Couldn't load diograph from path ${path}`)
-      }
-
-      dispatch(addPath(id, path))
-      dispatch(enterRoom(id))
-      dispatch(getRoom({ id, diograph }))
-    })
-  }, [dispatch])
+    connections
+      .filter(({ connect }) => connect)
+      .forEach(({ address }) => {
+        dispatch(updateConnection({ address, connect: false }))
+        getRoomClient({ address })
+          .then((room) => dispatch(getRoom(room)))
+          .then(() => dispatch(updateConnection({ address, connected: true })))
+      })
+  }, [connections, dispatch])
 }
