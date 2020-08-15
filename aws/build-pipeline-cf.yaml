@@ -21,7 +21,7 @@ Parameters:
   WindowsBinaryFilename:
     Description: S3 key which is used on website
     Type: String
-    Default: 'Diory - Digital Memory Browser-1.0.0.exe'
+    Default: 'Diory - Digital Memory Browser Setup 1.0.0.exe'
 Resources:
   S3Bucket:
     Type: 'AWS::S3::Bucket'
