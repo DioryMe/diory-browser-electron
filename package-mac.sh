@@ -6,30 +6,33 @@ export AWS_ACCESS_KEY_ID=$(echo $AWS_LOGIN_TMP | jq -r .Credentials.AccessKeyId)
 export AWS_SECRET_ACCESS_KEY=$(echo $AWS_LOGIN_TMP | jq -r .Credentials.SecretAccessKey)
 export AWS_SESSION_TOKEN=$(echo $AWS_LOGIN_TMP | jq -r .Credentials.SessionToken)
 
-# mkdir ~/temp-package-mac
-# cd ~/temp-package-mac
-# echo "Cloning clean code from Github to $(pwd)..."
-# git clone git@github.com:DioryMe/diory-browser-electron.git
-# cd diory-browser-electron
+mkdir ~/temp-package-mac
+cd ~/temp-package-mac
+echo "Cloning clean code from Github to $(pwd)..."
+git clone git@github.com:DioryMe/diory-browser-electron.git
+cd diory-browser-electron
 
 echo "Installing dependencies and building the app..."
 yarn && yarn build && yarn build-electron
 
-# Add app-package-envs to electron-main.js
+echo "Add app-package-envs to electron-main.js"
 export APP_PACKAGE_ENVS="process.env.BINARY_BUILD=1";
 awk 'BEGIN{print ENVIRON["APP_PACKAGE_ENVS"]}{print}' build/electron-main.js > build/electron-main-tmp.js
 mv build/electron-main-tmp.js build/electron-main.js
 unset APP_PACKAGE_ENVS
 
-echo "Create MacOS distribution package..."
+echo "Creating MacOS distribution package..."
 yarn package-mac
 
-echo "Upload the .dmg binary to AWS..."
+echo "Uploading the .dmg binary to AWS..."
 aws s3 cp dist/*.dmg s3://dda-downloads --acl public-read
-echo "Trigger the pipeline..."
+echo "Triggering the pipeline..."
 aws codepipeline start-pipeline-execution --name DioryDemoApp-build-pipeline
 unset AWS_TOKEN_CODE AWS_LOGIN_TMP AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
 
-# cd ~
-# rm -r ~/temp-package-mac
+echo "Removing temp folder..."
+cd ~
+rm -r ~/temp-package-mac
+
+echo "Done."
 echo "All this was made with: yarn: $(yarn --version), node: $(node --version)"
