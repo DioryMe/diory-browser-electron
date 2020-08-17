@@ -18,7 +18,7 @@ export const useSaveRoomEffect = (saveRoomClient, connectorId) => {
         .filter(({ connected }) => connected)
         .forEach(({ address, room }) => {
           if (updated) {
-            debouncePromiseDispatch(dispatch, saveRoomClient(address, { diograph }), saveRoom)
+            debouncePromiseDispatch(dispatch, () => saveRoomClient(address, { diograph }), saveRoom)
           }
         })
     }

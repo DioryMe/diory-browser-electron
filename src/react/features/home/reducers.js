@@ -1,5 +1,6 @@
+import { SAVE_ROOM } from '../room/actionsTypes'
 import * as types from './actionsTypes'
-import { createReducer } from '../../store'
+import { createReducer, promiseReducers } from '../../store'
 
 export const initialState = {
   rooms: {},
@@ -30,18 +31,19 @@ export const removeRoom = (state, { payload }) => {
   }
 }
 
-// export const updateRoom = (state, { payload }) => ({
-//   ...state,
-//   rooms: {
-//     ...state.rooms,
-//     [payload.room.id]: payload.room,
-//   },
-//   updated: true,
-// })
+export const updateRoom = (state, { payload }) => ({
+  ...state,
+  rooms: {
+    ...state.rooms,
+    [payload.room.id]: payload.room,
+  },
+  updated: true,
+})
 
 export default createReducer({
   [types.SET_ROOMS]: setRooms,
   [types.ADD_ROOM]: addRoom,
   [types.REMOVE_ROOM]: removeRoom,
-  // [types.UPDATE_ROOM]: updateRoom,
+  [types.UPDATE_ROOM]: updateRoom,
+  ...promiseReducers(types.SAVE_HOME, 'updated', 'saving', 'saved', 'error'),
 })
