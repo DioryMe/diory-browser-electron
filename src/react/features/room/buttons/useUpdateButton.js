@@ -4,7 +4,7 @@ import { useButtons } from '../../buttons'
 import { useTools } from '../../tools/hooks'
 
 import { setInactive } from '../../tools/actions'
-import { updateRoom } from '../actions'
+import { setUpdateRoom } from '../actions'
 
 const UPDATE_ROOM_BUTTON = 'UPDATE_ROOM_BUTTON'
 const buttons = [
@@ -25,7 +25,7 @@ export const useUpdateButton = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     if (UPDATE_ROOM_BUTTON === active) {
-      dispatch(updateRoom())
+      dispatch(setUpdateRoom())
       dispatch(setInactive())
     }
   }, [active, dispatch])

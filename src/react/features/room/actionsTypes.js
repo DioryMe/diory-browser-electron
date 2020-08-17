@@ -1,6 +1,6 @@
 export const GET_ROOM = 'GET_ROOM'
 export const SAVE_ROOM = 'SAVE_ROOM'
-export const UPDATE_ROOM = 'UPDATE_ROOM'
+export const SET_UPDATE_ROOM = 'SET_UPDATE_ROOM'
 
 export const CREATE_DIORY = 'CREATE_DIORY'
 export const UPDATE_DIORY = 'UPDATE_DIORY'
