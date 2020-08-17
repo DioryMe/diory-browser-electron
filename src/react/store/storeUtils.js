@@ -21,7 +21,7 @@ export const useDispatchAction = () => {
 export const promiseDispatch = (dispatch, promise, action) => {
   const actionType = action({}).type
   dispatch({ type: `${actionType}_BEGIN` })
-  promise
+  promise()
     .then((data) => {
       dispatch(action(data))
       dispatch({ type: `${actionType}_SUCCESS` })

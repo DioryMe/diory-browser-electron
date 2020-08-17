@@ -19,3 +19,7 @@ export const updateRoom = (room) => ({
   type: types.UPDATE_ROOM,
   payload: { room },
 })
+
+export const saveHome = () => ({
+  type: types.SAVE_HOME,
+})
