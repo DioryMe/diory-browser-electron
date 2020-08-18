@@ -3,6 +3,7 @@ import {
   ADD_CONNECTION,
   REMOVE_CONNECTION,
   UPDATE_CONNECTION,
+  SET_CONNECTION,
 } from './actionsTypes'
 
 export const setConnections = (connections) => ({
@@ -10,9 +11,9 @@ export const setConnections = (connections) => ({
   payload: { connections },
 })
 
-export const addConnection = ({ address, room }) => ({
+export const addConnection = (connection) => ({
   type: ADD_CONNECTION,
-  payload: { address, room },
+  payload: connection,
 })
 
 export const removeConnection = ({ address, room }) => ({
@@ -22,5 +23,10 @@ export const removeConnection = ({ address, room }) => ({
 
 export const updateConnection = (connection) => ({
   type: UPDATE_CONNECTION,
+  payload: connection,
+})
+
+export const setConnection = (connection) => ({
+  type: SET_CONNECTION,
   payload: connection,
 })
