@@ -1,56 +1,40 @@
-import toBuffer from 'it-to-buffer'
-import all from 'it-all'
+import Ipfs from 'ipfs'
 
-async function resolveCid(ipfs, address) {
-  if (address.startsWith('/ipns/')) {
-    const [cid] = await all(ipfs.name.resolve(address))
-    return cid
+import { getDiograph } from './getDiograph'
+import { saveDiograph } from './saveDiograph'
+
+let ipfs = null
+
+export async function startIpfs() {
+  if (ipfs) {
+    console.log('IPFS already started')
+  } else if (window.ipfs && window.ipfs.enable) {
+    console.log('Found window.ipfs')
+    ipfs = await window.ipfs.enable({ commands: ['id'] })
+  } else {
+    try {
+      console.time('IPFS Started')
+      ipfs = await Ipfs.create()
+      console.timeEnd('IPFS Started')
+      console.log(await ipfs.id())
+      return true
+    } catch (error) {
+      console.error('IPFS init error:', error)
+      ipfs = null
+      throw error
+    }
   }
-  return address
 }
 
-async function ipfsCat(ipfs, cid) {
-  const buffer = await toBuffer(ipfs.cat(cid))
-  return JSON.parse(buffer.toString())
+export function cleanupIpfs() {
+  if (ipfs && ipfs.stop) {
+    console.log('Stopping IPFS')
+    ipfs.stop().catch((err) => console.error(err))
+    ipfs = null
+  }
 }
 
-export async function getDiograph(ipfs, address) {
-  console.log('-------------')
-  console.log('IPFS client getDiograph request:', address)
-  const cid = await resolveCid(ipfs, address)
-  const ipfsDiograph = await ipfsCat(ipfs, cid)
-
-  const diograph = {}
-  await Promise.all(
-    Object.entries(ipfsDiograph).map(async ([id, dioryCid]) => {
-      diograph[id] = await ipfsCat(ipfs, dioryCid)
-    })
-  )
-  console.log('-------------')
-  console.log('IPFS client getDiograph response:', diograph)
-  return diograph
-}
-
-async function publishToIpns(ipfs, cid) {
-  const { name } = await ipfs.name.publish(cid)
-  return name
-}
-
-export async function saveDiograph(ipfs, diograph) {
-  console.log('-------------')
-  console.log('IPFS client saveDiograph request:', diograph)
-
-  const ipfsDiograph = {}
-  await Promise.all(
-    Object.entries(diograph).map(async ([id, diory]) => {
-      const { cid } = await ipfs.add(JSON.stringify(diory))
-      ipfsDiograph[id] = `/ipfs/${cid.toString()}`
-    })
-  )
-  const { cid } = await ipfs.add(JSON.stringify(ipfsDiograph))
-  const ipnsCid = await publishToIpns(ipfs, cid)
-
-  console.log('-------------')
-  console.log('IPFS client saveDiograph response:', `/ipns/${ipnsCid}`)
-  return `/ipns/${ipnsCid}`
+export default {
+  getDiograph: (address) => getDiograph(address, ipfs),
+  saveDiograph: (diograph) => saveDiograph(diograph, ipfs),
 }

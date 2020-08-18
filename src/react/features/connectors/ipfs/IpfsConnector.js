@@ -4,6 +4,8 @@ import { useDispatch } from '../../../store'
 import { updateConnection } from '../actions'
 import { useConnections } from '../useConnections'
 
+import { useIpfsFactory } from './client/useIpfsFactory'
+
 import { useGetRoomEffect } from './effects/useGetRoomEffect'
 import { useSaveRoomEffect } from './effects/useSaveRoomEffect'
 
@@ -29,8 +31,9 @@ const useIpfsConnector = () => {
 }
 
 const IpfsConnector = () => {
-  useGetRoomEffect()
-  useSaveRoomEffect()
+  const { isIpfsReady } = useIpfsFactory()
+  useGetRoomEffect(isIpfsReady)
+  useSaveRoomEffect(isIpfsReady)
 
   const { button } = useIpfsConnector()
 

@@ -4,30 +4,28 @@ import { debounce } from '../../../../utils'
 
 import { saveRoom } from '../../../room/actions'
 import { useConnections } from '../../useConnections'
-import { useIpfsFactory } from '../client/useIpfsFactory'
 
-import { saveDiograph } from '../client/client'
+import Ipfs from '../client/client'
 
 const debouncePromiseDispatch = debounce(promiseDispatch, 1000)
 
-const saveRoomToIpfs = async (ipfs, { id, diograph }) => {
-  const address = await saveDiograph(ipfs, diograph)
+const saveRoomToIpfs = async ({ id, root, diograph }) => {
+  const address = await Ipfs.saveDiograph(diograph)
   return {
     room: id,
     address,
   }
 }
 
-export const useSaveRoomEffect = () => {
+export const useSaveRoomEffect = (isIpfsReady) => {
   const [{ id, root, diograph, updated }] = useStore((state) => state.room)
-  const { ipfs } = useIpfsFactory()
   const { connections } = useConnections('ipfs')
   const [connected] = connections.map(({ connected }) => connected)
 
   const dispatch = useDispatch()
   useEffect(() => {
-    if (updated && ipfs && connected) {
-      debouncePromiseDispatch(dispatch, saveRoomToIpfs(ipfs, { id, root, diograph }), saveRoom)
+    if (isIpfsReady && updated && connected) {
+      debouncePromiseDispatch(dispatch, saveRoomToIpfs({ id, root, diograph }), saveRoom)
     }
-  }, [updated, connected, ipfs, id, root, diograph, dispatch])
+  }, [updated, connected, isIpfsReady, id, root, diograph, dispatch])
 }
