@@ -5,27 +5,26 @@ const { channels } = require('../../src/shared/constants')
 ipcMain.on(channels.GET_HOME, (event) => {
   console.log('GET_HOME')
 
-  const store = new HomeStore()
   const defaultHome = {
-    rooms: {},
-    connections: {
-      '/Users/op/2020/diory/IPFS': {
-        room: '11909355-48ed-475b-86a9-a47dbd15c492',
-        connector: 'file',
+    rooms: {
+      'welcome-room': {
+        id: 'welcome-room',
       },
-      '/ipns/QmPZ7TqWkERJVTNiY7TmLhigv2Ye4CdnSxzE4DDgcVJeqJ': {
-        room: '11909355-48ed-475b-86a9-a47dbd15c492',
-        connector: 'ipfs',
+    },
+    connections: {
+      './public/default-welcome-room': {
+        room: 'welcome-room',
+        connector: 'file',
       },
     },
     focus: {
-      roomId: '11909355-48ed-475b-86a9-a47dbd15c492',
-      dioryId: '11909355-48ed-475b-86a9-a47dbd15c492',
+      roomId: 'welcome-room',
+      dioryId: 'welcome-room',
     },
   }
-  const home = store.get('home') || defaultHome
 
-  console.log(home)
+  const store = new HomeStore()
+  const home = defaultHome // store.get('home') || defaultHome
 
-  event.sender.send(channels.GET_HOME, home)
+  event.reply(channels.GET_HOME, home)
 })
