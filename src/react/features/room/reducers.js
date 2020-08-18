@@ -12,6 +12,7 @@ import { promiseReducers, createReducer } from '../../store'
 
 export const initialState = {
   id: null,
+  root: null,
   diograph: {},
   updated: false,
 }
@@ -19,6 +20,7 @@ export const initialState = {
 const getRoom = (state, { payload }) => ({
   ...state,
   id: payload.id,
+  root: payload.root,
   diograph: payload.diograph,
   updated: false,
 })
@@ -95,7 +97,7 @@ const deleteLink = (state, { payload }) => {
 
 export default createReducer({
   [GET_ROOM]: getRoom,
-  [SET_UPDATE_ROOM]: setUpdateRoom(),
+  [SET_UPDATE_ROOM]: setUpdateRoom,
   [CREATE_DIORY]: createDiory,
   [DELETE_DIORY]: deleteDiory,
   [UPDATE_DIORY]: updateDiory,
