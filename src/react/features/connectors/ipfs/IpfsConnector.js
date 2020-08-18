@@ -21,8 +21,8 @@ const useIpfsConnector = () => {
       },
       active,
       onClick: () =>
-        connections.forEach((connection) =>
-          dispatch(updateConnection({ ...connection, connect: true }))
+        connections.forEach(({ connected, ...connection }) =>
+          dispatch(updateConnection({ ...connection, connect: !connected, connected: false }))
         ),
     },
   }
