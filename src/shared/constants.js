@@ -5,5 +5,6 @@ module.exports = {
     SAVE_ROOM: 'SAVE_ROOM',
     GET_HOME: 'GET_HOME',
     SAVE_HOME: 'SAVE_HOME',
+    IPFS_SAVE_IMAGE: 'IPFS_SAVE_IMAGE',
   },
 }

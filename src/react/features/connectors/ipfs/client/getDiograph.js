@@ -23,7 +23,11 @@ export async function getDiograph(address, ipfs) {
   const diograph = {}
   await Promise.all(
     Object.entries(ipfsDiograph).map(async ([id, dioryCid]) => {
-      diograph[id] = await ipfsCat(dioryCid, ipfs)
+      const { image, ...diory } = await ipfsCat(dioryCid, ipfs)
+      if (image && image.startsWith('/ipfs/')) {
+        diory.image = `https://gateway.ipfs.io${image}`
+      }
+      diograph[id] = diory
     })
   )
   console.log('-------------')

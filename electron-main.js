@@ -2,7 +2,9 @@ const { app, BrowserWindow } = require('electron')
 const path = require('path')
 const glob = require('glob')
 const url = require('url')
-require('electron-reload')
+require('electron-reload')('./electron')
+
+const { startIpfs } = require('./electron/connectors/ipfs/save-image-channel')
 
 let mainWindow
 
@@ -34,6 +36,8 @@ function createWindow() {
   if (process.env.DEV_TOOLS) {
     mainWindow.webContents.openDevTools()
   }
+
+  startIpfs()
 }
 
 app.on('ready', createWindow)
@@ -53,6 +57,7 @@ app.on('activate', () => {
 function loadChannels() {
   const files = glob.sync(path.join(__dirname, 'electron/channels/**/*.js'))
   files.forEach((file) => require(file))
+  require('./electron/connectors/ipfs/save-image-channel.js')
 }
 
 console.log(`User data: ${app.getPath('userData')}/config.json`)
