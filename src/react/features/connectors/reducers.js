@@ -51,11 +51,11 @@ const updateConnection = (state, { payload: { address, ...props } }) => ({
   updated: true,
 })
 
-const setConnection = (state, { payload: { address, ...props } }) => ({
+const setConnection = (state, { payload: { address, connecting, connected, error } }) => ({
   ...state,
   connections: {
     ...state.connections,
-    [address]: { ...state.connections[address], ...props },
+    [address]: { ...state.connections[address], connecting, connected, error },
   },
   updated: false,
 })
@@ -65,6 +65,6 @@ export default createReducer({
   [ADD_CONNECTION]: addConnection,
   [REMOVE_CONNECTION]: removeConnection,
   [UPDATE_CONNECTION]: updateConnection,
-  ...promiseReducers(GET_ROOM, 'connect', 'connecting', 'connected', 'error', setConnection),
+  ...promiseReducers(GET_ROOM, null, 'connecting', 'connected', 'error', setConnection),
   ...promiseReducers(SAVE_HOME, 'updated', 'saving', 'saved', 'error'),
 })
