@@ -37,3 +37,11 @@ When(
     // Write code here that turns the phrase above into concrete actions
     'pending'
 )
+
+When(
+  'I enter room {int}',
+  (int) =>
+    // When('I enter room {float}', function (float) {
+    // Write code here that turns the phrase above into concrete actions
+    'pending'
+)
