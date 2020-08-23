@@ -8,9 +8,9 @@ import {
   DELETE_LINK,
 } from './actionsTypes'
 
-export const getRoom = ({ id, diograph }) => ({
+export const getRoom = (room) => ({
   type: GET_ROOM,
-  payload: { id, diograph },
+  payload: room,
 })
 
 export const saveRoom = () => ({
