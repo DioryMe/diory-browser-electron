@@ -1,4 +1,5 @@
 import { SAVE_HOME } from '../home/actionsTypes'
+import { GET_ROOM } from '../room/actionsTypes'
 import {
   SET_CONNECTIONS,
   REMOVE_CONNECTION,
@@ -64,6 +65,6 @@ export default createReducer({
   [ADD_CONNECTION]: addConnection,
   [REMOVE_CONNECTION]: removeConnection,
   [UPDATE_CONNECTION]: updateConnection,
-  [SET_CONNECTION]: setConnection,
+  ...promiseReducers(GET_ROOM, 'connect', 'connecting', 'connected', 'error', setConnection),
   ...promiseReducers(SAVE_HOME, 'updated', 'saving', 'saved', 'error'),
 })
