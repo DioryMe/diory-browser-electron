@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { useDispatchActions } from '../../../store'
 import { useConnections } from '../useConnections'
 
-import { setConnection } from '../actions'
 import { getRoom } from '../../room/actions'
 
 export const useGetRoomEffect = (getRoomClient, connectorId) => {
