@@ -10,14 +10,14 @@ export const setConnections = (connections) => ({
   payload: { connections },
 })
 
-export const addConnection = ({ address, room }) => ({
+export const addConnection = (connection) => ({
   type: ADD_CONNECTION,
-  payload: { address, room },
+  payload: connection,
 })
 
-export const removeConnection = ({ address, room }) => ({
+export const removeConnection = (connection) => ({
   type: REMOVE_CONNECTION,
-  payload: { address, room },
+  payload: connection,
 })
 
 export const updateConnection = (connection) => ({
