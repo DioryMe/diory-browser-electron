@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useDispatchAction } from '../../../store'
+import { useDispatchActions } from '../../../store'
 import { useConnections } from '../useConnections'
 
 import { setConnection } from '../actions'
@@ -8,15 +8,15 @@ import { getRoom } from '../../room/actions'
 export const useGetRoomEffect = (getRoomClient, connectorId) => {
   const { connections } = useConnections(connectorId)
 
-  const { dispatch, dispatchAction } = useDispatchAction()
+  const { dispatchAction, dispatchPromiseAction } = useDispatchActions()
   useEffect(() => {
     connections
       .filter(({ connecting, connected }) => !connecting && !connected)
       .forEach(({ address }) => {
-        dispatch(setConnection({ address, connecting: true }))
-        getRoomClient({ address })
-          .then(dispatchAction(getRoom))
-          .then(() => dispatch(setConnection({ address, connecting: false, connected: true })))
+        dispatchPromiseAction(
+          () => getRoomClient({ address }),
+          () => getRoom({ address })
+        )
       })
-  }, [connections, dispatchAction, dispatch, getRoomClient])
+  }, [connections, dispatchPromiseAction, dispatchAction, getRoomClient])
 }

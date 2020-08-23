@@ -1,11 +1,10 @@
 import { useEffect } from 'react'
 import { channels } from '../../../../shared/constants'
 import { openChannel } from '../../../client/client'
-import { promiseDispatch, useDispatch, useStore } from '../../../store'
-import { debounce } from '../../../utils'
-import { saveHome } from '../actions'
 
-const debouncePromiseDispatch = debounce(promiseDispatch, 1000)
+import { useDispatchActions, useStore } from '../../../store'
+
+import { saveHome } from '../actions'
 
 const transformConnections = (connections) =>
   Object.entries(connections).reduce(
@@ -23,10 +22,10 @@ export const useSaveHomeEffect = () => {
     connections: transformConnections(connections),
     focus: { roomId, dioryId },
   }
-  const dispatch = useDispatch()
+  const { debounceDispatchPromiseAction } = useDispatchActions()
   useEffect(() => {
-    if (connectionsUpdated || homeUpdated) {
-      debouncePromiseDispatch(dispatch, () => openChannel(channels.SAVE_HOME, home), saveHome)
+    if (connectionsUpdated) {
+      debounceDispatchPromiseAction(() => openChannel(channels.SAVE_HOME, home), saveHome)
     }
   }, [connectionsUpdated, home, debounceDispatchPromiseAction])
 }
