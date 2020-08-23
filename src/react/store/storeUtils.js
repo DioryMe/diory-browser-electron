@@ -1,4 +1,3 @@
-import { useCallback } from 'react'
 import { useDispatch } from './StoreContext'
 
 export const createReducer = (handlers) => (state, action) => {
@@ -8,9 +7,15 @@ export const createReducer = (handlers) => (state, action) => {
   return handlers[action.type](state, action)
 }
 
-export const useDispatchAction = (action) => {
+export const useDispatchAction = () => {
   const dispatch = useDispatch()
-  return useCallback((params) => dispatch(action(params)), [action, dispatch])
+  return {
+    dispatch,
+    dispatchAction: (action) => (params) => {
+      dispatch(action(params))
+      return params
+    },
+  }
 }
 
 export const promiseDispatch = (dispatch, promise, action) => {
@@ -20,6 +25,7 @@ export const promiseDispatch = (dispatch, promise, action) => {
     .then((data) => {
       dispatch(action(data))
       dispatch({ type: `${actionType}_SUCCESS` })
+      return data
     })
     .catch((error) => dispatch({ type: `${actionType}_FAILURE`, payload: { error } }))
 }
