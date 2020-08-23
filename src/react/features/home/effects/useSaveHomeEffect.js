@@ -18,11 +18,9 @@ const transformConnections = (connections) =>
 
 export const useSaveHomeEffect = () => {
   const [{ connections, updated: connectionsUpdated }] = useStore((state) => state.connectors)
-  const [{ rooms, updated: homeUpdated }] = useStore((state) => state.home)
   const [{ roomId, focus: dioryId }] = useStore((state) => state.navigation)
   const home = {
     connections: transformConnections(connections),
-    rooms,
     focus: { roomId, dioryId },
   }
   const dispatch = useDispatch()
@@ -30,5 +28,5 @@ export const useSaveHomeEffect = () => {
     if (connectionsUpdated || homeUpdated) {
       debouncePromiseDispatch(dispatch, () => openChannel(channels.SAVE_HOME, home), saveHome)
     }
-  }, [connectionsUpdated, homeUpdated, home, dispatch])
+  }, [connectionsUpdated, home, debounceDispatchPromiseAction])
 }
