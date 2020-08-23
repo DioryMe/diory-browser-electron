@@ -6,11 +6,6 @@ ipcMain.on(channels.GET_HOME, (event) => {
   console.log('GET_HOME')
 
   const defaultHome = {
-    rooms: {
-      'welcome-room': {
-        id: 'welcome-room',
-      },
-    },
     connections: {
       './public/default-welcome-room': {
         room: 'welcome-room',
