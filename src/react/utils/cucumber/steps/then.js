@@ -1,4 +1,4 @@
-import { Then } from 'cucumber'
+import { Given, Then } from 'cucumber'
 import { expectDiorysInView } from '../support/view/expectDiorysInView'
 import { expectDioryOnContainer } from '../support/view/expectDioryOnContainer'
 import { expectDioryItemOnContainer } from '../support/view/expectDioryItemOnContainer'
@@ -73,6 +73,14 @@ Then(
 Then(
   'diory {int} marker is not on map',
   (int) =>
+    // Write code here that turns the phrase above into concrete actions
+    'pending'
+)
+
+Then(
+  'I see {int} rooms',
+  (int) =>
+    // Then('I see {float} rooms', function (float) {
     // Write code here that turns the phrase above into concrete actions
     'pending'
 )
