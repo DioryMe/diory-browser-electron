@@ -1,3 +1,4 @@
+import { debounce } from '../utils'
 import { useDispatch } from './StoreContext'
 
 export const createReducer = (handlers) => (state, action) => {
@@ -7,7 +8,18 @@ export const createReducer = (handlers) => (state, action) => {
   return handlers[action.type](state, action)
 }
 
-export const useDispatchAction = () => {
+const promiseActions = (dispatch) => (promise, action) => {
+  const { type, payload } = action({})
+  dispatch({ type: `${type}_BEGIN`, payload })
+  return promise()
+    .then((data) => {
+      dispatch({ type: `${type}_SUCCESS`, payload: { ...payload, ...data } })
+      return data
+    })
+    .catch((error) => dispatch({ type: `${type}_FAILURE`, payload: { error } }))
+}
+
+export const useDispatchActions = () => {
   const dispatch = useDispatch()
   return {
     dispatch,
@@ -15,37 +27,48 @@ export const useDispatchAction = () => {
       dispatch(action(params))
       return params
     },
+    dispatchPromiseAction: promiseActions(dispatch),
+    debounceDispatchPromiseAction: debounce(promiseActions(dispatch), 1000),
   }
 }
 
-export const promiseDispatch = (dispatch, promise, action) => {
-  const actionType = action({}).type
-  dispatch({ type: `${actionType}_BEGIN` })
-  promise()
-    .then((data) => {
-      dispatch(action(data))
-      dispatch({ type: `${actionType}_SUCCESS` })
-      return data
-    })
-    .catch((error) => dispatch({ type: `${actionType}_FAILURE`, payload: { error } }))
-}
+const defaultReducer = (state, { payload }) => ({
+  ...state,
+  ...payload,
+})
 
-export const promiseReducers = (actionType, triggerKey, progressKey, successKey, errorKey) => ({
-  [`${actionType}_BEGIN`]: (state) => ({
-    ...state,
-    [triggerKey]: false,
-    [progressKey]: true,
-  }),
-  [`${actionType}_SUCCESS`]: (state) => ({
-    ...state,
-    [progressKey]: false,
-    [successKey]: true,
-    [errorKey]: false,
-  }),
-  [`${actionType}_FAILURE`]: (state, { payload }) => ({
-    ...state,
-    [progressKey]: false,
-    [successKey]: false,
-    [errorKey]: payload.error,
-  }),
+export const promiseReducers = (
+  actionType,
+  triggerKey,
+  progressKey,
+  successKey,
+  errorKey,
+  reducer = defaultReducer
+) => ({
+  [`${actionType}_BEGIN`]: (state, { payload }) =>
+    reducer(state, {
+      payload: {
+        ...payload,
+        [triggerKey]: false,
+        [progressKey]: true,
+      },
+    }),
+  [`${actionType}_SUCCESS`]: (state, { payload }) =>
+    reducer(state, {
+      payload: {
+        ...payload,
+        [progressKey]: false,
+        [successKey]: true,
+        [errorKey]: false,
+      },
+    }),
+  [`${actionType}_FAILURE`]: (state, { payload }) =>
+    reducer(state, {
+      payload: {
+        ...payload,
+        [progressKey]: false,
+        [successKey]: false,
+        [errorKey]: payload.error,
+      },
+    }),
 })
