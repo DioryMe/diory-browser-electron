@@ -27,9 +27,10 @@ export const useAddConnectionButton = () => {
             throw new Error(`RoomId ${id} not found from generated diograph`)
           }
 
-          dispatch(addConnection({ address, room: id, connector: 'file' }))
           dispatch(enterRoom({ id }))
           dispatch(setFocus({ focus: id }))
+
+          dispatch(addConnection({ address, room: id, connector: 'file' }))
         })
       })
     }

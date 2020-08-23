@@ -8,5 +8,5 @@ ipcMain.on(channels.SAVE_HOME, (event, home) => {
   const store = new HomeStore()
   store.set({ home })
 
-  event.reply(channels.SAVE_HOME, home)
+  event.reply(channels.SAVE_HOME, true)
 })
