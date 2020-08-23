@@ -1,25 +1,25 @@
-import * as types from './actionsTypes'
+import { SET_ROOMS, ADD_ROOM, REMOVE_ROOM, UPDATE_ROOM, SAVE_HOME } from './actionsTypes'
 
 export const setRooms = (rooms) => ({
-  type: types.SET_ROOMS,
+  type: SET_ROOMS,
   payload: { rooms },
 })
 
 export const addRoom = (room) => ({
-  type: types.ADD_ROOM,
+  type: ADD_ROOM,
   payload: { room },
 })
 
 export const removeRoom = (room) => ({
-  type: types.REMOVE_ROOM,
+  type: REMOVE_ROOM,
   payload: { room },
 })
 
 export const updateRoom = (room) => ({
-  type: types.UPDATE_ROOM,
+  type: UPDATE_ROOM,
   payload: { room },
 })
 
 export const saveHome = () => ({
-  type: types.SAVE_HOME,
+  type: SAVE_HOME,
 })
