@@ -1,5 +1,4 @@
 import React from 'react'
-import Fullscreen from '../../../components/Fullscreen'
 
 import { useMap } from './hooks/useMap'
 import { useMapMarkers } from './hooks/useMapMarkers'
@@ -14,11 +13,7 @@ const MapLens = () => {
   useSetFocus(map)
   useTogglePopup(map)
 
-  return (
-    <Fullscreen marginTop={48} zIndex={10}>
-      <div id={id} style={{ height: '100%' }} />
-    </Fullscreen>
-  )
+  return <div id={id} style={{ height: '100%' }} />
 }
 
 MapLens.diory = {

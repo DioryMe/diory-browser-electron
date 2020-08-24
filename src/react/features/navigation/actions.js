@@ -1,12 +1,4 @@
-import {
-  ENTER_ROOM,
-  GO_FORWARD,
-  GO_BACKWARD,
-  SET_FOCUS,
-  GO_HOME,
-  GO_SIDE,
-  SET_FULLSCREEN,
-} from './actionsTypes'
+import { ENTER_ROOM, GO_FORWARD, GO_BACKWARD, SET_FOCUS, GO_HOME, GO_SIDE } from './actionsTypes'
 
 export const enterRoom = ({ id }) => ({
   type: ENTER_ROOM,
@@ -16,11 +8,6 @@ export const enterRoom = ({ id }) => ({
 export const setFocus = ({ focus }) => ({
   type: SET_FOCUS,
   payload: { focus },
-})
-
-export const setFullscreen = (fullscreen) => ({
-  type: SET_FULLSCREEN,
-  payload: { fullscreen },
 })
 
 export const goBackward = () => ({ type: GO_BACKWARD })

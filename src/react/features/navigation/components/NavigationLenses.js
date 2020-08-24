@@ -1,19 +1,19 @@
 import React from 'react'
 import { Pane, Tablist, Tab, Icon } from 'evergreen-ui'
 import { useStore } from '../../../store'
-import { useLenses } from '../../lenses/hooks'
+import { useLenses } from '../../lenses/useLenses'
 
 const useNavigationLenses = () => {
-  const { lenses, selectedLensId, toggleLens } = useLenses()
+  const { lenses, selectedLensId, selectLens } = useLenses()
   const [{ roomId }] = useStore((state) => state.navigation)
 
   return {
     lenses:
       roomId &&
-      Object.values(lenses).map((lens) => ({
+      lenses.map((lens) => ({
         ...lens,
         isSelected: lens.id === selectedLensId,
-        onSelect: () => toggleLens(lens.id),
+        onSelect: () => selectLens(lens.id),
       })),
   }
 }

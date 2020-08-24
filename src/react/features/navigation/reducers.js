@@ -1,18 +1,9 @@
-import {
-  ENTER_ROOM,
-  GO_SIDE,
-  GO_HOME,
-  SET_FOCUS,
-  SET_FULLSCREEN,
-  GO_BACKWARD,
-  GO_FORWARD,
-} from './actionsTypes'
+import { ENTER_ROOM, GO_SIDE, GO_HOME, SET_FOCUS, GO_BACKWARD, GO_FORWARD } from './actionsTypes'
 import { createReducer } from '../../store'
 
 export const initialState = {
   roomId: undefined,
   focus: undefined,
-  fullscreen: false,
   backward: [],
   forward: [],
   path: [],
@@ -40,11 +31,6 @@ export const setFocus = (state, { payload }) => {
     path: [...state.path, payload.focus],
   }
 }
-
-export const setFullscreen = (state, { payload }) => ({
-  ...state,
-  fullscreen: payload.fullscreen === true,
-})
 
 export const goSide = (state, { payload }) => ({
   ...state,
@@ -91,7 +77,6 @@ export const goHome = (state) => ({
 export default createReducer({
   [ENTER_ROOM]: enterRoom,
   [SET_FOCUS]: setFocus,
-  [SET_FULLSCREEN]: setFullscreen,
   [GO_BACKWARD]: goBackward,
   [GO_FORWARD]: goForward,
   [GO_HOME]: goHome,

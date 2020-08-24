@@ -27,7 +27,14 @@ const MAX_NUMBER_OF_DIORYS_PER_VIEW = 100
 const GridLens = () => {
   const { diory, diorys } = useRoom()
   return (
-    <Pane id={diory.id} height="100%" display="flex" flexWrap="wrap" padding={24}>
+    <Pane
+      id={diory.id}
+      height="100%"
+      display="flex"
+      flexWrap="wrap"
+      padding={24}
+      alignContent="flex-start"
+    >
       <Image backgroundImage={getBackgroundImage(diory.image, diorys.length)} zIndex={-1} />
       {!diorys.length && (
         <Heading margin={16} color="darkgrey" fontWeight="bold">
