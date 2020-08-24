@@ -17,33 +17,41 @@ export const useButtonBar = () => {
   const { buttons } = useButtonsArray()
   const dispatch = useDispatch()
 
-  if (!open && buttons.length > 1) {
+  const toggleButton = {
+    id: 'tools',
+    data: {
+      icon: open ? 'cross' : 'wrench',
+      testid: 'tools',
+    },
+    onClick: () => dispatch(setOpen(!open)),
+  }
+
+  const toolButtons = buttons.map((button) => ({
+    ...button,
+    active: button.id === active,
+    onClick: () => {
+      if (button.id !== active) {
+        return onSelect(button.id)
+      }
+
+      onClear()
+      dispatch(setOpen(false))
+    },
+  }))
+
+  if (toolButtons.length < 2) {
     return {
-      buttons: [
-        {
-          id: 'tools',
-          data: {
-            icon: 'wrench',
-            testid: 'tools',
-          },
-          onClick: () => dispatch(setOpen(true)),
-        },
-      ],
+      buttons: toolButtons,
+    }
+  }
+
+  if (!open) {
+    return {
+      buttons: [toggleButton],
     }
   }
 
   return {
-    buttons: buttons.map((button) => ({
-      ...button,
-      active: button.id === active,
-      onClick: () => {
-        if (button.id !== active) {
-          return onSelect(button.id)
-        }
-
-        onClear()
-        dispatch(setOpen(false))
-      },
-    })),
+    buttons: [...(open && toolButtons), toggleButton],
   }
 }
