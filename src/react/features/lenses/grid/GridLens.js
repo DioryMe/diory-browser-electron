@@ -1,6 +1,7 @@
 import React from 'react'
 import { Heading, Pane } from 'evergreen-ui'
 import { useDispatch } from '../../../store'
+import { useButtons } from '../../buttons'
 
 import { setFocus } from '../../navigation/actions'
 
@@ -9,6 +10,9 @@ import { useFocusDiory } from '../../room/hooks'
 import Diory from '../../../components/diories/Diory'
 import Image from '../../../components/diories/Image'
 import { getBackgroundImage } from '../../../components/utils'
+
+import createButtons from '../../tools/create/buttons'
+import updateButtons from '../../tools/update/buttons'
 
 const useRoom = () => {
   const dispatch = useDispatch()
@@ -25,6 +29,9 @@ const useRoom = () => {
 const MAX_NUMBER_OF_DIORYS_PER_VIEW = 100
 
 const GridLens = () => {
+  useButtons(updateButtons)
+  useButtons(createButtons)
+  console.log('jeeeee')
   const { diory, diorys } = useRoom()
   return (
     <Pane
