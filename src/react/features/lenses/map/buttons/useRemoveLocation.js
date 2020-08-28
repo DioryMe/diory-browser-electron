@@ -16,7 +16,7 @@ export const useRemoveLocation = (mapRef) => {
             marker.remove()
             marker.dioryId === focus
               ? dispatch(deleteDiory({ id: marker.dioryId }))
-              : dispatch(deleteLink({ id: focus, link: marker.dioryId }))
+              : dispatch(deleteLink({ id: focus }, { id: marker.dioryId }))
           })
         }
       }

@@ -1,7 +1,11 @@
 import { useEffect } from 'react'
 import { useDispatch, useStore } from '../../../../store'
+import { setFocus } from '../../../navigation/actions'
 import { createDiory, createLink } from '../../../room/actions'
+import { setActive } from '../../../tools/actions'
 import * as buttons from './buttons'
+
+import { UPDATE_TOOL_BUTTON } from '../../../tools/update/buttons'
 
 const getTileURL = ({ lat, lng, zoom }) => {
   const latRad = (lat * Math.PI) / 180
@@ -33,6 +37,8 @@ export const useAddLocation = (mapRef) => {
         })}.png`
         dispatch(createDiory({ id, image, latitude: lat, longitude: lng }))
         dispatch(createLink({ id: focus }, { id }))
+        dispatch(setFocus({ focus: id }))
+        dispatch(setActive(UPDATE_TOOL_BUTTON))
       })
     }
   }, [mapRef, active, focus, dispatch])

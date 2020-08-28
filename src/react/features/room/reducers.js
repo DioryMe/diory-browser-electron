@@ -73,7 +73,7 @@ const createLink = (state, { payload }) => {
 
 const deleteLink = (state, { payload }) => {
   const diory = state.diograph[payload.diory.id]
-  const { [payload.diory.link.id]: omit, ...links } = diory.links
+  const { [payload.link.id]: omit, ...links } = diory.links
   return {
     ...state,
     diograph: {
