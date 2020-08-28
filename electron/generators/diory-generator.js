@@ -40,8 +40,25 @@ function getFirstImage(linkedDiorys) {
   return linkedDiorys.map(({ image }) => image).find((image) => image)
 }
 
+function getAverage(array = []) {
+  return array.length
+    ? array.reduce((a, b) => parseFloat(a) + parseFloat(b), 0) / array.length
+    : undefined
+}
+
+function getAverageLocation(linkedDiorys) {
+  const locations = linkedDiorys.filter(({ latitude, longitude }) => latitude && longitude)
+  const latitudes = locations.map(({ latitude }) => latitude)
+  const longitudes = locations.map(({ longitude }) => longitude)
+  return {
+    ...(latitudes && { latitude: getAverage(latitudes) }),
+    ...(longitudes && { longitude: getAverage(longitudes) }),
+  }
+}
+
 exports.generateFolderDiory = function generateFolderDiory(folderPath, linkedDiorys = []) {
   const folder = readFolder(folderPath) || {}
   const image = getFirstImage(linkedDiorys)
-  return generateDiory({ image, ...folder })
+  const location = getAverageLocation(linkedDiorys)
+  return generateDiory({ image, ...location, ...folder })
 }
