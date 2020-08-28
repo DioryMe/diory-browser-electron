@@ -23,7 +23,12 @@ export const useButtonBar = () => {
       icon: open ? 'cross' : 'wrench',
       testid: 'tools',
     },
-    onClick: () => dispatch(setOpen(!open)),
+    onClick: () => {
+      dispatch(setOpen(!open))
+      if (open) {
+        dispatch(setInactive())
+      }
+    },
   }
 
   const toolButtons = buttons.map((button) => ({
