@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import L from 'leaflet'
 import { useCompare } from '../../../../utils/useCompare'
+import { useParent } from '../../../navigation/hooks/useGoSide'
 import { useFocusDiory } from '../../../room/hooks'
 import { getLocationData } from './getLocationData'
 
@@ -8,6 +9,7 @@ import { getLocationData } from './getLocationData'
 let initialBounds = true
 const useInitialMapBounds = (mapRef) => {
   const { diory, diorys } = useFocusDiory()
+  const parent = useParent()
 
   if (!mapRef.current) {
     initialBounds = true
@@ -19,18 +21,20 @@ const useInitialMapBounds = (mapRef) => {
         if (min && max) {
           mapRef.current.fitBounds([min, max])
         } else if (center) {
-          mapRef.current.setView(center, 15)
+          mapRef.current.setView(center, 12)
         } else {
-          mapRef.current.fitWorld()
+          const { center: parentCenter } = getLocationData({ diory: parent })
+          mapRef.current.flyTo(parentCenter, 12)
         }
         initialBounds = false
       }
     }
-  }, [mapRef, diory, diorys])
+  }, [mapRef, diory, diorys, parent])
 }
 
 const useMapBounds = (mapRef) => {
   const { diory, diorys } = useFocusDiory()
+  const parent = useParent()
   const focusChanged = useCompare(diory.id)
   useEffect(() => {
     if (mapRef.current && focusChanged) {
@@ -38,12 +42,13 @@ const useMapBounds = (mapRef) => {
       if (min && max) {
         mapRef.current.flyToBounds([min, max])
       } else if (center) {
-        mapRef.current.flyTo(center, 15)
+        mapRef.current.flyTo(center, 12)
       } else {
-        mapRef.current.fitWorld()
+        const { center: parentCenter } = getLocationData({ diory: parent })
+        mapRef.current.flyTo(parentCenter, 10)
       }
     }
-  }, [mapRef, focusChanged, diory, diorys])
+  }, [mapRef, focusChanged, diory, diorys, parent])
 }
 
 export const useMap = (id) => {

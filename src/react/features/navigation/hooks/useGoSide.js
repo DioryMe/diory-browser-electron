@@ -1,7 +1,7 @@
 import { useDispatch, useStore } from '../../../store'
 import { goSide } from '../actions'
 
-const useParent = () => {
+export const useParent = () => {
   const [{ backward }] = useStore((state) => state.navigation)
   const [{ diograph }] = useStore((state) => state.room)
   if (!backward.length) {

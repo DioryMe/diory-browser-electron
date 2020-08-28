@@ -5,7 +5,6 @@ import {
   REMOVE_CONNECTION,
   UPDATE_CONNECTION,
   ADD_CONNECTION,
-  SET_CONNECTION,
 } from './actionsTypes'
 
 import { createReducer, promiseReducers } from '../../store'

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import L from 'leaflet'
 import { useCompare } from '../../../../utils/useCompare'
+import { useParent } from '../../../navigation/hooks/useGoSide'
 import { useFocusDiory } from '../../../room/hooks'
 import { getLocationData } from './getLocationData'
 
@@ -25,7 +26,7 @@ const createMapMarker = ({ diory, diorys }) => {
 
   const popup = createMapPopup({ diory })
   const marker = L.marker(center).bindPopup(popup, {
-    maxWidth: 500,
+    maxWidth: 600,
     autoPan: false,
   })
 
@@ -41,6 +42,7 @@ const addDataTestIdToMarker = (id) => (marker) => {
 
 const useDioryMarker = (mapRef) => {
   const { diory, diorys } = useFocusDiory()
+  const parent = useParent()
   const focusChanged = useCompare(diory.id)
 
   const markerRef = useRef(null)
@@ -52,14 +54,15 @@ const useDioryMarker = (mapRef) => {
       }
     }
     const { center } = getLocationData({ diory, diorys })
-    if (markerRef.current && center) {
-      markerRef.current.setLatLng(center)
+    const { center: parentCenter } = getLocationData({ diory: parent })
+    if (markerRef.current && (center || parentCenter)) {
+      markerRef.current.setLatLng(center || parentCenter)
 
       if (focusChanged) {
         const popup = createMapPopup({ diory })
         markerRef.current
           .bindPopup(popup, {
-            maxWidth: 500,
+            maxWidth: 600,
             autoPan: false,
           })
           .openPopup()
@@ -67,7 +70,7 @@ const useDioryMarker = (mapRef) => {
         markerRef.current.dioryId = diory.id
       }
     }
-  }, [mapRef, diory, diorys, focusChanged])
+  }, [mapRef, diory, diorys, focusChanged, parent])
 }
 
 const useDiorysMarkers = (mapRef) => {
@@ -85,8 +88,7 @@ const useDiorysMarkers = (mapRef) => {
 
     const newMarkers = diorys
       .filter(({ id }) => !markerRefs.current.map(({ dioryId }) => dioryId).includes(id))
-      .filter(({ latitude, longitude }) => latitude && longitude)
-      .map((diory) => createMapMarker({ diory }).addTo(mapRef.current))
+      .map((diory) => createMapMarker({ diory, diorys }).addTo(mapRef.current))
       .map(addDataTestIdToMarker('linked-diory-marker'))
 
     markerRefs.current = oldMarkers.concat(newMarkers)

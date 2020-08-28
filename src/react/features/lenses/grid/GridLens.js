@@ -31,7 +31,6 @@ const MAX_NUMBER_OF_DIORYS_PER_VIEW = 100
 const GridLens = () => {
   useButtons(updateButtons)
   useButtons(createButtons)
-  console.log('jeeeee')
   const { diory, diorys } = useRoom()
   return (
     <Pane
