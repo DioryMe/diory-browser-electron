@@ -1,7 +1,7 @@
-import { useDispatch, useStore } from '../../store'
-import { useTools } from '../tools/hooks'
+import { useDispatchActions, useStore } from '../../store'
 
 import { setOpen } from './actions'
+import { setActive, setInactive } from '../tools/actions'
 
 const useButtonsArray = () => {
   const [{ buttons }] = useStore((state) => state.buttons)
@@ -12,10 +12,10 @@ const useButtonsArray = () => {
 
 export const useButtonBar = () => {
   const [{ open }] = useStore((state) => state.buttons)
-  const { active, onSelect, onClear } = useTools()
+  const [{ active }] = useStore((state) => state.tools)
 
   const { buttons } = useButtonsArray()
-  const dispatch = useDispatch()
+  const { dispatch, dispatchAction } = useDispatchActions()
 
   const toggleButton = {
     id: 'tools',
@@ -31,10 +31,10 @@ export const useButtonBar = () => {
     active: button.id === active,
     onClick: () => {
       if (button.id !== active) {
-        return onSelect(button.id)
+        return dispatch(setActive(button.id))
       }
 
-      onClear()
+      dispatch(setInactive())
       dispatch(setOpen(false))
     },
   }))
