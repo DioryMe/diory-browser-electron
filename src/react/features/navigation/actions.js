@@ -1,4 +1,12 @@
-import { ENTER_ROOM, GO_FORWARD, GO_BACKWARD, SET_FOCUS, GO_HOME, GO_SIDE } from './actionsTypes'
+import {
+  ENTER_ROOM,
+  GO_FORWARD,
+  GO_BACKWARD,
+  SET_FOCUS,
+  GO_HOME,
+  GO_SIDE,
+  SET_LINK,
+} from './actionsTypes'
 
 export const enterRoom = ({ id }) => ({
   type: ENTER_ROOM,
@@ -19,4 +27,9 @@ export const goHome = () => ({ type: GO_HOME })
 export const goSide = ({ focus }) => ({
   type: GO_SIDE,
   payload: { focus },
+})
+
+export const setLink = (link = {}) => ({
+  type: SET_LINK,
+  payload: { link },
 })

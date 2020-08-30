@@ -1,9 +1,18 @@
-import { ENTER_ROOM, GO_SIDE, GO_HOME, SET_FOCUS, GO_BACKWARD, GO_FORWARD } from './actionsTypes'
+import {
+  ENTER_ROOM,
+  GO_SIDE,
+  GO_HOME,
+  SET_FOCUS,
+  GO_BACKWARD,
+  GO_FORWARD,
+  SET_LINK,
+} from './actionsTypes'
 import { createReducer } from '../../store'
 
 export const initialState = {
   roomId: undefined,
   focus: undefined,
+  link: null,
   backward: [],
   forward: [],
   path: [],
@@ -74,6 +83,11 @@ export const goHome = (state) => ({
   path: [],
 })
 
+export const setLink = (state, { payload }) => ({
+  ...state,
+  link: payload.link.id,
+})
+
 export default createReducer({
   [ENTER_ROOM]: enterRoom,
   [SET_FOCUS]: setFocus,
@@ -81,4 +95,5 @@ export default createReducer({
   [GO_FORWARD]: goForward,
   [GO_HOME]: goHome,
   [GO_SIDE]: goSide,
+  [SET_LINK]: setLink,
 })
