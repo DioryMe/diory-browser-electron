@@ -3,7 +3,6 @@ import React from 'react'
 import { useFocusDiory } from './features/room/hooks'
 
 import LensView from './features/lenses/LensView'
-import ToolsView from './features/tools/ToolsView'
 
 const View = () => {
   // Loading view
@@ -15,7 +14,6 @@ const View = () => {
   return (
     <>
       <LensView />
-      <ToolsView />
     </>
   )
 }
