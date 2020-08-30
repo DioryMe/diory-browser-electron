@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Modal from '../../../components/Modal'
-import TextInput from '../../../components/TextInput'
+import Modal from '../../../../../components/Modal'
+import TextInput from '../../../../../components/TextInput'
 
 const UpdateView = ({ title, fields, isShown, onChange, onDone, onCancel }) => (
   <Modal title={title} isShown={isShown} onDone={onDone} onCancel={onCancel}>

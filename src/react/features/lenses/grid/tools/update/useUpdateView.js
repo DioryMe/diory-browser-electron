@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
-import { useDispatch } from '../../../store'
+import { useDispatch } from '../../../../../store'
 
-import { setInactive } from '../actions'
-import { setOpen } from '../../buttons/actions'
+import { setOpen, setInactive } from '../../../../buttons/actions'
+import { setLink } from '../../../../navigation/actions'
 
 import fields from './fields'
 
