@@ -4,7 +4,6 @@ import Box from 'ui-box'
 import { Pane, Icon } from 'evergreen-ui'
 
 import Image from './Image'
-import { getBackgroundImage } from '../utils'
 
 const colors = ['#5bc0eb', '#fcd600', '#9bc53d', '#e55934', '#fa7921']
 const getRandom = (array) => array[Math.floor(Math.random() * array.length)]
@@ -30,7 +29,8 @@ const Diory = ({ diory, onClick, children, ...props }) => {
           <Image
             image={image}
             style={styleImage}
-            backgroundImage={getBackgroundImage(image, text, '0, 0, 0, 0.2')}
+            gradient={Boolean(text)}
+            gradientRgba="0, 0, 0, 0.2"
           />
         )}
         {text && (
