@@ -2,10 +2,10 @@ import { useEffect } from 'react'
 import { useDispatch, useStore } from '../../../../store'
 import { setFocus } from '../../../navigation/actions'
 import { createDiory, createLink } from '../../../room/actions'
-import { setActive } from '../../../tools/actions'
+import { setActive } from '../../../buttons/actions'
 import * as buttons from './buttons'
 
-import { UPDATE_TOOL_BUTTON } from '../../../tools/update/buttons'
+import { UPDATE_TOOL_BUTTON } from '../../grid/buttons/buttons'
 
 const getTileURL = ({ lat, lng, zoom }) => {
   const latRad = (lat * Math.PI) / 180
@@ -20,7 +20,7 @@ const getTileURL = ({ lat, lng, zoom }) => {
 
 export const useAddLocation = (mapRef) => {
   const [{ focus }] = useStore((state) => state.navigation)
-  const [{ active }] = useStore((state) => state.tools)
+  const [{ active }] = useStore((state) => state.buttons)
   const dispatch = useDispatch()
   useEffect(() => {
     mapRef.current.off('click')

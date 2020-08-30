@@ -5,7 +5,7 @@ import * as buttons from './buttons'
 
 export const useRemoveLocation = (mapRef) => {
   const [{ focus }] = useStore((state) => state.navigation)
-  const [{ active }] = useStore((state) => state.tools)
+  const [{ active }] = useStore((state) => state.buttons)
   const dispatch = useDispatch()
   useEffect(() => {
     mapRef.current.eachLayer((marker) => {

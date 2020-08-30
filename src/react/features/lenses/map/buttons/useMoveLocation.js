@@ -4,7 +4,7 @@ import { updateDiory } from '../../../room/actions'
 import * as buttons from './buttons'
 
 export const useMoveLocation = (mapRef) => {
-  const [{ active }] = useStore((state) => state.tools)
+  const [{ active }] = useStore((state) => state.buttons)
   const dispatch = useDispatch()
   useEffect(() => {
     mapRef.current.eachLayer((marker) => {

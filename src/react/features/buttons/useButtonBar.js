@@ -1,7 +1,7 @@
 import { useDispatchActions, useStore } from '../../store'
 
 import { setOpen } from './actions'
-import { setActive, setInactive } from '../tools/actions'
+import { setActive, setInactive } from './actions'
 
 const useButtonsArray = () => {
   const [{ buttons }] = useStore((state) => state.buttons)
@@ -12,7 +12,7 @@ const useButtonsArray = () => {
 
 export const useButtonBar = () => {
   const [{ open }] = useStore((state) => state.buttons)
-  const [{ active }] = useStore((state) => state.tools)
+  const [{ active }] = useStore((state) => state.buttons)
 
   const { buttons } = useButtonsArray()
   const { dispatch, dispatchAction } = useDispatchActions()

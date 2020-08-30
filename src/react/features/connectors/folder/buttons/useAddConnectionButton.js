@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useStore } from '../../../../store'
 
 import { enterRoom, setFocus } from '../../../navigation/actions'
-import { setInactive } from '../../../tools/actions'
+import { setInactive } from '../../../buttons/actions'
 import { addConnection } from '../../actions'
 
 import { openChannel } from '../../../../client/client'
@@ -11,7 +11,7 @@ import { channels } from '../../../../../shared/constants'
 import { ADD_CONNECTION_BUTTON } from './buttons'
 
 export const useAddConnectionButton = () => {
-  const [{ active }] = useStore((state) => state.tools)
+  const [{ active }] = useStore((state) => state.buttons)
 
   const dispatch = useDispatch()
   useEffect(() => {
