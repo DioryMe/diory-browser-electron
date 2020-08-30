@@ -1,27 +1,36 @@
 import React from 'react'
-import { Heading, Pane } from 'evergreen-ui'
-import { useDispatch } from '../../../store'
+import { useDispatch, useStore } from '../../../store'
 import { useButtons } from '../../buttons'
-
-import { setFocus } from '../../navigation/actions'
-
 import { useFocusDiory } from '../../room/hooks'
 
+import { setFocus, setLink } from '../../navigation/actions'
+
+import BackgroundDiory from '../../../components/diories/BackgroundDiory'
 import Diory from '../../../components/diories/Diory'
-import Image from '../../../components/diories/Image'
-import { getBackgroundImage } from '../../../components/utils'
+import CreateTool from './tools/create/CreateTool'
+import UpdateTool from './tools/update/UpdateTool'
 
-import createButtons from '../../tools/create/buttons'
-import updateButtons from '../../tools/update/buttons'
+import buttons, { UPDATE_TOOL_BUTTON } from './buttons/buttons'
 
-const useRoom = () => {
+const resolveAction = (dispatch, activeButton) => ({ diory }) => {
+  switch (activeButton) {
+    case UPDATE_TOOL_BUTTON:
+      dispatch(setLink(diory))
+      return
+    default:
+      dispatch(setFocus({ focus: diory.id }))
+  }
+}
+
+const useGridLens = () => {
+  const [{ active }] = useStore((state) => state.buttons)
   const dispatch = useDispatch()
   const { diory, diorys } = useFocusDiory()
   return {
     diory,
     diorys: diorys.map((diory) => ({
       diory,
-      onClick: ({ diory }) => dispatch(setFocus({ focus: diory.id })),
+      onClick: resolveAction(dispatch, active),
     })),
   }
 }
@@ -29,40 +38,30 @@ const useRoom = () => {
 const MAX_NUMBER_OF_DIORYS_PER_VIEW = 100
 
 const GridLens = () => {
-  useButtons(updateButtons)
-  useButtons(createButtons)
-  const { diory, diorys } = useRoom()
+  useButtons(buttons)
+  const { diory, diorys } = useGridLens()
   return (
-    <Pane
-      id={diory.id}
-      height="100%"
-      display="flex"
-      flexWrap="wrap"
-      padding={24}
-      alignContent="flex-start"
-    >
-      <Image backgroundImage={getBackgroundImage(diory.image, diorys.length)} zIndex={-1} />
-      {!diorys.length && (
-        <Heading margin={16} color="darkgrey" fontWeight="bold">
-          {diory.text}
-        </Heading>
-      )}
-      {diorys.slice(0, MAX_NUMBER_OF_DIORYS_PER_VIEW).map(({ diory, onClick }) => (
-        <Diory
-          key={diory.id}
-          diory={diory}
-          onClick={onClick}
-          flex="1 0 240px"
-          height={160}
-          padding={24}
-          elevation={2}
-          alignSelf="center"
-          color="white"
-          fontWeight="bold"
-          aria-controls={`panel-${diory.id}`}
-        />
-      ))}
-    </Pane>
+    <>
+      <BackgroundDiory diory={diory}>
+        {diorys.slice(0, MAX_NUMBER_OF_DIORYS_PER_VIEW).map(({ diory, onClick }) => (
+          <Diory
+            key={diory.id}
+            diory={diory}
+            onClick={onClick}
+            flex="1 0 240px"
+            height={160}
+            margin={24}
+            elevation={2}
+            alignSelf="center"
+            color="white"
+            fontWeight="bold"
+            aria-controls={`panel-${diory.id}`}
+          />
+        ))}
+      </BackgroundDiory>
+      <CreateTool />
+      <UpdateTool />
+    </>
   )
 }
 

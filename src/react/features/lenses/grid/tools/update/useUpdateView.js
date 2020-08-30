@@ -17,11 +17,13 @@ export const useUpdateView = (diory = {}) => {
     onChange: (key, value) => setFields({ ...updatedFields, [key]: value }),
     onCancel: () => {
       dispatch(setInactive())
+      dispatch(setLink())
       dispatch(setOpen(false))
       setFields({})
     },
     onDone: () => {
       dispatch(setInactive())
+      dispatch(setLink())
       dispatch(setOpen(false))
       setFields({})
     },
