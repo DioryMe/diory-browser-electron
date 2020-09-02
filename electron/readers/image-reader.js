@@ -6,12 +6,16 @@ function readExifTags(imagePath = '') {
   return load(file.buffer)
 }
 
+function formatHour(hour) {
+  return `0${hour % 24}`.slice(-2)
+}
+
 function getDateTime(dateTime) {
   if (!dateTime) {
     return
   }
   const [year, month, date, hour, min, sec] = dateTime.value[0].split(/\D/)
-  return `${[year, month, date].join('-')}T${[hour, min, sec].join(':')}.000Z`
+  return `${[year, month, date].join('-')}T${[formatHour(hour), min, sec].join(':')}.000Z`
 }
 
 function getDate({ DateTime, DateTimeOriginal }) {
