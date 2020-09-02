@@ -1,46 +1,75 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+
+import { useDispatch } from '../../../../../store'
+
+import { setOpen, setInactive } from '../../../../buttons/actions'
+import { setLink } from '../../../../navigation/actions'
 
 import Modal from '../../../../../components/Modal'
 import TextInput from '../../../../../components/TextInput'
 
-const UpdateView = ({ title, fields, isShown, onChange, onDone, onCancel }) => (
-  <Modal title={title} isShown={isShown} onDone={onDone} onCancel={onCancel}>
-    {fields.map(({ key, label, format, value }) => (
-      <TextInput
-        key={key}
-        label={label}
-        format={format}
-        value={value}
-        onChange={(value) => onChange(key, value)}
-      />
-    ))}
-  </Modal>
-)
+import fields from './fields'
+
+const useUpdateView = (diory = {}) => {
+  const [values, setValues] = useState({})
+
+  const updatedDiory = { ...diory, ...values }
+  const dispatch = useDispatch()
+  return {
+    fields: fields.map((field) => ({ ...field, value: updatedDiory[field.key] })),
+    setValue: (key, value) => setValues({ ...values, [key]: value }),
+    updatedDiory,
+    resetView: () => {
+      dispatch(setInactive())
+      dispatch(setLink())
+      dispatch(setOpen(false))
+      setValues({})
+    },
+  }
+}
+
+const UpdateView = ({ diory, title, isShown, onDone }) => {
+  const { fields, setValue, updatedDiory, resetView } = useUpdateView(diory)
+  return (
+    <Modal
+      title={title}
+      isShown={isShown}
+      onDone={() => {
+        onDone(updatedDiory)
+        resetView()
+      }}
+      onCancel={resetView}
+    >
+      {fields.map(({ key, label, format, value }) => (
+        <TextInput
+          key={key}
+          label={label}
+          format={format}
+          value={value}
+          onChange={(value) => setValue(key, value)}
+        />
+      ))}
+    </Modal>
+  )
+}
 
 UpdateView.defaultProps = {
   title: '',
-  fields: [],
+  diory: {},
   isShown: false,
-  onChange: () => {},
   onDone: () => {},
-  onCancel: () => {},
 }
 
 UpdateView.propTypes = {
   title: PropTypes.string,
-  fields: PropTypes.arrayOf(
-    PropTypes.shape({
-      key: PropTypes.string,
-      label: PropTypes.string,
-      format: PropTypes.string,
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object]),
-    })
-  ),
+  diory: PropTypes.shape({
+    text: PropTypes.string,
+    image: PropTypes.string,
+    style: PropTypes.object,
+  }),
   isShown: PropTypes.bool,
-  onChange: PropTypes.func,
   onDone: PropTypes.func,
-  onCancel: PropTypes.func,
 }
 
 export default UpdateView

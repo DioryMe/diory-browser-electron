@@ -1,22 +1,27 @@
 import React from 'react'
+import { v4 as uuid } from 'uuid'
+import { useDispatchActions, useStore } from '../../../../../store'
+import { useFocusDiory } from '../../../../room/hooks'
 
-import { useUpdateView } from '../update/useUpdateView'
-import { useCreateTool } from './useCreateTool'
+import { createDiory, createLink } from '../../../../room/actions'
+
+import { CREATE_TOOL_BUTTON } from '../../buttons/buttons'
 
 import UpdateView from '../update/UpdateView'
 
 const CreateTool = () => {
-  const { isShown, onDone: onCreateToolDone } = useCreateTool()
-  const { updatedFields, onDone: onUpdateViewDone, ...updateViewProps } = useUpdateView()
+  const [{ active }] = useStore((state) => state.buttons)
+  const { diory: focusDiory } = useFocusDiory()
+  const { dispatch } = useDispatchActions()
 
-  return isShown ? (
+  return CREATE_TOOL_BUTTON === active ? (
     <UpdateView
-      {...updateViewProps}
       title="Create diory"
-      isShown={isShown}
-      onDone={() => {
-        onCreateToolDone(updatedFields)
-        onUpdateViewDone()
+      isShown
+      onDone={(newDiory) => {
+        const id = uuid()
+        dispatch(createDiory({ ...newDiory, id }))
+        dispatch(createLink(focusDiory, { id }))
       }}
     />
   ) : null
