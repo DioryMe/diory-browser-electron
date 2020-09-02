@@ -5,7 +5,8 @@ import { Pane, Heading } from 'evergreen-ui'
 import Image from './Image'
 
 const BackgroundDiory = ({ diory, onClick, children }) => {
-  const { id, text, image, style } = diory
+  const { id, text, image, style: dioryStyle = {} } = diory
+  const { image: imageStyle, text: textStyle, ...style } = dioryStyle
   return (
     <Pane
       id={id}
@@ -14,13 +15,15 @@ const BackgroundDiory = ({ diory, onClick, children }) => {
       flexWrap="wrap"
       margin={24}
       alignContent="flex-start"
+      style={style}
     >
-      <Image iamge={image} zIndex={-1} />
+      <Image iamge={image} zIndex={-1} style={imageStyle} />
       <Heading
         color="darkgrey"
         fontWeight="bold"
         width="100%"
-        onClick={(event) => onClick(diory, event)}
+        {...textStyle}
+        onClick={(event) => onClick({ diory, event })}
       >
         {text}
       </Heading>
