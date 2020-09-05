@@ -18,8 +18,8 @@ const createMapPopup = ({ diory = {} }) => {
   }).setContent(content)
 }
 
-const createMapMarker = ({ diory, diorys }) => {
-  const { center } = getLocationData({ diory, diorys })
+const createMapMarker = ({ diory, diorys, parent }) => {
+  const { center } = getLocationData({ diory, diorys, parent })
   if (!center) {
     return null
   }
@@ -74,8 +74,7 @@ const useDioryMarker = (mapRef) => {
 }
 
 const useDiorysMarkers = (mapRef) => {
-  const { diorys } = useFocusDiory()
-
+  const { diory: parent, diorys } = useFocusDiory()
   const markerRefs = useRef([])
   useEffect(() => {
     markerRefs.current
@@ -88,11 +87,11 @@ const useDiorysMarkers = (mapRef) => {
 
     const newMarkers = diorys
       .filter(({ id }) => !markerRefs.current.map(({ dioryId }) => dioryId).includes(id))
-      .map((diory) => createMapMarker({ diory, diorys }).addTo(mapRef.current))
+      .map((diory) => createMapMarker({ diory, diorys, parent }).addTo(mapRef.current))
       .map(addDataTestIdToMarker('linked-diory-marker'))
 
     markerRefs.current = oldMarkers.concat(newMarkers)
-  }, [mapRef, markerRefs, diorys])
+  }, [mapRef, markerRefs, diorys, parent])
 }
 
 // TODO: Find a better way to update popup width on image load

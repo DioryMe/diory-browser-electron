@@ -5,6 +5,8 @@ import { useParent } from '../../../navigation/hooks/useGoSide'
 import { useFocusDiory } from '../../../room/hooks'
 import { getLocationData } from './getLocationData'
 
+const MAX_ZOOM = 14
+
 // TODO: Use store for map data
 let initialBounds = true
 const useInitialMapBounds = (mapRef) => {
@@ -21,10 +23,10 @@ const useInitialMapBounds = (mapRef) => {
         if (min && max) {
           mapRef.current.fitBounds([min, max])
         } else if (center) {
-          mapRef.current.setView(center, 12)
+          mapRef.current.setView(center, MAX_ZOOM)
         } else {
           const { center: parentCenter } = getLocationData({ diory: parent })
-          mapRef.current.flyTo(parentCenter, 12)
+          mapRef.current.flyTo(parentCenter, MAX_ZOOM)
         }
         initialBounds = false
       }
@@ -40,12 +42,12 @@ const useMapBounds = (mapRef) => {
     if (mapRef.current && focusChanged) {
       const { center, min, max } = getLocationData({ diory, diorys })
       if (min && max) {
-        mapRef.current.flyToBounds([min, max])
+        mapRef.current.flyToBounds([min, max], { maxZoom: MAX_ZOOM })
       } else if (center) {
-        mapRef.current.flyTo(center, 12)
+        mapRef.current.flyTo(center, MAX_ZOOM)
       } else {
         const { center: parentCenter } = getLocationData({ diory: parent })
-        mapRef.current.flyTo(parentCenter, 10)
+        mapRef.current.flyTo(parentCenter, MAX_ZOOM)
       }
     }
   }, [mapRef, focusChanged, diory, diorys, parent])
