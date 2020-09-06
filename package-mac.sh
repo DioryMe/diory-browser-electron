@@ -1,12 +1,18 @@
 # !/bin/bash
 set -e
 
-echo "Login to AWS... (did you remember to set AWS_TOKEN_CODE?)"
+echo "Login to AWS..."
+echo "Input MFA from your Authenticator (jvalanen-private):"
+read mfa_code
+export AWS_TOKEN_CODE=$mfa_code
 export AWS_LOGIN_TMP=$(aws sts get-session-token --serial-number arn:aws:iam::037977746924:mfa/jvalanen-private --token-code $AWS_TOKEN_CODE)
 export AWS_ACCESS_KEY_ID=$(echo $AWS_LOGIN_TMP | jq -r .Credentials.AccessKeyId)
 export AWS_SECRET_ACCESS_KEY=$(echo $AWS_LOGIN_TMP | jq -r .Credentials.SecretAccessKey)
 export AWS_SESSION_TOKEN=$(echo $AWS_LOGIN_TMP | jq -r .Credentials.SessionToken)
 
+echo "Create a temp directory to ~/temp-package-mac..."
+# Remove directory if it exists
+[ ! -d "~/temp-package-mac" ] && rm -rf ~/temp-package-mac
 mkdir ~/temp-package-mac
 cd ~/temp-package-mac
 echo "Cloning clean code from Github to $(pwd)..."
