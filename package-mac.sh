@@ -1,6 +1,12 @@
 # !/bin/bash
 set -e
 
+echo "Give Apple ID credentials for notarization..."
+echo "APPLEID:"
+read apple_id
+echo "APPLEIDPASS:"
+read -s apple_id_pass
+
 echo "Login to AWS..."
 echo "Input MFA from your Authenticator (jvalanen-private):"
 read mfa_code
@@ -30,7 +36,7 @@ mv build/electron-main-tmp.js build/electron-main.js
 unset APP_PACKAGE_ENVS
 
 echo "Creating MacOS distribution package..."
-yarn package-mac
+APPLEID=$apple_id APPLEIDPASS=$apple_id_pass yarn package-mac
 
 echo "Uploading the .dmg binary to AWS..."
 aws s3 cp dist/*.dmg s3://dda-downloads --acl public-read
