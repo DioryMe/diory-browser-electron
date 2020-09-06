@@ -7,6 +7,7 @@ Creating a distributable package a.k.a. binary file.
 We use electron-builder package to package our app. Everything is currently done with the default settings (including default icons).
 
 Steps:
+1. Setup AWS CLI with an account that can assume required role
 1. Setup Apple Developer ID Application and Installer certificates (one-time only)
   1. Download them from https://developer.apple.com/account/resources/certificates/list
   1. Save them to Keychain called "login" by double clicking them after download
@@ -15,6 +16,7 @@ Steps:
   2. Click "Update" and "Use current template"
   3. Change the version name (e.g. 1.0.0 -> 1.1.0) for both MacBinaryFilename and WindowsBinaryFilename
   4. Click "Next" -> "Next" -> "I acknowledge" -> "Update stack"
+1. Set APPLEID and APPLEIDPASS envs for notarization purposes
 1. Run script which builds the React code and creates MacOS .dmg file
 ```
 ./package-mac.sh
