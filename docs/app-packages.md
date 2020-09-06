@@ -7,16 +7,21 @@ Creating a distributable package a.k.a. binary file.
 We use electron-builder package to package our app. Everything is currently done with the default settings (including default icons).
 
 Steps:
+1. Setup Apple Developer ID Application and Installer certificates (one-time only)
+  1. Download them from https://developer.apple.com/account/resources/certificates/list
+  1. Save them to Keychain called "login" by double clicking them after download
 1. Change MacBinaryFilename & WindowsBinaryFilename in Pipeline Cloudformation: https://eu-north-1.console.aws.amazon.com/cloudformation/home
-1. Set AWS_TOKEN_CODE from your Authenticator (jvalanen-private)
-```
-export AWS_TOKEN_CODE=123123
-```
+  1. Select stack "dda-build-pipeline"
+  2. Click "Update" and "Use current template"
+  3. Change the version name (e.g. 1.0.0 -> 1.1.0) for both MacBinaryFilename and WindowsBinaryFilename
+  4. Click "Next" -> "Next" -> "I acknowledge" -> "Update stack"
 1. Run script which builds the React code and creates MacOS .dmg file
 ```
 ./package-mac.sh
 ```
-1. Test run the .dmg file
+1. Script requires an MFA code -> input it
+1. Wait for the script and the pipeline to succeed: https://eu-north-1.console.aws.amazon.com/codesuite/codepipeline/pipelines
+1. Test run the .dmg file (see: Testing plan -> Binary)
 ```
 open dist/Diory....dmg
 ```
