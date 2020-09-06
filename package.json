@@ -5,6 +5,7 @@
   "main": "electron-main.js",
   "private": true,
   "dependencies": {
+    "electron-notarize": "^1.0.0",
     "electron-reload": "^1.5.0",
     "electron-store": "^5.2.0",
     "exifreader": "^3.11.2",
@@ -68,7 +69,7 @@
     "build": "react-scripts build",
     "build-electron": "mkdir build/src && cp electron-main.js build && cp -r electron/. build/electron && cp -r src/shared/. build/src/shared",
     "build-electron-win": "mkdir build/src && robocopy electron build/electron /S & robocopy src/shared build/src/shared /S",
-    "package-mac": "electron-builder build --mac -c.extraMetadata.main=build/electron-main.js --publish never",
+    "package-mac": "electron-builder build --mac -c.extraMetadata.main=build/electron-main.js --publish never --config electron-builder.json",
     "package-linux": "electron-builder build --linux -c.extraMetadata.main=build/electron-main.js --publish never",
     "package-win": "electron-builder build --win -c.extraMetadata.main=build/electron-main.js --publish never",
     "eslint": "eslint './{src,electron}/**/*.{js,jsx,json,css,scss,md}' --fix",
