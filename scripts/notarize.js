@@ -1,4 +1,5 @@
 // Copy-pasted from https://kilianvalkhof.com/2019/electron/notarizing-your-electron-application/
+// eslint-disable
 
 require('dotenv').config();
 const { notarize } = require('electron-notarize');
