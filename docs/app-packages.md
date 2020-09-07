@@ -16,12 +16,12 @@ Steps:
   2. Click "Update" and "Use current template"
   3. Change the version name (e.g. 1.0.0 -> 1.1.0) for both MacBinaryFilename and WindowsBinaryFilename
   4. Click "Next" -> "Next" -> "I acknowledge" -> "Update stack"
-1. Set APPLEID and APPLEIDPASS envs for notarization purposes
 1. Run script which builds the React code and creates MacOS .dmg file
 ```
 ./package-mac.sh
 ```
-1. Script requires an MFA code -> input it
+1. Script asks APPLEID and APPLEIDPASS (the app-specific-password one!) for notarization purposes
+1. Script asks AWS MFA code to upload binary to S3
 1. Wait for the script and the pipeline to succeed: https://eu-north-1.console.aws.amazon.com/codesuite/codepipeline/pipelines
 1. Test run the .dmg file (see: Testing plan -> Binary)
 ```
