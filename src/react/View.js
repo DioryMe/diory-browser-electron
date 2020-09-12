@@ -5,6 +5,7 @@ import { useFocusDiory } from './features/room/hooks'
 import LensView from './features/lenses/LensView'
 import FullscreenView from './FullscreenView'
 import ToolsView from './features/tools/ToolsView'
+import ToolView from './features/tools/ToolView'
 
 const View = () => {
   // Loading view
@@ -18,6 +19,7 @@ const View = () => {
       <LensView />
       <FullscreenView />
       <ToolsView />
+      <ToolView />
     </>
   )
 }
