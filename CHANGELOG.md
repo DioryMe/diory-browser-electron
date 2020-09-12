@@ -1,3 +1,13 @@
+## 1.2.0 (September 9, 2020)
+
+### DDA-55 Refactor connectors for IPFS
+- Refactor connectors feature to support several connectors.
+- Refactor button structure for reusability
+
+### DDA-53 Create add tool
+
+### DDA-47 Create edit tool
+
 ## 1.1.1 (July 18, 2020)
 
 ### DDA-46: Storybook
