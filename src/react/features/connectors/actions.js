@@ -3,7 +3,6 @@ import {
   ADD_CONNECTION,
   REMOVE_CONNECTION,
   UPDATE_CONNECTION,
-  SET_CONNECTION,
 } from './actionsTypes'
 
 export const setConnections = (connections) => ({
