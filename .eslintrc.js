@@ -27,15 +27,12 @@ module.exports = {
     'react/jsx-filename-extension': ['off'], // ok?
     'comma-dangle': ['off'], // maybe
     'import/prefer-default-export': ['off'], // maybe
-    'prefer-template': ['warn'], // todo
     'no-shadow': ['warn'], // todo
-    'no-unused-vars': ['warn'], // todo
-    indent: ['warn'], // todo
-    'prefer-const': ['warn'], // todo
-    'dot-notation': ['warn'], // todo
+    'react/prop-types': ['warn'], // todo
+    'func-names': ['warn'], // todo
+    'no-unused-vars': ['error', { args: 'none' }], // maybe?
     'max-len': ['off'], // prettier
     'import/newline-after-import': ['warn'],
-    'react/prop-types': ['warn'],
     'object-curly-newline': ['off'], // prettier
     'react/require-default-props': ['warn'],
     'react/forbid-prop-types': ['warn'],
@@ -49,7 +46,7 @@ module.exports = {
     'prefer-rest-params': ['warn'],
     'one-var': ['warn'],
     'global-require': ['warn'],
-    quotes: ['warn'],
+    quotes: ['error'],
     'prefer-arrow-callback': ['warn'],
     'arrow-body-style': ['warn'],
     'react/no-children-prop': ['warn'],

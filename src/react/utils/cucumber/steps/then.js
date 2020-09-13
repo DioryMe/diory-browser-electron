@@ -1,4 +1,4 @@
-import { Given, Then } from 'cucumber'
+import { Then } from 'cucumber'
 import { expectDiorysInView } from '../support/view/expectDiorysInView'
 import { expectDioryOnContainer } from '../support/view/expectDioryOnContainer'
 import { expectDioryItemOnContainer } from '../support/view/expectDioryItemOnContainer'
