@@ -20,6 +20,7 @@ const addButtons = (state, { payload }) => ({
 const removeButtons = (state, { payload }) => ({
   ...state,
   buttons: payload.buttons.reduce((initialButtons, button) => {
+    // eslint-disable-next-line no-unused-vars
     const { [button.id]: remove, ...buttons } = initialButtons
     return buttons
   }, state.buttons),

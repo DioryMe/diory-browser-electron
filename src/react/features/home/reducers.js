@@ -22,6 +22,7 @@ export const addRoom = (state, { payload }) => ({
 })
 
 export const removeRoom = (state, { payload }) => {
+  // eslint-disable-next-line no-unused-vars
   const { [payload.room.id]: omit, ...rooms } = state.rooms
   return {
     ...state,
