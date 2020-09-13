@@ -32,6 +32,7 @@ const createDiory = (state, { payload }) => ({
 })
 
 const deleteDiory = (state, { payload }) => {
+  // eslint-disable-next-line no-unused-vars
   const { [payload.diory.id]: omit, ...diograph } = state.diograph
   return {
     ...state,
@@ -73,6 +74,7 @@ const createLink = (state, { payload }) => {
 
 const deleteLink = (state, { payload }) => {
   const diory = state.diograph[payload.diory.id]
+  // eslint-disable-next-line no-unused-vars
   const { [payload.diory.link.id]: omit, ...links } = diory.links
   return {
     ...state,

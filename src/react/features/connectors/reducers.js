@@ -33,6 +33,7 @@ const addConnection = (state, { payload }) => ({
 })
 
 const removeConnection = (state, { payload }) => {
+  // eslint-disable-next-line no-unused-vars
   const { [payload.address]: omit, ...connections } = state.connections
   return {
     ...state,
