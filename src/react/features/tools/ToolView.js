@@ -19,9 +19,8 @@ const ToolView = () => {
     const selectedToolId = 'video'
     const SelectedTool = Tools[selectedToolId]
     return selectedToolId ? <SelectedTool /> : null
-  } else {
-    return null
   }
+  return null
 }
 
 export default ToolView
