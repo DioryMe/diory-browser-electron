@@ -5,9 +5,9 @@ export const setRooms = (rooms) => ({
   payload: { rooms },
 })
 
-export const addRoom = (room) => ({
+export const addRoom = (id, diory) => ({
   type: ADD_ROOM,
-  payload: { room },
+  payload: { id, diory },
 })
 
 export const removeRoom = (room) => ({

@@ -16,13 +16,13 @@ export const addRoom = (state, { payload }) => ({
   ...state,
   rooms: {
     ...state.rooms,
-    [payload.room.id]: payload.room,
+    [payload.id]: payload.diory,
   },
   updated: true,
 })
 
 export const removeRoom = (state, { payload }) => {
-  const { [payload.room.id]: omit, ...rooms } = state.rooms
+  const { [payload.id]: omit, ...rooms } = state.rooms
   return {
     ...state,
     rooms,
@@ -34,7 +34,7 @@ export const updateRoom = (state, { payload }) => ({
   ...state,
   rooms: {
     ...state.rooms,
-    [payload.room.id]: payload.room,
+    [payload.id]: payload.diory,
   },
   updated: true,
 })
