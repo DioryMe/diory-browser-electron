@@ -15,13 +15,6 @@ export const initialState = {
   updated: false,
 }
 
-const getRoom = (state, { payload }) => ({
-  ...state,
-  id: payload.id,
-  diograph: payload.diograph,
-  updated: false,
-})
-
 const createDiory = (state, { payload }) => ({
   ...state,
   diograph: {
@@ -93,6 +86,6 @@ export default createReducer({
   [UPDATE_DIORY]: updateDiory,
   [CREATE_LINK]: createLink,
   [DELETE_LINK]: deleteLink,
-  ...promiseReducers(GET_ROOM, 'updated', 'saving', 'saved', 'error', getRoom),
+  ...promiseReducers(GET_ROOM, 'load', 'loading', 'loaded', 'error'),
   ...promiseReducers(SAVE_ROOM, 'updated', 'saving', 'saved', 'error'),
 })

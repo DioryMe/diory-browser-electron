@@ -18,15 +18,17 @@ const BackgroundDiory = ({ diory, onClick, children }) => {
       style={style}
     >
       <Image iamge={image} zIndex={-1} style={imageStyle} />
-      <Heading
-        color="darkgrey"
-        fontWeight="bold"
-        width="100%"
-        {...textStyle}
-        onClick={(event) => onClick({ diory, event })}
-      >
-        {text}
-      </Heading>
+      {text && (
+        <Heading
+          color="darkgrey"
+          fontWeight="bold"
+          width="100%"
+          {...textStyle}
+          onClick={(event) => onClick({ diory, event })}
+        >
+          {text}
+        </Heading>
+      )}
       {children}
     </Pane>
   )

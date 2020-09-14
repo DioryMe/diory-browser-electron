@@ -9,7 +9,6 @@ import { useSaveHomeEffect } from './effects/useSaveHomeEffect'
 import { enterRoom, setFocus } from '../navigation/actions'
 
 import Room from '../../components/Room'
-import BackgroundDiory from '../../components/diories/BackgroundDiory'
 
 const useHome = () => {
   const [{ rooms }, dispatch] = useStore((state) => state.home)
@@ -29,11 +28,10 @@ const Home = () => {
   useGetHomeEffect()
   useSaveHomeEffect()
 
-  const { image, rooms } = useHome()
+  const { rooms } = useHome()
   return (
     !diory && (
       <Pane height="100%" display="flex" flexWrap="wrap" padding={24}>
-        <BackgroundDiory diory={{ image }} zIndex={-1} />
         {rooms.map((room) => (
           <Room {...room} />
         ))}

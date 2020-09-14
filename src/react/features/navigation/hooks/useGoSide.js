@@ -8,7 +8,7 @@ export const useParent = () => {
     return
   }
   const parentId = backward[0][1]
-  return diograph[parentId]
+  return parentId && diograph && diograph[parentId]
 }
 
 const useSiblings = () => {

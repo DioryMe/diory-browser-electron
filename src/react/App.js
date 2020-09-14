@@ -7,16 +7,16 @@ import { initialState } from './store/initialState'
 
 import Navigation from './features/navigation/Navigation'
 import Filters from './features/filters/Filters'
-import Buttons from './features/buttons'
-import View from './View'
+import Lenses from './features/lenses/Lenses'
 import Home from './features/home/Home'
+import Buttons from './features/buttons'
 import Connectors from './features/connectors/Connectors'
 
 const App = () => (
   <div className="App">
     <Navigation />
     <Filters />
-    <View />
+    <Lenses />
     <Home />
     <Buttons />
     <Connectors />

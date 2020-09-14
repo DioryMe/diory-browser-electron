@@ -9,7 +9,7 @@ ipcMain.on(channels.GENERATE_DIOGRAPH, (event, path) => {
     saveRoom(path, diograph)
       .then(() => {
         console.log(id, diograph)
-        event.reply(channels.GENERATE_DIOGRAPH, { id, diograph, path })
+        event.reply(channels.GENERATE_DIOGRAPH, { id, diograph })
       })
       .catch((err) => {
         console.log(err)
