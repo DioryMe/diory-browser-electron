@@ -5,7 +5,7 @@ import { createDiory, createLink } from '../../../room/actions'
 import { setActive } from '../../../buttons/actions'
 import * as buttons from './buttons'
 
-import { UPDATE_TOOL_BUTTON } from '../../grid/buttons/buttons'
+import { UPDATE_TOOL_BUTTON } from '../../grid/buttons'
 
 const getTileURL = ({ lat, lng, zoom }) => {
   const latRad = (lat * Math.PI) / 180

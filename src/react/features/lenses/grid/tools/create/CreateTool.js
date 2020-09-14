@@ -5,7 +5,7 @@ import { useFocusDiory } from '../../../../room/hooks'
 
 import { createDiory, createLink } from '../../../../room/actions'
 
-import { CREATE_TOOL_BUTTON } from '../../buttons/buttons'
+import { CREATE_TOOL_BUTTON } from '../../buttons'
 
 import UpdateView from '../update/UpdateView'
 

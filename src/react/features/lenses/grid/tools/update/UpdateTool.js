@@ -6,7 +6,7 @@ import { useLinkDiory } from '../../../../room/hooks'
 
 import UpdateView from './UpdateView'
 
-import { UPDATE_TOOL_BUTTON } from '../../buttons/buttons'
+import { UPDATE_TOOL_BUTTON } from '../../buttons'
 
 const UpdateTool = () => {
   const [{ active }] = useStore((state) => state.buttons)
