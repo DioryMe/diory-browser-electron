@@ -16,9 +16,11 @@ const transformConnections = (connections) =>
   )
 
 export const useSaveHomeEffect = () => {
+  const [{ rooms }] = useStore((state) => state.home)
   const [{ connections, updated: connectionsUpdated }] = useStore((state) => state.connectors)
   const [{ roomId, focus: dioryId }] = useStore((state) => state.navigation)
   const home = {
+    rooms,
     connections: transformConnections(connections),
     focus: { roomId, dioryId },
   }
