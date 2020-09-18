@@ -9,6 +9,7 @@ export const useConnections = (connectorId) => {
     .filter(({ connector }) => connector === connectorId)
 
   return {
+    connected: connectorConnections.filter(({ connected }) => connected),
     connect: connectorConnections
       .filter(({ room }) => room === roomId)
       .filter(({ connecting, connected }) => !connecting && !connected),
