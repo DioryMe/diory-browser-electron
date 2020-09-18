@@ -1,20 +1,50 @@
 import React from 'react'
 
-import Fullscreen from '../../components/Fullscreen'
+import { useDispatchActions, useStore } from '../../store'
+import { setActive } from '../buttons/actions'
+import { setFocus } from '../navigation/actions'
+import { createDiory, createLink } from '../room/actions'
 import { useFocusDiory } from '../room/hooks'
-import FullscreenLens from './fullscreen/FullscreenLens'
-import GridLens from './grid/GridLens'
-import MapLens from './map/MapLens'
+
+import LensContainer from './LensContainer'
+
+import fullscreen from './fullscreen'
+import grid from './grid'
+import map from './map'
+import timeline from './timeline'
+
+export const lenses = {
+  grid,
+  map,
+  timeline,
+  fullscreen,
+}
+
+const useActions = () => {
+  const { dispatchAction } = useDispatchActions()
+
+  return {
+    setFocus: dispatchAction(setFocus),
+    createDiory: dispatchAction(createDiory),
+    createLink: dispatchAction(createLink),
+    setActive: dispatchAction(setActive),
+  }
+}
 
 const Lenses = () => {
-  const { diory } = useFocusDiory()
-  return diory ? (
-    <Fullscreen marginTop={48} zIndex={10}>
-      <GridLens />
-      <MapLens />
-      <FullscreenLens />
-    </Fullscreen>
-  ) : null
+  const { diory, diorys } = useFocusDiory()
+  const [{ active }] = useStore((state) => state.buttons)
+  const [{ selectedLensId }] = useStore((state) => state.lenses)
+
+  const selectedLens = lenses[selectedLensId]
+  const LensView = selectedLens.View
+
+  const actions = useActions()
+  return (
+    <LensContainer {...selectedLens}>
+      <LensView diory={diory} diorys={diorys} activeButton={active} actions={actions} />
+    </LensContainer>
+  )
 }
 
 export default Lenses

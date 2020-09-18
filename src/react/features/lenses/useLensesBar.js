@@ -1,15 +1,15 @@
 import { useStore } from '../../store'
 import { selectLens } from './actions'
-import Lenses from './index'
+import { lenses } from './Lenses'
 
 export const useLensesBar = () => {
   const [{ selectedLensId }, dispatch] = useStore((state) => state.lenses)
 
   return {
-    lenses: Object.entries(Lenses).map(([id, Lens]) => ({
+    lenses: Object.entries(lenses).map(([id, { diory }]) => ({
       id,
       key: id,
-      diory: Lens.diory,
+      diory,
       isSelected: id === selectedLensId,
       onSelect: () => dispatch(selectLens(id)),
     })),
