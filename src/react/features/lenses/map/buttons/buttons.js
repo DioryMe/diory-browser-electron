@@ -2,7 +2,7 @@ export const MAP_ADD_LOCATION = 'MAP_ADD_LOCATION'
 export const MAP_MOVE_LOCATION = 'MAP_MOVE_LOCATION'
 export const MAP_REMOVE_LOCATION = 'MAP_REMOVE_LOCATION'
 
-export default [
+export const buttons = [
   {
     id: MAP_ADD_LOCATION,
     text: 'Add location',

@@ -1,7 +1,7 @@
 export const CREATE_TOOL_BUTTON = 'CREATE_TOOL_BUTTON'
 export const UPDATE_TOOL_BUTTON = 'UPDATE_TOOL_BUTTON'
 
-export default [
+export const buttons = [
   {
     id: CREATE_TOOL_BUTTON,
     text: 'Create',
