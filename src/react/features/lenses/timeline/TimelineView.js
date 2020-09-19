@@ -1,5 +1,5 @@
 import React from 'react'
-import { getLocationData } from './hooks/getLocationData'
+import { getTimelineData } from './hooks/getTimelineData'
 
 import { useMap } from './hooks/useMap'
 import { useMapBounds } from './hooks/useMapBounds'
@@ -12,17 +12,18 @@ import { useMoveLocation } from './tools/useMoveLocation'
 import { useRemoveLocation } from './tools/useRemoveLocation'
 
 const TimelineView = ({ diory, diorys, activeButton, actions }) => {
-
   const id = 'mapId'
   const map = useMap(id)
 
-  const locationData = getLocationData({ diory, diorys })
+  const locationData = getTimelineData({ diory, diorys })
   useMapBounds(map, locationData)
 
   const focusMarker = useFocusMarker(map, locationData)
   useDioryPopup(focusMarker, diory)
 
-  const markerLocations = diorys.map((child) => getLocationData({ diory: child, diorys, parent: diory }))
+  const markerLocations = diorys.map((child) =>
+    getTimelineData({ diory: child, diorys, parent: diory })
+  )
   const linkMarkers = useLinkMarkers(map, markerLocations)
   useDiorysPopups(linkMarkers, diorys)
 

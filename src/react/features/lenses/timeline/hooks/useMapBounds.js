@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-const MAX_ZOOM = 14
+const MAX_ZOOM = 20
 const DEFAULT_LOCATION = {
   lat: 68.24109668213359,
   lng: 14.93705072614885,

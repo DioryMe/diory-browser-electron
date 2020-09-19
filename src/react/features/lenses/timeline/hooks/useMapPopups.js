@@ -5,7 +5,7 @@ import { useCompare } from '../../../../utils/useCompare'
 const createPopup = ({ diory = {} }) => {
   const elements = [
     diory.image && `<img src="${diory.image}" width="150px"/>`,
-    diory.text && `<div>${diory.text}</div>`,
+    diory.date && `<div>${diory.date}</div>`,
   ]
     .filter(Boolean)
     .join('')
@@ -34,7 +34,7 @@ export const useDiorysPopups = (markerRefs, diorys) => {
   useEffect(() => {
     if (markerRefs.current) {
       markerRefs.current
-        .filter(marker => !marker.getPopup())
+        .filter((marker) => !marker.getPopup())
         .forEach((marker) => {
           const diory = diorys.find(({ id }) => id === marker.markerId)
           const popup = createPopup({ diory })
