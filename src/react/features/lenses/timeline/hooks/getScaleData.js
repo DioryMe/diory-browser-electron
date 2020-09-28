@@ -1,4 +1,4 @@
-import { getLongitudeDate, getTimelineData } from './getTimelineData'
+import { getLongitudeDate, getDateLongitude } from './getTimelineData'
 
 const _MS_PER_DAY = 1000 * 60 * 60 * 24;
 
@@ -48,9 +48,11 @@ function getBoundMarkers(date, length, type) {
   return { date, label: date.toISOString().slice(0,length), type }
 }
 
-function resolveScale(days, min, max) {
-  const minMarker = new Date(Date.UTC(...resolveDateArray(days, min)))
-  const maxMarker = new Date(Date.UTC(...resolveDateArray(days, max)))
+function resolveScale(minDate, maxDate) {
+  const days = dateDiffInDays(minDate, maxDate)
+  const minMarker = new Date(Date.UTC(...resolveDateArray(days, minDate)))
+  const maxMarker = new Date(Date.UTC(...resolveDateArray(days, maxDate)))
+
   if (days <= 2) {
     return [...Array((days + 1)*24).keys()]
       .map((index) => addHours(minMarker, index + 1))
@@ -82,14 +84,20 @@ function resolveScale(days, min, max) {
     .map((date) => ({ date, label: date.getUTCFullYear() }))
 }
 
-export function getScaleData({ min, max }) {
-  const minDate = getLongitudeDate(min)
-  const maxDate = getLongitudeDate(max)
-  const diffDate = dateDiffInDays(minDate, maxDate)
-  const scale = resolveScale(diffDate, minDate, maxDate)
+function getScaleLatitude(minLat, maxLat) {
+  return 0.8 * minLat + 0.2 * maxLat
+}
+
+export function getScaleData({ minLng, maxLng, minLat, maxLat }) {
+  const minDate = getLongitudeDate(minLng)
+  const maxDate = getLongitudeDate(maxLng)
+  const scale = resolveScale(minDate, maxDate)
   return scale.map(({ date, label, type }) => ({
-    ...getTimelineData({ diory: { date } }),
     id: date,
+    center: {
+      lat: getScaleLatitude(minLat, maxLat),
+      lng: getDateLongitude({ date })
+    },
     label,
     type,
   }))

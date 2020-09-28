@@ -37,9 +37,11 @@ export const useScale = (mapRef) => {
   useEffect(() => {
     if (mapRef.current) {
       mapRef.current.on('moveend', () => {
-        const max = mapRef.current.getBounds().getEast()
-        const min = mapRef.current.getBounds().getWest()
-        const scaleData = getScaleData({ min, max })
+        const minLng = mapRef.current.getBounds().getWest()
+        const maxLng = mapRef.current.getBounds().getEast()
+        const minLat = mapRef.current.getBounds().getSouth()
+        const maxLat = mapRef.current.getBounds().getNorth()
+        const scaleData = getScaleData({ minLng, maxLng, minLat, maxLat })
         console.log(scaleData)
         const newMarkers = scaleData
           .filter(({ id }) => !markerRefs.current.map(({ markerId }) => markerId).includes(id))
@@ -59,7 +61,6 @@ export const useScale = (mapRef) => {
           .filter(({ markerId }) => scaleData.map(({ id }) => id).includes(markerId))
 
         markerRefs.current = oldMarkers.concat(newMarkers)
-
       })
     }
   }, [mapRef, markerRefs])

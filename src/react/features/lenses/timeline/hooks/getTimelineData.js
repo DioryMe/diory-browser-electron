@@ -3,7 +3,7 @@ const getAverage = (array = []) =>
 
 const concat = (array = [], item) => (typeof item !== 'undefined' ? array.concat(item) : array)
 
-const getDateLongitude = ({ date }) =>
+export const getDateLongitude = ({ date }) =>
   (Date.parse(date) / Date.parse('1971-01-01T00:00:00.000Z')) * 10
 
 export const getLongitudeDate = (lng) =>
