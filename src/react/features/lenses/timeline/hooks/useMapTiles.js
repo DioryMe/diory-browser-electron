@@ -14,9 +14,6 @@ L.TileLayer.Images = L.TileLayer.extend({
     const i = Math.ceil(Math.random() * (this.options.images.length - 1))
     return this.options.images[i]
   },
-  getAttribution() {
-    return "<a href='https://placekitten.com/attribution.html'>PlaceKitten</a>"
-  },
 })
 
 L.tileLayer.images = function (options) {
