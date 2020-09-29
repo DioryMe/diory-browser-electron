@@ -1,9 +1,10 @@
 import { useEffect } from 'react'
+import { getDateLongitude } from './getTimelineData'
 
 const MAX_ZOOM = 20
 const DEFAULT_LOCATION = {
-  lat: 68.24109668213359,
-  lng: 14.93705072614885,
+  lat: 0,
+  lng: getDateLongitude({ date: Date.now() }),
 }
 
 // TODO: Use store for map data
@@ -15,6 +16,10 @@ export const useInitialMapBounds = (mapRef, { center, min, max }) => {
   useEffect(() => {
     if (initialBounds) {
       if (mapRef.current) {
+        mapRef.current.setMaxBounds([
+          [0, -100000],
+          [0, 100000],
+        ])
         if (min && max) {
           mapRef.current.fitBounds([min, max])
         } else if (center) {

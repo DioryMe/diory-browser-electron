@@ -7,27 +7,27 @@ const addDataTestIdToMarker = (id) => (marker) => {
   return marker
 }
 
-function getIcon({ type, label }) {
+function getIcon({ type, label, offset }) {
   switch (type) {
     case 'min':
       return {
         className: 'min-icon',
         html: `<div style="text-align: left">${label}</div>`,
-        iconAnchor: [7, -35],
+        iconAnchor: [7, -35 - offset],
         iconSize: [100, 10],
       }
     case 'max':
       return {
         className: 'max-icon',
         html: `<div style="text-align: right">${label}</div>`,
-        iconAnchor: [93, -35],
+        iconAnchor: [93, -35 - offset],
         iconSize: [100, 10],
       }
     default:
       return {
         className: 'scale-icon',
         html: `<div style="text-align: center">|</div><div  style="text-align: center">${label}</div>`,
-        iconAnchor: [6, 0],
+        iconAnchor: [6, -offset],
       }
   }
 }
@@ -42,11 +42,14 @@ export const useScale = (mapRef) => {
         const minLat = mapRef.current.getBounds().getSouth()
         const maxLat = mapRef.current.getBounds().getNorth()
         const scaleData = getScaleData({ minLng, maxLng, minLat, maxLat })
+
+        const offset = mapRef.current._container.offsetHeight / 2 - 150
+
         const newMarkers = scaleData
           .filter(({ id }) => !markerRefs.current.map(({ markerId }) => markerId).includes(id))
           .map(({ id, center, label, type }) => {
             const marker = L.marker(center, {
-              icon: new L.DivIcon(getIcon({ type, label })),
+              icon: new L.DivIcon(getIcon({ type, label, offset })),
             }).addTo(mapRef.current)
             marker.markerId = id
             return marker
