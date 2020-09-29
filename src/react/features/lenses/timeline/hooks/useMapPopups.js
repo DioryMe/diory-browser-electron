@@ -30,7 +30,7 @@ export const useDioryPopup = (markerRef, diory) => {
   }, [markerRef, diory, focusChanged])
 }
 
-export const useDiorysPopups = (markerRefs, diorys) => {
+export const useLinkPopups = (markerRefs, diorys) => {
   useEffect(() => {
     if (markerRefs.current) {
       markerRefs.current
