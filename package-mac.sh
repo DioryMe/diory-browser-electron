@@ -1,10 +1,13 @@
 # !/bin/bash
 set -e
 
-echo "Give Apple ID credentials for notarization..."
-echo "APPLEID:"
+echo "Choose git-repo-branch:"
+read GIT_BRANCH
+
+echo "Give AppleID credentials for notarization..."
+echo "AppleID email:"
 read apple_id
-echo "APPLEIDPASS:"
+echo "App-specific password for diory-browser-electron:"
 read -s apple_id_pass
 
 echo "Login to AWS..."
@@ -24,7 +27,7 @@ cd ~/temp-package-mac
 echo "Cloning clean code from Github to $(pwd)..."
 git clone git@github.com:DioryMe/diory-browser-electron.git
 cd diory-browser-electron
-git checkout DDA-39-build-pipeline-cloudformation
+git checkout $GIT_BRANCH
 
 echo "Installing dependencies and building the app..."
 yarn && yarn build && yarn build-electron
