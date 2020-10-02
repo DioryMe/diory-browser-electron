@@ -2,6 +2,7 @@ const { v4: uuid } = require('uuid')
 const { resolveFileType, readFile } = require('../readers/file-reader')
 const { readFolder } = require('../readers/folder-reader')
 const { readImage } = require('../readers/image-reader')
+const { readVideo } = require('../readers/video-reader')
 
 function readFileData(type, filePath) {
   const fileData = readFile(filePath)
@@ -12,16 +13,23 @@ function readFileData(type, filePath) {
         modified: fileData.modified,
         ...readImage(filePath),
       }
+    case 'video':
+      return {
+        created: fileData.created,
+        modified: fileData.modified,
+        ...readVideo(filePath),
+      }
     default:
       return fileData
   }
 }
 
-function generateDiory({ text, date, image, latitude, longitude, created, modified }) {
+function generateDiory({ text, date, image, video, latitude, longitude, created, modified }) {
   return {
     id: uuid(),
     ...(text && { text }),
     ...(image && { image }),
+    ...(video && { video }),
     ...(date && { date }),
     ...(latitude && { latitude }),
     ...(longitude && { longitude }),

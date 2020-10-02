@@ -3,7 +3,7 @@ const { extname, parse } = require('path')
 
 const fileTypes = {
   image: ['.jpg', '.jpeg', '.png'],
-  video: ['.mpg', '.mov', '.mp4'],
+  video: ['.mpg', '.mov', '.mp4', '.avi'],
   text: ['.txt', '.md'],
 }
 
