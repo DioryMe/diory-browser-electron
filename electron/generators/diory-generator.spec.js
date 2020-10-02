@@ -46,7 +46,7 @@ describe('diory-generator', () => {
       expect(readFile).toHaveBeenCalledWith('some-filePath')
     })
 
-    it('sets uid to diory id', async () => {
+    it('sets uuid to diory id', async () => {
       uuid.mockReturnValue('some-uuid')
 
       const diory = act()
