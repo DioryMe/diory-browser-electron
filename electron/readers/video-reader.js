@@ -1,3 +1,5 @@
+const { basename } = require('path')
+
 exports.readVideo = function readVideo(videoPath) {
   if (!videoPath) {
     return
@@ -5,6 +7,7 @@ exports.readVideo = function readVideo(videoPath) {
 
   try {
     return {
+      text: basename(videoPath),
       video: videoPath,
       // ...getDate(tags),
       // ...getLatitude(tags),
