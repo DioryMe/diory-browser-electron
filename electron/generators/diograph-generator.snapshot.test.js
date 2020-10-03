@@ -16,7 +16,7 @@ function getArray(length) {
 
 describe('diograph-generator', () => {
   describe('generateDiograph', () => {
-    it('generates diograph from example folder', async () => {
+    it.skip('generates diograph from example folder', async () => {
       const exampleFolderPath = join(__dirname, '../readers/example-folder')
       const amountOfCases = getNumberOfFilesAndFolders(exampleFolderPath) + 1
       getArray(amountOfCases).forEach((id) => {
