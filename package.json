@@ -75,7 +75,7 @@
     "prettier": "prettier --write '{electron,src}/**/*.{js,jsx,json,css,scss,md}'",
     "test": "react-scripts test",
     "test-react": "react-scripts test",
-    "test-electron": "jest --detectOpenHandles electron/**/*.js --watch --verbose",
+    "test-electron": "jest --detectOpenHandles electron/**/*.js",
     "cucumber": "./node_modules/.bin/cucumber-js src/react --no-strict -r src/react/utils/cucumber --require-module @babel/register --require-module @babel/polyfill",
     "cucumber-only": "./node_modules/.bin/cucumber-js src/react/features --tags @only -r src/react/utils/cucumber --require-module @babel/register --require-module @babel/polyfill",
     "storybook": "start-storybook -p 9009 -s public",
