@@ -1,6 +1,7 @@
 import { Selector } from 'testcafe'
-import { setElectronDialogHandler } from 'testcafe-browser-provider-electron'
+// import { setElectronDialogHandler } from 'testcafe-browser-provider-electron'
 
+// eslint-disable-next-line no-undef
 fixture`Electron test`.page('../../build/index.html')
 
 test('Test test', async (t) => {
@@ -19,6 +20,7 @@ test('Test test', async (t) => {
   await t
     .expect(dioryCount)
     .eql(1)
+    .click('[data-testid="tools-button"]')
     .click('[data-testid="undefined-button"]')
     .expect(dioryCount)
     .eql(2)
