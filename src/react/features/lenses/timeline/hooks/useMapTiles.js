@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import L from 'leaflet'
 
 L.TileLayer.Images = L.TileLayer.extend({
@@ -22,9 +22,18 @@ L.tileLayer.images = function (options) {
 
 export const useMapTiles = (mapRef, diorys) => {
   const images = diorys.map(({ image }) => image).filter(Boolean)
+  const layerRef = useRef()
   useEffect(() => {
-    if (mapRef.current) {
-      L.tileLayer.images({ images }).addTo(mapRef.current)
+    if (mapRef.current && images.length) {
+      if (layerRef.current) {
+        layerRef.current.remove()
+      }
+      layerRef.current = L.tileLayer
+        .images({
+          images,
+          opacity: 0.3,
+        })
+        .addTo(mapRef.current)
     }
-  }, [mapRef, images])
+  }, [mapRef, layerRef, images])
 }
