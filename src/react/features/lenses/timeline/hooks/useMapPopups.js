@@ -2,34 +2,25 @@ import { useEffect } from 'react'
 import L from 'leaflet'
 import { useCompare } from '../../../../utils/useCompare'
 
+const colors = ['#5bc0eb', '#fcd600', '#9bc53d', '#e55934', '#fa7921']
+const getRandom = (array) => array[Math.floor(Math.random() * array.length)]
+
 const createPopup = ({ diory = {} }) => {
   const elements = [
-    diory.image && `<img src="${diory.image}" width="150px"/>`,
-    diory.date && `<div>${diory.date}</div>`,
+    diory.text &&
+      `<div style="margin: 16px; font-size: 16px; font-weight: bold; color: white">${diory.text}</div>`,
   ]
     .filter(Boolean)
     .join('')
-  const content = `<div style="overflow: hidden; height: 100px}">${elements}</div>`
+  const content = `<div style="overflow: hidden; min-width: 600px; min-height: 400px; background-color: ${getRandom(
+    colors
+  )}; background-image: url(${encodeURI(
+    diory.image
+  )}); background-size: cover; background-position: center; background-repeat: no-repeat">${elements}</div>`
   return L.popup({
     closeButton: false,
   }).setContent(content)
 }
-
-export const useDioryPopup = (markerRef, diory) => {
-  const focusChanged = useCompare(diory.id)
-  useEffect(() => {
-    if (markerRef.current && focusChanged) {
-      const popup = createPopup({ diory })
-      markerRef.current
-        .bindPopup(popup, {
-          maxWidth: 1000,
-          autoPan: false,
-        })
-        .openPopup()
-    }
-  }, [markerRef, diory, focusChanged])
-}
-
 export const useLinkPopups = (markerRefs, diorys) => {
   useEffect(() => {
     if (markerRefs.current) {
@@ -40,7 +31,7 @@ export const useLinkPopups = (markerRefs, diorys) => {
           const popup = createPopup({ diory })
           marker.bindPopup(popup, {
             maxWidth: 600,
-            autoPan: false,
+            autoPan: true,
           })
         })
     }
