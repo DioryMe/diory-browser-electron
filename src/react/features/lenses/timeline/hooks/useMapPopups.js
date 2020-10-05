@@ -1,9 +1,19 @@
 import { useEffect } from 'react'
 import L from 'leaflet'
-import { useCompare } from '../../../../utils/useCompare'
 
 const colors = ['#5bc0eb', '#fcd600', '#9bc53d', '#e55934', '#fa7921']
 const getRandom = (array) => array[Math.floor(Math.random() * array.length)]
+
+const getPopupStyle = ({ image }) => ([
+  'overflow: hidden',
+  'min-width: 600px',
+  'min-height: 400px',
+  `background-color: ${getRandom(colors)}`,
+  `background-image: url(${encodeURI(image)})`,
+  'background-size: cover',
+  'background-position: center',
+  'background-repeat: no-repeat'
+].join(';'))
 
 const createPopup = ({ diory = {} }) => {
   const elements = [
@@ -12,11 +22,8 @@ const createPopup = ({ diory = {} }) => {
   ]
     .filter(Boolean)
     .join('')
-  const content = `<div style="overflow: hidden; min-width: 600px; min-height: 400px; background-color: ${getRandom(
-    colors
-  )}; background-image: url(${encodeURI(
-    diory.image
-  )}); background-size: cover; background-position: center; background-repeat: no-repeat">${elements}</div>`
+
+  const content = `<div style="${getPopupStyle(diory)}">${elements}</div>`
   return L.popup({
     closeButton: false,
   }).setContent(content)

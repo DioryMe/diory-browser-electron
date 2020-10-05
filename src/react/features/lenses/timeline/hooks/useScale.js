@@ -7,26 +7,30 @@ const addDataTestIdToMarker = (id) => (marker) => {
   return marker
 }
 
+function getIconContainer(children) {
+  return `<div style="text-align: center; font-size: 16px; font-weight: bold; color: white">${children}</div>`
+}
+
 function getIcon({ type, label, offset }) {
   switch (type) {
     case 'min':
       return {
         className: 'min-icon',
-        html: `<div style="text-align: left">${label}</div>`,
-        iconAnchor: [7, -35 - offset],
+        html: getIconContainer(`<div style="text-align: left">${label}</div>`),
+        iconAnchor: [7, -45 - offset],
         iconSize: [100, 10],
       }
     case 'max':
       return {
         className: 'max-icon',
-        html: `<div style="text-align: right">${label}</div>`,
-        iconAnchor: [93, -35 - offset],
+        html: getIconContainer(`<div style="text-align: right">${label}</div>`),
+        iconAnchor: [93, -45 - offset],
         iconSize: [100, 10],
       }
     default:
       return {
         className: 'scale-icon',
-        html: `<div style="text-align: center">|</div><div  style="text-align: center">${label}</div>`,
+        html: getIconContainer(`<div>|</div><div>${label}</div>`),
         iconAnchor: [6, -offset],
       }
   }
@@ -43,7 +47,7 @@ export const useScale = (mapRef) => {
         const maxLat = mapRef.current.getBounds().getNorth()
         const scaleData = getScaleData({ minLng, maxLng, minLat, maxLat })
 
-        const offset = mapRef.current._container.offsetHeight / 2 - 150
+        const offset = mapRef.current._container.offsetHeight / 2 - 135
 
         const newMarkers = scaleData
           .filter(({ id }) => !markerRefs.current.map(({ markerId }) => markerId).includes(id))

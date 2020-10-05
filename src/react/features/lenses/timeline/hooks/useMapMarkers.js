@@ -7,7 +7,7 @@ const addDataTestIdToMarker = (id) => (marker) => {
 }
 
 function getIcon(mapRef, size, color = 'blue') {
-  const offset = mapRef.current._container.offsetHeight / 2 - 130
+  const offset = mapRef.current._container.offsetHeight / 2 - 175
 
   return L.icon({
     iconAnchor: [(size - 1) * 10, -offset],
