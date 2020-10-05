@@ -17,7 +17,7 @@ const BackgroundDiory = ({ diory, onClick, children }) => {
       alignContent="flex-start"
       style={style}
     >
-      <Image iamge={image} zIndex={-1} style={imageStyle} />
+      <Image image={image} zIndex={-1} style={imageStyle} />
       {text && (
         <Heading
           color="darkgrey"

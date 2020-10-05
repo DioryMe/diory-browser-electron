@@ -1,12 +1,13 @@
 import React from 'react'
+import Image from '../../../components/diories/Image'
+import Fullscreen from '../../../components/Fullscreen'
 import { getTimelineData } from './hooks/getTimelineData'
 
 import { useMap } from './hooks/useMap'
-import { useMapTiles } from './hooks/useMapTiles'
 import { useMapBounds } from './hooks/useMapBounds'
 
-import { useFocusMarker, useLinkMarkers } from './hooks/useMapMarkers'
-import { useDioryPopup, useLinkPopups, useUpdatePopup } from './hooks/useMapPopups'
+import { useLinkMarkers } from './hooks/useMapMarkers'
+import { useLinkPopups, useUpdatePopup } from './hooks/useMapPopups'
 
 import { useScale } from './hooks/useScale'
 
@@ -21,11 +22,6 @@ const TimelineView = ({ diory, diorys, activeButton, actions }) => {
 
   const locationData = getTimelineData({ diory, diorys })
   useMapBounds(map, locationData)
-
-  useMapTiles(map, diorys)
-
-  const focusMarker = useFocusMarker(map, locationData)
-  useDioryPopup(focusMarker, diory)
 
   const linkLocations = diorys.map((child) =>
     getTimelineData({ diory: child, diorys, parent: diory })
@@ -42,7 +38,11 @@ const TimelineView = ({ diory, diorys, activeButton, actions }) => {
   useMoveLocation(map, activeButton, actions)
   useRemoveLocation(map, diory.id, activeButton, actions)
 
-  return <div id={id} style={{ height: '100%' }} />
+  return (
+    <Image {...diory} gradient gradientRgba="0, 0, 0, 0.2">
+      <Fullscreen id={id} background="transparent" />
+    </Image>
+  )
 }
 
 export default TimelineView
