@@ -17,10 +17,10 @@ const BackgroundDiory = ({ diory, onClick, children }) => {
       alignContent="flex-start"
       style={style}
     >
-      <Image image={image} zIndex={-1} style={imageStyle} />
+      <Image image={image} zIndex={-1} style={imageStyle} gradient="rgba(255,255,255,0.5)" />
       {text && (
         <Heading
-          color="darkgrey"
+          color="rgb(102, 120, 138)"
           fontWeight="bold"
           width="100%"
           {...textStyle}

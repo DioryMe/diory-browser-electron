@@ -22,23 +22,6 @@ function getIcon(mapRef, size, color = 'blue') {
   })
 }
 
-export const useFocusMarker = (mapRef, { id, center }) => {
-  const markerRef = useRef(null)
-  useEffect(() => {
-    if (center) {
-      if (!markerRef.current) {
-        markerRef.current = L.marker(center, {
-          icon: getIcon(mapRef, 1.3, 'green'),
-        }).addTo(mapRef.current)
-      }
-      markerRef.current.setLatLng(center)
-      markerRef.current.markerId = id
-    }
-  }, [mapRef, id, center])
-
-  return markerRef
-}
-
 export const useLinkMarkers = (mapRef, markerLocations) => {
   const markerRefs = useRef([])
   useEffect(() => {

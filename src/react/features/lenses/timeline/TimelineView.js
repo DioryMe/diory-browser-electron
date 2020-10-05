@@ -28,10 +28,9 @@ const TimelineView = ({ diory, diorys, activeButton, actions }) => {
   )
   const linkMarkers = useLinkMarkers(map, linkLocations)
   useLinkPopups(linkMarkers, diorys)
+  useUpdatePopup(map)
 
   useScale(map)
-
-  useUpdatePopup(map)
 
   useSetFocus(map, diory.id, activeButton, actions)
   useAddLocation(map, diory.id, activeButton, actions)
