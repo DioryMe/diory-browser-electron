@@ -5,7 +5,14 @@ export const useMap = (id) => {
   const mapRef = useRef(null)
   useEffect(() => {
     if (!mapRef.current) {
-      mapRef.current = L.map(id)
+      mapRef.current = L.map(id, {
+        zoomControl: false,
+      })
+      L.control
+        .zoom({
+          position: 'topright',
+        })
+        .addTo(mapRef.current)
     }
 
     return () => {
