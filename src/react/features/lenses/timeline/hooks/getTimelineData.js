@@ -9,29 +9,23 @@ export const getDateLongitude = ({ date }) =>
 export const getLongitudeDate = (lng) =>
   new Date((lng * Date.parse('1971-01-01T00:00:00.000Z')) / 10)
 
-export const getDateOffset = ({ date }) => new Date(date).getUTCSeconds() / 60
-
 const getDioryDateLongitude = ({ diory, diorys, parent }) => {
   const { date } = diory
   if (date) {
     return {
-      offset: getDateOffset({ date }),
       lng: getDateLongitude({ date }),
     }
   }
-  const dioryDates = diorys.filter(({ date }) => date).map(({ date }) => date)
+  const dioryDateLongitudes = diorys.filter(({ date }) => date).map(getDateLongitude)
 
-  if (dioryDates.length > 1) {
-    const date = getAverage(dioryDates)
+  if (dioryDateLongitudes.length) {
     return {
-      offset: getDateOffset({ date }),
-      lng: getDateLongitude({ date }),
+      lng: getAverage(dioryDateLongitudes),
     }
   }
 
   if (parent) {
     return {
-      offset: getDateOffset(parent.date) + diorys.indexOf(diory) * 0.0001,
       lng: getDateLongitude(parent.date) + diorys.indexOf(diory) * 0.0001,
     }
   }
@@ -39,24 +33,29 @@ const getDioryDateLongitude = ({ diory, diorys, parent }) => {
   return {}
 }
 
-export const getTimelineData = ({ diory = {}, diorys = [], parent }) => {
+export const getDioryTimelineData = ({ diory = {}, diorys = [], parent }) => {
   const dateLongitudes = diorys.filter(({ date }) => date).map(getDateLongitude)
-  const { offset, lng } = getDioryDateLongitude({ diory, diorys, parent })
-
-  return {
-    id: diory.id,
-    offset,
-    center: {
-      lat: 0,
-      lng,
-    },
-    min: dateLongitudes.length && {
-      lat: 0,
-      lng: Math.min(...concat(dateLongitudes, lng)),
-    },
-    max: dateLongitudes.length && {
-      lat: 0,
-      lng: Math.max(...concat(dateLongitudes, lng)),
-    },
-  }
+  const { lng } = getDioryDateLongitude({ diory, diorys, parent })
+  return (
+    lng && {
+      id: diory.id,
+      center: {
+        lat: 0,
+        lng,
+      },
+      min: dateLongitudes.length > 1 && {
+        lat: 0,
+        lng: Math.min(...concat(dateLongitudes, lng)),
+      },
+      max: dateLongitudes.length > 1 && {
+        lat: 0,
+        lng: Math.max(...concat(dateLongitudes, lng)),
+      },
+    }
+  )
 }
+
+export const getLinksTimelineData = ({ diory, diorys }) =>
+  diorys
+    .map((child) => getDioryTimelineData({ diory: child, diorys, parent: diory }))
+    .filter(Boolean)

@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from '../../../components/diories/Image'
 import Fullscreen from '../../../components/Fullscreen'
-import { getTimelineData } from './hooks/getTimelineData'
+import { getDioryTimelineData, getLinksTimelineData } from './hooks/getTimelineData'
 
 import { useMap } from './hooks/useMap'
 import { useMapBounds } from './hooks/useMapBounds'
@@ -20,13 +20,11 @@ const TimelineView = ({ diory, diorys, activeButton, actions }) => {
   const id = 'timelineId'
   const map = useMap(id)
 
-  const locationData = getTimelineData({ diory, diorys })
-  useMapBounds(map, locationData)
+  const dioryTimelineData = getDioryTimelineData({ diory, diorys })
+  useMapBounds(map, dioryTimelineData)
 
-  const linkLocations = diorys.map((child) =>
-    getTimelineData({ diory: child, diorys, parent: diory })
-  )
-  const linkMarkers = useLinkMarkers(map, linkLocations)
+  const linkLocationsData = getLinksTimelineData({ diory, diorys })
+  const linkMarkers = useLinkMarkers(map, linkLocationsData)
   useLinkPopups(linkMarkers, diorys)
   useUpdatePopup(map)
 
