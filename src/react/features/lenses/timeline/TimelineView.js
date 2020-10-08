@@ -1,5 +1,6 @@
 import React from 'react'
-import Image from '../../../components/diories/Image'
+
+import BackgroundDiory from '../../../components/diories/BackgroundDiory'
 import Fullscreen from '../../../components/Fullscreen'
 import { getDioryTimelineData, getLinksTimelineData } from './hooks/getTimelineData'
 
@@ -36,9 +37,9 @@ const TimelineView = ({ diory, diorys, activeButton, actions }) => {
   useRemoveLocation(map, diory.id, activeButton, actions)
 
   return (
-    <Image {...diory} gradient gradientRgba="0, 0, 0, 0.2">
+    <BackgroundDiory diory={diory} gradient gradientRgba="0, 0, 0, 0.2">
       <Fullscreen id={id} background="transparent" />
-    </Image>
+    </BackgroundDiory>
   )
 }
 

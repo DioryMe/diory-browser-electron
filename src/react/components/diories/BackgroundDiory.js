@@ -4,7 +4,7 @@ import { Pane, Heading } from 'evergreen-ui'
 
 import Image from './Image'
 
-const BackgroundDiory = ({ diory, onClick, children }) => {
+const BackgroundDiory = ({ diory, gradient, onClick, children }) => {
   const { id, text, image, style: dioryStyle = {} } = diory
   const { image: imageStyle, text: textStyle, ...style } = dioryStyle
   return (
@@ -17,10 +17,10 @@ const BackgroundDiory = ({ diory, onClick, children }) => {
       alignContent="flex-start"
       style={style}
     >
-      <Image image={image} zIndex={-1} style={imageStyle} gradient="rgba(255,255,255,0.5)" />
+      <Image image={image} zIndex={-1} position="fixed" gradient={gradient} {...imageStyle} />
       {text && (
         <Heading
-          color="rgb(102, 120, 138)"
+          color={image ? 'white' : 'rgb(102, 120, 138)'}
           fontWeight="bold"
           width="100%"
           {...textStyle}

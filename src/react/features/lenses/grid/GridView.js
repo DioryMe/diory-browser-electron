@@ -45,7 +45,7 @@ const MAX_NUMBER_OF_DIORYS_PER_VIEW = 100
 const GridView = () => {
   const { diory, onClick, diorys } = useGridLens()
   return (
-    <BackgroundDiory diory={diory} onClick={onClick}>
+    <BackgroundDiory diory={diory} gradient onClick={onClick}>
       {diorys.slice(0, MAX_NUMBER_OF_DIORYS_PER_VIEW).map(({ diory, onClick }) => (
         <Diory
           key={diory.id}

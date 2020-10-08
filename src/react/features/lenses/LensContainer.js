@@ -10,7 +10,7 @@ const LensContainer = ({ buttons, children }) => {
   const { diory } = useFocusDiory()
 
   return diory ? (
-    <Fullscreen marginTop={48} zIndex={10}>
+    <Fullscreen marginTop={48} zIndex={-1}>
       {children}
     </Fullscreen>
   ) : null
