@@ -1,3 +1,17 @@
+## 2.0.0 (October 6, 2020)
+- `yarn build` and `yarn test-electron` are run via Github Action
+
+### DDA-39 App packaging and publishing automation
+- package-mac.sh script to build new .dmg and upload it to S3
+- AWS CodePipeline to create .exe and update the new versions to the website
+- Apple's notarization flow with certificates
+
+### DDA-41: Video-reader and videos to test content
+- Initial video-reader to make diories from video files
+- Video player for video diories
+- Two videos to test content
+- `video` attribute for diories (temporary solution)
+
 ## 1.2.0 (September 9, 2020)
 
 ### DDA-55 Refactor connectors for IPFS
