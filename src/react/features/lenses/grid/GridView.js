@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch, useStore } from '../../../store'
+import { deleteDiory } from '../../room/actions'
 import { useFocusDiory } from '../../room/hooks'
 
 import { setFocus, setLink } from '../../navigation/actions'
@@ -7,13 +8,16 @@ import { setFocus, setLink } from '../../navigation/actions'
 import BackgroundDiory from '../../../components/diories/BackgroundDiory'
 import Diory from '../../../components/diories/Diory'
 
-import { UPDATE_TOOL_BUTTON } from './buttons'
+import { DELETE_DIORY_BUTTON, UPDATE_TOOL_BUTTON } from './buttons'
 
 const resolveAction = (dispatch, activeButton) => ({ diory }) => {
   switch (activeButton) {
     case UPDATE_TOOL_BUTTON:
       dispatch(setLink(diory))
-      return
+      break
+    case DELETE_DIORY_BUTTON:
+      dispatch(deleteDiory(diory))
+      break
     default:
       dispatch(setFocus({ focus: diory.id }))
   }
