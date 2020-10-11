@@ -29,8 +29,14 @@ ipcMain.on(channels.GET_HOME, (event) => {
     },
   }
 
-  const store = new HomeStore()
-  const home = store.get('home') || defaultHome
+  let home
+  if (true) {
+    // if (process.env.TESTCAFE === 1) {
+    home = defaultHome
+  } else {
+    const store = new HomeStore()
+    home = store.get('home') || defaultHome
+  }
 
   event.reply(channels.GET_HOME, home)
 })
