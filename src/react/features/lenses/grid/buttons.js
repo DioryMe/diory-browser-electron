@@ -1,6 +1,6 @@
 export const CREATE_TOOL_BUTTON = 'CREATE_TOOL_BUTTON'
 export const UPDATE_TOOL_BUTTON = 'UPDATE_TOOL_BUTTON'
-export const DELETE_DIORY_BUTTON = 'DELETE_DIORY_BUTTON'
+export const DELETE_BUTTON = 'DELETE_BUTTON'
 
 export const buttons = [
   {
@@ -20,11 +20,11 @@ export const buttons = [
     },
   },
   {
-    id: DELETE_DIORY_BUTTON,
-    text: 'Delete diory',
+    id: DELETE_BUTTON,
+    text: 'Delete diory or link',
     data: {
       icon: 'minus',
-      testid: 'remove-diory-button',
+      testid: 'delete-link-button',
     },
   },
 ]
