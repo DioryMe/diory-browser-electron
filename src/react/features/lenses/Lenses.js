@@ -1,12 +1,13 @@
 import React from 'react'
-import Fullscreen from '../../components/Fullscreen'
 
 import { useDispatchActions, useStore } from '../../store'
-import { useButtons } from '../buttons'
 import { setActive } from '../buttons/actions'
 import { setFocus } from '../navigation/actions'
 import { createDiory, createLink } from '../room/actions'
 import { useFocusDiory } from '../room/hooks'
+
+import Fullscreen from '../../components/Fullscreen'
+import LensButtons from './LensButtons'
 
 import fullscreen from './fullscreen'
 import grid from './grid'
@@ -35,14 +36,13 @@ const Lenses = () => {
   const { diory, diorys } = useFocusDiory()
   const [{ active }] = useStore((state) => state.buttons)
   const [{ selectedLensId }] = useStore((state) => state.lenses)
-  const { View, buttons } = lenses[selectedLensId]
+  const { View: LensView, buttons } = lenses[selectedLensId]
 
-  useButtons(buttons)
   const actions = useActions()
-
   return diory ? (
     <Fullscreen marginTop={48} zIndex={-1}>
-      <View diory={diory} diorys={diorys} activeButton={active} actions={actions} />
+      <LensButtons buttons={buttons} />
+      <LensView diory={diory} diorys={diorys} activeButton={active} actions={actions} />
     </Fullscreen>
   ) : null
 }
