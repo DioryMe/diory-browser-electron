@@ -1,12 +1,12 @@
 import React from 'react'
 import LensesBar from '../../components/LensesBar'
-import { useStore } from '../../store'
+import { useFocusDiory } from '../room/hooks'
 import { useLensesBar } from './useLensesBar'
 
 const LensesNavigation = (props) => {
-  const [{ roomId }] = useStore((state) => state.navigation)
+  const { diory } = useFocusDiory()
   const { lenses } = useLensesBar()
-  return !roomId ? null : <LensesBar lenses={lenses} {...props} />
+  return !diory ? null : <LensesBar lenses={lenses} {...props} />
 }
 
 export default LensesNavigation
