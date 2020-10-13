@@ -1,0 +1,20 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Cypress (cypress run)
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 12.14
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.14
+    - run: yarn install
+    - run: yarn start & yarn run wait-on http://localhost:3300
+    - run: yarn cypress run

@@ -1,6 +1,6 @@
 
 describe('My First Test', () => {
-  it('Does not do much!', () => {
+  it('Browse some diories', () => {
     cy.visit('http://localhost:3300')
 
     cy.contains('Diory 12').should('not.be.visible')
@@ -12,5 +12,3 @@ describe('My First Test', () => {
     cy.contains('Diory 1').should('be.visible')
   })
 })
-
-// $('div#diory1')
