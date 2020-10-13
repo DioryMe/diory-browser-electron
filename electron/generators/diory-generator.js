@@ -4,7 +4,7 @@ const { readFolder } = require('../readers/folder-reader')
 const { readImage } = require('../readers/image-reader')
 const { readVideo } = require('../readers/video-reader')
 
-function readFileData(type, filePath) {
+async function readFileData(type, filePath) {
   const fileData = readFile(filePath)
   switch (type) {
     case 'image':
@@ -14,13 +14,14 @@ function readFileData(type, filePath) {
         ...readImage(filePath),
       }
     case 'video':
+      const videoData = await readVideo(filePath)
       return {
         created: fileData.created,
         modified: fileData.modified,
-        ...readVideo(filePath),
+        ...videoData,
       }
     default:
-      return fileData
+      return fileData || {}
   }
 }
 
@@ -38,9 +39,9 @@ function generateDiory({ text, date, image, video, latitude, longitude, created,
   }
 }
 
-exports.generateFileDiory = function generateFileDiory(filePath) {
+exports.generateFileDiory = async function generateFileDiory(filePath) {
   const type = resolveFileType(filePath)
-  const fileData = readFileData(type, filePath) || {}
+  const fileData = await readFileData(type, filePath)
   return generateDiory(fileData)
 }
 

@@ -16,7 +16,7 @@ function addToDiograph(diory) {
 }
 
 async function generateFileDiographAndLink(filePath) {
-  const fileDiory = generateFileDiory(filePath)
+  const fileDiory = await generateFileDiory(filePath)
 
   const fileDiograph = addToDiograph(fileDiory)
   const fileLink = generateFileLink(filePath, fileDiory)
