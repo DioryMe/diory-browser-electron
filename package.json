@@ -54,7 +54,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "ui-box": "^3.3.0"
+    "ui-box": "^3.3.0",
+    "wait-on": "^5.2.0"
   },
   "homepage": "./",
   "scripts": {
