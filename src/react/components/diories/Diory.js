@@ -4,6 +4,7 @@ import Box from 'ui-box'
 import { Pane, Icon } from 'evergreen-ui'
 
 import Image from './Image'
+import Video from './Video'
 
 const colors = ['#5bc0eb', '#fcd600', '#9bc53d', '#e55934', '#fa7921']
 const getRandom = (array) => array[Math.floor(Math.random() * array.length)]
@@ -20,8 +21,14 @@ const defaultStyle = {
 }
 
 const Diory = ({ diory, onClick, children, ...props }) => {
-  const { id, text, image, style: dioryStyle = {}, data } = diory
-  const { image: styleImage, text: styleText, width: flexBasis, ...style } = dioryStyle
+  const { id, text, image, video, style: dioryStyle = {}, data } = diory
+  const {
+    image: styleImage,
+    video: styleVideo,
+    text: styleText,
+    width: flexBasis,
+    ...style
+  } = dioryStyle
   return (
     <Box
       id={id}
@@ -39,6 +46,7 @@ const Diory = ({ diory, onClick, children, ...props }) => {
             gradientRgba="0, 0, 0, 0.2"
           />
         )}
+        {video && <Video video={video} style={styleVideo} />}
         {text && (
           <Box {...defaultStyle.text} {...styleText}>
             {text}
