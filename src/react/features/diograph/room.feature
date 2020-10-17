@@ -8,9 +8,9 @@ Feature: Room
     Then I see diory 1 in view
 
   Scenario: Linked diorys
-    Given diory 1 has 4 links
+    Given I don't see 'Diory 12' diory
     When I take diory 1 in focus
-    Then I see 4 linked diorys
+    Then I see 'Diory 12' diory
 
   @pending
   Scenario: Adding a diory
