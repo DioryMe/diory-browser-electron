@@ -146,5 +146,8 @@
       "eslint --fix",
       "git add"
     ]
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
   }
 }
