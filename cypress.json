@@ -1,8 +1,10 @@
 {
-  "testFiles": "**/*{spec.js,.feature}",
+  "testFiles": "**/*.feature",
+  "integrationFolder": "src/react",
   "env": {
     "cypress-react-selector": {
       "root": "#root"
-    }
+    },
+    "TAGS": "not @pending"
   }
 }
