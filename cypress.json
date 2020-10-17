@@ -1,1 +1,8 @@
-{}
+{
+  "testFiles": "**/*{spec.js,.feature}",
+  "env": {
+    "cypress-react-selector": {
+      "root": "#root"
+    }
+  }
+}
