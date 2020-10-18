@@ -5,9 +5,9 @@ Feature: Create tool
     And I select tools button
     And I select create button
 
-#  @pending
-#  Scenario: Create tool shown
-#    Then create tool is active
+   Scenario: Create tool shown
+     Then create tool is active
+     Then Create tool dialog is opened
 #
 #  @pending
 #  Scenario: Create text

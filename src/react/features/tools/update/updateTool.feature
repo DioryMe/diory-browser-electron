@@ -5,10 +5,10 @@ Feature: Update tool
     And I select tools button
     And I select update button
 
-#  @pending
-#  Scenario: Update tool shown
-#    Then update tool is active
-#
+   Scenario: Update tool shown
+     Then update tool is active
+     Then Update tool dialog is opened
+
 #  @pending
 #  Scenario: Update text
 #    When I add some text to text field
