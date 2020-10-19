@@ -1,17 +1,17 @@
 {
   "rooms": {
-    "room1": {
-      "id": "room1"
+    "development-content-room": {
+      "id": "development-content-room"
     }
   },
   "connections": {
-    "./public/default-welcome-room": {
-      "room": "room1",
+    "./public/development-content-room": {
+      "room": "development-content-room",
       "connector": "file"
     }
   },
   "focus": {
-    "roomId": "room1",
-    "dioryId": "room1"
+    "roomId": "development-content-room",
+    "dioryId": "development-content-room"
   }
 }

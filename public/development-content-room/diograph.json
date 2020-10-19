@@ -6,8 +6,21 @@
       "tampere": {
         "id": "tampere"
       },
+      "generic": {
+        "id": "generic-content"
+      },
       "kayaking-at-potomac": {
         "id": "f1470597-1a3c-4a76-8546-2c29591a6846"
+      }
+    },
+    "modified": "2020-01-03T14:03:04.751Z"
+  },
+  "generic-content": {
+    "id": "generic-content",
+    "text": "Generic content",
+    "links": {
+      "diory1": {
+        "id": "diory1"
       },
       "4_5807613915332347351.mp4": {
         "id": "cbe32a6d-5bc3-44d0-b680-3f4a63765f73"
@@ -15,8 +28,43 @@
       "4_5996618057181562302.MOV": {
         "id": "5456c2c3-4a69-4d80-bd2f-caa9945cff71"
       }
+    }
+  },
+  "diory1": {
+    "id": "diory1",
+    "text": "Diory 1",
+    "links": {
+      "link11": {
+        "id": "diory11"
+      },
+      "link12": {
+        "id": "diory12"
+      },
+      "link13": {
+        "id": "diory13"
+      },
+      "link14": {
+        "id": "diory14"
+      }
     },
-    "modified": "2020-01-03T14:03:04.751Z"
+    "latitude": "61",
+    "longitude": "26"
+  },
+  "diory11": {
+    "id": "diory11",
+    "text": "Diory 11"
+  },
+  "diory12": {
+    "id": "diory12",
+    "text": "Diory 12"
+  },
+  "diory13": {
+    "id": "diory13",
+    "text": "Diory 13"
+  },
+  "diory14": {
+    "id": "diory14",
+    "text": "Diory 14"
   },
   "cbe32a6d-5bc3-44d0-b680-3f4a63765f73": {
     "id": "cbe32a6d-5bc3-44d0-b680-3f4a63765f73",
