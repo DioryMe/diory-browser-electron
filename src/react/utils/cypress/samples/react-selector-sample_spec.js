@@ -1,4 +1,3 @@
-
 describe('My First Test', () => {
   it('Browse some diories', () => {
     cy.visit('http://localhost:3300')
@@ -16,7 +15,7 @@ describe('My First Test', () => {
 describe('My First React selector test', () => {
   it('Browse some diories', () => {
     cy.visit('http://localhost:3300')
-    cy.waitForReact();
+    cy.waitForReact()
 
     // .react hakee DOM-elementin
     //   - voi klikata, mutta vain dom-attribuutit katselmoitavana
@@ -31,19 +30,18 @@ describe('My First React selector test', () => {
     cy.getReact('Diory', { props: { diory: { text: 'Diory 1' } } })
       .getProps('diory.latitude')
       .should('eq', '61')
-      //  {
-      //   key: 'link1',
-      //   id: 'diory1',
-      //   text: 'Diory 1',
-      //   links:
-      //    { link11: { id: 'diory11' },
-      //      link12: { id: 'diory12' },
-      //      link13: { id: 'diory13' },
-      //      link14: { id: 'diory14' } },
-      //   latitude: '61',
-      //   longitude: '26'
-      // })
-
+    //  {
+    //   key: 'link1',
+    //   id: 'diory1',
+    //   text: 'Diory 1',
+    //   links:
+    //    { link11: { id: 'diory11' },
+    //      link12: { id: 'diory12' },
+    //      link13: { id: 'diory13' },
+    //      link14: { id: 'diory14' } },
+    //   latitude: '61',
+    //   longitude: '26'
+    // })
 
     cy.contains('Diory 12').should('not.be.visible')
     cy.contains('Diory 1').should('be.visible')
