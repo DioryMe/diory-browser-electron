@@ -1,6 +1,12 @@
 {
+  "baseUrl": "http://localhost:3300",
   "testFiles": "**/*.feature",
   "integrationFolder": "src/react",
+  "pluginsFile": "src/react/utils/cypress/plugins/index.js",
+  "screenshotsFolder": "src/react/utils/cypress/recordings",
+  "videosFolder": "src/react/utils/cypress/recordings",
+  "supportFile": "src/react/utils/cypress/support/index.js",
+  "fixturesFolder": false,
   "video": false,
   "screenshotOnRunFailure": false,
   "env": {
@@ -10,3 +16,4 @@
     "TAGS": "not @pending"
   }
 }
+
