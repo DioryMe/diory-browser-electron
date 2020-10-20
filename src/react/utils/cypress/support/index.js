@@ -1,4 +1,4 @@
-import 'cypress-react-selector';
+import 'cypress-react-selector'
 
 // ***********************************************************
 // This example support/index.js is processed and
