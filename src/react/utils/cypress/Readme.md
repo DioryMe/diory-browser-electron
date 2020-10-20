@@ -11,5 +11,5 @@ yarn cypress run
 Runs tests automatically after every file change.
 
 ```
-yarn run cypress open
+yarn cypress open
 ```
