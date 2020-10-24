@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useStore } from '../../../../store'
 import { setFocus } from '../../../navigation/actions'
-import { createDiory, createLink } from '../../../room/actions'
+import { createDiory, createLink } from '../../../diograph/actions'
 import { setActive } from '../../../buttons/actions'
 import * as buttons from './buttons'
 

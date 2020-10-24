@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useStore } from '../../../../store'
-import { deleteDiory, deleteLink } from '../../../room/actions'
+import { deleteDiory, deleteLink } from '../../../diograph/actions'
 import * as buttons from './buttons'
 
 export const useRemoveLocation = (mapRef) => {

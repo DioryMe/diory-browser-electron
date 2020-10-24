@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useButtons } from '../../buttons'
-import { useFocusDiory } from '../../room/hooks'
+import { useFocusDiory } from '../../diograph/hooks'
 
 import { useGetRoomEffect } from '../effects/useGetRoomEffect'
 import { useSaveRoomEffect } from '../effects/useSaveRoomEffect'

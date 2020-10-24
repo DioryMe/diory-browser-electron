@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useStore } from '../../../../store'
-import { updateDiory } from '../../../room/actions'
+import { updateDiory } from '../../../diograph/actions'
 import * as buttons from './buttons'
 
 export const useMoveLocation = (mapRef) => {

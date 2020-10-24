@@ -1,5 +1,5 @@
-import { SAVE_HOME } from '../home/actionsTypes'
-import { GET_ROOM } from '../room/actionsTypes'
+import { SAVE_HOME } from '../rooms/actionsTypes'
+import { GET_ROOM } from '../diograph/actionsTypes'
 import {
   SET_CONNECTIONS,
   REMOVE_CONNECTION,

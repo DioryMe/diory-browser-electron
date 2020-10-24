@@ -1,9 +1,9 @@
 import React from 'react'
 import { v4 as uuid } from 'uuid'
 import { useDispatchActions, useStore } from '../../../../../store'
-import { useFocusDiory } from '../../../../room/hooks'
+import { useFocusDiory } from '../../../../diograph/hooks'
 
-import { createDiory, createLink } from '../../../../room/actions'
+import { createDiory, createLink } from '../../../../diograph/actions'
 
 import { CREATE_TOOL_BUTTON } from '../../buttons'
 

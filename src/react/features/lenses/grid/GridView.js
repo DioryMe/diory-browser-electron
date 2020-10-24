@@ -1,8 +1,8 @@
 import React from 'react'
 import { useDispatch, useStore } from '../../../store'
 import { setInactive } from '../../buttons/actions'
-import { deleteDiory, deleteLink } from '../../room/actions'
-import { useFocusDiory } from '../../room/hooks'
+import { deleteDiory, deleteLink } from '../../diograph/actions'
+import { useFocusDiory } from '../../diograph/hooks'
 
 import { goBackward, setFocus, setLink } from '../../navigation/actions'
 

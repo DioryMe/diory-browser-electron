@@ -11,7 +11,7 @@ import Room from '../../components/Room'
 import { buttons, REMOVE_ROOM } from './buttons'
 
 const useHome = () => {
-  const [{ rooms }, dispatch] = useStore((state) => state.home)
+  const [{ rooms }, dispatch] = useStore((state) => state.rooms)
   const [{ active }] = useStore((state) => state.buttons)
 
   return {
@@ -31,7 +31,7 @@ const useHome = () => {
   }
 }
 
-const HomeView = () => {
+const RoomsView = () => {
   useButtons(buttons)
   const { rooms } = useHome()
   return (
@@ -43,4 +43,4 @@ const HomeView = () => {
   )
 }
 
-export default HomeView
+export default RoomsView

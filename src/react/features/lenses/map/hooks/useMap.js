@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import L from 'leaflet'
 import { useCompare } from '../../../../utils/useCompare'
 import { useParent } from '../../../navigation/hooks/useGoSide'
-import { useFocusDiory } from '../../../room/hooks'
+import { useFocusDiory } from '../../../diograph/hooks'
 import { getLocationData } from './getLocationData'
 
 const MAX_ZOOM = 14

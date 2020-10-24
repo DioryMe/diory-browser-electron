@@ -1,6 +1,6 @@
 import React from 'react'
 import LensesBar from '../../components/LensesBar'
-import { useFocusDiory } from '../room/hooks'
+import { useFocusDiory } from '../diograph/hooks'
 import { useLensesBar } from './useLensesBar'
 
 const LensesNavigation = (props) => {
