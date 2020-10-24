@@ -1,17 +1,21 @@
 import React from 'react'
-import { useFocusDiory } from '../room/hooks'
 
-import { useGetHomeEffect } from './effects/useGetHomeEffect'
-import { useSaveHomeEffect } from './effects/useSaveHomeEffect'
+import Navigation from '../navigation/Navigation'
+import Filters from '../filters/Filters'
+import Lenses from '../lenses/Lenses'
+import Rooms from '../rooms/Rooms'
+import Buttons from '../buttons'
+import Connectors from '../connectors/Connectors'
 
-import HomeView from './HomeView'
-
-const Home = () => {
-  useGetHomeEffect()
-  useSaveHomeEffect()
-
-  const { diory } = useFocusDiory()
-  return !diory && <HomeView />
-}
+const Home = () => (
+  <div className="App">
+    <Navigation />
+    <Filters />
+    <Lenses />
+    <Rooms />
+    <Buttons />
+    <Connectors />
+  </div>
+)
 
 export default Home
