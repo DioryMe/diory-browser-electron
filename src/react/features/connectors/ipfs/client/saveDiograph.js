@@ -15,9 +15,14 @@ export async function saveDiograph(diograph, ipfs) {
   console.log('IPFS client saveDiograph request:', diograph)
 
   const ipfsDiograph = {}
-  for(const [id, { image, ...diory }] of Object.entries(diograph)) {
-    if (image) {
-      diory.image = await addImage(image)
+  for(const [id, diory] of Object.entries(diograph)) {
+    if (diory.image) {
+      if (diory.image.includes('/Users/')) {
+        diory.image = await addImage(diory.image)
+      }
+      if (diory.image.startsWith('https://gateway.ipfs.io')) {
+        diory.image = diory.image.slice(23)
+      }
     }
 
     const { cid } = await ipfs.add(JSON.stringify(diory))
