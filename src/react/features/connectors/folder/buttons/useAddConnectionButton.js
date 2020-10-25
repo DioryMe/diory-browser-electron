@@ -3,6 +3,7 @@ import { useDispatch, useStore } from '../../../../store'
 import { updateRoom } from '../../../home/actions'
 
 import { setFocus } from '../../../navigation/actions'
+import { getRoom, setUpdateRoom } from '../../../room/actions'
 import { setInactive } from '../../../tools/actions'
 import { addConnection } from '../../actions'
 
@@ -24,16 +25,13 @@ export const useAddConnectionButton = () => {
       window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then((result) => {
         const path = result.filePaths[0]
         openChannel(channels.GENERATE_DIOGRAPH, path).then(({ id, diograph, path }) => {
-          if (!diograph[id]) {
-            console.log(diograph)
-            throw new Error(`RoomId ${id} not found from generated diograph`)
-          }
-
+          dispatch(getRoom({ id, diograph }))
+          dispatch(setUpdateRoom())
           dispatch(addConnection({ address: path, room: roomId, diory: id, connector: 'file' }))
           dispatch(updateRoom({ id: roomId, root: id }))
           dispatch(setFocus({ focus: id }))
         })
       })
     }
-  }, [active, dispatch])
+  }, [active, dispatch, roomId])
 }

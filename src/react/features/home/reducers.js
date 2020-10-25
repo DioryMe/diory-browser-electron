@@ -1,4 +1,3 @@
-import { SAVE_ROOM } from '../room/actionsTypes'
 import * as types from './actionsTypes'
 import { createReducer, promiseReducers } from '../../store'
 

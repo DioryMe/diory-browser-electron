@@ -28,7 +28,6 @@ const addConnection = (state, { payload }) => ({
       room: payload.room,
       root: payload.root,
       connector: payload.connector,
-      connect: true,
     },
   },
   updated: true,

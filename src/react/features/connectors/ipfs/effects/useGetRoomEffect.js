@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { useDispatch } from '../../../../store'
+import { useDispatch, useStore } from '../../../../store'
 
 import { useConnections } from '../../useConnections'
 
@@ -19,10 +19,11 @@ async function getRoomFromIpfs({ address, root }) {
 
 export const useGetRoomEffect = (isIpfsReady) => {
   const { connections } = useConnections('ipfs')
+  const [{ updated }] = useStore((state) => state.room)
 
   const dispatch = useDispatch()
   useEffect(() => {
-    if (isIpfsReady) {
+    if (isIpfsReady && !updated) {
       connections
         .filter(({ connect }) => connect)
         .forEach(({ address, root }) => {
@@ -32,5 +33,5 @@ export const useGetRoomEffect = (isIpfsReady) => {
             .then(() => dispatch(setConnection({ address, connected: true })))
         })
     }
-  }, [isIpfsReady, connections, dispatch])
+  }, [isIpfsReady, updated, connections, dispatch])
 }
