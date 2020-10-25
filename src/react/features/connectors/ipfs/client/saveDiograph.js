@@ -2,7 +2,6 @@ import { openChannel } from '../../../../client/client'
 import { channels } from '../../../../../shared/constants'
 
 function addImage(image) {
-  console.log(image)
   return openChannel(channels.IPFS_SAVE_IMAGE, image)
 }
 
@@ -27,6 +26,9 @@ export async function saveDiograph(diograph, ipfs) {
   console.log('ipfsDiograph', ipfsDiograph)
 
   const { cid } = await ipfs.add(JSON.stringify(ipfsDiograph))
+
+  console.log('Diograph ipfs:', `/ipfs/${cid}`)
+
   const ipnsCid = await publishToIpns(cid, ipfs)
 
   console.log('-------------')

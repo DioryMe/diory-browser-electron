@@ -31,7 +31,6 @@ export const useSaveHomeEffect = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     if (connectionsUpdated || homeUpdated) {
-      console.log(connectionsUpdated, homeUpdated)
       debouncePromiseDispatch(dispatch, openChannel(channels.SAVE_HOME, home), saveHome)
     }
   }, [connectionsUpdated, homeUpdated, home, dispatch])

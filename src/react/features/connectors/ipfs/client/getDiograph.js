@@ -18,6 +18,7 @@ export async function getDiograph(address, ipfs) {
   console.log('-------------')
   console.log('IPFS client getDiograph request:', address)
   const cid = await resolveCid(address, ipfs)
+  console.log('diograph cid', cid)
   const ipfsDiograph = await ipfsCat(cid, ipfs)
 
   const diograph = {}
