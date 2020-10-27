@@ -4,16 +4,17 @@ import L from 'leaflet'
 const colors = ['#5bc0eb', '#fcd600', '#9bc53d', '#e55934', '#fa7921']
 const getRandom = (array) => array[Math.floor(Math.random() * array.length)]
 
-const getPopupStyle = ({ image }) => ([
-  'overflow: hidden',
-  'min-width: 600px',
-  'min-height: 400px',
-  `background-color: ${getRandom(colors)}`,
-  `background-image: url(${encodeURI(image)})`,
-  'background-size: cover',
-  'background-position: center',
-  'background-repeat: no-repeat'
-].join(';'))
+const getPopupStyle = ({ image }) =>
+  [
+    'overflow: hidden',
+    'min-width: 600px',
+    'min-height: 400px',
+    `background-color: ${getRandom(colors)}`,
+    `background-image: url(${encodeURI(image)})`,
+    'background-size: cover',
+    'background-position: center',
+    'background-repeat: no-repeat',
+  ].join(';')
 
 const createPopup = ({ diory = {} }) => {
   const elements = [
@@ -28,6 +29,7 @@ const createPopup = ({ diory = {} }) => {
     closeButton: false,
   }).setContent(content)
 }
+
 export const useLinkPopups = (markerRefs, diorys) => {
   useEffect(() => {
     if (markerRefs.current) {

@@ -5,14 +5,30 @@ import { useParent } from '../../../navigation/hooks/useGoSide'
 import { useFocusDiory } from '../../../diograph/hooks'
 import { getLocationData } from './getLocationData'
 
+const colors = ['#5bc0eb', '#fcd600', '#9bc53d', '#e55934', '#fa7921']
+const getRandom = (array) => array[Math.floor(Math.random() * array.length)]
+
+const getPopupStyle = ({ image }) =>
+  [
+    'overflow: hidden',
+    'min-width: 400px',
+    'min-height: 200px',
+    `background-color: ${getRandom(colors)}`,
+    `background-image: url(${encodeURI(image)})`,
+    'background-size: cover',
+    'background-position: center',
+    'background-repeat: no-repeat',
+  ].join(';')
+
 const createMapPopup = ({ diory = {} }) => {
   const elements = [
-    diory.image && `<img src="${diory.image}" width="150px"/>`,
-    diory.text && `<div>${diory.text}</div>`,
+    diory.text &&
+      `<div style="margin: 16px; font-size: 16px; font-weight: bold; color: white">${diory.text}</div>`,
   ]
     .filter(Boolean)
     .join('')
-  const content = `<div style="overflow: hidden; height: 100px}">${elements}</div>`
+
+  const content = `<div style="${getPopupStyle(diory)}">${elements}</div>`
   return L.popup({
     closeButton: false,
   }).setContent(content)
