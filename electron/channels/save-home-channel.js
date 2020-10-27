@@ -6,7 +6,7 @@ ipcMain.on(channels.SAVE_HOME, (event, home) => {
   console.log('SAVE_HOME')
 
   const store = new HomeStore()
-  store.set({ home })
+  // store.set({ home })
   console.log(home)
 
   event.reply(channels.SAVE_HOME, home)
