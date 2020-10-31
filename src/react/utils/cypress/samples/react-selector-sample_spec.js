@@ -17,11 +17,11 @@ describe('My First React selector test', () => {
     cy.visit('http://localhost:3300')
     cy.waitForReact()
 
-    // .react hakee DOM-elementin
-    //   - voi klikata, mutta vain dom-attribuutit katselmoitavana
-    // .getReact hakee componentin
-    //   - ei voi klikata, mutta voi katsoa propseja
-    // => jotkut on molemmilla, kuten have.length
+    // `.react` retrieves the DOM-element
+    //   - can be clicked, but only DOM-attributes can be inspected
+    // .getReact retrieves the Component from React virtual DOM
+    //   - can't be clicked, but props can be inspected
+    // => some properties are on both, like 'have.length'
 
     cy.react('Diory').should('have.length', '2')
 
