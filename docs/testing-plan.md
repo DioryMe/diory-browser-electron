@@ -2,10 +2,9 @@
 
 ## React
 
-
 #### Features
 ```
-yarn cucumber
+yarn cypress run
 ```
 
 #### Components
