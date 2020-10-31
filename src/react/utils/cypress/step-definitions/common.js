@@ -1,11 +1,9 @@
 import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps'
 
-const url = 'http://localhost:3300'
-
 // GIVEN
 
 Given('I am at home', () => {
-  cy.visit(url)
+  cy.visit('/')
 })
 
 Given('I select {word} button', (toolName) => {
