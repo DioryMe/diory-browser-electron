@@ -6,6 +6,7 @@ import {
   GO_HOME,
   GO_SIDE,
   SET_FULLSCREEN,
+  SET_LINK,
 } from './actionsTypes'
 
 export const enterRoom = ({ id }) => ({
@@ -32,4 +33,9 @@ export const goHome = () => ({ type: GO_HOME })
 export const goSide = ({ focus }) => ({
   type: GO_SIDE,
   payload: { focus },
+})
+
+export const setLink = (link = {}) => ({
+  type: SET_LINK,
+  payload: { link },
 })

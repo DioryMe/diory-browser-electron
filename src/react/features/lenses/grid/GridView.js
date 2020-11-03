@@ -1,9 +1,34 @@
 import React from 'react'
 import { useDispatch, useStore } from '../../../store'
+import { setInactive } from '../../buttons/actions'
+import { deleteDiory, deleteLink } from '../../room/actions'
 import { useFocusDiory } from '../../room/hooks'
+
+import { goBackward, setFocus, setLink } from '../../navigation/actions'
 
 import BackgroundDiory from '../../../components/diories/BackgroundDiory'
 import Diory from '../../../components/diories/Diory'
+
+import { DELETE_BUTTON, UPDATE_TOOL_BUTTON } from './buttons'
+
+const resolveAction = (dispatch, activeButton, focus) => ({ diory }) => {
+  switch (activeButton) {
+    case UPDATE_TOOL_BUTTON:
+      dispatch(setLink(diory))
+      break
+    case DELETE_BUTTON:
+      if (focus.id !== diory.id) {
+        dispatch(deleteLink(focus, diory))
+      } else {
+        dispatch(goBackward())
+        dispatch(deleteDiory(diory))
+      }
+      dispatch(setInactive())
+      break
+    default:
+      dispatch(setFocus({ focus: diory.id }))
+  }
+}
 
 const addAAttrValue = (obj, attr, value) => ({
   ...(obj && { ...obj, [attr]: { ...obj[attr], ...value } }),
@@ -18,8 +43,10 @@ const useGridLens = () => {
       ...diory,
       style: addAAttrValue(diory.style, 'text', active && { cursor: 'pointer' }),
     },
+    onClick: resolveAction(dispatch, active, diory),
     diorys: diorys.map((linkDiory) => ({
       diory: addAAttrValue(linkDiory, 'style', active && { cursor: 'pointer' }),
+      onClick: resolveAction(dispatch, active, diory),
     })),
   }
 }

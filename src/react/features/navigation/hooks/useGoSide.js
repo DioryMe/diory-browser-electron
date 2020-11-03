@@ -1,14 +1,14 @@
 import { useDispatch, useStore } from '../../../store'
 import { goSide } from '../actions'
 
-const useParent = () => {
+export const useParent = () => {
   const [{ backward }] = useStore((state) => state.navigation)
   const [{ diograph }] = useStore((state) => state.room)
   if (!backward.length) {
     return
   }
   const parentId = backward[0][1]
-  return diograph[parentId]
+  return parentId && diograph && diograph[parentId]
 }
 
 const useSiblings = () => {
