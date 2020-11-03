@@ -7,10 +7,12 @@ import { useLensActions } from './useLensActions'
 
 import Fullscreen from '../../components/Fullscreen'
 
+import fullscreen from './fullscreen'
 import grid from './grid'
 
 export const lenses = {
   grid,
+  fullscreen,
 }
 
 const LensButtons = ({ buttons }) => {
