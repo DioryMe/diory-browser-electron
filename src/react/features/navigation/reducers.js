@@ -6,12 +6,14 @@ import {
   SET_FULLSCREEN,
   GO_BACKWARD,
   GO_FORWARD,
+  SET_LINK,
 } from './actionsTypes'
 import { createReducer } from '../../store'
 
 export const initialState = {
   roomId: undefined,
   focus: undefined,
+  link: null,
   fullscreen: false,
   backward: [],
   forward: [],
@@ -22,7 +24,7 @@ export const enterRoom = (state, { payload }) => ({
   ...state,
   roomId: payload.id,
   focus: payload.id,
-  backward: [],
+  backward: [[]],
   forward: [],
   path: [payload.id],
 })
@@ -81,11 +83,16 @@ export const goForward = (state) => {
 
 export const goHome = (state) => ({
   ...state,
-  roomId: state.roomId,
-  focus: state.roomId,
+  roomId: null,
+  focus: null,
   backward: [[state.roomId, state.focus], ...state.backward],
   forward: [],
   path: [],
+})
+
+export const setLink = (state, { payload }) => ({
+  ...state,
+  link: payload.link.id,
 })
 
 export default createReducer({
@@ -96,4 +103,5 @@ export default createReducer({
   [GO_FORWARD]: goForward,
   [GO_HOME]: goHome,
   [GO_SIDE]: goSide,
+  [SET_LINK]: setLink,
 })

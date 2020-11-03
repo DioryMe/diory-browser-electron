@@ -4,7 +4,6 @@ import filters from '../features/filters/reducers'
 import home from '../features/home/reducers'
 import lenses from '../features/lenses/reducers'
 import navigation from '../features/navigation/reducers'
-import tools from '../features/tools/reducers'
 import room from '../features/room/reducers'
 
 const combineReducers = (reducers) => (state, action) =>
@@ -23,6 +22,5 @@ export const reducer = combineReducers({
   home,
   lenses,
   navigation,
-  tools,
   room,
 })

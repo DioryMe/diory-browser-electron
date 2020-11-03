@@ -21,3 +21,8 @@ export const useFocusDiory = () => {
   const [{ focus }] = useStore((state) => state.navigation)
   return useDiory(focus)
 }
+
+export const useLinkDiory = () => {
+  const [{ link }] = useStore((state) => state.navigation)
+  return useDiory(link)
+}

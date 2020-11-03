@@ -1,5 +1,4 @@
 import { useDispatch, useStore } from '../../store'
-import { useTools } from '../tools/hooks'
 
 import { setOpen } from './actions'
 
@@ -12,7 +11,7 @@ const useButtonsArray = () => {
 
 export const useButtonBar = () => {
   const [{ open }] = useStore((state) => state.buttons)
-  const { active, onSelect, onClear } = useTools()
+  const [{ active }] = useStore((state) => state.buttons)
 
   const { buttons } = useButtonsArray()
   const dispatch = useDispatch()
@@ -37,11 +36,6 @@ export const useButtonBar = () => {
       ...button,
       active: button.id === active,
       onClick: () => {
-        if (button.id !== active) {
-          return onSelect(button.id)
-        }
-
-        onClear()
         dispatch(setOpen(false))
       },
     })),
