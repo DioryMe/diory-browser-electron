@@ -26,5 +26,5 @@ ipcMain.on(channels.GET_HOME, (event) => {
   const store = new HomeStore()
   const home = store.get('home') || defaultHome
 
-  event.reply(channels.GET_HOME, home)
+  event.reply(channels.GET_HOME, defaultHome)
 })
