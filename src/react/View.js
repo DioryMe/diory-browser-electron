@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useFocusDiory } from './features/room/hooks'
 
-import LensView from './features/lenses/LensView'
+import Lenses from './features/lenses/Lenses'
 import FullscreenView from './FullscreenView'
 import ToolsView from './features/tools/ToolsView'
 import ToolView from './features/tools/ToolView'
@@ -16,7 +16,7 @@ const View = () => {
 
   return (
     <>
-      <LensView />
+      <Lenses />
       <FullscreenView />
       <ToolsView />
       <ToolView />
