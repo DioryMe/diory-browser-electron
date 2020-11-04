@@ -1,15 +1,18 @@
 import React from 'react'
 import { v4 as uuid } from 'uuid'
 import { useDispatchActions, useStore } from '../../../../../store'
+import { useButtons } from '../../../../buttons'
 import { useFocusDiory } from '../../../../room/hooks'
 
 import { createDiory, createLink } from '../../../../room/actions'
 
-import { CREATE_TOOL_BUTTON } from '../../buttons'
-
 import UpdateView from '../update/UpdateView'
 
+import { buttons, CREATE_TOOL_BUTTON } from './buttons'
+
 const CreateTool = () => {
+  useButtons(buttons)
+
   const [{ active }] = useStore((state) => state.buttons)
   const { diory: focusDiory } = useFocusDiory()
   const { dispatch } = useDispatchActions()

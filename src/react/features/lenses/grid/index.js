@@ -1,4 +1,3 @@
-import { buttons } from './buttons'
 import { default as View } from './GridLens'
 
 export default {
@@ -7,6 +6,5 @@ export default {
     text: 'Grid',
     image: 'grid-view',
   },
-  buttons,
   View,
 }
