@@ -1,14 +1,17 @@
 import React from 'react'
 import { useDispatchActions, useStore } from '../../../../../store'
+import { useButtons } from '../../../../buttons'
 
 import { updateDiory } from '../../../../room/actions'
 import { useLinkDiory } from '../../../../room/hooks'
 
 import UpdateView from './UpdateView'
 
-import { UPDATE_TOOL_BUTTON } from '../../buttons'
+import { buttons, UPDATE_TOOL_BUTTON } from './buttons'
 
 const UpdateTool = () => {
+  useButtons(buttons)
+
   const [{ active }] = useStore((state) => state.buttons)
   const [{ link }] = useStore((state) => state.navigation)
   const { diory } = useLinkDiory()
