@@ -1,10 +1,10 @@
 import React from 'react'
 import { v4 as uuid } from 'uuid'
-import { useDispatchActions, useStore } from '../../../../../store'
-import { useButtons } from '../../../../buttons'
-import { useFocusDiory } from '../../../../room/hooks'
+import { useDispatchActions, useStore } from '../../../store'
+import { useButtons } from '../../buttons'
+import { useFocusDiory } from '../../room/hooks'
 
-import { createDiory, createLink } from '../../../../room/actions'
+import { createDiory, createLink } from '../../room/actions'
 
 import UpdateView from '../update/UpdateView'
 

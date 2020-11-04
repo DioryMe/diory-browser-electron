@@ -1,4 +1,4 @@
-import { useDispatch, useStore } from '../../../../store'
+import { useDispatch, useStore } from '../../store'
 
 import { useDeleteTool } from './delete/useDeleteTool'
 import { useUpdateTool } from './update/useUpdateTool'
