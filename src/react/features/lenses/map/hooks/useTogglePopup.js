@@ -1,9 +1,7 @@
 import { useEffect } from 'react'
-import { useDispatch, useStore } from '../../../../store'
+import { useDispatch } from '../../../../store'
 
-export const useTogglePopup = (mapRef) => {
-  const [{ focus }] = useStore((state) => state.navigation)
-  const [{ active }] = useStore((state) => state.buttons)
+export const useTogglePopup = (mapRef, activeButton) => {
   const dispatch = useDispatch()
   useEffect(() => {
     mapRef.current.eachLayer((marker) => {
@@ -13,5 +11,5 @@ export const useTogglePopup = (mapRef) => {
         })
       }
     })
-  }, [mapRef, focus, active, dispatch])
+  }, [mapRef, activeButton, dispatch])
 }
