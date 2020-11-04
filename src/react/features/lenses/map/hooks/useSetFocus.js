@@ -4,7 +4,7 @@ import { setFocus } from '../../../navigation/actions'
 
 export const useSetFocus = (mapRef) => {
   const [{ focus }] = useStore((state) => state.navigation)
-  const [{ active }] = useStore((state) => state.tools)
+  const [{ active }] = useStore((state) => state.buttons)
   const dispatch = useDispatch()
   useEffect(() => {
     mapRef.current.eachLayer((marker) => {
