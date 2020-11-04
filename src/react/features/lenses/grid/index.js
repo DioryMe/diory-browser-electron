@@ -1,4 +1,4 @@
-import { default as View } from './GridLens'
+import Lens from './GridLens'
 
 export default {
   diory: {
@@ -6,5 +6,5 @@ export default {
     text: 'Grid',
     image: 'grid-view',
   },
-  View,
+  Lens,
 }
