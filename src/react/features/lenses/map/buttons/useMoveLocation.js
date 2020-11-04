@@ -3,13 +3,12 @@ import { useDispatch, useStore } from '../../../../store'
 import { updateDiory } from '../../../room/actions'
 import * as buttons from './buttons'
 
-export const useMoveLocation = (mapRef) => {
-  const [{ active }] = useStore((state) => state.buttons)
+export const useMoveLocation = (mapRef, activeButton) => {
   const dispatch = useDispatch()
   useEffect(() => {
     mapRef.current.eachLayer((marker) => {
       if (marker.dioryId) {
-        if (buttons.MAP_MOVE_LOCATION === active) {
+        if (buttons.MAP_MOVE_LOCATION === activeButton) {
           marker.dragging.enable()
           marker.on('dragend', () => {
             const { lat: latitude, lng: longitude } = marker.getLatLng()
@@ -21,5 +20,5 @@ export const useMoveLocation = (mapRef) => {
         }
       }
     })
-  }, [mapRef, active, dispatch])
+  }, [mapRef, activeButton, dispatch])
 }

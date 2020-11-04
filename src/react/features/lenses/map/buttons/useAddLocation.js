@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useDispatch, useStore } from '../../../../store'
+import { useDispatch } from '../../../../store'
 import { setFocus } from '../../../navigation/actions'
 import { createDiory, createLink } from '../../../room/actions'
 import { setActive } from '../../../buttons/actions'
@@ -18,14 +18,12 @@ const getTileURL = ({ lat, lng, zoom }) => {
   return `${zoom}/${xtile}/${ytile}`
 }
 
-export const useAddLocation = (mapRef) => {
-  const [{ focus }] = useStore((state) => state.navigation)
-  const [{ active }] = useStore((state) => state.buttons)
+export const useAddLocation = (mapRef, diory, activeButton) => {
   const dispatch = useDispatch()
   useEffect(() => {
     mapRef.current.off('click')
 
-    if (buttons.MAP_ADD_LOCATION === active) {
+    if (buttons.MAP_ADD_LOCATION === activeButton) {
       mapRef.current.on('click', ({ latlng }) => {
         const { lat, lng } = latlng
         const id = new Date().toISOString()
@@ -36,10 +34,10 @@ export const useAddLocation = (mapRef) => {
           zoom,
         })}.png`
         dispatch(createDiory({ id, image, latitude: lat, longitude: lng }))
-        dispatch(createLink({ id: focus }, { id }))
+        dispatch(createLink({ id: diory.id }, { id }))
         dispatch(setFocus({ focus: id }))
         dispatch(setActive(UPDATE_TOOL_BUTTON))
       })
     }
-  }, [mapRef, active, focus, dispatch])
+  }, [mapRef, activeButton, diory, dispatch])
 }

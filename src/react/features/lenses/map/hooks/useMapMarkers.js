@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react'
 import L from 'leaflet'
 import { useCompare } from '../../../../utils/useCompare'
-import { useFocusDiory } from '../../../room/hooks'
 import { getLocationData } from './getLocationData'
 
 const colors = ['#5bc0eb', '#fcd600', '#9bc53d', '#e55934', '#fa7921']
@@ -55,8 +54,7 @@ const addDataTestIdToMarker = (id) => (marker) => {
   return marker
 }
 
-const useDioryMarker = (mapRef) => {
-  const { diory, diorys } = useFocusDiory()
+const useDioryMarker = (mapRef, diory, diorys) => {
   const focusChanged = useCompare(diory.id)
 
   const markerRef = useRef(null)
@@ -86,9 +84,7 @@ const useDioryMarker = (mapRef) => {
   }, [mapRef, diory, diorys, focusChanged])
 }
 
-const useDiorysMarkers = (mapRef) => {
-  const { diorys } = useFocusDiory()
-
+const useDiorysMarkers = (mapRef, diorys) => {
   const markerRefs = useRef([])
   useEffect(() => {
     if (mapRef.current) {
@@ -131,8 +127,8 @@ const useUpdatePopup = (mapRef) => {
   }, [mapRef])
 }
 
-export const useMapMarkers = (mapRef) => {
-  useDioryMarker(mapRef)
-  useDiorysMarkers(mapRef)
+export const useMapMarkers = (mapRef, diory, diorys) => {
+  useDioryMarker(mapRef, diory, diorys)
+  useDiorysMarkers(mapRef, diorys)
   useUpdatePopup(mapRef)
 }
