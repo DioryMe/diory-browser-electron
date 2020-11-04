@@ -8,9 +8,11 @@ import Fullscreen from '../../components/Fullscreen'
 
 import fullscreen from './fullscreen'
 import grid from './grid'
+import map from './map'
 
 export const lenses = {
   grid,
+  map,
   fullscreen,
 }
 

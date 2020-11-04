@@ -4,28 +4,44 @@ import { useCompare } from '../../../../utils/useCompare'
 import { useFocusDiory } from '../../../room/hooks'
 import { getLocationData } from './getLocationData'
 
+const colors = ['#5bc0eb', '#fcd600', '#9bc53d', '#e55934', '#fa7921']
+const getRandom = (array) => array[Math.floor(Math.random() * array.length)]
+
+const getPopupStyle = ({ image }) =>
+  [
+    'overflow: hidden',
+    'min-width: 400px',
+    'min-height: 200px',
+    `background-color: ${getRandom(colors)}`,
+    `background-image: url(${encodeURI(image)})`,
+    'background-size: cover',
+    'background-position: center',
+    'background-repeat: no-repeat',
+  ].join(';')
+
 const createMapPopup = ({ diory = {} }) => {
   const elements = [
-    diory.image && `<img src="${diory.image}" width="150px"/>`,
-    diory.text && `<div>${diory.text}</div>`,
+    diory.text &&
+      `<div style="margin: 16px; font-size: 16px; font-weight: bold; color: white">${diory.text}</div>`,
   ]
     .filter(Boolean)
     .join('')
-  const content = `<div style="overflow: hidden; height: 100px}">${elements}</div>`
+
+  const content = `<div style="${getPopupStyle(diory)}">${elements}</div>`
   return L.popup({
     closeButton: false,
   }).setContent(content)
 }
 
-const createMapMarker = ({ diory, diorys }) => {
-  const { center } = getLocationData({ diory, diorys })
+const createMapMarker = ({ diory, diorys, parent }) => {
+  const { center } = getLocationData({ diory, diorys, parent })
   if (!center) {
     return null
   }
 
   const popup = createMapPopup({ diory })
   const marker = L.marker(center).bindPopup(popup, {
-    maxWidth: 500,
+    maxWidth: 600,
     autoPan: false,
   })
 
@@ -59,7 +75,7 @@ const useDioryMarker = (mapRef) => {
         const popup = createMapPopup({ diory })
         markerRef.current
           .bindPopup(popup, {
-            maxWidth: 500,
+            maxWidth: 600,
             autoPan: false,
           })
           .openPopup()
@@ -75,21 +91,24 @@ const useDiorysMarkers = (mapRef) => {
 
   const markerRefs = useRef([])
   useEffect(() => {
-    markerRefs.current
-      .filter(({ dioryId }) => !diorys.map(({ id }) => id).includes(dioryId))
-      .map((marker) => marker.remove())
+    if (mapRef.current) {
+      markerRefs.current
+        .filter(({ dioryId }) => !diorys.map(({ id }) => id).includes(dioryId))
+        .map((marker) => marker.remove())
 
-    const oldMarkers = markerRefs.current.filter(({ dioryId }) =>
-      diorys.map(({ id }) => id).includes(dioryId)
-    )
+      const oldMarkers = markerRefs.current.filter(({ dioryId }) =>
+        diorys.map(({ id }) => id).includes(dioryId)
+      )
 
-    const newMarkers = diorys
-      .filter(({ id }) => !markerRefs.current.map(({ dioryId }) => dioryId).includes(id))
-      .filter(({ latitude, longitude }) => latitude && longitude)
-      .map((diory) => createMapMarker({ diory }).addTo(mapRef.current))
-      .map(addDataTestIdToMarker('linked-diory-marker'))
+      const newMarkers = diorys
+        .filter(({ id }) => !markerRefs.current.map(({ dioryId }) => dioryId).includes(id))
+        .map((diory) => createMapMarker({ diory, diorys }))
+        .filter(Boolean)
+        .map((marker) => marker.addTo(mapRef.current))
+        .map(addDataTestIdToMarker('linked-diory-marker'))
 
-    markerRefs.current = oldMarkers.concat(newMarkers)
+      markerRefs.current = oldMarkers.concat(newMarkers)
+    }
   }, [mapRef, markerRefs, diorys])
 }
 
