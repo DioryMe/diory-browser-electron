@@ -1,8 +1,8 @@
-import { useDispatch, useStore } from '../../../../../store'
-import { setInactive } from '../../../../buttons/actions'
-import { goBackward } from '../../../../navigation/actions'
-import { deleteDiory, deleteLink } from '../../../../room/actions'
-import { useFocusDiory } from '../../../../room/hooks'
+import { useDispatch, useStore } from '../../../store'
+import { setInactive } from '../../buttons/actions'
+import { goBackward } from '../../navigation/actions'
+import { deleteDiory, deleteLink } from '../../room/actions'
+import { useFocusDiory } from '../../room/hooks'
 import { DELETE_BUTTON } from './buttons'
 
 export const useDeleteTool = () => {

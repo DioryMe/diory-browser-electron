@@ -1,5 +1,5 @@
-import { useDispatch, useStore } from '../../../../../store'
-import { setLink } from '../../../../navigation/actions'
+import { useDispatch, useStore } from '../../../store'
+import { setLink } from '../../navigation/actions'
 import { UPDATE_TOOL_BUTTON } from './buttons'
 
 export const useUpdateTool = () => {

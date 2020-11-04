@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import { useDispatch } from '../../../../../store'
+import { useDispatch } from '../../../store'
 
-import { setOpen, setInactive } from '../../../../buttons/actions'
-import { setLink } from '../../../../navigation/actions'
+import { setOpen, setInactive } from '../../buttons/actions'
+import { setLink } from '../../navigation/actions'
 
-import Modal from '../../../../../components/Modal'
-import TextInput from '../../../../../components/TextInput'
+import Modal from '../../../components/Modal'
+import TextInput from '../../../components/TextInput'
 
 import fields from './fields'
 
