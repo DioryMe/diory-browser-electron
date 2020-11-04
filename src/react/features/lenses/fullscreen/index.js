@@ -1,4 +1,4 @@
-import { default as View } from './FullscreenLens'
+import Lens from './FullscreenLens'
 
 export default {
   diory: {
@@ -6,5 +6,5 @@ export default {
     text: 'Fullscreen',
     image: 'fullscreen',
   },
-  View,
+  Lens,
 }
