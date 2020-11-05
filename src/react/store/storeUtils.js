@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { debounce } from '../utils'
 import { useDispatch } from './StoreContext'
 
@@ -28,7 +29,11 @@ export const useDispatchActions = () => {
       return params
     },
     dispatchPromiseAction: promiseActions(dispatch),
-    debounceDispatchPromiseAction: debounce(promiseActions(dispatch), 1000),
+    debounceDispatchPromiseAction: useCallback(
+      // Use the same debounce function
+      debounce(promiseActions(dispatch), 1000),
+      []
+    ),
   }
 }
 
