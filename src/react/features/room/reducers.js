@@ -15,13 +15,6 @@ export const initialState = {
   updated: false,
 }
 
-const getRoom = (state, { payload }) => ({
-  ...state,
-  id: payload.id,
-  diograph: payload.diograph,
-  updated: false,
-})
-
 const createDiory = (state, { payload }) => ({
   ...state,
   diograph: {
@@ -75,7 +68,7 @@ const createLink = (state, { payload }) => {
 const deleteLink = (state, { payload }) => {
   const diory = state.diograph[payload.diory.id]
   // eslint-disable-next-line no-unused-vars
-  const { [payload.diory.link.id]: omit, ...links } = diory.links
+  const { [payload.link.id]: omit, ...links } = diory.links
   return {
     ...state,
     diograph: {
@@ -95,6 +88,6 @@ export default createReducer({
   [UPDATE_DIORY]: updateDiory,
   [CREATE_LINK]: createLink,
   [DELETE_LINK]: deleteLink,
-  ...promiseReducers(GET_ROOM, 'updated', 'saving', 'saved', 'error', getRoom),
+  ...promiseReducers(GET_ROOM, 'load', 'loading', 'loaded', 'error'),
   ...promiseReducers(SAVE_ROOM, 'updated', 'saving', 'saved', 'error'),
 })

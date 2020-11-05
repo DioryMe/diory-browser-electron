@@ -6,18 +6,14 @@ import { useConnections } from '../useConnections'
 
 export const useSaveRoomEffect = (saveRoomClient, connectorId) => {
   const [{ diograph, updated }] = useStore((state) => state.room)
-  const { connections } = useConnections(connectorId)
+  const { connected } = useConnections(connectorId)
 
   const { debounceDispatchPromiseAction } = useDispatchActions()
   useEffect(() => {
     if (updated) {
-      connections
-        .filter(({ connected }) => connected)
-        .forEach(({ address, room }) => {
-          if (updated) {
-            debounceDispatchPromiseAction(() => saveRoomClient(address, { diograph }), saveRoom)
-          }
-        })
+      connected.forEach(({ address }) => {
+        debounceDispatchPromiseAction(() => saveRoomClient(address, { diograph }), saveRoom)
+      })
     }
-  }, [updated, connections, diograph, debounceDispatchPromiseAction, saveRoomClient])
+  }, [updated, connected, diograph, debounceDispatchPromiseAction, saveRoomClient])
 }
