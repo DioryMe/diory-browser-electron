@@ -6,6 +6,10 @@ export const StoreProvider = ({ reducer, initialState, children }) => (
   <StoreContext.Provider value={useReducer(reducer, initialState)} children={children} />
 )
 
+StoreProvider.defaultProps = {
+  reducer: () => {},
+}
+
 export const useStore = (selector) => {
   const [state, dispatch] = useContext(StoreContext)
   const selectedState = selector ? selector(state) : state
