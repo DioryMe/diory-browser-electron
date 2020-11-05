@@ -1,5 +1,8 @@
 import { useEffect } from 'react'
+import { v4 as uuid } from 'uuid'
+
 import { useDispatch, useStore } from '../../../../store'
+import { addRoom } from '../../../home/actions'
 
 import { enterRoom, setFocus } from '../../../navigation/actions'
 import { setInactive } from '../../../buttons/actions'
@@ -20,15 +23,11 @@ export const useAddConnectionButton = () => {
       window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then((result) => {
         const address = result.filePaths[0]
         openChannel(channels.GENERATE_DIOGRAPH, address).then(({ id, diograph }) => {
-          if (!diograph[id]) {
-            console.log(diograph)
-            throw new Error(`RoomId ${id} not found from generated diograph`)
-          }
-
-          dispatch(enterRoom({ id }))
+          const roomId = uuid()
+          dispatch(addConnection({ address, room: roomId, connector: 'file' }))
+          dispatch(addRoom(roomId, diograph[id]))
+          dispatch(enterRoom({ id: roomId }))
           dispatch(setFocus({ focus: id }))
-
-          dispatch(addConnection({ address, room: id, connector: 'file' }))
         })
       })
     }
