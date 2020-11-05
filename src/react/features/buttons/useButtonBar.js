@@ -1,6 +1,6 @@
-import { useDispatch, useStore } from '../../store'
+import { useDispatchActions, useStore } from '../../store'
 
-import { setOpen } from './actions'
+import { setOpen, setActive, setInactive } from './actions'
 
 const useButtonsArray = () => {
   const [{ buttons }] = useStore((state) => state.buttons)
@@ -14,30 +14,48 @@ export const useButtonBar = () => {
   const [{ active }] = useStore((state) => state.buttons)
 
   const { buttons } = useButtonsArray()
-  const dispatch = useDispatch()
+  const { dispatch } = useDispatchActions()
 
-  if (!open && buttons.length > 1) {
+  const toggleButton = {
+    id: 'tools',
+    data: {
+      icon: open ? 'cross' : 'wrench',
+      testid: 'tools',
+    },
+    onClick: () => {
+      dispatch(setOpen(!open))
+      if (open) {
+        dispatch(setInactive())
+      }
+    },
+  }
+
+  const toolButtons = buttons.map((button) => ({
+    ...button,
+    active: button.id === active,
+    onClick: () => {
+      if (button.id !== active) {
+        return dispatch(setActive(button.id))
+      }
+
+      dispatch(setInactive())
+      dispatch(setOpen(false))
+    },
+  }))
+
+  if (toolButtons.length < 2) {
     return {
-      buttons: [
-        {
-          id: 'tools',
-          data: {
-            icon: 'wrench',
-            testid: 'tools',
-          },
-          onClick: () => dispatch(setOpen(true)),
-        },
-      ],
+      buttons: toolButtons,
+    }
+  }
+
+  if (!open) {
+    return {
+      buttons: [toggleButton],
     }
   }
 
   return {
-    buttons: buttons.map((button) => ({
-      ...button,
-      active: button.id === active,
-      onClick: () => {
-        dispatch(setOpen(false))
-      },
-    })),
+    buttons: [...(open && toolButtons), toggleButton],
   }
 }
