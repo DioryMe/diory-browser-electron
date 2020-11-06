@@ -1,7 +1,7 @@
 import React from 'react'
 import Box from 'ui-box'
 
-const Room = ({ room: { id, image, text, ...diory }, onClick }) => (
+const Room = ({ diory: { id, image, text, ...diory }, onClick }) => (
   <Box
     key={id}
     flex="1 0 240px"
