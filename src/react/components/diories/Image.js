@@ -13,14 +13,22 @@ const defaultStyle = {
   backgroundRepeat: 'no-repeat',
 }
 
-const Image = ({ image, style, backgroundImage, ...props }) => (
-  <Box backgroundImage={backgroundImage} {...defaultStyle} {...style} {...props} />
+const getBackgroundImage = (image, gradient, gradientRgba = '255, 255, 255, 0.5') =>
+  gradient
+    ? `linear-gradient(rgba(${gradientRgba}),rgba(${gradientRgba})), url("${encodeURI(image)}")`
+    : `url("${encodeURI(image)}")`
+
+const Image = ({ image, gradient, gradientRgba, ...props }) => (
+  <Box
+    {...defaultStyle}
+    backgroundImage={getBackgroundImage(image, gradient, gradientRgba)}
+    {...props}
+  />
 )
 
 Image.propTypes = {
   image: PropTypes.string,
   style: PropTypes.object,
-  backgroundImage: PropTypes.string,
 }
 
 export default Image
