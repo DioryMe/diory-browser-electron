@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch } from '../../../store'
 
+import { setRooms } from '../actions'
 import { enterRoom, setFocus } from '../../navigation/actions'
 import { setConnections } from '../../connectors/actions'
 
@@ -12,6 +13,7 @@ export const useGetHomeEffect = () => {
 
   useEffect(() => {
     openChannel(channels.GET_HOME).then(({ rooms, connections, focus }) => {
+      dispatch(setRooms(rooms))
       dispatch(setConnections(connections))
       dispatch(enterRoom({ id: focus.roomId }))
       dispatch(setFocus({ focus: focus.dioryId }))

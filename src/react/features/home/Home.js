@@ -1,11 +1,21 @@
-import { useGetHomeEffect } from './effects/useGetHomeEffect'
-import { useSaveHomeEffect } from './effects/useSaveHomeEffect'
+import React from 'react'
 
-const Home = () => {
-  useGetHomeEffect()
-  useSaveHomeEffect()
+import Navigation from '../navigation/Navigation'
+import Filters from '../filters/Filters'
+import Lenses from '../lenses/Lenses'
+import Rooms from '../rooms/Rooms'
+import Buttons from '../buttons'
+import Connectors from '../connectors/Connectors'
 
-  return null
-}
+const Home = () => (
+  <div className="App">
+    <Navigation />
+    <Filters />
+    <Lenses />
+    <Rooms />
+    <Buttons />
+    <Connectors />
+  </div>
+)
 
 export default Home
