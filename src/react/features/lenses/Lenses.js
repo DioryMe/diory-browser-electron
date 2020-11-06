@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useStore } from '../../store'
-import { useFocusDiory } from '../room/hooks'
+import { useFocusDiory } from '../diograph/hooks'
 import { useLensActions } from './useLensActions'
 
 import Fullscreen from '../../components/Fullscreen'

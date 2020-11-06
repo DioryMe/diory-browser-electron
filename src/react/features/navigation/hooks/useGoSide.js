@@ -3,7 +3,7 @@ import { goSide } from '../actions'
 
 export const useParent = () => {
   const [{ backward }] = useStore((state) => state.navigation)
-  const [{ diograph }] = useStore((state) => state.room)
+  const [{ diograph }] = useStore((state) => state.diograph)
   if (!backward.length) {
     return
   }
