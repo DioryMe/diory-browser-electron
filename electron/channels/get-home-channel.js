@@ -1,4 +1,3 @@
-const path = require('path')
 const { ipcMain } = require('electron')
 const HomeStore = require('electron-store')
 const { channels } = require('../../src/shared/constants')
@@ -11,6 +10,12 @@ ipcMain.on(channels.GET_HOME, (event) => {
     : './public/default-welcome-room'
 
   const defaultHome = {
+    rooms: {
+      'welcome-room': {
+        id: 'welcome-room',
+        text: 'Welcome room!',
+      },
+    },
     connections: {
       [defaultWelcomeRoomPath]: {
         room: 'welcome-room',
@@ -26,5 +31,5 @@ ipcMain.on(channels.GET_HOME, (event) => {
   const store = new HomeStore()
   const home = store.get('home') || defaultHome
 
-  event.reply(channels.GET_HOME, defaultHome)
+  event.reply(channels.GET_HOME, home)
 })
