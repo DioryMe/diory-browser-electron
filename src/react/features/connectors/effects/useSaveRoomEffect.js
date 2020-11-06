@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { useStore, useDispatchActions } from '../../../store'
 
-import { saveRoom } from '../../room/actions'
+import { saveRoom } from '../../diograph/actions'
 import { useConnections } from '../useConnections'
 
 export const useSaveRoomEffect = (saveRoomClient, connectorId) => {
-  const [{ diograph, updated }] = useStore((state) => state.room)
+  const [{ diograph, updated }] = useStore((state) => state.diograph)
   const { connected } = useConnections(connectorId)
 
   const { debounceDispatchPromiseAction } = useDispatchActions()

@@ -1,6 +1,6 @@
 import React from 'react'
 import Diory from '../../../components/diories/Diory'
-import { useFocusDiory } from '../../room/hooks'
+import { useFocusDiory } from '../../diograph/hooks'
 
 const FullscreenLens = () => {
   const { diory } = useFocusDiory()

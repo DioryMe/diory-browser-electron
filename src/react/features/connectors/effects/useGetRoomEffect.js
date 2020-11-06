@@ -3,7 +3,7 @@ import { useDispatchActions } from '../../../store'
 import { updateConnection } from '../actions'
 import { useConnections } from '../useConnections'
 
-import { getRoom } from '../../room/actions'
+import { getRoom } from '../../diograph/actions'
 
 export const useGetRoomEffect = (getRoomClient, connectorId) => {
   const { connect, disconnect } = useConnections(connectorId)

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useStore } from '../../../store'
 import { useCompare } from '../../../utils/useCompare'
 
-import { updateDiory } from '../../room/actions'
+import { updateDiory } from '../../diograph/actions'
 import { setTextFilter } from '../actions'
 
 import { TEXT_FILTER_DIORY_ID } from './textFilterDioryId'
@@ -21,7 +21,7 @@ const getFilteredLinks = (diograph, query = '') =>
     .reduce(diographToLinks, {})
 
 export const useTextFilterEffects = () => {
-  const [{ diograph }] = useStore((state) => state.room)
+  const [{ diograph }] = useStore((state) => state.diograph)
   const [{ roomId }] = useStore((state) => state.navigation)
   const [{ textFilter }] = useStore((state) => state.filters)
 

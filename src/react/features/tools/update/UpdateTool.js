@@ -2,8 +2,8 @@ import React from 'react'
 import { useDispatchActions, useStore } from '../../../store'
 import { useButtons } from '../../buttons'
 
-import { updateDiory } from '../../room/actions'
-import { useLinkDiory } from '../../room/hooks'
+import { updateDiory } from '../../diograph/actions'
+import { useLinkDiory } from '../../diograph/hooks'
 
 import UpdateView from './UpdateView'
 

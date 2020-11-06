@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { v4 as uuid } from 'uuid'
 
 import { useDispatch, useStore } from '../../../../store'
-import { addRoom } from '../../../home/actions'
+import { addRoom } from '../../../rooms/actions'
 
 import { enterRoom, setFocus } from '../../../navigation/actions'
 import { setInactive } from '../../../buttons/actions'

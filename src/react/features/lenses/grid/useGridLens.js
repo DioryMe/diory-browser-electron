@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useStore } from '../../../store'
-import { useFocusDiory } from '../../room/hooks'
+import { useFocusDiory } from '../../diograph/hooks'
 
 const MAX_NUMBER_OF_DIORYS_PER_VIEW = 100
 
