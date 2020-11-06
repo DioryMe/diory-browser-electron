@@ -2,9 +2,7 @@ const { readFileSync } = require('fs')
 const { load } = require('exifreader')
 
 jest.mock('fs')
-// FIXME: exifreader failed to get mock metadata
-// - may require a manual mock: https://jestjs.io/docs/en/manual-mocks
-// jest.mock('exifreader')
+jest.mock('exifreader')
 
 const { readImage } = require('./image-reader')
 
