@@ -1,12 +1,13 @@
 const { readFileSync } = require('fs')
-const { load } = require('exifreader')
 
 jest.mock('fs')
-jest.mock('exifreader')
+
+const mockLoad = jest.fn()
+jest.mock('exifreader', () => ({ load: mockLoad }))
 
 const { readImage } = require('./image-reader')
 
-describe.skip('image-reader', () => {
+describe('image-reader', () => {
   let act
   describe('readImage', () => {
     let imagePath
@@ -20,7 +21,7 @@ describe.skip('image-reader', () => {
       tags = {}
       act = () => {
         readFileSync.mockReturnValue({})
-        load.mockReturnValue(tags)
+        mockLoad.mockReturnValue(tags)
         return readImage(imagePath)
       }
     })
