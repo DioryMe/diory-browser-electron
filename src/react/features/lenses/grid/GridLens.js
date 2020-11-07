@@ -8,10 +8,8 @@ import CreateTool from '../../tools/create/CreateTool'
 import DeleteTool from '../../tools/delete/DeleteTool'
 import UpdateTool from '../../tools/update/UpdateTool'
 
-const GridLens = () => {
-  const { diory, diorys } = useGridLens()
-  const { onClick } = useTools()
-
+const GridLens = ({ diory, diorys, activeButton, actions, toolOnClick }) => {
+  const onClick = activeButton ? toolOnClick : ({ diory }) => actions.setFocus({ focus: diory.id })
   return <>
     <Grid diory={diory} diorys={diorys} onClick={onClick} />
     <CreateTool />
