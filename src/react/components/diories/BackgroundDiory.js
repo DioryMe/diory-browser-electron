@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane, Heading } from 'evergreen-ui'
+import BackgroundVideo from './BackgroundVideo'
 
 import Image from './Image'
 
@@ -20,6 +21,7 @@ const BackgroundDiory = ({ diory, gradient, onClick, children }) => {
       {image && (
         <Image image={image} zIndex={-1} position="fixed" gradient={gradient} {...imageStyle} />
       )}
+      {video && <BackgroundVideo video={video} zIndex={-1} position="fixed" {...videoStyle} />}
       {text && (
         <Heading
           color={image ? 'white' : 'rgb(102, 120, 138)'}
