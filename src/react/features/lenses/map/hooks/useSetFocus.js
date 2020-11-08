@@ -1,9 +1,6 @@
 import { useEffect } from 'react'
-import { useDispatch } from '../../../../store'
-import { setFocus } from '../../../navigation/actions'
 
-export const useSetFocus = (mapRef, diory, activeButton) => {
-  const dispatch = useDispatch()
+export const useSetFocus = (mapRef, diory, activeButton, { setFocus }) => {
   useEffect(() => {
     mapRef.current.eachLayer((marker) => {
       if (marker.dioryId) {
@@ -12,12 +9,12 @@ export const useSetFocus = (mapRef, diory, activeButton) => {
           if (marker.dioryId !== diory.id) {
             marker.on('click', () => {
               if (marker.isPopupOpen()) {
-                dispatch(setFocus({ focus: marker.dioryId }))
+                setFocus({ focus: marker.dioryId })
               }
             })
           }
         }
       }
     })
-  }, [mapRef, diory, activeButton, dispatch])
+  }, [mapRef, diory, activeButton, setFocus])
 }
