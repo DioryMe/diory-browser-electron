@@ -14,6 +14,7 @@ export const useDeleteLocation = (mapRef, diory, activeButton, actions) => {
               marker.dioryId === diory.id
                 ? actions.deleteDiory({ id: marker.dioryId })
                 : actions.deleteLink({ id: diory.id }, { id: marker.dioryId })
+              actions.setInactive()
             })
           }
         }

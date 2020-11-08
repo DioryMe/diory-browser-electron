@@ -1,8 +1,6 @@
 import { useEffect } from 'react'
-import { useDispatch } from '../../../../store'
 
-export const useTogglePopup = (mapRef, activeButton) => {
-  const dispatch = useDispatch()
+export const useTogglePopup = (mapRef, diory, activeButton) => {
   useEffect(() => {
     mapRef.current.eachLayer((marker) => {
       if (marker.dioryId) {
@@ -11,5 +9,5 @@ export const useTogglePopup = (mapRef, activeButton) => {
         })
       }
     })
-  }, [mapRef, activeButton, dispatch])
+  }, [mapRef, diory, activeButton])
 }

@@ -15,15 +15,15 @@ const MapLens = ({ diory, diorys, activeButton, actions }) => {
   const map = useMap(id)
   useMapBounds(map, diory, diorys)
   useMapMarkers(map, diory, diorys)
-  useSetFocus(map, diory, activeButton)
-  useTogglePopup(map, activeButton)
+  useSetFocus(map, diory, activeButton, actions)
+  useTogglePopup(map, diory, activeButton)
 
   return (
     <>
       <div id={id} style={{ height: '100%' }} />
-      <CreateLocation map={map} diory={diory} activeButton={activeButton} actions={actions}/>
-      <UpdateLocation map={map} activeButton={activeButton} actions={actions}/>
-      <DeleteLocation map={map} diory={diory} activeButton={activeButton} actions={actions}/>
+      <CreateLocation map={map} diory={diory} activeButton={activeButton} actions={actions} />
+      <UpdateLocation map={map} activeButton={activeButton} actions={actions} />
+      <DeleteLocation map={map} diory={diory} activeButton={activeButton} actions={actions} />
     </>
   )
 }

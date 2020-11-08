@@ -30,10 +30,8 @@ export const useCreateLocation = (mapRef, diory, activeButton, actions) => {
             zoom,
           })}.png`
 
-          console.log(diory)
-          console.log(id)
           actions.createDiory({ id, image, latitude: lat, longitude: lng })
-          // actions.createLink({ id: diory.id }, { id })
+          actions.createLink({ id: diory.id }, { id })
           actions.setFocus({ focus: id })
           actions.setActive(UPDATE_TOOL_BUTTON)
         })

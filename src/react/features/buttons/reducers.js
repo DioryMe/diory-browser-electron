@@ -39,6 +39,7 @@ export const setActive = (state, { payload }) => ({
 export const setInactive = (state) => ({
   ...state,
   active: null,
+  open: false,
 })
 
 export default createReducer({
