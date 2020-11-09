@@ -43,6 +43,7 @@ const UpdateView = ({ diory, title, isShown, onDone }) => {
     >
       {fields.map(({ key, label, format, value }) => (
         <TextInput
+          id={key}
           key={key}
           label={label}
           format={format}
