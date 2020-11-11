@@ -1,18 +1,15 @@
-import { useDispatch, useStore } from '../../store'
-
-import { useDeleteTool } from './delete/useDeleteTool'
+import { useFocusTool } from './focus/useFocusTool'
 import { useUpdateTool } from './update/useUpdateTool'
+import { useDeleteTool } from './delete/useDeleteTool'
 
 export const useTools = () => {
-  const [{ active }] = useStore((state) => state.buttons)
-  const { onUpdateDiory } = useUpdateTool()
-  const { onDeleteDiory } = useDeleteTool()
+  const focusDiory = useFocusTool()
+  const updateDiory = useUpdateTool()
+  const deleteDiory = useDeleteTool()
 
-  const dispatch = useDispatch()
-  return {
-    onClick: ({ diory }) => {
-      onUpdateDiory({ diory })
-      onDeleteDiory({ diory })
-    }
+  return ({ diory }) => {
+    focusDiory({ diory })
+    updateDiory({ diory })
+    deleteDiory({ diory })
   }
 }
