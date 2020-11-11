@@ -1,9 +1,9 @@
 import { When, Then } from 'cypress-cucumber-preprocessor/steps'
 
 When('I add {string} to {word} field', (inputFieldValue, inputFieldName) => {
-  cy.get(`input#TextInputField-${inputFieldName}`)
-    .dblclick()
-    .type(inputFieldValue, { parseSpecialCharSequences: false })
+  cy.get(`input#TextInputField-${inputFieldName}`).type(inputFieldValue, {
+    parseSpecialCharSequences: false,
+  })
 })
 
 Then('I see {string} in {word} field', (text, inputFieldName) => {

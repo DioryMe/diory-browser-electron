@@ -21,7 +21,11 @@ const useSearchInput = () => {
 
 const NavigationSearch = (props) => {
   const { searchInput } = useSearchInput()
-  return <Pane {...props}>{searchInput && <SearchInput width={200} {...searchInput} />}</Pane>
+  return (
+    <Pane {...props}>
+      {searchInput && <SearchInput id="NavigationSearch" width={200} {...searchInput} />}
+    </Pane>
+  )
 }
 
 export default NavigationSearch
