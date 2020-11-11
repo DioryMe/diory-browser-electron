@@ -20,10 +20,18 @@ When('click {word} button', (buttonName) => {
   cy.get('button').contains(buttonName).click()
 })
 
+When('I type {string} in search bar', (searchString) => {
+  cy.get('input#NavigationSearch').type(searchString)
+})
+
 // THEN
 
 Then('I see {string} in view', (dioryName) => {
   cy.contains(dioryName).should('have.length', 1)
+})
+
+Then("I don't see {string} in view", (dioryName) => {
+  cy.contains(dioryName).should('have.length', 0)
 })
 
 Then('I do not see {word} to {word} button', (word1, word2) => {
