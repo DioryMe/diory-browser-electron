@@ -2,30 +2,48 @@ Feature: Map lens
 
   Background:
     Given I am at home
+    When I take 'Tampere' in focus
     And I select map lens
 
-  @pending
-  Scenario: Diory markers on map
-    Given room 1 has 2 links with location
-    Then I see 2 markers on Map
-
-  @pending
-  Scenario: Diory popup on map
-    When I select diory 1
-    Then I see 1 popup on map
-
-  @pending
-  Scenario: Diory in focus
-    When I select diory 1 marker on map
-    And I select diory 1 popup on map
-    Then I see diory 1 on map
-
-  @pending
-  Scenario: Linked diory markers on map
-    Given I select diory 1 marker
-    And I select diory 1 popup
-    And diory 1 has 4 links
+  Scenario: Markers on map
     Then I see 4 markers on map
+
+  Scenario: Diory in focus popup on map
+    Then I see 'Tampere' popup on map
+
+  Scenario: Diory in focus persists when changing lenses
+    When I select grid lens
+    When I take 'Frenkell' in focus
+    When I select map lens
+    Then I see 'Frenkell' in view
+
+  Scenario: Change popup on map
+    When I click 'Keskustori' marker
+    # FIXME: This should fail because the text is in popup, not in diory view...
+    # - currently there's no elements to specify searching the text better
+    Then I see 'Keskustori' in view
+    Then I see 'Keskustori' popup on map
+
+  Scenario: Change diory in focus on map
+    When I doubleclick 'Keskustori' marker
+    Then I see 'Keskustori' popup on map
+    And I see 1 marker on map
+
+  Scenario: Changing focus changes focus also on grid
+    When I doubleclick 'Keskustori' marker
+    And I select grid lens
+    Then I see 'Keskustori' in view
+
+  Scenario: Back button on map
+    When I doubleclick 'Keskustori' marker
+    And I navigate backward
+    Then I see 'Tampere' popup on map
+
+  Scenario: Forward button on map
+    When I doubleclick 'Keskustori' marker
+    And I navigate backward
+    And I navigate forward
+    Then I see 'Keskustori' popup on map
 
   @pending
   Scenario: Selecting tool
