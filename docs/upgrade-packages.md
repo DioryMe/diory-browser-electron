@@ -1,6 +1,6 @@
 # Upgrading packages
 
-Updgrading packages should be as easy as possible. We assume that our test suite will bring up all the problems that may arise
+Updgrading packages should be as easy as possible. We assume that our test suite will bring up all the problems that may arise.
 
 ## Default process, the happy path
 
