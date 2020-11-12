@@ -14,6 +14,7 @@ Feature: Update tool
 
   # Text
   Scenario: Update text
+    # FIXME: Don't know how to select all & replace the text
     When I add ' some text' to text field
     And click Done button
     And I select tools button
