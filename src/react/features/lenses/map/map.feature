@@ -38,6 +38,7 @@ Feature: Map lens
     When I doubleclick 'Keskustori' marker
     And I navigate backward
     Then I see 'Tampere' popup on map
+    And I see 4 markers on map
 
   Scenario: Forward button on map
     When I doubleclick 'Keskustori' marker

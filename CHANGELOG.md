@@ -1,4 +1,19 @@
-## 2.1.0 (November , 2020)
+## 2.1.0 (November 19, 2020)
+
+### DDA-65 Migrate from Cucumber to Cypress
+- `yarn cypress run` is run via Github Action (and `yarn cucumber` is removed)
+- New development content is now used also with tests + convert tests
+- cucumber-js and all the related stuff is removed
+- Cypress is set up with example specs and first step definitions
+- cypress-cucumber-preprocessor setup
+- cypress-react-selector was setup but didn't update virtual DOM as expected
+- room.feature and navigation.feature as first tests
+
+### DDA-67 Feature tests for all the existing features
+- updateTool.feature and createTool.feature
+- search.feature
+- map.feature
+- Update Cypress to 5.6.0
 
 ### DDA-69: Timeline and fullscreen lenses and tools for lenses
 - Create timeline lens
