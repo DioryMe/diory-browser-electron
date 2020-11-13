@@ -27,9 +27,12 @@ const createMapPopup = ({ diory = {} }) => {
     .join('')
 
   const content = `<div style="${getPopupStyle(diory)}">${elements}</div>`
-  return L.popup({
+  const popup = L.popup({
     closeButton: false,
   }).setContent(content)
+
+  popup.diory = diory
+  return popup
 }
 
 const createMapMarker = ({ diory, diorys, parent }) => {

@@ -67,8 +67,9 @@ const createLink = (state, { payload }) => {
 
 const deleteLink = (state, { payload }) => {
   const diory = state.diograph[payload.diory.id]
+  const linkKey = Object.entries(diory.links).filter(([, linkDiory]) => linkDiory.id === payload.link.id )[0][0]
   // eslint-disable-next-line no-unused-vars
-  const { [payload.link.id]: omit, ...links } = diory.links
+  const { [linkKey]: omit, ...links } = diory.links
   return {
     ...state,
     diograph: {
