@@ -1,31 +1,27 @@
 import React from 'react'
 
-import { useMap } from './hooks/useMap'
-import { useMapBounds } from './hooks/useMapBounds'
-import { useMapMarkers } from './hooks/useMapMarkers'
-import { useSetFocus } from './hooks/useSetFocus'
-import { useTogglePopup } from './hooks/useTogglePopup'
+import { useFocusTool } from '../../tools/focus'
+import { useCreateTool } from '../../tools/create'
+import { useDeleteTool } from '../../tools/delete'
+import { useMoveTool, useMoveToolIsActive } from '../../tools/move'
 
-import CreateLocation from './tools/create/CreateLocation'
-import UpdateLocation from './tools/update/UpdateLocation'
-import DeleteLocation from './tools/delete/DeleteLocation'
+import MapView from './MapView'
 
-const MapLens = ({ diory, diorys, activeButton, actions }) => {
-  const id = 'mapId'
-  const map = useMap(id)
-  useMapBounds(map, diory, diorys)
-  useMapMarkers(map, diory, diorys)
-  useSetFocus(map, diory, activeButton, actions)
-  useTogglePopup(map, diory, activeButton)
+const useTools = () => ({
+  onPopupClick: useFocusTool(),
+  onMapClick: useCreateTool(),
+  onMarkerClick: useDeleteTool(),
+  onDragEnd: useMoveTool(),
+  enableDragging: useMoveToolIsActive(),
+})
 
-  return (
-    <>
-      <div id={id} style={{ height: '100%' }} />
-      <CreateLocation map={map} diory={diory} activeButton={activeButton} actions={actions} />
-      <UpdateLocation map={map} activeButton={activeButton} actions={actions} />
-      <DeleteLocation map={map} diory={diory} activeButton={activeButton} actions={actions} />
-    </>
-  )
-}
+const MapLens = ({ diory, diorys, activeButton }) => (
+  <MapView
+    diory={diory}
+    diorys={diorys}
+    {...useTools()}
+    activeButton={activeButton}
+  />
+)
 
 export default MapLens
