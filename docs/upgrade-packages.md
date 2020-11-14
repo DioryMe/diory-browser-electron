@@ -36,7 +36,7 @@ Node and Yarn are outside of `package.json` so they are not upgraded by `yarn up
 Node version should be updated every time Electron moves on using the next Node version.
 
 1. Check the Node version of the Electron from [stable releases page](https://www.electronjs.org/releases/stable)
-1. Change that version to `Dockerfile`, e.g. `FROM node:12.13`
+1. Change that version to `Dockerfile`, e.g. `FROM node:12.16.3`
 2. Change that version for all the Github Actions
 1. Yarn is updated as a part of the Docker image.
   * Docker image's Dockerfile and YARN_VERSION from [Docker hub](https://hub.docker.com/_/node/) by selecting the version
