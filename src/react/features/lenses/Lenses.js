@@ -8,12 +8,12 @@ import Fullscreen from '../../components/Fullscreen'
 import fullscreen from './fullscreen'
 import grid from './grid'
 import map from './map'
-import timeline from './timeline'
+// import timeline from './timeline'
 
 export const lenses = {
   grid,
   map,
-  timeline,
+  // timeline,
   fullscreen,
 }
 
