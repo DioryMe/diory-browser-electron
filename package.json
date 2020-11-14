@@ -118,6 +118,9 @@
       "@babel/plugin-transform-runtime"
     ]
   },
+  "jest": {
+    "testPathIgnorePatterns": ["build"]
+  },
   "prettier": {
     "tabWidth": 2,
     "semi": false,
