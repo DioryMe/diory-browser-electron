@@ -4,7 +4,7 @@ import { setFocus } from '../../navigation/actions'
 export const useFocusTool = () => {
   const [{ active }] = useStore((state) => state.buttons)
   const dispatch = useDispatch()
-  return ({ diory: clickedDiory }) => {
+  return (clickedDiory) => {
     if (!active) {
       dispatch(setFocus({ focus: clickedDiory.id }))
     }

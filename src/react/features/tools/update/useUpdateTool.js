@@ -1,11 +1,14 @@
 import { useDispatch, useStore } from '../../../store'
+import { useButtons } from '../../buttons'
 import { setLink } from '../../navigation/actions'
-import { UPDATE_TOOL_BUTTON } from './buttons'
+import { buttons, UPDATE_TOOL_BUTTON } from './buttons'
 
 export const useUpdateTool = () => {
+  useButtons(buttons)
+
   const [{ active }] = useStore((state) => state.buttons)
   const dispatch = useDispatch()
-  return ({ diory: clickedDiory }) => {
+  return (clickedDiory) => {
     if (UPDATE_TOOL_BUTTON === active) {
       dispatch(setLink(clickedDiory))
     }

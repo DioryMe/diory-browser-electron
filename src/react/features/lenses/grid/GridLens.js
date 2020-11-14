@@ -1,17 +1,27 @@
 import React from 'react'
 
-import Grid from '../../../components/Grid'
-import CreateTool from '../../tools/create/CreateTool'
-import DeleteTool from '../../tools/delete/DeleteTool'
-import UpdateTool from '../../tools/update/UpdateTool'
+import { useCreateTool } from '../../tools/create'
+import { useDeleteTool } from '../../tools/delete'
+import { useFocusTool } from '../../tools/focus'
+import { useUpdateTool } from '../../tools/update'
 
-const GridLens = ({ diory, diorys, onClick }) => (
-  <>
-    <Grid diory={diory} diorys={diorys} onClick={onClick} />
-    <CreateTool />
-    <DeleteTool />
-    <UpdateTool />
-  </>
-)
+import Grid from '../../../components/Grid'
+
+const useTools = () => {
+  const focusDiory = useFocusTool()
+  const deleteDiory = useDeleteTool()
+  const updateDiory = useUpdateTool()
+  useCreateTool()
+
+  return ({
+    onClick: ({ diory }) => {
+      focusDiory(diory)
+      deleteDiory(diory)
+      updateDiory(diory)
+    },
+  })
+}
+
+const GridLens = ({ diory, diorys }) => <Grid diory={diory} diorys={diorys} {...useTools()} />
 
 export default GridLens
