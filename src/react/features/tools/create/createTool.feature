@@ -16,9 +16,9 @@ Feature: Create tool
   Scenario: Create text
     When I add 'Some diory' to text field
     And click Done button
-    And I take 'Some diory' in focus
     And I select tools button
     And I select update button
+    And I take 'Some diory' in focus
     Then I see 'Some diory' in text field
 
   Scenario: Create text changes diory text
@@ -32,9 +32,9 @@ Feature: Create tool
     When I add '/test-image.png' to image field
     And I add 'Some diory' to text field
     And click Done button
-    And I take 'Some diory' in focus
     And I select tools button
     And I select update button
+    And I take 'Some diory' in focus
     Then I see '/test-image.png' in image field
 
   # TODO: Checking background-image is dioryId dependent
@@ -49,9 +49,9 @@ Feature: Create tool
     When I add '{"some":"object"}' to style field
     And I add 'Some diory' to text field
     And click Done button
-    And I take 'Some diory' in focus
     And I select tools button
     And I select update button
+    And I take 'Some diory' in focus
     Then I see '{"some":"object"}' in style field
 
   Scenario: Invalid style
@@ -63,9 +63,9 @@ Feature: Create tool
     When I add '123' to longitude field
     And I add 'Some diory' to text field
     And click Done button
-    And I take 'Some diory' in focus
     And I select tools button
     And I select update button
+    And I take 'Some diory' in focus
     Then I see '123' in longitude field
 
   # Latitude
@@ -73,9 +73,9 @@ Feature: Create tool
     When I add '234' to latitude field
     And I add 'Some diory' to text field
     And click Done button
-    And I take 'Some diory' in focus
     And I select tools button
     And I select update button
+    And I take 'Some diory' in focus
     Then I see '234' in latitude field
 
   # Date
@@ -83,9 +83,9 @@ Feature: Create tool
     When I add '2020-11-01' to date field
     And I add 'Some diory' to text field
     And click Done button
-    And I take 'Some diory' in focus
     And I select tools button
     And I select update button
+    And I take 'Some diory' in focus
     Then I see '2020-11-01' in date field
 
   # Data
@@ -93,9 +93,9 @@ Feature: Create tool
     When I add '{"some":"object"}' to data field
     And I add 'Some diory' to text field
     And click Done button
-    And I take 'Some diory' in focus
     And I select tools button
     And I select update button
+    And I take 'Some diory' in focus
     Then I see '{"some":"object"}' in data field
 
   Scenario: Invalid style
