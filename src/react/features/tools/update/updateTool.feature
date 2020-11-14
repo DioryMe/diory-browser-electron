@@ -4,9 +4,9 @@ Feature: Update tool
     Given I am at home
     When I take 'Generic content' in focus
     And I take 'Diory 1' in focus
-    And I take 'Diory 11' in focus
     And I select tools button
     And I select update button
+    And I take 'Diory 11' in focus
 
   Scenario: Update tool shown
     Then update tool is active
@@ -19,6 +19,7 @@ Feature: Update tool
     And click Done button
     And I select tools button
     And I select update button
+    And I take 'Diory 11' in focus
     Then I see 'Diory 11 some text' in text field
 
   Scenario: Update text changes diory text
@@ -32,12 +33,13 @@ Feature: Update tool
     And click Done button
     And I select tools button
     And I select update button
+    And I take 'Diory 11' in focus
     Then I see '/test-image.png' in image field
 
   Scenario: Update image changes background image
     When I add '/test-image.png' to image field
     And click Done button
-    Then 'diory11' has 'url("http://localhost:3300/test-image.png")' as 'background-image'
+    Then 'diory11' has 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("http://localhost:3300/test-image.png")' as 'background-image'
 
   # Style
   Scenario: Update style
@@ -45,6 +47,7 @@ Feature: Update tool
     And click Done button
     And I select tools button
     And I select update button
+    And I take 'Diory 11' in focus
     Then I see '{"some":"object"}' in style field
 
   Scenario: Invalid style
@@ -57,6 +60,7 @@ Feature: Update tool
     And click Done button
     And I select tools button
     And I select update button
+    And I take 'Diory 11' in focus
     Then I see '123' in longitude field
 
   # Latitude
@@ -65,6 +69,7 @@ Feature: Update tool
     And click Done button
     And I select tools button
     And I select update button
+    And I take 'Diory 11' in focus
     Then I see '234' in latitude field
 
   # Date
@@ -73,6 +78,7 @@ Feature: Update tool
     And click Done button
     And I select tools button
     And I select update button
+    And I take 'Diory 11' in focus
     Then I see '2020-11-01' in date field
 
   # Data
@@ -81,6 +87,7 @@ Feature: Update tool
     And click Done button
     And I select tools button
     And I select update button
+    And I take 'Diory 11' in focus
     Then I see '{"some":"object"}' in data field
 
   Scenario: Invalid style

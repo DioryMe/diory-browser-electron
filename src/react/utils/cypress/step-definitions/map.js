@@ -5,9 +5,9 @@ When('I click {string} marker', (dioryName) => {
   cy.get('img[data-testid=linked-diory-marker]').first().click()
 })
 
-When('I doubleclick {string} marker', (dioryName) => {
-  // FIXME: This doesn't use dioryName at all
-  cy.get('img[data-testid=linked-diory-marker]').first().dblclick()
+Then('I click {string} popup on map', (dioryName) => {
+  // FIXME: This doesn't require having the dioryName inside the popup
+  cy.contains(dioryName).click()
 })
 
 Then('I see {int} marker(s) on map', (markerCount) => {
