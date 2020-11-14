@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useFocusTool } from '../../tools/focus'
-import { useCreateTool } from '../../tools/create'
+import { useCreateTool } from '../../tools/createLocation'
 import { useDeleteTool } from '../../tools/delete'
 import { useMoveTool, useMoveToolIsActive } from '../../tools/move'
 
