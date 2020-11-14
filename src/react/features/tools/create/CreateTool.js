@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useStore } from '../../../store'
-import { useCreateTool } from './useCreateTool'
+import { useCreateDiory } from './useCreateDiory'
 
 import UpdateView from '../update/UpdateView'
 
@@ -9,7 +9,7 @@ import { CREATE_TOOL_BUTTON } from './buttons'
 
 const CreateTool = () => {
   const [{ active }] = useStore((state) => state.buttons)
-  const createDiory = useCreateTool()
+  const createDiory = useCreateDiory()
 
   return CREATE_TOOL_BUTTON === active ? (
     <UpdateView
