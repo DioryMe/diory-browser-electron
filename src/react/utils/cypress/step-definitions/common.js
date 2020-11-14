@@ -50,5 +50,5 @@ Then('{word} tool is active', (toolName) => {
 })
 
 Then('{string} has {string} as {string}', (dioryId, cssValue, cssKey) => {
-  cy.get(`div#${dioryId} > div:first-child`).should('have.css', cssKey, cssValue)
+  cy.get(`div#${dioryId} > div:first-child > div:first-child`).should('have.css', cssKey, cssValue)
 })

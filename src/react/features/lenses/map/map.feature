@@ -25,23 +25,27 @@ Feature: Map lens
     Then I see 'Keskustori' popup on map
 
   Scenario: Change diory in focus on map
-    When I doubleclick 'Keskustori' marker
+    When I click 'Keskustori' marker
+    And I click 'Keskustori' popup on map
     Then I see 'Keskustori' popup on map
     And I see 1 marker on map
 
   Scenario: Changing focus changes focus also on grid
-    When I doubleclick 'Keskustori' marker
+    When I click 'Keskustori' marker
+    And I click 'Keskustori' popup on map
     And I select grid lens
     Then I see 'Keskustori' in view
 
   Scenario: Back button on map
-    When I doubleclick 'Keskustori' marker
+    When I click 'Keskustori' marker
+    And I click 'Keskustori' popup on map
     And I navigate backward
     Then I see 'Tampere' popup on map
     And I see 4 markers on map
 
   Scenario: Forward button on map
-    When I doubleclick 'Keskustori' marker
+    When I click 'Keskustori' marker
+    And I click 'Keskustori' popup on map
     And I navigate backward
     And I navigate forward
     Then I see 'Keskustori' popup on map
