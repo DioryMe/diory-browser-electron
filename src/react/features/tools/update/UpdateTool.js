@@ -1,6 +1,5 @@
 import React from 'react'
 import { useDispatchActions, useStore } from '../../../store'
-import { useButtons } from '../../buttons'
 
 import { updateDiory } from '../../diograph/actions'
 import { useLinkDiory } from '../../diograph/hooks'
@@ -10,8 +9,6 @@ import UpdateView from './UpdateView'
 import { buttons, UPDATE_TOOL_BUTTON } from './buttons'
 
 const UpdateTool = () => {
-  useButtons(buttons)
-
   const [{ active }] = useStore((state) => state.buttons)
   const [{ link }] = useStore((state) => state.navigation)
   const { diory } = useLinkDiory()

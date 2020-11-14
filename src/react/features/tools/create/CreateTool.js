@@ -1,31 +1,21 @@
 import React from 'react'
-import { v4 as uuid } from 'uuid'
-import { useDispatchActions, useStore } from '../../../store'
-import { useButtons } from '../../buttons'
-import { useFocusDiory } from '../../diograph/hooks'
 
-import { createDiory, createLink } from '../../diograph/actions'
+import { useStore } from '../../../store'
+import { useCreateTool } from './useCreateTool'
 
 import UpdateView from '../update/UpdateView'
 
-import { buttons, CREATE_TOOL_BUTTON } from './buttons'
+import { CREATE_TOOL_BUTTON } from './buttons'
 
 const CreateTool = () => {
-  useButtons(buttons)
-
   const [{ active }] = useStore((state) => state.buttons)
-  const { diory: focusDiory } = useFocusDiory()
-  const { dispatch } = useDispatchActions()
+  const createDiory = useCreateTool()
 
   return CREATE_TOOL_BUTTON === active ? (
     <UpdateView
       title="Create diory"
       isShown
-      onDone={(newDiory) => {
-        const id = uuid()
-        dispatch(createDiory({ ...newDiory, id }))
-        dispatch(createLink(focusDiory, { id }))
-      }}
+      onDone={createDiory}
     />
   ) : null
 }

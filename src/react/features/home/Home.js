@@ -4,6 +4,7 @@ import Navigation from '../navigation/Navigation'
 import Filters from '../filters/Filters'
 import Lenses from '../lenses/Lenses'
 import Rooms from '../rooms/Rooms'
+import Tools from '../tools/Tools'
 import Buttons from '../buttons'
 import Connectors from '../connectors/Connectors'
 
@@ -13,6 +14,7 @@ const Home = () => (
     <Filters />
     <Lenses />
     <Rooms />
+    <Tools />
     <Buttons />
     <Connectors />
   </div>
