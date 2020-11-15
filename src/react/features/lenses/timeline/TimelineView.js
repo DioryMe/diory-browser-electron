@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { useDragging } from '../utils/markers/useDragging'
 import { useMarkers } from '../utils/markers/useMarkers'
 import { useLinkIcons } from './hooks/useLinkIcons'
@@ -9,9 +10,7 @@ import { useTimelineBounds } from './hooks/useTimelineBounds'
 import { usePopups } from '../utils/popup/usePopups'
 import { useScale } from './scale/useScale'
 
-import { useLinkMarkers } from '../utils/markers/useLinkMarkers'
 import { usePopupClick } from '../utils/popup/usePopupClick'
-
 import { useTimelineClick } from './hooks/useTimelineClick'
 
 import { getIsoDate, getLocationData } from './hooks/getLocationData'
@@ -37,7 +36,7 @@ const TimelineView = ({
 
   useTimelineBounds(timeline, locationData.diory)
 
-  const markers = useMarkers(timeline, null, locationData.diorys, enableDragging, onDragEnd)
+  const markers = useMarkers(timeline, null, locationData.diorys)
   useLinkIcons(timeline, markers.linkMarkers, diory)
 
   usePopups(timeline, markers, null, diorys)
