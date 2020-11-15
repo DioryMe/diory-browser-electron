@@ -5,7 +5,7 @@ import BackgroundVideo from './BackgroundVideo'
 
 import Image from './Image'
 
-const BackgroundDiory = ({ diory, gradient, onClick, children }) => {
+const BackgroundDiory = ({ diory, gradient, gradientRgba, onClick, children, ...props }) => {
   const { id, text, image, video, style: dioryStyle = {} } = diory
   const { text: textStyle, image: imageStyle, video: videoStyle, ...style } = dioryStyle
   return (
@@ -17,9 +17,10 @@ const BackgroundDiory = ({ diory, gradient, onClick, children }) => {
       margin={24}
       alignContent="flex-start"
       style={style}
+      {...props}
     >
       {image && (
-        <Image image={image} zIndex={-1} position="fixed" gradient={gradient} {...imageStyle} />
+        <Image image={image} zIndex={-1} position="fixed" gradient={gradient} gradientRgba={gradientRgba} {...imageStyle} />
       )}
       {video && <BackgroundVideo video={video} zIndex={-1} position="fixed" {...videoStyle} />}
       {text && (
