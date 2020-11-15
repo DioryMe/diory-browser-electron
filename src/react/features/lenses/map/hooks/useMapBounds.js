@@ -1,15 +1,12 @@
 import { useEffect } from 'react'
-import { useCompare, useInitial } from '../../../../utils/useCompare'
-import { getLocationData } from './getLocationData'
+import { useInitial } from '../../../../utils/useCompare'
 
 const MAX_ZOOM = 14
 
-export const useMapBounds = (mapRef, diory, diorys) => {
-  const isInitial = useInitial(diory.id)
-  const focusChanged = useCompare(diory.id)
+export const useMapBounds = (mapRef, { center, min, max }) => {
+  const isInitial = useInitial(center)
   useEffect(() => {
-    if (focusChanged) {
-      const { center, min, max } = getLocationData({ diory, diorys })
+    if (mapRef.current) {
       if (min && max) {
         isInitial ?
           mapRef.current.fitBounds([min, max], { maxZoom: MAX_ZOOM }) :
@@ -22,5 +19,5 @@ export const useMapBounds = (mapRef, diory, diorys) => {
         mapRef.current.fitWorld()
       }
     }
-  }, [mapRef, focusChanged, isInitial, diory, diorys])
+  }, [mapRef, isInitial, center, min, max])
 }
