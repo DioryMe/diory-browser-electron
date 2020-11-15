@@ -7,13 +7,19 @@ import { useMoveTool, useMoveToolIsActive } from '../../tools/move'
 
 import MapView from './MapView'
 
-const useTools = () => ({
-  onPopupClick: useFocusTool(),
-  onMapClick: useCreateTool(),
-  onMarkerClick: useDeleteTool(),
-  onDragEnd: useMoveTool(),
-  enableDragging: useMoveToolIsActive(),
-})
+const useTools = () => {
+  const focusDiory = useFocusTool()
+  const deleteDiory = useDeleteTool()
+  return ({
+    onPopupClick: (diory) => {
+      focusDiory(diory)
+      deleteDiory(diory)
+    },
+    onMapClick: useCreateTool(),
+    onDragEnd: useMoveTool(),
+    enableDragging: useMoveToolIsActive(),
+  })
+}
 
 const MapLens = ({ diory, diorys, activeButton }) => (
   <MapView

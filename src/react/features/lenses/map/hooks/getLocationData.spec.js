@@ -1,9 +1,9 @@
-import { getLocationData } from './getLocationData'
+import { getDioryLocationData } from './getLocationData'
 
-describe('getLocationData', () => {
+describe('getDioryLocationData', () => {
   describe('given diory location', () => {
     it('returns center', () => {
-      const { center } = getLocationData({
+      const { center } = getDioryLocationData({
         diory: {
           latitude: 'some-latitude',
           longitude: 'some-longitude',
@@ -17,7 +17,7 @@ describe('getLocationData', () => {
 
     describe('given diorys with location', () => {
       it('returns min and max locations of diorys', () => {
-        const { min, max } = getLocationData({
+        const { min, max } = getDioryLocationData({
           diory: {
             latitude: 0,
             longitude: 30,
@@ -77,13 +77,13 @@ describe('getLocationData', () => {
 
     noDioryLocation.forEach((diory) => {
       it('returns undefined center', () => {
-        const { center } = getLocationData({ diory })
+        const { center } = getDioryLocationData({ diory })
         expect(center).toBe(undefined)
       })
     })
 
     it('returns undefined center', () => {
-      const { center } = getLocationData({
+      const { center } = getDioryLocationData({
         diory: {
           longitude: 'some-longitude',
         },
@@ -93,7 +93,7 @@ describe('getLocationData', () => {
 
     describe('given diorys with location', () => {
       it('returns center as average location of diorys', () => {
-        const { center } = getLocationData({
+        const { center } = getDioryLocationData({
           diorys: [
             {
               latitude: 10,
@@ -112,7 +112,7 @@ describe('getLocationData', () => {
       })
 
       it('returns min and max locations of diorys', () => {
-        const { min, max } = getLocationData({
+        const { min, max } = getDioryLocationData({
           diorys: [
             {
               latitude: 10,
@@ -175,7 +175,7 @@ describe('getLocationData', () => {
 
     noDiorysLocation.forEach(({ diorys }) => {
       it.only('returns min and max of defined locations', () => {
-        const { min, max } = getLocationData({ diorys })
+        const { min, max } = getDioryLocationData({ diorys })
         expect(min).toStrictEqual({
           lat: expect.any(Number),
           lng: expect.any(Number),
@@ -228,7 +228,7 @@ describe('getLocationData', () => {
 
     noDiorysLocation.forEach(({ diorys }) => {
       it('returns undefined min and max', () => {
-        const { min, max } = getLocationData({ diorys })
+        const { min, max } = getDioryLocationData({ diorys })
         expect(min).toBe(undefined)
         expect(max).toBe(undefined)
       })

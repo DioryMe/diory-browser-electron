@@ -1,38 +1,41 @@
 import React from 'react'
+import { useMarkers } from '../utils/markers/useMarkers'
+import { getLinksLocationData, getLocationData } from './hooks/getLocationData'
+import { useLinkMarkers } from '../utils/markers/useLinkMarkers'
 
 import { useMap } from './hooks/useMap'
-
 import { useMapBounds } from './hooks/useMapBounds'
-import { useMapMarkers } from './hooks/useMapMarkers'
-import { useTogglePopup } from './hooks/useTogglePopup'
 
-import { usePopupClick } from './hooks/usePopupClick'
+import { usePopups } from '../utils/popup/usePopups'
+import { useDioryMarker } from '../utils/markers/useDioryMarker'
+import { useDragging } from '../utils/markers/useDragging'
+
+
+import { usePopupClick } from '../utils/popup/usePopupClick'
 import { useMapClick } from './hooks/useMapClick'
-import { useMarkerClick } from './hooks/useMarkerClick'
-import { useDragging } from './hooks/useDragging'
 
 const MapView = ({
   diory,
   diorys,
-  activeButton,
   onMapClick,
-  onMarkerClick,
   onPopupClick,
   enableDragging,
-  onDragEnd
+  onDragEnd,
 }) => {
   const id = 'mapId'
   const map = useMap(id)
 
   usePopupClick(map, onPopupClick)
 
-  useMapBounds(map, diory, diorys)
-  useMapMarkers(map, diory, diorys)
-  useTogglePopup(map, diory, activeButton)
+  const locationData = getLocationData({ diory, diorys })
+
+  useMapBounds(map, locationData.diory)
+
+  const markers = useMarkers(map, locationData.diory, locationData.diorys, enableDragging, onDragEnd)
+
+  usePopups(map, markers, diory, diorys)
 
   useMapClick(map, onMapClick)
-  useMarkerClick(map, diory, onMarkerClick)
-  useDragging(map, enableDragging, onDragEnd)
 
   return <div id={id} style={{ height: '100%' }} />
 }
