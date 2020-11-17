@@ -87,5 +87,3 @@ exports.generateFolderDiory = function generateFolderDiory(folderPath, linkedDio
     ...readFolder(folderPath),
   })
 }
-{
-}

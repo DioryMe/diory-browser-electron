@@ -1,5 +1,6 @@
 const { ipcMain } = require('electron')
 const HomeStore = require('electron-store')
+const path = require('path')
 const { channels } = require('../../src/shared/constants')
 
 ipcMain.on(channels.GET_HOME, (event) => {
