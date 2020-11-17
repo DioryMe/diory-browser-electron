@@ -7,7 +7,7 @@ const addDataTestIdToMarker = (id) => (marker) => {
 }
 
 export const useDioryMarker = (mapRef, locationData) => {
-  const { id, center } = locationData || {}
+  const { id, center } = locationData || {}
   const markerRef = useRef(null)
   useEffect(() => {
     if (!markerRef.current && center) {

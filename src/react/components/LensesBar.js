@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Pane, Tablist, Tab, Icon } from 'evergreen-ui'
 
 const LensesBar = ({ lenses, ...props }) => (
@@ -18,5 +19,9 @@ const LensesBar = ({ lenses, ...props }) => (
     </Tablist>
   </Pane>
 )
+
+LensesBar.propTypes = {
+  lenses: PropTypes.array.isRequired,
+}
 
 export default LensesBar

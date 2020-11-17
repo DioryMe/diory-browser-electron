@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { useDragging } from '../utils/markers/useDragging'
 import { useMarkers } from '../utils/markers/useMarkers'
@@ -27,8 +28,8 @@ const TimelineView = ({
   enableDragging,
   onDragEnd,
 }) => {
-  const id = 'timelineId'
-  const timeline = useTimeline(id)
+  const timelineId = 'timelineId'
+  const timeline = useTimeline(timelineId)
 
   usePopupClick(timeline, onPopupClick, activeButton)
 
@@ -44,14 +45,30 @@ const TimelineView = ({
 
   useTimelineClick(timeline, onMapClick)
   useDragging(timeline, enableDragging, ({ id, longitude }) => {
-    onDragEnd({ id, date: getIsoDate(longitude)})
+    onDragEnd({ id, date: getIsoDate(longitude) })
   })
 
   return (
     <BackgroundDiory diory={diory} gradient gradientRgba="0, 0, 0, 0.2">
-      <Fullscreen id={id} background="transparent" />
+      <Fullscreen id={timelineId} background="transparent" />
     </BackgroundDiory>
   )
+}
+
+TimelineView.defaultProps = {
+  onMapClick: () => {},
+  onPopupClick: () => {},
+  enableDragging: () => {},
+  onDragEnd: () => {},
+}
+
+TimelineView.propTypes = {
+  diory: PropTypes.object.isRequired,
+  diorys: PropTypes.array.isRequired,
+  onMapClick: PropTypes.func,
+  onPopupClick: PropTypes.func,
+  enableDragging: PropTypes.func,
+  onDragEnd: PropTypes.func,
 }
 
 export default TimelineView

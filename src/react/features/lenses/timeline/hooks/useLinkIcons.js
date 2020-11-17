@@ -20,10 +20,9 @@ function getIcon(mapRef, size, color = 'blue') {
 export const useLinkIcons = (mapRef, markerRefs, diory) => {
   useEffect(() => {
     if (markerRefs.current) {
-      markerRefs.current
-        .forEach((marker) => {
-          marker.setIcon(getIcon(mapRef, 1))
-        })
+      markerRefs.current.forEach((marker) => {
+        marker.setIcon(getIcon(mapRef, 1))
+      })
     }
   }, [mapRef, markerRefs, diory])
 }

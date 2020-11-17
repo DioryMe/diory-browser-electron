@@ -1,2 +1,2 @@
 export { useMoveTool } from './useMoveTool'
-export { useMoveToolIsActive } from './useMoveToolIsActive'
+export { useMoveToolIsActive } from './useMoveToolIsActive'

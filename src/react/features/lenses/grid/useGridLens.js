@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { useStore } from '../../../store'
 import { useFocusDiory } from '../../diograph/hooks'
 
@@ -11,7 +9,7 @@ const addAAttrValue = (obj, attr, value) => ({
 
 const getDioryStyle = (obj, attr, active) => ({
   ...obj,
-  ...addAAttrValue(obj, attr, active && { cursor: 'pointer' })
+  ...addAAttrValue(obj, attr, active && { cursor: 'pointer' }),
 })
 
 export const useGridLens = () => {
@@ -20,7 +18,8 @@ export const useGridLens = () => {
 
   return {
     diory: { ...diory, ...getDioryStyle(diory.style, 'text', active) },
-    diorys: diorys.slice(0, MAX_NUMBER_OF_DIORYS_PER_VIEW)
+    diorys: diorys
+      .slice(0, MAX_NUMBER_OF_DIORYS_PER_VIEW)
       .map((diory) => getDioryStyle(diory, 'style', active)),
   }
 }

@@ -1,5 +1,3 @@
-import { getDioryTimelineData } from '../../timeline/hooks/getLocationData'
-
 const getAverage = (array = []) =>
   array.length ? array.reduce((a, b) => parseFloat(a) + parseFloat(b), 0) / array.length : undefined
 
@@ -88,21 +86,24 @@ export const getDioryLocationData = ({ diory = {}, diorys = [] }) => {
   const longitudes = locations.map(({ longitude }) => longitude)
   const { latitude, longitude } = getDioryLocation({ diory, diorys })
 
-  return longitude && latitude && {
-    id: diory.id,
-    center: {
-      lat: latitude,
-      lng: longitude,
-    },
-    min: locations.length && {
-      lat: Math.min(...concat(latitudes, diory.latitude)),
-      lng: Math.min(...concat(longitudes, diory.longitude)),
-    },
-    max: locations.length && {
-      lat: Math.max(...concat(latitudes, diory.latitude)),
-      lng: Math.max(...concat(longitudes, diory.longitude)),
-    },
-  }
+  return (
+    longitude &&
+    latitude && {
+      id: diory.id,
+      center: {
+        lat: latitude,
+        lng: longitude,
+      },
+      min: locations.length && {
+        lat: Math.min(...concat(latitudes, diory.latitude)),
+        lng: Math.min(...concat(longitudes, diory.longitude)),
+      },
+      max: locations.length && {
+        lat: Math.max(...concat(latitudes, diory.latitude)),
+        lng: Math.max(...concat(longitudes, diory.longitude)),
+      },
+    }
+  )
 }
 
 export const getLinksLocationData = ({ diory, diorys }) =>
@@ -112,5 +113,5 @@ export const getLinksLocationData = ({ diory, diorys }) =>
 
 export const getLocationData = ({ diory, diorys }) => ({
   diory: getDioryLocationData({ diory, diorys }),
-  diorys: getLinksLocationData({ diory, diorys })
+  diorys: getLinksLocationData({ diory, diorys }),
 })

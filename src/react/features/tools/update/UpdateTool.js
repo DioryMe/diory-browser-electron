@@ -6,7 +6,7 @@ import { useLinkDiory } from '../../diograph/hooks'
 
 import UpdateView from './UpdateView'
 
-import { buttons, UPDATE_TOOL_BUTTON } from './buttons'
+import { UPDATE_TOOL_BUTTON } from './buttons'
 
 const UpdateTool = () => {
   const [{ active }] = useStore((state) => state.buttons)

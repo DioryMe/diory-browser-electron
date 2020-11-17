@@ -1,7 +1,7 @@
 import Lens from './TimelineLens'
 
 export default {
-  diory:{
+  diory: {
     id: 'timeline',
     text: 'Timeline',
     image: 'time',

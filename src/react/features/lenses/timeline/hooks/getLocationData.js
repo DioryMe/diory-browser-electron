@@ -65,5 +65,5 @@ const getLinksTimelineData = ({ diory, diorys }) =>
 
 export const getLocationData = ({ diory, diorys }) => ({
   diory: getDioryTimelineData({ diory, diorys }),
-  diorys: getLinksTimelineData({ diory, diorys })
+  diorys: getLinksTimelineData({ diory, diorys }),
 })

@@ -20,7 +20,14 @@ const BackgroundDiory = ({ diory, gradient, gradientRgba, onClick, children, ...
       {...props}
     >
       {image && (
-        <Image image={image} zIndex={-1} position="fixed" gradient={gradient} gradientRgba={gradientRgba} {...imageStyle} />
+        <Image
+          image={image}
+          zIndex={-1}
+          position="fixed"
+          gradient={gradient}
+          gradientRgba={gradientRgba}
+          {...imageStyle}
+        />
       )}
       {video && <BackgroundVideo video={video} zIndex={-1} position="fixed" {...videoStyle} />}
       {text && (

@@ -59,17 +59,24 @@ function getAverageLocation(linkedDiorys) {
   const locations = linkedDiorys.filter(({ latitude, longitude }) => latitude && longitude)
   const latitudes = locations.map(({ latitude }) => latitude)
   const longitudes = locations.map(({ longitude }) => longitude)
-  return locations.length && {
-    latitude: getAverage(latitudes),
-    longitude: getAverage(longitudes),
-  }
+  return (
+    locations.length && {
+      latitude: getAverage(latitudes),
+      longitude: getAverage(longitudes),
+    }
+  )
 }
 
 function getAverageDate(linkedDiorys) {
-  const dates = linkedDiorys.map(({ date }) => date).filter(Boolean).map(Date.parse)
-  return dates.length && {
-    date: new Date(getAverage(dates)).toISOString(),
-  }
+  const dates = linkedDiorys
+    .map(({ date }) => date)
+    .filter(Boolean)
+    .map(Date.parse)
+  return (
+    dates.length && {
+      date: new Date(getAverage(dates)).toISOString(),
+    }
+  )
 }
 
 exports.generateFolderDiory = function generateFolderDiory(folderPath, linkedDiorys = []) {
@@ -77,6 +84,8 @@ exports.generateFolderDiory = function generateFolderDiory(folderPath, linkedDio
     ...getFirstImage(linkedDiorys),
     ...getAverageLocation(linkedDiorys),
     ...getAverageDate(linkedDiorys),
-    ...readFolder(folderPath) })
+    ...readFolder(folderPath),
+  })
 }
-{}
+{
+}
