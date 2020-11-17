@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Icon } from 'evergreen-ui'
 
 const NavigationSideways = ({ left, right, onClick }) => (
@@ -20,5 +21,17 @@ const NavigationSideways = ({ left, right, onClick }) => (
     <Icon icon={`chevron-${left ? 'left' : 'right'}`} color="disabled" size={48} />
   </div>
 )
+
+NavigationSideways.defaultProps = {
+  left: false,
+  right: false,
+  onClick: () => {},
+}
+
+NavigationSideways.propTypes = {
+  left: PropTypes.bool,
+  right: PropTypes.bool,
+  onClick: PropTypes.func,
+}
 
 export default NavigationSideways

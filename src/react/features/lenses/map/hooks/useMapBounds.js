@@ -8,13 +8,13 @@ export const useMapBounds = (mapRef, { center, min, max }) => {
   useEffect(() => {
     if (mapRef.current) {
       if (min && max) {
-        isInitial ?
-          mapRef.current.fitBounds([min, max], { maxZoom: MAX_ZOOM }) :
-          mapRef.current.flyToBounds([min, max], { maxZoom: MAX_ZOOM })
+        isInitial
+          ? mapRef.current.fitBounds([min, max], { maxZoom: MAX_ZOOM })
+          : mapRef.current.flyToBounds([min, max], { maxZoom: MAX_ZOOM })
       } else if (center) {
-        isInitial ?
-          mapRef.current.setView(center, MAX_ZOOM) :
-          mapRef.current.flyTo(center, MAX_ZOOM)
+        isInitial
+          ? mapRef.current.setView(center, MAX_ZOOM)
+          : mapRef.current.flyTo(center, MAX_ZOOM)
       } else {
         mapRef.current.fitWorld()
       }

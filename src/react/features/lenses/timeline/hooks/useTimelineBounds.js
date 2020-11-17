@@ -17,17 +17,15 @@ export const useTimelineBounds = (ref, { center, min, max }) => {
         [0, 100000],
       ])
       if (min && max) {
-        isInitial ?
-          ref.current.fitBounds([min, max]) :
-          ref.current.flyToBounds([min, max], { maxZoom: MAX_ZOOM })
+        isInitial
+          ? ref.current.fitBounds([min, max])
+          : ref.current.flyToBounds([min, max], { maxZoom: MAX_ZOOM })
       } else if (center) {
-        isInitial ?
-          ref.current.setView(center, MAX_ZOOM) :
-          ref.current.flyTo(center, MAX_ZOOM)
+        isInitial ? ref.current.setView(center, MAX_ZOOM) : ref.current.flyTo(center, MAX_ZOOM)
       } else {
-        isInitial ?
-          ref.current.setView(DEFAULT_LOCATION, MAX_ZOOM) :
-          ref.current.flyTo(DEFAULT_LOCATION, MAX_ZOOM)
+        isInitial
+          ? ref.current.setView(DEFAULT_LOCATION, MAX_ZOOM)
+          : ref.current.flyTo(DEFAULT_LOCATION, MAX_ZOOM)
       }
     }
   }, [ref, isInitial, center, min, max])

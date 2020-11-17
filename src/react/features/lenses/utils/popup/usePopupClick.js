@@ -9,15 +9,15 @@ export const usePopupClick = (mapRef, onPopupClick, activeButton) => {
       mapRef.current.on('popupopen', (event) => {
         if (event.popup) {
           diory = event.popup.diory
-          event.popup._wrapper.addEventListener('click', handleClick);
+          event.popup._wrapper.addEventListener('click', handleClick)
         }
-      });
+      })
       mapRef.current.off('popupclose')
       mapRef.current.on('popupclose', (event) => {
         if (event.popup) {
-          event.popup._wrapper.removeEventListener('click', handleClick);
+          event.popup._wrapper.removeEventListener('click', handleClick)
         }
-      });
+      })
     }
   }, [mapRef, onPopupClick, activeButton])
 }

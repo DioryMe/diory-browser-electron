@@ -65,9 +65,12 @@ const Diory = ({ diory, onClick, children, ...props }) => {
 
 Diory.propTypes = {
   diory: PropTypes.shape({
+    id: PropTypes.string,
     text: PropTypes.string,
     image: PropTypes.string,
+    video: PropTypes.string,
     style: PropTypes.object,
+    data: PropTypes.object,
   }),
   onClick: PropTypes.func,
   children: PropTypes.node,

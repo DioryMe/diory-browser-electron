@@ -34,8 +34,8 @@ module.exports = {
     'max-len': ['off'], // prettier
     'import/newline-after-import': ['warn'],
     'object-curly-newline': ['off'], // prettier
-    'react/require-default-props': ['warn'],
-    'react/forbid-prop-types': ['warn'],
+    'react/require-default-props': ['off'],
+    'react/forbid-prop-types': ['off'],
     'react/jsx-props-no-spreading': ['off'], // personal opinion
     'react/button-has-type': ['warn'],
     'no-param-reassign': ['warn'],
@@ -58,7 +58,7 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': ['warn'],
     radix: ['warn'],
     'no-bitwise': ['warn'],
-    'no-underscore-dangle': ['warn'],
+    'no-underscore-dangle': ['off'],
     'no-inner-declarations': ['warn'],
     'no-unused-expressions': ['warn'],
     'prefer-destructuring': ['warn'],

@@ -12,11 +12,7 @@ const CreateTool = () => {
   const createDiory = useCreateDiory()
 
   return CREATE_TOOL_BUTTON === active ? (
-    <UpdateView
-      title="Create diory"
-      isShown
-      onDone={createDiory}
-    />
+    <UpdateView title="Create diory" isShown onDone={createDiory} />
   ) : null
 }
 

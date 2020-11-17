@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Box from 'ui-box'
 
 const defaultStyle = {
@@ -16,15 +17,7 @@ const videoStyles = {
   margin: '0 auto',
 }
 
-const Video = ({
-  video,
-  controls = true,
-  loop = false,
-  autoPlay = false,
-  children,
-  cover = false,
-  ...props
-}) => (
+const Video = ({ video, controls, loop, autoPlay, children, cover, ...props }) => (
   <Box {...defaultStyle} {...props}>
     <video
       controls={controls}
@@ -41,5 +34,21 @@ const Video = ({
     {children}
   </Box>
 )
+
+Video.defaultProps = {
+  controls: true,
+  loop: false,
+  autoPlay: false,
+  cover: false,
+}
+
+Video.propTypes = {
+  video: PropTypes.string.isRequired,
+  controls: PropTypes.bool,
+  loop: PropTypes.bool,
+  autoPlay: PropTypes.bool,
+  cover: PropTypes.bool,
+  children: PropTypes.node,
+}
 
 export default Video
