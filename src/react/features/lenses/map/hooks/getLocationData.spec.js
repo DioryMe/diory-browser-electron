@@ -76,22 +76,22 @@ describe('getDioryLocationData', () => {
     ]
 
     noDioryLocation.forEach((diory) => {
-      it('returns undefined', () => {
-        const locationData = getDioryLocationData({ diory })
-        expect(locationData).toBe(undefined)
+      it('returns false center', () => {
+        const { center } = getDioryLocationData({ diory })
+        expect(center).toBe(false)
       })
     })
 
-    it('returns undefined', () => {
-      const locationData = getDioryLocationData({
+    it('returns false center', () => {
+      const { center } = getDioryLocationData({
         diory: {
           longitude: 'some-longitude',
         },
       })
-      expect(locationData).toBe(undefined)
+      expect(center).toBe(false)
     })
 
-    describe('given more than one diorys with location', () => {
+    describe('given diorys with location', () => {
       it('returns center as average location of diorys', () => {
         const { center } = getDioryLocationData({
           diorys: [
@@ -312,8 +312,9 @@ describe('getDioryLocationData', () => {
 
     noDiorysLocation.forEach(({ diorys }) => {
       it('returns undefined min and max', () => {
-        const locationData = getDioryLocationData({ diorys })
-        expect(locationData).toBe(locationData)
+        const { min, max } = getDioryLocationData({ diorys })
+        expect(min).toBe(false)
+        expect(max).toBe(false)
       })
     })
   })

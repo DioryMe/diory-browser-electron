@@ -14,7 +14,7 @@ import { useScale } from './scale/useScale'
 import { usePopupClick } from '../utils/popup/usePopupClick'
 import { useTimelineClick } from './hooks/useTimelineClick'
 
-import { getIsoDate, getLocationData } from './hooks/getLocationData'
+import { getIsoDate, getTimelineData } from './hooks/getTimelineData'
 
 import BackgroundDiory from '../../../components/diories/BackgroundDiory'
 import Fullscreen from '../../../components/Fullscreen'
@@ -33,11 +33,11 @@ const TimelineView = ({
 
   usePopupClick(timeline, onPopupClick, activeButton)
 
-  const locationData = getLocationData({ diory, diorys })
+  const timelineData = getTimelineData({ diory, diorys })
 
-  useTimelineBounds(timeline, locationData.diory)
+  useTimelineBounds(timeline, timelineData.diory)
 
-  const markers = useMarkers(timeline, null, locationData.diorys)
+  const markers = useMarkers(timeline, null, timelineData.diorys)
   useLinkIcons(timeline, markers.linkMarkers, diory)
 
   usePopups(timeline, markers, null, diorys)
