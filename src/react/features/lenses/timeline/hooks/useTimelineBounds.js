@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { useInitial } from '../../../../utils/useCompare'
-import { getDateLongitude } from './getLocationData'
+import { getDateLongitude } from './getTimelineData'
 
 const MAX_ZOOM = 20
 const DEFAULT_LOCATION = {
   lat: 0,
-  lng: getDateLongitude({ date: Date.now() }),
+  lng: getDateLongitude({ date: new Date() }),
 }
 
 export const useTimelineBounds = (ref, { center, min, max }) => {
@@ -23,9 +23,10 @@ export const useTimelineBounds = (ref, { center, min, max }) => {
       } else if (center) {
         isInitial ? ref.current.setView(center, MAX_ZOOM) : ref.current.flyTo(center, MAX_ZOOM)
       } else {
+        console.log(DEFAULT_LOCATION)
         isInitial
-          ? ref.current.setView(DEFAULT_LOCATION, MAX_ZOOM)
-          : ref.current.flyTo(DEFAULT_LOCATION, MAX_ZOOM)
+          ? ref.current.setView(DEFAULT_LOCATION, 5)
+          : ref.current.flyTo(DEFAULT_LOCATION, 5)
       }
     }
   }, [ref, isInitial, center, min, max])

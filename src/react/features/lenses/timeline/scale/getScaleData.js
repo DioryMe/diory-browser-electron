@@ -1,4 +1,4 @@
-import { getLongitudeDate, getDateLongitude } from '../hooks/getLocationData'
+import { getLongitudeDate, getDateLongitude } from '../hooks/getTimelineData'
 
 const _MS_PER_DAY = 1000 * 60 * 60 * 24
 

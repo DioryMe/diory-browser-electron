@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { getLongitudeDate } from './getLocationData'
+import { getLongitudeDate } from './getTimelineData'
 
 export const useTimelineClick = (mapRef, onMapClick) => {
   useEffect(() => {
