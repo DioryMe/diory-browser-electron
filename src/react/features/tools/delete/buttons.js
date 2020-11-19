@@ -1,8 +1,8 @@
-export const DELETE_BUTTON = 'DELETE_BUTTON'
+export const DELETE_TOOL_BUTTON = 'DELETE_TOOL_BUTTON'
 
 export const buttons = [
   {
-    id: DELETE_BUTTON,
+    id: DELETE_TOOL_BUTTON,
     text: 'Delete diory or link',
     data: {
       icon: 'minus',
