@@ -1,6 +1,6 @@
 {
   "name": "diory-browser-electron",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "productName": "Diory - Digital Memory Browser",
   "main": "electron-main.js",
   "private": true,
@@ -80,6 +80,7 @@
     "test": "react-scripts test",
     "test-react": "react-scripts test",
     "test-electron": "jest --detectOpenHandles electron/**/*.js",
+    "test-cypress": "yarn cypress run",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
     "eject": "react-scripts eject"

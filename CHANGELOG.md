@@ -1,4 +1,4 @@
-## 2.1.0 (November 19, 2020)
+## 2.1.1 (November 19, 2020)
 
 ### DDA-65 Migrate from Cucumber to Cypress
 - `yarn cypress run` is run via Github Action (and `yarn cucumber` is removed)
@@ -14,6 +14,8 @@
 - search.feature
 - map.feature
 - Update Cypress to 5.6.0
+
+## 2.1.0 (November 19, 2020)
 
 ### DDA-69: Timeline and fullscreen lenses and tools for lenses
 - Create timeline lens
