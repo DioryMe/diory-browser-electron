@@ -63,5 +63,6 @@ Feature: Map lens
     When I select tools button
     And I select remove button
     And I select diory 1 marker
+    And I select diory 1 popup
     Then diory 1 marker is not on map
     And room 1 has 1 linked diory
