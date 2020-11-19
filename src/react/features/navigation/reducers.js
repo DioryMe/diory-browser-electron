@@ -6,7 +6,7 @@ import {
   SET_FULLSCREEN,
   GO_BACKWARD,
   GO_FORWARD,
-  SET_LINK,
+  SET_SELECTED_LINK,
 } from './actionsTypes'
 import { createReducer } from '../../store'
 
@@ -90,7 +90,7 @@ export const goHome = (state) => ({
   path: [],
 })
 
-export const setLink = (state, { payload }) => ({
+export const setSelectedLink = (state, { payload }) => ({
   ...state,
   link: payload.link.id,
 })
@@ -103,5 +103,5 @@ export default createReducer({
   [GO_FORWARD]: goForward,
   [GO_HOME]: goHome,
   [GO_SIDE]: goSide,
-  [SET_LINK]: setLink,
+  [SET_SELECTED_LINK]: setSelectedLink,
 })
