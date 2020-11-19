@@ -1,4 +1,13 @@
-## 2.0.0 (October 6, 2020)
+## 2.1.0 (November , 2020)
+
+### DDA-69: Timeline and fullscreen lenses and tools for lenses
+- Create timeline lens
+- Create fullscreen lens
+- Create create, move, edit and move tools for timeline and map
+- Refactor lens, tool, button and app structure
+- Generate location data
+
+# 2.0.0 (October 6, 2020)
 - `yarn build` and `yarn test-electron` are run via Github Action
 
 ### DDA-39 App packaging and publishing automation
