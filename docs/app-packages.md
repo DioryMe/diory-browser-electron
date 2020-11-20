@@ -2,7 +2,13 @@
 
 Creating a distributable package a.k.a. binary file.
 
-## Electron-builder
+## Release candidate binary
+```
+./package-mac-release-candidate.sh
+open dist/Diory....dmg
+```
+
+## Notarized binary published in diograph.com
 
 We use electron-builder package to package our app. Everything is currently done with the default settings (including default icons).
 
@@ -19,7 +25,7 @@ Steps:
   5. Reconnect Github for pipeline in here: https://eu-north-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/DioryDemoApp-build-pipeline/edit?region=eu-north-1
 1. Run script which builds the React code and creates MacOS .dmg file
 ```
-./package-mac.sh
+./package-mac-notarized-publish.sh
 ```
 1. Script asks APPLEID and APPLEIDPASS (the app-specific-password one!) for notarization purposes
 1. Script asks AWS MFA code to upload binary to S3
