@@ -1,0 +1,9 @@
+{
+  "appId": "com.diory.browser-electron",
+  "mac": {
+    "hardenedRuntime" : true,
+    "gatekeeperAssess": false,
+    "entitlements": "scripts/entitlements.mac.plist",
+    "entitlementsInherit": "scripts/entitlements.mac.plist"
+  }
+}
