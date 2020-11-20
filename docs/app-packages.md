@@ -13,10 +13,6 @@ open dist/Diory....dmg
 We use electron-builder package to package our app. Everything is currently done with the default settings (including default icons).
 
 Steps:
-1. Setup AWS CLI with an account that can assume required role
-1. Setup Apple Developer ID Application and Installer certificates (one-time only)
-  1. Download them from https://developer.apple.com/account/resources/certificates/list
-  1. Save them to Keychain called "login" by double clicking them after download
 1. Change MacBinaryFilename & WindowsBinaryFilename in Pipeline Cloudformation: https://eu-north-1.console.aws.amazon.com/cloudformation/home
   1. Select stack "dda-build-pipeline"
   2. Click "Update" and "Use current template"
@@ -34,6 +30,12 @@ Steps:
 ```
 open dist/Diory....dmg
 ```
+
+## Apple certificates
+
+You need to setup Apple Developer ID Application and Installer certificates the first time you run this script. Steps:
+1. Download them from https://developer.apple.com/account/resources/certificates/list
+1. Save them to Keychain called "login" by double clicking them after download
 
 ## Config.json for room in focus
 
