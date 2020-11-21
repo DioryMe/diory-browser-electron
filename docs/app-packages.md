@@ -18,7 +18,6 @@ Steps:
   2. Click "Update" and "Use current template"
   3. Change the version name (e.g. 1.0.0 -> 1.1.0) for both MacBinaryFilename and WindowsBinaryFilename
   4. Click "Next" -> "Next" -> "I acknowledge" -> "Update stack"
-  5. Reconnect Github for pipeline in here: https://eu-north-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/DioryDemoApp-build-pipeline/edit?region=eu-north-1
 1. Run script which builds the React code and creates MacOS .dmg file
 ```
 ./package-mac-notarized-publish.sh
