@@ -9,11 +9,11 @@ Parameters:
   BranchName:
     Description: GitHub branch name
     Type: String
-    Default: master
+    Default: develop
   RepositoryName:
     Description: GitHub repository name
     Type: String
-    Default: diory-browser-electron
+    Default: DioryMe/diory-browser-electron
   MacBinaryFilename:
     Description: S3 key which is used on website
     Type: String
@@ -46,18 +46,17 @@ Resources:
           Actions:
             - Name: SourceAction
               ActionTypeId:
+                Version: '1'
+                Owner: AWS
                 Category: Source
-                Owner: ThirdParty
-                Version: 1
-                Provider: GitHub
+                Provider: CodeStarSourceConnection
               OutputArtifacts:
                 - Name: SourceOutput
               Configuration:
-                Owner: please-add-this-manually
-                Repo: !Ref RepositoryName
-                Branch: !Ref BranchName
-                OAuthToken: please-add-this-manually
-                PollForSourceChanges: false
+                ConnectionArn: arn:aws:codestar-connections:eu-north-1:037977746924:connection/54c65dc4-44fb-462b-b1e3-ed12bf178254
+                FullRepositoryId: !Ref RepositoryName
+                BranchName: !Ref BranchName
+                OutputArtifactFormat: "CODE_ZIP"
               RunOrder: 1
         - Name: BuildWindowsBinary
           Actions:
@@ -116,6 +115,9 @@ Resources:
           PolicyDocument:
             Version: 2012-10-17
             Statement:
+              - Effect: Allow
+                Action: 'codestar-connections:UseConnection'
+                Resource: 'arn:aws:codestar-connections:eu-north-1:037977746924:connection/54c65dc4-44fb-462b-b1e3-ed12bf178254'
               - Effect: Allow
                 Action:
                   - 'codebuild:BatchGetBuilds'
