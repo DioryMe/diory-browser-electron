@@ -10,6 +10,10 @@ Given('I select {word} button', (toolName) => {
   cy.get(`div[data-testid=${toolName}-button]`).click()
 })
 
+Given('I select {string}', (testId) => {
+  cy.get(`div[data-testid=${testId}]`).click()
+})
+
 // WHEN
 
 When('I take {string} in focus', (dioryName) => {
@@ -30,7 +34,15 @@ Then('I see {string} in view', (dioryName) => {
   cy.contains(dioryName).should('have.length', 1)
 })
 
-Then("I don't see {string} in view", (dioryName) => {
+Then('I see {word} button', (buttonName) => {
+  cy.get(`div[data-testid=${buttonName}-button]`).should('have.length', 1)
+})
+
+Then('I see {string}', (testId) => {
+  cy.get(`div[data-testid=${testId}]`).should('have.length', 1)
+})
+
+Then('I do not see {string} in view', (dioryName) => {
   cy.contains(dioryName).should('have.length', 0)
 })
 

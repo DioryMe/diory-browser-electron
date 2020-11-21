@@ -10,7 +10,7 @@ Feature: Update tool
 
   Scenario: Update tool shown
     Then update tool is active
-    Then I see 'Update diory' in view
+    And I see 'Update diory' in view
 
   # Text
   Scenario: Update text

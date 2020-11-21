@@ -13,7 +13,7 @@ Feature: Search
 
   Scenario: AND / OR doesn't work (only consecutive characters)
     When I type 'Diory 2' in search bar
-    Then I don't see 'Diory 12' in view
+    Then I do not see 'Diory 12' in view
 
   Scenario: Minimum word length is one and search is case insensitive
     When I type 'f' in search bar
