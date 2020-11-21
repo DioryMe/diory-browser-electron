@@ -20,7 +20,7 @@ When('I take {string} in focus', (dioryName) => {
   cy.contains(dioryName).click()
 })
 
-When('click {word} button', (buttonName) => {
+When('I click {word} button', (buttonName) => {
   cy.get('button').contains(buttonName).click()
 })
 
