@@ -15,13 +15,13 @@ export default [
     format: 'object',
   },
   {
-    key: 'longitude',
-    label: 'Longitude',
+    key: 'latitude',
+    label: 'Latitude',
     format: 'number',
   },
   {
-    key: 'latitude',
-    label: 'Latitude',
+    key: 'longitude',
+    label: 'Longitude',
     format: 'number',
   },
   {
