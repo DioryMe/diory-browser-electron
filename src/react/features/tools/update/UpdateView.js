@@ -55,7 +55,6 @@ const UpdateView = ({ diory, title, isShown, onDone }) => {
           value={value}
           onChange={(value) => setValue(key, value)}
           autoFocus={autoFocus}
-          onFocus={(event) => event.currentTarget.select()}
         />
       ))}
     </Modal>
