@@ -17,7 +17,11 @@ const useUpdateView = (diory = {}) => {
   const updatedDiory = { ...diory, ...values }
   const dispatch = useDispatch()
   return {
-    fields: fields.map((field) => ({ ...field, value: updatedDiory[field.key] })),
+    fields: fields.map((field) => ({
+      ...field,
+      value: updatedDiory[field.key],
+      autoFocus: field.key === 'text',
+    })),
     setValue: (key, value) => setValues({ ...values, [key]: value }),
     updatedDiory,
     resetView: () => {
@@ -31,6 +35,7 @@ const useUpdateView = (diory = {}) => {
 
 const UpdateView = ({ diory, title, isShown, onDone }) => {
   const { fields, setValue, updatedDiory, resetView } = useUpdateView(diory)
+
   return (
     <Modal
       title={title}
@@ -41,7 +46,7 @@ const UpdateView = ({ diory, title, isShown, onDone }) => {
       }}
       onCancel={resetView}
     >
-      {fields.map(({ key, label, format, value }) => (
+      {fields.map(({ key, label, format, value, autoFocus }) => (
         <TextInput
           id={key}
           key={key}
@@ -49,6 +54,8 @@ const UpdateView = ({ diory, title, isShown, onDone }) => {
           format={format}
           value={value}
           onChange={(value) => setValue(key, value)}
+          autoFocus={autoFocus}
+          onFocus={(event) => event.currentTarget.select()}
         />
       ))}
     </Modal>
