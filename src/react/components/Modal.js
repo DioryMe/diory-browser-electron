@@ -9,12 +9,7 @@ const Modal = ({ isShown, onCancel, onDone, ...props }) => (
     onCancel={onCancel}
     onCloseComplete={onCancel}
     onConfirm={onDone}
-    overlayProps={{
-      onClick: onCancel,
-    }}
-    containerProps={{
-      onClick: (event) => event.stopPropagation(),
-    }}
+    shouldCloseOnOverlayClick={false}
     {...props}
   />
 )

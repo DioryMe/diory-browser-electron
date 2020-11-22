@@ -132,9 +132,8 @@ Feature: Create tool
     And I do not see 'Some diory' in view
 
   # Clicking outside
-  @pending
   Scenario: Clicking outside does nothing
     Given I add 'Some diory' to text field
-    When I click outside the modal
+    When I click outside the dialog
     Then I see 'Create diory' in view
     And I see 'Some diory' in text field
