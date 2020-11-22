@@ -125,9 +125,8 @@ Feature: Update tool
     And I do not see 'some text' in view
 
   # Clicking outside
-  @pending
   Scenario: Clicking outside does nothing
     Given I add ' some text' to text field
-    When I click outside the modal
+    When I click outside the dialog
     Then I see 'Update diory' in view
     And I see 'Diory 11 some text' in text field
