@@ -55,6 +55,13 @@ const UpdateView = ({ diory, title, isShown, onDone }) => {
           value={value}
           onChange={(value) => setValue(key, value)}
           autoFocus={autoFocus}
+          onKeyPress={(event) => {
+            if (event.key === 'Enter') {
+              onDone(updatedDiory)
+              resetView()
+              event.preventDefault()
+            }
+          }}
         />
       ))}
     </Modal>
