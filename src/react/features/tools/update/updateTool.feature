@@ -103,7 +103,6 @@ Feature: Update tool
     Then I see 'Invalid object' in view
 
   # Enter key
-  @pending
   Scenario: Save updating by pressing enter-key
     Given I add ' some text' to text field
     When I press enter key
