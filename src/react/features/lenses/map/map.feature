@@ -89,3 +89,12 @@ Feature: Map lens
     And I select diory 1 popup
     Then diory 1 marker is not on map
     And room 1 has 1 linked diory
+
+  Scenario: Map with diories without locations
+    Given I select grid lens
+    And I navigate backward
+    And I take 'Generic content' in focus
+    And I take 'Diory 1' in focus
+    When I select map lens
+    Then I see 0 markers on map
+
