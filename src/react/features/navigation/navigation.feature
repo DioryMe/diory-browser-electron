@@ -10,7 +10,7 @@ Feature: Navigation
     Then I am at home
 
   Scenario: Navigate forward
-    And I navigated backward
+    And I navigate backward
     When I navigate forward
     Then I see 'Diory 1' in view
 
@@ -39,4 +39,8 @@ Feature: Navigation
   Scenario: Navigate to home
     When I navigate to home
     Then I am at home
+
+  Scenario: Navigate with map lens
+
+  Scenario: Navigate with timeline lens
 

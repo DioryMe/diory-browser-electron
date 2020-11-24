@@ -2,12 +2,11 @@ Feature: Timeline lens
 
   Background:
     Given I am at home
+    When I take 'Kayaking at Potomac' in focus
     And I select timeline lens
 
-  @pending
   Scenario: Diory markers on timeline
-    Given room 1 has 2 links with location
-    Then I see 2 markers on Timeline
+    Then I see 14 markers on timeline
 
   @pending
   Scenario: Diory popup on timeline
@@ -60,3 +59,11 @@ Feature: Timeline lens
     And I select diory 1 popup
     Then diory 1 marker is not on timeline
     And room 1 has 1 linked diory
+
+  Scenario: Timeline with diories without dates
+    When I select grid lens
+    And I navigate backward
+    And I take 'Generic content' in focus
+    And I take 'Diory 1' in focus
+    And I select timeline lens
+    Then I see 0 markers on map

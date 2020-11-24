@@ -48,9 +48,7 @@
         "link14": {
           "id": "diory14"
         }
-      },
-      "latitude": "61",
-      "longitude": "26"
+      }
     },
     "diory11": {
       "id": "diory11",
@@ -85,7 +83,6 @@
     "tampere": {
       "id": "tampere",
       "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Downtown_Tampere4.jpg",
-      "latitude": 61.49883164008703,
       "links": {
         "link1": {
           "id": "keskustori"
@@ -97,7 +94,6 @@
           "id": "hameenkatu"
         }
       },
-      "longitude": 23.76080989837647,
       "updated": "2020-01-03T21:44:25.345Z",
       "text": "Tampere"
     },
