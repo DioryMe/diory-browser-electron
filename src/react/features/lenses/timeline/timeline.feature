@@ -59,11 +59,3 @@ Feature: Timeline lens
     And I select diory 1 popup
     Then diory 1 marker is not on timeline
     And room 1 has 1 linked diory
-
-  Scenario: Timeline with diories without dates
-    When I select grid lens
-    And I navigate backward
-    And I take 'Generic content' in focus
-    And I take 'Diory 1' in focus
-    And I select timeline lens
-    Then I see 0 markers on map
