@@ -22,3 +22,7 @@ When('I click outside the dialog', () => {
 Then('I see {string} in {word} field', (text, inputFieldName) => {
   cy.get(`input#TextInputField-${inputFieldName}`).invoke('val').should('eq', text)
 })
+
+Then('I do not see {string} in {word} field', (text, inputFieldName) => {
+  cy.get(`input#TextInputField-${inputFieldName}`).invoke('val').should('not.eq', text)
+})
