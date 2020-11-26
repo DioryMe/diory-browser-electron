@@ -5,6 +5,14 @@ When('I click {string} marker', (dioryName) => {
   cy.get('img[data-testid=linked-diory-marker]').first().click()
 })
 
+When('I drag marker on the map', () => {
+  cy.get('img[data-testid=linked-diory-marker]').should('have.length', 1)
+  cy.get('img[data-testid=linked-diory-marker]')
+    .trigger('mousedown', { which: 1, force: true })
+    .trigger('mousemove', 600, 600, { force: true })
+    .trigger('mouseup')
+})
+
 Then('I click {string} popup on map/timeline', (dioryName) => {
   // FIXME: This doesn't require having the dioryName inside the popup
   cy.contains(dioryName).click()

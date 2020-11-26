@@ -2,6 +2,7 @@ Feature: Map lens
 
   Background:
     Given I am at home
+    When I take 'Map content' in focus
     When I take 'Tampere' in focus
     And I select map lens
 
@@ -72,13 +73,18 @@ Feature: Map lens
     Then I see 5 diorys on map
     And diory is saved to diograph
 
-  @pending
+  @focus
   Scenario: Moving diory on map
+    Given I navigate backward
     When I select tools button
     And I select move button
-    And I move diory on map
-    Then I diorys is moved to location
-    And diory location is saved to diograph
+    And I drag marker on the map
+    And I select grid lens
+    And I select tools button
+    And I select update button
+    And I take 'Helvetinjärven kansallispuisto' in focus
+    Then I do not see '62' in latitude field
+    And I do not see '24' in longitude field
 
   @pending
   Scenario: Removing diory from map
