@@ -5,8 +5,8 @@
       "id": "development-content-room",
       "image": "",
       "links": {
-        "tampere": {
-          "id": "tampere"
+        "map-content": {
+          "id": "map-content"
         },
         "generic": {
           "id": "generic-content"
@@ -79,6 +79,26 @@
       "video": "development-content-room/4_5996618057181562302.MOV",
       "created": "2020-07-05T09:39:40.000Z",
       "modified": "2020-07-05T09:39:40.000Z"
+    },
+    "map-content": {
+      "id": "map-content",
+      "image": "https://www.publicdomainpictures.net/pictures/190000/velka/travel-background-1469438300Bbk.jpg",
+      "text": "Map content",
+      "links": {
+        "helvetinjärvi": {
+          "id": "helvetinjärvi"
+        },
+        "tampere": {
+          "id": "tampere"
+        }
+      }
+    },
+    "helvetinjärvi": {
+      "id": "helvetinjärvi",
+      "image": "https://lh3.ggpht.com/p/AF1QipPeoo0jUW9dEDIbO_xjN1Knn8ZNbE8x84ea9f-1=s1536",
+      "text": "Helvetinjärven kansallispuisto",
+      "latitude": "62",
+      "longitude": "24"
     },
     "tampere": {
       "id": "tampere",
