@@ -37,6 +37,13 @@ phases:
       - yarn
       - yarn build
       - yarn build-electron
+      - echo "Add app-package-envs to electron-main.js"
+      - export APP_PACKAGE_ENVS="process.env.BINARY_BUILD=1";
+      - awk 'BEGIN{print ENVIRON["APP_PACKAGE_ENVS"]}{print}' build/electron-main.js > build/electron-main-tmp.js
+      - mv build/electron-main-tmp.js build/electron-main.js
+      - unset APP_PACKAGE_ENVS
+      - cat build/index.html
+      - cat build/electron-main.js
       - yarn package-win
       - env
       - aws s3 cp "./dist/$WINDOWS_BINARY_FILENAME" s3://$WEBSITE_BUCKET --acl public-read
