@@ -17,6 +17,8 @@ const defaultStyle = {
   text: {
     position: 'relative',
     padding: '16px',
+    color: 'white',
+    fontWeight: 'bold',
   },
 }
 
@@ -33,6 +35,7 @@ const Diory = ({ diory, onClick, children, ...props }) => {
     <Box
       id={id}
       flexBasis={flexBasis}
+      height="100%"
       {...props}
       {...style}
       onClick={(event) => onClick && onClick({ diory, event })}
