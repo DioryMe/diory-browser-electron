@@ -9,7 +9,7 @@ Feature: Creating content to Map lens
     And I select map lens
     Then I see 0 focus and 0 linked markers on map
 
-  Scenario: Create diory to map (in view)
+  Scenario: createTool created diory appears on map (in view)
     When I select tools button
     And I select create button
     And I add 'Map diory' to text field
@@ -19,7 +19,7 @@ Feature: Creating content to Map lens
     And I select map lens
     Then I see 0 focus and 1 linked marker on map
 
-  Scenario: Create diory to map (in focus)
+  Scenario: createTool created diory to map (in focus)
     When I select tools button
     And I select create button
     And I add 'Map diory' to text field
@@ -29,3 +29,4 @@ Feature: Creating content to Map lens
     And I take 'Map diory' in focus
     And I select map lens
     Then I see 1 focus and 0 linked markers on map
+
