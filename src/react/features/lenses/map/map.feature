@@ -1,5 +1,7 @@
 Feature: Map lens
 
+  # FIXME: Should identify the marker to be clicked => now takes to Keskustori just because it's the first diory in the view...
+
   Background:
     Given I am at home
     When I take 'Map content' in focus
@@ -7,7 +9,7 @@ Feature: Map lens
     And I select map lens
 
   Scenario: Markers on map
-    Then I see 4 markers on map
+    Then I see 1 focus and 3 linked markers on map
 
   Scenario: Diory in focus popup on map
     Then I see 'Tampere' popup on map
@@ -23,13 +25,13 @@ Feature: Map lens
     # FIXME: This should fail because the text is in popup, not in diory view...
     # - currently there's no elements to specify searching the text better
     Then I see 'Keskustori' in view
-    Then I see 'Keskustori' popup on map
+    And I see 'Keskustori' popup on map
 
   Scenario: Change diory in focus on map
     When I click 'Keskustori' marker
     And I click 'Keskustori' popup on map
     Then I see 'Keskustori' popup on map
-    And I see 1 marker on map
+    And I see 1 focus and 0 linked markers on map
 
   Scenario: Changing focus changes focus also on grid
     When I click 'Keskustori' marker
@@ -42,7 +44,7 @@ Feature: Map lens
     And I click 'Keskustori' popup on map
     And I navigate backward
     Then I see 'Tampere' popup on map
-    And I see 4 markers on map
+    And I see 1 focus and 3 linked markers on map
 
   Scenario: Forward button on map
     When I click 'Keskustori' marker
@@ -102,5 +104,5 @@ Feature: Map lens
     And I take 'Generic content' in focus
     And I take 'Diory 1' in focus
     When I select map lens
-    Then I see 0 markers on map
+    Then I see 0 focus and 0 linked markers on map
 

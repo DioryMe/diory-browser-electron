@@ -5,14 +5,14 @@
       "id": "development-content-room",
       "image": "",
       "links": {
+        "kayaking-at-potomac": {
+          "id": "f1470597-1a3c-4a76-8546-2c29591a6846"
+        },
         "map-content": {
           "id": "map-content"
         },
         "generic": {
           "id": "generic-content"
-        },
-        "kayaking-at-potomac": {
-          "id": "f1470597-1a3c-4a76-8546-2c29591a6846"
         }
       },
       "modified": "2020-01-03T14:03:04.751Z"
@@ -310,6 +310,7 @@
     "f1470597-1a3c-4a76-8546-2c29591a6846": {
       "id": "f1470597-1a3c-4a76-8546-2c29591a6846",
       "text": "Kayaking at Potomac",
+      "date": "2016-06-11T09:21:43.000Z",
       "image": "development-content-room/Kayaking at Potomac/PIXNIO-54454-6138x4092.jpeg",
       "created": "2020-04-19T18:47:25.152Z",
       "updated": "2020-05-17T16:43:15.089Z",

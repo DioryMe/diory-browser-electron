@@ -5,21 +5,24 @@ Feature: Timeline lens
     When I take 'Kayaking at Potomac' in focus
     And I select timeline lens
 
-  # NOTE: There's 13 diories in the view and one in focus
-  Scenario: Diory markers on timeline
-    Then I see 14 markers on timeline
+  # NOTE:
+  # 1. Timeline doesn't show marker for focus diory
+  # - although it has a date and there's no diories in view
+  # 2. Timeline shows a marker for each diory on view
+  # - although not all of them have dates
+  # 3. Currently timeline crashes if none of the diorys in view has dates
 
-  @pending
-  Scenario: Diory popup on timeline
-    When I select diory 1
-    Then I see 1 popup on timeline
+  Scenario: Shows marker for each diory on view (although not all of them have dates)
+    Then I see 0 focus and 13 linked markers on timeline
 
-  @pending
-  Scenario: Linked diory markers on timeline
-    Given I select diory 1 marker
-    And I select diory 1 popup
-    And diory 1 has 4 links
-    Then I see 4 markers on timeline
+  # FIXME: Should identify the marker to be clicked => now takes to Kayaking at Potomac just because it's the first diory in the view...
+  Scenario: Shows popup when clicking marker and clicking popup takes diory in focus
+    When I navigate backward
+    And I see 0 focus and 3 linked markers on timeline
+    And I click 'Kayaking at Potomac' marker
+    And I see 'Kayaking at Potomac' in view
+    And I click 'Kayaking at Potomac' popup on timeline
+    Then I see 0 focus and 13 linked markers on timeline
 
   @pending
   Scenario: Selecting tool
