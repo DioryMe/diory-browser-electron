@@ -5,6 +5,7 @@ Feature: Timeline lens
     When I take 'Kayaking at Potomac' in focus
     And I select timeline lens
 
+  # NOTE: There's 13 diories in the view and one in focus
   Scenario: Diory markers on timeline
     Then I see 14 markers on timeline
 
