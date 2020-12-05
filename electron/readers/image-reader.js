@@ -1,4 +1,5 @@
 const { readFileSync } = require('fs')
+const { pathToFileURL } = require('url')
 const { load } = require('exifreader')
 
 function readExifTags(imagePath = '') {
@@ -49,7 +50,7 @@ exports.readImage = function readImage(imagePath) {
   try {
     const tags = readExifTags(imagePath)
     return {
-      image: imagePath,
+      image: pathToFileURL(imagePath),
       ...getDate(tags),
       ...getLatitude(tags),
       ...getLongitude(tags),
