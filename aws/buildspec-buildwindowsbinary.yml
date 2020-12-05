@@ -42,7 +42,6 @@ phases:
       - awk 'BEGIN{print ENVIRON["APP_PACKAGE_ENVS"]}{print}' build/electron-main.js > build/electron-main-tmp.js
       - mv build/electron-main-tmp.js build/electron-main.js
       - unset APP_PACKAGE_ENVS
-      - cat build/index.html
       - cat build/electron-main.js
       - yarn package-win
       - env
