@@ -9,7 +9,7 @@ const getPopupStyle = ({ image }) =>
     'min-width: 400px',
     'min-height: 200px',
     `background-color: ${getRandom(colors)}`,
-    `background-image: url(${encodeURI(image)})`,
+    `background-image: url(${image})`,
     'background-size: cover',
     'background-position: center',
     'background-repeat: no-repeat',
