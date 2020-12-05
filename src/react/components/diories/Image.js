@@ -15,8 +15,8 @@ const defaultStyle = {
 
 const getBackgroundImage = (image, gradient, gradientRgba = '255, 255, 255, 0.5') =>
   gradient
-    ? `linear-gradient(rgba(${gradientRgba}),rgba(${gradientRgba})), url("${encodeURI(image)}")`
-    : `url("${encodeURI(image)}")`
+    ? `linear-gradient(rgba(${gradientRgba}),rgba(${gradientRgba})), url("${image}")`
+    : `url("${image}")`
 
 const Image = ({ image, gradient, gradientRgba, ...props }) => (
   <Box
