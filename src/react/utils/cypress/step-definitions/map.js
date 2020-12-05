@@ -18,10 +18,19 @@ Then('I click {string} popup on map/timeline', (dioryName) => {
   cy.contains(dioryName).click()
 })
 
-Then('I see {int} marker(s) on map/timeline', (markerCount) => {
+Then('I see {int} marker(s) on map', (markerCount) => {
   if (markerCount > 0) {
     cy.get('img[data-testid=linked-diory-marker]').should('have.length', markerCount - 1)
     cy.get('img[data-testid=diory-marker]').should('have.length', 1)
+  } else {
+    cy.get('img[data-testid=linked-diory-marker]').should('have.length', 0)
+    cy.get('img[data-testid=diory-marker]').should('have.length', 0)
+  }
+})
+
+Then('I see {int} marker(s) on timeline', (markerCount) => {
+  if (markerCount > 0) {
+    cy.get('img[data-testid=linked-diory-marker]').should('have.length', markerCount - 1)
   } else {
     cy.get('img[data-testid=linked-diory-marker]').should('have.length', 0)
     cy.get('img[data-testid=diory-marker]').should('have.length', 0)

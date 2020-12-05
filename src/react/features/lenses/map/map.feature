@@ -73,7 +73,6 @@ Feature: Map lens
     Then I see 5 diorys on map
     And diory is saved to diograph
 
-  @focus
   Scenario: Moving diory on map
     Given I navigate backward
     When I select tools button
@@ -98,6 +97,7 @@ Feature: Map lens
 
   Scenario: Map with diories without locations
     Given I select grid lens
+    And I navigate backward
     And I navigate backward
     And I take 'Generic content' in focus
     And I take 'Diory 1' in focus
