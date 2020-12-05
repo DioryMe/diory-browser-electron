@@ -22,7 +22,7 @@ const getRoom = async (path) => {
 }
 
 const saveRoom = async (path, diograph) => {
-  const data = JSON.stringify(diograph)
+  const data = JSON.stringify(diograph, null, 2)
   console.log('Saving room', path)
   return writeFilePromise(`${path}/diograph.json`, data)
 }
