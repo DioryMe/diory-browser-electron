@@ -13,7 +13,7 @@ Feature: Creating content to Timeline lens
 
   @pending
   # Shows 5 markers although other diories in view don't have dates
-  Scenario: Create diory to timeline (on view)
+  Scenario: createTool created diory appears on timeline (on view)
     When I select tools button
     And I select create button
     And I add 'Timeline diory' to text field
@@ -24,7 +24,7 @@ Feature: Creating content to Timeline lens
 
   @pending
   # Doesn't show anything on timeline
-  Scenario: Create diory to timeline (in focus)
+  Scenario: createTool created diory appears on timeline (in focus)
     When I select tools button
     And I select create button
     And I add 'Timeline diory' to text field

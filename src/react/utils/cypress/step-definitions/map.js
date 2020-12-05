@@ -6,8 +6,11 @@ When('I click {string} marker', (dioryName) => {
 })
 
 When('I drag marker on the map', () => {
+  // FIXME: Should identify the marker to be clicked
+  // => now requires to have only one marker
   cy.get('img[data-testid=linked-diory-marker]').should('have.length', 1)
   cy.get('img[data-testid=linked-diory-marker]')
+    .first()
     .trigger('mousedown', { which: 1, force: true })
     .trigger('mousemove', 600, 600, { force: true })
     .trigger('mouseup')
@@ -18,11 +21,19 @@ When('I click {string} popup on map/timeline', (dioryName) => {
   cy.contains(dioryName).click()
 })
 
+When('I click {word} on the map', (position) => {
+  cy.get('div#mapId').click({ position })
+})
+
+When('I click {word} on the timeline', (position) => {
+  cy.get('div#timelineId').click({ position })
+})
+
 Then(
   'I see {int} focus and {int} linked marker(s) on map/timeline',
   (focusMarkers, linkedMarkers) => {
-    cy.get('img[data-testid=linked-diory-marker]').should('have.length', linkedMarkers)
     cy.get('img[data-testid=diory-marker]').should('have.length', focusMarkers)
+    cy.get('img[data-testid=linked-diory-marker]').should('have.length', linkedMarkers)
   }
 )
 
