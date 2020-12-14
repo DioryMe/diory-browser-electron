@@ -1,15 +1,16 @@
 import { useStore } from '../../../store'
 import { useGraphFilter } from './useGraphFilter'
+import { initialState } from '../../../store/initialState'
 
 jest.mock('../../../store')
-const mockState = {
-  diograph: {},
-  navigation: {},
-  filters: {},
-}
+const mockState = { ...initialState }
 useStore.mockImplementation((selector) => [selector(mockState)])
 
 describe('useGraphFilter', () => {
+  it('executes with initial state', () => {
+    expect(useGraphFilter()).toBeDefined()
+  })
+
   describe('given diograph', () => {
     beforeEach(() => {
       mockState.diograph = {
@@ -49,6 +50,30 @@ describe('useGraphFilter', () => {
         [1, '2 diorys', ['linkedDioryId1', 'linkedDioryId2']],
         [
           2,
+          '6 diorys',
+          [
+            'linkedDioryId1',
+            'linkedDioryId2',
+            'linkedDioryId11',
+            'linkedDioryId12',
+            'linkedDioryId21',
+            'linkedDioryId22',
+          ],
+        ],
+        [
+          3,
+          '6 diorys',
+          [
+            'linkedDioryId1',
+            'linkedDioryId2',
+            'linkedDioryId11',
+            'linkedDioryId12',
+            'linkedDioryId21',
+            'linkedDioryId22',
+          ],
+        ],
+        [
+          4,
           '6 diorys',
           [
             'linkedDioryId1',
@@ -101,7 +126,51 @@ describe('useGraphFilter', () => {
     })
   })
 
-  describe('given no diograph', () => {
+  describe('given diograph with cycles', () => {
+    beforeEach(() => {
+      mockState.diograph = {
+        diograph: {
+          someDioryId: {
+            id: 'someDioryId',
+            links: {
+              someDioryId: {
+                id: 'someDioryId',
+              },
+              otherDioryId: {
+                id: 'otherDioryId',
+              },
+            },
+          },
+          otherDioryId: {
+            id: 'otherDioryId',
+            links: {
+              someDioryId: {
+                id: 'someDioryId',
+              },
+            },
+          },
+        },
+      }
+    })
+
+    describe('given diory in focus', () => {
+      beforeEach(() => {
+        mockState.navigation = { focus: 'someDioryId' }
+      })
+
+      describe('given graph filter', () => {
+        beforeEach(() => {
+          mockState.filters = { filters: { graph: 3 } }
+        })
+
+        it('returns diory only once', () => {
+          expect(useGraphFilter()).toEqual(['someDioryId', 'otherDioryId'])
+        })
+      })
+    })
+  })
+
+  describe('given empty diograph', () => {
     beforeEach(() => {
       mockState.diograph = { diograph: {} }
     })
