@@ -1,1 +1,4 @@
+export const SET_FILTERS = 'SET_FILTERS'
+export const ACTIVATE_FILTER = 'ACTIVATE_FILTER'
+export const SET_FILTER = 'SET_FILTER'
 export const SET_TEXT_FILTER = 'SET_TEXT_FILTER'
