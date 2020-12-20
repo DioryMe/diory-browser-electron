@@ -1,12 +1,10 @@
 import React from 'react'
-import LensesBar from '../../../components/LensesBar'
+import LensesBar from '../../lenses/LensesBar'
 import { useFocusDiory } from '../../diograph/hooks'
-import { useLenses } from '../../lenses/useLenses'
 
-const NavigationLenses = (props) => {
+const NavigationLenses = () => {
   const { diory } = useFocusDiory()
-  const { lenses } = useLenses()
-  return !diory ? null : <LensesBar lenses={lenses} {...props} />
+  return !diory ? null : <LensesBar />
 }
 
 export default NavigationLenses
