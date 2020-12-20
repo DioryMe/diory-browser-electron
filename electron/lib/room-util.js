@@ -1,9 +1,10 @@
 const fs = require('fs')
 const util = require('util')
+const { channels } = require('../../src/shared/constants')
 
 const writeFilePromise = util.promisify(fs.writeFile)
 
-const getRoom = async (path) => {
+export const getRoom = async (path) => {
   const folderPath = path
   const diographJSONPath = `${path}/diograph.json`
 
@@ -21,11 +22,15 @@ const getRoom = async (path) => {
   }
 }
 
-const saveRoom = async (path, diograph) => {
+export const saveRoom = async (path, diograph) => {
   const data = JSON.stringify(diograph, null, 2)
   console.log('Saving room', path)
   return writeFilePromise(`${path}/diograph.json`, data)
 }
 
-exports.getRoom = getRoom
-exports.saveRoom = saveRoom
+export const handleGetRoomEvent = (event, { address }) => {
+  console.log('GET_ROOM', address)
+  getRoom(address).then(({ diograph }) => {
+    event.sender.send(channels.GET_ROOM, { diograph })
+  })
+}
