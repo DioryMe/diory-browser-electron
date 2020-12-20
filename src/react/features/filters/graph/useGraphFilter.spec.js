@@ -47,49 +47,59 @@ describe('useGraphFilter', () => {
 
       const graphFilterReturnsExpected = [
         [0, 'false', false],
-        [1, '2 diorys', ['linkedDioryId1', 'linkedDioryId2']],
+        [
+          1,
+          '2 diorys',
+          {
+            linkedDioryId1: { id: 'linkedDioryId1' },
+            linkedDioryId2: { id: 'linkedDioryId2' },
+          },
+        ],
         [
           2,
           '6 diorys',
-          [
-            'linkedDioryId1',
-            'linkedDioryId2',
-            'linkedDioryId11',
-            'linkedDioryId12',
-            'linkedDioryId21',
-            'linkedDioryId22',
-          ],
+          {
+            linkedDioryId1: { id: 'linkedDioryId1' },
+            linkedDioryId2: { id: 'linkedDioryId2' },
+            linkedDioryId11: { id: 'linkedDioryId11' },
+            linkedDioryId12: { id: 'linkedDioryId12' },
+            linkedDioryId21: { id: 'linkedDioryId21' },
+            linkedDioryId22: { id: 'linkedDioryId22' },
+          },
         ],
         [
           3,
           '6 diorys',
-          [
-            'linkedDioryId1',
-            'linkedDioryId2',
-            'linkedDioryId11',
-            'linkedDioryId12',
-            'linkedDioryId21',
-            'linkedDioryId22',
-          ],
+          {
+            linkedDioryId1: { id: 'linkedDioryId1' },
+            linkedDioryId2: { id: 'linkedDioryId2' },
+            linkedDioryId11: { id: 'linkedDioryId11' },
+            linkedDioryId12: { id: 'linkedDioryId12' },
+            linkedDioryId21: { id: 'linkedDioryId21' },
+            linkedDioryId22: { id: 'linkedDioryId22' },
+          },
         ],
         [
           4,
           '6 diorys',
-          [
-            'linkedDioryId1',
-            'linkedDioryId2',
-            'linkedDioryId11',
-            'linkedDioryId12',
-            'linkedDioryId21',
-            'linkedDioryId22',
-          ],
+          {
+            linkedDioryId1: { id: 'linkedDioryId1' },
+            linkedDioryId2: { id: 'linkedDioryId2' },
+            linkedDioryId11: { id: 'linkedDioryId11' },
+            linkedDioryId12: { id: 'linkedDioryId12' },
+            linkedDioryId21: { id: 'linkedDioryId21' },
+            linkedDioryId22: { id: 'linkedDioryId22' },
+          },
         ],
       ]
 
-      graphFilterReturnsExpected.forEach(([graph, returns, expectedDioryIds]) => {
-        describe(`given graph filter ${graph}`, () => {
+      graphFilterReturnsExpected.forEach(([grid, returns, expectedDioryIds]) => {
+        describe(`given grid filter ${grid}`, () => {
           beforeEach(() => {
-            mockState.filters = { filters: { graph } }
+            mockState.filters = {
+              active: { grid: true },
+              filters: { grid },
+            }
           })
 
           it(`returns ${returns}`, () => {
@@ -104,9 +114,9 @@ describe('useGraphFilter', () => {
         mockState.navigation = { focus: undefined }
       })
 
-      describe('given graph filter', () => {
+      describe('given grid filter', () => {
         beforeEach(() => {
-          mockState.filters = { filters: { graph: 1 } }
+          mockState.filters = { filters: { grid: 1 } }
         })
 
         it('returns false', () => {
@@ -114,7 +124,7 @@ describe('useGraphFilter', () => {
         })
       })
 
-      describe('given no graph filter', () => {
+      describe('given no grid filter', () => {
         beforeEach(() => {
           mockState.filters = { filters: {} }
         })
@@ -158,9 +168,9 @@ describe('useGraphFilter', () => {
         mockState.navigation = { focus: 'someDioryId' }
       })
 
-      describe('given graph filter', () => {
+      describe('given grid filter', () => {
         beforeEach(() => {
-          mockState.filters = { filters: { graph: 3 } }
+          mockState.filters = { filters: { grid: 3 } }
         })
 
         it('returns diory only once', () => {
@@ -180,9 +190,9 @@ describe('useGraphFilter', () => {
         mockState.navigation = { focus: 'someDioryId' }
       })
 
-      describe('given graph filter', () => {
+      describe('given grid filter', () => {
         beforeEach(() => {
-          mockState.filters = { filters: { graph: 1 } }
+          mockState.filters = { filters: { grid: 1 } }
         })
 
         it('returns false', () => {

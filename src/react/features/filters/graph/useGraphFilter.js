@@ -1,29 +1,34 @@
 import { useStore } from '../../../store'
-
-function getLinkIds({ links } = {}) {
-  return links ? Object.values(links).map(({ id }) => id) : []
-}
+import { reduceIdsToKeys } from '../../../utils/reduceIdsToKeys'
 
 function getArray(length) {
   return [...Array(length - 1).keys()]
 }
 
-function unique(array) {
-  return [...new Set(array)]
+function getLinkIds({ links } = {}) {
+  return links ? Object.values(links).reduce(reduceIdsToKeys, {}) : {}
+}
+
+function getDioryLinkIds(diograph) {
+  return (obj, { id }) => ({
+    ...obj,
+    ...getLinkIds(diograph[id]),
+  })
 }
 
 export const useGraphFilter = () => {
   const [{ diograph }] = useStore((state) => state.diograph)
   const [{ focus }] = useStore((state) => state.navigation)
-  const [{ filters }] = useStore((state) => state.filters)
+  const [{ grid: isActive }] = useStore((state) => state.filters.active)
+  const [{ grid: zoomLevel }] = useStore((state) => state.filters.filters)
 
   const diory = diograph[focus]
   return (
-    !!filters.graph &&
+    isActive &&
+    !!zoomLevel &&
     !!diory &&
-    getArray(filters.graph).reduce(
-      (dioryIds) =>
-        dioryIds.reduce((array, id) => unique([...array, ...getLinkIds(diograph[id])]), dioryIds),
+    getArray(zoomLevel).reduce(
+      (dioryIds) => Object.values(dioryIds).reduce(getDioryLinkIds(diograph), dioryIds),
       getLinkIds(diory)
     )
   )
