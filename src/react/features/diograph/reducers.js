@@ -11,7 +11,7 @@ import { promiseReducers, createReducer } from '../../store'
 
 export const initialState = {
   id: undefined,
-  diograph: undefined,
+  diograph: {},
   updated: false,
 }
 

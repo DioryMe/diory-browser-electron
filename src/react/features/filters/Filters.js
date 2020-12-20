@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTextFilterEffects } from './hooks/useTextFilterEffects'
+import { useTextFilterEffects } from './text/useTextFilterEffects'
 
 const Filters = () => {
   useTextFilterEffects()
