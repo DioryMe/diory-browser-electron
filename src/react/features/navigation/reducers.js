@@ -3,7 +3,6 @@ import {
   GO_SIDE,
   GO_HOME,
   SET_FOCUS,
-  SET_FULLSCREEN,
   GO_BACKWARD,
   GO_FORWARD,
   SET_SELECTED_LINK,
@@ -14,7 +13,6 @@ export const initialState = {
   roomId: undefined,
   focus: undefined,
   link: null,
-  fullscreen: false,
   backward: [],
   forward: [],
   path: [],
@@ -23,7 +21,7 @@ export const initialState = {
 export const enterRoom = (state, { payload }) => ({
   ...state,
   roomId: payload.id,
-  focus: payload.id,
+  focus: payload.id, // rootId
   backward: [[]],
   forward: [],
   path: [payload.id],
@@ -42,11 +40,6 @@ export const setFocus = (state, { payload }) => {
     path: [...state.path, payload.focus],
   }
 }
-
-export const setFullscreen = (state, { payload }) => ({
-  ...state,
-  fullscreen: payload.fullscreen === true,
-})
 
 export const goSide = (state, { payload }) => ({
   ...state,
@@ -98,7 +91,6 @@ export const setSelectedLink = (state, { payload }) => ({
 export default createReducer({
   [ENTER_ROOM]: enterRoom,
   [SET_FOCUS]: setFocus,
-  [SET_FULLSCREEN]: setFullscreen,
   [GO_BACKWARD]: goBackward,
   [GO_FORWARD]: goForward,
   [GO_HOME]: goHome,

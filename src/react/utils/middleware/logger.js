@@ -1,5 +1,5 @@
 export const initial = (state, action) => {
-  console.log('-------------')
+  console.log(`---${new Date().getSeconds()}.${new Date().getMilliseconds()}---`)
   console.log('PreviousState:', state)
   console.log('Action:', action)
 

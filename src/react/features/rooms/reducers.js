@@ -6,13 +6,13 @@ export const initialState = {
   updated: false,
 }
 
-export const setRooms = (state, { payload }) => ({
+const setRooms = (state, { payload }) => ({
   ...state,
   rooms: payload.rooms,
   updated: false,
 })
 
-export const addRoom = (state, { payload }) => ({
+const addRoom = (state, { payload }) => ({
   ...state,
   rooms: {
     ...state.rooms,
@@ -21,7 +21,7 @@ export const addRoom = (state, { payload }) => ({
   updated: true,
 })
 
-export const removeRoom = (state, { payload }) => {
+const removeRoom = (state, { payload }) => {
   // eslint-disable-next-line no-unused-vars
   const { [payload.id]: omit, ...rooms } = state.rooms
   return {
@@ -31,7 +31,7 @@ export const removeRoom = (state, { payload }) => {
   }
 }
 
-export const updateRoom = (state, { payload }) => ({
+const updateRoom = (state, { payload }) => ({
   ...state,
   rooms: {
     ...state.rooms,

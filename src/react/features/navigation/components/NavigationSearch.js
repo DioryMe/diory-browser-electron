@@ -2,7 +2,7 @@ import React from 'react'
 import { Pane, SearchInput } from 'evergreen-ui'
 import { useStore } from '../../../store'
 
-import { useTextFilter } from '../../filters/hooks/useTextFilter'
+import { useTextFilter } from '../../filters/text/useTextFilter'
 
 const useSearchInput = () => {
   const [{ roomId }] = useStore((state) => state.navigation)
