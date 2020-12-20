@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 import { useStore } from '../../store'
-import { useFocusDiory } from '../diograph/hooks'
 
 import Fullscreen from '../../components/Fullscreen'
+import { useFocus } from '../diograph/hooks'
+import { useFilters } from '../filters/useFilters'
 
 import fullscreen from './fullscreen'
 import grid from './grid'
@@ -17,9 +18,8 @@ export const lenses = {
   fullscreen,
 }
 
-const Lenses = () => {
-  const { diory, diorys } = useFocusDiory()
-  const [{ selectedLensId }] = useStore((state) => state.lenses)
+const LensesView = memo(({ diory, diorys, selectedLensId }) => {
+  console.log('Diorys in lens', diorys.length)
   const { Lens } = lenses[selectedLensId]
 
   return diory ? (
@@ -27,6 +27,14 @@ const Lenses = () => {
       <Lens diory={diory} diorys={diorys} />
     </Fullscreen>
   ) : null
-}
+})
 
+const Lenses = () => {
+  const [{ selectedLensId }] = useStore((state) => state.lenses)
+  return <LensesView
+    {...useFocus()}
+    {...useFilters()}
+    selectedLensId={selectedLensId}
+  />
+}
 export default Lenses
