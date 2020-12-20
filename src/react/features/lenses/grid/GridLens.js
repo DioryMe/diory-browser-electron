@@ -2,12 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { useDispatchActions } from '../../../store'
+
 import { useCreateTool } from '../../tools/create'
 import { useDeleteTool } from '../../tools/delete'
 import { useFocusTool } from '../../tools/focus'
 import { useUpdateTool } from '../../tools/update'
 
 import { createLink } from '../../diograph/actions'
+import { setFilter } from '../../filters/actions'
 
 import GridView from './GridView'
 
@@ -27,6 +29,7 @@ const useTools = () => {
     onDrop: ({ droppedId, draggedId }) => {
       dispatch(createLink({ id: droppedId }, { id: draggedId }))
     },
+    onZoom: (zoom) => dispatch(setFilter({ grid: zoom })),
   }
 }
 

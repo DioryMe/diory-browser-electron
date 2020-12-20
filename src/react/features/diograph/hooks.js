@@ -1,5 +1,10 @@
 import { useStore } from '../../store'
 
+const useDiory = (id) => {
+  const [{ diograph = {} }] = useStore((state) => state.diograph)
+  return diograph[id]
+}
+
 export const useDiorys = (ids = {}) => {
   const [{ diograph = {} }] = useStore((state) => state.diograph)
   return Object.entries(ids)
@@ -7,22 +12,25 @@ export const useDiorys = (ids = {}) => {
     .filter(({ id }) => id)
 }
 
-export const useDiory = (id) => {
+const useLinkedDiorys = (id) => {
   const [{ diograph = {} }] = useStore((state) => state.diograph)
   const diory = diograph[id]
   const links = diory && diory.links
-  return {
-    diory,
-    diorys: useDiorys(links),
-  }
+  return useDiorys(links)
 }
 
-export const useFocusDiory = () => {
+export const useFocus = () => {
   const [{ focus }] = useStore((state) => state.navigation)
-  return useDiory(focus)
+  return {
+    diory: useDiory(focus),
+    diorys: useLinkedDiorys(focus),
+  }
 }
 
 export const useLinkDiory = () => {
   const [{ link }] = useStore((state) => state.navigation)
-  return useDiory(link)
+  return {
+    diory: useDiory(link),
+    diorys: useLinkedDiorys(link),
+  }
 }
