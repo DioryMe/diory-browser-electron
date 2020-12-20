@@ -1,9 +1,12 @@
-import React, { createContext, useContext, useReducer } from 'react'
+import React, { useReducer } from 'react'
+import { createContainer } from 'react-tracked'
 
-const StoreContext = createContext()
+const { Provider, useTracked } = createContainer(({ reducer, initialState }) =>
+  useReducer(reducer, initialState)
+)
 
 export const StoreProvider = ({ reducer, initialState, children }) => (
-  <StoreContext.Provider value={useReducer(reducer, initialState)} children={children} />
+  <Provider reducer={reducer} initialState={initialState} children={children} />
 )
 
 StoreProvider.defaultProps = {
@@ -11,9 +14,9 @@ StoreProvider.defaultProps = {
 }
 
 export const useStore = (selector) => {
-  const [state, dispatch] = useContext(StoreContext)
+  const [state, dispatch] = useTracked()
   const selectedState = selector ? selector(state) : state
   return [selectedState, dispatch]
 }
 
-export const useDispatch = () => useContext(StoreContext)[1]
+export const useDispatch = () => useTracked()[1]
