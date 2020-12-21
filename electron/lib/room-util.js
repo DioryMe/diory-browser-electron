@@ -1,6 +1,5 @@
 const fs = require('fs')
 const util = require('util')
-const { channels } = require('../../src/shared/constants')
 
 const writeFilePromise = util.promisify(fs.writeFile)
 
@@ -29,14 +28,10 @@ export const saveRoom = async (path, diograph) => {
 }
 
 /**
+ * Event handler for GET_ROOM channel
  * @function
- * @param {object} event - Event from frontend
- * @param {object} params - address
- * @return {object} Diograph
+ * @param event {Object} - Event from frontend via ipcMain
+ * @param params {Object} - Uses only address key which is the folder path
+ * @return {Object} Object with diograph key with diograph as Object
  */
-export const handleGetRoomEvent = (event, { address }) => {
-  console.log('GET_ROOM', address)
-  getRoom(address).then(({ diograph }) => {
-    event.sender.send(channels.GET_ROOM, { diograph })
-  })
-}
+export const handleGetRoomEvent = (event, { address }) => getRoom(address)
