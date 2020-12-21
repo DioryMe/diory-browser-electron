@@ -49,7 +49,11 @@ app.on('activate', () => {
   }
 })
 
+
 function loadChannels() {
+  // Load channels from single file instead of iterating several
+  require('electron/channels/channels.js')
+
   const files = glob.sync(path.join(__dirname, 'electron/channels/**/*.js'))
   files.forEach((file) => require(file))
 }
