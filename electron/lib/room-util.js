@@ -28,6 +28,12 @@ export const saveRoom = async (path, diograph) => {
   return writeFilePromise(`${path}/diograph.json`, data)
 }
 
+/**
+ * @function
+ * @param {object} event - Event from frontend
+ * @param {object} params - address
+ * @return {object} Diograph
+ */
 export const handleGetRoomEvent = (event, { address }) => {
   console.log('GET_ROOM', address)
   getRoom(address).then(({ diograph }) => {
