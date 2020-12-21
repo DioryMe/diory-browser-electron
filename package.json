@@ -46,6 +46,7 @@
     "evergreen-ui": "^4.27.4",
     "husky": "^4.2.5",
     "jest-electron": "^0.1.11",
+    "jsdoc": "^3.6.6",
     "jsdom": "^16.2.2",
     "leaflet": "^1.6.0",
     "lint-staged": "^10.2.7",
