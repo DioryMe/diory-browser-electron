@@ -1,4 +1,4 @@
-import { handleEvent } from './handle-event'
+import { eventHandlerWrapper } from './channel-util'
 import { getHomeEventHandler, defaultHome } from './get-home-channel'
 
 const HomeStore = require('electron-store')
@@ -16,7 +16,7 @@ describe('getHomeEventHandler', () => {
     HomeStore.mockImplementation(() => ({ get: () => undefined }))
 
     const params = {}
-    await handleEvent(getHomeEventHandler)(mockEvent, params)
+    await eventHandlerWrapper(getHomeEventHandler)(mockEvent, params)
 
     expect(mockEventReply.mock.calls.length).toBe(1)
     expect(mockEventReply.mock.calls[0][0]).toEqual('GET_HOME')
@@ -27,7 +27,7 @@ describe('getHomeEventHandler', () => {
     HomeStore.mockImplementation(() => ({ get: () => 'value' }))
 
     const params = {}
-    await handleEvent(getHomeEventHandler)(mockEvent, params)
+    await eventHandlerWrapper(getHomeEventHandler)(mockEvent, params)
 
     expect(mockEventReply.mock.calls.length).toBe(1)
     expect(mockEventReply.mock.calls[0][0]).toEqual('GET_HOME')
