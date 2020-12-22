@@ -8,6 +8,25 @@ const { channels } = require('../../src/shared/constants')
  * @param event {Object} - Event from frontend via ipcMain
  * @param params {Object} - No params
  * @return {Promise} Resolves with home object (keys: rooms, connections, focus)
+ *
+ * @example Response object:
+ * {
+ *   rooms: {
+ *     room1: { id: 'room1', image: '...', links: [...] },
+ *     room2: { id: 'room2', image: '...', links: [...] }
+ *   },
+ *   connections: {
+ *     './public/...': {
+ *       room:
+ *       connector:
+ *     }
+ *   },
+ *   focus: {
+ *     roomId: "development-content-room",
+ *     dioryId: "development-content-room"
+ *   }
+ * }
+ *
  */
 export const getHomeEventHandler = (event, params) => {
   const store = new HomeStore()
