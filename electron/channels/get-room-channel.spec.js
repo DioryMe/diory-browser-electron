@@ -4,7 +4,6 @@ import { handleGetRoomEvent } from '../lib/room-util'
 const fs = require('fs')
 
 const mockEventReply = jest.fn()
-
 const mockEvent = { reply: mockEventReply }
 
 describe('handleGetRoomEvent', () => {
@@ -20,6 +19,7 @@ describe('handleGetRoomEvent', () => {
     const returnValue = { diograph: diographObject }
 
     expect(mockEventReply.mock.calls.length).toBe(1)
-    expect(mockEventReply.mock.calls[0][0]).toEqual(returnValue)
+    expect(mockEventReply.mock.calls[0][0]).toEqual('GET_ROOM')
+    expect(mockEventReply.mock.calls[0][1]).toEqual(returnValue)
   })
 })
