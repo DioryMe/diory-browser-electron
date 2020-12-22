@@ -1,9 +1,23 @@
+const fs = require('fs')
 const { readPaths } = require('../readers/folder-reader')
 const { generateFileDiory, generateFolderDiory } = require('./diory-generator')
 const { generateDiograph } = require('./diograph-generator')
 
 jest.mock('../readers/folder-reader')
 jest.mock('./diory-generator')
+
+// Simple & pure test for generateDiograph
+describe('generateDiograph', () => {
+  it('simple & pure test for calling generateDiograph', async () => {
+    const params = '/Users/Jouni/Code/diory-browser-electron/public/development-content-room'
+    const response = await generateDiograph(params)
+
+    const diographJSONRawContents = fs.readFileSync(`${params}/diograph.json`)
+    const diographObjectFromFile = JSON.parse(diographJSONRawContents)
+
+    expect(response).toEqual(diographObjectFromFile)
+  })
+})
 
 describe('diograph-generator', () => {
   let act
