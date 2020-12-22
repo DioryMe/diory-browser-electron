@@ -13,4 +13,5 @@ ipcMain.on(channels.GET_ROOM, eventHandlerWrapper(getRoomEventHandler))
 ipcMain.on(channels.GET_HOME, eventHandlerWrapper(getHomeEventHandler))
 
 /* GENERATE_DIOGRAPH */
-ipcMain.on(channels.GENERATE_DIOGRAPH, eventHandlerWrapper(generateDiographEventHandler))
+ipcMain.on(channels.GENERATE_DIOGRAPH, generateDiographEventHandler)
+// ipcMain.on(channels.GENERATE_DIOGRAPH, eventHandlerWrapper(generateDiographEventHandler))
