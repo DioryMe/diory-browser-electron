@@ -3,7 +3,7 @@ const util = require('util')
 
 const writeFilePromise = util.promisify(fs.writeFile)
 
-export const getRoom = async (path) => {
+export const getRoom = (path) => {
   const folderPath = path
   const diographJSONPath = `${path}/diograph.json`
 
@@ -32,6 +32,9 @@ export const saveRoom = async (path, diograph) => {
  * @function
  * @param event {Object} - Event from frontend via ipcMain
  * @param params {Object} - Uses only address key which is the folder path
- * @return {Object} Object with diograph key with diograph as Object
+ * @return {Promise} Resolves with object with diograph key with diograph as Object
  */
-export const handleGetRoomEvent = (event, { address }) => getRoom(address)
+export const handleGetRoomEvent = (event, { address }) =>
+  new Promise((resolve, reject) => {
+    resolve({ channelName: 'GET_ROOM', responseObject: getRoom(address) })
+  })

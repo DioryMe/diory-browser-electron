@@ -13,15 +13,23 @@ export const handleEvent = (eventHandler) => {
    * @param params {Object}
    * @returns {undefined}
    */
+
+  // TÄMÄ EI OLE MIKÄÄN PROMISE
+  // - tää on se, minkä ipcMain laukaisee
+  // - tämä solvaa sitten tuon eventHandler promisen
+  //   ja vastaa objektilla tai virheellä
   const specificEventHandler = (event, params) => {
-    eventHandler(event, params).then(
-      (responseObject) => {
-        event.reply(responseObject)
-      },
-      (errorObject) => {
-        event.reply(errorObject)
-      }
-    )
+    const success = ({ channelName, responseObject }) => {
+      event.reply(channelName, responseObject)
+    }
+
+    const err = ({ channelName, errorObject }) => {
+      event.reply(channelName, errorObject)
+    }
+
+    // TÄÄ ON: handleGetHomeEvent tai handleGetRoomEvent
+    eventHandler(event, params).then(success, err)
   }
+
   return specificEventHandler
 }
