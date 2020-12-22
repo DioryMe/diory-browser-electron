@@ -1,18 +1,18 @@
 import { handleEvent } from './handle-event'
-import { handleGetRoomEvent } from './get-room-channel'
+import { getRoomEventHandler } from './get-room-channel'
 
 const fs = require('fs')
 
 const mockEventReply = jest.fn()
 const mockEvent = { reply: mockEventReply }
 
-describe('handleGetRoomEvent', () => {
+describe('getRoomEventHandler', () => {
   it('works', async () => {
     const exampleFolderPath =
       '/Users/Jouni/Code/diory-browser-electron/public/development-content-room'
     const params = { address: exampleFolderPath }
 
-    await handleEvent(handleGetRoomEvent)(mockEvent, params)
+    await handleEvent(getRoomEventHandler)(mockEvent, params)
 
     const diographJSONRawContents = fs.readFileSync(`${exampleFolderPath}/diograph.json`)
     const diographObject = JSON.parse(diographJSONRawContents)

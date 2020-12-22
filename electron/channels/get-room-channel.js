@@ -9,7 +9,7 @@ const { channels } = require('../../src/shared/constants')
  * @param params {Object} - Uses only address key which is the folder path
  * @return {Promise} Resolves with object with diograph key with diograph as Object
  */
-export const handleGetRoomEvent = (event, { address }) =>
+export const getRoomEventHandler = (event, { address }) =>
   new Promise((resolve, reject) => {
     resolve({ channelName: channels.GET_ROOM, responseObject: getRoom(address) })
   })
