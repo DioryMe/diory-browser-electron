@@ -8,7 +8,7 @@ jest.mock('./diory-generator')
 
 // Simple & pure test for generateDiograph
 describe('generateDiograph', () => {
-  it('simple & pure test for calling generateDiograph', async () => {
+  it.skip('simple & pure test for calling generateDiograph', async () => {
     const params = '/Users/Jouni/Code/diory-browser-electron/public/development-content-room'
     const response = await generateDiograph(params)
 

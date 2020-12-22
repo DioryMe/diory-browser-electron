@@ -18,6 +18,11 @@ export const eventHandlerWrapper = (eventHandler) => {
   // - tää on se, minkä ipcMain laukaisee
   // - tämä solvaa sitten tuon eventHandler promisen
   //   ja vastaa objektilla tai virheellä
+
+  // Yhteneväiset logitukset tämän yhteyteen olis kova kans
+  // - ei tarttis erikseen määrittää, vaan aina logittais kaikille samat
+  // - tyyliin: console.log('Backend IPC: GENERATE_DIOGRAPH', path)
+
   const specificEventHandler = (event, params) => {
     const success = ({ channelName, responseObject }) => {
       event.reply(channelName, responseObject)
