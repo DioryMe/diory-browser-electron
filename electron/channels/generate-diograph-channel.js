@@ -1,6 +1,6 @@
 const { channels } = require('../../src/shared/constants')
 const { generateDiograph } = require('../generators/diograph-generator')
-const { saveRoom } = require('../lib/room-util')
+// const { saveRoom } = require('../lib/room-util')
 
 /**
  * Event handler for GENERATE_DIOGRAPH channel
@@ -21,15 +21,18 @@ const { saveRoom } = require('../lib/room-util')
  *
  */
 export const generateDiographEventHandler = (event, path) => {
-  console.log('Backend IPC: GENERATE_DIOGRAPH', path)
-  generateDiograph(path).then(({ id, diograph }) => {
-    saveRoom(path, diograph)
-      .then(() => {
-        event.reply(channels.GENERATE_DIOGRAPH, { id, diograph, path })
-      })
-      .catch((err) => {
-        console.log(err)
-        return event.sender.send(channels.GENERATE_DIOGRAPH, null, err)
-      })
+  generateDiograph(path).then((diograph) => {
+    event.reply(channels.GENERATE_DIOGRAPH, { diograph })
   })
+
+  // generateDiograph(path).then(({ id, diograph }) => {
+  //   saveRoom(path, diograph)
+  //     .then(() => {
+  //       event.reply(channels.GENERATE_DIOGRAPH, { id, diograph, path })
+  //     })
+  //     .catch((err) => {
+  //       console.log(err)
+  //       return event.reply(channels.GENERATE_DIOGRAPH, null, err)
+  //     })
+  // })
 }
