@@ -1,5 +1,5 @@
 import { handleEvent } from './handle-event'
-import { handleGetRoomEvent } from '../lib/room-util'
+import { handleGetRoomEvent } from './get-room-channel'
 
 const fs = require('fs')
 
