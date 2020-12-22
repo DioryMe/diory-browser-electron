@@ -1,4 +1,4 @@
-import { handleEvent } from './handle-event'
+import { eventHandlerWrapper } from './channel-util'
 import { getRoomEventHandler } from './get-room-channel'
 
 const fs = require('fs')
@@ -12,7 +12,7 @@ describe('getRoomEventHandler', () => {
       '/Users/Jouni/Code/diory-browser-electron/public/development-content-room'
     const params = { address: exampleFolderPath }
 
-    await handleEvent(getRoomEventHandler)(mockEvent, params)
+    await eventHandlerWrapper(getRoomEventHandler)(mockEvent, params)
 
     const diographJSONRawContents = fs.readFileSync(`${exampleFolderPath}/diograph.json`)
     const diographObject = JSON.parse(diographJSONRawContents)

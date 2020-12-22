@@ -1,12 +1,12 @@
 const { ipcMain } = require('electron')
 const { channels } = require('../../src/shared/constants')
-const { handleEvent } = require('./handle-event')
+const { eventHandlerWrapper } = require('./channel-util')
 
 const { getHomeEventHandler } = require('./get-home-channel')
 const { getRoomEventHandler } = require('./get-room-channel')
 
 /* GET_ROOM */
-ipcMain.on(channels.GET_ROOM, handleEvent(getRoomEventHandler))
+ipcMain.on(channels.GET_ROOM, eventHandlerWrapper(getRoomEventHandler))
 
 /* GET_HOME */
-ipcMain.on(channels.GET_HOME, getHomeEventHandler)
+ipcMain.on(channels.GET_HOME, eventHandlerWrapper(getHomeEventHandler))
