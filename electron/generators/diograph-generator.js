@@ -33,6 +33,21 @@ async function generateFolderDiographAndLink(folderPath) {
   return [diograph, folderLink]
 }
 
+/**
+ * Generates diograph object by reading the folder structure (path given as an argument)
+ * @param {string} folderPath
+ * @returns {object} Object with (room diory) id and diograph
+ *
+ * @example
+ * {
+ *   id: '123-abc-def',
+ *   diograph: {
+ *     'abc-def-123': { ... },
+ *     'ghi-jkl-456': { ... },
+ *     ...
+ *   }
+ * }
+ */
 async function generateDiograph(folderPath) {
   const { files = [], subfolders = [] } = (await readPaths(folderPath)) || {}
 
