@@ -9,7 +9,7 @@ const { channels } = require('../../src/shared/constants')
  * @param params {Object} - No params
  * @return {Promise} Resolves with home object (keys: rooms, connections, focus)
  */
-export const handleGetHomeEvent = (event, params) => {
+export const getHomeEventHandler = (event, params) => {
   const store = new HomeStore()
   const home = store.get('home') || defaultHome
 
