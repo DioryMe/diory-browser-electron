@@ -22,6 +22,7 @@ export const eventHandlerWrapper = (eventHandler) => {
   // Yhteneväiset logitukset tämän yhteyteen olis kova kans
   // - ei tarttis erikseen määrittää, vaan aina logittais kaikille samat
   // - tyyliin: console.log('Backend IPC: GENERATE_DIOGRAPH', path)
+  //            console.log('Backend IPC: SAVE_ROOM', path, id)
 
   const specificEventHandler = (event, params) => {
     const success = ({ channelName, responseObject }) => {
