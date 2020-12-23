@@ -23,6 +23,7 @@ export const eventHandlerWrapper = (eventHandler) => {
   // - ei tarttis erikseen määrittää, vaan aina logittais kaikille samat
   // - tyyliin: console.log('Backend IPC: GENERATE_DIOGRAPH', path)
   //            console.log('Backend IPC: SAVE_ROOM', path, id)
+  //            console.log('SAVE_HOME', home)
 
   const specificEventHandler = (event, params) => {
     const success = ({ channelName, responseObject }) => {

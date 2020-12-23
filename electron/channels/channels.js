@@ -6,6 +6,7 @@ const { getHomeEventHandler } = require('./get-home-channel')
 const { getRoomEventHandler } = require('./get-room-channel')
 const { generateDiographEventHandler } = require('./generate-diograph-channel')
 const { saveRoomEventHandler } = require('./save-room-channel')
+const { saveHomeEventHandler } = require('./save-home-channel')
 
 /* GET_ROOM */
 ipcMain.on(channels.GET_ROOM, eventHandlerWrapper(getRoomEventHandler))
@@ -20,3 +21,7 @@ ipcMain.on(channels.GENERATE_DIOGRAPH, generateDiographEventHandler)
 /* SAVE_ROOM */
 ipcMain.on(channels.SAVE_ROOM, saveRoomEventHandler)
 // ipcMain.on(channels.SAVE_ROOM, eventHandlerWrapper(saveRoomEventHandler))
+
+/* SAVE_HOME */
+ipcMain.on(channels.SAVE_HOME, saveHomeEventHandler)
+// ipcMain.on(channels.SAVE_HOME, eventHandlerWrapper(saveHomeEventHandler))
