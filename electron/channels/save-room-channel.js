@@ -8,7 +8,7 @@ export const saveRoomEventHandler = (event, { path, room: { id, diograph } }) =>
       event.reply(channels.SAVE_ROOM, true)
     })
     .catch((err) => {
-      console.log(err)
+      console.log(err.message)
       return event.reply(channels.SAVE_ROOM, null, err)
     })
 }
