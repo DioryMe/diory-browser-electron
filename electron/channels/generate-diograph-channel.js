@@ -20,15 +20,18 @@ const { saveRoom } = require('../lib/room-util')
  * }
  *
  */
-export const generateDiographEventHandler = (event, path) => {
-  generateDiograph(path).then(({ id, diograph }) => {
-    saveRoom(path, diograph)
-      .then(() => {
-        event.reply(channels.GENERATE_DIOGRAPH, { id, diograph, path })
-      })
-      .catch((err) => {
-        console.log(err)
-        return event.reply(channels.GENERATE_DIOGRAPH, null, err)
-      })
+export const generateDiographEventHandler = (event, path) =>
+  new Promise((resolve, reject) => {
+    generateDiograph(path).then(({ id, diograph }) => {
+      saveRoom(path, diograph)
+        .then(() => {
+          resolve({
+            channelName: channels.GENERATE_DIOGRAPH,
+            responseObject: { id, diograph, path },
+          })
+        })
+        .catch((err) => {
+          reject({ channelName: channels.GENERATE_DIOGRAPH, errorObject: err }) // eslint-disable-line prefer-promise-reject-errors
+        })
+    })
   })
-}
