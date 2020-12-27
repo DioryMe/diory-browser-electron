@@ -1,4 +1,4 @@
-// import { eventHandlerWrapper } from './channel-util'
+import { eventHandlerWrapper } from './channel-util'
 import { saveHomeEventHandler } from './save-home-channel'
 
 const HomeStore = require('electron-store')
@@ -14,8 +14,8 @@ HomeStore.mockImplementation(() => ({ set: mockHomeStoreSet }))
 describe('saveHomeEventHandler', () => {
   it('calls store.set(home: params)', async () => {
     const params = 'this is new home object to be saved'
-    await saveHomeEventHandler(mockEvent, params)
-    // await eventHandlerWrapper(saveHomeEventHandler)(mockEvent, params)
+
+    await eventHandlerWrapper(saveHomeEventHandler)(mockEvent, params)
 
     expect(mockHomeStoreSet.mock.calls.length).toBe(1)
     expect(mockHomeStoreSet.mock.calls[0][0]).toEqual({ home: params })
