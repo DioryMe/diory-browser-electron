@@ -8,12 +8,13 @@ const mockEventReply = jest.fn()
 const mockEvent = { reply: mockEventReply }
 // Mock generateDiograph
 jest.mock('../generators/diograph-generator')
-const generateDiographPromise = Promise.resolve({ id: 'this', diograph: 'is generated diograph' })
-generateDiograph.mockImplementation(() => generateDiographPromise)
+const generateDiographMock = generateDiograph.mockResolvedValue({
+  id: 'this',
+  diograph: 'is generated diograph',
+})
 // Mock saveRoom
 jest.mock('../lib/room-util')
-const saveRoomPromise = Promise.resolve(undefined)
-saveRoom.mockImplementation(() => saveRoomPromise)
+const saveRoomMock = saveRoom.mockResolvedValue(undefined)
 
 describe('generateDiographEventHandler', () => {
   it('sends event with generateDiograph return value', async () => {
@@ -21,8 +22,8 @@ describe('generateDiographEventHandler', () => {
 
     // Trigger event handler and await for mocked promises to resolve before expects
     await eventHandlerWrapper('GENERATE_DIOGRAPH', generateDiographEventHandler)(mockEvent, params)
-    await generateDiographPromise
-    await saveRoomPromise
+    await generateDiographMock
+    await saveRoomMock
 
     expect(generateDiograph).toHaveBeenCalledTimes(1)
     expect(generateDiograph).toHaveBeenCalledWith(params)
