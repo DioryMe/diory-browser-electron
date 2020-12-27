@@ -20,7 +20,7 @@ describe('generateDiographEventHandler', () => {
     const params = 'this is a file path'
 
     // Trigger event handler and await for mocked promises to resolve before expects
-    await eventHandlerWrapper(generateDiographEventHandler)(mockEvent, params)
+    await eventHandlerWrapper('GENERATE_DIOGRAPH', generateDiographEventHandler)(mockEvent, params)
     await generateDiographPromise
     await saveRoomPromise
 
