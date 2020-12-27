@@ -1,4 +1,4 @@
-// import { eventHandlerWrapper } from './channel-util'
+import { eventHandlerWrapper } from './channel-util'
 import { generateDiographEventHandler } from './generate-diograph-channel'
 import { generateDiograph } from '../generators/diograph-generator'
 import { saveRoom } from '../lib/room-util'
@@ -8,24 +8,26 @@ const mockEventReply = jest.fn()
 const mockEvent = { reply: mockEventReply }
 // Mock generateDiograph
 jest.mock('../generators/diograph-generator')
-generateDiograph.mockImplementation(() =>
-  Promise.resolve({ id: 'this', diograph: 'is generated diograph' })
-)
+const generateDiographPromise = Promise.resolve({ id: 'this', diograph: 'is generated diograph' })
+generateDiograph.mockImplementation(() => generateDiographPromise)
 // Mock saveRoom
 jest.mock('../lib/room-util')
-saveRoom.mockImplementation(() => Promise.resolve(undefined))
+const saveRoomPromise = Promise.resolve(undefined)
+saveRoom.mockImplementation(() => saveRoomPromise)
 
 describe('generateDiographEventHandler', () => {
   it('sends event with generateDiograph return value', async () => {
     const params = 'this is a file path'
-    await generateDiographEventHandler(mockEvent, params)
-    // await eventHandlerWrapper(generateDiographEventHandler)(mockEvent, params)
+
+    // Trigger event handler and await for mocked promises to resolve before expects
+    await eventHandlerWrapper(generateDiographEventHandler)(mockEvent, params)
+    await generateDiographPromise
+    await saveRoomPromise
 
     expect(generateDiograph).toHaveBeenCalledTimes(1)
     expect(generateDiograph).toHaveBeenCalledWith(params)
 
-    // WTF is this `await expect` => with this it works!
-    await expect(saveRoom).toHaveBeenCalledTimes(1)
+    expect(saveRoom).toHaveBeenCalledTimes(1)
     expect(saveRoom).toHaveBeenCalledWith(params, 'is generated diograph')
 
     expect(mockEventReply.mock.calls.length).toBe(1)
