@@ -5,5 +5,7 @@ export const saveHomeEventHandler = (event, home) => {
   const store = new HomeStore()
   store.set({ home })
 
-  event.reply(channels.SAVE_HOME, true)
+  return new Promise((resolve, reject) => {
+    resolve({ channelName: channels.SAVE_HOME, responseObject: true })
+  })
 }

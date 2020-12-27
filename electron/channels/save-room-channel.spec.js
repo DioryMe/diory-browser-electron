@@ -22,7 +22,6 @@ describe('saveRoomEventHandler sends event with payload ', () => {
   it("'true, undefined' if Promise resolves", async () => {
     saveRoom.mockImplementation(() => Promise.resolve(undefined))
 
-    // await saveRoomEventHandler(mockEvent, params)
     await eventHandlerWrapper(saveRoomEventHandler)(mockEvent, params)
 
     await expect(saveRoom).toHaveBeenCalledTimes(1)
@@ -37,7 +36,6 @@ describe('saveRoomEventHandler sends event with payload ', () => {
   it("'null, err' if Promise rejects", async () => {
     saveRoom.mockImplementation(() => Promise.reject(new Error('this is an error')))
 
-    // await saveRoomEventHandler(mockEvent, params)
     await eventHandlerWrapper(saveRoomEventHandler)(mockEvent, params)
 
     // WTF is this `await expect` => with this it works!
