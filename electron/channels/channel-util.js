@@ -6,7 +6,7 @@
  * @param {function(): Promise} specificEventHandler - Function which returns Promise which resolves with {Object} and rejects with {Error}
  * @return {function(): void} Specific eventHandler function to be given for ipcMain.on as a second argument
  */
-export const eventHandlerWrapper = (eventHandler) => {
+export const eventHandlerWrapper = (channelName, eventHandler) => {
   /**
    * Injects specific eventHandler function into the generic eventHandler
    * @param event {Event}
@@ -28,15 +28,14 @@ export const eventHandlerWrapper = (eventHandler) => {
   // console.log(err.message)
 
   const specificEventHandler = (event, params) => {
-    const success = ({ channelName, responseObject }) => {
+    const success = (responseObject) => {
       event.reply(channelName, responseObject)
     }
 
-    const err = ({ channelName, errorObject }) => {
+    const err = (errorObject) => {
       event.reply(channelName, errorObject)
     }
 
-    // TÄÄ ON: handleGetHomeEvent tai handleGetRoomEvent
     eventHandler(event, params).then(success, err)
   }
 

@@ -9,19 +9,19 @@ const { saveRoomEventHandler } = require('./save-room-channel')
 const { saveHomeEventHandler } = require('./save-home-channel')
 
 /* GET_ROOM */
-ipcMain.on(channels.GET_ROOM, eventHandlerWrapper(getRoomEventHandler))
+ipcMain.on(channels.GET_ROOM, eventHandlerWrapper(channels.GET_ROOM, getRoomEventHandler))
 
 /* GET_HOME */
-ipcMain.on(channels.GET_HOME, eventHandlerWrapper(getHomeEventHandler))
+ipcMain.on(channels.GET_HOME, eventHandlerWrapper(channels.GET_HOME, getHomeEventHandler))
 
 /* GENERATE_DIOGRAPH */
-ipcMain.on(channels.GENERATE_DIOGRAPH, generateDiographEventHandler)
-// ipcMain.on(channels.GENERATE_DIOGRAPH, eventHandlerWrapper(generateDiographEventHandler))
+ipcMain.on(
+  channels.GENERATE_DIOGRAPH,
+  eventHandlerWrapper(channels.GENERATE_DIOGRAPH, generateDiographEventHandler)
+)
 
 /* SAVE_ROOM */
-ipcMain.on(channels.SAVE_ROOM, saveRoomEventHandler)
-// ipcMain.on(channels.SAVE_ROOM, eventHandlerWrapper(saveRoomEventHandler))
+ipcMain.on(channels.SAVE_ROOM, eventHandlerWrapper(channels.SAVE_ROOM, saveRoomEventHandler))
 
 /* SAVE_HOME */
-ipcMain.on(channels.SAVE_HOME, saveHomeEventHandler)
-// ipcMain.on(channels.SAVE_HOME, eventHandlerWrapper(saveHomeEventHandler))
+ipcMain.on(channels.SAVE_HOME, eventHandlerWrapper(channels.SAVE_HOME, saveHomeEventHandler))

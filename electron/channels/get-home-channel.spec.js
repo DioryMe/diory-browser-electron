@@ -16,7 +16,7 @@ describe('getHomeEventHandler', () => {
     HomeStore.mockImplementation(() => ({ get: () => undefined }))
 
     const params = {}
-    await eventHandlerWrapper(getHomeEventHandler)(mockEvent, params)
+    await eventHandlerWrapper('GET_HOME', getHomeEventHandler)(mockEvent, params)
 
     expect(mockEventReply.mock.calls.length).toBe(1)
     expect(mockEventReply.mock.calls[0][0]).toEqual('GET_HOME')
@@ -27,7 +27,7 @@ describe('getHomeEventHandler', () => {
     HomeStore.mockImplementation(() => ({ get: () => 'value' }))
 
     const params = {}
-    await eventHandlerWrapper(getHomeEventHandler)(mockEvent, params)
+    await eventHandlerWrapper('GET_HOME', getHomeEventHandler)(mockEvent, params)
 
     expect(mockEventReply.mock.calls.length).toBe(1)
     expect(mockEventReply.mock.calls[0][0]).toEqual('GET_HOME')

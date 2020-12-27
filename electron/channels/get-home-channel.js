@@ -1,6 +1,5 @@
 const HomeStore = require('electron-store')
 const path = require('path')
-const { channels } = require('../../src/shared/constants')
 
 /**
  * Event handler for GET_HOME channel
@@ -33,7 +32,7 @@ export const getHomeEventHandler = (event, params) => {
   const home = store.get('home') || defaultHome
 
   return new Promise((resolve, reject) => {
-    resolve({ channelName: channels.GET_HOME, responseObject: home })
+    resolve(home)
   })
 }
 
