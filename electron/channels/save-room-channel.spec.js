@@ -20,11 +20,13 @@ describe('saveRoomEventHandler sends event with payload ', () => {
   afterEach(() => jest.clearAllMocks())
 
   it("'true, undefined' if Promise resolves", async () => {
-    saveRoom.mockImplementation(() => Promise.resolve(undefined))
+    const saveRoomPromise = Promise.resolve(undefined)
+    saveRoom.mockImplementation(() => saveRoomPromise)
 
     await eventHandlerWrapper(saveRoomEventHandler)(mockEvent, params)
+    await saveRoomPromise
 
-    await expect(saveRoom).toHaveBeenCalledTimes(1)
+    expect(saveRoom).toHaveBeenCalledTimes(1)
     expect(saveRoom).toHaveBeenCalledWith(params.path, params.room.diograph)
 
     expect(mockEventReply.mock.calls.length).toBe(1)
