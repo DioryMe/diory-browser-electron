@@ -12,7 +12,7 @@ describe('getRoomEventHandler', () => {
       '/Users/Jouni/Code/diory-browser-electron/public/development-content-room'
     const params = { address: exampleFolderPath }
 
-    await eventHandlerWrapper(getRoomEventHandler)(mockEvent, params)
+    await eventHandlerWrapper('GET_ROOM', getRoomEventHandler)(mockEvent, params)
 
     const diographJSONRawContents = fs.readFileSync(`${exampleFolderPath}/diograph.json`)
     const diographObject = JSON.parse(diographJSONRawContents)

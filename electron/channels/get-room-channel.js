@@ -1,7 +1,5 @@
 import { getRoom } from '../lib/room-util'
 
-const { channels } = require('../../src/shared/constants')
-
 /**
  * Event handler for GET_ROOM channel
  * @function
@@ -19,5 +17,5 @@ const { channels } = require('../../src/shared/constants')
  */
 export const getRoomEventHandler = (event, { address }) =>
   new Promise((resolve, reject) => {
-    resolve({ channelName: channels.GET_ROOM, responseObject: getRoom(address) })
+    resolve(getRoom(address))
   })
