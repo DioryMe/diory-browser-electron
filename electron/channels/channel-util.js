@@ -24,6 +24,8 @@ export const eventHandlerWrapper = (eventHandler) => {
   // - tyyliin: console.log('Backend IPC: GENERATE_DIOGRAPH', path)
   //            console.log('Backend IPC: SAVE_ROOM', path, id)
   //            console.log('SAVE_HOME', home)
+  // console.log(JSON.stringify(diograph, null, 2))
+  // console.log(err.message)
 
   const specificEventHandler = (event, params) => {
     const success = ({ channelName, responseObject }) => {
