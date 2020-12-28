@@ -1,4 +1,4 @@
-import { getRoom } from '../lib/room-util'
+const { getRoom } = require('../lib/room-util')
 
 /**
  * Event handler for GET_ROOM channel
@@ -15,7 +15,7 @@ import { getRoom } from '../lib/room-util'
  * }
  *
  */
-export const getRoomEventHandler = (event, { address }) =>
+exports.getRoomEventHandler = (event, { address }) =>
   new Promise((resolve, reject) => {
     resolve(getRoom(address))
   })
