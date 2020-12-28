@@ -25,6 +25,7 @@ exports.eventHandlerWrapper = (channelName, eventHandler) => {
       event.reply(channelName, e)
     }
 
+    backendLogger.info(`Backend IPC event handler triggered: ${channelName}, `, params)
     eventHandler(event, params).then(success, err)
   }
 
