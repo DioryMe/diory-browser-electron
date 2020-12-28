@@ -5,7 +5,7 @@ const util = require('util')
 // - "Starting in Node v10 you can use await fs"
 const writeFilePromise = util.promisify(fs.writeFile)
 
-export const getRoom = (path) => {
+exports.getRoom = (path) => {
   const folderPath = path
   const diographJSONPath = `${path}/diograph.json`
 
@@ -23,7 +23,7 @@ export const getRoom = (path) => {
   }
 }
 
-export const saveRoom = async (path, diograph) => {
+exports.saveRoom = async (path, diograph) => {
   const data = JSON.stringify(diograph, null, 2)
   console.log('Saving room', path)
   // No need to promisify: https://stackoverflow.com/a/52094177/1957884

@@ -1,7 +1,6 @@
-import { eventHandlerWrapper } from './channel-util'
-import { saveHomeEventHandler } from './save-home-channel'
-
 const HomeStore = require('electron-store')
+const { eventHandlerWrapper } = require('./channel-util')
+const { saveHomeEventHandler } = require('./save-home-channel')
 
 // Mock event.reply
 const mockEventReply = jest.fn()
