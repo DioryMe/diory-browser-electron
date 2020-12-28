@@ -1,7 +1,6 @@
-import { eventHandlerWrapper } from './channel-util'
-import { getRoomEventHandler } from './get-room-channel'
-
 const fs = require('fs')
+const { eventHandlerWrapper } = require('./channel-util')
+const { getRoomEventHandler } = require('./get-room-channel')
 
 const mockEventReply = jest.fn()
 const mockEvent = { reply: mockEventReply }

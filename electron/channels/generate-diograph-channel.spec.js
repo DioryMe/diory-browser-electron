@@ -1,7 +1,7 @@
-import { eventHandlerWrapper } from './channel-util'
-import { generateDiographEventHandler } from './generate-diograph-channel'
-import { generateDiograph } from '../generators/diograph-generator'
-import { saveRoom } from '../lib/room-util'
+const { eventHandlerWrapper } = require('./channel-util')
+const { generateDiographEventHandler } = require('./generate-diograph-channel')
+const { generateDiograph } = require('../generators/diograph-generator')
+const { saveRoom } = require('../lib/room-util')
 
 // Mock event.reply
 const mockEventReply = jest.fn()

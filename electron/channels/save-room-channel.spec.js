@@ -1,6 +1,6 @@
-import { eventHandlerWrapper } from './channel-util'
-import { saveRoomEventHandler } from './save-room-channel'
-import { saveRoom } from '../lib/room-util'
+const { eventHandlerWrapper } = require('./channel-util')
+const { saveRoomEventHandler } = require('./save-room-channel')
+const { saveRoom } = require('../lib/room-util')
 
 // Mock event.reply
 const mockEventReply = jest.fn()

@@ -1,6 +1,6 @@
 const HomeStore = require('electron-store')
 
-export const saveHomeEventHandler = (event, home) => {
+exports.saveHomeEventHandler = (event, home) => {
   const store = new HomeStore()
   store.set({ home })
 

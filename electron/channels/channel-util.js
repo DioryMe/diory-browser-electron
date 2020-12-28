@@ -7,7 +7,7 @@
  * @param {function(): Promise} eventHandler - Promise which resolves with responseObject and rejects with errorObject
  * @return {function(): void} Specific eventHandler function to be given for ipcMain.on as a second argument
  */
-export const eventHandlerWrapper = (channelName, eventHandler) => {
+exports.eventHandlerWrapper = (channelName, eventHandler) => {
   const specificEventHandler = (event, params) => {
     const success = (responseObject) => {
       console.log(`Backend IPC reply: ${channelName}, `, responseObject)

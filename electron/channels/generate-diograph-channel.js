@@ -19,7 +19,7 @@ const { saveRoom } = require('../lib/room-util')
  * }
  *
  */
-export const generateDiographEventHandler = (event, path) =>
+exports.generateDiographEventHandler = (event, path) =>
   new Promise((resolve, reject) => {
     generateDiograph(path).then(({ id, diograph }) => {
       saveRoom(path, diograph)

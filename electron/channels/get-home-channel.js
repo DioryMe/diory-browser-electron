@@ -27,7 +27,7 @@ const path = require('path')
  * }
  *
  */
-export const getHomeEventHandler = (event, params) => {
+exports.getHomeEventHandler = (event, params) => {
   const store = new HomeStore()
   const home = store.get('home') || defaultHome
 
@@ -38,12 +38,12 @@ export const getHomeEventHandler = (event, params) => {
 
 // Path to Welcome room folder
 // - different in production build (.dmg/.exe) than in local build
-export const defaultWelcomeRoomPath = process.env.BINARY_BUILD
+const defaultWelcomeRoomPath = process.env.BINARY_BUILD
   ? path.join(__dirname, '../../default-welcome-room')
   : './public/default-welcome-room'
 
 // Welcome room home object
-export const defaultHome = {
+const defaultHome = {
   rooms: {
     'welcome-room': {
       id: 'welcome-room',
@@ -61,3 +61,4 @@ export const defaultHome = {
     dioryId: 'welcome-room',
   },
 }
+exports.defaultHome = defaultHome
