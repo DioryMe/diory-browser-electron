@@ -1,3 +1,9 @@
+const backendLogger = require('electron-log')
+
+if (process.env.NODE_ENV === 'test') {
+  backendLogger.transports = null
+}
+
 /**
  * Wraps (1) generic IPC channel logging and (2) error handling
  * around the eventHandler function and (3) resolves its promise
@@ -10,12 +16,12 @@
 exports.eventHandlerWrapper = (channelName, eventHandler) => {
   const specificEventHandler = (event, params) => {
     const success = (responseObject) => {
-      console.log(`Backend IPC reply: ${channelName}, `, responseObject)
+      backendLogger.info(`Backend IPC reply: ${channelName}, `, responseObject)
       event.reply(channelName, responseObject)
     }
 
     const err = (e) => {
-      console.log(`ERROR: Backend IPC reply: ${channelName}, `, e.message)
+      backendLogger.error(`ERROR: Backend IPC reply: ${channelName}, `, e.message)
       event.reply(channelName, e)
     }
 
