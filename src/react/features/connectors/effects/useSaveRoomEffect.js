@@ -16,7 +16,7 @@ export const useSaveRoomEffect = (connectorId) => {
     if (updated) {
       connected.forEach(({ address }) => {
         debounceDispatchPromiseAction(
-          () => invokeChannel(channels.SAVE_ROOM, { address, diograph }),
+          () => invokeChannel(channels.SAVE_ROOM, address, { diograph }),
           saveRoom
         )
       })
