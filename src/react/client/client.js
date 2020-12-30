@@ -14,26 +14,36 @@ if (!ipcRenderer) {
   }
 }
 
-export const openChannel = (channel, params) => {
+/**
+ * Sends an event to given channel with given parameters
+ *
+ * @param Channel name
+ * @param Parameters
+ *
+ * @return Promise -> resolves with responseObject, rejects on Error object
+ *
+ * @example invokeChannel(channels.GENERATE_DIOGRAPH, address)
+ *
+ */
+export const invokeChannel = (channel, params) => {
   // Development uses this
   if (!ipcRenderer) {
-    console.log('IPC client mock response', channel, params)
+    window.frontendLogger.info('MOCK: Frontend IPC invoke', channel, params)
     return mockResponse(channel, params)
   }
 
-  return new Promise((resolve, reject) => {
-    console.log('-------------')
-    console.log('IPC client send:', channel, params)
-    ipcRenderer.send(channel, params)
-    ipcRenderer.on(channel, (event, success, err) => {
-      console.log('-------------')
-      if (err) {
-        console.log('IPC client reject:', channel, err)
-        reject(err)
-      }
-      console.log('IPC client success:', channel, success)
-      resolve(success)
-      ipcRenderer.removeAllListeners(channel)
-    })
-  })
+  window.frontendLogger.info('Frontend IPC invoke:', channel, params)
+
+  const success = (responseObject) => {
+    window.frontendLogger.info('Frontend IPC response:', channel, responseObject)
+    return responseObject
+  }
+
+  const error = (errorObject) => {
+    window.frontendLogger.info('ERROR: Frontend IPC response:', channel, errorObject)
+    alert(errorObject)
+    return {}
+  }
+
+  return ipcRenderer.invoke(channel, params).then(success, error)
 }
