@@ -4,6 +4,7 @@ import { useStore, useDispatchActions } from '../../../store'
 import { saveRoom } from '../../diograph/actions'
 import { useConnections } from '../useConnections'
 
+// TODO THIS IS BROKEN!!!!
 export const useSaveRoomEffect = (saveRoomClient, connectorId) => {
   const [{ diograph, updated }] = useStore((state) => state.diograph)
   const { connected } = useConnections(connectorId)
