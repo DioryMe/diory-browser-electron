@@ -17,12 +17,12 @@ exports.eventHandlerWrapper = (channelName, eventHandler) => {
   const specificEventHandler = (event, params) => {
     const success = (responseObject) => {
       backendLogger.info(`Backend IPC reply: ${channelName}, `, responseObject)
-      event.reply(channelName, responseObject)
+      return responseObject
     }
 
     const err = (e) => {
       backendLogger.error(`ERROR: Backend IPC reply: ${channelName}, `, e.message)
-      event.reply(channelName, e)
+      return e
     }
 
     backendLogger.info(`Backend IPC event handler triggered: ${channelName}, `, params)
