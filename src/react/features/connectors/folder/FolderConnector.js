@@ -8,7 +8,6 @@ import { useSaveRoomEffect } from '../effects/useSaveRoomEffect'
 import { useAddConnectionButton } from './buttons/useAddConnectionButton'
 
 import { buttons } from './buttons/buttons'
-import { getRoom, saveRoom } from './client'
 
 const FolderConnectorButtons = () => {
   useButtons(buttons)
@@ -18,9 +17,8 @@ const FolderConnectorButtons = () => {
 
 const FolderConnector = () => {
   const { diory } = useFocusDiory()
-  useGetRoomEffect(getRoom, 'file')
-  useSaveRoomEffect(saveRoom, 'file')
-
+  useGetRoomEffect('file')
+  useSaveRoomEffect('file')
   return <div data-testid="connector">{!diory && <FolderConnectorButtons />}</div>
 }
 

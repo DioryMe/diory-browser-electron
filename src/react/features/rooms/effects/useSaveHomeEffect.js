@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { channels } from '../../../../shared/constants'
-import { openChannel } from '../../../client/client'
+import { invokeChannel } from '../../../client/client'
 
 import { useDispatchActions, useStore } from '../../../store'
 
@@ -27,7 +27,7 @@ export const useSaveHomeEffect = () => {
   const { debounceDispatchPromiseAction } = useDispatchActions()
   useEffect(() => {
     if (connectionsUpdated || homeUpdated) {
-      debounceDispatchPromiseAction(() => openChannel(channels.SAVE_HOME, home), saveHome)
+      debounceDispatchPromiseAction(() => invokeChannel(channels.SAVE_HOME, home), saveHome)
     }
   }, [connectionsUpdated, homeUpdated, home, debounceDispatchPromiseAction])
 }

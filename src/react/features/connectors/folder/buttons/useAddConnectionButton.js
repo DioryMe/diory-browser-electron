@@ -8,7 +8,7 @@ import { enterRoom, setFocus } from '../../../navigation/actions'
 import { setInactive } from '../../../buttons/actions'
 import { addConnection } from '../../actions'
 
-import { openChannel } from '../../../../client/client'
+import { invokeChannel } from '../../../../client/client'
 import { channels } from '../../../../../shared/constants'
 
 import { ADD_CONNECTION_BUTTON } from './buttons'
@@ -22,7 +22,7 @@ export const useAddConnectionButton = () => {
       dispatch(setInactive())
       window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then((result) => {
         const address = result.filePaths[0]
-        openChannel(channels.GENERATE_DIOGRAPH, address).then(({ id, diograph }) => {
+        invokeChannel(channels.GENERATE_DIOGRAPH, address).then(({ id, diograph }) => {
           const roomId = uuid()
           dispatch(addConnection({ address, room: roomId, connector: 'file' }))
           dispatch(addRoom(roomId, diograph[id]))
