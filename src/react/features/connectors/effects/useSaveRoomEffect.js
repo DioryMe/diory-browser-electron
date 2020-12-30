@@ -4,8 +4,10 @@ import { useStore, useDispatchActions } from '../../../store'
 import { saveRoom } from '../../diograph/actions'
 import { useConnections } from '../useConnections'
 
-// TODO THIS IS BROKEN!!!!
-export const useSaveRoomEffect = (saveRoomClient, connectorId) => {
+import { invokeChannel } from '../../../client/client'
+import { channels } from '../../../../shared/constants'
+
+export const useSaveRoomEffect = (connectorId) => {
   const [{ diograph, updated }] = useStore((state) => state.diograph)
   const { connected } = useConnections(connectorId)
 
@@ -13,8 +15,11 @@ export const useSaveRoomEffect = (saveRoomClient, connectorId) => {
   useEffect(() => {
     if (updated) {
       connected.forEach(({ address }) => {
-        debounceDispatchPromiseAction(() => saveRoomClient(address, { diograph }), saveRoom)
+        debounceDispatchPromiseAction(
+          () => invokeChannel(channels.SAVE_ROOM, { address, diograph }),
+          saveRoom
+        )
       })
     }
-  }, [updated, connected, diograph, debounceDispatchPromiseAction, saveRoomClient])
+  }, [updated, connected, diograph, debounceDispatchPromiseAction])
 }
