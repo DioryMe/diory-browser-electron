@@ -150,5 +150,8 @@
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": false,
     "stepDefinitions": "./src/react/utils/cypress/step-definitions"
+  },
+  "jest": {
+    "clearMocks": true
   }
 }
