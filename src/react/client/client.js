@@ -1,4 +1,5 @@
 import { mockResponse } from './client.mock'
+import { invokeAlertDialog } from './alertDialog'
 
 // Production loading
 let { ipcRenderer } = window
@@ -46,8 +47,4 @@ export const invokeChannel = (channel, params) => {
   }
 
   return ipcRenderer.invoke(channel, params).then(success, error)
-}
-
-export const invokeAlertDialog = (message) => {
-  alert(message)
 }
