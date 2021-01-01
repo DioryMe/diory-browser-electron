@@ -49,5 +49,5 @@ export const invokeChannel = (channel, params) => {
 }
 
 export const invokeAlertDialog = (message) => {
-  // alert(message)
+  alert(message)
 }
