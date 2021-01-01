@@ -40,7 +40,7 @@ export const invokeChannel = (channel, params) => {
   }
 
   const error = (errorObject) => {
-    window.frontendLogger.info('ERROR: Frontend IPC response:', channel, errorObject)
+    window.frontendLogger.error('ERROR: Frontend IPC response:', channel, errorObject)
     alert(errorObject)
     return {}
   }
