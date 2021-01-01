@@ -1,9 +1,9 @@
 import { ipcRenderer } from 'electron'
-import * as ipcRendererClient from './client'
-
-const { invokeChannel } = ipcRendererClient
+import { invokeChannel } from './client'
+import { invokeAlertDialog } from './alertDialog'
 
 jest.mock('electron', () => ({ ipcRenderer: { invoke: jest.fn() } }), { virtual: true })
+jest.mock('./alertDialog', () => ({ invokeAlertDialog: jest.fn() }))
 
 const logInfoMock = jest.fn()
 const logErrorMock = jest.fn()
@@ -28,11 +28,8 @@ describe('invokeChannel', () => {
   })
 
   it('error response', async () => {
-    // Mock ipcRenderer.invoke to reject with Error object
     const errorObject = new Error('something went wrong')
     const ipcRendererInvokeMock = ipcRenderer.invoke.mockRejectedValue(errorObject)
-    // Mock invokeAlertDialog
-    jest.spyOn(ipcRendererClient, 'invokeAlertDialog').mockImplementation(() => undefined)
 
     const params = { these: 'are', the: 'parameters' }
     const channel = 'MY_CHANNEL'
@@ -43,10 +40,8 @@ describe('invokeChannel', () => {
     expect(ipcRendererInvokeMock).toHaveBeenCalledWith(channel, params)
     expect(response).toEqual({})
 
-    // Tried to imitate 100%: https://github.com/facebook/jest/issues/936#issuecomment-545080082
-    // - but these are failing :(
-    // expect(ipcRendererClient.invokeAlertDialog).toHaveBeenCalledTimes(1)
-    // expect(ipcRendererClient.invokeAlertDialog).toHaveBeenCalledWith('message')
+    expect(invokeAlertDialog).toHaveBeenCalledTimes(1)
+    expect(invokeAlertDialog).toHaveBeenCalledWith(errorObject)
 
     expect(logInfoMock).toHaveBeenCalledTimes(1)
     expect(logInfoMock).toHaveBeenCalledWith('Frontend IPC invoke:', channel, params)
