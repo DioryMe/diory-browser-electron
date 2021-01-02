@@ -5,6 +5,7 @@ let { ipcRenderer } = window
 
 if (process.env.NODE_ENV === 'test') {
   ipcRenderer = require('electron').ipcRenderer
+  window.frontendLogger = { info: () => {}, error: () => {} }
 }
 
 if (process.env.NODE_ENV === 'development') {
