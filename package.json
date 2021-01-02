@@ -84,7 +84,7 @@
     "prettier": "prettier --write '{electron,src}/**/*.{js,jsx,json,css,scss}'",
     "test": "react-scripts test",
     "test-react": "react-scripts test",
-    "test-electron": "jest --setupFilesAfterEnv ./src/jest.setup.js --detectOpenHandles electron/**/*.js",
+    "test-electron": "jest --setupFilesAfterEnv ./src/setupTests.js --detectOpenHandles electron/**/*.js",
     "test-cypress": "yarn cypress run",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
