@@ -13,21 +13,17 @@ describe('getHomeEventHandler', () => {
     HomeStore.mockImplementation(() => ({ get: () => undefined }))
 
     const params = {}
-    await eventHandlerWrapper('GET_HOME', getHomeEventHandler)(mockEvent, params)
+    const response = await eventHandlerWrapper('GET_HOME', getHomeEventHandler)(mockEvent, params)
 
-    expect(mockEventReply.mock.calls.length).toBe(1)
-    expect(mockEventReply.mock.calls[0][0]).toEqual('GET_HOME')
-    expect(mockEventReply.mock.calls[0][1]).toEqual(defaultHome)
+    expect(response).toEqual(defaultHome)
   })
 
   it('store with value', async () => {
     HomeStore.mockImplementation(() => ({ get: () => 'value' }))
 
     const params = {}
-    await eventHandlerWrapper('GET_HOME', getHomeEventHandler)(mockEvent, params)
+    const response = await eventHandlerWrapper('GET_HOME', getHomeEventHandler)(mockEvent, params)
 
-    expect(mockEventReply.mock.calls.length).toBe(1)
-    expect(mockEventReply.mock.calls[0][0]).toEqual('GET_HOME')
-    expect(mockEventReply.mock.calls[0][1]).toEqual('value')
+    expect(response).toEqual('value')
   })
 })

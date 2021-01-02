@@ -21,7 +21,10 @@ describe('generateDiographEventHandler', () => {
     const params = 'this is a file path'
 
     // Trigger event handler and await for mocked promises to resolve before expects
-    await eventHandlerWrapper('GENERATE_DIOGRAPH', generateDiographEventHandler)(mockEvent, params)
+    const response = await eventHandlerWrapper('GENERATE_DIOGRAPH', generateDiographEventHandler)(
+      mockEvent,
+      params
+    )
     await generateDiographMock
     await saveRoomMock
 
@@ -31,13 +34,11 @@ describe('generateDiographEventHandler', () => {
     expect(saveRoom).toHaveBeenCalledTimes(1)
     expect(saveRoom).toHaveBeenCalledWith(params, 'is generated diograph')
 
-    expect(mockEventReply.mock.calls.length).toBe(1)
-    expect(mockEventReply.mock.calls[0][0]).toEqual('GENERATE_DIOGRAPH')
     const responseObject = {
       id: 'this',
       diograph: 'is generated diograph',
       path: 'this is a file path',
     }
-    expect(mockEventReply.mock.calls[0][1]).toEqual(responseObject)
+    expect(response).toEqual(responseObject)
   })
 })

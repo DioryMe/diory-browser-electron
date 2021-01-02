@@ -14,13 +14,11 @@ describe('saveHomeEventHandler', () => {
   it('calls store.set(home: params)', async () => {
     const params = 'this is new home object to be saved'
 
-    await eventHandlerWrapper('SAVE_HOME', saveHomeEventHandler)(mockEvent, params)
+    const response = await eventHandlerWrapper('SAVE_HOME', saveHomeEventHandler)(mockEvent, params)
 
     expect(mockHomeStoreSet.mock.calls.length).toBe(1)
     expect(mockHomeStoreSet.mock.calls[0][0]).toEqual({ home: params })
 
-    expect(mockEventReply.mock.calls.length).toBe(1)
-    expect(mockEventReply.mock.calls[0][0]).toEqual('SAVE_HOME')
-    expect(mockEventReply.mock.calls[0][1]).toEqual(true)
+    expect(response).toEqual(true)
   })
 })
