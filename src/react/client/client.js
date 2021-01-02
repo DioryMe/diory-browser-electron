@@ -1,18 +1,15 @@
 import { mockResponse } from './client.mock'
 import { invokeAlertDialog } from './alertDialog'
 
-// Production loading
 let { ipcRenderer } = window
 
-// Tests / development don't find it from window
-if (!ipcRenderer) {
-  try {
-    // Tests wants to load it from 'electron'...
-    ipcRenderer = require('electron').ipcRenderer
-  } catch (TypeError) {
-    // ...but development prefers mocking!
-    ipcRenderer = undefined
-  }
+if (process.env.NODE_ENV === 'test') {
+  ipcRenderer = require('electron').ipcRenderer
+}
+
+if (process.env.NODE_ENV === 'development') {
+  ipcRenderer = undefined
+  window.frontendLogger = { info: console.log, error: console.error }
 }
 
 /**
@@ -27,20 +24,21 @@ if (!ipcRenderer) {
  *
  */
 export const invokeChannel = (channel, params) => {
-  // Development uses this
-  if (!ipcRenderer) {
-    // window.frontendLogger.info('MOCK: Frontend IPC invoke', channel, params)
+  // Development uses mock responses
+  if (process.env.NODE_ENV === 'development') {
+    window.frontendLogger.info('MOCK: Frontend IPC invoke', channel, params)
     return mockResponse(channel, params)
   }
 
-  // window.frontendLogger.info('Frontend IPC invoke:', channel, params)
+  window.frontendLogger.info('Frontend IPC invoke:', channel, params)
 
-  const success = (responseObject) =>
-    // window.frontendLogger.info('Frontend IPC response:', channel, responseObject)
-    responseObject
+  const success = (responseObject) => {
+    window.frontendLogger.info('Frontend IPC response:', channel, responseObject)
+    return responseObject
+  }
 
   const error = (errorObject) => {
-    // window.frontendLogger.error('ERROR: Frontend IPC response:', channel, errorObject)
+    window.frontendLogger.error('ERROR: Frontend IPC response:', channel, errorObject)
     invokeAlertDialog(errorObject)
     return {}
   }
