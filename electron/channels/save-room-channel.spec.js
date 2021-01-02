@@ -17,8 +17,6 @@ const params = {
 }
 
 describe('saveRoomEventHandler sends event with payload ', () => {
-  afterEach(() => jest.clearAllMocks())
-
   it("'true, undefined' if Promise resolves", async () => {
     const saveRoomMock = saveRoom.mockResolvedValue(undefined)
 
