@@ -9,8 +9,6 @@ const mockEvent = { reply: mockEventReply }
 jest.mock('electron-store')
 
 describe('getHomeEventHandler', () => {
-  afterEach(() => jest.clearAllMocks())
-
   it('empty store', async () => {
     HomeStore.mockImplementation(() => ({ get: () => undefined }))
 

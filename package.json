@@ -152,6 +152,6 @@
     "stepDefinitions": "./src/react/utils/cypress/step-definitions"
   },
   "jest": {
-    "clearMocks": true
+    "setupFilesAfterEnv": ["./jest.setup.js"]
   }
 }
