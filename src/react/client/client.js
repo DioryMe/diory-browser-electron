@@ -29,19 +29,18 @@ if (!ipcRenderer) {
 export const invokeChannel = (channel, params) => {
   // Development uses this
   if (!ipcRenderer) {
-    window.frontendLogger.info('MOCK: Frontend IPC invoke', channel, params)
+    // window.frontendLogger.info('MOCK: Frontend IPC invoke', channel, params)
     return mockResponse(channel, params)
   }
 
-  window.frontendLogger.info('Frontend IPC invoke:', channel, params)
+  // window.frontendLogger.info('Frontend IPC invoke:', channel, params)
 
-  const success = (responseObject) => {
-    window.frontendLogger.info('Frontend IPC response:', channel, responseObject)
-    return responseObject
-  }
+  const success = (responseObject) =>
+    // window.frontendLogger.info('Frontend IPC response:', channel, responseObject)
+    responseObject
 
   const error = (errorObject) => {
-    window.frontendLogger.error('ERROR: Frontend IPC response:', channel, errorObject)
+    // window.frontendLogger.error('ERROR: Frontend IPC response:', channel, errorObject)
     invokeAlertDialog(errorObject)
     return {}
   }
