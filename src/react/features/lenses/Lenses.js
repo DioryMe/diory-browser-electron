@@ -9,8 +9,10 @@ import fullscreen from './fullscreen'
 import grid from './grid'
 import map from './map'
 import timeline from './timeline'
+import all from './all'
 
 export const lenses = {
+  all,
   grid,
   map,
   timeline,
