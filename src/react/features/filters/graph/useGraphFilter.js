@@ -1,4 +1,6 @@
 import { useStore } from '../../../store'
+import { useFocus } from '../../diograph/hooks'
+
 import { reduceIdsToKeys } from '../../../utils/reduceIdsToKeys'
 
 function getArray(length) {
@@ -19,15 +21,11 @@ function getDioryLinkIds(diograph) {
 export const useGraphFilter = () => {
   const [{ diograph }] = useStore((state) => state.diograph)
   const [{ grid: isActive }] = useStore((state) => state.filters.active)
-  const [{ grid: filter }] = useStore((state) => state.filters.filters)
-
-  const { focus, zoom } = filter || {}
-  const diory = diograph[focus]
+  const [{ grid: zoom }] = useStore((state) => state.filters.filters)
+  const { diory } = useFocus()
   return (
     isActive &&
-    !!filter &&
-    !!diory &&
-    getArray(zoom).reduce(
+    getArray(zoom || 1).reduce(
       (dioryIds) => Object.values(dioryIds).reduce(getDioryLinkIds(diograph), dioryIds),
       getLinkIds(diory)
     )

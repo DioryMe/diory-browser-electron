@@ -13,7 +13,7 @@ import { setFilter } from '../../filters/actions'
 
 import GridView from './GridView'
 
-const useTools = (focus) => {
+const useTools = () => {
   const focusDiory = useFocusTool()
   const deleteDiory = useDeleteTool()
   const updateDiory = useUpdateTool()
@@ -25,18 +25,15 @@ const useTools = (focus) => {
       focusDiory(diory)
       deleteDiory(diory)
       updateDiory(diory)
-      dispatch(setFilter({ grid: { focus: diory.id, zoom: 1 } }))
     },
     onDrop: ({ diory, link }) => {
       dispatch(createLink(diory, link))
     },
-    onZoom: (zoom) => dispatch(setFilter({ grid: { focus, zoom } })),
+    onZoom: (zoom) => dispatch(setFilter({ grid: zoom })),
   }
 }
 
-const GridLens = ({ diory, diorys }) => (
-  <GridView diory={diory} diorys={diorys} {...useTools(diory.id)} />
-)
+const GridLens = ({ diory, diorys }) => <GridView diory={diory} diorys={diorys} {...useTools()} />
 
 GridLens.propTypes = {
   diory: PropTypes.object.isRequired,
