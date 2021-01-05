@@ -8,12 +8,12 @@ import { useDeleteTool } from '../../tools/delete'
 import { useFocusTool } from '../../tools/focus'
 import { useUpdateTool } from '../../tools/update'
 
-import { activateFilter, setFilter } from '../../filters/actions'
 import { createLink } from '../../diograph/actions'
+import { setFilter } from '../../filters/actions'
 
 import GridView from './GridView'
 
-const useTools = () => {
+const useTools = (focus) => {
   const focusDiory = useFocusTool()
   const deleteDiory = useDeleteTool()
   const updateDiory = useUpdateTool()
@@ -22,19 +22,21 @@ const useTools = () => {
   const { dispatch } = useDispatchActions()
   return {
     onClick: ({ diory }) => {
-      dispatch(activateFilter({ grid: true }))
       focusDiory(diory)
       deleteDiory(diory)
       updateDiory(diory)
+      dispatch(setFilter({ grid: { focus: diory.id, zoom: 1 } }))
     },
     onDrop: ({ diory, link }) => {
       dispatch(createLink(diory, link))
     },
-    onZoom: (zoom) => dispatch(setFilter({ grid: zoom })),
+    onZoom: (zoom) => dispatch(setFilter({ grid: { focus, zoom } })),
   }
 }
 
-const GridLens = ({ diory, diorys }) => <GridView diory={diory} diorys={diorys} {...useTools()} />
+const GridLens = ({ diory, diorys }) => (
+  <GridView diory={diory} diorys={diorys} {...useTools(diory.id)} />
+)
 
 GridLens.propTypes = {
   diory: PropTypes.object.isRequired,

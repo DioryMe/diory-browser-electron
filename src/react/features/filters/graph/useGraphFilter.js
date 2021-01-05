@@ -18,16 +18,16 @@ function getDioryLinkIds(diograph) {
 
 export const useGraphFilter = () => {
   const [{ diograph }] = useStore((state) => state.diograph)
-  const [{ focus }] = useStore((state) => state.navigation)
   const [{ grid: isActive }] = useStore((state) => state.filters.active)
-  const [{ grid: zoomLevel }] = useStore((state) => state.filters.filters)
+  const [{ grid: filter }] = useStore((state) => state.filters.filters)
 
+  const { focus, zoom } = filter || {}
   const diory = diograph[focus]
   return (
     isActive &&
-    !!zoomLevel &&
+    !!filter &&
     !!diory &&
-    getArray(zoomLevel).reduce(
+    getArray(zoom).reduce(
       (dioryIds) => Object.values(dioryIds).reduce(getDioryLinkIds(diograph), dioryIds),
       getLinkIds(diory)
     )
