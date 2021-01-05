@@ -1,5 +1,5 @@
 import React from 'react'
-import { useFocusDiory } from '../diograph/hooks'
+import { useFocus } from '../diograph/hooks'
 
 import { useGetHomeEffect } from './effects/useGetHomeEffect'
 import { useSaveHomeEffect } from './effects/useSaveHomeEffect'
@@ -10,7 +10,7 @@ const Rooms = () => {
   useGetHomeEffect()
   useSaveHomeEffect()
 
-  const { diory } = useFocusDiory()
+  const { diory } = useFocus()
   return !diory && <RoomsView />
 }
 

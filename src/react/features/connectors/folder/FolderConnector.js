@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useButtons } from '../../buttons'
-import { useFocusDiory } from '../../diograph/hooks'
+import { useFocus } from '../../diograph/hooks'
 
 import { useGetRoomEffect } from '../effects/useGetRoomEffect'
 import { useSaveRoomEffect } from '../effects/useSaveRoomEffect'
@@ -17,7 +17,7 @@ const FolderConnectorButtons = () => {
 }
 
 const FolderConnector = () => {
-  const { diory } = useFocusDiory()
+  const { diory } = useFocus()
   useGetRoomEffect(getRoom, 'file')
   useSaveRoomEffect(saveRoom, 'file')
 

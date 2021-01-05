@@ -1,9 +1,9 @@
 import React from 'react'
 import LensesBar from '../../lenses/LensesBar'
-import { useFocusDiory } from '../../diograph/hooks'
+import { useFocus } from '../../diograph/hooks'
 
 const NavigationLenses = () => {
-  const { diory } = useFocusDiory()
+  const { diory } = useFocus()
   return !diory ? null : <LensesBar />
 }
 
