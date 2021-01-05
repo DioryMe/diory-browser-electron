@@ -4,7 +4,7 @@ import { useStore } from '../../store'
 
 import Fullscreen from '../../components/Fullscreen'
 import { useFocus } from '../diograph/hooks'
-import { useFilteredDiorys } from '../filters/useFilters'
+import { useFilters } from '../filters/useFilters'
 
 import fullscreen from './fullscreen'
 import grid from './grid'
@@ -30,9 +30,11 @@ const LensesView = memo(({ diory, diorys, selectedLensId }) => {
 })
 
 const Lenses = () => {
-  const diory = useFocus()
-  const diorys = useFilteredDiorys()
   const [{ selectedLensId }] = useStore((state) => state.lenses)
-  return <LensesView diory={diory} diorys={diorys} selectedLensId={selectedLensId} />
+  return <LensesView
+    {...useFocus()}
+    {...useFilters()}
+    selectedLensId={selectedLensId}
+  />
 }
 export default Lenses
