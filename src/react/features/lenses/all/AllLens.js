@@ -20,7 +20,7 @@ const useTools = () => {
 }
 
 const AllLens = ({ diory, diorys, activeButton }) => (
-  <div>
+  <div height="100%">
     <div width="50%" height="100%">
       <MapView diory={diory} diorys={diorys} {...useTools()} activeButton={activeButton} />
     </div>
