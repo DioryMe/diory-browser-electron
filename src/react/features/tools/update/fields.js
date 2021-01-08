@@ -3,6 +3,7 @@ export default [
     key: 'text',
     label: 'Text',
     format: 'string',
+    autoFocus: true,
   },
   {
     key: 'image',

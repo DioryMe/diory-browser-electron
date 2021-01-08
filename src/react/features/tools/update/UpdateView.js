@@ -17,11 +17,7 @@ const useUpdateView = (diory = {}) => {
   const updatedDiory = { ...diory, ...values }
   const dispatch = useDispatch()
   return {
-    fields: fields.map((field) => ({
-      ...field,
-      value: updatedDiory[field.key],
-      autoFocus: field.key === 'text',
-    })),
+    fields: fields.map((field) => ({ ...field, value: updatedDiory[field.key] })),
     setValue: (key, value) => setValues({ ...values, [key]: value }),
     updatedDiory,
     resetView: () => {
