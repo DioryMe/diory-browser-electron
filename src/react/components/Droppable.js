@@ -14,7 +14,7 @@ const Droppable = ({ type, style, isOverStyle, onDrop, children, ...props }) => 
   })
 
   return (
-    <div {...props} ref={drop} style={{ height: '100%', ...style, ...(isOver && isOverStyle) }}>
+    <div {...props} ref={drop} style={{ ...style, ...(isOver && isOverStyle) }}>
       {children}
     </div>
   )

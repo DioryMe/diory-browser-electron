@@ -7,7 +7,7 @@ export const useHand = () => {
 
   const { dispatch } = useDispatchActions()
   return {
-    diorys: diograph ? hand.map((id) => diograph[id]) : [],
+    diorys: hand.map((id) => diograph[id]).filter(Boolean),
     onDrop: ({ id }) => dispatch(addDioryToHand(id)),
   }
 }

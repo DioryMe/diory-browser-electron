@@ -10,8 +10,7 @@ import Droppable from '../../../components/Droppable'
 const GridView = ({ diory, diorys, onDrop, onClick }) => (
   <Droppable
     type={types.DIORY}
-    style={{ position: 'absolute', width: '100%' }}
-    isOverStyle={{ backgroundColor: '#E4E7EB' }}
+    isOverStyle={{ backgroundColor: '#D4EEE2' }}
     onDrop={({ id }) => onDrop({ focus: diory, link: { id } })}
   >
     <BackgroundDiory diory={diory} gradient onClick={onClick}>
@@ -19,6 +18,7 @@ const GridView = ({ diory, diorys, onDrop, onClick }) => (
         <Box flex="1 0 360px" height={240} padding={24} alignSelf="center">
           <Droppable
             type={types.DIORY}
+            style={{ height: '100%' }}
             isOverStyle={{ opacity: 0.5 }}
             onDrop={({ id }) => onDrop({ focus: linkDiory, link: { id } })}
           >

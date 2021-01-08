@@ -43,7 +43,7 @@ const HandView = ({ diorys = [], onDrop }) => (
   <Droppable
     type={types.DIORY}
     style={handStyle}
-    isOverStyle={{ background: '#E4E7EB' }}
+    isOverStyle={{ background: '#D4EEE2' }}
     onDrop={onDrop}
     data-testid="hand"
   >
