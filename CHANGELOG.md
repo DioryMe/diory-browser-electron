@@ -1,3 +1,17 @@
+## 2.2.0 (January 8, 2021)
+
+### DDA-67 Feature tests for all the existing features
+- Create diory to map and timeline
+- Move diory on map
+- Timeline lens
+- Update and create diory
+- Delete diory
+
+### UX
+- Autofocus to text field in update diory
+- Dialog done on enter key
+- Ignore outside dialog click
+
 ## 2.1.1 (November 19, 2020)
 
 ### DDA-65 Migrate from Cucumber to Cypress
@@ -10,9 +24,9 @@
 - room.feature and navigation.feature as first tests
 
 ### DDA-67 Feature tests for all the existing features
-- updateTool.feature and createTool.feature
-- search.feature
-- map.feature
+- Update and create tools
+- Search
+- Map lens
 - Update Cypress to 5.6.0
 
 ## 2.1.0 (November 19, 2020)
