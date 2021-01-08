@@ -5,7 +5,7 @@ import Diory from '../../../components/diories/Diory'
 import Draggable, { types } from '../../../components/Draggable'
 import Droppable from '../../../components/Droppable'
 
-const handbarStyle = {
+const handStyle = {
   position: 'fixed',
   zIndex: 15,
   bottom: 0,
@@ -13,6 +13,7 @@ const handbarStyle = {
   right: 0,
   height: 'initial',
   margin: 16,
+  padding: '0 8px',
   marginLeft: 44,
   display: 'flex',
   overflowX: 'auto',
@@ -34,14 +35,19 @@ const scaleStyle = {
   transformOrigin: 'top left',
 }
 
+const HandBackground = () => (
+  <div style={{ ...itemStyle, padding: 0, width: '100%', marginLeft: -116 }} />
+)
+
 const HandView = ({ diorys = [], onDrop }) => (
   <Droppable
     type={types.DIORY}
-    style={handbarStyle}
-    isOverStyle={{ background: 'grey' }}
+    style={handStyle}
+    isOverStyle={{ background: '#E4E7EB' }}
     onDrop={onDrop}
+    data-testid="hand"
   >
-    <div style={{ ...itemStyle, width: '100%', marginLeft: -116 }} />
+    <HandBackground />
     {diorys.map((diory) => (
       <div key={diory.id} style={itemStyle}>
         <div style={scaleStyle}>

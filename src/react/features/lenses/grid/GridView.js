@@ -11,7 +11,7 @@ const GridView = ({ diory, diorys, onDrop, onClick }) => (
   <Droppable
     type={types.DIORY}
     style={{ position: 'absolute', width: '100%' }}
-    isOverStyle={{ backgroundColor: 'yellow' }}
+    isOverStyle={{ backgroundColor: '#E4E7EB' }}
     onDrop={({ id }) => onDrop({ focus: diory, link: { id } })}
   >
     <BackgroundDiory diory={diory} gradient onClick={onClick}>
