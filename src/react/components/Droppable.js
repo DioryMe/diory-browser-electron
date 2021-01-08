@@ -4,7 +4,7 @@ import { useDrop } from 'react-dnd'
 
 import { types } from './Draggable'
 
-const Droppable = ({ type, style, isOverStyle, onDrop, children }) => {
+const Droppable = ({ type, style, isOverStyle, onDrop, children, ...props }) => {
   const [{ isOver }, drop] = useDrop({
     accept: types[type],
     drop: (item, monitor) => (monitor.isOver({ shallow: true }) ? onDrop(item) : undefined),
@@ -14,7 +14,7 @@ const Droppable = ({ type, style, isOverStyle, onDrop, children }) => {
   })
 
   return (
-    <div ref={drop} style={{ height: '100%', ...style, ...(isOver && isOverStyle) }}>
+    <div {...props} ref={drop} style={{ height: '100%', ...style, ...(isOver && isOverStyle) }}>
       {children}
     </div>
   )

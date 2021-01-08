@@ -2,19 +2,16 @@ Feature: Hand tool
 
   Background:
     Given I am at home
-    When I take 'Generic content' in focus
+    And I take 'Generic content' in focus
     And I take 'Diory 1' in focus
     And I select tools button
 
-  @pending
   Scenario: Hand tool shown
-    Then hand tool is active
-    Then I see hand tool
+    Then I see 'hand'
 
   @pending
   Scenario: Take diory into hand
     Given  I see 'Diory 11' in view
-    And  I see 'Diory 12' in view
     When I drag 'Diory 11' into hand
     Then I see 'Diory 11' in hand
 
