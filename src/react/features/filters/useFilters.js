@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 
 import { useStore } from '../../store'
 import { useGraphFilter } from './graph/useGraphFilter'
@@ -13,17 +13,22 @@ export const useFilters = () => {
   const graphDioryIds = useGraphFilter()
   const mapDioryIds = useMapFilter()
 
-  const dioryIds = useMemo(() => ((mapDioryIds || graphDioryIds) &&
-    Object.keys(diograph)
-    .filter((id) => !graphDioryIds || graphDioryIds[id])
-    .filter((id) => !mapDioryIds || mapDioryIds[id])
-    .map((id) => ({ id }))
-    .reduce(reduceIdsToKeys,{})
-  ), [diograph, graphDioryIds, mapDioryIds])
+  const dioryIds = useMemo(
+    () =>
+      (mapDioryIds || graphDioryIds) &&
+      Object.keys(diograph)
+        .filter((id) => !graphDioryIds || graphDioryIds[id])
+        .filter((id) => !mapDioryIds || mapDioryIds[id])
+        .map((id) => ({ id }))
+        .reduce(reduceIdsToKeys, {}),
+    [diograph, graphDioryIds, mapDioryIds]
+  )
 
   const diorys = useDiorys(dioryIds)
-  return dioryIds && {
-    diory: { id: 'filter', text: 'Filter' },
-    diorys,
-  }
+  return (
+    dioryIds && {
+      diory: { id: 'filter', text: 'Filter' },
+      diorys,
+    }
+  )
 }

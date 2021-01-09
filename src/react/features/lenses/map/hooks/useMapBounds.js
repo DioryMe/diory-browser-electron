@@ -38,6 +38,7 @@ export const useMapBounds = (mapRef, dioryLocationData, onBoundsChange) => {
     }
   }, [locationDataChanged])
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleBounds = useCallback((bounds) => {
     onBoundsChange(bounds)
     setBounds(bounds)

@@ -18,7 +18,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['react', 'jest', 'prettier'],
+  plugins: ['react', 'react-hooks', 'jest', 'prettier'],
   ignorePatterns: ['*.css', '*.feature', '*.json', '**/electron/readers/example-folder/**/*'],
   rules: {
     semi: ['off'],
