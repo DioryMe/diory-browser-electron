@@ -1,5 +1,6 @@
 const HomeStore = require('electron-store')
 const path = require('path')
+const fs = require('fs')
 
 /**
  * Event handler for GET_HOME channel
@@ -31,10 +32,26 @@ exports.getHomeEventHandler = (event, params) => {
   const store = new HomeStore()
   const home = store.get('home') || defaultHome
 
+  home.errors = []
+  Object.keys(home.connections).forEach((connectionURI) => {
+    const roomConnectionOK = exports.roomConnectionOK(
+      connectionURI,
+      home.connections[connectionURI]
+    )
+    if (!roomConnectionOK) {
+      home.errors.push({ connectionURI })
+    }
+  })
+
   return new Promise((resolve, reject) => {
     resolve(home)
   })
 }
+
+/*
+ * Returns true if roomConnection is ok and false if not
+ */
+exports.roomConnectionOK = (connectionURI, connectionConfig) => fs.existsSync(connectionURI)
 
 // Path to Welcome room folder
 // - different in production build (.dmg/.exe) than in local build

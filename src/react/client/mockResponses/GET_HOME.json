@@ -13,5 +13,6 @@
   "focus": {
     "roomId": "development-content-room",
     "dioryId": "development-content-room"
-  }
+  },
+  "errors": []
 }
