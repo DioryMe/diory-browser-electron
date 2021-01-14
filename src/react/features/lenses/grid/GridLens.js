@@ -24,8 +24,8 @@ const useTools = () => {
       deleteDiory(diory)
       updateDiory(diory)
     },
-    onDrop: ({ focus, link }) => {
-      dispatch(createLink(focus, link))
+    onDrop: ({ dropId, dragId }) => {
+      dispatch(createLink({ id: dropId }, {  id: dragId }))
     },
   }
 }
