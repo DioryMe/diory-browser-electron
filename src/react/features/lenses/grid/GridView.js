@@ -11,7 +11,7 @@ const GridView = ({ diory, diorys, onDrop, onClick }) => (
   <Droppable
     type={types.DIORY}
     isOverStyle={{ backgroundColor: '#D4EEE2' }}
-    onDrop={({ id }) => onDrop({ focus: diory, link: { id } })}
+    onDrop={({ id }) => onDrop({ droppedId: diory.id, draggedId: id })}
   >
     <BackgroundDiory diory={diory} gradient onClick={onClick}>
       {diorys.map((linkDiory) => (
@@ -20,7 +20,7 @@ const GridView = ({ diory, diorys, onDrop, onClick }) => (
             type={types.DIORY}
             style={{ height: '100%' }}
             isOverStyle={{ opacity: 0.5 }}
-            onDrop={({ id }) => onDrop({ focus: linkDiory, link: { id } })}
+            onDrop={({ id }) => onDrop({ droppedId: linkDiory.id, draggedId: id })}
           >
             <Draggable id={linkDiory.id} type={types.DIORY}>
               <Diory
