@@ -7,7 +7,7 @@ import { setConnections } from '../../connectors/actions'
 
 import { invokeChannel } from '../../../client/client'
 import { channels } from '../../../../shared/constants'
-
+import { invokeAlertDialog } from '../../../client/alertDialog'
 /*
  * Requests home & focus info via GET_HOME and sets the focus for room & diory
  * - saves the response to the store
@@ -19,7 +19,7 @@ export const useGetHomeEffect = () => {
   useEffect(() => {
     invokeChannel(channels.GET_HOME).then(({ rooms, connections, focus, errors }) => {
       errors.forEach((error) => {
-        alert(
+        invokeAlertDialog(
           `Couldn't connect to room ${error.connectionURI}, path didn't exist. Please remove and re-add the room to reconnect.`
         )
       })
