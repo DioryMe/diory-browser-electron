@@ -20,7 +20,8 @@ const MapView = ({
   onPopupClick,
   enableDragging,
   onDragEnd,
-  onBoundsChange
+  fitToBounds,
+  onBoundsChange,
 }) => {
   const id = 'mapId'
   const map = useMap(id)
@@ -29,7 +30,7 @@ const MapView = ({
 
   const locationData = getLocationData({ diory, diorys })
 
-  useMapBounds(map, locationData.diory, onBoundsChange)
+  useMapBounds(map, locationData.diory, fitToBounds, onBoundsChange)
   const markers = useMarkers(map, locationData.diory, locationData.diorys)
   usePopups(map, markers, diory, diorys)
 
@@ -40,6 +41,7 @@ const MapView = ({
 }
 
 MapView.defaultProps = {
+  fitToBounds: false,
   onMapClick: () => {},
   onPopupClick: () => {},
   enableDragging: () => {},
@@ -50,11 +52,12 @@ MapView.defaultProps = {
 MapView.propTypes = {
   diory: PropTypes.object.isRequired,
   diorys: PropTypes.array.isRequired,
+  fitToBounds: PropTypes.bool,
   onMapClick: PropTypes.func,
   onPopupClick: PropTypes.func,
   enableDragging: PropTypes.func,
   onDragEnd: PropTypes.func,
-  onBoundsChange: PropTypes.func,
+  onBoundsChange: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
 }
 
 export default MapView

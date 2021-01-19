@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import { useStore } from '../../store'
 
@@ -18,7 +19,7 @@ export const lenses = {
   fullscreen,
 }
 
-const LensesView = memo(({ diory, diorys, selectedLensId }) => {
+const LensesView = ({ diory, diorys, selectedLensId }) => {
   console.log('Diorys in lens', diorys.length)
   const { Lens } = lenses[selectedLensId]
 
@@ -27,14 +28,17 @@ const LensesView = memo(({ diory, diorys, selectedLensId }) => {
       <Lens diory={diory} diorys={diorys} />
     </Fullscreen>
   ) : null
-})
+}
+
+LensesView.propTypes = {
+  diory: PropTypes.object.isRequired,
+  diorys: PropTypes.array.isRequired,
+  selectedLensId: PropTypes.string.isRequired,
+}
 
 const Lenses = () => {
   const [{ selectedLensId }] = useStore((state) => state.lenses)
-  return <LensesView
-    {...useFocus()}
-    {...useFilters()}
-    selectedLensId={selectedLensId}
-  />
+  return <LensesView {...useFocus()} {...useFilters()} selectedLensId={selectedLensId} />
 }
+
 export default Lenses

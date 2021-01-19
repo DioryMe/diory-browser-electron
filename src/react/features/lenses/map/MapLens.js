@@ -1,21 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useDispatchActions } from '../../../store'
 
 import { useFocusTool } from '../../tools/focus'
 import { useCreateTool } from '../../tools/createLocation'
 import { useDeleteTool } from '../../tools/delete'
 import { useMoveTool, useMoveToolIsActive } from '../../tools/move'
 
-import { setFilter } from '../../filters/actions'
+import { useMapFilter } from '../../filters/map/useMapFilter'
 
 import MapView from './MapView'
 
-const useTools = () => {
+const useToolActions = () => {
   const focusDiory = useFocusTool()
   const deleteDiory = useDeleteTool()
-
-  const { dispatch } = useDispatchActions()
+  const { isActive, onBoundsChange } = useMapFilter()
   return {
     onPopupClick: (diory) => {
       focusDiory(diory)
@@ -24,12 +22,13 @@ const useTools = () => {
     onMapClick: useCreateTool(),
     onDragEnd: useMoveTool(),
     enableDragging: useMoveToolIsActive(),
-    onBoundsChange: (bounds) => dispatch(setFilter({ map: bounds })),
+    fitToBounds: !isActive,
+    onBoundsChange,
   }
 }
 
 const MapLens = ({ diory, diorys }) => (
-  <MapView diory={diory} diorys={diorys} {...useTools()} />
+  <MapView diory={diory} diorys={diorys} {...useToolActions()} />
 )
 
 MapLens.propTypes = {
