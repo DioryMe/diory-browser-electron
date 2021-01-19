@@ -15,7 +15,7 @@ const GridView = ({ diory, diorys, onDrop, onClick }) => (
   >
     <BackgroundDiory diory={diory} gradient onClick={onClick}>
       {diorys.map((linkDiory) => (
-        <Box flex="1 0 360px" height={240} padding={24} alignSelf="center">
+        <Box key={linkDiory.id} flex="1 0 360px" height={240} padding={24} alignSelf="center">
           <Droppable
             type={types.DIORY}
             style={{ height: '100%' }}
