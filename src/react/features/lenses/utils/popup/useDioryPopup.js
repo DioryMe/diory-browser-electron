@@ -8,7 +8,7 @@ export const useDioryPopup = (markerRef, diory) => {
       markerRef.current
         .bindPopup(popup, {
           maxWidth: 600,
-          autoPan: true,
+          autoPan: false,
         })
         .openPopup()
     }
