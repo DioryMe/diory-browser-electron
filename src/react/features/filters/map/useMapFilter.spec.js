@@ -1,14 +1,14 @@
 import { useStore } from '../../../store'
-import { useMapFilter } from './useMapFilter'
+import { useMapFilteredDiorys } from './useMapFilteredDiorys'
 import { initialState } from '../../../store/initialState'
 
 jest.mock('../../../store')
 const mockState = { ...initialState }
 useStore.mockImplementation((selector) => [selector(mockState)])
 
-describe('useMapFilter', () => {
+describe('useMapFilteredDiorys', () => {
   it('executes with initial state', () => {
-    expect(useMapFilter()).toBeDefined()
+    expect(useMapFilteredDiorys()).toBeDefined()
   })
 
   describe('given diograph', () => {
@@ -43,7 +43,7 @@ describe('useMapFilter', () => {
       })
 
       it('returns diory inside bounds', () => {
-        expect(useMapFilter()).toEqual({ insideDioryId: { id: 'insideDioryId' } })
+        expect(useMapFilteredDiorys()).toEqual({ insideDioryId: { id: 'insideDioryId' } })
       })
     })
   })

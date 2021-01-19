@@ -1,6 +1,7 @@
 import { useStore } from '../../../store'
-import { useGraphFilter } from './useGraphFilter'
 import { initialState } from '../../../store/initialState'
+
+import { useGraphFilter } from './useGraphFilter'
 
 jest.mock('../../../store')
 const mockState = { ...initialState }
@@ -116,7 +117,7 @@ describe('useGraphFilter', () => {
 
       describe('given grid filter', () => {
         beforeEach(() => {
-          mockState.filters = { filters: { grid: 1 } }
+          mockState.filters.filter = { grid: 1 }
         })
 
         it('returns false', () => {
@@ -126,7 +127,7 @@ describe('useGraphFilter', () => {
 
       describe('given no grid filter', () => {
         beforeEach(() => {
-          mockState.filters = { filters: {} }
+          mockState.filters.filters = {}
         })
 
         it('returns false', () => {
@@ -170,11 +171,18 @@ describe('useGraphFilter', () => {
 
       describe('given grid filter', () => {
         beforeEach(() => {
-          mockState.filters = { filters: { grid: 3 } }
+          mockState.filters.filters = { grid: 3 }
         })
 
         it('returns diory only once', () => {
-          expect(useGraphFilter()).toEqual(['someDioryId', 'otherDioryId'])
+          expect(useGraphFilter()).toEqual({
+            otherDioryId: {
+              id: 'otherDioryId',
+            },
+            someDioryId: {
+              id: 'someDioryId',
+            },
+          })
         })
       })
     })
@@ -192,7 +200,7 @@ describe('useGraphFilter', () => {
 
       describe('given grid filter', () => {
         beforeEach(() => {
-          mockState.filters = { filters: { grid: 1 } }
+          mockState.filters.filters = { grid: 1 }
         })
 
         it('returns false', () => {
