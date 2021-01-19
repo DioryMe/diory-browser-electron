@@ -3,7 +3,9 @@ import { createReducer } from '../../store'
 
 export const initialState = {
   active: {},
-  filters: {},
+  filters: {
+    grid: 1,
+  },
   textFilter: undefined,
   updated: false,
 }

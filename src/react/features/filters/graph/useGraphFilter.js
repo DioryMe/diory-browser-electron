@@ -24,8 +24,10 @@ export const useGraphFilter = () => {
   const [{ grid: zoom }] = useStore((state) => state.filters.filters)
   const { diory } = useFocus()
   return (
-    isActive &&
-    getArray(zoom || 1).reduce(
+    !!isActive &&
+    !!diory &&
+    !!zoom &&
+    getArray(zoom).reduce(
       (dioryIds) => Object.values(dioryIds).reduce(getDioryLinkIds(diograph), dioryIds),
       getLinkIds(diory)
     )
