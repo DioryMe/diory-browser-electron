@@ -11,7 +11,7 @@ export const useLinkPopups = (markerRefs, diorys) => {
           const popup = createDioryPopup({ diory })
           marker.bindPopup(popup, {
             maxWidth: 600,
-            autoPan: true,
+            autoPan: false,
           })
         })
     }
