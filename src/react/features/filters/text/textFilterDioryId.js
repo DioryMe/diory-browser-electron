@@ -1,1 +1,0 @@
-export const TEXT_FILTER_DIORY_ID = 'TEXT_FILTER_DIORY_ID'
