@@ -7,9 +7,9 @@ import { useCreateTool } from '../../tools/create'
 import { useDeleteTool } from '../../tools/delete'
 import { useFocusTool } from '../../tools/focus'
 import { useUpdateTool } from '../../tools/update'
+import { useGraphFilter } from '../../filters/graph/useGraphFilter'
 
 import { createLink } from '../../diograph/actions'
-import { setFilter } from '../../filters/actions'
 
 import GridView from './GridView'
 
@@ -18,6 +18,8 @@ const useTools = () => {
   const deleteDiory = useDeleteTool()
   const updateDiory = useUpdateTool()
   useCreateTool()
+
+  const { setFilter } = useGraphFilter()
 
   const { dispatch } = useDispatchActions()
   return {
@@ -29,7 +31,7 @@ const useTools = () => {
     onDrop: ({ droppedId, draggedId }) => {
       dispatch(createLink({ id: droppedId }, { id: draggedId }))
     },
-    onZoom: (zoom) => dispatch(setFilter({ grid: zoom })),
+    onZoom: setFilter,
   }
 }
 

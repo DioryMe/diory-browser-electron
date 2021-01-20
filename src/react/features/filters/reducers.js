@@ -3,10 +3,7 @@ import { createReducer } from '../../store'
 
 export const initialState = {
   active: {},
-  filters: {
-    grid: 1,
-  },
-  textFilter: undefined,
+  filters: {},
   updated: false,
 }
 

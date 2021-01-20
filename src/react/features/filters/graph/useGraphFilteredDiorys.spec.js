@@ -1,7 +1,7 @@
 import { useStore } from '../../../store'
 import { initialState } from '../../../store/initialState'
 
-import { useGraphFilter } from './useGraphFilter'
+import { useGraphFilteredDiorys } from './useGraphFilteredDiorys'
 
 jest.mock('../../../store')
 const mockState = { ...initialState }
@@ -9,7 +9,7 @@ useStore.mockImplementation((selector) => [selector(mockState)])
 
 describe('useGraphFilter', () => {
   it('executes with initial state', () => {
-    expect(useGraphFilter()).toBeDefined()
+    expect(useGraphFilteredDiorys()).toBeDefined()
   })
 
   describe('given diograph', () => {
@@ -104,7 +104,7 @@ describe('useGraphFilter', () => {
           })
 
           it(`returns ${returns}`, () => {
-            expect(useGraphFilter()).toEqual(expectedDioryIds)
+            expect(useGraphFilteredDiorys()).toEqual(expectedDioryIds)
           })
         })
       })
@@ -121,7 +121,7 @@ describe('useGraphFilter', () => {
         })
 
         it('returns false', () => {
-          expect(useGraphFilter()).toEqual(false)
+          expect(useGraphFilteredDiorys()).toEqual(false)
         })
       })
 
@@ -131,7 +131,7 @@ describe('useGraphFilter', () => {
         })
 
         it('returns false', () => {
-          expect(useGraphFilter()).toEqual(false)
+          expect(useGraphFilteredDiorys()).toEqual(false)
         })
       })
     })
@@ -175,7 +175,7 @@ describe('useGraphFilter', () => {
         })
 
         it('returns diory only once', () => {
-          expect(useGraphFilter()).toEqual({
+          expect(useGraphFilteredDiorys()).toEqual({
             otherDioryId: {
               id: 'otherDioryId',
             },
@@ -204,7 +204,7 @@ describe('useGraphFilter', () => {
         })
 
         it('returns false', () => {
-          expect(useGraphFilter()).toEqual(false)
+          expect(useGraphFilteredDiorys()).toEqual(false)
         })
       })
     })
