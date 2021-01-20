@@ -1,9 +1,4 @@
-import { SET_FILTERS, ACTIVATE_FILTER, SET_FILTER, SET_TEXT_FILTER } from './actionsTypes'
-
-export const setTextFilter = (textFilter) => ({
-  type: SET_TEXT_FILTER,
-  payload: { textFilter },
-})
+import { SET_FILTERS, ACTIVATE_FILTER, SET_FILTER } from './actionsTypes'
 
 export const setFilters = (filters = {}) => ({
   type: SET_FILTERS,

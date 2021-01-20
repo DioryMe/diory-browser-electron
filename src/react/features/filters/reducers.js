@@ -1,4 +1,4 @@
-import { SET_FILTERS, ACTIVATE_FILTER, SET_FILTER, SET_TEXT_FILTER } from './actionsTypes'
+import { SET_FILTERS, ACTIVATE_FILTER, SET_FILTER } from './actionsTypes'
 import { createReducer } from '../../store'
 
 export const initialState = {
@@ -31,14 +31,8 @@ const setFilter = (state, { payload }) => ({
   updated: true,
 })
 
-const setTextFilter = (state, { payload }) => ({
-  ...state,
-  textFilter: payload.textFilter,
-})
-
 export default createReducer({
   [SET_FILTERS]: setFilters,
   [ACTIVATE_FILTER]: activateFilter,
   [SET_FILTER]: setFilter,
-  [SET_TEXT_FILTER]: setTextFilter,
 })
