@@ -1,3 +1,12 @@
+## 2.3.0 (January 19, 2021)
+
+### DDA-81 Hand tool for linking diorys in grid lens
+- Take linked diory to hand
+- View diorys in hand
+- Link diory from hand to focus diory
+- Link diory from hand to linked diory
+- Link linked diory to other linked diory
+
 ## 2.2.0 (January 8, 2021)
 
 ### DDA-67 Feature tests for all the existing features
