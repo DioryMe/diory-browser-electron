@@ -1,35 +1,15 @@
-import { useStore } from '../../../store'
-import { useFocus } from '../../diograph/hooks'
+import { useEffect } from 'react'
+import { useDispatchActions } from '../../../store'
 
-import { reduceIdsToKeys } from '../../../utils/reduceIdsToKeys'
-
-function getArray(length) {
-  return [...Array(length - 1).keys()]
-}
-
-function getLinkIds({ links } = {}) {
-  return links ? Object.values(links).reduce(reduceIdsToKeys, {}) : {}
-}
-
-function getDioryLinkIds(diograph) {
-  return (obj, { id }) => ({
-    ...obj,
-    ...getLinkIds(diograph[id]),
-  })
-}
+import { setFilter } from '../actions'
 
 export const useGraphFilter = () => {
-  const [{ diograph }] = useStore((state) => state.diograph)
-  const [{ grid: isActive }] = useStore((state) => state.filters.active)
-  const [{ grid: zoom }] = useStore((state) => state.filters.filters)
-  const { diory } = useFocus()
-  return (
-    !!isActive &&
-    !!diory &&
-    !!zoom &&
-    getArray(zoom).reduce(
-      (dioryIds) => Object.values(dioryIds).reduce(getDioryLinkIds(diograph), dioryIds),
-      getLinkIds(diory)
-    )
-  )
+  const { dispatch } = useDispatchActions()
+  useEffect(() => {
+    dispatch(setFilter({ grid: 1 }))
+  }, [dispatch])
+
+  return {
+    setFilter: (zoom) => dispatch(setFilter({ grid: zoom })),
+  }
 }

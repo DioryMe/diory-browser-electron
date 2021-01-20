@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 
 import { useStore } from '../../store'
-import { useGraphFilter } from './graph/useGraphFilter'
+import { useGraphFilteredDiorys } from './graph/useGraphFilteredDiorys'
 import { useMapFilteredDiorys } from './map/useMapFilteredDiorys'
 
 import { reduceIdsToKeys } from '../../utils/reduceIdsToKeys'
@@ -10,7 +10,7 @@ import { useDiorys } from '../diograph/hooks'
 export const useFilters = () => {
   const [{ diograph }] = useStore((state) => state.diograph)
 
-  const graphDioryIds = useGraphFilter()
+  const graphDioryIds = useGraphFilteredDiorys()
   const mapDioryIds = useMapFilteredDiorys()
 
   const dioryIds = useMemo(
