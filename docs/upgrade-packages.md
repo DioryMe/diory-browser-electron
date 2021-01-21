@@ -15,8 +15,8 @@ Updgrading packages should be as easy as possible. We assume that our test suite
     1. Change that version to `Dockerfile`, e.g. `FROM node:12.13`
     1. Change that version for all the Github Actions (search all & replace)
     1. Update your local node: `nvm use 12.13`
-    1. Update yarn?
-      * Docker image's Dockerfile and YARN_VERSION from [Docker hub](https://hub.docker.com/_/node/) by selecting the version)
+    1. Install yarn: `npm install -g yarn`
+      * Docker image's Dockerfile and YARN_VERSION from [Docker hub](https://github.com/nodejs/docker-node/tree/master/12/stretch) by browsing from commit history)
       *
 1. Upgrade all the packages to the latest
 
