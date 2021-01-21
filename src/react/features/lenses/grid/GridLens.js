@@ -25,7 +25,7 @@ const useTools = () => {
       updateDiory(diory)
     },
     onDrop: ({ dropId, dragId }) => {
-      dispatch(createLink({ id: dropId }, {  id: dragId }))
+      dispatch(createLink({ id: dropId }, { id: dragId }))
     },
   }
 }
