@@ -11,10 +11,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js 12.14
+    - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 12.14
+        node-version: 12.18.3
     - run: yarn install
     - run: yarn start & yarn run wait-on http://localhost:3300
     - run: yarn cypress run
