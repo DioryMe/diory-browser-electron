@@ -8,7 +8,9 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+      SKIP_PREFLIGHT_CHECK: true
+      CI: false
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js
