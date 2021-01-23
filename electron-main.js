@@ -11,6 +11,7 @@ function createWindow() {
     width: 1200,
     height: 800,
     webPreferences: {
+      enableRemoteModule: true,
       preload: path.join(__dirname, 'electron/preload.js'),
     },
   })
