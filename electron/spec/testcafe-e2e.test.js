@@ -24,5 +24,5 @@ test('Test test', async (t) => {
     .click('[data-testid="tools-button"]')
     .click('[data-testid="undefined-button"]')
     .expect(dioryCount)
-    .eql(4)
+    .eql(5)
 })
