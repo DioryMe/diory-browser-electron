@@ -20,6 +20,7 @@ test('Test test', async (t) => {
   await t
     .expect(dioryCount)
     .eql(1)
+    .click('[data-testid="home"]')
     .click('[data-testid="tools-button"]')
     .click('[data-testid="undefined-button"]')
     .expect(dioryCount)
