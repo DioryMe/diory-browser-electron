@@ -20,16 +20,18 @@ export const useAddConnectionButton = () => {
   useEffect(() => {
     if (ADD_CONNECTION_BUTTON === active) {
       dispatch(setInactive())
-      window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then((result) => {
-        const address = result.filePaths[0]
-        openChannel(channels.GENERATE_DIOGRAPH, address).then(({ id, diograph }) => {
-          const roomId = uuid()
-          dispatch(addConnection({ address, room: roomId, connector: 'file' }))
-          dispatch(addRoom(roomId, diograph[id]))
-          dispatch(enterRoom({ id: roomId }))
-          dispatch(setFocus({ focus: id }))
-        })
+      // window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then((result) => {
+      const path = '/Users/Jouni/Code/diory-browser-electron/public/development-content-room'
+      const result = { filePaths: [path] }
+      const address = result.filePaths[0]
+      openChannel(channels.GENERATE_DIOGRAPH, address).then(({ id, diograph }) => {
+        const roomId = uuid()
+        dispatch(addConnection({ address, room: roomId, connector: 'file' }))
+        dispatch(addRoom(roomId, diograph[id]))
+        dispatch(enterRoom({ id: roomId }))
+        dispatch(setFocus({ focus: id }))
       })
+      // })
     }
   }, [active, dispatch])
 }
