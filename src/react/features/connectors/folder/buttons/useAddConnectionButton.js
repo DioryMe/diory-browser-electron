@@ -18,18 +18,28 @@ export const useAddConnectionButton = () => {
 
   const dispatch = useDispatch()
   useEffect(() => {
+    const getHome = (result) => {
+      const address = result.filePaths[0]
+      openChannel(channels.GENERATE_DIOGRAPH, address).then(({ id, diograph }) => {
+        const roomId = uuid()
+        dispatch(addConnection({ address, room: roomId, connector: 'file' }))
+        dispatch(addRoom(roomId, diograph[id]))
+        dispatch(enterRoom({ id: roomId }))
+        dispatch(setFocus({ focus: id }))
+      })
+    }
+
     if (ADD_CONNECTION_BUTTON === active) {
       dispatch(setInactive())
-      window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then((result) => {
-        const address = result.filePaths[0]
-        invokeChannel(channels.GENERATE_DIOGRAPH, address).then(({ id, diograph }) => {
-          const roomId = uuid()
-          dispatch(addConnection({ address, room: roomId, connector: 'file' }))
-          dispatch(addRoom(roomId, diograph[id]))
-          dispatch(enterRoom({ id: roomId }))
-          dispatch(setFocus({ focus: id }))
+      if (window.processEnv.TESTCAFE_TEST) {
+        const path = `${window.processEnv.PWD}/public/development-content-room`
+        const result = { filePaths: [path] }
+        getHome(result)
+      } else {
+        window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then((result) => {
+          getHome(result)
         })
-      })
+      }
     }
   }, [active, dispatch])
 }

@@ -1,339 +1,254 @@
 {
-  "development-content-room": {
-    "id": "development-content-room",
-    "image": "",
-    "links": {
-      "tampere": {
-        "id": "tampere"
-      },
-      "generic": {
-        "id": "generic-content"
-      },
-      "kayaking-at-potomac": {
-        "id": "f1470597-1a3c-4a76-8546-2c29591a6846"
-      }
-    },
-    "modified": "2020-01-03T14:03:04.751Z"
-  },
-  "generic-content": {
-    "id": "generic-content",
-    "text": "Generic content",
-    "links": {
-      "diory1": {
-        "id": "diory1"
-      },
-      "4_5807613915332347351.mp4": {
-        "id": "cbe32a6d-5bc3-44d0-b680-3f4a63765f73"
-      },
-      "4_5996618057181562302.MOV": {
-        "id": "5456c2c3-4a69-4d80-bd2f-caa9945cff71"
-      }
-    }
-  },
-  "diory1": {
-    "id": "diory1",
-    "text": "Diory 1",
-    "links": {
-      "link11": {
-        "id": "diory11"
-      },
-      "link12": {
-        "id": "diory12"
-      },
-      "link13": {
-        "id": "diory13"
-      },
-      "link14": {
-        "id": "diory14"
-      }
-    },
-    "latitude": "61",
-    "longitude": "26"
-  },
-  "diory11": {
-    "id": "diory11",
-    "text": "Diory 11"
-  },
-  "diory12": {
-    "id": "diory12",
-    "text": "Diory 12"
-  },
-  "diory13": {
-    "id": "diory13",
-    "text": "Diory 13"
-  },
-  "diory14": {
-    "id": "diory14",
-    "text": "Diory 14"
-  },
-  "cbe32a6d-5bc3-44d0-b680-3f4a63765f73": {
-    "id": "cbe32a6d-5bc3-44d0-b680-3f4a63765f73",
+  "0bec0e4e-a29d-43b3-ac52-654249376c20": {
+    "id": "0bec0e4e-a29d-43b3-ac52-654249376c20",
     "text": "4_5807613915332347351.mp4",
-    "image": "development-content-room/4_5807613915332347351.mp4",
-    "created": "2020-07-05T09:39:20.000Z",
-    "modified": "2020-07-05T09:39:20.000Z"
+    "video": "/Users/Jouni/Code/diory-browser-electron/public/development-content-room/4_5807613915332347351.mp4",
+    "created": "2020-10-20T18:11:31.662Z",
+    "modified": "2020-10-20T18:11:31.718Z"
   },
-  "5456c2c3-4a69-4d80-bd2f-caa9945cff71": {
-    "id": "5456c2c3-4a69-4d80-bd2f-caa9945cff71",
+  "16f3184d-1b60-4157-9d65-3889d2fab4a0": {
+    "id": "16f3184d-1b60-4157-9d65-3889d2fab4a0",
     "text": "4_5996618057181562302.MOV",
-    "image": "development-content-room/4_5996618057181562302.MOV",
-    "created": "2020-07-05T09:39:40.000Z",
-    "modified": "2020-07-05T09:39:40.000Z"
+    "video": "/Users/Jouni/Code/diory-browser-electron/public/development-content-room/4_5996618057181562302.MOV",
+    "created": "2020-10-20T18:11:31.746Z",
+    "modified": "2020-10-20T18:11:32.563Z"
   },
-  "tampere": {
-    "id": "tampere",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Downtown_Tampere4.jpg",
-    "latitude": 61.49883164008703,
-    "links": {
-      "link1": {
-        "id": "keskustori"
-      },
-      "link2": {
-        "id": "frenkell"
-      },
-      "link3": {
-        "id": "hameenkatu"
-      }
-    },
-    "longitude": 23.76080989837647,
-    "modified": "2020-01-03T21:44:25.345Z",
-    "text": "Tampere"
-  },
-  "keskustori": {
-    "id": "keskustori",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Tampere_-_Keskustori.jpg/800px-Tampere_-_Keskustori.jpg",
-    "latitude": 61.49768995940461,
-    "longitude": 23.760348558425907,
-    "modified": "2020-01-03T21:45:00.791Z",
-    "text": "Keskustori"
-  },
-  "frenkell": {
-    "id": "frenkell",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Frenckell_factory1.jpg",
-    "latitude": 61.50011150135485,
-    "longitude": 23.763899803161625,
-    "modified": "2020-01-03T21:44:56.115Z",
-    "text": "Frenkell"
-  },
-  "hameenkatu": {
-    "id": "hameenkatu",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Tampere_Hameenkatu.png",
-    "latitude": 61.49785379059735,
-    "longitude": 23.762902021408085,
-    "modified": "2020-01-03T21:44:58.285Z",
-    "text": "Hämeenkatu"
-  },
-  "c7fd9a27-d7c1-4b8e-b896-71a885fde1e5": {
-    "id": "c7fd9a27-d7c1-4b8e-b896-71a885fde1e5",
-    "image": "development-content-room/Kayaking at Potomac/PIXNIO-53350-6177x4118.jpeg",
+  "3fd76f5c-45d4-46b4-998f-6585872c9e0b": {
+    "id": "3fd76f5c-45d4-46b4-998f-6585872c9e0b",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/public/development-content-room/Kayaking%20at%20Potomac/PIXNIO-53350-6177x4118.jpeg",
     "date": "2014-09-20T17:44:52.000Z",
     "created": "2016-06-04T10:32:12Z",
-    "modified": "2020-04-19T18:36:23.000Z"
+    "modified": "2020-10-20T18:11:33.655Z"
   },
-  "c1d56e38-a85a-42d7-8d79-f4e07806417b": {
-    "id": "c1d56e38-a85a-42d7-8d79-f4e07806417b",
-    "image": "development-content-room/Kayaking at Potomac/PIXNIO-53541-1782x1188.jpeg",
+  "9f9e7a72-c3e1-44bd-896b-8e961812c00a": {
+    "id": "9f9e7a72-c3e1-44bd-896b-8e961812c00a",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/public/development-content-room/Kayaking%20at%20Potomac/PIXNIO-53541-1782x1188.jpeg",
     "date": "2013-06-25T23:11:49.000Z",
     "created": "2016-06-04T10:32:12Z",
-    "modified": "2020-04-19T18:34:46.000Z"
+    "modified": "2020-10-20T18:11:33.712Z"
   },
-  "b40c52d4-16e3-409b-b494-0691126c5669": {
-    "id": "b40c52d4-16e3-409b-b494-0691126c5669",
-    "image": "development-content-room/Kayaking at Potomac/PIXNIO-53543-1782x1188.jpeg",
+  "07d551b5-b2ab-4d4b-9dc2-575f036c6c29": {
+    "id": "07d551b5-b2ab-4d4b-9dc2-575f036c6c29",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/public/development-content-room/Kayaking%20at%20Potomac/PIXNIO-53543-1782x1188.jpeg",
     "date": "2013-06-25T23:11:09.000Z",
     "created": "2016-06-04T10:32:12Z",
-    "modified": "2020-04-19T18:33:36.000Z",
-    "links": {
-      "Jane": {
-        "id": "3e2ddc49-b3b6-4212-8a0a-80b9150a57ae"
-      },
-      "Mary": {
-        "id": "e07c2f1d-5f5a-488a-a505-34f7b9f55105"
-      }
-    }
+    "modified": "2020-10-20T18:11:33.796Z"
   },
-  "a013d29c-b4ff-482d-89cc-97191b9de8b1": {
-    "id": "a013d29c-b4ff-482d-89cc-97191b9de8b1",
-    "image": "development-content-room/Kayaking at Potomac/PIXNIO-53549-1782x1188.jpeg",
+  "ff436842-d0ee-4b1d-bdd1-e3c9b07f6d83": {
+    "id": "ff436842-d0ee-4b1d-bdd1-e3c9b07f6d83",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/public/development-content-room/Kayaking%20at%20Potomac/PIXNIO-53549-1782x1188.jpeg",
     "date": "2013-06-26T01:26:12.000Z",
     "created": "2016-06-04T10:32:12Z",
-    "modified": "2020-04-19T18:32:01.000Z"
+    "modified": "2020-10-20T18:11:33.824Z"
   },
-  "eaf58f1f-af8e-4e10-9fa3-2b937b94d01c": {
-    "id": "eaf58f1f-af8e-4e10-9fa3-2b937b94d01c",
-    "image": "development-content-room/Kayaking at Potomac/PIXNIO-53551-1782x1188.jpeg",
+  "01ef0fba-f57b-4039-b4ea-e4cf654715b3": {
+    "id": "01ef0fba-f57b-4039-b4ea-e4cf654715b3",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/public/development-content-room/Kayaking%20at%20Potomac/PIXNIO-53551-1782x1188.jpeg",
     "date": "2013-06-26T01:31:59.000Z",
     "created": "2016-06-04T10:32:12Z",
-    "modified": "2020-04-19T18:31:51.000Z"
+    "modified": "2020-10-20T18:11:33.863Z"
   },
-  "53d67955-5303-47f5-a44d-4de3dde61aa8": {
-    "id": "53d67955-5303-47f5-a44d-4de3dde61aa8",
-    "image": "development-content-room/Kayaking at Potomac/PIXNIO-53553-1782x1188.jpeg",
+  "4b82a194-8985-4182-bccb-e1a1fef7ca95": {
+    "id": "4b82a194-8985-4182-bccb-e1a1fef7ca95",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/public/development-content-room/Kayaking%20at%20Potomac/PIXNIO-53553-1782x1188.jpeg",
     "date": "2013-06-26T13:40:22.000Z",
     "created": "2016-06-04T10:32:12Z",
-    "modified": "2020-04-19T18:31:04.000Z"
+    "modified": "2020-10-20T18:11:33.906Z"
   },
-  "ed3f3cac-0a11-4372-97d3-217d52157035": {
-    "id": "ed3f3cac-0a11-4372-97d3-217d52157035",
-    "image": "development-content-room/Kayaking at Potomac/PIXNIO-53555-1782x1188.jpeg",
+  "3350ff48-799b-4dd8-b331-984ffd4ea811": {
+    "id": "3350ff48-799b-4dd8-b331-984ffd4ea811",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/public/development-content-room/Kayaking%20at%20Potomac/PIXNIO-53555-1782x1188.jpeg",
     "date": "2013-06-26T13:02:31.000Z",
     "created": "2016-06-04T10:32:12Z",
-    "modified": "2020-04-19T18:30:30.000Z"
+    "modified": "2020-10-20T18:11:33.934Z"
   },
-  "3a74359d-70b5-4c41-b28f-a6b2d2a1d3ea": {
-    "id": "3a74359d-70b5-4c41-b28f-a6b2d2a1d3ea",
-    "image": "development-content-room/Kayaking at Potomac/PIXNIO-54298-5970x3980.jpeg",
+  "de498432-3d47-4c33-891e-04539c38c98b": {
+    "id": "de498432-3d47-4c33-891e-04539c38c98b",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/public/development-content-room/Kayaking%20at%20Potomac/PIXNIO-54298-5970x3980.jpeg",
     "date": "2012-06-25T14:27:29.000Z",
     "created": "2016-06-04T10:32:12Z",
-    "modified": "2020-04-19T18:33:59.000Z"
+    "modified": "2020-10-20T18:11:34.113Z"
   },
-  "b6530d02-2430-4288-88b7-e875185cf2ee": {
-    "id": "b6530d02-2430-4288-88b7-e875185cf2ee",
-    "image": "development-content-room/Kayaking at Potomac/PIXNIO-54348-6177x4118.jpeg",
+  "7ed1ac18-7f94-4468-8122-fb95a0c924ca": {
+    "id": "7ed1ac18-7f94-4468-8122-fb95a0c924ca",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/public/development-content-room/Kayaking%20at%20Potomac/PIXNIO-54348-6177x4118.jpeg",
     "date": "2012-09-25T10:59:28.000Z",
     "created": "2016-06-04T10:32:12Z",
-    "modified": "2020-04-19T18:32:33.000Z"
+    "modified": "2020-10-20T18:11:34.444Z"
   },
-  "8b7e92ae-42ed-4d80-b9e4-1ed9c62cf0d9": {
-    "id": "8b7e92ae-42ed-4d80-b9e4-1ed9c62cf0d9",
-    "image": "development-content-room/Kayaking at Potomac/PIXNIO-54360-6177x4118.jpeg",
+  "42d9c27f-9da4-45c5-b830-2533a0d082f5": {
+    "id": "42d9c27f-9da4-45c5-b830-2533a0d082f5",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/public/development-content-room/Kayaking%20at%20Potomac/PIXNIO-54360-6177x4118.jpeg",
     "date": "2012-06-25T02:19:41.000Z",
     "created": "2016-06-04T10:32:12Z",
-    "modified": "2020-04-19T18:33:01.000Z"
+    "modified": "2020-10-20T18:11:34.677Z"
   },
-  "78e966b3-26e6-4dd9-afbe-8fbe62dc396c": {
-    "id": "78e966b3-26e6-4dd9-afbe-8fbe62dc396c",
-    "image": "development-content-room/Kayaking at Potomac/PIXNIO-54454-6138x4092.jpeg",
+  "33602efe-732e-4b27-87b5-992bf71ee980": {
+    "id": "33602efe-732e-4b27-87b5-992bf71ee980",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/public/development-content-room/Kayaking%20at%20Potomac/PIXNIO-54454-6138x4092.jpeg",
     "date": "2012-06-25T14:19:12.000Z",
     "created": "2016-06-04T10:32:12Z",
-    "modified": "2020-04-19T18:32:14.000Z"
+    "modified": "2020-10-20T18:11:35.108Z"
   },
-  "08e19501-6844-4072-941c-59f46de75538": {
-    "id": "08e19501-6844-4072-941c-59f46de75538",
-    "image": "development-content-room/Kayaking at Potomac/Jane/PIXNIO-12656-2816x2112.jpeg",
-    "created": "2020-05-17T15:49:05.845Z",
-    "modified": "2020-05-17T15:49:05.979Z"
+  "6a8447bc-27f1-4c6e-b874-a45dd36efbac": {
+    "id": "6a8447bc-27f1-4c6e-b874-a45dd36efbac",
+    "text": "pixnio-public-domain-test-content",
+    "created": "2020-10-20T18:11:35.153Z",
+    "modified": "2020-10-20T18:11:35.155Z"
   },
-  "10b4eebb-6abb-4816-bbbb-c48a43a2f6f6": {
-    "id": "10b4eebb-6abb-4816-bbbb-c48a43a2f6f6",
-    "image": "development-content-room/Kayaking at Potomac/Jane/PIXNIO-12662-2816x2112.jpeg",
-    "created": "2020-05-17T15:49:01.175Z",
-    "modified": "2020-05-17T15:49:01.711Z"
+  "91daf990-80f3-4176-8e1f-f77328625687": {
+    "id": "91daf990-80f3-4176-8e1f-f77328625687",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/public/development-content-room/Kayaking%20at%20Potomac/Jane/PIXNIO-12656-2816x2112.jpeg",
+    "created": "2020-10-20T18:11:32.628Z",
+    "modified": "2020-10-20T18:11:32.662Z"
   },
-  "7dcfdc36-ef20-483f-8de7-c958c188a4a1": {
-    "id": "7dcfdc36-ef20-483f-8de7-c958c188a4a1",
-    "image": "development-content-room/Kayaking at Potomac/Jane/PIXNIO-12700-2816x2112.jpeg",
-    "created": "2020-05-17T15:49:09.224Z",
-    "modified": "2020-05-17T15:49:09.390Z"
+  "e2e88456-9e24-4b59-9a66-df11e67213eb": {
+    "id": "e2e88456-9e24-4b59-9a66-df11e67213eb",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/public/development-content-room/Kayaking%20at%20Potomac/Jane/PIXNIO-12662-2816x2112.jpeg",
+    "created": "2020-10-20T18:11:32.667Z",
+    "modified": "2020-10-20T18:11:32.795Z"
   },
-  "3e2ddc49-b3b6-4212-8a0a-80b9150a57ae": {
-    "id": "3e2ddc49-b3b6-4212-8a0a-80b9150a57ae",
+  "9d535332-df6c-476c-856d-1b4c7ff64c15": {
+    "id": "9d535332-df6c-476c-856d-1b4c7ff64c15",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/public/development-content-room/Kayaking%20at%20Potomac/Jane/PIXNIO-12700-2816x2112.jpeg",
+    "created": "2020-10-20T18:11:32.805Z",
+    "modified": "2020-10-20T18:11:32.860Z"
+  },
+  "4df82a68-f427-4a3d-a10f-dab027467384": {
+    "id": "4df82a68-f427-4a3d-a10f-dab027467384",
     "text": "Jane",
-    "image": "development-content-room/Kayaking at Potomac/Jane/PIXNIO-12656-2816x2112.jpeg",
-    "created": "2020-05-17T16:03:52.473Z",
-    "modified": "2020-05-17T16:04:03.620Z",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/public/development-content-room/Kayaking%20at%20Potomac/Jane/PIXNIO-12656-2816x2112.jpeg",
+    "created": "2020-07-18T05:27:15.433Z",
+    "modified": "2020-10-20T18:11:32.805Z",
     "links": {
       "PIXNIO-12656-2816x2112.jpeg": {
-        "id": "08e19501-6844-4072-941c-59f46de75538"
+        "id": "91daf990-80f3-4176-8e1f-f77328625687"
       },
       "PIXNIO-12662-2816x2112.jpeg": {
-        "id": "10b4eebb-6abb-4816-bbbb-c48a43a2f6f6"
+        "id": "e2e88456-9e24-4b59-9a66-df11e67213eb"
       },
       "PIXNIO-12700-2816x2112.jpeg": {
-        "id": "7dcfdc36-ef20-483f-8de7-c958c188a4a1"
-      },
-      "PIXNIO-53543-1782x1188.jpeg": {
-        "id": "b40c52d4-16e3-409b-b494-0691126c5669"
+        "id": "9d535332-df6c-476c-856d-1b4c7ff64c15"
       }
     }
   },
-  "e296cf72-bce3-4e78-b3a1-2381fb1239ba": {
-    "id": "e296cf72-bce3-4e78-b3a1-2381fb1239ba",
-    "image": "development-content-room/Kayaking at Potomac/Mary/PIXNIO-53747-4118x3088.jpeg",
+  "64270ab6-0612-4c30-ad82-00a478856f0b": {
+    "id": "64270ab6-0612-4c30-ad82-00a478856f0b",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/public/development-content-room/Kayaking%20at%20Potomac/Mary/PIXNIO-53747-4118x3088.jpeg",
     "date": "2016-06-11T09:21:43.000Z",
     "created": "2016-06-04T10:32:12Z",
-    "modified": "2020-04-19T18:58:20.790Z"
+    "modified": "2020-10-20T18:11:32.908Z"
   },
-  "a2164506-4d83-4dc6-9495-c07a778773e5": {
-    "id": "a2164506-4d83-4dc6-9495-c07a778773e5",
-    "image": "development-content-room/Kayaking at Potomac/Mary/PIXNIO-53789-4118x6177.jpeg",
+  "dba1eb16-661a-478c-adbf-69156867af2a": {
+    "id": "dba1eb16-661a-478c-adbf-69156867af2a",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/public/development-content-room/Kayaking%20at%20Potomac/Mary/PIXNIO-53789-4118x6177.jpeg",
     "date": "2014-06-03T12:07:11.000Z",
     "created": "2016-06-04T10:32:12Z",
-    "modified": "2020-04-19T18:57:07.682Z"
+    "modified": "2020-10-20T18:11:33.046Z"
   },
-  "e72ad1b7-8623-4226-8e9d-0f11e49fd85b": {
-    "id": "e72ad1b7-8623-4226-8e9d-0f11e49fd85b",
-    "image": "development-content-room/Kayaking at Potomac/Mary/PIXNIO-53799-6177x4118.jpeg",
+  "f0efb247-c8a5-4537-9c59-9784e0af35f2": {
+    "id": "f0efb247-c8a5-4537-9c59-9784e0af35f2",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/public/development-content-room/Kayaking%20at%20Potomac/Mary/PIXNIO-53799-6177x4118.jpeg",
     "date": "2014-06-03T11:54:35.000Z",
     "created": "2016-06-04T10:32:12Z",
-    "modified": "2020-04-19T18:57:28.636Z"
+    "modified": "2020-10-20T18:11:33.217Z"
   },
-  "e07c2f1d-5f5a-488a-a505-34f7b9f55105": {
-    "id": "e07c2f1d-5f5a-488a-a505-34f7b9f55105",
+  "b8bf175e-a155-4a1b-9086-1adb8e0eb88e": {
+    "id": "b8bf175e-a155-4a1b-9086-1adb8e0eb88e",
     "text": "Mary",
-    "image": "development-content-room/Kayaking at Potomac/Mary/PIXNIO-53747-4118x3088.jpeg",
-    "created": "2020-05-17T16:03:44.704Z",
-    "modified": "2020-05-17T16:03:58.614Z",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/public/development-content-room/Kayaking%20at%20Potomac/Mary/PIXNIO-53747-4118x3088.jpeg",
+    "date": "2015-02-04T19:07:49.666Z",
+    "created": "2020-07-18T05:27:15.470Z",
+    "modified": "2020-10-20T18:11:33.080Z",
     "links": {
       "PIXNIO-53747-4118x3088.jpeg": {
-        "id": "e296cf72-bce3-4e78-b3a1-2381fb1239ba"
+        "id": "64270ab6-0612-4c30-ad82-00a478856f0b"
       },
       "PIXNIO-53789-4118x6177.jpeg": {
-        "id": "a2164506-4d83-4dc6-9495-c07a778773e5"
+        "id": "dba1eb16-661a-478c-adbf-69156867af2a"
       },
       "PIXNIO-53799-6177x4118.jpeg": {
-        "id": "e72ad1b7-8623-4226-8e9d-0f11e49fd85b"
-      },
-      "PIXNIO-53543-1782x1188.jpeg": {
-        "id": "b40c52d4-16e3-409b-b494-0691126c5669"
+        "id": "f0efb247-c8a5-4537-9c59-9784e0af35f2"
       }
     }
   },
-  "f1470597-1a3c-4a76-8546-2c29591a6846": {
-    "id": "f1470597-1a3c-4a76-8546-2c29591a6846",
+  "f3b3752a-40fb-41bc-bf22-c3ec9a4be733": {
+    "id": "f3b3752a-40fb-41bc-bf22-c3ec9a4be733",
     "text": "Kayaking at Potomac",
-    "image": "development-content-room/Kayaking at Potomac/PIXNIO-54454-6138x4092.jpeg",
-    "created": "2020-04-19T18:47:25.152Z",
-    "modified": "2020-05-17T16:43:15.089Z",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/public/development-content-room/Kayaking%20at%20Potomac/Jane/PIXNIO-12656-2816x2112.jpeg",
+    "date": "2013-05-29T14:55:12.805Z",
+    "created": "2020-07-18T05:27:15.433Z",
+    "modified": "2020-10-20T18:11:35.154Z",
     "links": {
       "Jane": {
-        "id": "3e2ddc49-b3b6-4212-8a0a-80b9150a57ae"
+        "id": "4df82a68-f427-4a3d-a10f-dab027467384"
       },
       "Mary": {
-        "id": "e07c2f1d-5f5a-488a-a505-34f7b9f55105"
+        "id": "b8bf175e-a155-4a1b-9086-1adb8e0eb88e"
       },
       "PIXNIO-53350-6177x4118.jpeg": {
-        "id": "c7fd9a27-d7c1-4b8e-b896-71a885fde1e5"
+        "id": "3fd76f5c-45d4-46b4-998f-6585872c9e0b"
       },
       "PIXNIO-53541-1782x1188.jpeg": {
-        "id": "c1d56e38-a85a-42d7-8d79-f4e07806417b"
+        "id": "9f9e7a72-c3e1-44bd-896b-8e961812c00a"
       },
       "PIXNIO-53543-1782x1188.jpeg": {
-        "id": "b40c52d4-16e3-409b-b494-0691126c5669"
+        "id": "07d551b5-b2ab-4d4b-9dc2-575f036c6c29"
       },
       "PIXNIO-53549-1782x1188.jpeg": {
-        "id": "a013d29c-b4ff-482d-89cc-97191b9de8b1"
+        "id": "ff436842-d0ee-4b1d-bdd1-e3c9b07f6d83"
       },
       "PIXNIO-53551-1782x1188.jpeg": {
-        "id": "eaf58f1f-af8e-4e10-9fa3-2b937b94d01c"
+        "id": "01ef0fba-f57b-4039-b4ea-e4cf654715b3"
       },
       "PIXNIO-53553-1782x1188.jpeg": {
-        "id": "53d67955-5303-47f5-a44d-4de3dde61aa8"
+        "id": "4b82a194-8985-4182-bccb-e1a1fef7ca95"
       },
       "PIXNIO-53555-1782x1188.jpeg": {
-        "id": "ed3f3cac-0a11-4372-97d3-217d52157035"
+        "id": "3350ff48-799b-4dd8-b331-984ffd4ea811"
       },
       "PIXNIO-54298-5970x3980.jpeg": {
-        "id": "3a74359d-70b5-4c41-b28f-a6b2d2a1d3ea"
+        "id": "de498432-3d47-4c33-891e-04539c38c98b"
       },
       "PIXNIO-54348-6177x4118.jpeg": {
-        "id": "b6530d02-2430-4288-88b7-e875185cf2ee"
+        "id": "7ed1ac18-7f94-4468-8122-fb95a0c924ca"
       },
       "PIXNIO-54360-6177x4118.jpeg": {
-        "id": "8b7e92ae-42ed-4d80-b9e4-1ed9c62cf0d9"
+        "id": "42d9c27f-9da4-45c5-b830-2533a0d082f5"
       },
       "PIXNIO-54454-6138x4092.jpeg": {
-        "id": "78e966b3-26e6-4dd9-afbe-8fbe62dc396c"
+        "id": "33602efe-732e-4b27-87b5-992bf71ee980"
+      },
+      "pixnio-public-domain-test-content.txt": {
+        "id": "6a8447bc-27f1-4c6e-b874-a45dd36efbac"
+      }
+    }
+  },
+  "e772ef74-cc01-4554-b52f-8e371f21d0f2": {
+    "id": "e772ef74-cc01-4554-b52f-8e371f21d0f2",
+    "text": "Tampere",
+    "created": "2020-07-18T05:27:15.876Z",
+    "modified": "2020-10-20T18:11:35.156Z"
+  },
+  "b1a31257-e0e2-4f6b-8fde-53831f251d51": {
+    "id": "b1a31257-e0e2-4f6b-8fde-53831f251d51",
+    "text": "development-content-room",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/public/development-content-room/Kayaking%20at%20Potomac/Jane/PIXNIO-12656-2816x2112.jpeg",
+    "date": "2013-05-29T14:55:12.805Z",
+    "created": "2020-07-18T05:27:15.433Z",
+    "modified": "2021-01-23T20:04:37.239Z",
+    "links": {
+      "Kayaking at Potomac": {
+        "id": "f3b3752a-40fb-41bc-bf22-c3ec9a4be733"
+      },
+      "Tampere": {
+        "id": "e772ef74-cc01-4554-b52f-8e371f21d0f2"
+      },
+      "4_5807613915332347351.mp4": {
+        "id": "0bec0e4e-a29d-43b3-ac52-654249376c20"
+      },
+      "4_5996618057181562302.MOV": {
+        "id": "16f3184d-1b60-4157-9d65-3889d2fab4a0"
       }
     }
   }

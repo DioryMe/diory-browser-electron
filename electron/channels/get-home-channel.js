@@ -29,7 +29,9 @@ const fs = require('fs')
  *
  */
 exports.getHomeEventHandler = (event, params) => {
-  const store = new HomeStore()
+  const store = new HomeStore({
+    cwd: process.env.TESTCAFE_TEST ? process.env.PWD : undefined,
+  })
   const home = store.get('home') || defaultHome
 
   home.errors = []

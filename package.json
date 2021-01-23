@@ -59,6 +59,8 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
+    "testcafe": "^1.10.1",
+    "testcafe-browser-provider-electron": "^0.0.16",
     "ui-box": "^4.1.0",
     "wait-on": "^5.2.1"
   },
