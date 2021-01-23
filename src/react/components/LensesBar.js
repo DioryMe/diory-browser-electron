@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane, Tablist, Tab, Icon } from 'evergreen-ui'
+import { getIcon } from '../utils/icons'
 
 const LensesBar = ({ lenses, ...props }) => (
   <Pane {...props}>
@@ -12,7 +13,7 @@ const LensesBar = ({ lenses, ...props }) => (
           aria-controls={`panel-${lens.id}`}
           data-testid={`${lens.id}-lens`}
         >
-          <Icon icon={diory.image} marginRight={4} size={16} />
+          <Icon icon={getIcon(diory.image)} marginRight={4} size={16} />
           {diory.text}
         </Tab>
       ))}
