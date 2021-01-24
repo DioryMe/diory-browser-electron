@@ -13,6 +13,7 @@ mv electron-main-tmp.js electron-main.js
 unset TESTCAFE_TEST_ENVS
 
 echo "Run Testcafe E2E tests"
+rm -rf tmp/screenshots
 yarn exec testcafe "electron:."  electron/spec/testcafe-e2e.test.js
 
 echo "Check screenshots taken by Testcafe:"
