@@ -1,0 +1,46 @@
+{
+	"home": {
+		"rooms": {
+			"welcome-room": {
+				"id": "welcome-room",
+				"text": "Welcome room!"
+			},
+			"23bcf551-38fc-4590-8811-5eb94cb380c0": {
+				"id": "663fe7b5-1e70-4bcd-b83a-1ac6f303becd",
+				"text": "development-content-room",
+				"image": {},
+				"date": "2013-05-29T14:55:12.805Z",
+				"created": "2020-07-18T05:27:15.433Z",
+				"modified": "2021-01-24T06:44:45.178Z",
+				"links": {
+					"Kayaking at Potomac": {
+						"id": "0916cfcf-f1bc-4fe6-b496-b2b42ad255f4"
+					},
+					"Tampere": {
+						"id": "11906d06-a94e-4680-9f29-abb125ae3f6e"
+					},
+					"4_5807613915332347351.mp4": {
+						"id": "431e81b2-8474-43d1-b0d0-585161e3b4c6"
+					},
+					"4_5996618057181562302.MOV": {
+						"id": "92fb1c74-857b-4c67-9c4e-f45d5101c5da"
+					}
+				}
+			}
+		},
+		"connections": {
+			"./public/default-welcome-room": {
+				"room": "welcome-room",
+				"connector": "file"
+			},
+			"/Users/Jouni/Code/diory-browser-electron/public/development-content-room": {
+				"room": "23bcf551-38fc-4590-8811-5eb94cb380c0",
+				"connector": "file"
+			}
+		},
+		"focus": {
+			"roomId": "23bcf551-38fc-4590-8811-5eb94cb380c0",
+			"dioryId": "663fe7b5-1e70-4bcd-b83a-1ac6f303becd"
+		}
+	}
+}
