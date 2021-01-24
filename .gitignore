@@ -9,7 +9,6 @@
 /coverage
 /data
 /tmp
-public/development-content-room/diograph.json
 
 # production
 /build
