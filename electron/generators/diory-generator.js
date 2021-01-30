@@ -1,6 +1,6 @@
 const { v4: uuid } = require('uuid')
 const { resolveFileType, readFile } = require('../readers/file-reader')
-const { readFolder } = require('../readers/folder-reader')
+const { readFolderMetadata } = require('../readers/folder-reader')
 const { readImage } = require('../readers/image-reader')
 const { readVideo } = require('../readers/video-reader')
 
@@ -38,7 +38,7 @@ function generateDiory({ text, date, image, video, latitude, longitude, created,
   }
 }
 
-exports.generateFileDiory = function generateFileDiory(filePath) {
+exports.generateDioryFromFile = function generateDioryFromFile(filePath) {
   const type = resolveFileType(filePath)
   const fileData = readFileData(type, filePath) || {}
   return generateDiory(fileData)
@@ -84,6 +84,6 @@ exports.generateFolderDiory = function generateFolderDiory(folderPath, linkedDio
     ...getFirstImage(linkedDiorys),
     ...getAverageLocation(linkedDiorys),
     ...getAverageDate(linkedDiorys),
-    ...readFolder(folderPath),
+    ...readFolderMetadata(folderPath),
   })
 }
