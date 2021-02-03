@@ -4,9 +4,9 @@ const { generateDioryFromFile, generateDioryFromFolder } = require('./diory-gene
 const { generateLink } = require('./link-generator')
 const { basename } = require('path')
 
-function generateDioryLink({ key, diory }) {
+function generateDioryLink({ linkKey, diory }) {
   return {
-    [key]: diory,
+    [linkKey]: diory,
   }
 }
 
@@ -15,8 +15,8 @@ async function generateDiograph(folderPath) {
 
   const fileDioryLinks = await Promise.all(filePaths.map((filePath) => {
     const diory = generateDioryFromFile(filePath)
-    const key = basename(filePath)
-    return generateDioryLink({ key, diory })
+    const linkKey = basename(filePath)
+    return generateDioryLink({ linkKey, diory })
   }))
     .reduce((obj, dioryLink) => ({
       ...obj,
@@ -26,9 +26,9 @@ async function generateDiograph(folderPath) {
   const subfolderDiographs = await Promise.all(subfolderPaths.map(generateDiograph))
 
   const subfolderDioryLinks = subfolderDiographs
-    .map(({ key, id, diograph }) => {
+    .map(({ linkKey, id, diograph }) => {
       const diory = diograph[id]
-      return generateDioryLink({ key, diory })
+      return generateDioryLink({ linkKey, diory })
     })
     .reduce((obj, dioryLink) => ({
       ...obj,
@@ -43,7 +43,7 @@ async function generateDiograph(folderPath) {
   const rootDiory = generateDioryFromFolder(folderPath, dioryLinks)
 
   return {
-    key: basename(folderPath),
+    linkKey: basename(folderPath),
     id: rootDiory.id,
     diograph: {
       ...reduceDiorysToDiograph([rootDiory]),
