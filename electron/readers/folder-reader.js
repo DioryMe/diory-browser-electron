@@ -3,7 +3,7 @@ const { basename } = require('path')
 const { isIgnored, isFile, isFolder, getPath } = require('./dirent-reader')
 
 // Lukee kansion sisällön ja luokittelee fileihin ja foldereihin
-exports.readFolderContents = async function readFolderContents(folderPath) {
+exports.getFileAndSubfolderPaths = async function getFileAndSubfolderPaths(folderPath) {
   if (!(existsSync(folderPath) && lstatSync(folderPath).isDirectory())) {
     throw new Error(`Path is not folder ${folderPath}`)
   }
