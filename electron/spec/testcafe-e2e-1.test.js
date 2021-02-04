@@ -1,0 +1,36 @@
+import { Selector } from 'testcafe'
+
+// eslint-disable-next-line no-undef
+fixture`GIVEN welcome room`.page('../../build/index.html')
+
+test('take snapshots', async (t) => {
+  const eventDiory = Selector('div').withExactText('Kayaking at Potomac')
+
+  await t
+    .takeScreenshot({ path: 'welcome-room.png' })
+    .click('[data-testid="home"]')
+    .click('[data-testid="tools-button"]')
+    .click('[data-testid="undefined-button"]')
+    .wait(1000)
+    .takeScreenshot({ path: 'added-room.png' })
+    .click(eventDiory)
+    .wait(1000)
+    .takeScreenshot({ path: 'kayaking-at-potomac.png' })
+})
+
+test('select diograph folder (with diograph.json)', async (t) => {
+  const dioryCount = Selector('.ub-flx_1-0-360px').count
+  const eventDiory = Selector('div').withExactText('Kayaking at Potomac')
+
+  await t
+    .expect(dioryCount)
+    .eql(1)
+    .click('[data-testid="home"]')
+    .click('[data-testid="tools-button"]')
+    .click('[data-testid="undefined-button"]')
+    .expect(dioryCount)
+    .eql(4) // this is going to be 3
+    .click(eventDiory)
+    .expect(dioryCount)
+    .eql(14) // this is going to be 13
+})
