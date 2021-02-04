@@ -1,5 +1,5 @@
 const { readPaths } = require('../readers/folder-reader')
-const { generateFileDiory, generateFolderDiory } = require('./diory-generator')
+const { generateDioryFromFile, generateDioryFromFolder } = require('./diory-generator')
 const { generateDiograph } = require('./diograph-generator')
 
 jest.mock('../readers/folder-reader')
@@ -24,8 +24,8 @@ describe('diograph-generator', () => {
         act = async () => {
           readPaths.mockResolvedValue({})
           readPaths.mockResolvedValueOnce(paths)
-          generateFileDiory.mockResolvedValue()
-          generateFolderDiory.mockReturnValue(folderDiory)
+          generateDioryFromFile.mockResolvedValue()
+          generateDioryFromFolder.mockReturnValue(folderDiory)
           return generateDiograph(folderPath)
         }
       })
@@ -42,7 +42,7 @@ describe('diograph-generator', () => {
         it('generates folder diory', async () => {
           await act()
 
-          expect(generateFolderDiory).toHaveBeenCalledWith('some-folderPath', [])
+          expect(generateDioryFromFolder).toHaveBeenCalledWith('some-folderPath', [])
         })
 
         describe('given folder diory has id', () => {
@@ -104,7 +104,7 @@ describe('diograph-generator', () => {
               await act()
 
               files.forEach((file) => {
-                expect(generateFileDiory).toHaveBeenCalledWith(file)
+                expect(generateDioryFromFile).toHaveBeenCalledWith(file)
               })
             })
 
@@ -112,17 +112,17 @@ describe('diograph-generator', () => {
               await act()
 
               subfolders.forEach((subfolder) => {
-                expect(generateFolderDiory).toHaveBeenCalledWith(subfolder, [])
+                expect(generateDioryFromFolder).toHaveBeenCalledWith(subfolder, [])
               })
             })
 
             describe('given diorys have ids', () => {
               beforeEach(() => {
                 files.forEach((fileDiory) => {
-                  generateFileDiory.mockReturnValueOnce({ id: `${fileDiory}-id` })
+                  generateDioryFromFile.mockReturnValueOnce({ id: `${fileDiory}-id` })
                 })
                 subfolders.forEach((subfolderDiory) => {
-                  generateFolderDiory.mockReturnValueOnce({ id: `${subfolderDiory}-id` })
+                  generateDioryFromFolder.mockReturnValueOnce({ id: `${subfolderDiory}-id` })
                 })
               })
 

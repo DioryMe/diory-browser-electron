@@ -2,7 +2,7 @@ const { v4: uuid } = require('uuid')
 const { readFolder } = require('../readers/folder-reader')
 const { resolveFileType, readFile } = require('../readers/file-reader')
 const { readImage } = require('../readers/image-reader')
-const { generateFileDiory, generateFolderDiory } = require('./diory-generator')
+const { generateDioryFromFile, generateDioryFromFolder } = require('./diory-generator')
 
 jest.mock('uuid')
 jest.mock('../readers/folder-reader')
@@ -12,14 +12,14 @@ jest.mock('../readers/image-reader')
 describe('diory-generator', () => {
   let act
 
-  describe('generateFileDiory', () => {
+  describe('generateDioryFromFile', () => {
     let filePath
     let type
     let file
     let image
 
     it('renders with undefined values', async () => {
-      generateFileDiory()
+      generateDioryFromFile()
     })
 
     beforeEach(() => {
@@ -30,7 +30,7 @@ describe('diory-generator', () => {
         resolveFileType.mockReturnValue(type)
         readFile.mockReturnValue(file)
         readImage.mockReturnValue(image)
-        return generateFileDiory(filePath)
+        return generateDioryFromFile(filePath)
       }
     })
 
@@ -124,20 +124,20 @@ describe('diory-generator', () => {
     })
   })
 
-  describe('generateFolderDiory', () => {
+  describe('generateDioryFromFolder', () => {
     let folderPath
     let linkedDiorys
     let folder
 
     it('renders with undefined values', async () => {
-      generateFileDiory()
+      generateDioryFromFile()
     })
 
     beforeEach(() => {
       folder = {}
       act = () => {
         readFolder.mockReturnValueOnce(folder)
-        return generateFolderDiory(folderPath, linkedDiorys)
+        return generateDioryFromFolder(folderPath, linkedDiorys)
       }
     })
 
