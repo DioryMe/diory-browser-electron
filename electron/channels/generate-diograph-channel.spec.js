@@ -17,7 +17,7 @@ jest.mock('../lib/room-util')
 const saveDiographJSONMock = saveDiographJSON.mockResolvedValue(undefined)
 // Mock readDiographJSON
 jest.mock('../lib/room-util')
-const readDiographJSONMock = readDiographJSON.mockResolvedValue(undefined)
+readDiographJSON.mockReturnValue(undefined)
 
 describe('generateDiographEventHandler', () => {
   it('sends event with generateDiograph return value', async () => {
@@ -30,7 +30,6 @@ describe('generateDiographEventHandler', () => {
     )
     await generateDiographMock
     await saveDiographJSONMock
-    await readDiographJSONMock
 
     expect(generateDiograph).toHaveBeenCalledTimes(1)
     expect(generateDiograph).toHaveBeenCalledWith(params)

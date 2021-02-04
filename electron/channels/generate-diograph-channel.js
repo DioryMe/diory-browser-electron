@@ -21,23 +21,21 @@ const { saveDiographJSON, readDiographJSON } = require('../lib/room-util')
  */
 exports.generateDiographEventHandler = (event, path) =>
   new Promise((resolve, reject) => {
-    // WHY readDiographJSON returns a promise?!!?
-    readDiographJSON(path).then((diographJSON) => {
-      if (diographJSON) {
-        resolve({
-          id: 'id',
-          diograph: diographJSON,
-          path,
-        })
-      }
-      generateDiograph(path).then(({ id, diograph }) => {
-        saveDiographJSON(path, diograph)
-          .then(() => {
-            resolve({ id, diograph, path })
-          })
-          .catch((err) => {
-            reject(err)
-          })
+    const diographJSON = readDiographJSON(path)
+    if (diographJSON) {
+      resolve({
+        id: 'id',
+        diograph: diographJSON,
+        path,
       })
+    }
+    generateDiograph(path).then(({ id, diograph }) => {
+      saveDiographJSON(path, diograph)
+        .then(() => {
+          resolve({ id, diograph, path })
+        })
+        .catch((err) => {
+          reject(err)
+        })
     })
   })
