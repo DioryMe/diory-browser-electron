@@ -7,6 +7,7 @@ const { dialog } = require('electron').remote
 window.nativeFileDialog = dialog
 
 const frontendLogger = require('electron-log')
+
 window.frontendLogger = frontendLogger.functions
 
 window.processEnv = {}

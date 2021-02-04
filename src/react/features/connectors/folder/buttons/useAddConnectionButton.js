@@ -20,7 +20,7 @@ export const useAddConnectionButton = () => {
   useEffect(() => {
     const getHome = (result) => {
       const address = result.filePaths[0]
-      openChannel(channels.GENERATE_DIOGRAPH, address).then(({ id, diograph }) => {
+      invokeChannel(channels.GENERATE_DIOGRAPH, address).then(({ id, diograph }) => {
         const roomId = uuid()
         dispatch(addConnection({ address, room: roomId, connector: 'file' }))
         dispatch(addRoom(roomId, diograph[id]))
