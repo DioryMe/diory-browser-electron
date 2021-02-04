@@ -1,70 +1,21 @@
 version: 0.2
 
-#env:
-  #variables:
-     # key: "value"
-     # key: "value"
-  #parameter-store:
-     # key: "value"
-     # key: "value"
-  #secrets-manager:
-     # key: secret-id:json-key:version-stage:version-id
-     # key: secret-id:json-key:version-stage:version-id
-  #exported-variables:
-     # - variable
-     # - variable
-  #git-credential-helper: yes
-
 phases:
   install:
-    #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
-    #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
-    #runtime-versions:
-      # name: version
-      # name: version
     commands:
+      - wget -qO - https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/Release.key | apt-key add -
       - apt-get update && apt-get install -y python3 python3-pip python3-setuptools groff less
       - pip3 install --upgrade pip
       - apt-get clean
       - pip3 --no-cache-dir install --upgrade awscli
-      # - command
-  #pre_build:
-    #commands:
-      # - command
-      # - command
   build:
     commands:
-      - yarn
-      - yarn build
-      - yarn build-electron
+      - yarn && yarn build && yarn build-electron
       - echo "Add app-package-envs to electron-main.js"
       - export APP_PACKAGE_ENVS="process.env.BINARY_BUILD=1";
       - awk 'BEGIN{print ENVIRON["APP_PACKAGE_ENVS"]}{print}' build/electron-main.js > build/electron-main-tmp.js
       - mv build/electron-main-tmp.js build/electron-main.js
       - unset APP_PACKAGE_ENVS
-      - cat build/electron-main.js
       - yarn package-win
       - env
       - aws s3 cp "./dist/$WINDOWS_BINARY_FILENAME" s3://$WEBSITE_BUCKET --acl public-read
-  #post_build:
-    #commands:
-      # - command
-      # - command
-#reports:
-  #report-name-or-arn:
-    #files:
-      # - location
-      # - location
-    #base-directory: location
-    #discard-paths: yes
-    #file-format: JunitXml | CucumberJson
-#artifacts:
-  #files:
-    # - location
-    # - location
-  #name: $(date +%Y-%m-%d)
-  #discard-paths: yes
-  #base-directory: location
-#cache:
-  #paths:
-    # - paths
