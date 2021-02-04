@@ -1,3 +1,20 @@
+## 2.3.5 (Feburary 4, 2021)
+
+### DDA-60: Verify room connection
+- Refactor and test coverage for channels
+- Pass error from backend to frontend and invoke an alert
+- Alert if some room's path doesn't exist
+
+### POC: Testcafe
+- Testcafe up & running with TESTCAFE_TEST env
+- First E2E test which selects diograph folder and verifies that it gets loaded
+- Take screenshots
+- Run as a part of ./package-mac-common.sh
+
+### Other
+- Upgrade packages: Electron 11.2, Node 12.18, React 17, React-scripts 4
+
+
 ## 2.3.0 (January 19, 2021)
 
 ### DDA-81 Hand tool for linking diorys in grid lens
