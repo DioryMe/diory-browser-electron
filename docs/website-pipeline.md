@@ -4,25 +4,19 @@ Our website is basically just a place to download our app for MacOS and Windows.
 
 ## How to update?
 
-1. Merge the code you want to use to 'develop' branch
-2. Generate new MacOS app (see app-packages.md for details) and upload it to S3
-```
-aws s3 cp Diory\ -\ Digital\ Memory\ Browser-0.3.7.dmg s3://dda-downloads --acl public-read
-```
-3. Update the version number to MAC_BINARY_FILENAME and WINDOWS_BINARY_FILENAME in the build-pipeline-cf.yaml
-4. Trigger the pipeline from the aws console by clicking "Release change": https://eu-north-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/DioryDemoApp-build-pipeline/view?region=eu-north-1
+1. Make changes to `./website`
+2. Merge changes to develop
+3. Pipeline is triggered changes will be applied as a part of it
 
 ## Website
 
-There's only one real page, `index.html` which is found under `/website`
+Currently there's only one real page, `./website/index.html`
 
-latest-mac.html and latest-win.html are for easy redirecting to the latest version. They are uploaded and redirection are reset to the latest version every time we build new binaries.
+`latest-mac.html` and `latest-win.html` are intentionally empty files. They are used for redirecting to the latest version. Redirection is reset to the latest version every time we make a new release.
 
 ## Cloudformation deploy
 
 If you need to change the resources (=cloudformation template), you can deploy it with the following command:
-
-NOTE: You need to re-authenticate Github and remove the Github webhook after each deploy.
 
 ```
 aws cloudformation deploy \
