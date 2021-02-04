@@ -20,11 +20,11 @@ exports.reduceValuesToArraysPromise = function reduceValuesToArraysPromise(async
 exports.promiseAllReduce = async function promiseAllReduce(asyncArray) {
   const promises = await Promise.all(asyncArray)
   return promises.reduce(
-    ([obj1, obj2], [item1, item2]) => [
-      { ...obj1, ...item1 },
-      { ...obj2, ...item2 },
+    ([array1, array2], [item1, item2]) => [
+      [ ...array1, ...item1 ],
+      [ ...array2, ...item2 ],
     ],
-    [{}, {}]
+    [[], []]
   )
 }
 

@@ -1,21 +1,12 @@
 const { basename } = require('path')
 
-exports.generateFileLink = function generateFileLink(filePath = '', { id } = {}) {
-  const path = basename(filePath)
+// Luo folderin rootDiorylle linkin sen sisältämistä tiedostoista tehtyihin dioreihin
+exports.generateLink = function generateLink(path = '', { id } = {}) {
+  const key = basename(path)
   return (
     path &&
     id && {
-      [path]: { id },
-    }
-  )
-}
-
-exports.generateFolderLink = function generateFolderLink(filePath = '', { id } = {}) {
-  const path = basename(filePath)
-  return (
-    path &&
-    id && {
-      [path]: { id },
+      [key]: { id },
     }
   )
 }
