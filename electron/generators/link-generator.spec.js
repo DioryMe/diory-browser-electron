@@ -1,15 +1,15 @@
-const { generateFileLink, generateFolderLink } = require('./link-generator')
+const { generateLink } = require('./link-generator')
 
 describe('link-generator', () => {
   let act
 
-  describe('generateFileLink', () => {
+  describe('generateLink for file', () => {
     let filePath
     let diory
 
     beforeEach(() => {
       diory = {}
-      act = () => generateFileLink(filePath, diory)
+      act = () => generateLink(filePath, diory)
     })
 
     describe('given file path and diory id', () => {
@@ -32,13 +32,13 @@ describe('link-generator', () => {
     })
   })
 
-  describe('generateFolderLink', () => {
+  describe('generateLink for folder', () => {
     let folderPath
     let diory
 
     beforeEach(() => {
       diory = {}
-      act = () => generateFolderLink(folderPath, diory)
+      act = () => generateLink(folderPath, diory)
     })
 
     describe('given folder path and diory id', () => {
