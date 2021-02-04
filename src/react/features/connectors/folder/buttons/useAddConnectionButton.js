@@ -32,7 +32,7 @@ export const useAddConnectionButton = () => {
     if (ADD_CONNECTION_BUTTON === active) {
       dispatch(setInactive())
       if (window.processEnv.TESTCAFE_TEST) {
-        const path = `${window.processEnv.PWD}/public/development-content-room`
+        const path = `${window.processEnv.PWD}/${window.processEnv.DIOGRAPH_FOLDER_PATH}`
         const result = { filePaths: [path] }
         getHome(result)
       } else {
