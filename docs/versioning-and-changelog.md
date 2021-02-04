@@ -1,5 +1,15 @@
 # Versioning and changelog
 
+## How to bump the version?
+
+1. Make an entry to CHANGELOG.md file
+2. Change the version in package.json
+```
+yarn version --new-version 2.3.5
+```
+3. Push also the tag to Github: `git push --tags`
+4. If you want to make a release, see: `release.md`
+
 ## Versioning
 
 Version numbers consist of 3 parts: MAJOR.BUILD.PATCH (e.g. 0.3.7)
@@ -16,17 +26,6 @@ Version numbers consist of 3 parts: MAJOR.BUILD.PATCH (e.g. 0.3.7)
 Version doesn't need to be changed if
 * change is related only to linting, tests, environment, CI/CD pipeline etc.
 * it's a small fix and new packages are not built
-
-### How to bump the version?
-
-1. Make an entry to CHANGELOG.md file
-2. Change the version in package.json
-```
-yarn version --new-version 2.3.5
-```
-3. Push also the tag to Github: `git push --tags`
-4. If you want to make a release, see: `release.md`
-
 
 ## Changelog
 
