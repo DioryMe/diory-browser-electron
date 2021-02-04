@@ -20,7 +20,7 @@ const writeFilePromise = util.promisify(fs.writeFile)
  * }
  *
  */
-exports.getRoom = (path) => {
+exports.readDiographJSON = (path) => {
   const folderPath = path
   const diographJSONPath = `${path}/diograph.json`
 
@@ -38,7 +38,7 @@ exports.getRoom = (path) => {
   }
 }
 
-exports.saveRoom = async (path, diograph) => {
+exports.saveDiographJSON = async (path, diograph) => {
   const data = JSON.stringify(diograph, null, 2)
   console.log('Saving room', path)
   // No need to promisify: https://stackoverflow.com/a/52094177/1957884
