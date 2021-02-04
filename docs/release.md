@@ -29,10 +29,7 @@ Steps:
 1. Script asks APPLEID and APPLEIDPASS (the app-specific-password one!) for notarization purposes
 1. Script asks AWS MFA code to upload binary to S3
 1. Wait for the script and the pipeline to succeed: https://eu-north-1.console.aws.amazon.com/codesuite/codepipeline/pipelines
-1. Test run the .dmg file (see: Testing plan -> Binary)
-```
-open dist/Diory....dmg
-```
+1. Release is now done and the new version is available for download at [http://diograph.com/](http://diograph.com/)
 
 ## Apple certificates
 
