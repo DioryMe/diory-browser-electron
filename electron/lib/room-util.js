@@ -5,6 +5,21 @@ const util = require('util')
 // - "Starting in Node v10 you can use await fs"
 const writeFilePromise = util.promisify(fs.writeFile)
 
+/**
+ * readDiographJSON
+ * @function
+ * @param path {string} - Path as string
+ * @return {Object} - Object with diograph as key and parsed diograph.json content as value
+ *
+ * @example Response object:
+ * {
+ *   diograph: {
+ *      diory1: { id: 'diory1', image: '...', links: [...] },
+ *      diory2: { id: 'diory2', image: '...', links: [...] }
+ *   }
+ * }
+ *
+ */
 exports.getRoom = (path) => {
   const folderPath = path
   const diographJSONPath = `${path}/diograph.json`

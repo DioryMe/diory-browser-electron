@@ -13,8 +13,8 @@ const { saveRoom } = require('../lib/room-util')
  *   id: 'diograph123',
  *   path: '/Users/...',
  *   diograph: {
- *      room1: { id: 'room1', image: '...', links: [...] },
- *      room2: { id: 'room2', image: '...', links: [...] }
+ *     diory1: { id: 'diory1', image: '...', links: [...] },
+ *     diory2: { id: 'diory2', image: '...', links: [...] }
  *   }
  * }
  *

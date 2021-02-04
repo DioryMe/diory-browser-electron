@@ -36,7 +36,7 @@ async function generateFolderDiographAndLink(folderPath) {
 /**
  * Generates diograph object by reading the folder structure (path given as an argument)
  * @param {string} folderPath
- * @returns {object} Object with (room diory) id and diograph
+ * @returns {object} Object with (=room diory) id and diograph
  *
  * @example
  * {

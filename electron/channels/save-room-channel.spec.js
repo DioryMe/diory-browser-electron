@@ -9,10 +9,10 @@ const mockEvent = { reply: mockEventReply }
 jest.mock('../lib/room-util')
 
 const params = {
-  path: 'this is a file path',
+  path: 'some-path',
   room: {
-    id: 'this is room id',
-    diograph: 'this is diograph to be saved',
+    id: 'some-id',
+    diograph: 'some-diograph',
   },
 }
 
