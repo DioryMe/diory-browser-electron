@@ -1,5 +1,5 @@
 const { generateDiograph } = require('../generators/diograph-generator')
-const { saveDiographJSON } = require('../lib/room-util')
+const { saveDiographJSON, readDiographJSON } = require('../lib/room-util')
 
 /**
  * Event handler for GENERATE_DIOGRAPH channel
@@ -21,13 +21,23 @@ const { saveDiographJSON } = require('../lib/room-util')
  */
 exports.generateDiographEventHandler = (event, path) =>
   new Promise((resolve, reject) => {
-    generateDiograph(path).then(({ id, diograph }) => {
-      saveDiographJSON(path, diograph)
-        .then(() => {
-          resolve({ id, diograph, path })
+    // WHY readDiographJSON returns a promise?!!?
+    readDiographJSON(path).then((diographJSON) => {
+      if (diographJSON) {
+        resolve({
+          id: 'id',
+          diograph: diographJSON,
+          path,
         })
-        .catch((err) => {
-          reject(err)
-        })
+      }
+      generateDiograph(path).then(({ id, diograph }) => {
+        saveDiographJSON(path, diograph)
+          .then(() => {
+            resolve({ id, diograph, path })
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
     })
   })
