@@ -1,11 +1,11 @@
 const { eventHandlerWrapper } = require('./channel-util')
 const { saveRoomEventHandler } = require('./save-room-channel')
-const { saveRoom } = require('../lib/room-util')
+const { saveDiographJSON } = require('../lib/room-util')
 
 // Mock event.reply
 const mockEventReply = jest.fn()
 const mockEvent = { reply: mockEventReply }
-// Mock saveRoom
+// Mock saveDiographJSON
 jest.mock('../lib/room-util')
 
 const params = {
@@ -18,26 +18,26 @@ const params = {
 
 describe('saveRoomEventHandler sends event with payload ', () => {
   it("'true, undefined' if Promise resolves", async () => {
-    const saveRoomMock = saveRoom.mockResolvedValue(undefined)
+    const saveDiographJSONMock = saveDiographJSON.mockResolvedValue(undefined)
 
     const response = await eventHandlerWrapper('SAVE_ROOM', saveRoomEventHandler)(mockEvent, params)
-    await saveRoomMock
+    await saveDiographJSONMock
 
-    expect(saveRoom).toHaveBeenCalledTimes(1)
-    expect(saveRoom).toHaveBeenCalledWith(params.path, params.room.diograph)
+    expect(saveDiographJSON).toHaveBeenCalledTimes(1)
+    expect(saveDiographJSON).toHaveBeenCalledWith(params.path, params.room.diograph)
 
     expect(response).toEqual(true)
   })
 
   // Fails with watch but passes with yarn test-electron
   it.skip("'null, err' if Promise rejects", async () => {
-    const saveRoomMock = saveRoom.mockRejectedValue(new Error('this is an error'))
+    const saveDiographJSON = saveDiographJSON.mockRejectedValue(new Error('this is an error'))
 
     const response = await eventHandlerWrapper('SAVE_ROOM', saveRoomEventHandler)(mockEvent, params)
-    await saveRoomMock
+    await saveDiographJSON
 
-    expect(saveRoom).toHaveBeenCalledTimes(1)
-    expect(saveRoom).toHaveBeenCalledWith(params.path, params.room.diograph)
+    expect(saveDiographJSON).toHaveBeenCalledTimes(1)
+    expect(saveDiographJSON).toHaveBeenCalledWith(params.path, params.room.diograph)
 
     expect(response).toEqual(new Error('this is an error'))
   })

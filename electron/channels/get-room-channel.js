@@ -1,4 +1,4 @@
-const { getRoom } = require('../lib/room-util')
+const { readDiographJSON } = require('../lib/room-util')
 
 /**
  * Event handler for GET_ROOM channel
@@ -8,14 +8,15 @@ const { getRoom } = require('../lib/room-util')
  * @return {Promise} Resolves with object with diograph key with diograph as Object
  *
  * @example Response object:
- * { diograph: {
- *      room1: { id: 'room1', image: '...', links: [...] },
- *      room2: { id: 'room2', image: '...', links: [...] }
+ * {
+ *   diograph: {
+ *     room1: { id: 'room1', image: '...', links: [...] },
+ *     room2: { id: 'room2', image: '...', links: [...] }
  *   }
  * }
  *
  */
 exports.getRoomEventHandler = (event, { address }) =>
   new Promise((resolve, reject) => {
-    resolve(getRoom(address))
+    resolve(readDiographJSON(address))
   })
