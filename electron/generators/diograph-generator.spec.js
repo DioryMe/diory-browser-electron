@@ -1,4 +1,4 @@
-const { readPaths } = require('../readers/folder-reader')
+const { getFileAndSubfolderPaths } = require('../readers/folder-reader')
 const { generateDioryFromFile, generateDioryFromFolder } = require('./diory-generator')
 const { generateDiograph } = require('./diograph-generator')
 
@@ -22,8 +22,8 @@ describe('diograph-generator', () => {
         paths = {}
         folderDiory = {}
         act = async () => {
-          readPaths.mockResolvedValue({})
-          readPaths.mockResolvedValueOnce(paths)
+          getFileAndSubfolderPaths.mockResolvedValue({})
+          getFileAndSubfolderPaths.mockResolvedValueOnce(paths)
           generateDioryFromFile.mockResolvedValue()
           generateDioryFromFolder.mockReturnValue(folderDiory)
           return generateDiograph(folderPath)
@@ -68,7 +68,7 @@ describe('diograph-generator', () => {
         it('reads file and subfolder paths from folder', async () => {
           await act()
 
-          expect(readPaths).toHaveBeenCalledWith('some-folderPath')
+          expect(getFileAndSubfolderPaths).toHaveBeenCalledWith('some-folderPath')
         })
 
         const testCases = [

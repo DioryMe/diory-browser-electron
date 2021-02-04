@@ -1,5 +1,5 @@
 const { v4: uuid } = require('uuid')
-const { readFolder } = require('../readers/folder-reader')
+const { readFolderMetadata } = require('../readers/folder-reader')
 const { resolveFileType, readFile } = require('../readers/file-reader')
 const { readImage } = require('../readers/image-reader')
 const { generateDioryFromFile, generateDioryFromFolder } = require('./diory-generator')
@@ -136,7 +136,7 @@ describe('diory-generator', () => {
     beforeEach(() => {
       folder = {}
       act = () => {
-        readFolder.mockReturnValueOnce(folder)
+        readFolderMetadata.mockReturnValueOnce(folder)
         return generateDioryFromFolder(folderPath, linkedDiorys)
       }
     })
@@ -150,7 +150,7 @@ describe('diory-generator', () => {
 
       await act()
 
-      expect(readFolder).toHaveBeenCalledWith('some-folderPath')
+      expect(readFolderMetadata).toHaveBeenCalledWith('some-folderPath')
     })
 
     it('sets uid to diory id', async () => {
