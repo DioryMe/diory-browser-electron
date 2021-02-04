@@ -19,13 +19,13 @@ Version doesn't need to be changed if
 
 ### How to bump the version?
 
-1. Change the version in package.json
+1. Make an entry to CHANGELOG.md file
+2. Change the version in package.json
 ```
-docker-compose run --rm build yarn version
+yarn version --new-version 2.3.5
 ```
-2. Make an entry to CHANGELOG.md file
-3. Change MacBinaryFilename & WindowsBinaryFilename in Pipeline Cloudformation: https://eu-north-1.console.aws.amazon.com/cloudformation/home
-4. Trigger building new packages, see app-packages (optional, triggered automatically from master)
+3. Push also the tag to Github: `git push --tags`
+4. If you want to make a release, see: `release.md`
 
 
 ## Changelog

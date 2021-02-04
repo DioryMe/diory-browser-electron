@@ -1,8 +1,11 @@
-# Packaging the application
+# Release
 
-Creating a distributable package a.k.a. binary file.
+How to make a release by creating a distributable package a.k.a. binary file.
 
 ## Release candidate binary
+
+If you just want to test with the binary file but don't want to get it notarized and published.
+
 ```
 ./package-mac-release-candidate.sh
 open dist/Diory....dmg
@@ -13,6 +16,7 @@ open dist/Diory....dmg
 We use electron-builder package to package our app. Everything is currently done with the default settings (including default icons).
 
 Steps:
+1. Add Changelog and bump up the version, see: `versioning-and-changelog.md`
 1. Change MacBinaryFilename & WindowsBinaryFilename in Pipeline Cloudformation: https://eu-north-1.console.aws.amazon.com/cloudformation/home
   1. Select stack "dda-build-pipeline"
   2. Click "Update" and "Use current template"
