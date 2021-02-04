@@ -1,7 +1,7 @@
 const { eventHandlerWrapper } = require('./channel-util')
 const { generateDiographEventHandler } = require('./generate-diograph-channel')
 const { generateDiograph } = require('../generators/diograph-generator')
-const { saveDiographJSON } = require('../lib/room-util')
+const { saveDiographJSON, readDiographJSON } = require('../lib/room-util')
 
 // Mock event.reply
 const mockEventReply = jest.fn()
@@ -15,6 +15,9 @@ const generateDiographMock = generateDiograph.mockResolvedValue({
 // Mock saveDiographJSON
 jest.mock('../lib/room-util')
 const saveDiographJSONMock = saveDiographJSON.mockResolvedValue(undefined)
+// Mock readDiographJSON
+jest.mock('../lib/room-util')
+const readDiographJSONMock = readDiographJSON.mockResolvedValue(undefined)
 
 describe('generateDiographEventHandler', () => {
   it('sends event with generateDiograph return value', async () => {
@@ -27,6 +30,7 @@ describe('generateDiographEventHandler', () => {
     )
     await generateDiographMock
     await saveDiographJSONMock
+    await readDiographJSONMock
 
     expect(generateDiograph).toHaveBeenCalledTimes(1)
     expect(generateDiograph).toHaveBeenCalledWith(params)
