@@ -1,6 +1,6 @@
 const { join } = require('path')
 const { statSync } = require('fs')
-const { readPaths, readFolder } = require('./folder-reader')
+const { getFileAndSubfolderPaths, readFolderMetadata } = require('./folder-reader')
 
 jest.mock('fs', () => ({
   ...jest.requireActual('fs'),
@@ -10,13 +10,13 @@ jest.mock('fs', () => ({
 describe('folder-reader', () => {
   let act
 
-  describe('readPaths', () => {
+  describe('getFileAndSubfolderPaths', () => {
     describe('given a folder path', () => {
       let filesAndSubfolders
       let folderPath
       beforeEach(async () => {
         folderPath = join(__dirname, 'example-folder')
-        filesAndSubfolders = await readPaths(folderPath)
+        filesAndSubfolders = await getFileAndSubfolderPaths(folderPath)
       })
 
       it('returns files', () => {
@@ -29,12 +29,12 @@ describe('folder-reader', () => {
     })
   })
 
-  describe('readFolder', () => {
+  describe('readFolderMetadata', () => {
     let folderPath
     let folderStats
 
     it('renders with undefined values', async () => {
-      readFolder()
+      readFolderMetadata()
     })
 
     beforeEach(() => {
@@ -43,7 +43,7 @@ describe('folder-reader', () => {
       folderStats = {}
       act = () => {
         statSync.mockReturnValueOnce(folderStats)
-        return readFolder(folderPath)
+        return readFolderMetadata(folderPath)
       }
     })
 
