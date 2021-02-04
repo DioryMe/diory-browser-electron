@@ -18,7 +18,7 @@ yarn exec testcafe "electron:."  electron/spec/testcafe-e2e-1.test.js
 
 echo "FIRST TEST: Remove TESTCAFE_TEST_ENVS to electron-main.js"
 mv electron-main-original.js electron-main.js
-
+git checkout -- public/development-content-room/diograph.json
 
 echo "SECOND TEST: Add TESTCAFE_TEST_ENVS to electron-main.js"
 export TESTCAFE_TEST_ENVS="process.env.TESTCAFE_TEST=1; process.env.DIOGRAPH_FOLDER_PATH='electron/readers/example-folder';";
@@ -32,6 +32,7 @@ yarn exec testcafe "electron:."  electron/spec/testcafe-e2e-2.test.js
 
 echo "SECOND TEST: Remove TESTCAFE_TEST_ENVS to electron-main.js"
 mv electron-main-original.js electron-main.js
+rm electron/readers/example-folder/diograph.json
 
 echo "Check screenshots taken by Testcafe:"
 echo "$(pwd)/tmp/screenshots/welcome-room.png"
