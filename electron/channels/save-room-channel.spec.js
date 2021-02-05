@@ -11,34 +11,55 @@ jest.mock('../lib/room-util')
 const params = {
   path: 'some-path',
   room: {
-    id: 'some-id',
+    rootId: 'root-diory-id',
     diograph: 'some-diograph',
   },
 }
 
-describe('saveRoomEventHandler sends event with payload ', () => {
-  it("'true, undefined' if Promise resolves", async () => {
-    const saveDiographJSONMock = saveDiographJSON.mockResolvedValue(undefined)
+describe('saveRoomEventHandler', () => {
+  describe('when saveDiographJSON resolves properly', () => {
+    let saveDiographJSONMock
+    beforeEach(() => {
+      saveDiographJSONMock = saveDiographJSON.mockResolvedValue(undefined)
+    })
+    it('returns true', async () => {
+      const response = await eventHandlerWrapper('SAVE_ROOM', saveRoomEventHandler)(
+        mockEvent,
+        params
+      )
+      await saveDiographJSONMock
 
-    const response = await eventHandlerWrapper('SAVE_ROOM', saveRoomEventHandler)(mockEvent, params)
-    await saveDiographJSONMock
+      expect(saveDiographJSON).toHaveBeenCalledTimes(1)
+      expect(saveDiographJSON).toHaveBeenCalledWith(
+        params.path,
+        params.room.diograph,
+        'root-diory-id'
+      )
 
-    expect(saveDiographJSON).toHaveBeenCalledTimes(1)
-    expect(saveDiographJSON).toHaveBeenCalledWith(params.path, params.room.diograph)
-
-    expect(response).toEqual(true)
+      expect(response).toEqual(true)
+    })
   })
 
-  // Fails with watch but passes with yarn test-electron
-  it.skip("'null, err' if Promise rejects", async () => {
-    const saveDiographJSON = saveDiographJSON.mockRejectedValue(new Error('this is an error'))
+  describe('when saveDiographJSON rejects', () => {
+    let saveDiographJSONMock
+    beforeEach(() => {
+      saveDiographJSONMock = saveDiographJSON.mockRejectedValue(new Error('some-error'))
+    })
+    it.skip('returns Error', async () => {
+      const response = await eventHandlerWrapper('SAVE_ROOM', saveRoomEventHandler)(
+        mockEvent,
+        params
+      )
+      await saveDiographJSONMock
 
-    const response = await eventHandlerWrapper('SAVE_ROOM', saveRoomEventHandler)(mockEvent, params)
-    await saveDiographJSON
+      expect(saveDiographJSON).toHaveBeenCalledTimes(1)
+      expect(saveDiographJSON).toHaveBeenCalledWith(
+        params.path,
+        params.room.diograph,
+        'root-diory-id'
+      )
 
-    expect(saveDiographJSON).toHaveBeenCalledTimes(1)
-    expect(saveDiographJSON).toHaveBeenCalledWith(params.path, params.room.diograph)
-
-    expect(response).toEqual(new Error('this is an error'))
+      expect(response).toEqual(new Error('some-error'))
+    })
   })
 })
