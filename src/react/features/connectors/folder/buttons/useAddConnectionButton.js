@@ -21,16 +21,16 @@ export const useAddConnectionButton = () => {
     const getHome = (result) => {
       const address = result.filePaths[0]
       // KUN LUODAAN UUSI HUONE
-      invokeChannel(channels.GENERATE_DIOGRAPH, address).then(({ id, diograph }) => {
+      invokeChannel(channels.GENERATE_DIOGRAPH, address).then(({ rootId, diograph }) => {
         const roomId = uuid()
         dispatch(addConnection({ address, room: roomId, connector: 'file' }))
         // dispatch(addDiograph(rootId: id))
-        dispatch(addRoom(roomId, diograph[id]))
+        dispatch(addRoom(roomId, diograph[rootId]))
         // PITÄISI JOTENKIN LISÄTÄ rootId focus.roomId:hen
         // const [{ rooms, updated: homeUpdated }] = useStore((state) => state.rooms)
         // Diographin id:llä menee sisään huoneeseen
-        dispatch(enterRoom({ id }))
-        dispatch(setFocus({ focus: id }))
+        dispatch(enterRoom({ roomId }))
+        dispatch(setFocus({ focus: rootId }))
       })
     }
 
