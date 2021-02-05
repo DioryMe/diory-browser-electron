@@ -24,14 +24,15 @@ exports.generateDiographEventHandler = (event, path) =>
     const { rootId, diograph } = readDiographJSON(path)
     if (diograph) {
       resolve({ rootId, diograph, path })
+    } else {
+      generateDiograph(path).then(({ rootId, diograph }) => {
+        saveDiographJSON(path, diograph, rootId)
+          .then(() => {
+            resolve({ rootId, diograph, path })
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
     }
-    generateDiograph(path).then(({ rootId, diograph }) => {
-      saveDiographJSON(path, diograph, rootId)
-        .then(() => {
-          resolve({ rootId, diograph, path })
-        })
-        .catch((err) => {
-          reject(err)
-        })
-    })
   })
