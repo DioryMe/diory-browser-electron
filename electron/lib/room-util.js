@@ -36,6 +36,10 @@ exports.readDiographJSON = (path) => {
       diograph: JSON.parse(raw),
     }
   }
+
+  return {
+    diograph: undefined,
+  }
 }
 
 exports.saveDiographJSON = async (path, diograph) => {

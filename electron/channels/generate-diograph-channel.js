@@ -21,11 +21,11 @@ const { saveDiographJSON, readDiographJSON } = require('../lib/room-util')
  */
 exports.generateDiographEventHandler = (event, path) =>
   new Promise((resolve, reject) => {
-    const diographJSON = readDiographJSON(path)
-    if (diographJSON) {
+    const { diograph } = readDiographJSON(path)
+    if (diograph) {
       resolve({
-        id: 'id',
-        diograph: diographJSON,
+        id: 'some-id',
+        diograph,
         path,
       })
     }

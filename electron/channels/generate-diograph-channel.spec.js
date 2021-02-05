@@ -15,33 +15,58 @@ const generateDiographMock = generateDiograph.mockResolvedValue({
 // Mock saveDiographJSON
 jest.mock('../lib/room-util')
 const saveDiographJSONMock = saveDiographJSON.mockResolvedValue(undefined)
-// Mock readDiographJSON
-jest.mock('../lib/room-util')
-readDiographJSON.mockReturnValue(undefined)
 
 describe('generateDiographEventHandler', () => {
-  it('sends event with generateDiograph return value', async () => {
-    const params = 'some-path'
+  describe('if diograph.json not found', () => {
+    beforeEach(() => {
+      readDiographJSON.mockReturnValue({ diograph: undefined })
+    })
 
-    // Trigger event handler and await for mocked promises to resolve before expects
-    const response = await eventHandlerWrapper('GENERATE_DIOGRAPH', generateDiographEventHandler)(
-      mockEvent,
-      params
-    )
-    await generateDiographMock
-    await saveDiographJSONMock
+    it('return generateDiograph return value', async () => {
+      const params = 'some-path'
 
-    expect(generateDiograph).toHaveBeenCalledTimes(1)
-    expect(generateDiograph).toHaveBeenCalledWith(params)
+      // Trigger event handler and await for mocked promises to resolve before expects
+      const response = await eventHandlerWrapper('GENERATE_DIOGRAPH', generateDiographEventHandler)(
+        mockEvent,
+        params
+      )
+      await generateDiographMock
+      await saveDiographJSONMock
 
-    expect(saveDiographJSON).toHaveBeenCalledTimes(1)
-    expect(saveDiographJSON).toHaveBeenCalledWith(params, 'some-diograph')
+      expect(generateDiograph).toHaveBeenCalledTimes(1)
+      expect(generateDiograph).toHaveBeenCalledWith(params)
 
-    const responseObject = {
-      id: 'some-id',
-      diograph: 'some-diograph',
-      path: 'some-path',
-    }
-    expect(response).toEqual(responseObject)
+      expect(saveDiographJSON).toHaveBeenCalledTimes(1)
+      expect(saveDiographJSON).toHaveBeenCalledWith(params, 'some-diograph')
+
+      const responseObject = {
+        id: 'some-id',
+        diograph: 'some-diograph',
+        path: 'some-path',
+      }
+      expect(response).toEqual(responseObject)
+    })
+  })
+
+  describe('if diograph.json found', () => {
+    beforeEach(() => {
+      readDiographJSON.mockReturnValue({ diograph: 'some-diograph' })
+    })
+
+    it('return readDiographJSON return value', async () => {
+      const params = 'some-path'
+
+      const response = await eventHandlerWrapper('GENERATE_DIOGRAPH', generateDiographEventHandler)(
+        mockEvent,
+        params
+      )
+
+      const responseObject = {
+        id: 'some-id',
+        diograph: 'some-diograph',
+        path: 'some-path',
+      }
+      expect(response).toEqual(responseObject)
+    })
   })
 })
