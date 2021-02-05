@@ -1,15 +1,14 @@
 const fs = require('fs')
-const util = require('util')
-
-// No need to promisify: https://stackoverflow.com/a/52094177/1957884
-// - "Starting in Node v10 you can use await fs"
-const writeFilePromise = util.promisify(fs.writeFile)
+const fsPromise = require('fs').promises
+const backendLogger = require('electron-log')
 
 /**
  * readDiographJSON
  * @function
- * @param path {string} - Path as string
- * @return {Object} - Object with diograph as key and parsed diograph.json content as value
+ * @param path {string} - Path of the diograph folder
+ * @return {Object} - Object with diograph as key and
+ * parsed diograph.json content (or undefined if no diograph.json found)
+ * as value
  *
  * @example Response object:
  * {
@@ -24,28 +23,34 @@ exports.readDiographJSON = (path) => {
   const folderPath = path
   const diographJSONPath = `${path}/diograph.json`
 
-  // With FileDialog you shouldn't be able to choose a folderPath that doesn't exist but...
   if (!fs.existsSync(folderPath)) {
-    return null
+    const errorMessage = `readDiographJSON: Provided diograph folder path doesn't exist (${folderPath}). Did you use FileDialog to select it?`
+    throw new Error(errorMessage)
   }
 
-  // No need to read the whole folder if diograph.json exists
   if (fs.existsSync(diographJSONPath)) {
+    backendLogger.info('readDiographJSON: reading diograph.json in', path)
     const raw = fs.readFileSync(diographJSONPath)
     return {
       diograph: JSON.parse(raw),
     }
   }
 
+  backendLogger.info('readDiographJSON: diograph.json not found in', path)
   return {
     diograph: undefined,
   }
 }
 
-exports.saveDiographJSON = async (path, diograph) => {
-  const data = JSON.stringify(diograph, null, 2)
-  console.log('Saving room', path)
-  // No need to promisify: https://stackoverflow.com/a/52094177/1957884
-  // - "Starting in Node v10 you can use await fs"
-  return writeFilePromise(`${path}/diograph.json`, data)
+/*
+ * saveDiographJSON
+ * @function
+ * @param path {string} - Path of the diograph folder
+ * @param diograph {object} - Diograph object to be saved to diograph.json
+ * @return {Promise} - Resolves with no arguments upon success
+ *
+ */
+exports.saveDiographJSON = (path, diograph) => {
+  backendLogger.info('Saving diograph.json to:', path)
+  return fsPromise.writeFile(`${path}/diograph.json`, JSON.stringify(diograph, null, 2))
 }
