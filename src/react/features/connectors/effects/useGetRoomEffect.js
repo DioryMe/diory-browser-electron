@@ -13,12 +13,8 @@ export const useGetRoomEffect = (connectorId) => {
   const { dispatch, dispatchPromiseAction } = useDispatchActions()
   useEffect(() => {
     connect.forEach(({ rootId, diograph, address }) => {
-      // *_BEGIN , *_SUCCESS, *_FAILURE
       dispatchPromiseAction(
-        // Mitä haluan laittaa storeen => solvaa promisen
         () => invokeChannel(channels.GET_ROOM, { address }),
-        // Minne kohtaan storea se laitetaan
-        // - tallennetaan invokeChannelin payload getDiograph reducerilla diograph-kohtaan storea
         () => getRoom({ rootId, diograph, address })
       )
     })
