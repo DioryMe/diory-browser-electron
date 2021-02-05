@@ -64,7 +64,7 @@ const defaultWelcomeRoomPath = process.env.BINARY_BUILD
 // Welcome room home object
 const defaultHome = {
   rooms: {
-    'welcome-room': {
+    '123-abc': {
       id: 'welcome-room',
       text: 'Welcome room!',
     },
@@ -76,7 +76,7 @@ const defaultHome = {
     },
   },
   focus: {
-    roomId: 'welcome-room',
+    roomId: '123-abc',
     dioryId: 'welcome-room',
   },
 }
