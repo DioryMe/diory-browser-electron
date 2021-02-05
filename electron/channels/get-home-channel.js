@@ -12,8 +12,8 @@ const fs = require('fs')
  * @example Response object:
  * {
  *   rooms: {
- *     room1: { id: 'room1', image: '...', links: [...] },
- *     room2: { id: 'room2', image: '...', links: [...] }
+ *     dev-room: { id: 'dev-room-root-diory', image: '...', links: [...] },
+ *     room2: { id: 'diory2', image: '...', links: [...] }
  *   },
  *   connections: {
  *     './public/...': {
@@ -22,8 +22,8 @@ const fs = require('fs')
  *     }
  *   },
  *   focus: {
- *     roomId: "development-content-room",
- *     dioryId: "development-content-room"
+ *     roomId: "dev-room",
+ *     dioryId: "dev-room-root-diory"
  *   }
  * }
  *

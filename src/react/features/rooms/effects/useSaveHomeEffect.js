@@ -24,7 +24,6 @@ export const useSaveHomeEffect = () => {
     connections: transformConnections(connections),
     focus: { roomId, dioryId },
   }
-  console.log(home)
   const { debounceDispatchPromiseAction } = useDispatchActions()
   useEffect(() => {
     if (connectionsUpdated || homeUpdated) {

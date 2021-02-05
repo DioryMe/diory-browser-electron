@@ -12,6 +12,7 @@ const backendLogger = require('electron-log')
  *
  * @example Response object:
  * {
+ *   rootId: 'diory1',
  *   diograph: {
  *      diory1: { id: 'diory1', image: '...', links: [...] },
  *      diory2: { id: 'diory2', image: '...', links: [...] }
@@ -47,6 +48,7 @@ exports.readDiographJSON = (path) => {
  * @function
  * @param path {string} - Path of the diograph folder
  * @param diograph {object} - Diograph object to be saved to diograph.json
+ * @param rootId {object} - RootId to be saved to diograph.json
  * @return {Promise} - Resolves with no arguments upon success
  *
  */
