@@ -22,9 +22,6 @@ export const useAddConnectionButton = () => {
       const address = result.filePaths[0]
       invokeChannel(channels.GENERATE_DIOGRAPH, address).then(({ rootId, diograph }) => {
         const roomId = uuid()
-        console.log('address', address)
-        console.log('roomId', roomId)
-        console.log('rootId', rootId)
         dispatch(addConnection({ address, room: roomId, connector: 'file' }))
         dispatch(addRoom(roomId, diograph[rootId]))
         dispatch(enterRoom({ id: roomId }))

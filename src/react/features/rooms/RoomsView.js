@@ -23,9 +23,6 @@ const useHome = () => {
             dispatch(removeRoom({ id }))
             break
           default:
-            console.log('enterRoom', id)
-            console.log('DIORY', diory)
-            console.log('focus', diory.id)
             dispatch(enterRoom({ id }))
             dispatch(setFocus({ focus: diory.id }))
         }

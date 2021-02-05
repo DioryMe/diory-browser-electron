@@ -1,10 +1,12 @@
-export const initial = (state, action) =>
-  // console.log('-------------')
-  // console.log('PreviousState:', state)
-  // console.log('Action:', action)
+export const initial = (state, action) => {
+  console.log('-------------')
+  console.log('PreviousState:', state)
+  console.log('Action:', action)
 
-  state
+  return state
+}
 
-export const final = (state) =>
-  // console.log('NextState:', state)
-  state
+export const final = (state) => {
+  console.log('NextState:', state)
+  return state
+}

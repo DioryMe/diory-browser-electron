@@ -10,7 +10,7 @@ const { saveDiographJSON, readDiographJSON } = require('../lib/room-util')
  *
  * @example Response object:
  * {
- *   id: 'diory2',
+ *   rootId: 'diory2',
  *   path: '/Users/...',
  *   diograph: {
  *     diory1: { id: 'diory1', image: '...', links: [...] },
