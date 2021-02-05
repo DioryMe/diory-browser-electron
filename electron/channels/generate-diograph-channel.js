@@ -24,7 +24,7 @@ exports.generateDiographEventHandler = (event, path) =>
     const { diograph } = readDiographJSON(path)
     if (diograph) {
       resolve({
-        id: 'some-id',
+        id: Object.keys(diograph)[0],
         diograph,
         path,
       })

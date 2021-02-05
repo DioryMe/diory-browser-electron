@@ -9,7 +9,7 @@ const mockEvent = { reply: mockEventReply }
 // Mock generateDiograph
 jest.mock('../generators/diograph-generator')
 const generateDiographMock = generateDiograph.mockResolvedValue({
-  id: 'some-id',
+  id: 'some-diory-id',
   diograph: 'some-diograph',
 })
 // Mock saveDiographJSON
@@ -40,7 +40,7 @@ describe('generateDiographEventHandler', () => {
       expect(saveDiographJSON).toHaveBeenCalledWith(params, 'some-diograph')
 
       const responseObject = {
-        id: 'some-id',
+        id: 'some-diory-id',
         diograph: 'some-diograph',
         path: 'some-path',
       }
@@ -49,8 +49,10 @@ describe('generateDiographEventHandler', () => {
   })
 
   describe('if diograph.json found', () => {
+    const someDiograph = { 'some-diory-id': 'some-diory-object' }
+
     beforeEach(() => {
-      readDiographJSON.mockReturnValue({ diograph: 'some-diograph' })
+      readDiographJSON.mockReturnValue({ diograph: someDiograph })
     })
 
     it('return readDiographJSON return value', async () => {
@@ -62,8 +64,8 @@ describe('generateDiographEventHandler', () => {
       )
 
       const responseObject = {
-        id: 'some-id',
-        diograph: 'some-diograph',
+        id: 'some-diory-id',
+        diograph: someDiograph,
         path: 'some-path',
       }
       expect(response).toEqual(responseObject)
