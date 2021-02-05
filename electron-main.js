@@ -31,9 +31,7 @@ function createWindow() {
     mainWindow = null
   })
 
-  if (process.env.DEV_TOOLS) {
-    mainWindow.webContents.openDevTools()
-  }
+  mainWindow.webContents.openDevTools()
 }
 
 app.on('ready', createWindow)
