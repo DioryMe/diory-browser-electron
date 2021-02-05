@@ -8,15 +8,16 @@ import { invokeChannel } from '../../../client/client'
 import { channels } from '../../../../shared/constants'
 
 export const useSaveRoomEffect = (connectorId) => {
-  const [{ diograph, updated }] = useStore((state) => state.diograph)
+  const [{ rootId, diograph, updated }] = useStore((state) => state.diograph)
   const { connected } = useConnections(connectorId)
 
   const { debounceDispatchPromiseAction } = useDispatchActions()
   useEffect(() => {
     if (updated) {
       connected.forEach(({ address }) => {
+        console.log({ rootId, diograph, updated })
         debounceDispatchPromiseAction(
-          () => invokeChannel(channels.SAVE_ROOM, { path: address, room: { diograph } }),
+          () => invokeChannel(channels.SAVE_ROOM, { path: address, room: { rootId, diograph } }),
           saveRoom
         )
       })

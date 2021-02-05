@@ -50,7 +50,11 @@ exports.readDiographJSON = (path) => {
  * @return {Promise} - Resolves with no arguments upon success
  *
  */
-exports.saveDiographJSON = (path, diograph) => {
+exports.saveDiographJSON = (path, diograph, rootId) => {
   backendLogger.info('Saving diograph.json to:', path)
-  return fsPromise.writeFile(`${path}/diograph.json`, JSON.stringify(diograph, null, 2))
+  const fileContent = {
+    rootId,
+    diograph: JSON.stringify(diograph, null, 2),
+  }
+  return fsPromise.writeFile(`${path}/diograph.json`, fileContent)
 }

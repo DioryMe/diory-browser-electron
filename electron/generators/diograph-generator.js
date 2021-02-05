@@ -74,7 +74,7 @@ async function generateDiograph(folderPath) {
   }
 
   return {
-    id: diory.id,
+    rootId: diory.id,
     diograph: {
       ...diograph,
       ...addToDiograph(diory),
