@@ -9,7 +9,7 @@ const mockEvent = { reply: mockEventReply }
 // Mock generateDiograph
 jest.mock('../generators/diograph-generator')
 const generateDiographMock = generateDiograph.mockResolvedValue({
-  id: 'some-diory-id',
+  rootId: 'some-diory-id',
   diograph: 'some-diograph',
 })
 // Mock saveDiographJSON
@@ -19,7 +19,7 @@ const saveDiographJSONMock = saveDiographJSON.mockResolvedValue(undefined)
 describe('generateDiographEventHandler', () => {
   describe('if diograph.json not found', () => {
     beforeEach(() => {
-      readDiographJSON.mockReturnValue({ diograph: undefined })
+      readDiographJSON.mockReturnValue({ rootId: undefined, diograph: undefined })
     })
 
     it('return generateDiograph return value', async () => {
@@ -37,10 +37,10 @@ describe('generateDiographEventHandler', () => {
       expect(generateDiograph).toHaveBeenCalledWith(params)
 
       expect(saveDiographJSON).toHaveBeenCalledTimes(1)
-      expect(saveDiographJSON).toHaveBeenCalledWith(params, 'some-diograph')
+      expect(saveDiographJSON).toHaveBeenCalledWith(params, 'some-diograph', 'some-diory-id')
 
       const responseObject = {
-        id: 'some-diory-id',
+        rootId: 'some-diory-id',
         diograph: 'some-diograph',
         path: 'some-path',
       }
@@ -49,10 +49,13 @@ describe('generateDiographEventHandler', () => {
   })
 
   describe('if diograph.json found', () => {
-    const someDiograph = { 'some-diory-id': 'some-diory-object' }
+    const someDiograph = {
+      rootId: 'some-diory-id',
+      diograph: { 'some-diory-id': 'some-diory-object' },
+    }
 
     beforeEach(() => {
-      readDiographJSON.mockReturnValue({ diograph: someDiograph })
+      readDiographJSON.mockReturnValue({ rootId: 'some-diory-id', diograph: someDiograph })
     })
 
     it('return readDiographJSON return value', async () => {
@@ -64,7 +67,7 @@ describe('generateDiographEventHandler', () => {
       )
 
       const responseObject = {
-        id: 'some-diory-id',
+        rootId: 'some-diory-id',
         diograph: someDiograph,
         path: 'some-path',
       }
