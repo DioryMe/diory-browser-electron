@@ -64,20 +64,20 @@ const defaultWelcomeRoomPath = process.env.BINARY_BUILD
 // Welcome room home object
 const defaultHome = {
   rooms: {
-    '123-abc': {
-      id: 'welcome-room',
+    'welcome-room-id': {
+      id: 'welcome-root-diory',
       text: 'Welcome room!',
     },
   },
   connections: {
     [defaultWelcomeRoomPath]: {
-      room: 'welcome-room',
+      room: 'welcome-room-id',
       connector: 'file',
     },
   },
   focus: {
-    roomId: '123-abc',
-    dioryId: 'welcome-room',
+    roomId: 'welcome-room-id',
+    dioryId: 'welcome-root-diory',
   },
 }
 exports.defaultHome = defaultHome
