@@ -26,7 +26,7 @@ exports.generateDiographEventHandler = (event, path) =>
       resolve({ rootId, diograph, path })
     }
     generateDiograph(path).then(({ rootId, diograph }) => {
-      saveDiographJSON(path, diograph)
+      saveDiographJSON(path, diograph, rootId)
         .then(() => {
           resolve({ rootId, diograph, path })
         })
