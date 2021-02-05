@@ -1,7 +1,5 @@
 import {
-  GET_DIOGRAPH,
   GET_ROOM,
-  // SAVE_DIOGRAPH,
   SAVE_ROOM,
   CREATE_DIORY,
   UPDATE_DIORY,
@@ -10,20 +8,10 @@ import {
   DELETE_LINK,
 } from './actionsTypes'
 
-export const getDiograph = ({ rootId, diograph }) => ({
-  type: GET_DIOGRAPH,
-  payload: { rootId, diograph },
-})
-
 export const getRoom = (room) => ({
   type: GET_ROOM,
   payload: room,
 })
-
-// export const saveDiograph = ({ rootId }) => ({
-//   type: SAVE_DIOGRAPH,
-//   payload: { rootId },
-// })
 
 export const saveRoom = () => ({
   type: SAVE_ROOM,
