@@ -1,4 +1,3 @@
-process.env.TESTCAFE_TEST=1; process.env.DIOGRAPH_FOLDER_PATH='public/development-content-room';
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
 const glob = require('glob')
