@@ -20,15 +20,13 @@ export const useAddConnectionButton = () => {
   useEffect(() => {
     const getHome = (result) => {
       const address = result.filePaths[0]
-      // KUN LUODAAN UUSI HUONE
       invokeChannel(channels.GENERATE_DIOGRAPH, address).then(({ rootId, diograph }) => {
         const roomId = uuid()
+        console.log('address', address)
+        console.log('roomId', roomId)
+        console.log('rootId', rootId)
         dispatch(addConnection({ address, room: roomId, connector: 'file' }))
-        // dispatch(addDiograph(rootId: id))
         dispatch(addRoom(roomId, diograph[rootId]))
-        // PITÄISI JOTENKIN LISÄTÄ rootId focus.roomId:hen
-        // const [{ rooms, updated: homeUpdated }] = useStore((state) => state.rooms)
-        // Diographin id:llä menee sisään huoneeseen
         dispatch(enterRoom({ roomId }))
         dispatch(setFocus({ focus: rootId }))
       })

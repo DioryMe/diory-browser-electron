@@ -3,7 +3,7 @@ import { useDispatchActions } from '../../../store'
 import { updateConnection } from '../actions'
 import { useConnections } from '../useConnections'
 
-import { getDiograph, getRoom } from '../../diograph/actions'
+import { getRoom } from '../../diograph/actions'
 import { invokeChannel } from '../../../client/client'
 import { channels } from '../../../../shared/constants'
 
@@ -19,17 +19,7 @@ export const useGetRoomEffect = (connectorId) => {
         () => invokeChannel(channels.GET_ROOM, { address }),
         // Minne kohtaan storea se laitetaan
         // - tallennetaan invokeChannelin payload getDiograph reducerilla diograph-kohtaan storea
-        () => getDiograph({ rootId, diograph, address })
-      )
-      dispatchPromiseAction(
-        // Mitä haluan laittaa storeen => solvaa promisen
-        () => invokeChannel(channels.GET_ROOM, { address }),
-        // Minne kohtaan storea se laitetaan
-        // - tallennetaan invokeChannelin payloadin
-        //   address key
-        //   getRoom reducerilla
-        //   diograph-kohtaan storea
-        () => getRoom({ address })
+        () => getRoom({ rootId, diograph, address })
       )
     })
     disconnect.forEach(({ address }) => {

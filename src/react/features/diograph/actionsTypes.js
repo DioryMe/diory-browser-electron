@@ -1,8 +1,5 @@
-export const GET_DIOGRAPH = 'GET_DIOGRAPH'
 export const GET_ROOM = 'GET_ROOM'
-
 export const SAVE_ROOM = 'SAVE_ROOM'
-// export const SAVE_DIOGRAPH = 'SAVE_DIOGRAPH'
 
 export const CREATE_DIORY = 'CREATE_DIORY'
 export const UPDATE_DIORY = 'UPDATE_DIORY'
