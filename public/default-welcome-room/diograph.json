@@ -1,25 +1,28 @@
 {
-  "welcome-room": {
-    "id": "welcome-room",
-    "image": "",
-    "links": {
-      "welcome-diory": {
-        "id": "welcome-diory"
-      }
+  "rootId": "welcome-room",
+  "diograph": {
+    "welcome-room": {
+      "id": "welcome-room",
+      "image": "",
+      "links": {
+        "welcome-diory": {
+          "id": "welcome-diory"
+        }
+      },
+      "modified": "2020-01-03T14:03:04.751Z"
     },
-    "modified": "2020-01-03T14:03:04.751Z"
-  },
-  "welcome-diory": {
-    "id": "welcome-diory",
-    "image": "",
-    "links": {
-      "tampere": {
-        "id": "tampere"
-      }
-    },
-    "modified": "2020-01-03T14:03:04.751Z",
-    "text": "Welcome to Diory",
-    "latitude": 60.01366036242365,
-    "longitude": 20.007133483886722
+    "welcome-diory": {
+      "id": "welcome-diory",
+      "image": "",
+      "links": {
+        "tampere": {
+          "id": "tampere"
+        }
+      },
+      "modified": "2020-01-03T14:03:04.751Z",
+      "text": "Welcome to Diory",
+      "latitude": 60.01366036242365,
+      "longitude": 20.007133483886722
+    }
   }
 }
