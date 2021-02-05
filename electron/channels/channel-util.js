@@ -16,16 +16,16 @@ if (process.env.NODE_ENV === 'test') {
 exports.eventHandlerWrapper = (channelName, eventHandler) => {
   const specificEventHandler = (event, params) => {
     const success = (responseObject) => {
-      backendLogger.info(`Backend IPC response: ${channelName}, `, responseObject)
+      backendLogger.info('Backend IPC response:', channelName, responseObject)
       return responseObject
     }
 
     const err = (e) => {
-      backendLogger.error(`ERROR: Backend IPC response: ${channelName}, `, e.message)
+      backendLogger.error('ERROR: Backend IPC response:', channelName, e.message)
       return e
     }
 
-    backendLogger.info(`Backend IPC event handler triggered: ${channelName}, `, params)
+    backendLogger.info('Backend IPC event handler triggered:', channelName, params)
     return eventHandler(event, params).then(success, err)
   }
 

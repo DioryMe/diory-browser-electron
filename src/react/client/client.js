@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === 'development') {
 export const invokeChannel = (channel, params) => {
   // Development uses mock responses
   if (process.env.NODE_ENV === 'development') {
-    window.frontendLogger.info('MOCK: Frontend IPC invoke', channel, params)
+    window.frontendLogger.info('MOCK: Frontend IPC invoke:', channel, params)
     return mockResponse(channel, params)
   }
 
