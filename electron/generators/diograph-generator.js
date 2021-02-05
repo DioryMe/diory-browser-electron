@@ -25,9 +25,9 @@ async function generateFileDiographAndLink(filePath) {
 }
 
 async function generateFolderDiographAndLink(folderPath) {
-  const { id, diograph } = await generateDiograph(folderPath) // eslint-disable-line  no-use-before-define
+  const { rootId, diograph } = await generateDiograph(folderPath) // eslint-disable-line  no-use-before-define
 
-  const folderDiory = diograph[id]
+  const folderDiory = diograph[rootId]
   const folderLink = generateFolderLink(folderPath, folderDiory)
 
   return [diograph, folderLink]
@@ -36,11 +36,11 @@ async function generateFolderDiographAndLink(folderPath) {
 /**
  * Generates diograph object by reading the folder structure (path given as an argument)
  * @param {string} folderPath
- * @returns {object} Object with (=room diory) id and diograph
+ * @returns {object} Object with rootId and diograph
  *
  * @example
  * {
- *   id: '123-abc-def',
+ *   rootId: '123-abc-def',
  *   diograph: {
  *     'abc-def-123': { ... },
  *     'ghi-jkl-456': { ... },

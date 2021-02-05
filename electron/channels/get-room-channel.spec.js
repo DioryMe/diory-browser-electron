@@ -14,7 +14,7 @@ describe('getRoomEventHandler', () => {
 
     const diographJSONRawContents = fs.readFileSync(`${exampleFolderPath}/diograph.json`)
     const diographObject = JSON.parse(diographJSONRawContents)
-    const returnValue = { diograph: diographObject.diograph, rootId: diographObject.rootId }
+    const returnValue = { rootId: diographObject.rootId, diograph: diographObject.diograph }
 
     expect(response).toEqual(returnValue)
   })
