@@ -1,8 +1,8 @@
 {
-  "rootId": "welcome-room",
+  "rootId": "welcome-root-diory",
   "diograph": {
-    "welcome-room": {
-      "id": "welcome-room",
+    "welcome-root-diory": {
+      "id": "welcome-root-diory",
       "image": "",
       "links": {
         "welcome-diory": {
@@ -14,11 +14,6 @@
     "welcome-diory": {
       "id": "welcome-diory",
       "image": "",
-      "links": {
-        "tampere": {
-          "id": "tampere"
-        }
-      },
       "modified": "2020-01-03T14:03:04.751Z",
       "text": "Welcome to Diory",
       "latitude": 60.01366036242365,
