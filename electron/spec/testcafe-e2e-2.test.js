@@ -13,5 +13,5 @@ test('select new diograph folder (without diograph.json)', async (t) => {
     .click('[data-testid="tools-button"]')
     .click('[data-testid="undefined-button"]')
     .expect(dioryCount)
-    .eql(5)
+    .eql(4)
 })
