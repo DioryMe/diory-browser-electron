@@ -6,13 +6,15 @@ import { useDeleteTool } from '../../tools/delete'
 import { useFocusTool } from '../../tools/focus'
 import { useMoveTool, useMoveToolIsActive } from '../../tools/move'
 import { useUpdateTool } from '../../tools/update'
+import { useTimelineFilter } from '../../filters/timeline/useTimelineFilter'
 
 import TimelineView from './TimelineView'
 
-const useTools = () => {
+const useToolActions = () => {
   const focusDiory = useFocusTool()
   const deleteDiory = useDeleteTool()
   const updateDiory = useUpdateTool()
+  const { isActive, onBoundsChange } = useTimelineFilter()
   return {
     onPopupClick: (diory) => {
       focusDiory(diory)
@@ -22,11 +24,13 @@ const useTools = () => {
     onMapClick: useCreateTool(),
     onDragEnd: useMoveTool(),
     enableDragging: useMoveToolIsActive(),
+    fitToBounds: !isActive,
+    onBoundsChange,
   }
 }
 
-const TimelineLens = ({ diory, diorys, activeButton }) => (
-  <TimelineView diory={diory} diorys={diorys} activeButton={activeButton} {...useTools()} />
+const TimelineLens = ({ diory, diorys }) => (
+  <TimelineView diory={diory} diorys={diorys} {...useToolActions()} />
 )
 
 TimelineLens.propTypes = {
