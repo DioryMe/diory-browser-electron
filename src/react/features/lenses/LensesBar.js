@@ -3,8 +3,7 @@ import LensesBarView from './LensesBarView'
 import { useLensesBar } from './useLensesBar'
 
 const LensesBar = () => {
-  const { lenses } = useLensesBar()
-  return <LensesBarView lenses={lenses} />
+  return <LensesBarView {...useLensesBar()} />
 }
 
 export default LensesBar

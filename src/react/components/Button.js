@@ -9,7 +9,7 @@ const getActiveProps = (active) =>
     intent: 'success',
   }
 
-const Button = ({ data, active, onClick }) => (
+const Button = ({ style = {}, data, active, onClick }) => (
   <div
     role="button"
     onClick={onClick}
@@ -24,17 +24,20 @@ const Button = ({ data, active, onClick }) => (
       height={56}
       margin={8}
       borderRadius="50%"
+      {...style}
     />
   </div>
 )
 
 Button.defaultProps = {
+  style: {},
   data: {},
   active: false,
   onClick: () => {},
 }
 
 Button.propTypes = {
+  style: PropTypes.object,
   data: PropTypes.shape({
     icon: PropTypes.string,
     testid: PropTypes.string,

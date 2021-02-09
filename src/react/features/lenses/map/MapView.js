@@ -32,6 +32,7 @@ const MapView = ({
 
   useMapBounds(map, locationData.diory, fitToBounds, onBoundsChange)
   const markers = useMarkers(map, locationData.diory, locationData.diorys)
+
   usePopups(map, markers, diory, diorys)
 
   useMapClick(map, onMapClick)
