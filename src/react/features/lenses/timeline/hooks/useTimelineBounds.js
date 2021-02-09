@@ -1,33 +1,42 @@
-import { useEffect } from 'react'
-import { useInitial } from '../../../../utils/useCompare'
-import { getDateLongitude } from './getTimelineData'
+import { useCallback, useEffect } from 'react'
+import { useFitToBounds } from '../../utils/bounds/useFitToBounds'
+import { useGetBounds } from '../../utils/bounds/useGetBounds'
+import { getDateLongitude, getIsoDate } from './getTimelineData'
 
-const MAX_ZOOM = 20
-const DEFAULT_LOCATION = {
-  lat: 0,
-  lng: getDateLongitude({ date: new Date() }),
+const boundsConfig = {
+  MAX_ZOOM: 20,
+  DEFAULT_ZOOM: 5,
+  DEFAULT_LOCATION: {
+    lat: 0,
+    lng: getDateLongitude({ date: new Date() }),
+  },
 }
 
-export const useTimelineBounds = (ref, { center, min, max }) => {
-  const isInitial = useInitial(center)
+const useSetMaxBounds = (ref) => {
   useEffect(() => {
     if (ref.current) {
       ref.current.setMaxBounds([
         [0, -100000],
         [0, 100000],
       ])
-      if (min && max) {
-        isInitial
-          ? ref.current.fitBounds([min, max])
-          : ref.current.flyToBounds([min, max], { maxZoom: MAX_ZOOM })
-      } else if (center) {
-        isInitial ? ref.current.setView(center, MAX_ZOOM) : ref.current.flyTo(center, MAX_ZOOM)
-      } else {
-        console.log(DEFAULT_LOCATION)
-        isInitial
-          ? ref.current.setView(DEFAULT_LOCATION, 5)
-          : ref.current.flyTo(DEFAULT_LOCATION, 5)
-      }
     }
-  }, [ref, isInitial, center, min, max])
+  }, [ref])
+}
+
+const useOnBoundsChange = (onBoundsChange) =>
+  useCallback(
+    ([end, start]) => {
+      onBoundsChange &&
+        onBoundsChange({
+          startDate: getIsoDate(start[1]),
+          endDate: getIsoDate(end[1]),
+        })
+    },
+    [onBoundsChange]
+  )
+
+export const useTimelineBounds = (mapRef, dioryLocationData, fitToBounds, onBoundsChange) => {
+  useSetMaxBounds(mapRef)
+  useFitToBounds(mapRef, dioryLocationData, fitToBounds, boundsConfig)
+  useGetBounds(mapRef, useOnBoundsChange(onBoundsChange))
 }

@@ -27,6 +27,8 @@ const TimelineView = ({
   onPopupClick,
   enableDragging,
   onDragEnd,
+  fitToBounds,
+  onBoundsChange,
 }) => {
   const timelineId = 'timelineId'
   const timeline = useTimeline(timelineId)
@@ -35,12 +37,12 @@ const TimelineView = ({
 
   const timelineData = getTimelineData({ diory, diorys })
 
-  useTimelineBounds(timeline, timelineData.diory)
-
+  useTimelineBounds(timeline, timelineData.diory, fitToBounds, onBoundsChange)
   const markers = useMarkers(timeline, null, timelineData.diorys)
   useLinkIcons(timeline, markers.linkMarkers, diory)
 
   usePopups(timeline, markers, null, diorys)
+
   useScale(timeline)
 
   useTimelineClick(timeline, onMapClick)
@@ -50,7 +52,7 @@ const TimelineView = ({
 
   return (
     <BackgroundDiory diory={diory} gradient gradientRgba="0, 0, 0, 0.2">
-      <Fullscreen id={timelineId} background="transparent" />
+      <Fullscreen id={timelineId} background="transparent" style={{ top: '48px' }} />
     </BackgroundDiory>
   )
 }
