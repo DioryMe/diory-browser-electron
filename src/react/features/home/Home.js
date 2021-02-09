@@ -11,9 +11,9 @@ import Connectors from '../connectors/Connectors'
 const Home = () => (
   <div className="App">
     <Navigation />
-    <Filters />
-    <Lenses />
     <Rooms />
+    <Lenses />
+    <Filters />
     <Tools />
     <Buttons />
     <Connectors />

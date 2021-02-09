@@ -7,7 +7,6 @@ import { useCreateTool } from '../../tools/create'
 import { useDeleteTool } from '../../tools/delete'
 import { useFocusTool } from '../../tools/focus'
 import { useUpdateTool } from '../../tools/update'
-import { useGraphFilter } from '../../filters/graph/useGraphFilter'
 
 import { createLink } from '../../diograph/actions'
 
@@ -19,8 +18,6 @@ const useTools = () => {
   const updateDiory = useUpdateTool()
   useCreateTool()
 
-  const { setFilter } = useGraphFilter()
-
   const { dispatch } = useDispatchActions()
   return {
     onClick: ({ diory }) => {
@@ -31,7 +28,6 @@ const useTools = () => {
     onDrop: ({ droppedId, draggedId }) => {
       dispatch(createLink({ id: droppedId }, { id: draggedId }))
     },
-    onZoom: setFilter,
   }
 }
 
