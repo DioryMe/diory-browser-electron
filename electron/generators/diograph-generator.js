@@ -10,6 +10,20 @@ function generateDioryLink({ linkKey, diory }) {
   }
 }
 
+function reduceDiorysToDiograph(diorys) {
+  return diorys.reduce((obj, diory) => ({
+    ...obj,
+    [diory.id]: diory,
+  }), {})
+}
+
+function reduceSubfolderDiographsToDiograph(diographs) {
+  return diographs.reduce((obj, diograph) => ({
+    ...obj,
+    ...diograph,
+  }), {})
+}
+
 async function generateDioryLinksFromFiles(filePaths) {
   return Promise.all(filePaths.map((filePath) => {
     const diory = generateDioryFromFile(filePath)
