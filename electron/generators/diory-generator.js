@@ -79,13 +79,21 @@ function getAverageDate(linkedDiorys) {
   )
 }
 
-exports.generateDioryFromFolder = function generateDioryFromFolder(folderPath, links = {}) {
-  const linkedDiorys = Object.value(links)
+function generateLinks(dioryLinks) {
+  return Object.entries(dioryLinks)
+    .reduce((obj, [linkKey, { id }]) => ({
+      ...obj,
+      [linkKey]: { id },
+    }), {})
+}
+
+exports.generateDioryFromFolder = function generateDioryFromFolder(folderPath, dioryLinks = {}) {
+  const linkedDiorys = Object.values(dioryLinks)
   return generateDiory({
     ...getFirstImage(linkedDiorys),
     ...getAverageLocation(linkedDiorys),
     ...getAverageDate(linkedDiorys),
     ...readFolderMetadata(folderPath),
-    ...generateLinks(links)
+    ...generateLinks(dioryLinks)
   })
 }
