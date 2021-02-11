@@ -35,12 +35,14 @@ async function generateDioryLinksFromFiles(filePaths) {
       const linkKey = basename(filePath)
       return generateDioryLink({ linkKey, diory })
     })
-  ).reduce(
-    (obj, dioryLink) => ({
-      ...obj,
-      ...dioryLink,
-    }),
-    {}
+  ).then((fileDiographs) =>
+    fileDiographs.reduce(
+      (obj, dioryLink) => ({
+        ...obj,
+        ...dioryLink,
+      }),
+      {}
+    )
   )
 }
 
