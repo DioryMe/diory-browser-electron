@@ -1,7 +1,7 @@
 const { eventHandlerWrapper } = require('./channel-util')
 const { generateDiographEventHandler } = require('./generate-diograph-channel')
 const { generateDiograph } = require('../generators/diograph-generator')
-const { saveDiographJSON, readDiographJSON } = require('../lib/room-util')
+const { saveDiographJson, readDiographJson } = require('../lib/room-util')
 
 // Mock event.reply
 const mockEventReply = jest.fn()
@@ -12,14 +12,14 @@ const generateDiographMock = generateDiograph.mockResolvedValue({
   rootId: 'some-diory-id',
   diograph: 'some-diograph',
 })
-// Mock saveDiographJSON
+// Mock saveDiographJson
 jest.mock('../lib/room-util')
-const saveDiographJSONMock = saveDiographJSON.mockResolvedValue(undefined)
+const saveDiographJsonMock = saveDiographJson.mockResolvedValue(undefined)
 
 describe('generateDiographEventHandler', () => {
   describe('if diograph.json not found', () => {
     beforeEach(() => {
-      readDiographJSON.mockReturnValue({ rootId: undefined, diograph: undefined })
+      readDiographJson.mockReturnValue({ rootId: undefined, diograph: undefined })
     })
 
     it('return generateDiograph return value', async () => {
@@ -31,13 +31,13 @@ describe('generateDiographEventHandler', () => {
         params
       )
       await generateDiographMock
-      await saveDiographJSONMock
+      await saveDiographJsonMock
 
       expect(generateDiograph).toHaveBeenCalledTimes(1)
       expect(generateDiograph).toHaveBeenCalledWith(params)
 
-      expect(saveDiographJSON).toHaveBeenCalledTimes(1)
-      expect(saveDiographJSON).toHaveBeenCalledWith(params, 'some-diograph', 'some-diory-id')
+      expect(saveDiographJson).toHaveBeenCalledTimes(1)
+      expect(saveDiographJson).toHaveBeenCalledWith(params, 'some-diograph', 'some-diory-id')
 
       const responseObject = {
         rootId: 'some-diory-id',
@@ -55,10 +55,10 @@ describe('generateDiographEventHandler', () => {
     }
 
     beforeEach(() => {
-      readDiographJSON.mockReturnValue({ rootId: 'some-diory-id', diograph: someDiograph })
+      readDiographJson.mockReturnValue({ rootId: 'some-diory-id', diograph: someDiograph })
     })
 
-    it('return readDiographJSON return value', async () => {
+    it('return readDiographJson return value', async () => {
       const params = 'some-path'
 
       const response = await eventHandlerWrapper('GENERATE_DIOGRAPH', generateDiographEventHandler)(
