@@ -70,5 +70,6 @@ module.exports = {
     'import/no-cycle': ['warn'],
     'import/order': ['warn'],
     'no-prototype-builtins': ['warn'],
+    'prettier/prettier': ['error', { endOfLine: 'auto' }],
   },
 }
