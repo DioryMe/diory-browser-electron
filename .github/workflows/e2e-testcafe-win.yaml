@@ -1,0 +1,44 @@
+# # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+# name: Testcafe E2E tests (Windows)
+
+# on: [push]
+
+# jobs:
+#   build:
+#     runs-on: windows-latest
+#     env:
+#       CI: false
+#       TESTCAFE_TEST_ENV: "process.env.TESTCAFE_TEST=1;process.env.PWD=process.env.GITHUB_WORKSPACE"
+#     steps:
+#     - uses: actions/checkout@v2
+#     - name: Use Node.js
+#       uses: actions/setup-node@v1
+#       with:
+#         node-version: 12.18.3
+#     - run: |
+#         yarn global add testcafe electron
+#         yarn && yarn build
+#         mkdir tmp
+
+#     # Add row defined in TESTCAFE_TEST_ENV as the first row in electron-main.js
+#     - run: echo | awk '{print "The value of VAR is " ENVIRON["TESTCAFE_TEST_ENV"]}'
+#     - run: awk 'BEGIN{print ENVIRON["TESTCAFE_TEST_ENV"]}{print}' electron-main.js > electron-main-tmp.js
+#     - run: rm electron-main.js
+#     - run: cp electron-main-tmp.js electron-main.js
+#     # Logging because not sure if this works on Windows
+#     - run: type electron-main-tmp.js
+#     - run: type electron-main.js
+
+#     # Test1 (with development-content-room)
+#     - run: |
+#         cp -r public/development-content-room/ tmp/testcafe-diograph-folder/
+#         npx testcafe "electron:." electron/spec/testcafe-e2e-1.test.js
+#         rm -rf tmp/testcafe-diograph-folder
+
+#     # Test2 (with example-folder)
+#     - run: |
+#         cp -r electron/readers/example-folder/ tmp/testcafe-diograph-folder/
+#         npx testcafe "electron:." electron/spec/testcafe-e2e-2.test.js
+#         rm -rf tmp/testcafe-diograph-folder
