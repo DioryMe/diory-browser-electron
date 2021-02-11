@@ -91,7 +91,7 @@ async function generateDiograph(folderPath) {
   const rootDiory = generateDioryFromFolder(folderPath, dioryLinks)
 
   return {
-    key: basename(folderPath),
+    linkKey: basename(folderPath),
     rootId: rootDiory.id,
     diograph: {
       ...reduceDiorysToDiograph([rootDiory]),
