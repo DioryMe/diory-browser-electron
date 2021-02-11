@@ -10,7 +10,7 @@ const mockEvent = { reply: mockEventReply }
 // Mock electron-store
 jest.mock('electron-store')
 
-const homeJSON = {
+const homeJson = {
   rooms: {
     'development-content-room': {
       id: 'development-content-room',
@@ -45,16 +45,16 @@ describe('getHomeEventHandler', () => {
   })
 
   it('store with value', async () => {
-    HomeStore.mockImplementation(() => ({ get: () => homeJSON }))
+    HomeStore.mockImplementation(() => ({ get: () => homeJson }))
 
     const params = {}
     const response = await eventHandlerWrapper('GET_HOME', getHomeEventHandler)(mockEvent, params)
 
-    expect(response).toEqual(homeJSON)
+    expect(response).toEqual(homeJson)
   })
 
   it('invalid file path', async () => {
-    HomeStore.mockImplementation(() => ({ get: () => homeJSON }))
+    HomeStore.mockImplementation(() => ({ get: () => homeJson }))
     // Mock roomConnectionOK to return false
     getHomeChannel.roomConnectionOK = jest.fn(() => false)
 
@@ -62,8 +62,8 @@ describe('getHomeEventHandler', () => {
     const response = await eventHandlerWrapper('GET_HOME', getHomeEventHandler)(mockEvent, params)
 
     // Expect 'errors' to be added to the response
-    const homeJSONWithErrors = homeJSON
-    homeJSONWithErrors.errors = ['./public/development-content-room']
-    expect(response).toEqual(homeJSONWithErrors)
+    const homeJsonWithErrors = homeJson
+    homeJsonWithErrors.errors = ['./public/development-content-room']
+    expect(response).toEqual(homeJsonWithErrors)
   })
 })

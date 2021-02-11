@@ -1,5 +1,5 @@
 const { generateDiograph } = require('../generators/diograph-generator')
-const { saveDiographJSON, readDiographJSON } = require('../lib/room-util')
+const { saveDiographJson, readDiographJson } = require('../lib/room-util')
 
 /**
  * Event handler for GENERATE_DIOGRAPH channel
@@ -21,12 +21,12 @@ const { saveDiographJSON, readDiographJSON } = require('../lib/room-util')
  */
 exports.generateDiographEventHandler = (event, path) =>
   new Promise((resolve, reject) => {
-    const { rootId, diograph } = readDiographJSON(path)
+    const { rootId, diograph } = readDiographJson(path)
     if (diograph) {
       resolve({ rootId, diograph, path })
     } else {
       generateDiograph(path).then(({ rootId, diograph }) => {
-        saveDiographJSON(path, diograph, rootId)
+        saveDiographJson(path, diograph, rootId)
           .then(() => {
             resolve({ rootId, diograph, path })
           })

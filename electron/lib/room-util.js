@@ -3,7 +3,7 @@ const fsPromise = require('fs').promises
 const backendLogger = require('electron-log')
 
 /**
- * readDiographJSON
+ * readDiographJson
  * @function
  * @param path {string} - Path of the diograph folder
  * @return {Object} - Object with diograph as key and
@@ -20,23 +20,23 @@ const backendLogger = require('electron-log')
  * }
  *
  */
-exports.readDiographJSON = (path) => {
+exports.readDiographJson = (path) => {
   const folderPath = path
-  const diographJSONPath = `${path}/diograph.json`
+  const diographJsonPath = `${path}/diograph.json`
 
   if (!fs.existsSync(folderPath)) {
-    const errorMessage = `readDiographJSON: Provided diograph folder path doesn't exist (${folderPath}). Did you use FileDialog to select it?`
+    const errorMessage = `readDiographJson: Provided diograph folder path doesn't exist (${folderPath}). Did you use FileDialog to select it?`
     throw new Error(errorMessage)
   }
 
-  if (fs.existsSync(diographJSONPath)) {
-    backendLogger.info('readDiographJSON: reading diograph.json in', path)
-    const raw = fs.readFileSync(diographJSONPath)
+  if (fs.existsSync(diographJsonPath)) {
+    backendLogger.info('readDiographJson: reading diograph.json in', path)
+    const raw = fs.readFileSync(diographJsonPath)
     const { rootId, diograph } = JSON.parse(raw)
     return { rootId, diograph }
   }
 
-  backendLogger.info('readDiographJSON: diograph.json not found in', path)
+  backendLogger.info('readDiographJson: diograph.json not found in', path)
   return {
     rootId: undefined,
     diograph: undefined,
@@ -44,7 +44,7 @@ exports.readDiographJSON = (path) => {
 }
 
 /*
- * saveDiographJSON
+ * saveDiographJson
  * @function
  * @param path {string} - Path of the diograph folder
  * @param diograph {object} - Diograph object to be saved to diograph.json
@@ -52,7 +52,7 @@ exports.readDiographJSON = (path) => {
  * @return {Promise} - Resolves with no arguments upon success
  *
  */
-exports.saveDiographJSON = (path, diograph, rootId) => {
+exports.saveDiographJson = (path, diograph, rootId) => {
   backendLogger.info('Saving diograph.json to:', path)
   const fileContent = { rootId, diograph }
   return fsPromise.writeFile(`${path}/diograph.json`, JSON.stringify(fileContent, null, 2))

@@ -1,8 +1,8 @@
-const { saveDiographJSON } = require('../lib/room-util')
+const { saveDiographJson } = require('../lib/room-util')
 
 exports.saveRoomEventHandler = (event, { path, room: { rootId, diograph } }) =>
   new Promise((resolve, reject) => {
-    saveDiographJSON(path, diograph, rootId).then(
+    saveDiographJson(path, diograph, rootId).then(
       (responseObject) => {
         resolve(true)
       },

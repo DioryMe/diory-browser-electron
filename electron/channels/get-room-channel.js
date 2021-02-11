@@ -1,4 +1,4 @@
-const { readDiographJSON } = require('../lib/room-util')
+const { readDiographJson } = require('../lib/room-util')
 
 /**
  * Event handler for GET_ROOM channel
@@ -19,5 +19,5 @@ const { readDiographJSON } = require('../lib/room-util')
  */
 exports.getRoomEventHandler = (event, { address }) =>
   new Promise((resolve, reject) => {
-    resolve(readDiographJSON(address))
+    resolve(readDiographJson(address))
   })

@@ -12,8 +12,8 @@ describe('getRoomEventHandler', () => {
 
     const response = await eventHandlerWrapper('GET_ROOM', getRoomEventHandler)(mockEvent, params)
 
-    const diographJSONRawContents = fs.readFileSync(`${exampleFolderPath}/diograph.json`)
-    const diographObject = JSON.parse(diographJSONRawContents)
+    const diographJsonRawContents = fs.readFileSync(`${exampleFolderPath}/diograph.json`)
+    const diographObject = JSON.parse(diographJsonRawContents)
     const returnValue = { rootId: diographObject.rootId, diograph: diographObject.diograph }
 
     expect(response).toEqual(returnValue)
