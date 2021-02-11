@@ -47,7 +47,7 @@ describe('saveRoomEventHandler', () => {
       saveDiographJson.mockRejectedValue(new Error('some-error'))
     })
 
-    it.skip('returns Error', async () => {
+    it('returns Error', async () => {
       const response = await eventHandlerWrapper('SAVE_ROOM', saveRoomEventHandler)(
         mockEvent,
         params
