@@ -80,11 +80,13 @@ function getAverageDate(linkedDiorys) {
 }
 
 function generateLinks(dioryLinks) {
-  return Object.entries(dioryLinks)
-    .reduce((obj, [linkKey, { id }]) => ({
+  return Object.entries(dioryLinks).reduce(
+    (obj, [linkKey, { id }]) => ({
       ...obj,
       [linkKey]: { id },
-    }), {})
+    }),
+    {}
+  )
 }
 
 exports.generateDioryFromFolder = function generateDioryFromFolder(folderPath, dioryLinks = {}) {
@@ -94,6 +96,6 @@ exports.generateDioryFromFolder = function generateDioryFromFolder(folderPath, d
     ...getAverageLocation(linkedDiorys),
     ...getAverageDate(linkedDiorys),
     ...readFolderMetadata(folderPath),
-    ...generateLinks(dioryLinks)
+    ...generateLinks(dioryLinks),
   })
 }
