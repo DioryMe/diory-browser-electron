@@ -7,10 +7,14 @@ const mockEventReply = jest.fn()
 const mockEvent = { reply: mockEventReply }
 // Mock electron-store
 jest.mock('electron-store')
+// Mock store.set
 const mockHomeStoreSet = jest.fn()
-HomeStore.mockImplementation(() => ({ set: mockHomeStoreSet }))
 
 describe('saveHomeEventHandler', () => {
+  beforeEach(() => {
+    HomeStore.mockImplementation(() => ({ set: mockHomeStoreSet }))
+  })
+
   it('calls store.set(home: params)', async () => {
     const params = 'this is new home object to be saved'
 

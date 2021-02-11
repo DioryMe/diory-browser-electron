@@ -1,5 +1,6 @@
 const { generateDiograph } = require('../generators/diograph-generator')
-const { saveDiographJson, readDiographJson } = require('../lib/room-util')
+const { saveDiographJson } = require('../lib/save-diograph-json')
+const { readDiographJson } = require('../lib/read-diograph-json')
 
 /**
  * Event handler for GENERATE_DIOGRAPH channel

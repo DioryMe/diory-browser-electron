@@ -1,4 +1,4 @@
-const { readDiographJson } = require('../lib/room-util')
+const { readDiographJson } = require('../lib/read-diograph-json')
 
 /**
  * Event handler for GET_ROOM channel

@@ -1,22 +1,26 @@
 const { eventHandlerWrapper } = require('./channel-util')
 const { saveRoomEventHandler } = require('./save-room-channel')
-const { saveDiographJson } = require('../lib/room-util')
+const { saveDiographJson } = require('../lib/save-diograph-json')
 
 // Mock event.reply
 const mockEventReply = jest.fn()
 const mockEvent = { reply: mockEventReply }
 // Mock saveDiographJson
-jest.mock('../lib/room-util')
-
-const params = {
-  path: 'some-path',
-  room: {
-    rootId: 'root-diory-id',
-    diograph: 'some-diograph',
-  },
-}
+jest.mock('../lib/save-diograph-json')
 
 describe('saveRoomEventHandler', () => {
+  let params
+
+  beforeEach(() => {
+    params = {
+      path: 'some-path',
+      room: {
+        rootId: 'root-diory-id',
+        diograph: 'some-diograph',
+      },
+    }
+  })
+
   describe('when saveDiographJson resolves properly', () => {
     beforeEach(() => {
       saveDiographJson.mockResolvedValue(undefined)
@@ -42,6 +46,7 @@ describe('saveRoomEventHandler', () => {
     beforeEach(() => {
       saveDiographJson.mockRejectedValue(new Error('some-error'))
     })
+
     it.skip('returns Error', async () => {
       const response = await eventHandlerWrapper('SAVE_ROOM', saveRoomEventHandler)(
         mockEvent,
