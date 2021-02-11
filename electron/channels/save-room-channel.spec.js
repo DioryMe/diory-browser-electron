@@ -18,16 +18,14 @@ const params = {
 
 describe('saveRoomEventHandler', () => {
   describe('when saveDiographJson resolves properly', () => {
-    let saveDiographJsonMock
     beforeEach(() => {
-      saveDiographJsonMock = saveDiographJson.mockResolvedValue(undefined)
+      saveDiographJson.mockResolvedValue(undefined)
     })
     it('returns true', async () => {
       const response = await eventHandlerWrapper('SAVE_ROOM', saveRoomEventHandler)(
         mockEvent,
         params
       )
-      await saveDiographJsonMock
 
       expect(saveDiographJson).toHaveBeenCalledTimes(1)
       expect(saveDiographJson).toHaveBeenCalledWith(
@@ -41,16 +39,14 @@ describe('saveRoomEventHandler', () => {
   })
 
   describe('when saveDiographJson rejects', () => {
-    let saveDiographJsonMock
     beforeEach(() => {
-      saveDiographJsonMock = saveDiographJson.mockRejectedValue(new Error('some-error'))
+      saveDiographJson.mockRejectedValue(new Error('some-error'))
     })
     it.skip('returns Error', async () => {
       const response = await eventHandlerWrapper('SAVE_ROOM', saveRoomEventHandler)(
         mockEvent,
         params
       )
-      await saveDiographJsonMock
 
       expect(saveDiographJson).toHaveBeenCalledTimes(1)
       expect(saveDiographJson).toHaveBeenCalledWith(
