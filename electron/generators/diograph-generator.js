@@ -10,6 +10,31 @@ function generateDioryLink({ key, diory }) {
   }
 }
 
+function reduceDiorysToDiograph(diorys) {
+  return diorys.reduce((obj, diory) => ({
+    ...obj,
+    [diory.id]: diory,
+  }), {})
+}
+
+function reduceSubfolderDiographsToDiograph(diographs) {
+  return diographs.reduce((obj, diograph) => ({
+    ...obj,
+    ...diograph,
+  }), {})
+}
+
+async function generateDioryLinksFromFiles(filePaths) {
+  return Promise.all(filePaths.map((filePath) => {
+    const diory = generateDioryFromFile(filePath)
+    const key = basename(filePath)
+    return generateDioryLink({ key, diory })
+  }))
+    .reduce((obj, dioryLink) => ({
+      ...obj,
+      ...dioryLink,
+    }), {})
+
 /**
  * Generates diograph object by reading the folder structure (path given as an argument)
  * @param {string} folderPath
@@ -29,14 +54,6 @@ async function generateDiograph(folderPath) {
   const { filePaths = [], subfolderPaths = [] } = (await getFileAndSubfolderPaths(folderPath)) || {}
 
   const fileDioryLinks = await Promise.all(filePaths.map((filePath) => {
-    const diory = generateDioryFromFile(filePath)
-    const key = basename(filePath)
-    return generateDioryLink({ key, diory })
-  }))
-    .reduce((obj, dioryLink) => ({
-      ...obj,
-      ...dioryLink,
-    }), {})
 
   const subfolderDiographs = await Promise.all(subfolderPaths.map(generateDiograph))
 
