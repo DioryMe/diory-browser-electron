@@ -9,8 +9,8 @@ exports.getFileAndSubfolderPaths = async function getFileAndSubfolderPaths(folde
   }
   const dirents = await promises.readdir(folderPath, { withFileTypes: true })
   return {
-    files: dirents.filter(isFile).filter(isIgnored).map(getPath(folderPath)),
-    subfolders: dirents.filter(isFolder).map(getPath(folderPath)),
+    filePaths: dirents.filter(isFile).filter(isIgnored).map(getPath(folderPath)),
+    subfolderPaths: dirents.filter(isFolder).map(getPath(folderPath)),
   }
 }
 
