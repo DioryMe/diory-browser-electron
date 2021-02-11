@@ -1,0 +1,30 @@
+image:
+  - macos-mojave
+  - Visual Studio 2019
+environment:
+  CI: false
+  TESTCAFE_TEST_ENV: "process.env.TESTCAFE_TEST=1;process.env.PWD=process.env.APPVEYOR_BUILD_FOLDER"
+install:
+  - npm install -g yarn
+  - yarn global add testcafe electron
+  - yarn && yarn build
+before_build:
+  - mkdir tmp
+  # Add row defined in TESTCAFE_TEST_ENV as the first row in electron-main.js
+  - awk 'BEGIN{print ENVIRON["TESTCAFE_TEST_ENV"]}{print}' electron-main.js > electron-main-tmp.js
+  - cp electron-main-tmp.js electron-main.js
+build_script:
+  # Test1 (with development-content-room)
+  - cp -r public/development-content-room/ tmp/testcafe-diograph-folder/
+  - npx testcafe "electron:." electron/spec/testcafe-e2e-1.test.js
+  - rm -rf tmp/testcafe-diograph-folder
+  # Test2 (with example-folder)
+  - cp -r electron/readers/example-folder/ tmp/testcafe-diograph-folder/
+  - npx testcafe "electron:." electron/spec/testcafe-e2e-2.test.js
+  - rm -rf tmp/testcafe-diograph-folder
+  # Test3 (with development-content-room + example-folder as subfolder)
+  # - cp -r public/development-content-room tmp/testcafe-diograph-folder
+  # - cp -r electron/readers/example-folder/ tmp/testcafe-diograph-folder/
+  # - npx testcafe "electron:." electron/spec/testcafe-e2e-3.test.js
+  # - rm -rf tmp/testcafe-diograph-folder
+
