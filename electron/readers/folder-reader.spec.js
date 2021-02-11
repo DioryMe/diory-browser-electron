@@ -20,11 +20,11 @@ describe('folder-reader', () => {
       })
 
       it('returns files', () => {
-        expect(filesAndSubfolders.files.length).toEqual(4)
+        expect(filesAndSubfolders.filePaths.length).toEqual(4)
       })
 
       it('returns subfolders', () => {
-        expect(filesAndSubfolders.subfolders.length).toEqual(1)
+        expect(filesAndSubfolders.subfolderPaths.length).toEqual(1)
       })
     })
   })
