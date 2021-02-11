@@ -2,9 +2,9 @@ const { basename } = require('path')
 const { getFileAndSubfolderPaths } = require('../readers/folder-reader')
 const { generateDioryFromFile, generateDioryFromFolder } = require('./diory-generator')
 
-function generateDioryLink({ key, diory }) {
+function generateDioryLink({ linkKey, diory }) {
   return {
-    [key]: diory,
+    [linkKey]: diory,
   }
 }
 
@@ -32,8 +32,8 @@ async function generateDioryLinksFromFiles(filePaths) {
   return Promise.all(
     filePaths.map((filePath) => {
       const diory = generateDioryFromFile(filePath)
-      const key = basename(filePath)
-      return generateDioryLink({ key, diory })
+      const linkKey = basename(filePath)
+      return generateDioryLink({ linkKey, diory })
     })
   ).reduce(
     (obj, dioryLink) => ({
