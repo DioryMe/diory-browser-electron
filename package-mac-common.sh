@@ -13,14 +13,7 @@ mv electron-main-tmp.js electron-main.js
 unset TESTCAFE_TEST_ENVS
 
 echo "Run Testcafe E2E tests"
-rm -rf tmp/screenshots
 yarn exec testcafe "electron:."  electron/spec/testcafe-e2e.test.js
-
-echo "Check screenshots taken by Testcafe:"
-echo "$(pwd)/tmp/screenshots/welcome-room.png"
-echo "$(pwd)/tmp/screenshots/added-room.png"
-echo "--- Press enter to continue ---"
-read press_enter_to_continue
 
 echo "Remove TESTCAFE_TEST_ENVS to electron-main.js"
 mv electron-main-original.js electron-main.js
