@@ -90,7 +90,7 @@ function reduceSubfolderDiographsToDioryLinks(subfolderDiographs) {
  *   }
  * }
  */
-async function generateDiograph(folderPath) {
+async function generateFolderDiograph(folderPath) {
   const { filePaths = [], subfolderPaths = [] } = (await getFileAndSubfolderPaths(folderPath)) || {}
 
   const fileDioryLinks = await generateDioryLinksFromFiles(filePaths)
@@ -114,6 +114,17 @@ async function generateDiograph(folderPath) {
       ...reduceDiorysToDiograph(Object.values(fileDioryLinks)),
       ...reduceSubfolderDiographsToDiograph(subfolderDiographs),
     },
+  }
+}
+
+async function generateDiograph(folderPath) {
+  const diograph = await generateFolderDiograph(folderPath)
+  const cleanedUpDiograph = reduceSubfolderDiographsToDiograph([diograph])
+  const diographWithoutRootId = (({ rootId, ...o }) => o)(cleanedUpDiograph)
+  return {
+    linkKey: diograph.linkKey,
+    rootId: diograph.rootId,
+    diograph: diographWithoutRootId,
   }
 }
 
