@@ -18,14 +18,15 @@ function reduceDiorysToDiograph(diorys) {
   )
 }
 
-function reduceSubfolderDiographsToDiograph(diographs) {
-  return diographs.reduce(
-    (obj, diograph) => ({
+function reduceSubfolderDiographsToDiograph(subfolderDiographs) {
+  return subfolderDiographs.reduce((obj, subfolderDiograph) => {
+    const subfolderDiographWithoutDiographKey = (({ diograph, ...o }) => o)(subfolderDiograph)
+    return {
       ...obj,
-      ...diograph,
-    }),
-    {}
-  )
+      ...subfolderDiographWithoutDiographKey,
+      ...subfolderDiograph.diograph,
+    }
+  }, {})
 }
 
 async function generateDioryLinksFromFiles(filePaths) {
