@@ -28,9 +28,11 @@ function reduceSubfolderDiographsToDiograph(subfolderDiographs) {
     {}
   )
 
+  // Don't put the whole diory in diory.links, id is enough
+  // TODO: Make more elegant and functional?
   Object.keys(diograph).forEach((key) => {
     const diory = diograph[key]
-    if (!diory.links) {
+    if (!diory || !diory.links) {
       return
     }
     Object.keys(diory.links).forEach((key) => {
@@ -117,6 +119,8 @@ async function generateFolderDiograph(folderPath) {
   }
 }
 
+// One more round of reduceSubfolderDiographsToDiograph for the diograph folder diograph
+// - remove unnecessary linkKey, rootId and replace linkDiories with linkIds
 async function generateDiograph(folderPath) {
   const diograph = await generateFolderDiograph(folderPath)
   const cleanedUpDiograph = reduceSubfolderDiographsToDiograph([diograph])
