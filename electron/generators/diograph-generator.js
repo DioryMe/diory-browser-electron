@@ -70,6 +70,7 @@ function reduceSubfolderDiographsToDioryLinks(subfolderDiographs) {
  * @example
  * {
  *   rootId: '123-abc-def',
+ *   linkKey: 'some-folder',
  *   diograph: {
  *     'abc-def-123': { ... },
  *     'ghi-jkl-456': { ... },

@@ -38,6 +38,18 @@ function generateDiory({ text, date, image, video, latitude, longitude, created,
   }
 }
 
+/**
+ * Generates diograph from file
+ * @param {string} filePath - Path to file which diory should be generated
+ * @return {object} - File diograph generated from file
+ *    {
+ *      id: 'some-id',
+ *      text: 'text',
+ *      image: 'image'
+ *      ...
+ *      modified: 'modified'
+ *    }
+ */
 exports.generateDioryFromFile = function generateDioryFromFile(filePath) {
   const type = resolveFileType(filePath)
   const fileData = readFileData(type, filePath) || {}
@@ -79,6 +91,9 @@ function getAverageDate(linkedDiorys) {
   )
 }
 
+/**
+ * What is this?
+ */
 function generateLinks(dioryLinks) {
   return Object.entries(dioryLinks).reduce(
     (obj, [linkKey, { id }]) => ({
@@ -89,6 +104,27 @@ function generateLinks(dioryLinks) {
   )
 }
 
+/**
+ * Generates diograph from folder
+ * @param {string} filePath - Path to file which diory should be generated
+ * @param {object} dioryLinks - Object of diory links
+ *    {
+ *      'filename1': { [diory1 object] },
+ *      'filename2': { [diory2 object] }
+ *    }
+ * @return {object} - Folder diograph generated from file
+ *    {
+ *      id: 'some-id',
+ *      text: 'text',
+ *      image: 'image'
+ *      ...
+ *      modified: 'modified'
+ *      links: [
+ *        'filename1': { [diory object] },
+ *        'filename2': { [diory2 object] }
+ *      ]
+ *    }
+ */
 exports.generateDioryFromFolder = function generateDioryFromFolder(folderPath, dioryLinks = {}) {
   const linkedDiorys = Object.values(dioryLinks)
   return {
