@@ -2,85 +2,69 @@
 
 exports[`diograph-generator generateDiograph generates diograph from example folder 1`] = `
 Object {
-  "uuid-0": Object {
-    "created": "2019-07-12T21:30:22.000Z",
-    "date": "2019-07-09T00:01:16.000Z",
-    "id": "uuid-0",
-    "image": "/Users/op/2019/diory-browser-electron/electron/readers/example-folder/20190709_000114.jpg",
-    "latitude": 68.27818055555555,
-    "longitude": 14.302322222222223,
-    "modified": "2019-07-12T21:30:22.000Z",
-  },
-  "uuid-1": Object {
-    "created": "2020-07-13T17:27:27.684Z",
+  "2e81725c-be80-489b-8a10-080d7e3e8f87": Object {
+    "created": "2020-10-20T18:11:31.575Z",
     "date": "2008-11-01T21:15:11.000Z",
-    "id": "uuid-1",
-    "image": "/Users/op/2019/diory-browser-electron/electron/readers/example-folder/other-image.jpg",
+    "id": "2e81725c-be80-489b-8a10-080d7e3e8f87",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/other-image.jpg",
     "latitude": 43.464455,
     "longitude": 11.881478333333334,
-    "modified": "2020-07-13T17:27:27.686Z",
+    "modified": "2020-10-20T18:11:31.586Z",
   },
-  "uuid-2": Object {
-    "created": "2019-11-25T19:58:24.734Z",
-    "date": "2019-11-25T19:58:24.000Z",
-    "id": "uuid-2",
-    "image": "/Users/op/2019/diory-browser-electron/electron/readers/example-folder/some-image.jpg",
-    "modified": "2020-07-13T17:27:27.689Z",
+  "9abbf513-fa62-4817-899d-5a6a6dc9424d": Object {
+    "created": "2021-01-23T11:17:19.400Z",
+    "date": "2019-07-09T00:01:16.000Z",
+    "id": "9abbf513-fa62-4817-899d-5a6a6dc9424d",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/image-with-24-hour.jpg",
+    "latitude": 68.27818055555555,
+    "longitude": 14.302322222222223,
+    "modified": "2021-01-23T11:17:19.416Z",
   },
-  "uuid-3": Object {
-    "created": "2020-07-13T17:27:27.690Z",
-    "id": "uuid-3",
-    "modified": "2020-07-13T17:27:27.690Z",
-    "text": "some-text",
-  },
-  "uuid-4": Object {
-    "created": "2019-10-27T14:40:43.879Z",
-    "date": "2019-10-27T14:40:43.000Z",
-    "id": "uuid-4",
-    "image": "/Users/op/2019/diory-browser-electron/electron/readers/example-folder/some-folder/some-folder-image.jpg",
-    "latitude": 61.49578611111111,
-    "longitude": 23.76756111111111,
-    "modified": "2020-07-13T17:27:27.688Z",
-  },
-  "uuid-5": Object {
-    "created": "2020-07-13T17:27:27.686Z",
-    "id": "uuid-5",
-    "image": "/Users/op/2019/diory-browser-electron/electron/readers/example-folder/some-folder/some-folder-image.jpg",
-    "latitude": 61.49578611111111,
-    "links": Object {
-      "some-folder-image.jpg": Object {
-        "id": "uuid-4",
-      },
-    },
-    "longitude": 23.76756111111111,
-    "modified": "2020-07-13T17:27:27.687Z",
-    "text": "some-folder",
-  },
-  "uuid-6": Object {
-    "created": "2020-07-13T17:27:27.684Z",
-    "id": "uuid-6",
-    "image": "/Users/op/2019/diory-browser-electron/electron/readers/example-folder/some-folder/some-folder-image.jpg",
-    "latitude": 57.74614055555556,
-    "links": Object {
-      "20190709_000114.jpg": Object {
-        "id": "uuid-0",
-      },
-      "other-image.jpg": Object {
-        "id": "uuid-1",
-      },
-      "some-folder": Object {
-        "id": "uuid-5",
-      },
-      "some-image.jpg": Object {
-        "id": "uuid-2",
-      },
-      "some-text.txt": Object {
-        "id": "uuid-3",
-      },
-    },
+  "c7616606-8491-460e-961a-4124b9f508f0": Object {
+    "created": "2020-04-10T18:44:56.378Z",
+    "date": "2017-01-07T07:58:53.500Z",
+    "id": "c7616606-8491-460e-961a-4124b9f508f0",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/image-with-24-hour.jpg",
+    "latitude": 57.74614055555555,
     "longitude": 16.65045388888889,
-    "modified": "2020-09-02T19:27:14.921Z",
+    "modified": "2021-02-11T09:46:40.238Z",
     "text": "example-folder",
   },
+  "cf301437-253e-42f0-ae9f-8090602dce3b": Object {
+    "created": "2020-10-20T18:11:31.620Z",
+    "id": "cf301437-253e-42f0-ae9f-8090602dce3b",
+    "modified": "2020-10-20T18:11:31.620Z",
+    "text": "some-text",
+  },
+  "diograph": Object {
+    "3c704377-3cf7-4059-baaf-a639f7b087fb": Object {
+      "created": "2019-10-27T14:40:43.879Z",
+      "date": "2019-10-27T14:40:43.000Z",
+      "id": "3c704377-3cf7-4059-baaf-a639f7b087fb",
+      "image": "file:///Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/some-folder/some-folder-image.jpg",
+      "latitude": 61.49578611111111,
+      "longitude": 23.76756111111111,
+      "modified": "2020-10-20T18:11:31.605Z",
+    },
+    "e6763ff3-5b33-4525-b4a0-6f0a9c827337": Object {
+      "created": "2020-04-10T18:44:56.381Z",
+      "date": "2019-10-27T14:40:43.000Z",
+      "id": "e6763ff3-5b33-4525-b4a0-6f0a9c827337",
+      "image": "file:///Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/some-folder/some-folder-image.jpg",
+      "latitude": 61.49578611111111,
+      "longitude": 23.76756111111111,
+      "modified": "2020-10-20T18:11:31.597Z",
+      "text": "some-folder",
+    },
+  },
+  "ff30388c-da00-4d06-93e2-3d125ce3c429": Object {
+    "created": "2019-11-25T19:58:24.734Z",
+    "date": "2019-11-25T19:58:24.000Z",
+    "id": "ff30388c-da00-4d06-93e2-3d125ce3c429",
+    "image": "file:///Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/some-image.jpg",
+    "modified": "2020-10-20T18:11:31.616Z",
+  },
+  "linkKey": "some-folder",
+  "rootId": "e6763ff3-5b33-4525-b4a0-6f0a9c827337",
 }
 `;
