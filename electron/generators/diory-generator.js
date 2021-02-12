@@ -91,11 +91,14 @@ function generateLinks(dioryLinks) {
 
 exports.generateDioryFromFolder = function generateDioryFromFolder(folderPath, dioryLinks = {}) {
   const linkedDiorys = Object.values(dioryLinks)
-  return generateDiory({
-    ...getFirstImage(linkedDiorys),
-    ...getAverageLocation(linkedDiorys),
-    ...getAverageDate(linkedDiorys),
-    ...readFolderMetadata(folderPath),
-    ...generateLinks(dioryLinks),
-  })
+  return {
+    ...generateDiory({
+      ...getFirstImage(linkedDiorys),
+      ...getAverageLocation(linkedDiorys),
+      ...getAverageDate(linkedDiorys),
+      ...readFolderMetadata(folderPath),
+      ...generateLinks(dioryLinks),
+    }),
+    links: dioryLinks,
+  }
 }
