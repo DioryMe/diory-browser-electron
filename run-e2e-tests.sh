@@ -16,6 +16,7 @@ mv electron-main-tmp.js electron-main.js
 
 echo "Run Testcafe E2E test 1 (with development-content-room, with diograph.json)"
 cp -r public/development-content-room/ tmp/testcafe-diograph-folder/
+rm tmp/testcafe-diograph-folder/Tampere/diograph.json
 npx testcafe "electron:." electron/spec/testcafe-e2e-1.test.js
 test_1=$?
 rm -rf tmp/testcafe-diograph-folder
@@ -26,12 +27,16 @@ npx testcafe "electron:." electron/spec/testcafe-e2e-2.test.js
 test_2=$?
 rm -rf tmp/testcafe-diograph-folder
 
-# echo "Run Testcafe E2E test 3 (with development-content-room + example-folder as subfolder)"
-# cp -r public/development-content-room tmp/testcafe-diograph-folder
-# cp -r electron/readers/example-folder/ tmp/testcafe-diograph-folder/
-# npx testcafe "electron:." electron/spec/testcafe-e2e-3.test.js
-# test_3=$?
-# rm -rf tmp/testcafe-diograph-folder
+echo "Run Testcafe E2E test 3 (with development-content-room + example-folder as subfolder)"
+cp -r public/development-content-room tmp/testcafe-diograph-folder
+cp -r electron/readers/example-folder tmp/testcafe-diograph-folder/
+npx testcafe "electron:." electron/spec/testcafe-e2e-3.test.js
+test_3=$?
+rm -rf tmp/testcafe-diograph-folder
+
+# echo "Run Testcafe E2E test 4 (with development-content-room + example-folder as subfolder + Tampere folder diograph.json)"
+# => loads diograph.json from Tampere subfolder properly
+#     => if this works then that diograph.json has to be deleted before test 1
 
 echo "Remove TESTCAFE_TEST_ENV from electron-main.js"
 mv electron-main-original.js electron-main.js
