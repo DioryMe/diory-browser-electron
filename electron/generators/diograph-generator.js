@@ -19,14 +19,26 @@ function reduceDiorysToDiograph(diorys) {
 }
 
 function reduceSubfolderDiographsToDiograph(subfolderDiographs) {
-  return subfolderDiographs.reduce((obj, subfolderDiograph) => {
-    const subfolderDiographWithoutDiographKey = (({ diograph, ...o }) => o)(subfolderDiograph)
-    return {
+  const diograph = subfolderDiographs.reduce(
+    (obj, subfolderDiograph) => ({
       ...obj,
-      ...subfolderDiographWithoutDiographKey,
       ...subfolderDiograph.diograph,
+      rootId: subfolderDiograph.rootId,
+    }),
+    {}
+  )
+
+  Object.keys(diograph).forEach((key) => {
+    const diory = diograph[key]
+    if (!diory.links) {
+      return
     }
-  }, {})
+    Object.keys(diory.links).forEach((key) => {
+      diory.links[key] = { id: diory.links[key].id }
+    })
+  })
+
+  return diograph
 }
 
 async function generateDioryLinksFromFiles(filePaths) {
