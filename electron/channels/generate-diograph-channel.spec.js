@@ -67,8 +67,7 @@ describe('generateDiographEventHandler', () => {
       )
 
       const responseObject = {
-        rootId: 'some-diory-id',
-        diograph: someDiograph,
+        ...someDiograph,
         path: 'some-path',
       }
       expect(response).toEqual(responseObject)

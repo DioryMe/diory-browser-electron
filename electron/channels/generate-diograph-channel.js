@@ -20,20 +20,12 @@ const { readDiographJson } = require('../lib/read-diograph-json')
  * }
  *
  */
-exports.generateDiographEventHandler = (event, path) =>
-  new Promise((resolve, reject) => {
-    const { rootId, diograph } = readDiographJson(path)
-    if (diograph) {
-      resolve({ rootId, diograph, path })
-    } else {
-      generateDiograph(path).then(({ rootId, diograph }) => {
-        saveDiographJson(path, diograph, rootId)
-          .then(() => {
-            resolve({ rootId, diograph, path })
-          })
-          .catch((err) => {
-            reject(err)
-          })
-      })
-    }
-  })
+exports.generateDiographEventHandler = async function (event, path) {
+  if (readDiographJson(path).diograph) {
+    const { rootId, diograph } = readDiographJson(path).diograph
+    return { rootId, diograph, path }
+  }
+  const { rootId, diograph } = await generateDiograph(path)
+  await saveDiographJson(path, diograph, rootId)
+  return { rootId, diograph, path }
+}
