@@ -51,7 +51,7 @@ function generateDiory({ text, date, image, video, latitude, longitude, created,
  *      modified: 'modified'
  *    }
  */
-exports.generateDioryFromFile = function generateDioryFromFile(filePath) {
+exports.generateDioryFromFile = function (filePath) {
   const type = resolveFileType(filePath)
   const fileData = readFileData(type, filePath) || {}
   return generateDiory(fileData)
