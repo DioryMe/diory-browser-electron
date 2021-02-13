@@ -22,7 +22,7 @@ const { readDiographJson } = require('../lib/read-diograph-json')
  */
 exports.generateDiographEventHandler = async function (event, path) {
   if (readDiographJson(path).diograph) {
-    const { rootId, diograph } = readDiographJson(path)
+    const { rootId, diograph } = readDiographJson(path).diograph
     return { rootId, diograph, path }
   }
   const { rootId, diograph } = await generateDiograph(path)
