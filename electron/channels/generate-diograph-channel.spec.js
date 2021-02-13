@@ -55,7 +55,7 @@ describe('generateDiographEventHandler', () => {
 
     beforeEach(() => {
       saveDiographJson.mockResolvedValue(undefined)
-      readDiographJson.mockReturnValue({ rootId: 'some-diory-id', diograph: someDiograph })
+      readDiographJson.mockReturnValue(someDiograph)
     })
 
     it('return readDiographJson return value', async () => {
