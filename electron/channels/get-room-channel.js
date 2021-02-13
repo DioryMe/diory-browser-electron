@@ -17,7 +17,6 @@ const { readDiographJson } = require('../lib/read-diograph-json')
  * }
  *
  */
-exports.getRoomEventHandler = (event, { address }) =>
-  new Promise((resolve, reject) => {
-    resolve(readDiographJson(address))
-  })
+exports.getRoomEventHandler = async function (event, { address }) {
+  return readDiographJson(address)
+}

@@ -95,7 +95,7 @@ async function generateFolderDiograph(folderPath) {
 
   const fileDioryLinks = await generateDioryLinksFromFiles(filePaths)
 
-  const subfolderDiographs = await Promise.all(subfolderPaths.map(generateDiograph))
+  const subfolderDiographs = await Promise.all(subfolderPaths.map(generateFolderDiograph))
 
   const subfolderDioryLinks = reduceSubfolderDiographsToDioryLinks(subfolderDiographs)
 
@@ -119,7 +119,7 @@ async function generateFolderDiograph(folderPath) {
 
 // One more round of reduceSubfolderDiographsToDiograph for the diograph folder diograph
 // - remove unnecessary linkKey, rootId and replace linkDiories with linkIds
-async function generateDiograph(folderPath) {
+exports.generateDiograph = async function (folderPath) {
   const diograph = await generateFolderDiograph(folderPath)
   const cleanedUpDiograph = reduceSubfolderDiographsToDiograph([diograph])
   const diographWithoutRootId = (({ rootId, ...o }) => o)(cleanedUpDiograph)

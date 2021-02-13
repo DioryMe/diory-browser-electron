@@ -28,7 +28,7 @@ const fs = require('fs')
  * }
  *
  */
-exports.getHomeEventHandler = (event, params) => {
+exports.getHomeEventHandler = async function (event, params) {
   const store = new HomeStore({
     cwd: process.env.TESTCAFE_TEST ? `${process.env.PWD}/tmp/${Date.now()}` : undefined,
   })
@@ -45,9 +45,7 @@ exports.getHomeEventHandler = (event, params) => {
     }
   })
 
-  return new Promise((resolve, reject) => {
-    resolve(home)
-  })
+  return home
 }
 
 /*
