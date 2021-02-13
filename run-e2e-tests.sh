@@ -1,8 +1,5 @@
 # !/bin/bash
 
-# Always cleanup in the end, ignore failures
-set +e
-
 # Build frontend changes before running tests (although not necessary on CI pipeline)
 yarn build
 
