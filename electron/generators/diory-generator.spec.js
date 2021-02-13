@@ -162,7 +162,11 @@ describe('diory-generator', () => {
     })
 
     it('sets first image from linked diorys', async () => {
-      linkedDiorys = { some: 'image', image: 'first-image' }
+      linkedDiorys = {
+        'some-link-key': { id: 'some-id' },
+        'first-link-key': { id: 'first-id', image: 'first-image' },
+        'second-link-key': { id: 'second-id', image: 'second-image' },
+      }
 
       const diory = act()
 
