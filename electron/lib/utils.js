@@ -17,6 +17,9 @@ exports.reduceValuesToArraysPromise = function reduceValuesToArraysPromise(async
   }
 }
 
+/**
+ * Doesn't seem to be used anywhere... Still should be kept for future purposes?
+ */
 exports.promiseAllReduce = async function promiseAllReduce(asyncArray) {
   const promises = await Promise.all(asyncArray)
   return promises.reduce(
