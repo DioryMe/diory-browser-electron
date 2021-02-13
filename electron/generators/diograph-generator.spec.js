@@ -1,6 +1,7 @@
 const { getFileAndSubfolderPaths } = require('../readers/folder-reader')
 const { generateDioryFromFile, generateDioryFromFolder } = require('./diory-generator')
 const { generateDiograph } = require('./diograph-generator')
+const { isEmpty } = require('../lib/utils')
 
 jest.mock('../readers/folder-reader')
 jest.mock('./diory-generator')
@@ -22,10 +23,18 @@ describe('diograph-generator', () => {
         paths = {}
         folderDiory = {}
         act = async () => {
+          function mockedGenerateDioryFromFolder(folderPath, dioryLinks = {}) {
+            const dioryFromFolder = { id: folderDiory.id }
+            if (!isEmpty(dioryLinks)) {
+              dioryFromFolder.links = dioryLinks
+            }
+            return dioryFromFolder
+          }
           getFileAndSubfolderPaths.mockResolvedValue({})
           getFileAndSubfolderPaths.mockResolvedValueOnce(paths)
           generateDioryFromFile.mockResolvedValue()
           generateDioryFromFolder.mockReturnValue(folderDiory)
+          generateDioryFromFolder.mockImplementationOnce(mockedGenerateDioryFromFolder)
           return generateDiograph(folderPath)
         }
       })
@@ -122,7 +131,14 @@ describe('diograph-generator', () => {
                   generateDioryFromFile.mockReturnValueOnce({ id: `${fileDiory}-id` })
                 })
                 subfolderPaths.forEach((subfolderDiory) => {
-                  generateDioryFromFolder.mockReturnValueOnce({ id: `${subfolderDiory}-id` })
+                  function mockedGenerateDioryFromFolder(folderPath, dioryLinks = {}) {
+                    const dioryFromFolder = { id: `${subfolderDiory}-id` }
+                    if (!isEmpty(dioryLinks)) {
+                      dioryFromFolder.links = dioryLinks
+                    }
+                    return dioryFromFolder
+                  }
+                  generateDioryFromFolder.mockImplementationOnce(mockedGenerateDioryFromFolder)
                 })
               })
 

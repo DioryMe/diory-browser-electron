@@ -12,7 +12,7 @@ function reduceDiorysToDiograph(diorys) {
   return diorys.reduce(
     (obj, diory) => ({
       ...obj,
-      [diory.id]: diory,
+      [diory && diory.id]: diory,
     }),
     {}
   )
@@ -109,8 +109,8 @@ async function generateFolderDiograph(folderPath) {
   const rootDiory = generateDioryFromFolder(folderPath, dioryLinks)
 
   return {
-    linkKey: basename(folderPath),
-    rootId: rootDiory.id,
+    linkKey: basename(folderPath || 'some-path'),
+    rootId: rootDiory && rootDiory.id,
     diograph: {
       ...reduceDiorysToDiograph([rootDiory]),
       ...reduceDiorysToDiograph(Object.values(fileDioryLinks)),
