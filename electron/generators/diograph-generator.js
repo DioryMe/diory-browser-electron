@@ -28,16 +28,14 @@ function reduceSubfolderDiographsToDiograph(subfolderDiographs) {
     {}
   )
 
-  // Don't put the whole diory in diory.links, id is enough
-  // TODO: Make more elegant and functional?
+  // diory.links have only ids instead of the whole diory
   Object.keys(diograph).forEach((key) => {
     const diory = diograph[key]
-    if (!diory || !diory.links) {
-      return
+    if (diory && diory.links) {
+      Object.keys(diory.links).forEach((key) => {
+        diory.links[key] = { id: diory.links[key].id }
+      })
     }
-    Object.keys(diory.links).forEach((key) => {
-      diory.links[key] = { id: diory.links[key].id }
-    })
   })
 
   return diograph
