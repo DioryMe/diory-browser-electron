@@ -126,9 +126,9 @@ function generateLinks(dioryLinks) {
  *      ]
  *    }
  */
-exports.generateDioryFromFolder = function generateDioryFromFolder(folderPath, dioryLinks = {}) {
+exports.generateDioryFromFolder = function (folderPath, dioryLinks = {}) {
   const linkedDiorys = Object.values(dioryLinks)
-  const folderDiory = {
+  return {
     ...generateDiory({
       ...getFirstImage(linkedDiorys),
       ...getAverageLocation(linkedDiorys),
@@ -136,9 +136,6 @@ exports.generateDioryFromFolder = function generateDioryFromFolder(folderPath, d
       ...readFolderMetadata(folderPath),
       ...generateLinks(dioryLinks),
     }),
+    ...(isEmpty(dioryLinks) ? {} : { links: dioryLinks }),
   }
-  if (!isEmpty(dioryLinks)) {
-    folderDiory.links = dioryLinks
-  }
-  return folderDiory
 }
