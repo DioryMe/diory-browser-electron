@@ -12,7 +12,7 @@ function reduceDiorysToDiograph(diorys) {
   return diorys.reduce(
     (obj, diory) => ({
       ...obj,
-      [diory && diory.id]: diory,
+      ...(diory && diory.id ? { [diory.id]: diory } : {}),
     }),
     {}
   )
