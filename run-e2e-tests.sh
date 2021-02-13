@@ -6,6 +6,9 @@ set +e
 # Build frontend changes before running tests (although not necessary on CI pipeline)
 yarn build
 
+mkdir tmp
+rm -rf tmp/testcafe-diograph-folder
+
 echo "Add TESTCAFE_TEST_ENVS to electron-main.js"
 awk 'BEGIN{print "process.env.TESTCAFE_TEST=1;" ENVIRON["TESTCAFE_TEST_ENV"]}{print}' electron-main.js > electron-main-tmp.js
 cp electron-main.js electron-main-original.js
