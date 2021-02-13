@@ -1,6 +1,11 @@
 const { basename } = require('path')
 
-// Luo folderin rootDiorylle linkin sen sisältämistä tiedostoista tehtyihin dioreihin
+/**
+ * What is this?
+ * Is it used somewhere?
+ * It has tests though?
+ * Is it same as / replaced by generateLinks?
+ */
 exports.generateLink = function generateLink(path = '', { id } = {}) {
   const key = basename(path)
   return (
