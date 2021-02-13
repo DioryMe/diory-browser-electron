@@ -129,5 +129,3 @@ async function generateDiograph(folderPath) {
     diograph: diographWithoutRootId,
   }
 }
-
-exports.generateDiograph = generateDiograph
