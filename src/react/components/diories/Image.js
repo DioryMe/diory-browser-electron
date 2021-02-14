@@ -8,7 +8,7 @@ export const getImageUrl = (imageUrl) => {
   }
   return window.processEnv && window.processEnv.PWD
     ? `file://${window.processEnv.PWD}${imageUrl}`
-    : `http://localhost:3300/${imageUrl}`
+    : `http://localhost:3300${imageUrl}`
 }
 
 const defaultStyle = {
