@@ -1,5 +1,6 @@
 import React from 'react'
 import Box from 'ui-box'
+import { getImageUrl } from './diories/Image'
 
 const Room = ({ diory: { id, image, text, ...diory }, onClick }) => (
   <Box
@@ -18,7 +19,9 @@ const Room = ({ diory: { id, image, text, ...diory }, onClick }) => (
       alignSelf="center"
       onClick={onClick}
       aria-controls={`panel-${id}`}
-      backgroundImage={`linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.1)), url(${image})`}
+      backgroundImage={`linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.1)), url(${getImageUrl(
+        image
+      )})`}
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
       backgroundColor="pink"

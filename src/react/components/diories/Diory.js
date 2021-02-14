@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Pane, Icon } from 'evergreen-ui'
 
-import Image from './Image'
+import { Image, getImageUrl } from './Image'
 import Video from './Video'
 
 const colors = ['#5bc0eb', '#fcd600', '#9bc53d', '#e55934', '#fa7921']
@@ -31,6 +31,7 @@ const Diory = ({ diory, onClick, children, ...props }) => {
     width: flexBasis,
     ...style
   } = dioryStyle
+
   return (
     <Box
       id={id}
@@ -43,7 +44,7 @@ const Diory = ({ diory, onClick, children, ...props }) => {
       <Box {...defaultStyle.container} background={getRandom(colors)}>
         {image && (
           <Image
-            image={`file://${process.env.PWD}${image}`}
+            image={getImageUrl(image)}
             style={styleImage}
             gradient={Boolean(text)}
             gradientRgba="0, 0, 0, 0.2"
