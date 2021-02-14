@@ -43,7 +43,7 @@ const Diory = ({ diory, onClick, children, ...props }) => {
       <Box {...defaultStyle.container} background={getRandom(colors)}>
         {image && (
           <Image
-            image={image}
+            image={`file://${process.env.PWD}${image}`}
             style={styleImage}
             gradient={Boolean(text)}
             gradientRgba="0, 0, 0, 0.2"
