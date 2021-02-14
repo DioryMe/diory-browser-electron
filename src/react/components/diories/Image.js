@@ -1,14 +1,21 @@
 import React from 'react'
 import Box from 'ui-box'
 import PropTypes from 'prop-types'
+import { useStore } from '../../store'
 
 export const getImageUrl = (imageUrl) => {
+  const [{ connections }] = useStore((state) => state.connectors)
+  console.log(connections)
+  const filePathPrefix = Object.keys(connections)[1]
+  console.log(filePathPrefix)
+
   if (/^http(s)?:\/\//.exec(imageUrl)) {
     return imageUrl
   }
-  return window.processEnv && window.processEnv.PWD
-    ? `file://${window.processEnv.PWD}${imageUrl}`
-    : `http://localhost:3300${imageUrl}`
+
+  return filePathPrefix
+    ? `file://${filePathPrefix}${imageUrl}`
+    : `http://localhost:3300/${imageUrl}`
 }
 
 const defaultStyle = {
