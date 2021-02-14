@@ -4,6 +4,18 @@ const { v4: uuid } = require('uuid')
 
 const { generateDiograph } = require('./diograph-generator')
 
+// Mock fs.statSync
+jest.mock('fs', () => {
+  const originalFsModule = jest.requireActual('fs')
+  const mockedFsModule = jest.genMockFromModule('fs')
+  const mockedStatSyncResponse = {
+    birthtime: { toISOString: () => 'created-timestamp' },
+    mtime: { toISOString: () => 'modified-timestamp' },
+  }
+  return { ...mockedFsModule, ...originalFsModule, statSync: jest.fn(() => mockedStatSyncResponse) }
+})
+
+// Mock uuid
 jest.mock('uuid')
 
 function getNumberOfFilesAndFolders(path) {
@@ -16,7 +28,7 @@ function getArray(length) {
 
 describe('diograph-generator', () => {
   describe('generateDiograph', () => {
-    it.skip('generates diograph from example folder', async () => {
+    it('generates diograph from example folder', async () => {
       const exampleFolderPath = join(__dirname, '../readers/example-folder')
       const amountOfCases = getNumberOfFilesAndFolders(exampleFolderPath) + 1
       getArray(amountOfCases).forEach((id) => {
