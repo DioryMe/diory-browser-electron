@@ -17,18 +17,24 @@ mv electron-main-tmp.js electron-main.js
 echo "Run Testcafe E2E test 1 (with development-content-room, with diograph.json)"
 cp -r public/development-content-room/ tmp/testcafe-diograph-folder/
 npx testcafe "electron:." electron/spec/testcafe-e2e-1.test.js
+test_1=$?
 rm -rf tmp/testcafe-diograph-folder
 
 echo "Run Testcafe E2E test 2 (with example-folder, no diograph.json)"
 cp -r electron/readers/example-folder/ tmp/testcafe-diograph-folder/
 npx testcafe "electron:." electron/spec/testcafe-e2e-2.test.js
+test_2=$?
 rm -rf tmp/testcafe-diograph-folder
 
 # echo "Run Testcafe E2E test 3 (with development-content-room + example-folder as subfolder)"
 # cp -r public/development-content-room tmp/testcafe-diograph-folder
 # cp -r electron/readers/example-folder/ tmp/testcafe-diograph-folder/
 # npx testcafe "electron:." electron/spec/testcafe-e2e-3.test.js
+# test_3=$?
 # rm -rf tmp/testcafe-diograph-folder
 
 echo "Remove TESTCAFE_TEST_ENV from electron-main.js"
 mv electron-main-original.js electron-main.js
+
+# If any of the tests fail, fail the script by returning non-zero exit code
+if [[ test_1 -ne 0 || test_2 -ne 0 ]]; then exit 1; fi
