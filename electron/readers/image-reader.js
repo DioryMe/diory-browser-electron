@@ -49,10 +49,8 @@ exports.readImage = function readImage(imagePath) {
   }
   try {
     const tags = readExifTags(imagePath)
-    const rootFolder = process.env.PWD
-    const urlPrefix = 'file://'
     return {
-      image: pathToFileURL(imagePath).toString().replace(`${urlPrefix}${rootFolder}`, ''),
+      image: pathToFileURL(imagePath),
       ...getDate(tags),
       ...getLatitude(tags),
       ...getLongitude(tags),
