@@ -6,16 +6,29 @@ import { useStore } from '../../store'
 export const getImageUrl = (imageUrl) => {
   const [{ connections }] = useStore((state) => state.connectors)
   console.log(connections)
-  const filePathPrefix = Object.keys(connections)[1]
-  console.log(filePathPrefix)
+  let filePathPrefix
+  Object.keys(connections).forEach((path) => {
+    if (connections[path].connected) {
+      filePathPrefix = path
+    }
+  })
 
+  // Images from internet
   if (/^http(s)?:\/\//.exec(imageUrl)) {
     return imageUrl
   }
 
-  return filePathPrefix
-    ? `file://${filePathPrefix}${imageUrl}`
-    : `http://localhost:3300/${imageUrl}`
+  console.log(`${imageUrl}`)
+  console.log(`${filePathPrefix}`)
+
+  // Development content (./public)
+  if (/^\.\/public/.exec(filePathPrefix)) {
+    return `${filePathPrefix.replace('./public', 'http://localhost:3300')}${imageUrl}`
+  }
+
+  // Everything else
+  console.log(`file://${filePathPrefix}${imageUrl}`)
+  return `file://${filePathPrefix}${imageUrl}`
 }
 
 const defaultStyle = {
