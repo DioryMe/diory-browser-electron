@@ -4,12 +4,12 @@ import PropTypes from 'prop-types'
 import { useStore } from '../../store'
 
 export const getImageUrl = (imageUrl) => {
+  // Define diograph folder path
+  let diographFolderPath
   const [{ connections }] = useStore((state) => state.connectors)
-  console.log(connections)
-  let filePathPrefix
   Object.keys(connections).forEach((path) => {
     if (connections[path].connected) {
-      filePathPrefix = path
+      diographFolderPath = path
     }
   })
 
@@ -18,17 +18,13 @@ export const getImageUrl = (imageUrl) => {
     return imageUrl
   }
 
-  console.log(`${imageUrl}`)
-  console.log(`${filePathPrefix}`)
-
   // Development content (./public)
-  if (/^\.\/public/.exec(filePathPrefix)) {
-    return `${filePathPrefix.replace('./public', 'http://localhost:3300')}${imageUrl}`
+  if (/^\.\/public/.exec(diographFolderPath)) {
+    return `${diographFolderPath.replace('./public', 'http://localhost:3300')}${imageUrl}`
   }
 
   // Everything else
-  console.log(`file://${filePathPrefix}${imageUrl}`)
-  return `file://${filePathPrefix}${imageUrl}`
+  return `file://${diographFolderPath}${imageUrl}`
 }
 
 const defaultStyle = {
