@@ -50,7 +50,7 @@ exports.readImage = function readImage(imagePath) {
   try {
     const tags = readExifTags(imagePath)
     return {
-      image: pathToFileURL(imagePath),
+      image: pathToFileURL(imagePath).toString(),
       ...getDate(tags),
       ...getLatitude(tags),
       ...getLongitude(tags),

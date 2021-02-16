@@ -1,4 +1,5 @@
 const { basename } = require('path')
+const { pathToFileURL } = require('url')
 const { getFileAndSubfolderPaths } = require('../readers/folder-reader')
 const { generateDioryFromFile, generateDioryFromFolder } = require('./diory-generator')
 
@@ -102,4 +103,17 @@ exports.generateDiograph = async function generateDiograph(folderPath) {
       ...reduceSubfolderDiographsToDiograph(subfolderDiographs),
     },
   }
+}
+
+exports.generateDiographWithRelativeImagePaths = async function generateDiographWithRelativeImagePaths(folderPath) {
+  const diograph = await exports.generateDiograph(folderPath)
+  // Relative paths for images
+  Object.keys(diograph.diograph).forEach((dioryId) => {
+    const diory = diograph.diograph[dioryId]
+    if (diory.image) {
+      diory.image = diory.image.replace(pathToFileURL(folderPath).toString(), '')
+    }
+  })
+
+  return diograph
 }
