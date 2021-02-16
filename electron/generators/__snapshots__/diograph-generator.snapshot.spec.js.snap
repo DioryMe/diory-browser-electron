@@ -6,7 +6,7 @@ Object {
     "created": "created-timestamp",
     "date": "2019-07-09T00:01:16.000Z",
     "id": "uuid-0",
-    "image": "/electron/readers/example-folder/image-with-24-hour.jpg",
+    "image": "/image-with-24-hour.jpg",
     "latitude": 68.27818055555555,
     "longitude": 14.302322222222223,
     "modified": "modified-timestamp",
@@ -15,7 +15,7 @@ Object {
     "created": "created-timestamp",
     "date": "2008-11-01T21:15:11.000Z",
     "id": "uuid-1",
-    "image": "/electron/readers/example-folder/other-image.jpg",
+    "image": "/other-image.jpg",
     "latitude": 43.464455,
     "longitude": 11.881478333333334,
     "modified": "modified-timestamp",
@@ -24,7 +24,7 @@ Object {
     "created": "2019-11-25T19:58:24.734Z",
     "date": "2019-11-25T19:58:24.000Z",
     "id": "uuid-2",
-    "image": "/electron/readers/example-folder/some-image.jpg",
+    "image": "/some-image.jpg",
     "modified": "modified-timestamp",
   },
   "uuid-3": Object {
@@ -37,7 +37,7 @@ Object {
     "created": "2019-10-27T14:40:43.879Z",
     "date": "2019-10-27T14:40:43.000Z",
     "id": "uuid-4",
-    "image": "/electron/readers/example-folder/some-folder/some-folder-image.jpg",
+    "image": "/some-folder/some-folder-image.jpg",
     "latitude": 61.49578611111111,
     "longitude": 23.76756111111111,
     "modified": "modified-timestamp",
@@ -46,7 +46,7 @@ Object {
     "created": "created-timestamp",
     "date": "2019-10-27T14:40:43.000Z",
     "id": "uuid-5",
-    "image": "/electron/readers/example-folder/some-folder/some-folder-image.jpg",
+    "image": "/some-folder/some-folder-image.jpg",
     "latitude": 61.49578611111111,
     "links": Object {
       "some-folder-image.jpg": Object {
@@ -61,8 +61,8 @@ Object {
     "created": "created-timestamp",
     "date": "2017-01-07T07:58:53.500Z",
     "id": "uuid-6",
-    "image": "/electron/readers/example-folder/some-folder/some-folder-image.jpg",
-    "latitude": 57.74614055555556,
+    "image": "/image-with-24-hour.jpg",
+    "latitude": 57.74614055555555,
     "links": Object {
       "image-with-24-hour.jpg": Object {
         "id": "uuid-0",
