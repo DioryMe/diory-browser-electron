@@ -13,7 +13,7 @@ import MapView from './MapView'
 const useToolActions = () => {
   const focusDiory = useFocusTool()
   const deleteDiory = useDeleteTool()
-  const { isActive, onBoundsChange } = useMapFilter()
+  const { active, onBoundsChange } = useMapFilter()
   return {
     onPopupClick: (diory) => {
       focusDiory(diory)
@@ -22,7 +22,7 @@ const useToolActions = () => {
     onMapClick: useCreateTool(),
     onDragEnd: useMoveTool(),
     enableDragging: useMoveToolIsActive(),
-    fitToBounds: !isActive,
+    fitToBounds: !active,
     onBoundsChange,
   }
 }

@@ -4,10 +4,10 @@ import { Pane, SearchInput } from 'evergreen-ui'
 import { useTextFilter } from '../../filters/text/useTextFilter'
 
 const useSearchInput = () => {
-  const { turnOn, setTextFilter, value = '' } = useTextFilter()
+  const { turnOn, setTextFilter, query = '' } = useTextFilter()
 
   return {
-    value,
+    value: query,
     placeholder: 'Search your diory',
     onFocus: ({ target: { value } }) => turnOn(value),
     onChange: ({ target: { value } }) => setTextFilter(value),

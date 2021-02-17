@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
-import { useDispatchActions, useStore } from '../../../store'
+import { useDispatchActions } from '../../../store'
+import { useFilter } from '../hooks/useFilter'
+import { useGenerateGraphFilter } from './useGenerateGraphFilter'
 
 import { setFilter } from '../actions'
 
@@ -8,31 +10,35 @@ const INITIAL_PATH_LENGTH = 1
 const useInitialGraphZoom = () => {
   const { dispatch } = useDispatchActions()
   useEffect(() => {
-    dispatch(setFilter({ grid: INITIAL_PATH_LENGTH }))
+    dispatch(setFilter('grid', { zoom: INITIAL_PATH_LENGTH }))
   }, [dispatch])
+}
+
+const useZoomButtons = () => {
+  const { zoom } = useFilter('grid')
+  const { dispatch } = useDispatchActions()
+  return [
+    {
+      id: 'plus',
+      data: {
+        icon: 'plus',
+      },
+      onClick: () => dispatch(setFilter('grid', { zoom: Math.min(zoom + 1, 3) })),
+    },
+    {
+      id: 'minus',
+      data: {
+        icon: 'minus',
+      },
+      onClick: () => dispatch(setFilter('grid', { zoom: Math.max(zoom - 1, 0) })),
+    },
+  ]
 }
 
 export const useGraphFilter = () => {
   useInitialGraphZoom()
-
-  const [{ grid: zoom }] = useStore((state) => state.filters.filters)
-  const { dispatch } = useDispatchActions()
   return {
-    buttons: [
-      {
-        id: 'plus',
-        data: {
-          icon: 'plus',
-        },
-        onClick: () => dispatch(setFilter({ grid: Math.min(zoom + 1, 3) })),
-      },
-      {
-        id: 'minus',
-        data: {
-          icon: 'minus',
-        },
-        onClick: () => dispatch(setFilter({ grid: Math.max(zoom - 1, 0) })),
-      },
-    ],
+    buttons: useZoomButtons(),
+    graphFilter: useGenerateGraphFilter(),
   }
 }

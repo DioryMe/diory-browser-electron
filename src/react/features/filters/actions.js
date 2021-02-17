@@ -1,16 +1,11 @@
-import { SET_FILTERS, ACTIVATE_FILTER, SET_FILTER } from './actionsTypes'
+import { ACTIVATE_FILTER, SET_FILTER } from './actionsTypes'
 
-export const setFilters = (filters = {}) => ({
-  type: SET_FILTERS,
-  payload: { filters },
-})
-
-export const activateFilter = (filter) => ({
+export const activateFilter = (filter, active) => ({
   type: ACTIVATE_FILTER,
-  payload: { filter },
+  payload: { filter, active },
 })
 
-export const setFilter = (filter) => ({
+export const setFilter = (filter, value) => ({
   type: SET_FILTER,
-  payload: { filter },
+  payload: { filter, value },
 })

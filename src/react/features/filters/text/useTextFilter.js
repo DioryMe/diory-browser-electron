@@ -1,21 +1,23 @@
-import { useEffect } from 'react'
-import { useDispatchActions, useStore } from '../../../store'
+import { useDispatchActions } from '../../../store'
+import { useFilter } from '../hooks/useFilter'
+import { useGenerateTextFilter } from './useGenerateTextFilter'
 
 import { activateFilter, setFilter } from '../actions'
 
 export const useTextFilter = () => {
-  const [{ text: query }] = useStore((state) => state.filters.filters)
+  const { query = '' } = useFilter('text')
 
   const { dispatch } = useDispatchActions()
-  useEffect(() => {
-    dispatch(activateFilter({ text: true }))
-  }, [dispatch])
-
   return {
-    value: query,
-    setTextFilter: (value) => dispatch(setFilter({ text: value })),
-    turnOn: (value) => {
-      dispatch(setFilter({ text: value }))
+    query,
+    setTextFilter: (query) => {
+      dispatch(activateFilter('text', query.length > 1))
+      dispatch(setFilter('text', { query }))
     },
+    turnOn: (query = '') => {
+      dispatch(activateFilter('text', query.length > 1))
+      dispatch(setFilter('text', { query }))
+    },
+    textFilter: useGenerateTextFilter(),
   }
 }

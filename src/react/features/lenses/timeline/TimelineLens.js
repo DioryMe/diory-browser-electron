@@ -14,7 +14,7 @@ const useToolActions = () => {
   const focusDiory = useFocusTool()
   const deleteDiory = useDeleteTool()
   const updateDiory = useUpdateTool()
-  const { isActive, onBoundsChange } = useTimelineFilter()
+  const { active, onBoundsChange } = useTimelineFilter()
   return {
     onPopupClick: (diory) => {
       focusDiory(diory)
@@ -24,7 +24,7 @@ const useToolActions = () => {
     onMapClick: useCreateTool(),
     onDragEnd: useMoveTool(),
     enableDragging: useMoveToolIsActive(),
-    fitToBounds: !isActive,
+    fitToBounds: !active,
     onBoundsChange,
   }
 }

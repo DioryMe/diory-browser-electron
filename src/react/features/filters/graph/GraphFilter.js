@@ -5,7 +5,7 @@ import { useGraphFilter } from './useGraphFilter'
 import ZoomBar from '../../../components/ZoomBar'
 
 const GraphFilter = () => {
-  const [{ grid: gridFilterIsActive }] = useStore((state) => state.filters.active)
+  const [{ grid: { active: gridFilterIsActive } = {} }] = useStore((state) => state.filters.filters)
   const [{ selectedLensId }] = useStore((state) => state.lenses)
   const gridLensIsActive = selectedLensId === 'grid'
   const { buttons } = useGraphFilter()
