@@ -97,12 +97,16 @@ function getAverageDate(linkedDiorys) {
  * Does this replace link-generator.js generateLink?
  */
 function generateLinks(dioryLinks) {
-  return Object.entries(dioryLinks).reduce(
-    (obj, [linkKey, { id }]) => ({
-      ...obj,
-      [linkKey]: { id },
-    }),
-    {}
+  return (
+    !!dioryLinks && {
+      links: Object.entries(dioryLinks).reduce(
+        (obj, [linkKey, { id }]) => ({
+          ...obj,
+          [linkKey]: { id },
+        }),
+        {}
+      ),
+    }
   )
 }
 
