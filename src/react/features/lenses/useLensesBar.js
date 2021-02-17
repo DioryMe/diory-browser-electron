@@ -7,17 +7,18 @@ import { lenses } from './Lenses'
 
 export const useLensesBar = () => {
   const [{ selectedLensId }] = useStore((state) => state.lenses)
-  const [{ active }] = useStore((state) => state.filters)
+  const [{ filters }] = useStore((state) => state.filters)
 
   const { dispatch } = useDispatchActions()
   const handleClick = (id) => {
     if (id !== selectedLensId) {
       return dispatch(selectLens(id))
     }
-    if (!active[id]) {
-      return dispatch(activateFilter({ [id]: true }))
+    const { active } = filters[id] || {}
+    if (!active) {
+      return dispatch(activateFilter(id, true))
     }
-    return dispatch(activateFilter({ [id]: false }))
+    return dispatch(activateFilter(id, false))
   }
 
   return {
@@ -27,10 +28,10 @@ export const useLensesBar = () => {
       diory,
       onSelect: () => handleClick(id),
       isSelected: id === selectedLensId,
-      isFiltered: !!active[id],
+      isFiltered: filters[id] && filters[id].active,
       onRemove: (event) => {
         event.stopPropagation()
-        dispatch(activateFilter({ [id]: false }))
+        dispatch(activateFilter(id, false))
       },
     })),
   }
