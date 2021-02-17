@@ -11,9 +11,9 @@ const LensesBarView = ({ lenses }) => (
             {...lens}
             onClick={onSelect}
             appearance="primary"
-            color=""
             borderRadius="16px"
             alignSelf="center"
+            opacity={isSelected ? 1 : 0.7}
             marginRight={8}
             paddingLeft={14}
             paddingRight={14}
