@@ -19,25 +19,13 @@ function reduceDiorysToDiograph(diorys) {
 }
 
 function reduceSubfolderDiographsToDiograph(subfolderDiographs) {
-  const diograph = subfolderDiographs.reduce(
-    (obj, subfolderDiograph) => ({
+  return subfolderDiographs.reduce(
+    (obj, { diograph }) => ({
       ...obj,
-      ...subfolderDiograph.diograph,
+      ...diograph,
     }),
     {}
   )
-
-  // diory.links have only ids instead of the whole diory
-  Object.keys(diograph).forEach((key) => {
-    const diory = diograph[key]
-    if (diory && diory.links) {
-      Object.keys(diory.links).forEach((key) => {
-        diory.links[key] = { id: diory.links[key].id }
-      })
-    }
-  })
-
-  return diograph
 }
 
 async function generateDioryLinksFromFiles(filePaths) {
@@ -89,12 +77,12 @@ function reduceSubfolderDiographsToDioryLinks(subfolderDiographs) {
  *   }
  * }
  */
-async function generateFolderDiograph(folderPath) {
+exports.generateDiograph = async function generateDiograph(folderPath) {
   const { filePaths = [], subfolderPaths = [] } = (await getFileAndSubfolderPaths(folderPath)) || {}
 
   const fileDioryLinks = await generateDioryLinksFromFiles(filePaths)
 
-  const subfolderDiographs = await Promise.all(subfolderPaths.map(generateFolderDiograph))
+  const subfolderDiographs = await Promise.all(subfolderPaths.map(generateDiograph))
 
   const subfolderDioryLinks = reduceSubfolderDiographsToDioryLinks(subfolderDiographs)
 
@@ -113,17 +101,5 @@ async function generateFolderDiograph(folderPath) {
       ...reduceDiorysToDiograph(Object.values(fileDioryLinks)),
       ...reduceSubfolderDiographsToDiograph(subfolderDiographs),
     },
-  }
-}
-
-// One more round of reduceSubfolderDiographsToDiograph for the diograph folder diograph
-// - remove unnecessary linkKey, rootId and replace linkDiories with linkIds
-exports.generateDiograph = async function (folderPath) {
-  const diograph = await generateFolderDiograph(folderPath)
-  const cleanedUpDiograph = reduceSubfolderDiographsToDiograph([diograph])
-  return {
-    linkKey: diograph.linkKey,
-    rootId: diograph.rootId,
-    diograph: cleanedUpDiograph,
   }
 }
