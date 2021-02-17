@@ -23,7 +23,6 @@ function reduceSubfolderDiographsToDiograph(subfolderDiographs) {
     (obj, subfolderDiograph) => ({
       ...obj,
       ...subfolderDiograph.diograph,
-      rootId: subfolderDiograph.rootId,
     }),
     {}
   )
@@ -122,10 +121,9 @@ async function generateFolderDiograph(folderPath) {
 exports.generateDiograph = async function (folderPath) {
   const diograph = await generateFolderDiograph(folderPath)
   const cleanedUpDiograph = reduceSubfolderDiographsToDiograph([diograph])
-  const diographWithoutRootId = (({ rootId, ...o }) => o)(cleanedUpDiograph)
   return {
     linkKey: diograph.linkKey,
     rootId: diograph.rootId,
-    diograph: diographWithoutRootId,
+    diograph: cleanedUpDiograph,
   }
 }
