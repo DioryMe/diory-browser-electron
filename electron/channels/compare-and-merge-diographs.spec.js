@@ -16,6 +16,6 @@ describe('compareAndMergeDiographs', () => {
 
   it('works with fixture jsons generated from changed folder structure (Tampere folder added)', () => {
     const response = compareAndMergeDiographs(existingDiograph, newDiographDioryAdded)
-    expect(response).toEqual(['/Tampere'])
+    expect(response.map((p) => p.path)).toEqual(['/Tampere'])
   })
 })
