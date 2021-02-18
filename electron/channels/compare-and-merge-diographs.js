@@ -21,10 +21,7 @@ function compareDiographs(existingDiograph, folderStructureDiograph) {
     diory: diograph[id],
   }))
 
-  diograph = existingDiograph.diograph
-  rootId = existingDiograph.rootId
-  // For some reason this didnt work:
-  // ({ diograph, rootId } = existingDiograph)
+  ;({ diograph, rootId } = existingDiograph)
   const existingRootDiory = diograph[rootId]
   const existingRootDioryPath = '/'
   const existingRootDioryLinkedDiories = Object.entries(
