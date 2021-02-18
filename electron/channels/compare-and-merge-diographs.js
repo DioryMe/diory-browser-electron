@@ -4,13 +4,12 @@ exports.compareAndMergeDiographs = function compareAndMergeDiographs(
   existingDiograph,
   folderStructureDiograph
 ) {
-  let diograph = existingDiograph
   const newDiories = compareDiographs(existingDiograph, folderStructureDiograph)
   if (!isEmpty(newDiories)) {
-    diograph = addDioriesToDiograph(newDiories, existingDiograph)
+    return addDioriesToDiograph(newDiories, existingDiograph)
   }
 
-  return diograph
+  return existingDiograph
 }
 
 function compareDiographs(existingDiograph, folderStructureDiograph) {
@@ -35,5 +34,9 @@ function generatePathList(rootId, path, diograph) {
 }
 
 function addDioriesToDiograph(diories, diograph) {
-  return diories
+  diograph.diograph = {
+    ...diograph.diograph,
+    ...diories.map((diory) => ({ [diory.diory.id]: diory.diory }))[0],
+  }
+  return diograph
 }
