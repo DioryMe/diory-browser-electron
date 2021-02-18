@@ -2,7 +2,10 @@ const { join } = require('path')
 const glob = require('glob')
 const { v4: uuid } = require('uuid')
 
-const { generateDiograph } = require('./diograph-generator')
+// NOTE: This uses a bit special generateDiographWithRelativeImagePaths !!!
+const { generateDiographWithRelativeImagePaths } = require('./diograph-generator')
+
+const generateDiograph = generateDiographWithRelativeImagePaths
 
 // Mock fs.statSync
 jest.mock('fs', () => {
