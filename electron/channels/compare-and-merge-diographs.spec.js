@@ -21,5 +21,6 @@ describe('compareAndMergeDiographs', () => {
     const tampereDiory = { [tampereId]: newDiographDioryAdded.diograph[tampereId] }
     expect(response.diograph).toEqual({ ...existingDiograph.diograph, ...tampereDiory })
     expect(response.rootId).toEqual(existingDiograph.rootId)
+    expect(response.diograph[response.rootId].links.Tampere).toEqual({ id: tampereId })
   })
 })
