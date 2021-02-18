@@ -36,8 +36,6 @@ exports.readDiographJson = function readDiographJson(path) {
   }
 
   backendLogger.info('readDiographJson: diograph.json not found in', path)
-  return {
-    rootId: undefined,
-    diograph: undefined,
-  }
+
+  return undefined
 }

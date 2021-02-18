@@ -18,4 +18,13 @@ describe('getRoomEventHandler', () => {
 
     expect(response).toEqual(returnValue)
   })
+
+  it('doesnt work', async () => {
+    const exampleFolderPath = './electron/readers/example-folder'
+    const params = { address: exampleFolderPath }
+
+    const response = await eventHandlerWrapper('GET_ROOM', getRoomEventHandler)(mockEvent, params)
+
+    expect(response).toEqual(undefined)
+  })
 })
