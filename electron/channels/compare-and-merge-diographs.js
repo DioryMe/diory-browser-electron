@@ -13,21 +13,28 @@ exports.compareAndMergeDiographs = function compareAndMergeDiographs(
 }
 
 function compareDiographs(existingDiograph, folderStructureDiograph) {
-  const { diograph, rootId } = folderStructureDiograph
+  let { diograph, rootId } = folderStructureDiograph
   const newRootDiory = diograph[rootId]
   const newRootDioryPath = '/'
-  const newRootDioryLinkedDiories = Object.entries(newRootDiory.links).map(([key, { id }]) => {
-    console.log({ path: `${newRootDioryPath}${key}`, diory: diograph[id] })
-    return { path: `${newRootDioryPath}${key}`, diory: diograph[id] }
-  })
-  return newRootDioryLinkedDiories
+  const newRootDioryLinkedDiories = Object.entries(newRootDiory.links).map(([key, { id }]) => ({
+    path: `${newRootDioryPath}${key}`,
+    diory: diograph[id],
+  }))
 
-  // const existingRootDiory = diograph[rootId]
-  // const newRootDioryPath = '/'
-  // const newRootDioryLinkedDiories = Object.entries(newRootDiory.links).map(([key, { id }]) => {
-  //   console.log({ path: `${newRootDioryPath}${key}`, diory: diograph[id] })
-  //   return { path: `${newRootDioryPath}${key}`, diory: diograph[id] }
-  // })
+  diograph = existingDiograph.diograph
+  rootId = existingDiograph.rootId
+  // For some reason this didnt work:
+  // ({ diograph, rootId } = existingDiograph)
+  const existingRootDiory = diograph[rootId]
+  const existingRootDioryPath = '/'
+  const existingRootDioryLinkedDiories = Object.entries(
+    existingRootDiory.links
+  ).map(([key, { id }]) => ({ path: `${existingRootDioryPath}${key}`, diory: diograph[id] }))
+
+  console.log(existingRootDioryLinkedDiories.map((jee) => jee.path))
+  console.log(newRootDioryLinkedDiories.map((jee) => jee.path))
+
+  return 'jee'
 }
 
 function addDioriesToDiograph(diories, diograph) {
