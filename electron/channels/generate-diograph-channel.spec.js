@@ -1,5 +1,6 @@
 const { eventHandlerWrapper } = require('./channel-util')
 const { generateDiographEventHandler } = require('./generate-diograph-channel')
+const { compareAndMergeDiographs } = require('./compare-and-merge-diographs')
 const { generateDiograph } = require('../generators/diograph-generator')
 const { saveDiographJson } = require('../lib/save-diograph-json')
 const { readDiographJson } = require('../lib/read-diograph-json')
@@ -7,6 +8,7 @@ const { readDiographJson } = require('../lib/read-diograph-json')
 jest.mock('../lib/save-diograph-json')
 jest.mock('../lib/read-diograph-json')
 jest.mock('../generators/diograph-generator')
+jest.mock('../channels/compare-and-merge-diographs')
 
 describe('generateDiographEventHandler', () => {
   let act
@@ -31,7 +33,7 @@ describe('generateDiographEventHandler', () => {
   describe('GIVEN diograph.json not found (readDiographJson returns undefined)', () => {
     beforeEach(() => {
       saveDiographJson.mockResolvedValue(undefined)
-      readDiographJson.mockReturnValue({ rootId: undefined, diograph: undefined })
+      readDiographJson.mockReturnValue(undefined)
       generateDiograph.mockResolvedValue(someDiograph)
     })
 
@@ -60,6 +62,7 @@ describe('generateDiographEventHandler', () => {
     describe('WHEN matching diograph.json and generated diograph', () => {
       beforeEach(() => {
         generateDiograph.mockResolvedValue(someDiograph)
+        compareAndMergeDiographs.mockReturnValue(someDiograph)
       })
 
       it('returns readDiographJson return value + path', async () => {
@@ -71,17 +74,11 @@ describe('generateDiographEventHandler', () => {
 
     describe('WHEN non-matching diograph.json and generated diograph', () => {
       beforeEach(() => {
-        const someOtherDiograph = {
-          rootId: someDiograph.rootId,
-          diograph: {
-            ...someDiograph.diograph,
-            'some-other-diory-id': 'some-other-diory-object',
-          },
-        }
-        generateDiograph.mockResolvedValue(someOtherDiograph)
+        generateDiograph.mockResolvedValue('some-diograph')
+        compareAndMergeDiographs.mockReturnValue(someDiograph)
       })
 
-      it('returns readDiographJson return value + path', async () => {
+      it('returns compareAndMergeDiographs return value + path', async () => {
         const response = await act()
 
         expect(response).toEqual(responseObject)
