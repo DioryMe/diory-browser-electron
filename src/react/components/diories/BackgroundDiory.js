@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Pane, Heading } from 'evergreen-ui'
 import BackgroundVideo from './BackgroundVideo'
 
-import { Image, getImageUrl } from './Image'
+import Image, { getImageUrl } from './Image'
 
 const BackgroundDiory = ({ diory, gradient, gradientRgba, onClick, children, ...props }) => {
   const { id, text, image, video, style: dioryStyle = {} } = diory

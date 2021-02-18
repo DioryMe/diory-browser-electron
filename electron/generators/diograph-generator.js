@@ -105,7 +105,9 @@ exports.generateDiograph = async function generateDiograph(folderPath) {
   }
 }
 
-exports.generateDiographWithRelativeImagePaths = async function generateDiographWithRelativeImagePaths(folderPath) {
+exports.generateDiographWithRelativeImagePaths = async function generateDiographWithRelativeImagePaths(
+  folderPath
+) {
   const diograph = await exports.generateDiograph(folderPath)
   // Relative paths for images
   Object.keys(diograph.diograph).forEach((dioryId) => {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Pane, Icon } from 'evergreen-ui'
 
-import { Image, getImageUrl } from './Image'
+import Image, { getImageUrl } from './Image'
 import Video from './Video'
 
 const colors = ['#5bc0eb', '#fcd600', '#9bc53d', '#e55934', '#fa7921']
