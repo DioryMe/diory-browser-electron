@@ -3,12 +3,7 @@ import Box from 'ui-box'
 import PropTypes from 'prop-types'
 import { useStore } from '../../store'
 
-/* eslint-disable no-unreachable */
 export const getImageUrl = (imageUrl) => {
-  // NOTE: If generateDiographWithRelativeImagePaths is not used
-  // this shouldn't make any changes to the imageUrl
-  return imageUrl
-
   // Define diograph folder path
   let diographFolderPath
   const [{ connections }] = useStore((state) => state.connectors)
@@ -28,10 +23,10 @@ export const getImageUrl = (imageUrl) => {
     return `${diographFolderPath.replace('./public', 'http://localhost:3300')}${imageUrl}`
   }
 
-  // Everything else
-  return `file://${diographFolderPath}${imageUrl}`
+  // NOTE: If generateDiographWithRelativeImagePaths is not used
+  // this shouldn't make any changes to the imageUrl
+  return imageUrl // `file://${diographFolderPath}${imageUrl}`
 }
-/* eslint-enable no-unreachable */
 
 const defaultStyle = {
   position: 'absolute',
