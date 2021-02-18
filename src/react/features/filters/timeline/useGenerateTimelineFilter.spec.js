@@ -31,48 +31,42 @@ describe('useGenerateTimelineFilter', () => {
     describe('given diory is inside dates', () => {
       it('returns true', () => {
         const timelineFilter = useGenerateTimelineFilter()
-        expect(timelineFilter({ date: 15 }))
-          .toEqual(true)
+        expect(timelineFilter({ date: 15 })).toEqual(true)
       })
     })
 
     describe('given diory is on start date', () => {
       it('returns true', () => {
         const timelineFilter = useGenerateTimelineFilter()
-        expect(timelineFilter({ date: 10 }))
-          .toEqual(true)
+        expect(timelineFilter({ date: 10 })).toEqual(true)
       })
     })
 
     describe('given diory is on end date', () => {
       it('returns true', () => {
         const timelineFilter = useGenerateTimelineFilter()
-        expect(timelineFilter({ date: 20 }))
-          .toEqual(true)
+        expect(timelineFilter({ date: 20 })).toEqual(true)
       })
     })
 
     describe('given diory is before dates', () => {
       it('returns false', () => {
         const timelineFilter = useGenerateTimelineFilter()
-        expect(timelineFilter({ date: 5 }))
-          .toEqual(false)
+        expect(timelineFilter({ date: 5 })).toEqual(false)
       })
     })
 
     describe('given diory is after dates', () => {
       it('returns false', () => {
         const timelineFilter = useGenerateTimelineFilter()
-        expect(timelineFilter({ date: 25 }))
-          .toEqual(false)
+        expect(timelineFilter({ date: 25 })).toEqual(false)
       })
     })
 
     describe('given diory do not have date', () => {
       it('returns true', () => {
         const timelineFilter = useGenerateTimelineFilter()
-        expect(timelineFilter({}))
-          .toEqual(false)
+        expect(timelineFilter({})).toEqual(false)
       })
     })
 
@@ -83,8 +77,7 @@ describe('useGenerateTimelineFilter', () => {
 
       it('returns true', () => {
         const timelineFilter = useGenerateTimelineFilter()
-        expect(timelineFilter({ date: 25 }))
-          .toEqual(true)
+        expect(timelineFilter({ date: 25 })).toEqual(true)
       })
     })
   })
@@ -102,8 +95,7 @@ describe('useGenerateTimelineFilter', () => {
 
     it('returns true', () => {
       const timelineFilter = useGenerateTimelineFilter()
-      expect(timelineFilter({ date: 5 }))
-        .toEqual(true)
+      expect(timelineFilter({ date: 5 })).toEqual(true)
     })
   })
 })

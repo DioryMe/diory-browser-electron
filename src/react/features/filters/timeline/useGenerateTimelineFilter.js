@@ -6,9 +6,5 @@ function datesContainDioryDate({ startDate, endDate }, { date }) {
 
 export const useGenerateTimelineFilter = () => {
   const { active, dates } = useFilter('timeline')
-  return (diory) => (
-    !active ||
-    !dates ||
-    datesContainDioryDate(dates, diory)
-  )
+  return (diory) => !active || !dates || datesContainDioryDate(dates, diory)
 }

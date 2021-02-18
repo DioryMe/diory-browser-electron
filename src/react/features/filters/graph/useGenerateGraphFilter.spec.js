@@ -47,24 +47,36 @@ describe('useGraphFilter', () => {
       })
 
       const graphFilterReturnsExpected = [
-        [
-          0,
-          ['someDioryId'],
-          ['linkedDioryId1','linkedDioryId11','linkedDioryId21']
-        ],
+        [0, ['someDioryId'], ['linkedDioryId1', 'linkedDioryId11', 'linkedDioryId21']],
         [
           1,
-          ['someDioryId','linkedDioryId1','linkedDioryId2'],
-          ['linkedDioryId11','linkedDioryId21','linkedDioryId22']
+          ['someDioryId', 'linkedDioryId1', 'linkedDioryId2'],
+          ['linkedDioryId11', 'linkedDioryId21', 'linkedDioryId22'],
         ],
         [
           2,
-          ['someDioryId','linkedDioryId1','linkedDioryId2','linkedDioryId11','linkedDioryId12','linkedDioryId21','linkedDioryId22'],
+          [
+            'someDioryId',
+            'linkedDioryId1',
+            'linkedDioryId2',
+            'linkedDioryId11',
+            'linkedDioryId12',
+            'linkedDioryId21',
+            'linkedDioryId22',
+          ],
           [],
         ],
         [
           3,
-          ['someDioryId','linkedDioryId1','linkedDioryId2','linkedDioryId11','linkedDioryId12','linkedDioryId21','linkedDioryId22'],
+          [
+            'someDioryId',
+            'linkedDioryId1',
+            'linkedDioryId2',
+            'linkedDioryId11',
+            'linkedDioryId12',
+            'linkedDioryId21',
+            'linkedDioryId22',
+          ],
           [],
         ],
       ]
@@ -124,7 +136,7 @@ describe('useGraphFilter', () => {
       describe('given no grid filter', () => {
         beforeEach(() => {
           mockState.filters = {
-            filters: {}
+            filters: {},
           }
         })
 
@@ -171,12 +183,12 @@ describe('useGraphFilter', () => {
         beforeEach(() => {
           mockState.filters = {
             filters: {
-              grid: { zoom: 3, active: true }
-            }
+              grid: { zoom: 3, active: true },
+            },
           }
         })
 
-        const dioryIdsInCycle = ['someDioryId','otherDioryId']
+        const dioryIdsInCycle = ['someDioryId', 'otherDioryId']
         dioryIdsInCycle.forEach((id) => {
           it('returns true for diorys included in cycle', () => {
             expect(useGenerateGraphFilter()({ id })).toEqual(true)
@@ -200,8 +212,8 @@ describe('useGraphFilter', () => {
         beforeEach(() => {
           mockState.filters = {
             filters: {
-              grid: { zoom: 1, active: true }
-            }
+              grid: { zoom: 1, active: true },
+            },
           }
         })
 
