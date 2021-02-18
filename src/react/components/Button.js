@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { IconButton } from 'evergreen-ui'
-import { getIcon } from '../utils/icons'
+import Icon from './Icon'
 
 const getActiveProps = (active) =>
   active && {
@@ -19,7 +19,7 @@ const Button = ({ style = {}, data, active, onClick }) => (
   >
     <IconButton
       {...getActiveProps(active)}
-      icon={getIcon(data.icon)}
+      icon={<Icon icon={data.icon} />}
       iconSize={24}
       height={56}
       margin={8}

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, Tab, Icon } from 'evergreen-ui'
+import { Button, Tab } from 'evergreen-ui'
+import Icon from './Icon'
 
 const LensButton = ({ diory, isSelected, isFiltered, onSelect, onRemove, ...lens }) =>
   isFiltered ? (
