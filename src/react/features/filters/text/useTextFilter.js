@@ -11,12 +11,12 @@ export const useTextFilter = () => {
   return {
     query,
     setTextFilter: (query) => {
-      dispatch(activateFilter('text', query.length > 1))
       dispatch(setFilter('text', { query }))
+      dispatch(activateFilter('text', !!query.length))
     },
     turnOn: (query = '') => {
-      dispatch(activateFilter('text', query.length > 1))
       dispatch(setFilter('text', { query }))
+      dispatch(activateFilter('text', !!query.length))
     },
     textFilter: useGenerateTextFilter(),
   }
