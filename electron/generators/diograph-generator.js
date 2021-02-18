@@ -95,7 +95,7 @@ exports.generateDiograph = async function generateDiograph(folderPath) {
 
   return {
     linkKey: basename(folderPath),
-    rootId: rootDiory && rootDiory.id, // Don't do anything for tests
+    rootId: rootDiory.id,
     diograph: {
       ...reduceDiorysToDiograph([rootDiory]),
       ...reduceDiorysToDiograph(Object.values(fileDioryLinks)),
