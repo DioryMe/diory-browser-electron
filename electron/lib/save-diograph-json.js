@@ -10,7 +10,7 @@ const backendLogger = require('electron-log')
  * @return {Promise} - Resolves with no arguments upon success
  *
  */
-exports.saveDiographJson = function (path, diograph, rootId) {
+exports.saveDiographJson = function saveDiographJson(path, diograph, rootId) {
   backendLogger.info('Saving diograph.json to:', path)
   const fileContent = { rootId, diograph }
   return fsPromise.writeFile(`${path}/diograph.json`, JSON.stringify(fileContent, null, 2))

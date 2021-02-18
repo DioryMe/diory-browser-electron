@@ -50,7 +50,7 @@ function generateDiory({ text, date, image, video, latitude, longitude, created,
  *      modified: 'modified'
  *    }
  */
-exports.generateDioryFromFile = function (filePath) {
+exports.generateDioryFromFile = function generateDioryFromFile(filePath) {
   const type = resolveFileType(filePath)
   const fileData = readFileData(type, filePath) || {}
   return generateDiory(fileData)
@@ -130,7 +130,7 @@ function generateLinks(dioryLinks) {
  *      ]
  *    }
  */
-exports.generateDioryFromFolder = function (folderPath, dioryLinks = {}) {
+exports.generateDioryFromFolder = function generateDioryFromFolder(folderPath, dioryLinks = {}) {
   const linkedDiorys = Object.values(dioryLinks)
   return {
     ...generateDiory({

@@ -28,7 +28,7 @@ const fs = require('fs')
  * }
  *
  */
-exports.getHomeEventHandler = async function (event, params) {
+exports.getHomeEventHandler = async function getHomeEventHandler(event, params) {
   const store = new HomeStore({
     cwd: process.env.TESTCAFE_TEST ? `${process.env.PWD}/tmp/${Date.now()}` : undefined,
   })
@@ -51,7 +51,9 @@ exports.getHomeEventHandler = async function (event, params) {
 /*
  * Returns true if roomConnection is ok and false if not
  */
-exports.roomConnectionOK = (connectionURI, connectionConfig) => fs.existsSync(connectionURI)
+exports.roomConnectionOK = function roomConnectionOK(connectionURI, connectionConfig) {
+  return fs.existsSync(connectionURI)
+}
 
 // Path to Welcome room folder
 // - different in production build (.dmg/.exe) than in local build

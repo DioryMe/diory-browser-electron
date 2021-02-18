@@ -13,14 +13,14 @@ if (process.env.NODE_ENV === 'test') {
  * @param {function(): Promise} eventHandler - Promise which resolves with responseObject and rejects with errorObject
  * @return {function(): void} Specific eventHandler function to be given for ipcMain.on as a second argument
  */
-exports.eventHandlerWrapper = (channelName, eventHandler) => {
-  const specificEventHandler = (event, params) => {
-    const success = (responseObject) => {
+exports.eventHandlerWrapper = function eventHandlerWrapper(channelName, eventHandler) {
+  function specificEventHandler(event, params) {
+    function success(responseObject) {
       backendLogger.info('Backend IPC response:', channelName, responseObject)
       return responseObject
     }
 
-    const err = (e) => {
+    function err(e) {
       backendLogger.error('ERROR: Backend IPC response:', channelName, e.message)
       return e
     }
