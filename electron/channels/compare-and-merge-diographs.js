@@ -7,7 +7,7 @@ exports.compareAndMergeDiographs = function compareAndMergeDiographs(
 ) {
   const newDiories = compareDiographs(existingDiograph, folderStructureDiograph)
   if (!isEmpty(newDiories)) {
-    return addDioriesToDiograph(newDiories, existingDiograph)
+    return addAndLinkDioriesToDiograph(newDiories, existingDiograph)
   }
   return existingDiograph
 }
@@ -36,11 +36,23 @@ function generatePathList(rootId, path, diograph) {
 }
 
 // Returns diograph with rootId
-function addDioriesToDiograph(diories, diograph) {
+function addAndLinkDioriesToDiograph(diories, diograph) {
   // diories = [{ path: ..., diory: ... }, { path: ..., diory: ... }, ... ]
   diograph.diograph = {
     ...diograph.diograph,
     ...diories.reduce((obj, { diory }) => ({ ...obj, [diory.id]: diory }), {}),
   }
+
+  // Linking:
+  // => /Tampere                        diograph[rootId]
+  // => /Tampere/frenkell.jpg           diograph[diograph[rootId].id].links['Tampere'].id]
+  // => /Tampere/Frenkell/frenkell.jpg  diograph[diograph[diograph[rootId].id].links['Tampere'].id].links['Frenkell'].id
+
+  // TODO: Make this recursive^, currently works only on root level
+  const { rootId } = diograph
+  diories.forEach((diory) => {
+    diograph.diograph[rootId].links.Tampere = { id: diory.diory.id }
+  })
+
   return diograph
 }
