@@ -42,4 +42,4 @@ echo "Remove TESTCAFE_TEST_ENV from electron-main.js"
 mv electron-main-original.js electron-main.js
 
 # If any of the tests fail, fail the script by returning non-zero exit code
-if [[ test_1 -ne 0 || test_2 -ne 0 ]]; then exit 1; fi
+if [[ test_1 -ne 0 || test_2 -ne 0 || test_3 -ne 0 ]]; then exit 1; fi
