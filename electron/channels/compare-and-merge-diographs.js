@@ -1,5 +1,6 @@
 const { isEmpty } = require('../lib/utils')
 
+// Returns diograph with rootId
 exports.compareAndMergeDiographs = function compareAndMergeDiographs(
   existingDiograph,
   folderStructureDiograph
@@ -8,10 +9,10 @@ exports.compareAndMergeDiographs = function compareAndMergeDiographs(
   if (!isEmpty(newDiories)) {
     return addDioriesToDiograph(newDiories, existingDiograph)
   }
-
   return existingDiograph
 }
 
+// Returns [{ path: ..., diory: ... }, { path: ..., diory: ... }, ... ]
 function compareDiographs(existingDiograph, folderStructureDiograph) {
   let { diograph, rootId } = folderStructureDiograph
   const folderStructureDiographPathList = generatePathList(rootId, '/', diograph)
@@ -23,6 +24,7 @@ function compareDiographs(existingDiograph, folderStructureDiograph) {
   return folderStructureDiographPathList.filter(({ path }) => !paths2.includes(path))
 }
 
+// Returns [{ path: ..., diory: ... }, { path: ..., diory: ... }, ... ]
 function generatePathList(rootId, path, diograph) {
   const rootDiory = diograph[rootId]
   const linkedDioryPaths = Object.entries(rootDiory.links).map(([key, { id }]) => ({
@@ -33,10 +35,12 @@ function generatePathList(rootId, path, diograph) {
   return linkedDioryPaths
 }
 
+// Returns diograph with rootId
 function addDioriesToDiograph(diories, diograph) {
+  // diories = [{ path: ..., diory: ... }, { path: ..., diory: ... }, ... ]
   diograph.diograph = {
     ...diograph.diograph,
-    ...diories.map((diory) => ({ [diory.diory.id]: diory.diory }))[0],
+    ...diories.reduce((obj, { diory }) => ({ ...obj, [diory.id]: diory }), {}),
   }
   return diograph
 }
