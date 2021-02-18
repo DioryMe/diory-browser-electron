@@ -11,11 +11,11 @@ const newDiographDioryAdded = JSON.parse(
 describe('compareAndMergeDiographs', () => {
   it('works with fixture jsons generated from same folder structure', () => {
     const response = compareAndMergeDiographs(existingDiograph, newDiographSame)
-    expect(response).toEqual(existingDiograph)
+    expect(response).toEqual([])
   })
 
   it('works with fixture jsons generated from changed folder structure (Tampere folder added)', () => {
     const response = compareAndMergeDiographs(existingDiograph, newDiographDioryAdded)
-    expect(response).toEqual(existingDiograph)
+    expect(response).toEqual(['/Tampere'])
   })
 })
