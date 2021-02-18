@@ -13,7 +13,21 @@ exports.compareAndMergeDiographs = function compareAndMergeDiographs(
 }
 
 function compareDiographs(existingDiograph, folderStructureDiograph) {
-  return []
+  const { diograph, rootId } = folderStructureDiograph
+  const newRootDiory = diograph[rootId]
+  const newRootDioryPath = '/'
+  const newRootDioryLinkedDiories = Object.entries(newRootDiory.links).map(([key, { id }]) => {
+    console.log({ path: `${newRootDioryPath}${key}`, diory: diograph[id] })
+    return { path: `${newRootDioryPath}${key}`, diory: diograph[id] }
+  })
+  return newRootDioryLinkedDiories
+
+  // const existingRootDiory = diograph[rootId]
+  // const newRootDioryPath = '/'
+  // const newRootDioryLinkedDiories = Object.entries(newRootDiory.links).map(([key, { id }]) => {
+  //   console.log({ path: `${newRootDioryPath}${key}`, diory: diograph[id] })
+  //   return { path: `${newRootDioryPath}${key}`, diory: diograph[id] }
+  // })
 }
 
 function addDioriesToDiograph(diories, diograph) {

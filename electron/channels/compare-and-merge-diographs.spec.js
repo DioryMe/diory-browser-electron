@@ -9,17 +9,6 @@ const newDiographDioryAdded = JSON.parse(
 )
 
 describe('compareAndMergeDiographs', () => {
-  let act
-
-  beforeEach(() => {
-    act = () => compareAndMergeDiographs('existing-diograph', 'folder-structure-diograph')
-  })
-
-  it('works', () => {
-    const response = act()
-    expect(response).toEqual('existing-diograph')
-  })
-
   it('works with fixture jsons generated from same folder structure', () => {
     const response = compareAndMergeDiographs(existingDiograph, newDiographSame)
     expect(response).toEqual(existingDiograph)
