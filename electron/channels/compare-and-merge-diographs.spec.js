@@ -17,10 +17,9 @@ describe('compareAndMergeDiographs', () => {
 
   it('works with fixture jsons generated from changed folder structure (Tampere folder added)', () => {
     const response = compareAndMergeDiographs(existingDiograph, newDiographDioryAdded)
-    expect(response.map((p) => p.path)).toEqual(['/Tampere'])
-    // const tampereId = "af15ae0f-73ee-444d-8113-b8f2e32f07a1"
-    // const tampereDiory = { [tampereId]: newDiographDioryAdded[tampereId] }
-    // expect(response.diograph).toEqual({ ...existingDiograph.diograph, ...tampereDiory })
-    // expect(response.rootId).toEqual(existingDiograph.rootId)
+    const tampereId = 'af15ae0f-73ee-444d-8113-b8f2e32f07a1'
+    const tampereDiory = { [tampereId]: newDiographDioryAdded.diograph[tampereId] }
+    expect(response.diograph).toEqual({ ...existingDiograph.diograph, ...tampereDiory })
+    expect(response.rootId).toEqual(existingDiograph.rootId)
   })
 })
