@@ -28,40 +28,35 @@ describe('useGenerateTextFilter', () => {
     describe('given diory text includes query', () => {
       it('returns true', () => {
         const mapFilter = useGenerateTextFilter()
-        expect(mapFilter({ text: 'some-text' }))
-          .toEqual(true)
+        expect(mapFilter({ text: 'some-text' })).toEqual(true)
       })
     })
 
     describe('given diory text includes query in uppercase', () => {
       it('returns true', () => {
         const mapFilter = useGenerateTextFilter()
-        expect(mapFilter({ text: 'SOME-text' }))
-          .toEqual(true)
+        expect(mapFilter({ text: 'SOME-text' })).toEqual(true)
       })
     })
 
     describe('given diory have empty text', () => {
       it('returns false', () => {
         const mapFilter = useGenerateTextFilter()
-        expect(mapFilter({ text: '' }))
-          .toEqual(false)
+        expect(mapFilter({ text: '' })).toEqual(false)
       })
     })
 
     describe('given diory do not have text', () => {
       it('returns false', () => {
         const mapFilter = useGenerateTextFilter()
-        expect(mapFilter({}))
-          .toEqual(false)
+        expect(mapFilter({})).toEqual(false)
       })
     })
 
     describe('given diory text does not include query', () => {
       it('returns false', () => {
         const mapFilter = useGenerateTextFilter()
-        expect(mapFilter({ text: 'other-text' }))
-          .toEqual(false)
+        expect(mapFilter({ text: 'other-text' })).toEqual(false)
       })
 
       describe('given text filter is inactive', () => {
@@ -71,8 +66,7 @@ describe('useGenerateTextFilter', () => {
 
         it('returns true', () => {
           const mapFilter = useGenerateTextFilter()
-          expect(mapFilter({ text: 'some-text' }))
-            .toEqual(true)
+          expect(mapFilter({ text: 'some-text' })).toEqual(true)
         })
       })
     })
@@ -93,16 +87,14 @@ describe('useGenerateTextFilter', () => {
     describe('given diory text includes query in lower case', () => {
       it('returns true', () => {
         const mapFilter = useGenerateTextFilter()
-        expect(mapFilter({ text: 'some-text' }))
-          .toEqual(true)
+        expect(mapFilter({ text: 'some-text' })).toEqual(true)
       })
     })
 
     describe('given diory text includes query in uppercase', () => {
       it('returns true', () => {
         const mapFilter = useGenerateTextFilter()
-        expect(mapFilter({ text: 'SOME-text' }))
-          .toEqual(true)
+        expect(mapFilter({ text: 'SOME-text' })).toEqual(true)
       })
     })
   })
@@ -120,8 +112,7 @@ describe('useGenerateTextFilter', () => {
 
     it('returns true', () => {
       const mapFilter = useGenerateTextFilter()
-      expect(mapFilter({ text: 'some-text' }))
-        .toEqual(true)
+      expect(mapFilter({ text: 'some-text' })).toEqual(true)
     })
   })
 })

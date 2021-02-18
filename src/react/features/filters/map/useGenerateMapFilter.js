@@ -17,8 +17,5 @@ function boundsContainsDiory(bounds, { latitude, longitude }) {
 }
 export const useGenerateMapFilter = () => {
   const { active, bounds } = useFilter('map')
-  return (diory) =>
-    !active ||
-    !bounds ||
-    boundsContainsDiory(bounds, diory)
+  return (diory) => !active || !bounds || boundsContainsDiory(bounds, diory)
 }

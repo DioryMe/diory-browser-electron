@@ -12,10 +12,7 @@ function getLinkedDioryIds({ links } = {}) {
 }
 
 function reduceNextLinkedDioryIds(diograph) {
-  return (linkedDioryIds, dioryId) => ([
-    ...linkedDioryIds,
-    ...getLinkedDioryIds(diograph[dioryId]),
-  ])
+  return (linkedDioryIds, dioryId) => [...linkedDioryIds, ...getLinkedDioryIds(diograph[dioryId])]
 }
 
 function reduceLinkedDioryIds(diograph) {
@@ -23,9 +20,8 @@ function reduceLinkedDioryIds(diograph) {
     linkedDioryIds.reduce(reduceNextLinkedDioryIds(diograph), linkedDioryIds)
 }
 
-const getLinkedDioryIdsFromZoomLevel = (dioryId, zoom, diograph) => {
-  return getZoomLevels(zoom).reduce(reduceLinkedDioryIds(diograph), [dioryId])
-}
+const getLinkedDioryIdsFromZoomLevel = (dioryId, zoom, diograph) =>
+  getZoomLevels(zoom).reduce(reduceLinkedDioryIds(diograph), [dioryId])
 
 const useLinkedDioryIds = () => {
   const { diory } = useFocus()
