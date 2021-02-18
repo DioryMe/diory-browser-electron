@@ -11,9 +11,6 @@
       "created": "2020-04-10T18:44:56.378Z",
       "modified": "2021-02-18T11:45:34.924Z",
       "links": {
-        "diograph-existing.json": {
-          "id": "7c1d5221-01e2-487e-a1fa-f0ac7e8018ad"
-        },
         "image-with-24-hour.jpg": {
           "id": "83ddc542-6982-42aa-880a-fb046b715775"
         },
@@ -30,12 +27,6 @@
           "id": "510a8c18-78db-4af7-a72a-bda2a1ff926e"
         }
       }
-    },
-    "7c1d5221-01e2-487e-a1fa-f0ac7e8018ad": {
-      "id": "7c1d5221-01e2-487e-a1fa-f0ac7e8018ad",
-      "text": "diograph-existing",
-      "created": "2021-02-18T11:41:22.317Z",
-      "modified": "2021-02-18T11:41:22.318Z"
     },
     "83ddc542-6982-42aa-880a-fb046b715775": {
       "id": "83ddc542-6982-42aa-880a-fb046b715775",
