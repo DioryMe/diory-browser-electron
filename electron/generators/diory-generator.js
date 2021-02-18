@@ -3,7 +3,6 @@ const { resolveFileType, readFile } = require('../readers/file-reader')
 const { readFolderMetadata } = require('../readers/folder-reader')
 const { readImage } = require('../readers/image-reader')
 const { readVideo } = require('../readers/video-reader')
-const { isEmpty } = require('../lib/utils')
 
 function readFileData(type, filePath) {
   const fileData = readFile(filePath)
@@ -139,8 +138,7 @@ exports.generateDioryFromFolder = function (folderPath, dioryLinks = {}) {
       ...getAverageLocation(linkedDiorys),
       ...getAverageDate(linkedDiorys),
       ...readFolderMetadata(folderPath),
-      ...generateLinks(dioryLinks),
     }),
-    ...(isEmpty(dioryLinks) ? {} : { links: dioryLinks }),
+    ...generateLinks(dioryLinks),
   }
 }
