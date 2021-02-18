@@ -10,7 +10,11 @@ exports.compareAndMergeDiographs = function compareAndMergeDiographs(
   //   const mergedDiograph = addDioriesToDiograph(newDiories, existingDiograph)
   //   return mergedDiograph
   // }
-  // return []
+  //
+  // return {
+  //   rootId: existingDiograph.rootId,
+  //   diograph: compareDiographs(existingDiograph, folderStructureDiograph)
+  // }
 }
 
 function compareDiographs(existingDiograph, folderStructureDiograph) {
