@@ -6,7 +6,7 @@ const { isEmpty } = require('../lib/utils')
 /**
  * Event handler for GENERATE_DIOGRAPH channel
  * @function
- * @param event {Object} - Event from frontend via ipcMain
+ * @param event {Object} - Event from frontend via ipcMain (not used)
  * @param params {Object} - Path as string
  * @return {Promise} Resolves with object with id, diograph and path keys (diograph as Object)
  *
