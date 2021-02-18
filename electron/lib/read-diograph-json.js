@@ -19,7 +19,7 @@ const backendLogger = require('electron-log')
  * }
  *
  */
-exports.readDiographJson = function (path) {
+exports.readDiographJson = function readDiographJson(path) {
   const folderPath = path
   const diographJsonPath = `${path}/diograph.json`
 
