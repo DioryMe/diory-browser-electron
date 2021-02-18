@@ -21,5 +21,5 @@ export const useSaveRoomEffect = (connectorId) => {
         )
       })
     }
-  }, [updated, connected, diograph, debounceDispatchPromiseAction])
+  }, [rootId, updated, connected, diograph, debounceDispatchPromiseAction])
 }
