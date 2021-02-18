@@ -94,7 +94,7 @@ exports.generateDiograph = async function generateDiograph(folderPath) {
   const rootDiory = generateDioryFromFolder(folderPath, dioryLinks)
 
   return {
-    linkKey: basename(folderPath || 'some-path'), // Mock basename
+    linkKey: basename(folderPath),
     rootId: rootDiory && rootDiory.id, // Don't do anything for tests
     diograph: {
       ...reduceDiorysToDiograph([rootDiory]),
