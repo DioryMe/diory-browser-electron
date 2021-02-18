@@ -57,10 +57,35 @@ describe('generateDiographEventHandler', () => {
       readDiographJson.mockReturnValue(someDiograph)
     })
 
-    it('returns readDiographJson return value + path', async () => {
-      const response = await act()
+    describe('WHEN matching diograph.json and generated diograph', () => {
+      beforeEach(() => {
+        generateDiograph.mockResolvedValue(someDiograph)
+      })
 
-      expect(response).toEqual(responseObject)
+      it('returns readDiographJson return value + path', async () => {
+        const response = await act()
+
+        expect(response).toEqual(responseObject)
+      })
+    })
+
+    describe('WHEN non-matching diograph.json and generated diograph', () => {
+      beforeEach(() => {
+        const someOtherDiograph = {
+          rootId: someDiograph.rootId,
+          diograph: {
+            ...someDiograph.diograph,
+            'some-other-diory-id': 'some-other-diory-object',
+          },
+        }
+        generateDiograph.mockResolvedValue(someOtherDiograph)
+      })
+
+      it('returns readDiographJson return value + path', async () => {
+        const response = await act()
+
+        expect(response).toEqual(responseObject)
+      })
     })
   })
 })
