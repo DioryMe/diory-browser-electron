@@ -1,3 +1,10 @@
+
+### DDA-73: Filters
+- Set filter active and inactive individually
+- Filter diorys when filter is active
+- Change filtering criteria when filter is active
+
+
 ## 2.3.5 (Feburary 4, 2021)
 
 ### DDA-60: Verify room connection
