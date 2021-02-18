@@ -3,7 +3,12 @@ import Box from 'ui-box'
 import PropTypes from 'prop-types'
 import { useStore } from '../../store'
 
+/* eslint-disable no-unreachable */
 export const getImageUrl = (imageUrl) => {
+  // NOTE: If generateDiographWithRelativeImagePaths is not used
+  // this shouldn't make any changes to the imageUrl
+  return imageUrl
+
   // Define diograph folder path
   let diographFolderPath
   const [{ connections }] = useStore((state) => state.connectors)
@@ -26,6 +31,7 @@ export const getImageUrl = (imageUrl) => {
   // Everything else
   return `file://${diographFolderPath}${imageUrl}`
 }
+/* eslint-enable no-unreachable */
 
 const defaultStyle = {
   position: 'absolute',
@@ -43,7 +49,7 @@ const getBackgroundImage = (image, gradient, gradientRgba = '255, 255, 255, 0.5'
     ? `linear-gradient(rgba(${gradientRgba}),rgba(${gradientRgba})), url("${getImageUrl(image)}")`
     : `url("${getImageUrl(image)}")`
 
-export const Image = ({ image, gradient, gradientRgba, ...props }) => (
+const Image = ({ image, gradient, gradientRgba, ...props }) => (
   <Box
     {...defaultStyle}
     backgroundImage={getBackgroundImage(image, gradient, gradientRgba)}
@@ -55,3 +61,5 @@ Image.propTypes = {
   image: PropTypes.string,
   style: PropTypes.object,
 }
+
+export default Image
