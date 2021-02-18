@@ -14,10 +14,6 @@ describe('diograph-generator', () => {
     let paths
     let folderDiory
 
-    it('renders with undefined values', async () => {
-      await generateDiograph()
-    })
-
     describe('given responses', () => {
       beforeEach(() => {
         paths = {}
@@ -40,6 +36,7 @@ describe('diograph-generator', () => {
       })
 
       it('renders with empty responses', async () => {
+        folderPath = 'undefined string'
         await act()
       })
 
