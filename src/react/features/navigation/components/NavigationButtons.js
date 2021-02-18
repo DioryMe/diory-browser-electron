@@ -2,7 +2,7 @@ import React from 'react'
 import { Pane, IconButton } from 'evergreen-ui'
 import { useStore } from '../../../store'
 import { goHome, goBackward, goForward } from '../actions'
-import { getIcon } from '../../../utils/icons'
+import Icon from '../../../components/Icon'
 
 const useNavigationButtons = () => {
   const [{ backward, forward }, dispatch] = useStore((state) => state.navigation)
@@ -25,16 +25,16 @@ const NavigationButtons = (props) => {
   const { home, back, forward } = useNavigationButtons()
   return (
     <Pane {...props}>
-      <IconButton appearance="minimal" icon={getIcon('home')} data-testid="home" {...home} />
+      <IconButton appearance="minimal" icon={<Icon icon="home" />} data-testid="home" {...home} />
       <IconButton
         appearance="minimal"
-        icon={getIcon('arrow-left')}
+        icon={<Icon icon="arrow-left" />}
         data-testid="navigate-left"
         {...back}
       />
       <IconButton
         appearance="minimal"
-        icon={getIcon('arrow-right')}
+        icon={<Icon icon="arrow-right" />}
         data-testid="navigate-right"
         {...forward}
       />
