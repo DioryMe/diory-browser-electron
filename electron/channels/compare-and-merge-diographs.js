@@ -1,20 +1,16 @@
-// const { isEmpty } = require('../lib/utils')
+const { isEmpty } = require('../lib/utils')
 
 exports.compareAndMergeDiographs = function compareAndMergeDiographs(
   existingDiograph,
   folderStructureDiograph
 ) {
-  return compareDiographs(existingDiograph, folderStructureDiograph)
-  // const newDiories = compareDiographs(existingDiograph, folderStructureDiograph)
-  // if (!isEmpty(newDiories)) {
-  //   const mergedDiograph = addDioriesToDiograph(newDiories, existingDiograph)
-  //   return mergedDiograph
-  // }
-  //
-  // return {
-  //   rootId: existingDiograph.rootId,
-  //   diograph: compareDiographs(existingDiograph, folderStructureDiograph)
-  // }
+  let diograph = existingDiograph
+  const newDiories = compareDiographs(existingDiograph, folderStructureDiograph)
+  if (!isEmpty(newDiories)) {
+    diograph = addDioriesToDiograph(newDiories, existingDiograph)
+  }
+
+  return diograph
 }
 
 function compareDiographs(existingDiograph, folderStructureDiograph) {
@@ -38,6 +34,6 @@ function generatePathList(rootId, path, diograph) {
   return linkedDioryPaths
 }
 
-// function addDioriesToDiograph(diories, diograph) {
-//   return diories
-// }
+function addDioriesToDiograph(diories, diograph) {
+  return diories
+}
