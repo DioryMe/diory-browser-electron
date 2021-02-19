@@ -19,7 +19,10 @@ Object {
       "image": "file:///Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/image-with-24-hour.jpg",
       "latitude": 57.74614055555555,
       "links": Object {
-        "Tampere": Object {
+        "/4_5807613915332347351.mp4": Object {
+          "id": "5212ee46-1f2f-4bdb-a6a1-c093de9d134f",
+        },
+        "/Tampere": Object {
           "id": "43563e8d-9599-46b7-b011-a90450fe4c81",
         },
         "image-with-24-hour.jpg": Object {

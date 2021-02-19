@@ -34,7 +34,7 @@ describe('compareAndMergeDiographs', () => {
       const tampereId = '43563e8d-9599-46b7-b011-a90450fe4c81'
       const tampereDiory = newDiographAddedDiories.diograph[tampereId]
       expect(response.diograph[tampereId]).toEqual(tampereDiory)
-      expect(response.diograph[response.rootId].links.Tampere).toEqual({ id: tampereId })
+      expect(response.diograph[response.rootId].links['/Tampere']).toEqual({ id: tampereId })
     })
 
     it('adds .mp4 diory and links it to the root diory (file diory)', () => {
@@ -42,7 +42,7 @@ describe('compareAndMergeDiographs', () => {
       const mp4Diory = newDiographAddedDiories.diograph[mp4Id]
       console.log(response.diograph[response.rootId].links)
       expect(response.diograph[mp4Id]).toEqual(mp4Diory)
-      expect(response.diograph[response.rootId].links['4_5807613915332347351.mp4']).toEqual({
+      expect(response.diograph[response.rootId].links['/4_5807613915332347351.mp4']).toEqual({
         id: mp4Id,
       })
     })

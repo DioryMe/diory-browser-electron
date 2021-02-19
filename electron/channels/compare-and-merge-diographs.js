@@ -15,22 +15,26 @@ exports.compareAndMergeDiographs = function compareAndMergeDiographs(
 // Returns [{ path: ..., diory: ... }, { path: ..., diory: ... }, ... ]
 function compareDiographs(existingDiograph, folderStructureDiograph) {
   let { diograph, rootId } = folderStructureDiograph
-  const folderStructureDiographPathList = generatePathList(rootId, '/', diograph)
+  const folderStructureDiographPathList = generatePathList(rootId, diograph)
 
   ;({ diograph, rootId } = existingDiograph)
-  const existingDiographPathList = generatePathList(rootId, '/', diograph)
+  const existingDiographPathList = generatePathList(rootId, diograph)
 
   const paths2 = existingDiographPathList.map((p) => p.path)
   return folderStructureDiographPathList.filter(({ path }) => !paths2.includes(path))
 }
 
 // Returns [{ path: ..., diory: ... }, { path: ..., diory: ... }, ... ]
-function generatePathList(rootId, path, diograph) {
+function generatePathList(rootId, diograph) {
   const rootDiory = diograph[rootId]
   const linkedDioryPaths = Object.entries(rootDiory.links).map(([key, { id }]) => ({
-    path: `${path}${key}`,
+    path: `/${key}`,
     diory: diograph[id],
   }))
+  //
+  // -- joku rekursio tähän, jossa käydään linkedDioryt läpi ---
+  //
+  // Lisätään myös rootDiory
   linkedDioryPaths.push({ path: '/', diory: rootDiory })
   return linkedDioryPaths
 }
@@ -51,7 +55,7 @@ function addAndLinkDioriesToDiograph(diories, diograph) {
   // TODO: Make this recursive^, currently works only on root level
   const { rootId } = diograph
   diories.forEach((diory) => {
-    diograph.diograph[rootId].links.Tampere = { id: diory.diory.id }
+    diograph.diograph[rootId].links[diory.path] = { id: diory.diory.id }
   })
 
   return diograph
