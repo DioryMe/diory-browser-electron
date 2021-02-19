@@ -46,5 +46,24 @@ describe('compareAndMergeDiographs', () => {
         id: mp4Id,
       })
     })
+
+    it('adds Frenkell diory and links it to the Tampere diory (subfolder)', () => {
+      const tampereId = '43563e8d-9599-46b7-b011-a90450fe4c81'
+      const frenkellId = 'ebc844f5-76c0-4b44-a14a-f8d0c2b401f7'
+      const frenkellDiory = newDiographAddedDiories.diograph[frenkellId]
+
+      expect(response.diograph[frenkellId]).toEqual(frenkellDiory)
+      expect(response.diograph[tampereId].links['/Frenkell']).toEqual({
+        id: frenkellId,
+      })
+    })
+
+    // it('adds tampere.jpg diory and links it to the Tampere diory (file in folder)', () => {
+    //   const tampereJpgId = '5212ee46-1f2f-4bdb-a6a1-c093de9d134f'
+    //   const tampereJpgDiory = newDiographAddedDiories.diograph[tampereJpgId]
+
+    // it('adds frenkell.jpg diory and links it to the Frenkell diory (file in subfolder)', () => {
+    //   const frenkellJpgId = '5212ee46-1f2f-4bdb-a6a1-c093de9d134f'
+    //   const frenkellJpgDiory = newDiographAddedDiories.diograph[frenkellJpgId]
   })
 })
