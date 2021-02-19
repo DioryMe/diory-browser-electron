@@ -25,25 +25,26 @@ function compareDiographs(existingDiograph, folderStructureDiograph) {
 }
 
 // Returns [{ path: ..., diory: ... }, { path: ..., diory: ... }, ... ]
-function linkedDioriesWithPaths(diory, diograph) {
+function linkedDioriesWithPaths(diory, diograph, parentPath = '') {
   if (diory.links === {} || diory.links === undefined) {
     return []
   }
 
   return Object.entries(diory.links)
-    .map(([key, { id }]) => {
-      const dioryLinkedDioriesWithPaths = linkedDioriesWithPaths(diograph[id], diograph)
-      return [...dioryLinkedDioriesWithPaths, { path: key, diory: diograph[id] }]
+    .map(([path, { id }]) => {
+      path = parentPath ? `${parentPath}/${path}` : path
+      const dioryLinkedDioriesWithPaths = linkedDioriesWithPaths(diograph[id], diograph, path)
+      return [...dioryLinkedDioriesWithPaths, { path, diory: diograph[id] }]
     })
     .flat()
 }
 
 // Returns diograph with rootId
-function addAndLinkDioriesToDiograph(diories, diograph) {
+function addAndLinkDioriesToDiograph(linkedDioriesWithPaths, diograph) {
   // diories = [{ path: ..., diory: ... }, { path: ..., diory: ... }, ... ]
   diograph.diograph = {
     ...diograph.diograph,
-    ...diories.reduce((obj, { diory }) => ({ ...obj, [diory.id]: diory }), {}),
+    ...linkedDioriesWithPaths.reduce((obj, { diory }) => ({ ...obj, [diory.id]: diory }), {}),
   }
 
   // Linking:
@@ -52,9 +53,51 @@ function addAndLinkDioriesToDiograph(diories, diograph) {
   // => /Tampere/Frenkell/frenkell.jpg  diograph[diograph[diograph[rootId].id].links['Tampere'].id].links['Frenkell'].id
 
   // TODO: Make this recursive^, currently works only on root level
-  const { rootId } = diograph
-  diories.forEach((diory) => {
-    diograph.diograph[rootId].links[diory.path] = { id: diory.diory.id }
+
+  const rootDiory = diograph.diograph[diograph.rootId]
+
+  // Sort by path (to avoid linking to diory that haven't been linked itself yet)
+  linkedDioriesWithPaths.sort((a, b) => {
+    if (a.path < b.path) {
+      return -1
+    }
+    if (a.path > b.path) {
+      return 1
+    }
+    return 0
+  })
+  // console.log(linkedDioriesWithPaths)
+
+  // This links diories multiple times (but shouldn't matter at all...)
+  linkedDioriesWithPaths.forEach((linkedDioryWithPath) => {
+    console.log(linkedDioryWithPath.path)
+    // Haetaan viimeinen pathSplit ja sen parent eli edellinen diory
+    linkedDioryWithPath.path.split('/').reduce(
+      ([parentDiory], pathSplit) => {
+        let parentDioryLink
+        console.log(parentDiory)
+        parentDioryLink = diograph.diograph[parentDiory.id].links[pathSplit]
+        if (!parentDioryLink) {
+          diograph.diograph[parentDiory.id].links[pathSplit] = { id: linkedDioryWithPath.diory.id }
+          parentDioryLink = diograph.diograph[parentDiory.id].links[pathSplit]
+        }
+        return [diograph.diograph[parentDioryLink.id], pathSplit]
+      },
+      [rootDiory, '']
+    )
+
+    // console.log(dioryToBeLinked)
+    // console.log(pathSplit)
+    // ;(dioryToBeLinked || rootDiory).links[pathSplit] = {
+    //   id: linkedDioryWithPath.diory.id,
+    // }
+
+    // function linkToParent(parentDiory, dioryId, path) {
+    //   parentDiory.links[path] = { id: dioryId }
+    // }
+    // linkToParent()
+    // console.log(diory.path)
+    // diograph.diograph[rootId].links[diory.path] = { id: diory.diory.id }
   })
 
   return diograph
