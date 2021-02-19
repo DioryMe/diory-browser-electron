@@ -41,22 +41,16 @@ function linkedDioriesWithPaths(diory, diograph, parentPath = '') {
 
 // Returns diograph with rootId
 function addAndLinkDioriesToDiograph(linkedDioriesWithPaths, diograph) {
-  // diories = [{ path: ..., diory: ... }, { path: ..., diory: ... }, ... ]
+  // linkedDioriesWithPaths = [{ path: ..., diory: ... }, { path: ..., diory: ... }, ... ]
+
+  // TODO: This adding diories to diograph could may be done already while linkedDioriesWithPaths
   diograph.diograph = {
     ...diograph.diograph,
     ...linkedDioriesWithPaths.reduce((obj, { diory }) => ({ ...obj, [diory.id]: diory }), {}),
   }
 
-  // Linking:
-  // => /Tampere                        diograph[rootId]
-  // => /Tampere/frenkell.jpg           diograph[diograph[rootId].id].links['Tampere'].id]
-  // => /Tampere/Frenkell/frenkell.jpg  diograph[diograph[diograph[rootId].id].links['Tampere'].id].links['Frenkell'].id
-
-  // TODO: Make this recursive^, currently works only on root level
-
-  const rootDiory = diograph.diograph[diograph.rootId]
-
-  // Sort by path (to avoid linking to diory that haven't been linked itself yet)
+  // Sort linkedDioriesWithPaths by path
+  // - prevent trying to link to diory that haven't been linked to anywhere itself yet
   linkedDioriesWithPaths.sort((a, b) => {
     if (a.path < b.path) {
       return -1
@@ -66,16 +60,16 @@ function addAndLinkDioriesToDiograph(linkedDioriesWithPaths, diograph) {
     }
     return 0
   })
-  // console.log(linkedDioriesWithPaths)
 
-  // This links diories multiple times (but shouldn't matter at all...)
+  // TODO: This linking could may be done already while linkedDioriesWithPaths
+  // This may link diories multiple times (but shouldn't matter at all...)
+  const rootDiory = diograph.diograph[diograph.rootId]
   linkedDioriesWithPaths.forEach((linkedDioryWithPath) => {
-    console.log(linkedDioryWithPath.path)
-    // Haetaan viimeinen pathSplit ja sen parent eli edellinen diory
+    // Iterate through the splitted path array and
+    // Link diory to parent if no link created yet (!parentDioryLink)
     linkedDioryWithPath.path.split('/').reduce(
       ([parentDiory], pathSplit) => {
         let parentDioryLink
-        console.log(parentDiory)
         parentDioryLink = diograph.diograph[parentDiory.id].links[pathSplit]
         if (!parentDioryLink) {
           diograph.diograph[parentDiory.id].links[pathSplit] = { id: linkedDioryWithPath.diory.id }
@@ -85,19 +79,6 @@ function addAndLinkDioriesToDiograph(linkedDioriesWithPaths, diograph) {
       },
       [rootDiory, '']
     )
-
-    // console.log(dioryToBeLinked)
-    // console.log(pathSplit)
-    // ;(dioryToBeLinked || rootDiory).links[pathSplit] = {
-    //   id: linkedDioryWithPath.diory.id,
-    // }
-
-    // function linkToParent(parentDiory, dioryId, path) {
-    //   parentDiory.links[path] = { id: dioryId }
-    // }
-    // linkToParent()
-    // console.log(diory.path)
-    // diograph.diograph[rootId].links[diory.path] = { id: diory.diory.id }
   })
 
   return diograph
