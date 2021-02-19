@@ -25,18 +25,23 @@ function compareDiographs(existingDiograph, folderStructureDiograph) {
 }
 
 // Returns [{ path: ..., diory: ... }, { path: ..., diory: ... }, ... ]
+function linkedDioriesWithPaths(diory, diograph) {
+  if (diory.links === {} || diory.links === undefined) {
+    return []
+  }
+
+  return Object.entries(diory.links)
+    .map(([key, { id }]) => {
+      console.log(linkedDioriesWithPaths(diograph[id], diograph))
+      const dioryLinkedDioriesWithPaths = linkedDioriesWithPaths(diograph[id], diograph)
+      return [...dioryLinkedDioriesWithPaths, { path: `/${key}`, diory: diograph[id] }]
+    })
+    .flat()
+}
+
+// Returns [{ path: ..., diory: ... }, { path: ..., diory: ... }, ... ]
 function generatePathList(rootId, diograph) {
-  const rootDiory = diograph[rootId]
-  const linkedDioryPaths = Object.entries(rootDiory.links).map(([key, { id }]) => ({
-    path: `/${key}`,
-    diory: diograph[id],
-  }))
-  //
-  // -- joku rekursio tähän, jossa käydään linkedDioryt läpi ---
-  //
-  // Lisätään myös rootDiory
-  linkedDioryPaths.push({ path: '/', diory: rootDiory })
-  return linkedDioryPaths
+  return linkedDioriesWithPaths(diograph[rootId], diograph)
 }
 
 // Returns diograph with rootId
