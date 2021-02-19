@@ -20,5 +20,5 @@ test('select diograph folder with new subfolder (diograph.json + newly added sub
     .eql(6)
     .click(eventDiory)
     .expect(dioryCount)
-    .eql(13)
+    .eql(14) // pixnio-public-domain-test-content.txt is added too
 })
