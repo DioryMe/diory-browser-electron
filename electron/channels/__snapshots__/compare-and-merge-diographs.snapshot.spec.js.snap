@@ -3,6 +3,13 @@
 exports[`diograph-generator compareAndMergeDiograph merges originalDiograph and newDiographAddedDiories 1`] = `
 Object {
   "diograph": Object {
+    "1b435867-6e03-40c7-837b-35d9de80ea90": Object {
+      "created": "2021-02-19T08:55:20.502Z",
+      "date": "2006-07-16T16:09:00.000Z",
+      "id": "1b435867-6e03-40c7-837b-35d9de80ea90",
+      "image": "file:///Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/Tampere/tampere.jpg",
+      "modified": "2021-02-19T08:55:20.524Z",
+    },
     "22d38249-751f-40d4-9691-09913656974f": Object {
       "created": "2019-10-27T14:40:43.879Z",
       "date": "2019-10-27T14:40:43.000Z",
@@ -19,11 +26,17 @@ Object {
       "image": "file:///Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/image-with-24-hour.jpg",
       "latitude": 57.74614055555555,
       "links": Object {
-        "/4_5807613915332347351.mp4": Object {
+        "4_5807613915332347351.mp4": Object {
           "id": "5212ee46-1f2f-4bdb-a6a1-c093de9d134f",
         },
-        "/Tampere": Object {
+        "Frenkell": Object {
+          "id": "ebc844f5-76c0-4b44-a14a-f8d0c2b401f7",
+        },
+        "Tampere": Object {
           "id": "43563e8d-9599-46b7-b011-a90450fe4c81",
+        },
+        "frenkell.jpg": Object {
+          "id": "fa8d4b50-fc13-4801-b5a6-d8d6c86a69bd",
         },
         "image-with-24-hour.jpg": Object {
           "id": "4ae20908-7e29-49ce-a7fd-0ecb9a6292a3",
@@ -39,6 +52,9 @@ Object {
         },
         "some-text.txt": Object {
           "id": "dd3bc53a-f433-4810-8e7f-f7c6d7922ca8",
+        },
+        "tampere.jpg": Object {
+          "id": "1b435867-6e03-40c7-837b-35d9de80ea90",
         },
       },
       "longitude": 16.65045388888889,
@@ -113,6 +129,26 @@ Object {
       "id": "dd3bc53a-f433-4810-8e7f-f7c6d7922ca8",
       "modified": "2020-10-20T18:11:31.620Z",
       "text": "some-text",
+    },
+    "ebc844f5-76c0-4b44-a14a-f8d0c2b401f7": Object {
+      "created": "2021-02-19T08:54:57.669Z",
+      "date": "2006-07-16T14:27:17.000Z",
+      "id": "ebc844f5-76c0-4b44-a14a-f8d0c2b401f7",
+      "image": "file:///Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/Tampere/Frenkell/frenkell.jpg",
+      "links": Object {
+        "frenkell.jpg": Object {
+          "id": "fa8d4b50-fc13-4801-b5a6-d8d6c86a69bd",
+        },
+      },
+      "modified": "2021-02-19T08:55:05.123Z",
+      "text": "Frenkell",
+    },
+    "fa8d4b50-fc13-4801-b5a6-d8d6c86a69bd": Object {
+      "created": "2021-02-19T08:54:37.455Z",
+      "date": "2006-07-16T14:27:17.000Z",
+      "id": "fa8d4b50-fc13-4801-b5a6-d8d6c86a69bd",
+      "image": "file:///Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/Tampere/Frenkell/frenkell.jpg",
+      "modified": "2021-02-19T08:54:37.466Z",
     },
   },
   "rootId": "3cd9ace1-ca77-4167-b5a0-0326633f56eb",
