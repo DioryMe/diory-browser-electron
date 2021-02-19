@@ -1,24 +1,23 @@
 const fs = require('fs')
 const { compareAndMergeDiographs } = require('./compare-and-merge-diographs')
 
-jest.mock('uuid')
-
+// Load static json fixtures
 const currentPath = './electron/channels'
-const existingDiograph = JSON.parse(fs.readFileSync(`${currentPath}/diograph-existing.json`))
+const originalDiograph = JSON.parse(fs.readFileSync(`${currentPath}/diograph-existing.json`))
 const newDiographSame = JSON.parse(fs.readFileSync(`${currentPath}/diograph-new-same.json`))
-const newDiographDioryAdded = JSON.parse(
-  fs.readFileSync(`${currentPath}/diograph-new-diory-added.json`)
+const newDiographAddedDiories = JSON.parse(
+  fs.readFileSync(`${currentPath}/diograph-new-added-diories.json`)
 )
 
 describe('diograph-generator', () => {
   describe('compareAndMergeDiograph', () => {
-    it('merges existingDiograph and newDiographSame', async () => {
-      const { diograph } = compareAndMergeDiographs(existingDiograph, newDiographSame)
+    it('merges originalDiograph and newDiographSame', async () => {
+      const diograph = compareAndMergeDiographs(originalDiograph, newDiographSame)
       expect(diograph).toMatchSnapshot()
     })
 
-    it('merges existingDiograph and newDiographDioryAdded', async () => {
-      const { diograph } = compareAndMergeDiographs(existingDiograph, newDiographDioryAdded)
+    it('merges originalDiograph and newDiographAddedDiories', async () => {
+      const diograph = compareAndMergeDiographs(originalDiograph, newDiographAddedDiories)
       expect(diograph).toMatchSnapshot()
     })
   })
