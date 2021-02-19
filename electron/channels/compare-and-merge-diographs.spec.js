@@ -27,9 +27,6 @@ describe('compareAndMergeDiographs', () => {
       expect(response.rootId).toEqual(jsonDiograph('existing').rootId)
     })
 
-    // Tämän tekee snapshot testi:
-    // expect(response.diograph).toEqual({ ...originalDiograph.diograph, ...tampereDiory, ...mp4Diory })
-
     it('adds Tampere diory and links it to the root diory (folder diory)', () => {
       const tampereId = '43563e8d-9599-46b7-b011-a90450fe4c81'
       const tampereDiory = newDiographAddedDiories.diograph[tampereId]
@@ -55,14 +52,34 @@ describe('compareAndMergeDiographs', () => {
       expect(response.diograph[tampereId].links.Frenkell).toEqual({
         id: frenkellId,
       })
+      // Shouldn't be linked to root diory!
+      expect(response.diograph[response.rootId].links['frenkell.jpg']).not.toBeDefined()
     })
 
-    // it('adds tampere.jpg diory and links it to the Tampere diory (file in folder)', () => {
-    //   const tampereJpgId = '5212ee46-1f2f-4bdb-a6a1-c093de9d134f'
-    //   const tampereJpgDiory = newDiographAddedDiories.diograph[tampereJpgId]
+    it('adds tampere.jpg diory and links it to the Tampere diory (file in folder)', () => {
+      const tampereId = '43563e8d-9599-46b7-b011-a90450fe4c81'
+      const tampereJpgId = '1b435867-6e03-40c7-837b-35d9de80ea90'
+      const tampereJpgDiory = newDiographAddedDiories.diograph[tampereJpgId]
 
-    // it('adds frenkell.jpg diory and links it to the Frenkell diory (file in subfolder)', () => {
-    //   const frenkellJpgId = '5212ee46-1f2f-4bdb-a6a1-c093de9d134f'
-    //   const frenkellJpgDiory = newDiographAddedDiories.diograph[frenkellJpgId]
+      expect(response.diograph[tampereJpgId]).toEqual(tampereJpgDiory)
+      expect(response.diograph[tampereId].links['tampere.jpg']).toEqual({
+        id: tampereJpgId,
+      })
+      // Shouldn't be linked to root diory!
+      expect(response.diograph[response.rootId].links['frenkell.jpg']).not.toBeDefined()
+    })
+
+    it('adds frenkell.jpg diory and links it to the Frenkell diory (file in subfolder)', () => {
+      const frenkellId = 'ebc844f5-76c0-4b44-a14a-f8d0c2b401f7'
+      const frenkellJpgId = 'fa8d4b50-fc13-4801-b5a6-d8d6c86a69bd'
+      const frenkellJpgDiory = newDiographAddedDiories.diograph[frenkellJpgId]
+
+      expect(response.diograph[frenkellJpgId]).toEqual(frenkellJpgDiory)
+      expect(response.diograph[frenkellId].links['frenkell.jpg']).toEqual({
+        id: frenkellJpgId,
+      })
+      // Shouldn't be linked to root diory!
+      expect(response.diograph[response.rootId].links['frenkell.jpg']).not.toBeDefined()
+    })
   })
 })
