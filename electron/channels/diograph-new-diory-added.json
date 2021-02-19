@@ -1,38 +1,48 @@
 {
-  "rootId": "7cffed31-854a-4817-9afc-0f01b9ab1600",
+  "rootId": "48ca6791-39de-43a4-9fcf-83cc34b1248d",
   "diograph": {
-    "7cffed31-854a-4817-9afc-0f01b9ab1600": {
-      "id": "7cffed31-854a-4817-9afc-0f01b9ab1600",
+    "48ca6791-39de-43a4-9fcf-83cc34b1248d": {
+      "id": "48ca6791-39de-43a4-9fcf-83cc34b1248d",
       "text": "example-folder",
       "image": "file:///Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/image-with-24-hour.jpg",
-      "date": "2017-01-07T07:58:53.500Z",
+      "date": "2014-12-03T19:02:44.500Z",
       "latitude": 57.74614055555555,
       "longitude": 16.65045388888889,
       "created": "2020-04-10T18:44:56.378Z",
-      "modified": "2021-02-18T13:32:47.275Z",
+      "modified": "2021-02-19T09:05:30.045Z",
       "links": {
+        "4_5807613915332347351.mp4": {
+          "id": "5212ee46-1f2f-4bdb-a6a1-c093de9d134f"
+        },
         "image-with-24-hour.jpg": {
-          "id": "18b4cae7-e304-4b61-b24c-bae8893bb6f9"
+          "id": "aaa7874d-b119-4c07-9673-ff6051d6ab44"
         },
         "other-image.jpg": {
-          "id": "1e60c808-644e-4278-ad30-a4ec0c11816f"
+          "id": "eb15ca90-d854-4bd8-9e69-54b2752a95ea"
         },
         "some-image.jpg": {
-          "id": "9408a20d-b737-4fb0-b79f-b24f36cfc299"
+          "id": "614c068e-bbc5-41a3-b133-1dfe996a98f8"
         },
         "some-text.txt": {
-          "id": "c6f0faea-aeab-4ecc-b67b-6a54cc11a7ec"
+          "id": "368e651f-4035-45a6-8238-10d60fc124d5"
         },
         "Tampere": {
-          "id": "af15ae0f-73ee-444d-8113-b8f2e32f07a1"
+          "id": "43563e8d-9599-46b7-b011-a90450fe4c81"
         },
         "some-folder": {
-          "id": "2be3fd79-d9dd-4219-acb2-719294e453c5"
+          "id": "be6096e5-ace8-45d7-b52a-61e63e5ec8ef"
         }
       }
     },
-    "18b4cae7-e304-4b61-b24c-bae8893bb6f9": {
-      "id": "18b4cae7-e304-4b61-b24c-bae8893bb6f9",
+    "5212ee46-1f2f-4bdb-a6a1-c093de9d134f": {
+      "id": "5212ee46-1f2f-4bdb-a6a1-c093de9d134f",
+      "text": "4_5807613915332347351.mp4",
+      "video": "/Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/4_5807613915332347351.mp4",
+      "created": "2020-10-20T18:11:31.662Z",
+      "modified": "2020-10-20T18:11:31.718Z"
+    },
+    "aaa7874d-b119-4c07-9673-ff6051d6ab44": {
+      "id": "aaa7874d-b119-4c07-9673-ff6051d6ab44",
       "image": "file:///Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/image-with-24-hour.jpg",
       "date": "2019-07-09T00:01:16.000Z",
       "latitude": 68.27818055555555,
@@ -40,8 +50,8 @@
       "created": "2021-01-23T11:17:19.400Z",
       "modified": "2021-01-23T11:17:19.416Z"
     },
-    "1e60c808-644e-4278-ad30-a4ec0c11816f": {
-      "id": "1e60c808-644e-4278-ad30-a4ec0c11816f",
+    "eb15ca90-d854-4bd8-9e69-54b2752a95ea": {
+      "id": "eb15ca90-d854-4bd8-9e69-54b2752a95ea",
       "image": "file:///Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/other-image.jpg",
       "date": "2008-11-01T21:15:11.000Z",
       "latitude": 43.464455,
@@ -49,28 +59,64 @@
       "created": "2020-10-20T18:11:31.575Z",
       "modified": "2020-10-20T18:11:31.586Z"
     },
-    "9408a20d-b737-4fb0-b79f-b24f36cfc299": {
-      "id": "9408a20d-b737-4fb0-b79f-b24f36cfc299",
+    "614c068e-bbc5-41a3-b133-1dfe996a98f8": {
+      "id": "614c068e-bbc5-41a3-b133-1dfe996a98f8",
       "image": "file:///Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/some-image.jpg",
       "date": "2019-11-25T19:58:24.000Z",
       "created": "2019-11-25T19:58:24.734Z",
       "modified": "2020-10-20T18:11:31.616Z"
     },
-    "c6f0faea-aeab-4ecc-b67b-6a54cc11a7ec": {
-      "id": "c6f0faea-aeab-4ecc-b67b-6a54cc11a7ec",
+    "368e651f-4035-45a6-8238-10d60fc124d5": {
+      "id": "368e651f-4035-45a6-8238-10d60fc124d5",
       "text": "some-text",
       "created": "2020-10-20T18:11:31.620Z",
       "modified": "2020-10-20T18:11:31.620Z"
     },
-    "af15ae0f-73ee-444d-8113-b8f2e32f07a1": {
-      "id": "af15ae0f-73ee-444d-8113-b8f2e32f07a1",
+    "43563e8d-9599-46b7-b011-a90450fe4c81": {
+      "id": "43563e8d-9599-46b7-b011-a90450fe4c81",
       "text": "Tampere",
-      "created": "2021-02-18T13:32:47.275Z",
-      "modified": "2021-02-18T13:32:47.276Z",
-      "links": {}
+      "image": "file:///Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/Tampere/tampere.jpg",
+      "date": "2006-07-16T15:18:08.500Z",
+      "created": "2021-02-19T08:55:32.160Z",
+      "modified": "2021-02-19T08:55:44.235Z",
+      "links": {
+        "tampere.jpg": {
+          "id": "1b435867-6e03-40c7-837b-35d9de80ea90"
+        },
+        "Frenkell": {
+          "id": "ebc844f5-76c0-4b44-a14a-f8d0c2b401f7"
+        }
+      }
     },
-    "2be3fd79-d9dd-4219-acb2-719294e453c5": {
-      "id": "2be3fd79-d9dd-4219-acb2-719294e453c5",
+    "1b435867-6e03-40c7-837b-35d9de80ea90": {
+      "id": "1b435867-6e03-40c7-837b-35d9de80ea90",
+      "image": "file:///Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/Tampere/tampere.jpg",
+      "date": "2006-07-16T16:09:00.000Z",
+      "created": "2021-02-19T08:55:20.502Z",
+      "modified": "2021-02-19T08:55:20.524Z"
+    },
+    "ebc844f5-76c0-4b44-a14a-f8d0c2b401f7": {
+      "id": "ebc844f5-76c0-4b44-a14a-f8d0c2b401f7",
+      "text": "Frenkell",
+      "image": "file:///Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/Tampere/Frenkell/frenkell.jpg",
+      "date": "2006-07-16T14:27:17.000Z",
+      "created": "2021-02-19T08:54:57.669Z",
+      "modified": "2021-02-19T08:55:05.123Z",
+      "links": {
+        "frenkell.jpg": {
+          "id": "fa8d4b50-fc13-4801-b5a6-d8d6c86a69bd"
+        }
+      }
+    },
+    "fa8d4b50-fc13-4801-b5a6-d8d6c86a69bd": {
+      "id": "fa8d4b50-fc13-4801-b5a6-d8d6c86a69bd",
+      "image": "file:///Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/Tampere/Frenkell/frenkell.jpg",
+      "date": "2006-07-16T14:27:17.000Z",
+      "created": "2021-02-19T08:54:37.455Z",
+      "modified": "2021-02-19T08:54:37.466Z"
+    },
+    "be6096e5-ace8-45d7-b52a-61e63e5ec8ef": {
+      "id": "be6096e5-ace8-45d7-b52a-61e63e5ec8ef",
       "text": "some-folder",
       "image": "file:///Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/some-folder/some-folder-image.jpg",
       "date": "2019-10-27T14:40:43.000Z",
@@ -80,12 +126,12 @@
       "modified": "2020-10-20T18:11:31.597Z",
       "links": {
         "some-folder-image.jpg": {
-          "id": "83aa4ff9-3a49-438d-8726-83411535553f"
+          "id": "033a9c81-2b18-43ba-bb7a-76751aa71b23"
         }
       }
     },
-    "83aa4ff9-3a49-438d-8726-83411535553f": {
-      "id": "83aa4ff9-3a49-438d-8726-83411535553f",
+    "033a9c81-2b18-43ba-bb7a-76751aa71b23": {
+      "id": "033a9c81-2b18-43ba-bb7a-76751aa71b23",
       "image": "file:///Users/Jouni/Code/diory-browser-electron/electron/readers/example-folder/some-folder/some-folder-image.jpg",
       "date": "2019-10-27T14:40:43.000Z",
       "latitude": 61.49578611111111,

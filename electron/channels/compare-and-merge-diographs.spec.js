@@ -17,7 +17,7 @@ describe('compareAndMergeDiographs', () => {
 
   it('works with fixture jsons generated from changed folder structure (Tampere folder added)', () => {
     const response = compareAndMergeDiographs(existingDiograph, newDiographDioryAdded)
-    const tampereId = 'af15ae0f-73ee-444d-8113-b8f2e32f07a1'
+    const tampereId = '43563e8d-9599-46b7-b011-a90450fe4c81'
     const tampereDiory = { [tampereId]: newDiographDioryAdded.diograph[tampereId] }
     expect(response.diograph).toEqual({ ...existingDiograph.diograph, ...tampereDiory })
     expect(response.rootId).toEqual(existingDiograph.rootId)
