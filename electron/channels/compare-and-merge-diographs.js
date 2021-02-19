@@ -15,10 +15,10 @@ exports.compareAndMergeDiographs = function compareAndMergeDiographs(
 // Returns [{ path: ..., diory: ... }, { path: ..., diory: ... }, ... ]
 function compareDiographs(existingDiograph, folderStructureDiograph) {
   let { diograph, rootId } = folderStructureDiograph
-  const folderStructureDiographPathList = generatePathList(rootId, diograph)
+  const folderStructureDiographPathList = linkedDioriesWithPaths(diograph[rootId], diograph)
 
   ;({ diograph, rootId } = existingDiograph)
-  const existingDiographPathList = generatePathList(rootId, diograph)
+  const existingDiographPathList = linkedDioriesWithPaths(diograph[rootId], diograph)
 
   const paths2 = existingDiographPathList.map((p) => p.path)
   return folderStructureDiographPathList.filter(({ path }) => !paths2.includes(path))
@@ -32,16 +32,10 @@ function linkedDioriesWithPaths(diory, diograph) {
 
   return Object.entries(diory.links)
     .map(([key, { id }]) => {
-      console.log(linkedDioriesWithPaths(diograph[id], diograph))
       const dioryLinkedDioriesWithPaths = linkedDioriesWithPaths(diograph[id], diograph)
-      return [...dioryLinkedDioriesWithPaths, { path: `/${key}`, diory: diograph[id] }]
+      return [...dioryLinkedDioriesWithPaths, { path: key, diory: diograph[id] }]
     })
     .flat()
-}
-
-// Returns [{ path: ..., diory: ... }, { path: ..., diory: ... }, ... ]
-function generatePathList(rootId, diograph) {
-  return linkedDioriesWithPaths(diograph[rootId], diograph)
 }
 
 // Returns diograph with rootId
