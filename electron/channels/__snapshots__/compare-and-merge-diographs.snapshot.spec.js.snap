@@ -29,14 +29,8 @@ Object {
         "4_5807613915332347351.mp4": Object {
           "id": "5212ee46-1f2f-4bdb-a6a1-c093de9d134f",
         },
-        "Frenkell": Object {
-          "id": "ebc844f5-76c0-4b44-a14a-f8d0c2b401f7",
-        },
         "Tampere": Object {
           "id": "43563e8d-9599-46b7-b011-a90450fe4c81",
-        },
-        "frenkell.jpg": Object {
-          "id": "fa8d4b50-fc13-4801-b5a6-d8d6c86a69bd",
         },
         "image-with-24-hour.jpg": Object {
           "id": "4ae20908-7e29-49ce-a7fd-0ecb9a6292a3",
@@ -52,9 +46,6 @@ Object {
         },
         "some-text.txt": Object {
           "id": "dd3bc53a-f433-4810-8e7f-f7c6d7922ca8",
-        },
-        "tampere.jpg": Object {
-          "id": "1b435867-6e03-40c7-837b-35d9de80ea90",
         },
       },
       "longitude": 16.65045388888889,
