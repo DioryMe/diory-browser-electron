@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { channels } from '../../../../shared/constants'
 import { invokeChannel } from '../../../client/client'
 
-import { useDispatchActions, useStore } from '../../../store'
+import { useDispatchActions, useStore, getUntrackedObject } from '../../../store'
 
 import { saveHome } from '../actions'
 
@@ -20,7 +20,7 @@ export const useSaveHomeEffect = () => {
   const [{ connections, updated: connectionsUpdated }] = useStore((state) => state.connectors)
   const [{ roomId, focus: dioryId }] = useStore((state) => state.navigation)
   const home = {
-    rooms,
+    rooms: getUntrackedObject(rooms),
     connections: transformConnections(connections),
     focus: { roomId, dioryId },
   }
