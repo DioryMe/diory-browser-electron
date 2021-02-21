@@ -33,11 +33,16 @@ export const invokeChannel = (channel, params) => {
 
   window.frontendLogger.info('Frontend IPC invoke:', channel, params)
 
+  // Called when backend successfully responds (response object or Error object)
   const success = (responseObject) => {
+    if (responseObject instanceof Error) {
+      invokeAlertDialog(responseObject)
+    }
     window.frontendLogger.info('Frontend IPC response:', channel, responseObject)
     return responseObject
   }
 
+  // Called when backend throws error
   const error = (errorObject) => {
     window.frontendLogger.error('ERROR: Frontend IPC response:', channel, errorObject)
     invokeAlertDialog(errorObject)
