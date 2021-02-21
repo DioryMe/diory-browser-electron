@@ -167,7 +167,15 @@
       "image": "development-content-room/Kayaking at Potomac/PIXNIO-53543-1782x1188.jpeg",
       "date": "2013-06-25T23:11:09.000Z",
       "created": "2016-06-04T10:32:12Z",
-      "modified": "2020-04-19T18:33:36.000Z"
+      "modified": "2020-04-19T18:33:36.000Z",
+      "links": {
+        "Jane": {
+          "id": "3e2ddc49-b3b6-4212-8a0a-80b9150a57ae"
+        },
+        "Mary": {
+          "id": "e07c2f1d-5f5a-488a-a505-34f7b9f55105"
+        }
+      }
     },
     "a013d29c-b4ff-482d-89cc-97191b9de8b1": {
       "id": "a013d29c-b4ff-482d-89cc-97191b9de8b1",
