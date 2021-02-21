@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useStore, useDispatchActions } from '../../../store'
+import { useStore, useDispatchActions, getUntrackedObject } from '../../../store'
 
 import { saveRoom } from '../../diograph/actions'
 import { useConnections } from '../useConnections'
@@ -16,7 +16,11 @@ export const useSaveRoomEffect = (connectorId) => {
     if (updated) {
       connected.forEach(({ address }) => {
         debounceDispatchPromiseAction(
-          () => invokeChannel(channels.SAVE_ROOM, { path: address, room: { rootId, diograph } }),
+          () =>
+            invokeChannel(channels.SAVE_ROOM, {
+              path: address,
+              room: { rootId, diograph: getUntrackedObject(diograph) },
+            }),
           saveRoom
         )
       })
