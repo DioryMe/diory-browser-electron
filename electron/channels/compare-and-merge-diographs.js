@@ -1,5 +1,7 @@
 const { isEmpty } = require('../lib/utils')
 
+const MAXIMUM_SUBFOLDER_DEPTH = 15
+
 // Returns diograph with rootId
 exports.compareAndMergeDiographs = function compareAndMergeDiographs(
   existingDiograph,
@@ -25,15 +27,26 @@ function compareDiographs(existingDiograph, folderStructureDiograph) {
 }
 
 // Returns [{ path: ..., diory: ... }, { path: ..., diory: ... }, ... ]
-function linkedDioriesWithPaths(diory, diograph, parentPath = '') {
+function linkedDioriesWithPaths(diory, diograph, parentPath = '', recursionDepth = 0) {
   if (diory.links === {} || diory.links === undefined) {
+    return []
+  }
+
+  // Circularly linked diories end up to an infinite recursion without this
+  // eslint-disable-next-line no-cond-assign
+  if ((recursionDepth += 1) > MAXIMUM_SUBFOLDER_DEPTH) {
     return []
   }
 
   return Object.entries(diory.links)
     .map(([path, { id }]) => {
       path = parentPath ? `${parentPath}/${path}` : path
-      const dioryLinkedDioriesWithPaths = linkedDioriesWithPaths(diograph[id], diograph, path)
+      const dioryLinkedDioriesWithPaths = linkedDioriesWithPaths(
+        diograph[id],
+        diograph,
+        path,
+        recursionDepth
+      )
       return [...dioryLinkedDioriesWithPaths, { path, diory: diograph[id] }]
     })
     .flat()
