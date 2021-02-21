@@ -20,7 +20,7 @@ test('select diograph folder (with diograph.json)', async (t) => {
     .eql(5)
     .click(eventDiory)
     .expect(dioryCount)
-    .eql(13)
+    .eql(14) // pixnio-public-domain-test-content.txt is added too
 })
 
 // Taking snapshots didn't work too well
