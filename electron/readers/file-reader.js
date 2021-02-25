@@ -2,9 +2,10 @@ const { statSync } = require('fs')
 const { extname, parse } = require('path')
 
 const fileTypes = {
-  image: ['.jpg', '.jpeg', '.png'],
-  video: ['.mpg', '.mov', '.mp4', '.avi'],
-  text: ['.txt', '.md'],
+  image: ['.jpg', '.jpeg', '.png', '.gif', '.tiff', '.bmp', '.eps'],
+  video: ['.mpg', '.mpeg', '.mov', '.mp4', '.avi', '.m4v', '.flv', '.mkv'],
+  audio: ['.mp3, .opus', '.m4a', '.wav', '.it', '.s3m', '.mid'],
+  text: ['.txt', '.md', '.rtf'],
 }
 
 exports.resolveFileType = function resolveFileType(filePath = '') {
