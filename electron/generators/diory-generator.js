@@ -18,6 +18,7 @@ function readFileData(type, filePath) {
       return {
         created: fileData.created,
         modified: fileData.modified,
+        image: pathToFileURL(filePath),
         ...readVideo(filePath),
       }
     case 'audio':
