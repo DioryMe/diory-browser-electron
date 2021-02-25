@@ -1,9 +1,13 @@
 const { resolve } = require('path')
 
-const ignoredFiles = ['diograph.json', '.DS_Store', 'Icon']
+const ignoredFiles = ['diograph.json', 'Icon', 'Thumbs.db']
 
-exports.isIgnored = function isValid(dirent) {
-  return !ignoredFiles.includes(dirent.name)
+exports.isIgnored = function isIgnored(dirent) {
+  return ignoredFiles.includes(dirent.name) || isHiddenFile(dirent.name)
+}
+
+function isHiddenFile(filename) {
+  return /^\./.test(filename)
 }
 
 exports.isFile = function isFile(dirent) {
