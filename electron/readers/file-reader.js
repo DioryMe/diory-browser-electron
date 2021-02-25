@@ -1,11 +1,12 @@
 const { statSync } = require('fs')
 const { extname, parse } = require('path')
 
+// File types without browser support are pending for "Reveal in Finder" feature
 const fileTypes = {
-  image: ['.jpg', '.jpeg', '.png', '.gif', '.tiff', '.bmp', '.eps'],
-  video: ['.mpg', '.mpeg', '.mov', '.mp4', '.avi', '.m4v', '.flv', '.mkv'],
-  audio: ['.mp3', '.opus', '.m4a', '.wav', '.it', '.s3m', '.mid'],
-  text: ['.txt', '.md', '.rtf'],
+  image: ['.jpg', '.jpeg', '.png', '.gif', '.tiff', '.bmp'], // '.eps'
+  video: ['.mpg', '.mpeg', '.mov', '.mp4'], // '.avi', '.m4v', '.flv', '.mkv'
+  audio: ['.mp3', '.opus', '.m4a', '.wav'], // '.it', '.s3m', '.mid'
+  text: ['.log', '.txt', '.md', '.html', '.pdf'], // '.rtf', '.rtfd'
 }
 
 exports.resolveFileType = function resolveFileType(filePath = '') {
