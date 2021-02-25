@@ -86,6 +86,9 @@ describe('file-reader', () => {
         ['.mov', 'video'],
         ['.txt', 'text'],
         ['.md', 'text'],
+        ['.mp3', 'audio'],
+        ['.m4a', 'audio'],
+        ['.wav', 'audio'],
         ['.JPG', 'image'],
         ['.JPEG', 'image'],
         ['.PNG', 'image'],
@@ -93,6 +96,9 @@ describe('file-reader', () => {
         ['.MOV', 'video'],
         ['.TXT', 'text'],
         ['.MD', 'text'],
+        ['.MP3', 'audio'],
+        ['.M4A', 'audio'],
+        ['.WAV', 'audio'],
       ]
 
       definedTypes.forEach(([extension, type]) => {
