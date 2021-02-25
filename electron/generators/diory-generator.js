@@ -22,6 +22,7 @@ function readFileData(type, filePath) {
         ...readVideo(filePath),
       }
     case 'audio':
+    case 'text':
       return {
         image: pathToFileURL(filePath),
         ...fileData,
