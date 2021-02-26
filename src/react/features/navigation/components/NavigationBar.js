@@ -1,23 +1,29 @@
 import React from 'react'
 import { Pane } from 'evergreen-ui'
-import NavigationButtons from './NavigationButtons'
-import NavigationLenses from './NavigationLenses'
-import NavigationSearch from './NavigationSearch'
+import { useStore } from '../../../store'
 
-const NavigationBar = () => (
-  <Pane
-    display="flex"
-    justifyContent="space-between"
-    padding={8}
-    background="tint2"
-    zIndex={15}
-    position="fixed"
-    width="100%"
-  >
-    <NavigationButtons display="flex" alignSelf="center" />
-    <NavigationLenses display="flex" />
-    <NavigationSearch />
-  </Pane>
-)
+import TextFilter from '../../filters/text/TextFilter'
+import LensesBar from '../../lenses/LensesBar'
+import NavigationButtons from './NavigationButtons'
+
+const NavigationBar = () => {
+  const [{ roomId }] = useStore((state) => state.navigation)
+
+  return (
+    <Pane
+      display="flex"
+      justifyContent="space-between"
+      padding={8}
+      background="tint2"
+      zIndex={15}
+      position="fixed"
+      width="100%"
+    >
+      <NavigationButtons display="flex" alignSelf="center" />
+      {roomId && <LensesBar display="flex" />}
+      {roomId && <TextFilter />}
+    </Pane>
+  )
+}
 
 export default NavigationBar

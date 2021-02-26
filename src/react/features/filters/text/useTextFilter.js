@@ -5,16 +5,17 @@ import { useGenerateTextFilter } from './useGenerateTextFilter'
 import { activateFilter, setFilter } from '../actions'
 
 export const useTextFilter = () => {
-  const { query = '' } = useFilter('text')
+  const { active, query = '' } = useFilter('text')
 
   const { dispatch } = useDispatchActions()
   return {
-    query,
-    setTextFilter: (query) => {
+    value: active ? query : '',
+    placeholder: 'Search your diory',
+    onFocus: ({ target: { value: query } }) => {
       dispatch(setFilter('text', { query }))
       dispatch(activateFilter('text', !!query.length))
     },
-    turnOn: (query = '') => {
+    onChange: ({ target: { value: query } }) => {
       dispatch(setFilter('text', { query }))
       dispatch(activateFilter('text', !!query.length))
     },
