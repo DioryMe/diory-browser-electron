@@ -11,7 +11,7 @@ import { useTextFilter } from './text/useTextFilter'
 import { reduceIdsToKeys } from '../../utils/reduceIdsToKeys'
 import { useDiorys } from '../diograph/hooks'
 
-export const useFilterDiorys = () => {
+export const useFilteredDiorys = () => {
   const [{ diograph }] = useStore((state) => state.diograph)
 
   const filtersAreActive = useFiltersAreActive()
@@ -23,22 +23,21 @@ export const useFilterDiorys = () => {
 
   const dioryIds = useMemo(
     () =>
-      filtersAreActive &&
-      Object.values(diograph)
+      Object.values(diograph || {})
         .filter(graphFilter)
         .filter(mapFilter)
         .filter(timelineFilter)
         .filter(textFilter)
         .reduce(reduceIdsToKeys, {}),
-    [filtersAreActive, diograph, graphFilter, mapFilter, timelineFilter, textFilter]
+    [diograph, graphFilter, mapFilter, timelineFilter, textFilter]
   )
 
   const diorys = useDiorys(dioryIds)
   return useMemo(
     () =>
-      dioryIds && {
+      filtersAreActive && {
         diorys,
       },
-    [dioryIds, diorys]
+    [filtersAreActive, diorys]
   )
 }
