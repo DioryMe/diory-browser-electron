@@ -28,6 +28,10 @@ function validateValue(value, format) {
     }
   }
 
+  if (format === 'number') {
+    return parseFloat(value) && /^\d*\.?\d*$/.test(value)
+  }
+
   return true
 }
 
@@ -38,6 +42,10 @@ function parseValue(value, format) {
 
   if (format === 'object') {
     return JSON.parse(value)
+  }
+
+  if (format === 'number') {
+    return parseFloat(value)
   }
 
   return value
