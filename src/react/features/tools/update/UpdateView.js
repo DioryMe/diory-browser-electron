@@ -31,7 +31,7 @@ const useUpdateView = (diory = {}) => {
 
 const UpdateView = ({ diory, title, isShown, onDone }) => {
   const { fields, setValue, updatedDiory, resetView } = useUpdateView(diory)
-
+  const imageValue = fields.find(({ key }) => key === 'image').value
   return (
     <Modal
       title={title}
@@ -60,6 +60,7 @@ const UpdateView = ({ diory, title, isShown, onDone }) => {
           }}
         />
       ))}
+      <a href={imageValue}>Open dataobject</a>
     </Modal>
   )
 }

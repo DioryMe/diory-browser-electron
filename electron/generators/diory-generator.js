@@ -1,4 +1,5 @@
 const { v4: uuid } = require('uuid')
+const { pathToFileURL } = require('url')
 const { resolveFileType, readFile } = require('../readers/file-reader')
 const { readFolderMetadata } = require('../readers/folder-reader')
 const { readImage } = require('../readers/image-reader')
@@ -17,7 +18,14 @@ function readFileData(type, filePath) {
       return {
         created: fileData.created,
         modified: fileData.modified,
+        image: pathToFileURL(filePath),
         ...readVideo(filePath),
+      }
+    case 'audio':
+    case 'text':
+      return {
+        image: pathToFileURL(filePath),
+        ...fileData,
       }
     default:
       return fileData || {}
