@@ -32,6 +32,10 @@ function validateValue(value, format) {
     return parseFloat(value) && /^\d*\.?\d*$/.test(value)
   }
 
+  if (format === 'date') {
+    return new Date(value).toString() !== 'Invalid Date'
+  }
+
   return true
 }
 
@@ -42,10 +46,6 @@ function parseValue(value, format) {
 
   if (format === 'object') {
     return JSON.parse(value)
-  }
-
-  if (format === 'number') {
-    return parseFloat(value)
   }
 
   return value
