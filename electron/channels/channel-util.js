@@ -19,7 +19,7 @@ exports.eventHandlerWrapper = function eventHandlerWrapper(channelName, eventHan
       backendLogger.info(
         'Backend IPC response:',
         channelName,
-        channelName === 'GET_ROOM' ? responseObject.rootId : responseObject
+        channelName === 'GET_ROOM' && responseObject ? responseObject.rootId : responseObject
       )
       return responseObject
     }

@@ -31,14 +31,22 @@ export const invokeChannel = (channel, params) => {
     return mockResponse(channel, params)
   }
 
-  window.frontendLogger.info('Frontend IPC invoke:', channel, params)
+  window.frontendLogger.info(
+    'Frontend IPC invoke:',
+    channel,
+    channel === 'SAVE_ROOM' ? params.path : params
+  )
 
   // Called when backend successfully responds (response object or Error object)
   const success = (responseObject) => {
     if (responseObject instanceof Error) {
       invokeAlertDialog(responseObject)
     }
-    window.frontendLogger.info('Frontend IPC response:', channel, responseObject)
+    window.frontendLogger.info(
+      'Frontend IPC response:',
+      channel,
+      channel === 'GET_ROOM' && responseObject ? responseObject.rootId : responseObject
+    )
     return responseObject
   }
 
