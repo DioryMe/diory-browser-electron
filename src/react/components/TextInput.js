@@ -28,6 +28,14 @@ function validateValue(value, format) {
     }
   }
 
+  if (format === 'number') {
+    return parseFloat(value) && /^\d*\.?\d*$/.test(value)
+  }
+
+  if (format === 'date') {
+    return new Date(value).toString() !== 'Invalid Date'
+  }
+
   return true
 }
 
