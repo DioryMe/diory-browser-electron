@@ -5,11 +5,9 @@ Feature: Creating content to Timeline lens
     And I take 'Generic content' in focus
     And I take 'Diory 1' in focus
 
-  @pending
-  # Crashes to an error
   Scenario: Timeline with diories without dates
     And I select timeline lens
-    Then I see 0 focus and 0 linked markers on timeline
+    Then I see 0 focus and 4 linked markers on timeline
 
   @pending
   # Shows 5 markers although other diories in view don't have dates
