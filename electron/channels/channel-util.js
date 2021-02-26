@@ -16,7 +16,11 @@ if (process.env.NODE_ENV === 'test') {
 exports.eventHandlerWrapper = function eventHandlerWrapper(channelName, eventHandler) {
   function specificEventHandler(event, params) {
     function success(responseObject) {
-      backendLogger.info('Backend IPC response:', channelName, responseObject)
+      backendLogger.info(
+        'Backend IPC response:',
+        channelName,
+        channelName === 'GET_ROOM' ? responseObject.rootId : responseObject
+      )
       return responseObject
     }
 
@@ -25,7 +29,11 @@ exports.eventHandlerWrapper = function eventHandlerWrapper(channelName, eventHan
       return e
     }
 
-    backendLogger.info('Backend IPC event handler triggered:', channelName, params)
+    backendLogger.info(
+      'Backend IPC event handler triggered:',
+      channelName,
+      channelName === 'SAVE_ROOM' ? params.path : params
+    )
     return eventHandler(event, params).then(success, err)
   }
 
