@@ -48,6 +48,10 @@ function parseValue(value, format) {
     return JSON.parse(value)
   }
 
+  if (format === 'number') {
+    return parseFloat(value)
+  }
+
   return value
 }
 
