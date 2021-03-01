@@ -13,6 +13,7 @@ export const initialState = {
   id: undefined,
   diograph: {},
   updated: false,
+  loaded: false,
 }
 
 const createDiory = (state, { payload }) => ({

@@ -34,3 +34,11 @@ export const useLinkDiory = () => {
     diorys: useLinkedDiorys(link),
   }
 }
+
+export const useDiographIsReady = () => {
+  const [{ diograph }] = useStore((state) => state.diograph)
+  const [{ focus }] = useStore((state) => state.navigation)
+  return {
+    diographIsReady: diograph && focus && !!diograph[focus],
+  }
+}
