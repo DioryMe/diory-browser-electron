@@ -43,9 +43,9 @@ const MapView = ({
 
 MapView.defaultProps = {
   fitToBounds: false,
+  enableDragging: false,
   onMapClick: () => {},
   onPopupClick: () => {},
-  enableDragging: () => {},
   onDragEnd: () => {},
   onBoundsChange: () => {},
 }
@@ -54,9 +54,9 @@ MapView.propTypes = {
   diory: PropTypes.object.isRequired,
   diorys: PropTypes.array.isRequired,
   fitToBounds: PropTypes.bool,
+  enableDragging: PropTypes.bool,
   onMapClick: PropTypes.func,
   onPopupClick: PropTypes.func,
-  enableDragging: PropTypes.func,
   onDragEnd: PropTypes.func,
   onBoundsChange: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
 }

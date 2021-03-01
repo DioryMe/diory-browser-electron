@@ -4,12 +4,12 @@ import { useFocus } from '../../diograph/hooks'
 import { useFiltersAreActive } from '../../filters/hooks/useFiltersAreActive'
 import { useFilteredDiorys } from '../../filters/useFilteredDiorys'
 
-import { addLens } from '../actions'
+import { addLensButton } from '../actions'
 
-export const useAddLens = (lensDiory) => {
+export const useAddLensButton = (lensDiory) => {
   const { dispatch } = useDispatchActions()
   useEffect(() => {
-    dispatch(addLens(lensDiory))
+    dispatch(addLensButton(lensDiory))
   }, [])
 }
 

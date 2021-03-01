@@ -39,13 +39,15 @@ const GridView = ({ diory, diorys, onDrop, onClick }) => (
 )
 
 GridView.defaultProps = {
+  diory: {},
+  diorys: [],
   onClick: () => {},
   onDrop: () => {},
 }
 
 GridView.propTypes = {
-  diory: PropTypes.object.isRequired,
-  diorys: PropTypes.array.isRequired,
+  diory: PropTypes.object,
+  diorys: PropTypes.array,
   onClick: PropTypes.func,
   onDrop: PropTypes.func,
 }
