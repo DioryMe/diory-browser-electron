@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 
 import { useCreateTool } from '../../tools/createLocation'
@@ -8,7 +7,17 @@ import { useMoveTool, useMoveToolIsActive } from '../../tools/move'
 import { useUpdateTool } from '../../tools/update'
 import { useTimelineFilter } from '../../filters/timeline/useTimelineFilter'
 
+import LensContainer from '../components/LensContainer'
+import { useLensDiorys } from '../hooks/useLens'
 import TimelineView from './TimelineView'
+
+const TIMELINE_LENS_ID = 'timeline'
+
+const timelineDiory = {
+  id: TIMELINE_LENS_ID,
+  text: 'Timeline',
+  image: 'time',
+}
 
 const useToolActions = () => {
   const focusDiory = useFocusTool()
@@ -29,13 +38,15 @@ const useToolActions = () => {
   }
 }
 
-const TimelineLens = ({ diory, diorys }) => (
-  <TimelineView diory={diory} diorys={diorys} {...useToolActions()} />
-)
-
-TimelineLens.propTypes = {
-  diory: PropTypes.object.isRequired,
-  diorys: PropTypes.array.isRequired,
+const SelectedTimelineLens = () => {
+  const { diory, diorys } = useLensDiorys()
+  return <TimelineView diory={diory} diorys={diorys} {...useToolActions()} />
 }
+
+const TimelineLens = () => (
+  <LensContainer lensDiory={timelineDiory}>
+    <SelectedTimelineLens />
+  </LensContainer>
+)
 
 export default TimelineLens

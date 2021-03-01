@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import { useDispatchActions } from '../../../store'
 
@@ -10,9 +9,19 @@ import { useUpdateTool } from '../../tools/update'
 
 import { createLink } from '../../diograph/actions'
 
+import LensContainer from '../components/LensContainer'
+import { useLensDiorys } from '../hooks/useLens'
 import GridView from './GridView'
 
-const useTools = () => {
+const GRID_LENS_ID = 'grid'
+
+const gridDiory = {
+  id: GRID_LENS_ID,
+  text: 'Grid',
+  image: 'grid-view',
+}
+
+const useToolActions = () => {
   const focusDiory = useFocusTool()
   const deleteDiory = useDeleteTool()
   const updateDiory = useUpdateTool()
@@ -31,11 +40,15 @@ const useTools = () => {
   }
 }
 
-const GridLens = ({ diory, diorys }) => <GridView diory={diory} diorys={diorys} {...useTools()} />
-
-GridLens.propTypes = {
-  diory: PropTypes.object.isRequired,
-  diorys: PropTypes.array.isRequired,
+const SelectedGridLens = () => {
+  const { diory, diorys } = useLensDiorys()
+  return <GridView diory={diory} diorys={diorys} {...useToolActions()} />
 }
+
+const GridLens = () => (
+  <LensContainer lensDiory={gridDiory}>
+    <SelectedGridLens />
+  </LensContainer>
+)
 
 export default GridLens
