@@ -2,9 +2,9 @@ import React from 'react'
 import { Pane } from 'evergreen-ui'
 import { useStore } from '../../../store'
 
-import TextFilter from '../../filters/text/TextFilter'
-import LensesBar from '../../lenses/LensesBar'
 import NavigationButtons from './NavigationButtons'
+import LensesBar from '../../lenses/components/LensesBar'
+import TextFilter from '../../filters/text/TextFilter'
 
 const NavigationBar = () => {
   const [{ roomId }] = useStore((state) => state.navigation)
