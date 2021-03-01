@@ -1,16 +1,16 @@
-import { ADD_LENS, SELECT_LENS } from './actionsTypes'
+import { ADD_LENS_BUTTON, SELECT_LENS } from './actionsTypes'
 import { createReducer } from '../../store'
 
 const DEFAULT_LENS = 'grid'
 
 export const initialState = {
   selectedLensId: DEFAULT_LENS,
-  lenses: [],
+  lensButtons: [],
 }
 
-const addLens = (state, { payload }) => ({
+const addLensButton = (state, { payload }) => ({
   ...state,
-  lenses: [...state.lenses, payload.id],
+  lensButtons: [...state.lensButtons, payload.diory],
 })
 
 const selectLens = (state, { payload }) => ({
@@ -19,6 +19,6 @@ const selectLens = (state, { payload }) => ({
 })
 
 export default createReducer({
-  [ADD_LENS]: addLens,
+  [ADD_LENS_BUTTON]: addLensButton,
   [SELECT_LENS]: selectLens,
 })

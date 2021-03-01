@@ -1,12 +1,10 @@
-import { useDispatchActions, useStore } from '../../store'
+import { useDispatchActions, useStore } from '../../../store'
 
-import { activateFilter } from '../filters/actions'
-import { selectLens } from './actions'
+import { activateFilter } from '../../filters/actions'
+import { selectLens } from '../../lenses/actions'
 
-import { lenses } from './Lenses'
-
-export const useLensesBar = () => {
-  const [{ selectedLensId }] = useStore((state) => state.lenses)
+export const useLensButtons = () => {
+  const [{ selectedLensId, lensButtons }] = useStore((state) => state.lenses)
   const [{ filters }] = useStore((state) => state.filters)
 
   const { dispatch } = useDispatchActions()
@@ -22,7 +20,7 @@ export const useLensesBar = () => {
   }
 
   return {
-    lenses: Object.entries(lenses).map(([id, { diory }]) => ({
+    lensButtons: lensButtons.map(({ id, ...diory }) => ({
       id,
       key: id,
       diory,

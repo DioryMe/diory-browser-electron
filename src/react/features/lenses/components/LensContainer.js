@@ -1,11 +1,11 @@
 import React from 'react'
 import { useDiographIsReady } from '../../diograph/hooks'
-import { useAddLens, useLensIsSelected } from '../hooks/useLens'
+import { useAddLensButton, useLensIsSelected } from '../hooks/useLens'
 
 import Fullscreen from '../../../components/Fullscreen'
 
 const LensContainer = ({ lensDiory, children }) => {
-  useAddLens(lensDiory)
+  useAddLensButton(lensDiory)
   const { diographIsReady } = useDiographIsReady()
   const { lensIsSelected } = useLensIsSelected(lensDiory)
 

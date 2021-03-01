@@ -1,4 +1,11 @@
-import { ADD_LENS, SELECT_LENS } from './actionsTypes'
+import { ADD_LENS_BUTTON, SELECT_LENS } from './actionsTypes'
 
-export const addLens = (id) => ({ type: ADD_LENS, payload: { id } })
-export const selectLens = (id) => ({ type: SELECT_LENS, payload: { id } })
+export const addLensButton = (diory) => ({
+  type: ADD_LENS_BUTTON,
+  payload: { diory },
+})
+
+export const selectLens = (id) => ({
+  type: SELECT_LENS,
+  payload: { id },
+})

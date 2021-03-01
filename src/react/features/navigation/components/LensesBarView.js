@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane, Tablist } from 'evergreen-ui'
-import LensButton from '../../components/LensButton'
+import LensButton from '../../../components/LensButton'
 
 const LensesBarView = ({ lenses }) => (
   <Pane display="flex">
