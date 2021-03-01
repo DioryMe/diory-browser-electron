@@ -1,18 +1,8 @@
-import { useEffect } from 'react'
 import { useDispatchActions } from '../../../store'
 import { useFilter } from '../hooks/useFilter'
 import { useGenerateGraphFilter } from './useGenerateGraphFilter'
 
 import { setFilter } from '../actions'
-
-const INITIAL_PATH_LENGTH = 1
-
-const useInitialGraphZoom = () => {
-  const { dispatch } = useDispatchActions()
-  useEffect(() => {
-    dispatch(setFilter('grid', { zoom: INITIAL_PATH_LENGTH }))
-  }, [dispatch])
-}
 
 const useZoomButtons = () => {
   const { zoom } = useFilter('grid')
@@ -35,10 +25,7 @@ const useZoomButtons = () => {
   ]
 }
 
-export const useGraphFilter = () => {
-  useInitialGraphZoom()
-  return {
-    buttons: useZoomButtons(),
-    graphFilter: useGenerateGraphFilter(),
-  }
-}
+export const useGraphFilter = () => ({
+  buttons: useZoomButtons(),
+  graphFilter: useGenerateGraphFilter(),
+})
