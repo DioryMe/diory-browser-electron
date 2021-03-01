@@ -6,9 +6,17 @@ import { useTextFilter } from './useTextFilter'
 
 const TextFilter = (props) => {
   useFilterEffects('text')
+  const { value, placeholder, onChange, onFocus } = useTextFilter()
   return (
     <Pane {...props}>
-      <SearchInput id="NavigationSearch" width={200} {...useTextFilter()} />
+      <SearchInput
+        id="NavigationSearch"
+        width={200}
+        value={value}
+        placeholder={placeholder}
+        onChange={onChange}
+        onFocus={onFocus}
+      />
     </Pane>
   )
 }
