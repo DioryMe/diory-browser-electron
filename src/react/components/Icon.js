@@ -6,6 +6,7 @@ import {
   EditIcon,
   WrenchIcon,
   CrossIcon,
+  SmallCrossIcon,
   MoveIcon,
   FullscreenIcon,
   MapIcon,
@@ -30,6 +31,8 @@ const Icon = ({ icon, ...props }) => {
       return <WrenchIcon {...props} />
     case 'cross':
       return <CrossIcon {...props} />
+    case 'small-cross':
+      return <SmallCrossIcon {...props} />
     case 'move':
       return <MoveIcon {...props} />
     case 'fullscreen':
