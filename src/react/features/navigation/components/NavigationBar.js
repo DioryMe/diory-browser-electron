@@ -3,7 +3,7 @@ import { Pane } from 'evergreen-ui'
 import { useStore } from '../../../store'
 
 import NavigationButtons from './NavigationButtons'
-import LensesBar from '../../lenses/components/LensesBar'
+import NavigationLenses from './NavigationLenses'
 import TextFilter from '../../filters/text/TextFilter'
 
 const NavigationBar = () => {
@@ -20,7 +20,7 @@ const NavigationBar = () => {
       width="100%"
     >
       <NavigationButtons display="flex" alignSelf="center" />
-      {roomId && <LensesBar display="flex" />}
+      {roomId && <NavigationLenses display="flex" />}
       {roomId && <TextFilter />}
     </Pane>
   )
