@@ -43,10 +43,14 @@ const LensButton = ({ diory, isSelected, isFiltered, onSelect, onRemove, ...lens
     </Tab>
   )
 
+LensButton.defaultProps = {
+  isFiltered: false,
+}
+
 LensButton.propTypes = {
   diory: PropTypes.object.isRequired,
   isSelected: PropTypes.bool.isRequired,
-  isFiltered: PropTypes.bool.isRequired,
+  isFiltered: PropTypes.bool,
   onSelect: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
 }

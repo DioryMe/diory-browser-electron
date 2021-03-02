@@ -11,13 +11,13 @@ export const useTextFilter = () => {
   return {
     value: active ? query : '',
     placeholder: 'Search your diory',
-    onFocus: ({ target: { value: query } }) => {
-      dispatch(setFilter('text', { query }))
+    onFocus: ({ target: { value } }) => {
+      dispatch(setFilter('text', { query: value }))
       dispatch(activateFilter('text', !!query.length))
     },
-    onChange: ({ target: { value: query } }) => {
-      dispatch(setFilter('text', { query }))
-      dispatch(activateFilter('text', !!query.length))
+    onChange: ({ target: { value } }) => {
+      dispatch(setFilter('text', { query: value }))
+      dispatch(activateFilter('text', !!value.length))
     },
     textFilter: useGenerateTextFilter(),
   }
