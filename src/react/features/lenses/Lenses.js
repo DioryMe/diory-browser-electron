@@ -5,6 +5,7 @@ import { useStore } from '../../store'
 
 import Fullscreen from '../../components/Fullscreen'
 import { useFocus } from '../diograph/hooks'
+import { useFilterIsActive } from '../filters/hooks/useFilterIsActive'
 import { useFilteredDiorys } from '../filters/useFilteredDiorys'
 
 import fullscreen from './fullscreen'
@@ -37,8 +38,13 @@ LensesView.propTypes = {
 }
 
 const Lenses = () => {
+  const { filterIsActive } = useFilterIsActive()
+  const focusDiorys = useFocus()
+  const filteredDiorys = useFilteredDiorys()
+  const { diory, diorys } = filterIsActive ? filteredDiorys : focusDiorys
   const [{ selectedLensId }] = useStore((state) => state.lenses)
-  return <LensesView {...useFocus()} {...useFilteredDiorys()} selectedLensId={selectedLensId} />
+
+  return <LensesView diory={diory} diorys={diorys} selectedLensId={selectedLensId} />
 }
 
 export default Lenses

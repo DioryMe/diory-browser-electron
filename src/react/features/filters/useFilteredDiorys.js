@@ -1,20 +1,16 @@
 import { useMemo } from 'react'
 import { useStore } from '../../store'
 
-import { useFiltersAreActive } from './hooks/useFiltersAreActive'
-
 import { useGraphFilter } from './graph/useGraphFilter'
 import { useMapFilter } from './map/useMapFilter'
 import { useTimelineFilter } from './timeline/useTimelineFilter'
 import { useTextFilter } from './text/useTextFilter'
+import { useDiorys } from '../diograph/hooks'
 
 import { reduceIdsToKeys } from '../../utils/reduceIdsToKeys'
-import { useDiorys } from '../diograph/hooks'
 
 export const useFilteredDiorys = () => {
   const [{ diograph }] = useStore((state) => state.diograph)
-
-  const filtersAreActive = useFiltersAreActive()
 
   const { graphFilter } = useGraphFilter()
   const { mapFilter } = useMapFilter()
@@ -34,10 +30,12 @@ export const useFilteredDiorys = () => {
 
   const diorys = useDiorys(dioryIds)
   return useMemo(
-    () =>
-      filtersAreActive && {
-        diorys,
+    () => ({
+      diory: {
+        text: 'Filter',
       },
-    [filtersAreActive, diorys]
+      diorys,
+    }),
+    [diorys]
   )
 }
