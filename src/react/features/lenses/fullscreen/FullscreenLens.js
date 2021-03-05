@@ -4,7 +4,18 @@ import { useFocus } from '../../diograph/hooks'
 
 const FullscreenLens = () => {
   const { diory } = useFocus()
-  return <Diory diory={diory} height="100%" />
+  const fullScreenDiory = {
+    ...diory,
+    style: {
+      ...(diory && diory.style),
+      image: {
+        ...(diory.style && diory.style.image),
+        backgroundSize: 'contain',
+        backgroundColor: 'black',
+      },
+    },
+  }
+  return <Diory diory={fullScreenDiory} height="100%" />
 }
 
 export default FullscreenLens
