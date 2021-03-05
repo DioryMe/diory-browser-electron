@@ -24,6 +24,10 @@ When('I click {word} button', (buttonName) => {
   cy.get('button').contains(buttonName).click()
 })
 
+When('I click {string} focus diory', (dioryName) => {
+  cy.get('h2').contains(dioryName).click()
+})
+
 When('I type {string} in search bar', (searchString) => {
   cy.get('input#NavigationSearch').type(searchString)
 })
@@ -34,16 +38,12 @@ Then('I see {string} in view', (dioryName) => {
   cy.contains(dioryName).should('have.length', 1)
 })
 
-Then('I see {word} button', (buttonName) => {
-  cy.get(`div[data-testid=${buttonName}-button]`).should('have.length', 1)
-})
-
-Then('I see {string}', (testId) => {
-  cy.get(`div[data-testid=${testId}]`).should('have.length', 1)
-})
-
 Then('I do not see {string} in view', (dioryName) => {
   cy.contains(dioryName).should('have.length', 0)
+})
+
+Then('I see {word} button', (buttonName) => {
+  cy.get(`div[data-testid=${buttonName}-button]`).should('have.length', 1)
 })
 
 Then('I select {word} lens', (lensName) => {
