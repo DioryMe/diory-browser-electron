@@ -1,8 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Modal from '../../../components/Modal'
+import { useDispatch } from '../../../store'
 
-const DeleteView = ({ diory, links, title, onDone }) => {
+import { setInactive } from '../../buttons/actions'
+import { goBackward } from '../../navigation/actions'
+import { deleteDiory, deleteLink } from '../../diograph/actions'
+
+const useDeleteDioryAndLinks = (diory, clickedDiory) => {
+  const dispatch = useDispatch()
+  return {
+    deleteDioryAndLinks: () => {
+      if (diory.id !== clickedDiory.id) {
+        dispatch(deleteLink(diory, clickedDiory))
+      } else {
+        dispatch(goBackward())
+        dispatch(deleteDiory(clickedDiory))
+      }
+      dispatch(setInactive())
+    },
+  }
+}
+
+const DeleteView = ({ diory, focus, links, title, onDone }) => {
+  const { deleteDioryAndLinks } = useDeleteDioryAndLinks(focus, diory)
+
   const linkList = links ? (
     <div>
       <div>Links:</div>
@@ -13,7 +35,7 @@ const DeleteView = ({ diory, links, title, onDone }) => {
   ) : null
 
   return (
-    <Modal title={title} onDone={onDone} confirmLabel="Delete" intent="danger">
+    <Modal title={title} onDone={() => deleteDioryAndLinks()} confirmLabel="Delete" intent="danger">
       <div>
         <p>Are you sure you want to delete?</p>
       </div>
