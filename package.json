@@ -89,7 +89,7 @@
     "test-react": "react-scripts test",
     "test-electron": "jest electron/**/*.spec.js --setupFilesAfterEnv ./src/setupTests.js --detectOpenHandles --roots electron",
     "test-cypress": "yarn cypress run",
-    "storybook": "start-storybook -p 9009 -s public",
+    "storybook": "ESLINT_NO_DEV_ERRORS=true start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
     "eject": "react-scripts eject"
   },
