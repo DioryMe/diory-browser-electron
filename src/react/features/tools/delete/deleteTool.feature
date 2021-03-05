@@ -10,11 +10,25 @@ Feature: Delete tool
     Then I see delete button
     And I see 'Diory 11' in view
 
+  Scenario: Diory in focus is deleted
+    When I take 'Diory 14' in focus
+    And I select delete button
+    And I click 'Diory 14' focus diory
+    And I click Delete button
+    Then I do not see 'Diory 14' in view
+    And I see 'Diory 11' in view
+
   Scenario: Diory is deleted from view
     When I select delete button
     And I take 'Diory 11' in focus
-    # And I click Yes button
+    And I click Delete button
     Then I do not see 'Diory 11' in view
+
+  Scenario: Deleting diory is cancelled
+    When I select delete button
+    And I take 'Diory 11' in focus
+    And I click Cancel button
+    Then I see 'Diory 11' in view
 
   # Scenario: Diory is deleted from search
     # When I select delete button
@@ -22,12 +36,6 @@ Feature: Delete tool
     # And I click Yes button
     # And I type 'Diory 11' in search bar
     # Then I do not see 'Diory 11' in view
-
-  # Scenario: Deleting diory is cancelled
-    # When I select delete button
-    # And I take 'Diory 11' in focus
-    # And I click No button
-    # Then I see 'Diory 11' in view
 
   Scenario: Delete diory is deactivated
     When I select delete button

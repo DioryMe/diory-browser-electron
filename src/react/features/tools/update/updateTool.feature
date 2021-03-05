@@ -12,6 +12,16 @@ Feature: Update tool
     Then update tool is active
     And I see 'Update diory' in view
 
+  Scenario: Update tool opens for diory in focus
+    Then I click Cancel button
+    And I select tools button
+    And I select update button
+    And I click 'Diory 1' focus diory
+    And I add ' focus diory' to text field
+    And I click Done button
+    Then I do not see 'Update diory' in view
+    And I see 'Diory 1 focus diory' in view
+
   # Done & cancel
   Scenario: Done saves changes and closes the dialog
     When I add ' some text' to text field
@@ -23,6 +33,7 @@ Feature: Update tool
     When I add ' some text' to text field
     And I click Cancel button
     Then I do not see 'Update diory' in view
+    And I do not see 'Diory 11 some text' in view
     And I see 'Diory 11' in view
 
   # Text
@@ -71,6 +82,10 @@ Feature: Update tool
     And I take 'Diory 11' in focus
     Then I see '123' in longitude field
 
+  # Scenario: Invalid number
+  #   When I add 'asdfasdf' to longitude field
+  #   Then I see 'Invalid number' in view
+
   # Latitude
   Scenario: Update latitude
     When I add '234' to latitude field
@@ -80,6 +95,10 @@ Feature: Update tool
     And I take 'Diory 11' in focus
     Then I see '234' in latitude field
 
+  # Scenario: Invalid number
+  #   When I add '12.12.12' to latitude field
+  #   Then I see 'Invalid number' in view
+
   # Date
   Scenario: Update date
     When I add '2020-11-01' to date field
@@ -88,6 +107,10 @@ Feature: Update tool
     And I select update button
     And I take 'Diory 11' in focus
     Then I see '2020-11-01' in date field
+
+  # Scenario: Invalid date
+  #   When I add '29.2.2021' to date field
+  #   Then I see 'Invalid object' in view
 
   # Data
   Scenario: Update data
