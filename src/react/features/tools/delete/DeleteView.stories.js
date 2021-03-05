@@ -24,6 +24,7 @@ const diory = {
   text: 'some-diory',
   links: {
     'some-file-name': { id: 'some-linked-diory-id' },
+    'some-file-name2': { id: 'some-linked-diory-id2' },
   },
 }
 
