@@ -2,14 +2,37 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Modal from '../../../components/Modal'
 
-const DeleteView = ({ diory, title, isShown, onDone }) => (
-  <Modal title={title} isShown={isShown} onDone={onDone} />
-)
+const DeleteView = ({ diory, links, title, onDone }) => {
+  const linkList = links ? (
+    <div>
+      <div>Links:</div>
+      {Object.values(links).map((link) => (
+        <div key={link.id}>{link.id}</div>
+      ))}
+    </div>
+  ) : null
+
+  return (
+    <Modal title={title} onDone={onDone}>
+      <div>
+        <p>Are you sure you want to delete?</p>
+      </div>
+      {diory ? (
+        <div>
+          <p>
+            Diory:
+            {diory.text}
+          </p>
+        </div>
+      ) : null}
+      {linkList}
+    </Modal>
+  )
+}
 
 DeleteView.defaultProps = {
-  title: '',
-  diory: {},
-  isShown: false,
+  title: 'Delete tool',
+  diory: undefined,
   onDone: () => {},
 }
 
@@ -18,7 +41,6 @@ DeleteView.propTypes = {
   diory: PropTypes.shape({
     text: PropTypes.string,
   }),
-  isShown: PropTypes.bool,
   onDone: PropTypes.func,
 }
 

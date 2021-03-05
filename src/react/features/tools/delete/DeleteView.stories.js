@@ -20,6 +20,17 @@ const actions = {
   onDone: action('onDone'),
 }
 
+const diory = {
+  text: 'some-diory',
+  links: {
+    'some-file-name': { id: 'some-linked-diory-id' },
+  },
+}
+
 export const initially = () => <DeleteView />
 
-export const isShown = () => <DeleteView {...actions} isShown />
+export const withDiory = () => <DeleteView {...actions} diory={diory} />
+
+export const withLink = () => <DeleteView {...actions} links={diory.links} />
+
+export const withDioryAndLink = () => <DeleteView {...actions} diory={diory} links={diory.links} />
