@@ -13,7 +13,7 @@ const DeleteView = ({ diory, links, title, onDone }) => {
   ) : null
 
   return (
-    <Modal title={title} onDone={onDone}>
+    <Modal title={title} onDone={onDone} confirmLabel="Delete" intent="danger">
       <div>
         <p>Are you sure you want to delete?</p>
       </div>
