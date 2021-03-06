@@ -4,10 +4,14 @@ import { initialState } from '../../../store/initialState'
 import { useGenerateGraphFilter } from './useGenerateGraphFilter'
 
 jest.mock('../../../store')
-const mockState = { ...initialState }
-useStore.mockImplementation((selector) => [selector(mockState)])
 
 describe('useGraphFilter', () => {
+  let mockState
+  beforeEach(() => {
+    mockState = { ...initialState }
+    useStore.mockImplementation((selector) => [selector(mockState)])
+  })
+
   it('executes with initial state', () => {
     expect(useGenerateGraphFilter()).toBeDefined()
   })

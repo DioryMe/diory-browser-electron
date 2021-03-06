@@ -1,14 +1,17 @@
-import { useStore, useDispatchActions } from '../../../store'
+import { useStore } from '../../../store'
 import { initialState } from '../../../store/initialState'
+
 import { useGenerateTimelineFilter } from './useGenerateTimelineFilter'
 
 jest.mock('../../../store')
 
-const mockState = { ...initialState }
-useStore.mockImplementation((selector) => [selector(mockState)])
-useDispatchActions.mockReturnValue({})
-
 describe('useGenerateTimelineFilter', () => {
+  let mockState
+  beforeEach(() => {
+    mockState = { ...initialState }
+    useStore.mockImplementation((selector) => [selector(mockState)])
+  })
+
   it('executes with initial state', () => {
     expect(useGenerateTimelineFilter()).toBeDefined()
   })
