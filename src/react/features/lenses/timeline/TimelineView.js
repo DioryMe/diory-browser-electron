@@ -58,18 +58,18 @@ const TimelineView = ({
 }
 
 TimelineView.defaultProps = {
+  enableDragging: false,
   onMapClick: () => {},
   onPopupClick: () => {},
-  enableDragging: () => {},
   onDragEnd: () => {},
 }
 
 TimelineView.propTypes = {
   diory: PropTypes.object.isRequired,
   diorys: PropTypes.array.isRequired,
+  enableDragging: PropTypes.bool,
   onMapClick: PropTypes.func,
   onPopupClick: PropTypes.func,
-  enableDragging: PropTypes.func,
   onDragEnd: PropTypes.func,
 }
 
