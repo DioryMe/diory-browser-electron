@@ -1,14 +1,17 @@
-import { useStore, useDispatchActions } from '../../../store'
+import { useStore } from '../../../store'
 import { initialState } from '../../../store/initialState'
+
 import { useGenerateMapFilter } from './useGenerateMapFilter'
 
 jest.mock('../../../store')
 
-const mockState = { ...initialState }
-useStore.mockImplementation((selector) => [selector(mockState)])
-useDispatchActions.mockReturnValue({})
-
 describe('useGenerateMapFilter', () => {
+  let mockState
+  beforeEach(() => {
+    mockState = { ...initialState }
+    useStore.mockImplementation((selector) => [selector(mockState)])
+  })
+
   it('executes with initial state', () => {
     expect(useGenerateMapFilter()).toBeDefined()
   })
