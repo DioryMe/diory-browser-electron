@@ -9,7 +9,7 @@ const useInactivateFilterOnFocusChange = (filterId) => {
     if (focus) {
       dispatch(activateFilter(filterId, false))
     }
-  }, [focus, filterId])
+  }, [focus, filterId, dispatch])
 }
 
 export const useFilterEffects = (filterId) => {
