@@ -132,7 +132,7 @@ describe('useGraphFilter', () => {
           }
         })
 
-        it('returns false', () => {
+        it('returns true', () => {
           expect(useGenerateGraphFilter()({})).toEqual(true)
         })
       })
@@ -144,7 +144,7 @@ describe('useGraphFilter', () => {
           }
         })
 
-        it('returns false', () => {
+        it('returns true', () => {
           expect(useGenerateGraphFilter()({})).toEqual(true)
         })
       })
