@@ -82,9 +82,9 @@ Feature: Update tool
     And I take 'Diory 11' in focus
     Then I see '123' in longitude field
 
-  # Scenario: Invalid number
-  #   When I add 'asdfasdf' to longitude field
-  #   Then I see 'Invalid number' in view
+  Scenario: Invalid number
+    When I add 'asdfasdf' to longitude field
+    Then I see 'Invalid number' in view
 
   # Latitude
   Scenario: Update latitude
@@ -95,9 +95,9 @@ Feature: Update tool
     And I take 'Diory 11' in focus
     Then I see '234' in latitude field
 
-  # Scenario: Invalid number
-  #   When I add '12.12.12' to latitude field
-  #   Then I see 'Invalid number' in view
+  Scenario: Invalid number
+    When I add '12.12.12' to latitude field
+    Then I see 'Invalid number' in view
 
   # Date
   Scenario: Update date
@@ -108,9 +108,9 @@ Feature: Update tool
     And I take 'Diory 11' in focus
     Then I see '2020-11-01' in date field
 
-  # Scenario: Invalid date
-  #   When I add '29.2.2021' to date field
-  #   Then I see 'Invalid object' in view
+  Scenario: Invalid date
+    When I add '29.2.2021' to date field
+    Then I see 'Invalid object' in view
 
   # Data
   Scenario: Update data
