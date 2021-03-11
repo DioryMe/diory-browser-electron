@@ -1,5 +1,20 @@
 import React, { useReducer } from 'react'
-import { createContainer } from 'react-tracked'
+import { createContainer, getUntrackedObject } from 'react-tracked'
+
+// FIXME: Remove me, I am duplicated from useSaveRoomEffect.js
+// Makes a copy of storeDiograph and deeply resolves the Proxy objects
+function getUntrackedDiograph(diograph) {
+  const untrackedDiograph = { ...getUntrackedObject(diograph) }
+  if (untrackedDiograph) {
+    Object.entries(untrackedDiograph).forEach(([key, value]) => {
+      const untrackedLinks = getUntrackedObject(untrackedDiograph[key].links)
+      if (untrackedLinks) {
+        untrackedDiograph[key].links = { ...untrackedLinks }
+      }
+    })
+  }
+  return untrackedDiograph
+}
 
 const { Provider, useTracked } = createContainer(({ reducer, initialState }) =>
   useReducer(reducer, initialState)
@@ -15,6 +30,9 @@ StoreProvider.defaultProps = {
 
 export const useStore = (selector) => {
   const [state, dispatch] = useTracked()
+  // if (window.Cypress && process.env.NODE_ENV == 'test') {
+  window.diographInStore = getUntrackedDiograph(state.diograph.diograph)
+  // }
   const selectedState = selector ? selector(state) : state
   return [selectedState, dispatch]
 }
