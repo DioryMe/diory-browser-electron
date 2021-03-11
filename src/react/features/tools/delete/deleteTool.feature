@@ -14,7 +14,8 @@ Feature: Delete tool
     When I take 'Diory 14' in focus
     And I select delete button
     And I click 'Diory 14' focus diory
-    And I click Delete button
+    # FIXME: Pending for confirmation dialog
+    # And I click Delete button
     Then I do not see 'Diory 14' in view
     And I see 'Diory 11' in view
     And 'diory14' diory not in the store
@@ -26,7 +27,8 @@ Feature: Delete tool
   Scenario: Link to diory in view is deleted (not the diory!)
     When I select delete button
     And I take 'Diory 11' in focus
-    And I click Delete button
+    # FIXME: Pending for confirmation dialog
+    # And I click Delete button
     Then I do not see 'Diory 11' in view
     And 'link11' link not in the store
     And 'diory11' diory is in the store
