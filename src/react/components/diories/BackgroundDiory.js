@@ -30,17 +30,15 @@ const BackgroundDiory = ({ diory, gradient, gradientRgba, onClick, children, ...
         />
       )}
       {video && <BackgroundVideo video={video} zIndex={-1} position="fixed" {...videoStyle} />}
-      {text && (
-        <Heading
-          color={image ? 'white' : 'rgb(102, 120, 138)'}
-          fontWeight="bold"
-          width="100%"
-          {...textStyle}
-          onClick={(event) => onClick({ diory, event })}
-        >
-          {text}
-        </Heading>
-      )}
+      <Heading
+        color={image ? 'white' : 'rgb(102, 120, 138)'}
+        fontWeight="bold"
+        width="100%"
+        {...textStyle}
+        onClick={(event) => onClick({ diory, event })}
+      >
+        {text || '`'}
+      </Heading>
       {children}
     </Pane>
   )
