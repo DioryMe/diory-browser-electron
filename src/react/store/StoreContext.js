@@ -30,9 +30,9 @@ StoreProvider.defaultProps = {
 
 export const useStore = (selector) => {
   const [state, dispatch] = useTracked()
-  // if (window.Cypress && process.env.NODE_ENV == 'test') {
-  window.diographInStore = getUntrackedDiograph(state.diograph.diograph)
-  // }
+  if (window.Cypress && process.env.NODE_ENV === 'development') {
+    window.diographInStore = getUntrackedDiograph(state.diograph.diograph)
+  }
   const selectedState = selector ? selector(state) : state
   return [selectedState, dispatch]
 }
