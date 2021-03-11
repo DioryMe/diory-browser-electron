@@ -110,7 +110,7 @@ Feature: Update tool
 
   Scenario: Invalid date
     When I add '29.2.2021' to date field
-    Then I see 'Invalid object' in view
+    Then I see 'Invalid date' in view
 
   # Data
   Scenario: Update data
