@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane, Heading } from 'evergreen-ui'
+import { useDrag } from 'react-dnd'
 import BackgroundVideo from './BackgroundVideo'
 
 import Image from './Image'
@@ -8,6 +9,14 @@ import Image from './Image'
 const BackgroundDiory = ({ diory, gradient, gradientRgba, onClick, children, ...props }) => {
   const { id, text, image, video, style: dioryStyle = {} } = diory
   const { text: textStyle, image: imageStyle, video: videoStyle, ...style } = dioryStyle
+
+  const [, drag] = useDrag({
+    item: {
+      id: diory.id,
+      type: 'DIORY',
+    },
+  })
+
   return (
     <Pane
       id={id}
@@ -31,6 +40,7 @@ const BackgroundDiory = ({ diory, gradient, gradientRgba, onClick, children, ...
       )}
       {video && <BackgroundVideo video={video} zIndex={-1} position="fixed" {...videoStyle} />}
       <Heading
+        ref={drag}
         color={image ? 'white' : 'rgb(102, 120, 138)'}
         fontWeight="bold"
         width="100%"
