@@ -42,6 +42,11 @@ Then('I do not see {string} in view', (dioryName) => {
   cy.contains(dioryName).should('have.length', 0)
 })
 
+// FIXME: Used only by hand tool, many other data-testid steps exists, should we use only this?
+Then('I see {string}', (testId) => {
+  cy.get(`div[data-testid=${testId}]`).should('have.length', 1)
+})
+
 Then('I see {word} button', (buttonName) => {
   cy.get(`div[data-testid=${buttonName}-button]`).should('have.length', 1)
 })
