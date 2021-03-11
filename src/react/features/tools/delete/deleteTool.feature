@@ -33,11 +33,12 @@ Feature: Delete tool
     And 'link11' link not in the store
     And 'diory11' diory is in the store
 
-  Scenario: Deleting diory is cancelled
-    When I select delete button
-    And I take 'Diory 11' in focus
-    And I click Cancel button
-    Then I see 'Diory 11' in view
+  # FIXME: Pending for confirmation dialog
+  # Scenario: Deleting diory is cancelled
+  #   When I select delete button
+  #   And I take 'Diory 11' in focus
+  #   And I click Cancel button
+  #   Then I see 'Diory 11' in view
 
   # Scenario: Diory is deleted from search
     # When I select delete button
