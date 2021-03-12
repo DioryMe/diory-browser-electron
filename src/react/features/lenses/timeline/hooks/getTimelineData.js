@@ -4,10 +4,10 @@ const getAverage = (array = []) =>
 const concat = (array = [], item) => (typeof item !== 'undefined' ? array.concat(item) : array)
 
 export const getDateLongitude = ({ date }) =>
-  date ? (Date.parse(date) / Date.parse('1971-01-01T00:00:00.000Z')) * 10 : 0
+  (Date.parse(date) / Date.parse('1971-01-01T00:00:00.000Z')) * 10
 
 export const getLongitudeDate = (lng) =>
-  lng ? new Date((lng * Date.parse('1971-01-01T00:00:00.000Z')) / 10) : 0
+  new Date((lng * Date.parse('1971-01-01T00:00:00.000Z')) / 10)
 
 export const getIsoDate = (lng) =>
   new Date((lng * Date.parse('1971-01-01T00:00:00.000Z')) / 10).toISOString()
@@ -41,9 +41,9 @@ const getDioryTimelineData = ({ diory = {}, diorys = [], parent }) => {
   const { lng } = getDioryDateLongitude({ diory, diorys, parent })
   return {
     id: diory.id,
-    center: {
+    center: lng && {
       lat: 0,
-      lng: lng || 0,
+      lng,
     },
     min: dateLongitudes.length > 1 && {
       lat: 0,
@@ -59,7 +59,7 @@ const getDioryTimelineData = ({ diory = {}, diorys = [], parent }) => {
 const getLinksTimelineData = ({ diory = {}, diorys = [] }) =>
   diorys
     .map((child) => getDioryTimelineData({ diory: child, diorys, parent: diory }))
-    .filter(Boolean)
+    .filter(({ center }) => !!center)
 
 export const getTimelineData = ({ diory, diorys }) => ({
   diory: getDioryTimelineData({ diory, diorys }),
