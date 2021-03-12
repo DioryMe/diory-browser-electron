@@ -8,6 +8,7 @@ test('select new diograph folder (without diograph.json) and delete it', async (
   const exampleFolderRoomDiory = Selector('div').withExactText('testcafe-diograph-folder')
   const someFolderDiory = Selector('div').withExactText('some-folder')
   const welcomeRoomDiory = Selector('div').withExactText('Welcome room!')
+  const deleteButton = Selector('button').withText('Delete')
 
   await t
     .expect(dioryCount)
@@ -20,8 +21,8 @@ test('select new diograph folder (without diograph.json) and delete it', async (
     .click('[data-testid="tools-button"]')
     .click('[data-testid="delete-button"]')
     .click(someFolderDiory)
+    .click(deleteButton)
     .wait(1000) // Wait for SAVE_ROOM to complete and possibly raise anerror
-    .click('[data-testid="home"]')
     .click('[data-testid="home"]')
     .click('[data-testid="tools-button"]')
     .click('[data-testid="home-remove-room-button"]')
