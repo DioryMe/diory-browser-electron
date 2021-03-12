@@ -3,19 +3,19 @@ import { setInactive } from '../../buttons/actions'
 import { goBackward } from '../../navigation/actions'
 import { deleteDiory, deleteLink } from '../../diograph/actions'
 
+const generateDeletedLinks = (focus, links) =>
+  Object.values(links).map(({ id }) => ({
+    fromDiory: { id: focus.id },
+    toDiory: { id },
+  }))
+
 export const useDeleteDioryAndLinks = (focus, clickedDiory) => {
   const deleteDioryInFocus = focus.id === clickedDiory.id
   const deletedDiory = deleteDioryInFocus ? focus : null
-  let deletedLinks = []
-
-  if (!deleteDioryInFocus) {
-    deletedLinks = [
-      {
-        fromDiory: focus,
-        toDiory: clickedDiory,
-      },
-    ]
-  }
+  const links = deleteDioryInFocus
+    ? focus.links || {}
+    : { [clickedDiory.id]: { id: clickedDiory.id } }
+  const deletedLinks = generateDeletedLinks(focus, links)
 
   const dispatch = useDispatch()
   return {
@@ -26,9 +26,12 @@ export const useDeleteDioryAndLinks = (focus, clickedDiory) => {
         dispatch(deleteDiory(deletedDiory))
       }
 
-      deletedLinks.map((deletedLink) =>
+      deletedLinks.forEach((deletedLink) => {
+        if (deletedLink.fromDiory.id === deletedLink.toDiory.id) {
+          return
+        }
         dispatch(deleteLink(deletedLink.fromDiory, deletedLink.toDiory))
-      )
+      })
 
       if (deleteDioryInFocus) {
         dispatch(goBackward())
