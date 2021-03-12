@@ -1,13 +1,15 @@
-import { useDispatch } from '../../../store'
+import { useStore, useDispatch } from '../../../store'
 import { setInactive } from '../../buttons/actions'
 import { goBackward } from '../../navigation/actions'
 import { deleteDiory, deleteLink } from '../../diograph/actions'
 
-const generateDeletedLinks = (focus, links) =>
-  Object.values(links).map(({ id }) => ({
-    fromDiory: { id: focus.id },
-    toDiory: { id },
+const generateDeletedLinks = (focus, links) => {
+  const [{ diograph }] = useStore((state) => state.diograph)
+  return Object.values(links).map(({ id }) => ({
+    fromDiory: diograph[focus.id],
+    toDiory: diograph[id],
   }))
+}
 
 export const useDeleteDioryAndLinks = (focus, clickedDiory) => {
   const deleteDioryInFocus = focus.id === clickedDiory.id
@@ -19,8 +21,8 @@ export const useDeleteDioryAndLinks = (focus, clickedDiory) => {
 
   const dispatch = useDispatch()
   return {
-    deletedLinks,
     deletedDiory,
+    deletedLinks,
     deleteDioryAndLinks: () => {
       if (deletedDiory) {
         dispatch(deleteDiory(deletedDiory))
