@@ -1,26 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Modal from '../../../components/Modal'
-import { useDispatch } from '../../../store'
-
-import { setInactive } from '../../buttons/actions'
-import { goBackward } from '../../navigation/actions'
-import { deleteDiory, deleteLink } from '../../diograph/actions'
-
-const useDeleteDioryAndLinks = (diory, clickedDiory) => {
-  const dispatch = useDispatch()
-  return {
-    deleteDioryAndLinks: () => {
-      if (diory.id !== clickedDiory.id) {
-        dispatch(deleteLink(diory, clickedDiory))
-      } else {
-        dispatch(goBackward())
-        dispatch(deleteDiory(clickedDiory))
-      }
-      dispatch(setInactive())
-    },
-  }
-}
+import { useDeleteDioryAndLinks } from './useDeleteDioryAndLinks'
 
 const DeleteView = ({ diory, focus, links, title, onDone }) => {
   const { deleteDioryAndLinks } = useDeleteDioryAndLinks(focus, diory)
