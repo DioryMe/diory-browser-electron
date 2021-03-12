@@ -27,7 +27,7 @@ const DeleteView = ({ focus, clickedDiory }) => {
           </p>
         </div>
       )}
-      {deletedLinks && (
+      {deletedLinks.length > 0 && (
         <div>
           <div>Links:</div>
           {Object.values(deletedLinks).map((deletedLink) => (
