@@ -13,7 +13,7 @@ const DeleteTool = () => {
   const { diory } = useFocus()
 
   return DELETE_TOOL_BUTTON === active && !!link ? (
-    <DeleteView diory={linkDiory} focus={diory} />
+    <DeleteView focus={diory} linkDiory={linkDiory} />
   ) : null
 }
 
