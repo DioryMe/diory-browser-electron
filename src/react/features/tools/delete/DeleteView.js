@@ -21,15 +21,21 @@ const DeleteView = ({ focus, clickedDiory }) => {
       </div>
       {deletedDiory && (
         <div>
-          <p>
-            Diory:
+          <div>
+            <b>Diory</b>
+          </div>
+          <div>
+            &quot;
             {deletedDiory.text}
-          </p>
+            &quot;
+          </div>
         </div>
       )}
       {deletedLinks.length > 0 && (
         <div>
-          <div>Links:</div>
+          <div>
+            <b>Links</b>
+          </div>
           {Object.values(deletedLinks).map((deletedLink) => (
             <div key={deletedLink.fromDiory.id}>
               &quot;
