@@ -8,7 +8,7 @@ const boundsConfig = {
   DEFAULT_ZOOM: 5,
   DEFAULT_LOCATION: {
     lat: 0,
-    lng: getDateLongitude({ date: new Date() }),
+    lng: getDateLongitude({ date: new Date().toISOString() }),
   },
 }
 
