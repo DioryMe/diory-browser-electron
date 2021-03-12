@@ -2,13 +2,20 @@ import React from 'react'
 import { StoreProvider } from '../../../store/StoreContext'
 
 import DeleteView from './DeleteView'
+import deleteViewFixtureDiograph from './deleteViewFixtureDiograph'
+
+const initialDeleteViewState = {
+  diograph: {
+    diograph: deleteViewFixtureDiograph,
+  },
+}
 
 export default {
   title: 'Delete view',
   component: DeleteView,
   decorators: [
     (Story) => (
-      <StoreProvider>
+      <StoreProvider initialState={initialDeleteViewState}>
         <Story />
       </StoreProvider>
     ),
@@ -18,26 +25,11 @@ export default {
   },
 }
 
-const focusDiory = {
-  id: 'some-diory-id',
-  text: 'some-diory',
-  links: {
-    'some-file-name': { id: 'link-diory-id' },
-  },
-}
+const focusDiory = initialDeleteViewState.diograph.diograph.someDioryId
 
-const linkDiory = {
-  id: 'link-diory-id',
-  text: 'link-diory',
-  links: {
-    'some-diory-file-name': { id: 'some-diory-id' },
-  },
-}
+const linkDiory = initialDeleteViewState.diograph.diograph.linkedDioryId1
 
-const dioryWithoutLinks = {
-  id: 'some-diory-without-links-id',
-  text: 'some-diory-without-links',
-}
+const dioryWithoutLinks = linkDiory
 
 // export const initially = () => <DeleteView />
 
