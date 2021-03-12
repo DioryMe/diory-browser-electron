@@ -1,10 +1,10 @@
 import { useStore, useDispatch } from '../../../store'
 import { initialState } from '../../../store/initialState'
-
 import { useDeleteDioryAndLinks } from './useDeleteDioryAndLinks'
 
-import { deleteLink } from '../../diograph/actions'
+import { deleteDiory, deleteLink } from '../../diograph/actions'
 import { setInactive } from '../../buttons/actions'
+import { goBackward } from '../../navigation/actions'
 
 jest.mock('../../../store')
 
@@ -63,6 +63,16 @@ describe('useGraphFilter', () => {
 
       expect(mockDispatch).toHaveBeenCalledTimes(2)
       expect(mockDispatch).toHaveBeenCalledWith(deleteLink(diory, clickedDiory))
+      expect(mockDispatch).toHaveBeenCalledWith(setInactive())
+    })
+
+    it('delete diory in focus', () => {
+      const diory = { id: 'someDioryId' }
+      useDeleteDioryAndLinks(diory, diory).deleteDioryAndLinks()
+
+      expect(mockDispatch).toHaveBeenCalledTimes(3)
+      expect(mockDispatch).toHaveBeenCalledWith(goBackward())
+      expect(mockDispatch).toHaveBeenCalledWith(deleteDiory(diory))
       expect(mockDispatch).toHaveBeenCalledWith(setInactive())
     })
   })
