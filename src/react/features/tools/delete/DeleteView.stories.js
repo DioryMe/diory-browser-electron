@@ -1,5 +1,4 @@
 import React from 'react'
-import { action } from '@storybook/addon-actions'
 import { StoreProvider } from '../../../store/StoreContext'
 
 import DeleteView from './DeleteView'
@@ -19,22 +18,33 @@ export default {
   },
 }
 
-const actions = {
-  onDone: action('onDone'),
-}
-
-const diory = {
+const focusDiory = {
+  id: 'some-diory-id',
   text: 'some-diory',
   links: {
-    'some-file-name': { id: 'some-linked-diory-id' },
-    'some-file-name2': { id: 'some-linked-diory-id2' },
+    'some-file-name': { id: 'link-diory-id' },
   },
+}
+
+const linkDiory = {
+  id: 'link-diory-id',
+  text: 'link-diory',
+  links: {
+    'some-diory-file-name': { id: 'some-diory-id' },
+  },
+}
+
+const dioryWithoutLinks = {
+  id: 'some-diory-without-links-id',
+  text: 'some-diory-without-links',
 }
 
 export const initially = () => <DeleteView />
 
-export const withDiory = () => <DeleteView {...actions} diory={diory} />
+export const withLink = () => <DeleteView focus={focusDiory} linkDiory={linkDiory} />
 
-export const withLink = () => <DeleteView {...actions} links={diory.links} />
+export const withDiory = () => (
+  <DeleteView focus={dioryWithoutLinks} linkDiory={dioryWithoutLinks} />
+)
 
-export const withDioryAndLink = () => <DeleteView {...actions} diory={diory} links={diory.links} />
+export const withDioryAndLink = () => <DeleteView focus={focusDiory} linkDiory={focusDiory} />
