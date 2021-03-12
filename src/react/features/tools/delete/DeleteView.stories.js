@@ -39,12 +39,12 @@ const dioryWithoutLinks = {
   text: 'some-diory-without-links',
 }
 
-export const initially = () => <DeleteView />
+// export const initially = () => <DeleteView />
 
-export const withLink = () => <DeleteView focus={focusDiory} linkDiory={linkDiory} />
+export const withLink = () => <DeleteView focus={focusDiory} clickedDiory={linkDiory} />
 
 export const withDiory = () => (
-  <DeleteView focus={dioryWithoutLinks} linkDiory={dioryWithoutLinks} />
+  <DeleteView focus={dioryWithoutLinks} clickedDiory={dioryWithoutLinks} />
 )
 
-export const withDioryAndLink = () => <DeleteView focus={focusDiory} linkDiory={focusDiory} />
+export const withDioryAndLink = () => <DeleteView focus={focusDiory} clickedDiory={focusDiory} />
