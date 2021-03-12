@@ -3,8 +3,11 @@ import PropTypes from 'prop-types'
 import Modal from '../../../components/Modal'
 import { useDeleteDioryAndLinks } from './useDeleteDioryAndLinks'
 
-const DeleteView = ({ diory, focus, links, title, onDone }) => {
-  const { deleteDioryAndLinks } = useDeleteDioryAndLinks(focus, diory)
+const DeleteView = ({ focus, linkDiory }) => {
+  const { deleteDioryAndLinks } = useDeleteDioryAndLinks(focus, linkDiory)
+
+  const { links } = focus
+  const diory = focus
 
   const linkList = links ? (
     <div>
@@ -16,11 +19,16 @@ const DeleteView = ({ diory, focus, links, title, onDone }) => {
   ) : null
 
   return (
-    <Modal title={title} onDone={() => deleteDioryAndLinks()} confirmLabel="Delete" intent="danger">
+    <Modal
+      title="Delete tool"
+      onDone={() => deleteDioryAndLinks()}
+      confirmLabel="Delete"
+      intent="danger"
+    >
       <div>
         <p>Are you sure you want to delete?</p>
       </div>
-      {diory ? (
+      {diory.id ? (
         <div>
           <p>
             Diory:
@@ -34,17 +42,17 @@ const DeleteView = ({ diory, focus, links, title, onDone }) => {
 }
 
 DeleteView.defaultProps = {
-  title: 'Delete tool',
-  diory: undefined,
-  onDone: () => {},
+  focus: { links: [] },
+  linkDiory: undefined,
 }
 
 DeleteView.propTypes = {
-  title: PropTypes.string,
-  diory: PropTypes.shape({
-    text: PropTypes.string,
+  linkDiory: PropTypes.shape({
+    id: PropTypes.string,
   }),
-  onDone: PropTypes.func,
+  focus: PropTypes.shape({
+    id: PropTypes.string,
+  }),
 }
 
 export default DeleteView
