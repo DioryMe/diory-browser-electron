@@ -8,7 +8,7 @@ import { goBackward } from '../../navigation/actions'
 
 jest.mock('../../../store')
 
-describe('useGraphFilter', () => {
+describe('useDeleteDioryAndLinks', () => {
   let mockState
   const mockDispatch = jest.fn()
   beforeEach(() => {
@@ -22,9 +22,9 @@ describe('useGraphFilter', () => {
     jest.spyOn(global, 'Date').mockImplementation(mockedDate)
   })
 
-  it('executes with initial state', () => {
-    expect(useDeleteDioryAndLinks()).toBeDefined()
-  })
+  // it('executes with initial state', () => {
+  //   expect(useDeleteDioryAndLinks()).toBeDefined()
+  // })
 
   describe('given diograph', () => {
     beforeEach(() => {
