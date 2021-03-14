@@ -18,6 +18,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   HomeIcon,
+  ErrorIcon,
 } from 'evergreen-ui'
 
 const Icon = ({ icon, ...props }) => {
@@ -56,9 +57,15 @@ const Icon = ({ icon, ...props }) => {
       return <ChevronRightIcon {...props} />
     case 'home':
       return <HomeIcon {...props} />
+    case 'error-icon':
+      return <ErrorIcon {...props} />
     default:
-      return null
+      return <ErrorIcon {...props} />
   }
+}
+
+Icon.defaultProps = {
+  icon: 'error-icon',
 }
 
 Icon.propTypes = {
