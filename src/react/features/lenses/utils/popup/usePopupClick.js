@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-export const usePopupClick = (mapRef, onPopupClick, activeButton) => {
+export const usePopupClick = (mapRef, onPopupClick) => {
   useEffect(() => {
     let diory
     const handleClick = () => onPopupClick(diory)
@@ -19,5 +19,5 @@ export const usePopupClick = (mapRef, onPopupClick, activeButton) => {
         }
       })
     }
-  }, [mapRef, onPopupClick, activeButton])
+  }, [mapRef, onPopupClick])
 }

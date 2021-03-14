@@ -22,7 +22,6 @@ import Fullscreen from '../../../components/Fullscreen'
 const TimelineView = ({
   diory,
   diorys,
-  activeButton,
   onMapClick,
   onPopupClick,
   enableDragging,
@@ -33,8 +32,7 @@ const TimelineView = ({
   const timelineId = 'timelineId'
   const timeline = useTimeline(timelineId)
 
-  console.log(activeButton)
-  usePopupClick(timeline, onPopupClick, activeButton)
+  usePopupClick(timeline, onPopupClick)
 
   const timelineData = getTimelineData({ diory, diorys })
 
@@ -72,8 +70,8 @@ TimelineView.propTypes = {
   onMapClick: PropTypes.func,
   onPopupClick: PropTypes.func,
   onDragEnd: PropTypes.func,
-  fitToBounds: PropTypes.func,
-  onBoundsChange: PropTypes.func,
+  fitToBounds: PropTypes.bool,
+  onBoundsChange: PropTypes.bool,
 }
 
 export default TimelineView
