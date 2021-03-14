@@ -21,28 +21,27 @@ module.exports = {
   plugins: ['react', 'jest', 'prettier'],
   ignorePatterns: ['*.css', '*.feature', '*.json', '**/electron/readers/example-folder/**/*'],
   rules: {
+    'no-confusing-arrow': ['warn'],
+    'react/prop-types': ['warn'], // todo
+    'func-names': ['warn'], // todo
+    'import/newline-after-import': ['warn'],
+    'react/button-has-type': ['warn'],
     semi: ['off'],
     'arrow-parens': ['off'],
     'no-console': ['off'],
-    'operator-linebreak': ['off'], // prettier
+    'no-shadow': ['off'],
     'react/jsx-filename-extension': ['off'], // ok?
     'comma-dangle': ['off'], // maybe
     'import/prefer-default-export': ['off'], // maybe
-    'no-shadow': ['warn'], // todo
-    'react/prop-types': ['warn'], // todo
-    'func-names': ['warn'], // todo
     'no-unused-vars': ['error', { args: 'none' }], // maybe?
-    'max-len': ['off'], // prettier
-    'import/newline-after-import': ['warn'],
-    'object-curly-newline': ['off'], // prettier
     'react/require-default-props': ['off'],
     'react/forbid-prop-types': ['off'],
     'react/jsx-props-no-spreading': ['off'], // personal opinion
-    'react/button-has-type': ['warn'],
+    'no-underscore-dangle': ['off'],
+    'consistent-return': ['off'], // Personal opinion
+    // TODO:
     'no-param-reassign': ['warn'],
     'no-use-before-define': ['warn'],
-    'function-paren-newline': ['off'], // prettier
-    'implicit-arrow-linebreak': ['off'], // prettier
     'space-before-function-paren': ['warn'],
     'prefer-rest-params': ['warn'],
     'one-var': ['warn'],
@@ -54,22 +53,25 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': ['warn'],
     'import/no-dynamic-require': ['warn'],
     'space-infix-ops': ['warn'],
-    'no-confusing-arrow': ['warn'],
     'react/jsx-curly-brace-presence': ['warn'],
     'jsx-a11y/click-events-have-key-events': ['warn'],
     radix: ['warn'],
     'no-bitwise': ['warn'],
-    'no-underscore-dangle': ['off'],
     'no-inner-declarations': ['warn'],
     'no-unused-expressions': ['warn'],
     'prefer-destructuring': ['warn'],
     'react/jsx-closing-tag-location': ['warn'],
     'react/self-closing-comp': ['warn'],
     'import/no-extraneous-dependencies': ['warn', { devDependencies: true }],
-    'consistent-return': ['off'], // Personal opinion
     'import/no-cycle': ['warn'],
     'import/order': ['warn'],
     'no-prototype-builtins': ['warn'],
+    // Prettier:
+    'operator-linebreak': ['off'], // prettier
+    'max-len': ['off'], // prettier
+    'object-curly-newline': ['off'], // prettier
+    'function-paren-newline': ['off'], // prettier
+    'implicit-arrow-linebreak': ['off'], // prettier
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
   },
 }
