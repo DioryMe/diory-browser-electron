@@ -1,9 +1,11 @@
 export function debounce(func, wait, immediate) {
   let timeout
-  return () => {
+  // eslint-disable-next-line func-names
+  return function () {
     const context = this
     const args = arguments
-    const later = () => {
+    // eslint-disable-next-line func-names
+    const later = function () {
       timeout = null
       if (!immediate) func.apply(context, args)
     }
