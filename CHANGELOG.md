@@ -1,5 +1,4 @@
-
-## 2.5.6 (March 14, 2021)
+## 2.5.7 (March 14, 2021)
 
 ### DDA-85: Update folder
 - Generate diories from newly added files and folder from diograph folder without removing already existing diograph.json
@@ -22,6 +21,8 @@
 - BUG: Map saved locations as string
 - BUG: Timeline crashed if no diories with dates
 - Diory in focus has "action area" (BackgroundDiory Heading as draggable)
+- BUG: Navigate sideways icon didn't show
+- Strictened linting rules
 
 ### Tests
 - Testcafe E2E tests to CI pipeline (Appveyor)
