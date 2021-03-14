@@ -1,11 +1,11 @@
 import { When } from 'cypress-cucumber-preprocessor/steps'
 
 When('I navigate(d) backward', () => {
-  cy.get('button[data-testid="navigate-left"]').click()
+  cy.get('button[data-testid="navigate-back"]').click()
 })
 
 When('I navigate(d) forward', () => {
-  cy.get('button[data-testid="navigate-right"]').click()
+  cy.get('button[data-testid="navigate-forward"]').click()
 })
 
 When('I navigate(d) to home', () => {

@@ -29,13 +29,13 @@ const NavigationButtons = (props) => {
       <IconButton
         appearance="minimal"
         icon={<Icon icon="arrow-left" />}
-        data-testid="navigate-left"
+        data-testid="navigate-back"
         {...back}
       />
       <IconButton
         appearance="minimal"
         icon={<Icon icon="arrow-right" />}
-        data-testid="navigate-right"
+        data-testid="navigate-forward"
         {...forward}
       />
     </Pane>
