@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   PlusIcon,
   SmallPlusIcon,
@@ -12,8 +13,10 @@ import {
   MapIcon,
   TimeIcon,
   GridViewIcon,
-  ArrowRightIcon,
   ArrowLeftIcon,
+  ArrowRightIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
   HomeIcon,
 } from 'evergreen-ui'
 
@@ -43,15 +46,23 @@ const Icon = ({ icon, ...props }) => {
       return <TimeIcon {...props} />
     case 'grid-view':
       return <GridViewIcon {...props} />
-    case 'arrow-right':
-      return <ArrowRightIcon {...props} />
     case 'arrow-left':
       return <ArrowLeftIcon {...props} />
+    case 'arrow-right':
+      return <ArrowRightIcon {...props} />
+    case 'chevron-left':
+      return <ChevronLeftIcon {...props} />
+    case 'chevron-right':
+      return <ChevronRightIcon {...props} />
     case 'home':
       return <HomeIcon {...props} />
     default:
       return null
   }
+}
+
+Icon.propTypes = {
+  icon: PropTypes.string,
 }
 
 export default Icon
