@@ -33,6 +33,7 @@ const TimelineView = ({
   const timelineId = 'timelineId'
   const timeline = useTimeline(timelineId)
 
+  console.log(activeButton)
   usePopupClick(timeline, onPopupClick, activeButton)
 
   const timelineData = getTimelineData({ diory, diorys })
@@ -71,6 +72,8 @@ TimelineView.propTypes = {
   onMapClick: PropTypes.func,
   onPopupClick: PropTypes.func,
   onDragEnd: PropTypes.func,
+  fitToBounds: PropTypes.func,
+  onBoundsChange: PropTypes.func,
 }
 
 export default TimelineView

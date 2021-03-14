@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react'
+import PropTypes from 'prop-types'
 import { createContainer, getUntrackedObject } from 'react-tracked'
 
 // FIXME: Remove me, I am duplicated from useSaveRoomEffect.js
@@ -26,6 +27,12 @@ export const StoreProvider = ({ reducer, initialState, children }) => (
 
 StoreProvider.defaultProps = {
   reducer: () => {},
+}
+
+StoreProvider.propTypes = {
+  reducer: PropTypes.func,
+  initialState: PropTypes.object,
+  children: PropTypes.node,
 }
 
 export const useStore = (selector) => {

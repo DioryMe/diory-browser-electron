@@ -60,7 +60,10 @@ BackgroundDiory.propTypes = {
     text: PropTypes.string,
     image: PropTypes.string,
     style: PropTypes.object,
+    video: PropTypes.string,
   }),
+  gradient: PropTypes.bool,
+  gradientRgba: PropTypes.string,
   onClick: PropTypes.func,
   children: PropTypes.node,
 }
