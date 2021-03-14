@@ -9,7 +9,7 @@ const Fullscreen = ({ children, ...props }) => (
 )
 
 Fullscreen.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 }
 
 export default Fullscreen
