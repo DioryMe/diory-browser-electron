@@ -21,6 +21,7 @@ import {
   ErrorIcon,
 } from 'evergreen-ui'
 
+// eslint-disable-next-line react/prop-types
 const Icon = ({ icon, ...props }) => {
   switch (icon) {
     case 'plus':
