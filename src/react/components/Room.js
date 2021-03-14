@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Box from 'ui-box'
 
 const Room = ({ diory: { id, image, text, ...diory }, onClick }) => (
@@ -30,5 +31,14 @@ const Room = ({ diory: { id, image, text, ...diory }, onClick }) => (
     </Box>
   </Box>
 )
+
+Room.propTypes = {
+  diory: PropTypes.shape({
+    id: PropTypes.string,
+    image: PropTypes.string,
+    text: PropTypes.string,
+  }),
+  onClick: PropTypes.func,
+}
 
 export default Room

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import Video from './Video'
 
@@ -16,5 +17,9 @@ const BackgroundVideo = ({ video, ...props }) => (
     <Box {...overlayStyle} />
   </Video>
 )
+
+BackgroundVideo.propTypes = {
+  video: PropTypes.string,
+}
 
 export default BackgroundVideo

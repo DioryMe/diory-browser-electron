@@ -29,6 +29,8 @@ const Image = ({ image, gradient, gradientRgba, ...props }) => (
 Image.propTypes = {
   image: PropTypes.string,
   style: PropTypes.object,
+  gradient: PropTypes.bool,
+  gradientRgba: PropTypes.string,
 }
 
 export default Image
