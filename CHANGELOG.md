@@ -1,8 +1,34 @@
 
-### DDA-73: Filters
+## 2.5.6 (March 14, 2021)
+
+### DDA-85: Update folder
+- Generate diories from newly added files and folder from diograph folder without removing already existing diograph.json
+- Always read existing diograph.json and the diograph folder folder structure. Compare them and add all the diories that didn't already exist in diograph.json
+- Update folder may duplicate diories if their links are added or removed
+- generateDiograph refactored with better naming and structure
+
+### DDA-83: Filters
 - Set filter active and inactive individually
 - Filter diorys when filter is active
 - Change filtering criteria when filter is active
+
+### DDA-60: Upgrade packages
+- React-scripts 4.0.3, Electron 11.2, Node 12.18.3, React 17.0.1
+- All the others packages also to the latest versions by January 23
+
+### Other
+- Complete fileTypes / file extensions for file-reader (image, audio, video, text)
+- BUG: Ignore hidden files when generating diograph
+- BUG: Map saved locations as string
+- BUG: Timeline crashed if no diories with dates
+- Diory in focus has "action area" (BackgroundDiory Heading as draggable)
+
+### Tests
+- Testcafe E2E tests to CI pipeline (Appveyor)
+- E2E tests to test GENERATE_DIOGRAPH, SAVE_ROOM and SAVE_HOME channels
+- Snapshot tests for compareAndMergeDiographs (generateDiograph test pending for relative paths)
+- Expose diograph state from Store to Cypress
+- Improve feature tests for timeline, delete tool, update tool and create tool
 
 
 ## 2.3.5 (Feburary 4, 2021)
