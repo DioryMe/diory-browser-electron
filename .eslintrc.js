@@ -21,11 +21,6 @@ module.exports = {
   plugins: ['react', 'jest', 'prettier'],
   ignorePatterns: ['*.css', '*.feature', '*.json', '**/electron/readers/example-folder/**/*'],
   rules: {
-    'no-confusing-arrow': ['warn'],
-    'react/prop-types': ['warn'], // todo
-    'func-names': ['warn'], // todo
-    'import/newline-after-import': ['warn'],
-    'react/button-has-type': ['warn'],
     semi: ['off'],
     'arrow-parens': ['off'],
     'no-console': ['off'],
@@ -37,34 +32,20 @@ module.exports = {
     'react/require-default-props': ['off'],
     'react/forbid-prop-types': ['off'],
     'react/jsx-props-no-spreading': ['off'], // personal opinion
-    'no-underscore-dangle': ['off'],
     'consistent-return': ['off'], // Personal opinion
+    'no-underscore-dangle': ['off'],
+    'import/no-extraneous-dependencies': ['warn', { devDependencies: true }],
     // TODO:
     'no-param-reassign': ['warn'],
     'no-use-before-define': ['warn'],
-    'space-before-function-paren': ['warn'],
     'prefer-rest-params': ['warn'],
-    'one-var': ['warn'],
     'global-require': ['warn'],
-    quotes: ['error'],
-    'prefer-arrow-callback': ['warn'],
-    'arrow-body-style': ['warn'],
     'react/no-children-prop': ['warn'],
     'jsx-a11y/no-static-element-interactions': ['warn'],
-    'import/no-dynamic-require': ['warn'],
-    'space-infix-ops': ['warn'],
-    'react/jsx-curly-brace-presence': ['warn'],
     'jsx-a11y/click-events-have-key-events': ['warn'],
     radix: ['warn'],
     'no-bitwise': ['warn'],
-    'no-inner-declarations': ['warn'],
     'no-unused-expressions': ['warn'],
-    'prefer-destructuring': ['warn'],
-    'react/jsx-closing-tag-location': ['warn'],
-    'react/self-closing-comp': ['warn'],
-    'import/no-extraneous-dependencies': ['warn', { devDependencies: true }],
-    'import/no-cycle': ['warn'],
-    'import/order': ['warn'],
     'no-prototype-builtins': ['warn'],
     // Prettier:
     'operator-linebreak': ['off'], // prettier
