@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Icon } from 'evergreen-ui'
+import Icon from '../../../components/Icon'
 
 const NavigationSideways = ({ left, right, onClick }) => (
   <div
