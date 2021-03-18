@@ -25,4 +25,8 @@ export default {
       someDioryId: { id: 'someDioryId' },
     },
   },
+  dioryWithoutLinks: {
+    id: 'dioryWithoutLinks',
+    text: 'dioryWithoutLinks name',
+  },
 }

@@ -18,8 +18,7 @@ Feature: Delete tool
     Then I do not see 'Diory 14' in view
     And I see 'Diory 11' in view
     And 'diory14' diory not in the store
-    # FIXME: Doesn't delete reverse links yet (although it should)
-    # And 'link14' link not in the store
+    And 'link14' link not in the store
     # FIXME: This is just to verify the step definition
     And 'link11' link is in the store
 

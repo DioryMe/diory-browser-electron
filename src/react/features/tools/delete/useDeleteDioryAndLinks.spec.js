@@ -45,39 +45,45 @@ describe('useDeleteDioryAndLinks', () => {
       expect(mockDispatch).toHaveBeenCalledWith(setInactive())
     })
 
-    it('delete bidirectional link between diory and clickedDiory', () => {
-      const diory = mockState.diograph.diograph.bidirectionalLinkedDioryId3
-      const clickedDiory = mockState.diograph.diograph.someDioryId
-      useDeleteDioryAndLinks(diory, clickedDiory).deleteDioryAndLinks()
+    // Currently it's not possible to delete bidirectional link with one click
+    // - both links have to be deleted individually
+    // it('delete bidirectional link between diory and clickedDiory', () => {
+    //   const diory = mockState.diograph.diograph.bidirectionalLinkedDioryId3
+    //   const clickedDiory = mockState.diograph.diograph.someDioryId
+    //   useDeleteDioryAndLinks(diory, clickedDiory).deleteDioryAndLinks()
 
-      expect(mockDispatch).toHaveBeenCalledTimes(2)
-      expect(mockDispatch).toHaveBeenCalledWith(deleteLink(diory, clickedDiory))
-      // expect(mockDispatch).toHaveBeenCalledWith(deleteLink(clickedDiory, diory))
-      expect(mockDispatch).toHaveBeenCalledWith(setInactive())
-    })
+    //   expect(mockDispatch).toHaveBeenCalledTimes(2)
+    //   expect(mockDispatch).toHaveBeenCalledWith(deleteLink(diory, clickedDiory))
+    //   expect(mockDispatch).toHaveBeenCalledWith(deleteLink(clickedDiory, diory))
+    //   expect(mockDispatch).toHaveBeenCalledWith(setInactive())
+    // })
 
     it('delete diory in focus and all its links', () => {
       const diory = mockState.diograph.diograph.someDioryId
-      const { linkedDioryId1 } = mockState.diograph.diograph
-      const { bidirectionalLinkedDioryId3 } = mockState.diograph.diograph
+      const {
+        linkedDioryId1,
+        bidirectionalLinkedDioryId3,
+        reverseLinkedDioryId2,
+      } = mockState.diograph.diograph
       useDeleteDioryAndLinks(diory, diory).deleteDioryAndLinks()
 
-      expect(mockDispatch).toHaveBeenCalledTimes(5)
-      expect(mockDispatch).toHaveBeenCalledWith(goBackward())
+      expect(mockDispatch).toHaveBeenCalledTimes(7)
       expect(mockDispatch).toHaveBeenCalledWith(deleteDiory(diory))
       expect(mockDispatch).toHaveBeenCalledWith(deleteLink(diory, linkedDioryId1))
       expect(mockDispatch).toHaveBeenCalledWith(deleteLink(diory, bidirectionalLinkedDioryId3))
-      // expect(mockDispatch).toHaveBeenCalledWith(deleteLink(bidirectionalLinkedDioryId3, diory))
+      expect(mockDispatch).toHaveBeenCalledWith(deleteLink(reverseLinkedDioryId2, diory))
+      expect(mockDispatch).toHaveBeenCalledWith(deleteLink(bidirectionalLinkedDioryId3, diory))
+      expect(mockDispatch).toHaveBeenCalledWith(goBackward())
       expect(mockDispatch).toHaveBeenCalledWith(setInactive())
     })
 
     it('delete diory in focus without links', () => {
-      const diory = mockState.diograph.diograph.linkedDioryId1
+      const diory = mockState.diograph.diograph.dioryWithoutLinks
       useDeleteDioryAndLinks(diory, diory).deleteDioryAndLinks()
 
       expect(mockDispatch).toHaveBeenCalledTimes(3)
-      expect(mockDispatch).toHaveBeenCalledWith(goBackward())
       expect(mockDispatch).toHaveBeenCalledWith(deleteDiory(diory))
+      expect(mockDispatch).toHaveBeenCalledWith(goBackward())
       expect(mockDispatch).toHaveBeenCalledWith(setInactive())
     })
   })

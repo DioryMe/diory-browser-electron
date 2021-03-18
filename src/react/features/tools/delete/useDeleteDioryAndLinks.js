@@ -11,24 +11,24 @@ const generateDeletedLinks = (focus, links, isFocusDeleted) => {
     toDiory: diograph[id],
   }))
 
-  let reverseLinkedDiories = []
   if (isFocusDeleted) {
-    reverseLinkedDiories = Object.values(diograph)
+    const reverseLinkedDiories = Object.values(diograph)
       .map((diory) => {
         const reverseLinkedDiory = diory.links
           ? Object.entries(diory.links).filter(([, { id }]) => id === focus.id)[0]
           : null
         return reverseLinkedDiory
           ? {
-              fromDiory: diograph[reverseLinkedDiory[1].id],
+              fromDiory: diograph[diory.id],
               toDiory: diograph[focus.id],
             }
           : null
       })
       .filter(Boolean)
+    return linkedDiories.concat(reverseLinkedDiories)
   }
 
-  return linkedDiories.concat(reverseLinkedDiories)
+  return linkedDiories
 }
 
 export const useDeleteDioryAndLinks = (focus, clickedDiory) => {
