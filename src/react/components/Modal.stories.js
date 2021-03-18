@@ -6,9 +6,6 @@ import Modal from './Modal'
 export default {
   title: 'Modal',
   component: Modal,
-  parameters: {
-    chromatic: { delay: 3000 },
-  },
 }
 
 const actions = {
