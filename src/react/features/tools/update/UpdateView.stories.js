@@ -14,9 +14,6 @@ export default {
       </StoreProvider>
     ),
   ],
-  parameters: {
-    chromatic: { delay: 1500 },
-  },
 }
 
 const actions = {

@@ -20,9 +20,6 @@ export default {
       </StoreProvider>
     ),
   ],
-  parameters: {
-    chromatic: { delay: 5000 },
-  },
 }
 
 const focusDiory = initialDeleteViewState.diograph.diograph.someDioryId
