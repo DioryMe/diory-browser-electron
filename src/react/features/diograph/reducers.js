@@ -24,7 +24,7 @@ const createDiory = (state, { payload }) => ({
   updated: true,
 })
 
-const deleteDiory = (state, { payload }) => {
+export const deleteDiory = (state, { payload }) => {
   // eslint-disable-next-line no-unused-vars
   const { [payload.diory.id]: omit, ...diograph } = state.diograph
   return {
