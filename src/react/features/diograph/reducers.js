@@ -24,9 +24,9 @@ const createDiory = (state, { payload }) => ({
   updated: true,
 })
 
-export const deleteDiory = (state, { payload }) => {
+export const deleteDiory = (state, { payload: { diory } }) => {
   // eslint-disable-next-line no-unused-vars
-  const { [payload.diory.id]: omit, ...diograph } = state.diograph
+  const { [diory.id]: omit, ...diograph } = state.diograph
   return {
     ...state,
     diograph,
@@ -66,22 +66,20 @@ const createLink = (state, { payload }) => {
 }
 
 /**
- * payload.diory = diory where link is removed
- * payload.link =  which link is removed
+ * payload.diory = diory where link should be removed
+ * payload.link =  which link should be removed
  */
-export const deleteLink = (state, { payload }) => {
-  const diory = state.diograph[payload.diory.id]
-  const linkKey = Object.entries(diory.links).filter(
-    ([, linkDiory]) => linkDiory.id === payload.link.id
-  )[0][0]
+export const deleteLink = (state, { payload: { diory, link } }) => {
+  const dioryLinks = state.diograph[diory.id].links
+  const linkKey = Object.entries(dioryLinks).filter(([, { id }]) => id === link.id)[0][0]
   // eslint-disable-next-line no-unused-vars
-  const { [linkKey]: omit, ...links } = diory.links
+  const { [linkKey]: omit, ...links } = dioryLinks
   return {
     ...state,
     diograph: {
       ...state.diograph,
-      [payload.diory.id]: {
-        ...diory,
+      [diory.id]: {
+        ...state.diograph[diory.id],
         links,
       },
     },
