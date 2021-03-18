@@ -24,10 +24,6 @@ describe('useDeleteDioryAndLinks', () => {
     jest.spyOn(global, 'Date').mockImplementation(mockedDate)
   })
 
-  // it('executes with initial state', () => {
-  //   expect(useDeleteDioryAndLinks()).toBeDefined()
-  // })
-
   describe('given diograph', () => {
     beforeEach(() => {
       mockState.diograph = {
