@@ -65,7 +65,11 @@ const createLink = (state, { payload }) => {
   }
 }
 
-const deleteLink = (state, { payload }) => {
+/**
+ * payload.diory = diory where link is removed
+ * payload.link =  which link is removed
+ */
+export const deleteLink = (state, { payload }) => {
   const diory = state.diograph[payload.diory.id]
   const linkKey = Object.entries(diory.links).filter(
     ([, linkDiory]) => linkDiory.id === payload.link.id
