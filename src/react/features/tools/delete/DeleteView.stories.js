@@ -23,12 +23,8 @@ export default {
 }
 
 const focusDiory = initialDeleteViewState.diograph.diograph.someDioryId
-
 const linkDiory = initialDeleteViewState.diograph.diograph.linkedDioryId1
-
-const dioryWithoutLinks = linkDiory
-
-// export const initially = () => <DeleteView />
+const { dioryWithoutLinks } = initialDeleteViewState.diograph.diograph
 
 export const withLink = () => <DeleteView focus={focusDiory} clickedDiory={linkDiory} />
 
@@ -36,4 +32,4 @@ export const withDiory = () => (
   <DeleteView focus={dioryWithoutLinks} clickedDiory={dioryWithoutLinks} />
 )
 
-export const withDioryAndLink = () => <DeleteView focus={focusDiory} clickedDiory={focusDiory} />
+export const withDioryAndLinks = () => <DeleteView focus={focusDiory} clickedDiory={focusDiory} />
