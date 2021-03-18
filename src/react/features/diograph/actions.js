@@ -62,13 +62,13 @@ export const createLink = (diory, link) => ({
   },
 })
 
-export const deleteLink = (diory, link) => ({
+export const deleteLink = (diory, linkedDiory) => ({
   type: DELETE_LINK,
   payload: {
     diory: {
       ...diory,
       modified: new Date().toISOString(),
     },
-    link,
+    linkedDiory,
   },
 })
