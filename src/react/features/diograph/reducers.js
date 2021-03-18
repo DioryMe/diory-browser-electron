@@ -15,7 +15,7 @@ export const initialState = {
   updated: false,
 }
 
-const createDiory = (state, { payload }) => ({
+export const createDiory = (state, { payload }) => ({
   ...state,
   diograph: {
     ...state.diograph,
