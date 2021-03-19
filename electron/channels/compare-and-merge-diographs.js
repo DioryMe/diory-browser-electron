@@ -1,6 +1,6 @@
 const { isEmpty } = require('../lib/utils')
 
-const MAXIMUM_SUBFOLDER_DEPTH = 15
+const MAXIMUM_SUBFOLDER_DEPTH = 8
 
 // Returns diograph with rootId
 exports.compareAndMergeDiographs = function compareAndMergeDiographs(
