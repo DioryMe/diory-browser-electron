@@ -2,7 +2,7 @@ import { useDispatch } from '../../../store'
 import { useButtons } from '../../buttons'
 import { useMoveToolIsActive } from './useMoveToolIsActive'
 
-import { setInactive } from '../../buttons/actions'
+import { setActive, setOpen } from '../../buttons/actions'
 import { updateDiory } from '../../diograph/actions'
 
 import { buttons } from './buttons'
@@ -15,7 +15,8 @@ export const useMoveTool = () => {
   return (diory) => {
     if (isActive) {
       dispatch(updateDiory(diory))
-      dispatch(setInactive())
+      dispatch(setActive(null))
+      dispatch(setOpen(false))
     }
   }
 }

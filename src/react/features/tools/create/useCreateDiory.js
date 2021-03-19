@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid'
 
 import { useDispatchActions, useStore } from '../../../store'
-import { setInactive } from '../../buttons/actions'
+import { setActive, setOpen } from '../../buttons/actions'
 import { useFocus } from '../../diograph/hooks'
 
 import { createDiory, createLink } from '../../diograph/actions'
@@ -18,7 +18,8 @@ export const useCreateDiory = () => {
       const id = uuid()
       dispatch(createDiory({ ...newDiory, id }))
       dispatch(createLink(focusDiory, { id }))
-      dispatch(setInactive())
+      dispatch(setActive(null))
+      dispatch(setOpen(false))
     }
   }
 }

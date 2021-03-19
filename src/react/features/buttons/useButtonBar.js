@@ -1,6 +1,6 @@
 import { useDispatchActions, useStore } from '../../store'
 
-import { setOpen, setActive, setInactive } from './actions'
+import { setActive, setOpen } from './actions'
 
 const useButtonsArray = () => {
   const [{ buttons }] = useStore((state) => state.buttons)
@@ -25,7 +25,8 @@ export const useButtonBar = () => {
     onClick: () => {
       dispatch(setOpen(!open))
       if (open) {
-        dispatch(setInactive())
+        dispatch(setActive(null))
+        dispatch(setOpen(false))
       }
     },
   }
@@ -38,7 +39,7 @@ export const useButtonBar = () => {
         return dispatch(setActive(button.id))
       }
 
-      dispatch(setInactive())
+      dispatch(setActive(null))
       dispatch(setOpen(false))
     },
   }))
