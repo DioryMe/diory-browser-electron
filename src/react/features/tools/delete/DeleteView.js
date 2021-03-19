@@ -4,7 +4,7 @@ import Modal from '../../../components/Modal'
 import { useDeleteDioryAndLinks } from './useDeleteDioryAndLinks'
 
 const DeleteView = ({ focus, clickedDiory }) => {
-  const { deleteDioryAndLinks, deletedDiory, deletedLinks } = useDeleteDioryAndLinks(
+  const { deleteDioryAndLinks, onCancel, deletedDiory, deletedLinks } = useDeleteDioryAndLinks(
     focus,
     clickedDiory
   )
@@ -12,7 +12,8 @@ const DeleteView = ({ focus, clickedDiory }) => {
   return (
     <Modal
       title="Delete tool"
-      onDone={() => deleteDioryAndLinks()}
+      onDone={deleteDioryAndLinks}
+      onCancel={onCancel}
       confirmLabel="Delete"
       intent="danger"
     >
