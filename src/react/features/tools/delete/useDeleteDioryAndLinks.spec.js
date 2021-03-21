@@ -3,8 +3,8 @@ import { initialState } from '../../../store/initialState'
 import { useDeleteDioryAndLinks } from './useDeleteDioryAndLinks'
 
 import { deleteDiory, deleteLink } from '../../diograph/actions'
-import { setInactive } from '../../buttons/actions'
-import { goBackward } from '../../navigation/actions'
+import { setOpen, setInactive } from '../../buttons/actions'
+import { goBackward, setSelectedLink } from '../../navigation/actions'
 
 import deleteViewFixtureDiograph from './deleteViewFixtureDiograph'
 
@@ -36,9 +36,11 @@ describe('useDeleteDioryAndLinks', () => {
       const clickedDiory = mockState.diograph.diograph.linkedDioryId1
       useDeleteDioryAndLinks(diory, clickedDiory).deleteDioryAndLinks()
 
-      expect(mockDispatch).toHaveBeenCalledTimes(2)
+      expect(mockDispatch).toHaveBeenCalledTimes(4)
       expect(mockDispatch).toHaveBeenCalledWith(deleteLink(diory, clickedDiory))
       expect(mockDispatch).toHaveBeenCalledWith(setInactive())
+      expect(mockDispatch).toHaveBeenCalledWith(setSelectedLink())
+      expect(mockDispatch).toHaveBeenCalledWith(setOpen(false))
     })
 
     // Currently it's not possible to delete bidirectional link with one click
@@ -63,7 +65,7 @@ describe('useDeleteDioryAndLinks', () => {
       } = mockState.diograph.diograph
       useDeleteDioryAndLinks(diory, diory).deleteDioryAndLinks()
 
-      expect(mockDispatch).toHaveBeenCalledTimes(7)
+      expect(mockDispatch).toHaveBeenCalledTimes(9)
       expect(mockDispatch).toHaveBeenCalledWith(deleteDiory(diory))
       expect(mockDispatch).toHaveBeenCalledWith(deleteLink(diory, linkedDioryId1))
       expect(mockDispatch).toHaveBeenCalledWith(deleteLink(diory, bidirectionalLinkedDioryId3))
@@ -71,16 +73,20 @@ describe('useDeleteDioryAndLinks', () => {
       expect(mockDispatch).toHaveBeenCalledWith(deleteLink(bidirectionalLinkedDioryId3, diory))
       expect(mockDispatch).toHaveBeenCalledWith(goBackward())
       expect(mockDispatch).toHaveBeenCalledWith(setInactive())
+      expect(mockDispatch).toHaveBeenCalledWith(setSelectedLink())
+      expect(mockDispatch).toHaveBeenCalledWith(setOpen(false))
     })
 
     it('delete diory in focus without links', () => {
       const diory = mockState.diograph.diograph.dioryWithoutLinks
       useDeleteDioryAndLinks(diory, diory).deleteDioryAndLinks()
 
-      expect(mockDispatch).toHaveBeenCalledTimes(3)
+      expect(mockDispatch).toHaveBeenCalledTimes(5)
       expect(mockDispatch).toHaveBeenCalledWith(deleteDiory(diory))
       expect(mockDispatch).toHaveBeenCalledWith(goBackward())
       expect(mockDispatch).toHaveBeenCalledWith(setInactive())
+      expect(mockDispatch).toHaveBeenCalledWith(setSelectedLink())
+      expect(mockDispatch).toHaveBeenCalledWith(setOpen(false))
     })
   })
 })
