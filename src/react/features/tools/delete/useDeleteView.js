@@ -3,7 +3,7 @@ import { setOpen, setInactive } from '../../buttons/actions'
 import { goBackward, setSelectedLink } from '../../navigation/actions'
 import { deleteDiory, deleteLink } from '../../diograph/actions'
 
-export const useDeleteTool = (focusDiory, linkDiory) => {
+export const useDeleteView = (focusDiory, linkDiory) => {
   const isFocusDeleted = focusDiory && linkDiory ? focusDiory.id === linkDiory.id : false
   const deletedDiory = isFocusDeleted ? focusDiory : null
 
