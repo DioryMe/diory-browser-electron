@@ -1,7 +1,7 @@
 import React from 'react'
 import { useStore } from '../../../store'
 import { useLinkDiory, useFocus } from '../../diograph/hooks'
-import { useDeleteDioryAndLinks } from './useDeleteDioryAndLinks'
+import { useDeleteDioryAndLinks, useGenerateDeletedLinks } from './useDeleteDioryAndLinks'
 
 import DeleteView from './DeleteView'
 
@@ -12,7 +12,14 @@ const DeleteTool = () => {
   const [{ link }] = useStore((state) => state.navigation)
   const { diory: focusDiory } = useFocus()
   const { diory: linkDiory } = useLinkDiory()
-  const props = useDeleteDioryAndLinks(focusDiory, linkDiory)
+
+  const isFocusDeleted = focusDiory && linkDiory ? focusDiory.id === linkDiory.id : false
+  const deletedDiory = isFocusDeleted ? focusDiory : null
+
+  const links = focusDiory && linkDiory ? (isFocusDeleted ? focusDiory.links || {} : { [linkDiory.id]: { id: linkDiory.id } }) : []
+  const deletedLinks = useGenerateDeletedLinks(focusDiory, links, isFocusDeleted)
+
+  const props = useDeleteDioryAndLinks(deletedDiory, deletedLinks)
 
   if (DELETE_TOOL_BUTTON === active && !!link) {
     return <DeleteView {...props} />

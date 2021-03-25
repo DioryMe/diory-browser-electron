@@ -3,7 +3,7 @@ import { setOpen, setInactive } from '../../buttons/actions'
 import { goBackward, setSelectedLink } from '../../navigation/actions'
 import { deleteDiory, deleteLink } from '../../diograph/actions'
 
-const useGenerateDeletedLinks = (focus, links, isFocusDeleted) => {
+export const useGenerateDeletedLinks = (focus, links, isFocusDeleted) => {
   const [{ diograph }] = useStore((state) => state.diograph)
 
   const linkedDiories = Object.values(links).map(({ id }) => ({
@@ -31,11 +31,7 @@ const useGenerateDeletedLinks = (focus, links, isFocusDeleted) => {
   return linkedDiories
 }
 
-export const useDeleteDioryAndLinks = (focus, clickedDiory) => {
-  const isFocusDeleted = focus.id === clickedDiory.id
-  const deletedDiory = isFocusDeleted ? focus : null
-  const links = isFocusDeleted ? focus.links || {} : { [clickedDiory.id]: { id: clickedDiory.id } }
-  const deletedLinks = useGenerateDeletedLinks(focus, links, isFocusDeleted)
+export const useDeleteDioryAndLinks = (deletedDiory, deletedLinks) => {
   const resetView = () => {
     dispatch(setInactive())
     dispatch(setSelectedLink())
