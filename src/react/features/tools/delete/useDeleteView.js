@@ -7,7 +7,7 @@ export const useDeleteView = (focusDiory, linkDiory) => {
   const isFocusDeleted = focusDiory && linkDiory ? focusDiory.id === linkDiory.id : false
   const deletedDiory = isFocusDeleted ? focusDiory : null
 
-  const links = focusDiory && linkDiory ? (isFocusDeleted ? focusDiory.links || {} : { [linkDiory.id]: { id: linkDiory.id } }) : []
+  const links = isFocusDeleted ? focusDiory.links || {} : { [linkDiory.id]: { id: linkDiory.id } }
   const deletedLinks = useGenerateDeletedLinks(focusDiory, links, isFocusDeleted)
 
   return useDeleteDioryAndLinks(deletedDiory, deletedLinks)
