@@ -1,6 +1,6 @@
 import { useStore, useDispatch } from '../../../store'
 import { initialState } from '../../../store/initialState'
-import { useDeleteDioryAndLinks } from './useDeleteDioryAndLinks'
+import { useDeleteTool } from './useDeleteDioryAndLinks'
 
 import { deleteDiory, deleteLink } from '../../diograph/actions'
 import { setOpen, setInactive } from '../../buttons/actions'
@@ -10,7 +10,7 @@ import deleteViewFixtureDiograph from './deleteViewFixtureDiograph'
 
 jest.mock('../../../store')
 
-describe('useDeleteDioryAndLinks', () => {
+describe('useDeleteTool', () => {
   let mockState
   const mockDispatch = jest.fn()
   beforeEach(() => {
@@ -34,7 +34,7 @@ describe('useDeleteDioryAndLinks', () => {
     it('delete link between diory and clickedDiory', () => {
       const diory = mockState.diograph.diograph.someDioryId
       const clickedDiory = mockState.diograph.diograph.linkedDioryId1
-      useDeleteDioryAndLinks(diory, clickedDiory).deleteDioryAndLinks()
+      useDeleteTool(diory, clickedDiory).deleteDioryAndLinks()
 
       expect(mockDispatch).toHaveBeenCalledTimes(4)
       expect(mockDispatch).toHaveBeenCalledWith(deleteLink(diory, clickedDiory))
@@ -48,7 +48,7 @@ describe('useDeleteDioryAndLinks', () => {
     // it('delete bidirectional link between diory and clickedDiory', () => {
     //   const diory = mockState.diograph.diograph.bidirectionalLinkedDioryId3
     //   const clickedDiory = mockState.diograph.diograph.someDioryId
-    //   useDeleteDioryAndLinks(diory, clickedDiory).deleteDioryAndLinks()
+    //   useDeleteTool(diory, clickedDiory).deleteDioryAndLinks()
 
     //   expect(mockDispatch).toHaveBeenCalledTimes(2)
     //   expect(mockDispatch).toHaveBeenCalledWith(deleteLink(diory, clickedDiory))
@@ -63,7 +63,7 @@ describe('useDeleteDioryAndLinks', () => {
         bidirectionalLinkedDioryId3,
         reverseLinkedDioryId2,
       } = mockState.diograph.diograph
-      useDeleteDioryAndLinks(diory, diory).deleteDioryAndLinks()
+      useDeleteTool(diory, diory).deleteDioryAndLinks()
 
       expect(mockDispatch).toHaveBeenCalledTimes(9)
       expect(mockDispatch).toHaveBeenCalledWith(deleteDiory(diory))
@@ -79,7 +79,7 @@ describe('useDeleteDioryAndLinks', () => {
 
     it('delete diory in focus without links', () => {
       const diory = mockState.diograph.diograph.dioryWithoutLinks
-      useDeleteDioryAndLinks(diory, diory).deleteDioryAndLinks()
+      useDeleteTool(diory, diory).deleteDioryAndLinks()
 
       expect(mockDispatch).toHaveBeenCalledTimes(5)
       expect(mockDispatch).toHaveBeenCalledWith(deleteDiory(diory))
