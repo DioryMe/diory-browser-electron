@@ -2,57 +2,61 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Modal from '../../../components/Modal'
 
-const DeleteView = ({ deleteDioryAndLinks, resetView, deletedDiory, deletedLinks }) => {
-  return (
-    <Modal
-      title="Delete tool"
-      onDone={deleteDioryAndLinks}
-      onCancel={resetView}
-      confirmLabel="Delete"
-      intent="danger"
-    >
+const DeleteView = ({ deleteDioryAndLinks, resetView, deletedDiory, deletedLinks }) => (
+  <Modal
+    title="Delete tool"
+    onDone={deleteDioryAndLinks}
+    onCancel={resetView}
+    confirmLabel="Delete"
+    intent="danger"
+  >
+    <div>
+      <p>Are you sure you want to delete?</p>
+    </div>
+    {deletedDiory && (
       <div>
-        <p>Are you sure you want to delete?</p>
+        <div>
+          <b>Diory</b>
+        </div>
+        <div>
+          &quot;
+          {deletedDiory.text}
+          &quot;
+        </div>
       </div>
-      {deletedDiory && (
+    )}
+    {deletedLinks && deletedLinks.length > 0 && (
+      <div>
         <div>
-          <div>
-            <b>Diory</b>
-          </div>
-          <div>
-            &quot;
-            {deletedDiory.text}
-            &quot;
-          </div>
+          <b>Links</b>
         </div>
-      )}
-      {deletedLinks.length > 0 && (
-        <div>
-          <div>
-            <b>Links</b>
+        {Object.values(deletedLinks).map((deletedLink) => (
+          <div key={deletedLink.fromDiory.id}>
+            &quot;
+            {deletedLink.fromDiory.text || deletedLink.fromDiory.id}
+            &quot; -&gt; &quot;
+            {deletedLink.toDiory.text || deletedLink.toDiory.id}
+            &quot;
           </div>
-          {Object.values(deletedLinks).map((deletedLink) => (
-            <div key={deletedLink.fromDiory.id}>
-              &quot;
-              {deletedLink.fromDiory.text || deletedLink.fromDiory.id}
-              &quot; -&gt; &quot;
-              {deletedLink.toDiory.text || deletedLink.toDiory.id}
-              &quot;
-            </div>
-          ))}
-        </div>
-      )}
-    </Modal>
-  )
-}
+        ))}
+      </div>
+    )}
+  </Modal>
+)
 
 DeleteView.propTypes = {
-  focus: PropTypes.shape({
+  deletedDiory: PropTypes.shape({
     id: PropTypes.string,
-  }).isRequired,
-  clickedDiory: PropTypes.shape({
-    id: PropTypes.string,
-  }).isRequired,
+    text: PropTypes.string,
+  }),
+  deletedLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      text: PropTypes.string,
+    })
+  ),
+  deleteDioryAndLinks: PropTypes.func,
+  resetView: PropTypes.func,
 }
 
 export default DeleteView
