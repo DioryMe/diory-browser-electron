@@ -1,19 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Modal from '../../../components/Modal'
-import { useDeleteDioryAndLinks } from './useDeleteDioryAndLinks'
 
-const DeleteView = ({ focus, clickedDiory }) => {
-  const { deleteDioryAndLinks, onCancel, deletedDiory, deletedLinks } = useDeleteDioryAndLinks(
-    focus,
-    clickedDiory
-  )
-
+const DeleteView = ({ deleteDioryAndLinks, resetView, deletedDiory, deletedLinks }) => {
   return (
     <Modal
       title="Delete tool"
       onDone={deleteDioryAndLinks}
-      onCancel={onCancel}
+      onCancel={resetView}
       confirmLabel="Delete"
       intent="danger"
     >
