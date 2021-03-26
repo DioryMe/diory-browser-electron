@@ -35,6 +35,7 @@ module.exports = {
     'consistent-return': ['off'], // Personal opinion
     'no-underscore-dangle': ['off'],
     'import/no-extraneous-dependencies': ['warn', { devDependencies: true }],
+    'arrow-body-style': ['error', 'as-needed'],
     // TODO:
     'no-param-reassign': ['warn'],
     'no-use-before-define': ['warn'],

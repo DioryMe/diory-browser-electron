@@ -88,11 +88,11 @@ export const deleteLink = (state, { payload: { fromDiory, toDiory } }) => {
   }
 }
 
-export const deleteLinks = (state, { payload: deletedLinks }) => {
-  return deletedLinks.reduce((tempState, deletedLink) => {
-    return deleteLink(tempState, { payload: deletedLink })
-  }, state)
-}
+export const deleteLinks = (state, { payload: deletedLinks }) =>
+  deletedLinks.reduce(
+    (tempState, deletedLink) => deleteLink(tempState, { payload: deletedLink }),
+    state
+  )
 
 export default createReducer({
   [CREATE_DIORY]: createDiory,
