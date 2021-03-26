@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { useDispatch } from '../../../store'
 
-import { setActive, setOpen } from '../../buttons/actions'
+import { setInactive } from '../../buttons/actions'
 import { setSelectedLink } from '../../navigation/actions'
 
 import Modal from '../../../components/Modal'
@@ -21,8 +21,7 @@ const useUpdateView = (diory = {}) => {
     setValue: (key, value) => setValues({ ...values, [key]: value }),
     updatedDiory,
     resetView: () => {
-      dispatch(setActive(null))
-      dispatch(setOpen(false))
+      dispatch(setInactive())
       dispatch(setSelectedLink())
       setValues({})
     },
