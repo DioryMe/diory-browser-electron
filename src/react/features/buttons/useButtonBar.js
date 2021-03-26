@@ -23,10 +23,7 @@ export const useButtonBar = () => {
       testid: 'tools',
     },
     onClick: () => {
-      dispatch(setOpen(!open))
-      if (open) {
-        dispatch(setInactive())
-      }
+      dispatch(open ? setInactive() : setOpen(true))
     },
   }
 
@@ -34,11 +31,7 @@ export const useButtonBar = () => {
     ...button,
     active: button.id === active,
     onClick: () => {
-      if (button.id !== active) {
-        return dispatch(setActive(button.id))
-      }
-
-      dispatch(setInactive())
+      dispatch(button.id === active ? setInactive() : setActive(button.id))
     },
   }))
 
