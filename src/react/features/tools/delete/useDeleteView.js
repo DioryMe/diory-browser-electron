@@ -28,10 +28,9 @@ const useDeletedLinks = (focusDiory, linkDiory) => {
   return linkedDiories.concat(reverseLinkedDiories)
 }
 
-const useIsFocusDeleted = (focusDiory, linkDiory) => {
+const useIsFocusDeleted = (focusDiory, linkDiory) =>
   // TODO: Check if it has link to itself and if has => return false
-  return focusDiory && linkDiory ? focusDiory.id === linkDiory.id : false
-}
+  focusDiory && linkDiory ? focusDiory.id === linkDiory.id : false
 
 export const useDeleteView = (focusDiory, linkDiory) => {
   const dispatch = useDispatch()

@@ -78,13 +78,11 @@ export const deleteLink = (fromDiory, toDiory) => ({
 
 export const deleteLinks = (deletedLinks) => ({
   type: DELETE_LINKS,
-  payload: deletedLinks.map(({ fromDiory, toDiory }) => {
-    return {
-      fromDiory: {
-        ...fromDiory,
-        modified: new Date().toISOString(),
-      },
-      toDiory,
-    }
-  }),
+  payload: deletedLinks.map(({ fromDiory, toDiory }) => ({
+    fromDiory: {
+      ...fromDiory,
+      modified: new Date().toISOString(),
+    },
+    toDiory,
+  })),
 })
