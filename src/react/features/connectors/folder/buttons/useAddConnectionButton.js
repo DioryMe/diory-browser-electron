@@ -5,7 +5,7 @@ import { useDispatch, useStore } from '../../../../store'
 import { addRoom } from '../../../rooms/actions'
 
 import { enterRoom, setFocus } from '../../../navigation/actions'
-import { setInactive } from '../../../buttons/actions'
+import { inactivateButton } from '../../../buttons/actions'
 import { addConnection } from '../../actions'
 
 import { invokeChannel } from '../../../../client/client'
@@ -30,7 +30,7 @@ export const useAddConnectionButton = () => {
     }
 
     if (ADD_CONNECTION_BUTTON === active) {
-      dispatch(setInactive())
+      dispatch(inactivateButton())
       if (window.processEnv.TESTCAFE_TEST) {
         const path = `${window.processEnv.PWD}/tmp/testcafe-diograph-folder`
         const result = { filePaths: [path] }
