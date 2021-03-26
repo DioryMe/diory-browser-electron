@@ -1,4 +1,4 @@
-import { ADD_BUTTONS, REMOVE_BUTTONS, SET_OPEN, SET_ACTIVE } from './actionsTypes'
+import { ADD_BUTTONS, REMOVE_BUTTONS, SET_OPEN, SET_ACTIVE, SET_INACTIVE } from './actionsTypes'
 
 export const addButtons = (addedButtons) => ({
   type: ADD_BUTTONS,
@@ -18,4 +18,8 @@ export const setOpen = (open) => ({
 export const setActive = (buttonId) => ({
   type: SET_ACTIVE,
   payload: { buttonId },
+})
+
+export const setInactive = () => ({
+  type: SET_INACTIVE,
 })

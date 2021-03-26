@@ -1,4 +1,4 @@
-import { ADD_BUTTONS, REMOVE_BUTTONS, SET_OPEN, SET_ACTIVE } from './actionsTypes'
+import { ADD_BUTTONS, REMOVE_BUTTONS, SET_OPEN, SET_ACTIVE, SET_INACTIVE } from './actionsTypes'
 import { createReducer } from '../../store'
 
 export const initialState = {
@@ -37,9 +37,16 @@ export const setActive = (state, { payload: { buttonId } }) => ({
   active: buttonId,
 })
 
+export const setInactive = (state) => ({
+  ...state,
+  active: null,
+  open: false,
+})
+
 export default createReducer({
   [ADD_BUTTONS]: addButtons,
   [REMOVE_BUTTONS]: removeButtons,
   [SET_OPEN]: setOpen,
   [SET_ACTIVE]: setActive,
+  [SET_INACTIVE]: setInactive,
 })
