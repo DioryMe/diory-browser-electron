@@ -4,6 +4,7 @@ import {
   CREATE_LINK,
   DELETE_DIORY,
   DELETE_LINK,
+  DELETE_LINKS,
   SAVE_ROOM,
   UPDATE_DIORY,
 } from './actionsTypes'
@@ -69,22 +70,28 @@ const createLink = (state, { payload }) => {
  * payload.diory.id = diory where link should be removed
  * payload.linkedDiory.id =  diory where link is directed
  */
-export const deleteLink = (state, { payload: { diory, linkedDiory } }) => {
-  const dioryLinks = state.diograph[diory.id].links
-  const linkKey = Object.entries(dioryLinks).filter(([, { id }]) => id === linkedDiory.id)[0][0]
+export const deleteLink = (state, { payload: { fromDiory, toDiory } }) => {
+  const dioryLinks = state.diograph[fromDiory.id].links
+  const linkKey = Object.entries(dioryLinks).filter(([, { id }]) => id === toDiory.id)[0][0]
   // eslint-disable-next-line no-unused-vars
   const { [linkKey]: omit, ...links } = dioryLinks
   return {
     ...state,
     diograph: {
       ...state.diograph,
-      [diory.id]: {
-        ...state.diograph[diory.id],
+      [fromDiory.id]: {
+        ...state.diograph[fromDiory.id],
         links,
       },
     },
     updated: true,
   }
+}
+
+export const deleteLinks = (state, { payload: deletedLinks }) => {
+  return deletedLinks.reduce((tempState, deletedLink) => {
+    return deleteLink(tempState, { payload: deletedLink })
+  }, state)
 }
 
 export default createReducer({
@@ -93,6 +100,7 @@ export default createReducer({
   [UPDATE_DIORY]: updateDiory,
   [CREATE_LINK]: createLink,
   [DELETE_LINK]: deleteLink,
+  [DELETE_LINKS]: deleteLinks,
   ...promiseReducers(GET_ROOM, 'load', 'loading', 'loaded', 'error'),
   ...promiseReducers(SAVE_ROOM, 'updated', 'saving', 'saved', 'error'),
 })
