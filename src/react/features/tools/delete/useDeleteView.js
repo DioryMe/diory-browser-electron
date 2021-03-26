@@ -21,8 +21,7 @@ const useReverseLinkedDiories = (focusDiory, diograph) =>
     )
     .filter(Boolean)
 
-const useDeletedLinks = (focusDiory, linkDiory) => {
-  const [{ diograph }] = useStore((state) => state.diograph)
+const useDeletedLinks = (focusDiory, linkDiory, diograph) => {
   const linkedDiories = useLinkedDiories(focusDiory, diograph)
   const reverseLinkedDiories = useReverseLinkedDiories(focusDiory, diograph)
   return linkedDiories.concat(reverseLinkedDiories)
@@ -33,11 +32,12 @@ const useIsFocusDeleted = (focusDiory, linkDiory) =>
   focusDiory && linkDiory ? focusDiory.id === linkDiory.id : false
 
 export const useDeleteView = (focusDiory, linkDiory) => {
+  const [{ diograph }] = useStore((state) => state.diograph)
   const dispatch = useDispatch()
 
   const isFocusDeleted = useIsFocusDeleted(focusDiory, linkDiory)
   const [deletedDiory, deletedLinks] = isFocusDeleted
-    ? [focusDiory, useDeletedLinks(focusDiory, linkDiory)]
+    ? [focusDiory, useDeletedLinks(focusDiory, linkDiory, diograph)]
     : [null, [{ fromDiory: focusDiory, toDiory: linkDiory }]]
 
   const resetView = () => {
