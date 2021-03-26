@@ -1,5 +1,5 @@
 export const ADD_BUTTONS = 'ADD_BUTTONS'
 export const REMOVE_BUTTONS = 'REMOVE_BUTTONS'
-export const SET_OPEN = 'SET_OPEN'
-export const SET_ACTIVE = 'SET_ACTIVE'
-export const SET_INACTIVE = 'SET_INACTIVE'
+export const OPEN_BUTTONS = 'OPEN_BUTTONS'
+export const ACTIVATE_BUTTON = 'ACTIVATE_BUTTON'
+export const INACTIVATE_BUTTON = 'INACTIVATE_BUTTON'

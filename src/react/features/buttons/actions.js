@@ -1,4 +1,10 @@
-import { ADD_BUTTONS, REMOVE_BUTTONS, SET_OPEN, SET_ACTIVE, SET_INACTIVE } from './actionsTypes'
+import {
+  ADD_BUTTONS,
+  REMOVE_BUTTONS,
+  OPEN_BUTTONS,
+  ACTIVATE_BUTTON,
+  INACTIVATE_BUTTON,
+} from './actionsTypes'
 
 export const addButtons = (addedButtons) => ({
   type: ADD_BUTTONS,
@@ -10,16 +16,16 @@ export const removeButtons = (removedButtons) => ({
   payload: { removedButtons },
 })
 
-export const setOpen = (open) => ({
-  type: SET_OPEN,
+export const openButtons = (open) => ({
+  type: OPEN_BUTTONS,
   payload: { open },
 })
 
-export const setActive = (buttonId) => ({
-  type: SET_ACTIVE,
+export const activateButton = (buttonId) => ({
+  type: ACTIVATE_BUTTON,
   payload: { buttonId },
 })
 
-export const setInactive = () => ({
-  type: SET_INACTIVE,
+export const inactivateButton = () => ({
+  type: INACTIVATE_BUTTON,
 })
