@@ -7,3 +7,4 @@ export const DELETE_DIORY = 'DELETE_DIORY'
 
 export const CREATE_LINK = 'CREATE_LINK'
 export const DELETE_LINK = 'DELETE_LINK'
+export const DELETE_LINKS = 'DELETE_LINKS'

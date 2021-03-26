@@ -1,7 +1,7 @@
 import { useStore, useDispatch } from '../../../store'
 import { setOpen, setInactive } from '../../buttons/actions'
 import { goBackward, setSelectedLink } from '../../navigation/actions'
-import { deleteDiory, deleteLink } from '../../diograph/actions'
+import { deleteDiory, deleteLinks } from '../../diograph/actions'
 
 export const useDeleteView = (focusDiory, linkDiory) => {
   const isFocusDeleted = focusDiory && linkDiory ? focusDiory.id === linkDiory.id : false
@@ -58,12 +58,7 @@ const useDeleteDioryAndLinks = (deletedDiory, deletedLinks) => {
     deletedDiory,
     deletedLinks,
     deleteDioryAndLinks: () => {
-      deletedLinks.forEach((deletedLink) => {
-        if (deletedLink.fromDiory.id === deletedLink.toDiory.id) {
-          return
-        }
-        dispatch(deleteLink(deletedLink.fromDiory, deletedLink.toDiory))
-      })
+      dispatch(deleteLinks(deletedLinks))
 
       if (deletedDiory) {
         dispatch(deleteDiory(deletedDiory))

@@ -6,6 +6,7 @@ import {
   DELETE_DIORY,
   CREATE_LINK,
   DELETE_LINK,
+  DELETE_LINKS
 } from './actionsTypes'
 
 export const getRoom = (room) => ({
@@ -62,13 +63,26 @@ export const createLink = (diory, link) => ({
   },
 })
 
-export const deleteLink = (diory, linkedDiory) => ({
+export const deleteLink = (fromDiory, toDiory) => ({
   type: DELETE_LINK,
   payload: {
-    diory: {
-      ...diory,
+    fromDiory: {
+      ...fromDiory,
       modified: new Date().toISOString(),
     },
-    linkedDiory,
+    toDiory,
   },
+})
+
+export const deleteLinks = (deletedLinks) => ({
+  type: DELETE_LINKS,
+  payload: deletedLinks.map(({ fromDiory, toDiory }) => {
+    return {
+      fromDiory: {
+        ...fromDiory,
+        modified: new Date().toISOString(),
+      },
+      toDiory
+    }
+  })
 })
