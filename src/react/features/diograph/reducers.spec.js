@@ -30,7 +30,7 @@ describe('deleteLink', () => {
 
   describe('removes one link', () => {
     beforeEach(() => {
-      payload = { diory: { id: 'someDioryId', links: {} }, linkedDiory: { id: 'linkedDioryId1' } }
+      payload = { fromDiory: { id: 'someDioryId', links: {} }, toDiory: { id: 'linkedDioryId1' } }
     })
 
     it('works', () => {
