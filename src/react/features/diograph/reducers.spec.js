@@ -1,4 +1,4 @@
-import { createDiory, deleteDiory, deleteLink } from './reducers'
+import { createDiory, deleteDiory, deleteLink, deleteLinks } from './reducers'
 import diograph from '../tools/delete/deleteViewFixtureDiograph'
 
 let act
@@ -37,6 +37,33 @@ describe('deleteLink', () => {
       const returnValue = act()
       expect(returnValue.diograph.someDioryId.links.linkedDioryId1).not.toBeDefined()
       delete diograph.someDioryId.links.linkedDioryId1
+      expect(JSON.stringify(returnValue)).toEqual(JSON.stringify({ diograph, updated: true }))
+    })
+  })
+})
+
+describe('deleteLinks', () => {
+  beforeEach(() => {
+    act = () => deleteLinks({ diograph }, { payload })
+  })
+
+  describe('removes two links', () => {
+    beforeEach(() => {
+      payload = [
+        { fromDiory: { id: 'someDioryId', links: {} }, toDiory: { id: 'linkedDioryId1' } },
+        {
+          fromDiory: { id: 'someDioryId', links: {} },
+          toDiory: { id: 'bidirectionalLinkedDioryId3' },
+        },
+      ]
+    })
+
+    it('works', () => {
+      const returnValue = act()
+      expect(returnValue.diograph.someDioryId.links.linkedDioryId1).not.toBeDefined()
+      expect(returnValue.diograph.someDioryId.links.bidirectionalLinkedDioryId3).not.toBeDefined()
+      delete diograph.someDioryId.links.linkedDioryId1
+      delete diograph.someDioryId.links.bidirectionalLinkedDioryId3
       expect(JSON.stringify(returnValue)).toEqual(JSON.stringify({ diograph, updated: true }))
     })
   })
