@@ -1,8 +1,13 @@
 import { createDiory, deleteDiory, deleteLink, deleteLinks } from './reducers'
-import diograph from '../tools/delete/deleteViewFixtureDiograph'
+import diographFixture from '../tools/delete/deleteViewFixtureDiograph'
 
 let act
 let payload
+let diograph
+
+beforeEach(() => {
+  diograph = JSON.parse(JSON.stringify(diographFixture))
+})
 
 describe('createDiory', () => {
   beforeEach(() => {
