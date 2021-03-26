@@ -3,50 +3,58 @@ import { setOpen, setInactive } from '../../buttons/actions'
 import { goBackward, setSelectedLink } from '../../navigation/actions'
 import { deleteDiory, deleteLinks } from '../../diograph/actions'
 
-export const useDeleteView = (focusDiory, linkDiory) => {
-  const isFocusDeleted = focusDiory && linkDiory ? focusDiory.id === linkDiory.id : false
-  const deletedDiory = isFocusDeleted ? focusDiory : null
+// - halutaanko poistaa diory vai nou
+//   - jos halutaan poistaa diory, niin focusDiory.id === linkDiory.id
 
-  const links =
-    focusDiory && linkDiory
-      ? isFocusDeleted
-        ? focusDiory.links || {}
-        : { [linkDiory.id]: { id: linkDiory.id } }
-      : []
-  const deletedLinks = useGenerateDeletedLinks(focusDiory, links, isFocusDeleted)
+// - jos halutaan poistaa itseen linkattu?
+//   - tsekataan onko itseen yhtään linkkiä?
+//     - jos on niin poistetaan vain se
+//     - jos ei, niin poistetaan diory
 
-  return useDeleteDioryAndLinks(deletedDiory, deletedLinks)
+// - jos halutaan poistaa diory
+//   - omat linkit menee automaattisesti, kun poistaa dioryn
+//   - mitä reverse linkkejä on?
+//     => missä nämä selvitetään? reducerissa?!!?
+
+// - jos halutaan poistaa linkki
+//   - sitten on vain yksi
+//   - dispatch(deleteLinks([linkki])
+
+const useReverseLinkedDiories = (focusDiory, diograph) => {
+  return Object.values(diograph)
+    .map((diory) => {
+      return Object.entries(diory.links || {}).filter(([, { id }]) => id === focusDiory.id)[0]
+        ? {
+            fromDiory: diograph[diory.id],
+            toDiory: diograph[focusDiory.id],
+          }
+        : null
+    })
+    .filter(Boolean)
 }
 
-const useGenerateDeletedLinks = (focus, links, isFocusDeleted) => {
+const useDeletedLinks = (focusDiory, linkDiory) => {
   const [{ diograph }] = useStore((state) => state.diograph)
 
-  const linkedDiories = Object.values(links).map(({ id }) => ({
-    fromDiory: diograph[focus.id],
+  const linkedDiories = Object.values(focusDiory.links || []).map(({ id }) => ({
+    fromDiory: diograph[focusDiory.id],
     toDiory: diograph[id],
   }))
 
-  if (isFocusDeleted) {
-    const reverseLinkedDiories = Object.values(diograph)
-      .map((diory) => {
-        const reverseLinkedDiory = diory.links
-          ? Object.entries(diory.links).filter(([, { id }]) => id === focus.id)[0]
-          : null
-        return reverseLinkedDiory
-          ? {
-              fromDiory: diograph[diory.id],
-              toDiory: diograph[focus.id],
-            }
-          : null
-      })
-      .filter(Boolean)
-    return linkedDiories.concat(reverseLinkedDiories)
-  }
-
-  return linkedDiories
+  return linkedDiories.concat(useReverseLinkedDiories(focusDiory, diograph))
 }
 
-const useDeleteDioryAndLinks = (deletedDiory, deletedLinks) => {
+const useIsFocusDeleted = (focusDiory, linkDiory) => {
+  // TODO: Check if it has link to itself and if has => return false
+  return focusDiory && linkDiory ? focusDiory.id === linkDiory.id : false
+}
+
+export const useDeleteView = (focusDiory, linkDiory) => {
+  const isFocusDeleted = useIsFocusDeleted(focusDiory, linkDiory)
+  const [deletedDiory, deletedLinks] = isFocusDeleted
+    ? [focusDiory, useDeletedLinks(focusDiory, linkDiory)]
+    : [null, [{ fromDiory: focusDiory, toDiory: linkDiory }]]
+
   const resetView = () => {
     dispatch(setInactive())
     dispatch(setSelectedLink())
