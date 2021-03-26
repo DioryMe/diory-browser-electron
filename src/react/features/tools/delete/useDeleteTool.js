@@ -1,6 +1,6 @@
 import { useDispatch, useStore } from '../../../store'
 import { useButtons } from '../../buttons'
-import { setActive, setOpen } from '../../buttons/actions'
+import { setInactive } from '../../buttons/actions'
 import { goBackward } from '../../navigation/actions'
 import { deleteDiory, deleteLink } from '../../diograph/actions'
 import { useFocus } from '../../diograph/hooks'
@@ -20,8 +20,7 @@ export const useDeleteTool = () => {
         dispatch(goBackward())
         dispatch(deleteDiory(clickedDiory))
       }
-      dispatch(setActive(null))
-      dispatch(setOpen(false))
+      dispatch(setInactive())
     }
   }
 }

@@ -32,12 +32,12 @@ const setOpen = (state, { payload: { open } }) => ({
   open,
 })
 
-export const setActive = (state, { payload: { buttonId } }) => ({
+const setActive = (state, { payload: { buttonId } }) => ({
   ...state,
   active: buttonId,
 })
 
-export const setInactive = (state) => ({
+const setInactive = (state) => ({
   ...state,
   active: null,
   open: false,
