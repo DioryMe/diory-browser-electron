@@ -2,7 +2,7 @@ import { useStore, useDispatch } from '../../../store'
 import { initialState } from '../../../store/initialState'
 import { useDeleteView } from './useDeleteView'
 
-import { deleteDiory, deleteLink } from '../../diograph/actions'
+import { deleteDiory, deleteLinks } from '../../diograph/actions'
 import { setOpen, setInactive } from '../../buttons/actions'
 import { goBackward, setSelectedLink } from '../../navigation/actions'
 
@@ -37,7 +37,9 @@ describe('useDeleteView', () => {
       useDeleteView(diory, clickedDiory).deleteDioryAndLinks()
 
       expect(mockDispatch).toHaveBeenCalledTimes(4)
-      expect(mockDispatch).toHaveBeenCalledWith(deleteLink(diory, clickedDiory))
+      expect(mockDispatch).toHaveBeenCalledWith(
+        deleteLinks([{ fromDiory: diory, toDiory: clickedDiory }])
+      )
       expect(mockDispatch).toHaveBeenCalledWith(setInactive())
       expect(mockDispatch).toHaveBeenCalledWith(setSelectedLink())
       expect(mockDispatch).toHaveBeenCalledWith(setOpen(false))
@@ -65,12 +67,16 @@ describe('useDeleteView', () => {
       } = mockState.diograph.diograph
       useDeleteView(diory, diory).deleteDioryAndLinks()
 
-      expect(mockDispatch).toHaveBeenCalledTimes(9)
+      const expectedDeleteLinksArguments = [
+        { fromDiory: diory, toDiory: linkedDioryId1 },
+        { fromDiory: diory, toDiory: bidirectionalLinkedDioryId3 },
+        { fromDiory: reverseLinkedDioryId2, toDiory: diory },
+        { fromDiory: bidirectionalLinkedDioryId3, toDiory: diory },
+      ]
+
+      expect(mockDispatch).toHaveBeenCalledTimes(6)
       expect(mockDispatch).toHaveBeenCalledWith(deleteDiory(diory))
-      expect(mockDispatch).toHaveBeenCalledWith(deleteLink(diory, linkedDioryId1))
-      expect(mockDispatch).toHaveBeenCalledWith(deleteLink(diory, bidirectionalLinkedDioryId3))
-      expect(mockDispatch).toHaveBeenCalledWith(deleteLink(reverseLinkedDioryId2, diory))
-      expect(mockDispatch).toHaveBeenCalledWith(deleteLink(bidirectionalLinkedDioryId3, diory))
+      expect(mockDispatch).toHaveBeenCalledWith(deleteLinks(expectedDeleteLinksArguments))
       expect(mockDispatch).toHaveBeenCalledWith(goBackward())
       expect(mockDispatch).toHaveBeenCalledWith(setInactive())
       expect(mockDispatch).toHaveBeenCalledWith(setSelectedLink())
@@ -81,8 +87,9 @@ describe('useDeleteView', () => {
       const diory = mockState.diograph.diograph.dioryWithoutLinks
       useDeleteView(diory, diory).deleteDioryAndLinks()
 
-      expect(mockDispatch).toHaveBeenCalledTimes(5)
+      expect(mockDispatch).toHaveBeenCalledTimes(6)
       expect(mockDispatch).toHaveBeenCalledWith(deleteDiory(diory))
+      expect(mockDispatch).toHaveBeenCalledWith(deleteLinks([]))
       expect(mockDispatch).toHaveBeenCalledWith(goBackward())
       expect(mockDispatch).toHaveBeenCalledWith(setInactive())
       expect(mockDispatch).toHaveBeenCalledWith(setSelectedLink())

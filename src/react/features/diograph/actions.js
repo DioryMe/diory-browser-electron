@@ -6,7 +6,7 @@ import {
   DELETE_DIORY,
   CREATE_LINK,
   DELETE_LINK,
-  DELETE_LINKS
+  DELETE_LINKS,
 } from './actionsTypes'
 
 export const getRoom = (room) => ({
@@ -63,6 +63,8 @@ export const createLink = (diory, link) => ({
   },
 })
 
+// Currently this is not used anywhere
+// - same as deleteLinks but takes {} as an argument instead of [{}]
 export const deleteLink = (fromDiory, toDiory) => ({
   type: DELETE_LINK,
   payload: {
@@ -82,7 +84,7 @@ export const deleteLinks = (deletedLinks) => ({
         ...fromDiory,
         modified: new Date().toISOString(),
       },
-      toDiory
+      toDiory,
     }
-  })
+  }),
 })
