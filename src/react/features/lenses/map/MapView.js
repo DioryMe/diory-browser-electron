@@ -5,6 +5,7 @@ import { useMap } from './hooks/useMap'
 import { useMapBounds } from './hooks/useMapBounds'
 
 import { useMarkers } from '../utils/markers/useMarkers'
+import { useLinkIcons } from '../timeline/hooks/useLinkIcons'
 import { usePopups } from '../utils/popup/usePopups'
 
 import { usePopupClick } from '../utils/popup/usePopupClick'
@@ -32,6 +33,7 @@ const MapView = ({
 
   useMapBounds(map, locationData.diory, fitToBounds, onBoundsChange)
   const markers = useMarkers(map, locationData.diory, locationData.diorys)
+  useLinkIcons(map, markers.linkMarkers, diory)
 
   usePopups(map, markers, diory, diorys)
 
