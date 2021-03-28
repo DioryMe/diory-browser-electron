@@ -30,6 +30,16 @@ Feature: Delete tool
     And 'link11' link not in the store
     And 'diory11' diory is in the store
 
+  Scenario: Link to self is deleted
+    When I take 'Diory 11' in focus
+    And I select delete button
+    And I take 'Diory 11' in focus
+    And I click Delete button
+    Then I see 'Diory 11' in view
+    And 'link11-to-self' link not in the store
+    And 'link11' link is in the store
+    And 'diory11' diory is in the store
+
   Scenario: Deleting diory is cancelled
     When I select delete button
     And I take 'Diory 11' in focus
@@ -39,7 +49,7 @@ Feature: Delete tool
   # Scenario: Diory is deleted from search
     # When I select delete button
     # And I take 'Diory 11' in focus
-    # And I click Yes button
+    # And I click Delete button
     # And I type 'Diory 11' in search bar
     # Then I do not see 'Diory 11' in view
 
