@@ -62,7 +62,12 @@
     },
     "diory11": {
       "id": "diory11",
-      "text": "Diory 11"
+      "text": "Diory 11",
+      "links": {
+        "link11-to-self": {
+          "id": "diory11"
+        }
+      }
     },
     "diory12": {
       "id": "diory12",
