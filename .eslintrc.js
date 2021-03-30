@@ -5,11 +5,16 @@ module.exports = {
     node: true,
     'jest/globals': true,
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'plugin:prettier/recommended'],
+  extends: [
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'airbnb',
+    'plugin:prettier/recommended',
+  ],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
-    cy: true
+    cy: true,
   },
   parserOptions: {
     ecmaFeatures: {
