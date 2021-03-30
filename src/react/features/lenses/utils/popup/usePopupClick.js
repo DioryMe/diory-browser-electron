@@ -8,6 +8,7 @@ export const usePopupClick = (mapRef, onPopupClick) => {
       mapRef.current.off('popupopen')
       mapRef.current.on('popupopen', (event) => {
         if (event.popup) {
+          // eslint-disable-next-line prefer-destructuring
           diory = event.popup.diory
           event.popup._wrapper.addEventListener('click', handleClick)
         }

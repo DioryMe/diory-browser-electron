@@ -4,6 +4,7 @@ import { invokeAlertDialog } from './alertDialog'
 let { ipcRenderer } = window
 
 if (process.env.NODE_ENV === 'test') {
+  // eslint-disable-next-line prefer-destructuring
   ipcRenderer = require('electron').ipcRenderer
   window.frontendLogger = { info: () => {}, error: () => {} }
 }
