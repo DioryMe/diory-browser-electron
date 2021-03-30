@@ -2,6 +2,7 @@ import { useStore, useDispatch } from '../../../store'
 import { setOpen, setInactive } from '../../buttons/actions'
 import { goBackward, setSelectedLink } from '../../navigation/actions'
 import { deleteDiory, deleteLinks } from '../../diograph/actions'
+import { useLinkDiory, useFocus } from '../../diograph/hooks'
 
 const linkedDiories = (focusDiory, diograph) =>
   Object.values(focusDiory.links || []).map(({ id }) => ({
@@ -28,8 +29,10 @@ const isFocusDeleted = (focusDiory, linkDiory) =>
   // TODO: Check if it has link to itself and if has => return false
   focusDiory && linkDiory ? focusDiory.id === linkDiory.id : false
 
-export const useDeleteView = (focusDiory, linkDiory) => {
+export const useDeleteView = () => {
   const [{ diograph }] = useStore((state) => state.diograph)
+  const { diory: focusDiory } = useFocus()
+  const { diory: linkDiory } = useLinkDiory()
   const dispatch = useDispatch()
 
   let deletedDiory
