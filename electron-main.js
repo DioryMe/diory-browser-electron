@@ -1,6 +1,5 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
-const glob = require('glob')
 const url = require('url')
 require('electron-reload')
 
