@@ -54,4 +54,3 @@ app.on('activate', () => {
 require('./electron/channels/channels.js')
 
 console.log(`User data: ${app.getPath('userData')}/config.json`)
-
