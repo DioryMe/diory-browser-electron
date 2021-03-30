@@ -38,6 +38,7 @@ describe('useDeleteView', () => {
       const linkDiory = deleteViewFixtureDiograph.linkedDioryId1
       useFocus.mockImplementation(() => ({ diory: focusDiory }))
       useLinkDiory.mockImplementation(() => ({ diory: linkDiory }))
+
       useDeleteView().onDone()
 
       expect(mockDispatch).toHaveBeenCalledTimes(4)
@@ -53,6 +54,7 @@ describe('useDeleteView', () => {
       const focusDiory = deleteViewFixtureDiograph.someDioryId
       useFocus.mockImplementation(() => ({ diory: focusDiory }))
       useLinkDiory.mockImplementation(() => ({ diory: focusDiory }))
+
       useDeleteView().onDone()
 
       const {
@@ -66,7 +68,6 @@ describe('useDeleteView', () => {
         { fromDiory: reverseLinkedDioryId2, toDiory: focusDiory },
         { fromDiory: bidirectionalLinkedDioryId3, toDiory: focusDiory },
       ]
-
       expect(mockDispatch).toHaveBeenCalledTimes(6)
       expect(mockDispatch).toHaveBeenCalledWith(deleteDiory(focusDiory))
       expect(mockDispatch).toHaveBeenCalledWith(deleteLinks(expectedDeleteLinksArguments))
@@ -80,6 +81,7 @@ describe('useDeleteView', () => {
       const focusDiory = deleteViewFixtureDiograph.dioryWithoutLinks
       useFocus.mockImplementation(() => ({ diory: focusDiory }))
       useLinkDiory.mockImplementation(() => ({ diory: focusDiory }))
+
       useDeleteView().onDone()
 
       expect(mockDispatch).toHaveBeenCalledTimes(6)
