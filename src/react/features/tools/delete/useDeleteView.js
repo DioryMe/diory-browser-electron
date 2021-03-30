@@ -63,9 +63,9 @@ export const useDeleteView = () => {
   }
 
   return {
-    deletedDiory,
-    deletedLinks,
-    deleteDioryAndLinks,
-    resetView,
+    diory: deletedDiory,
+    diorys: deletedLinks,
+    onDone: deleteDioryAndLinks,
+    onCancel: resetView,
   }
 }
