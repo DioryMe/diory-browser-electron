@@ -3,13 +3,13 @@ import { setOpen, setInactive } from '../../buttons/actions'
 import { goBackward, setSelectedLink } from '../../navigation/actions'
 import { deleteDiory, deleteLinks } from '../../diograph/actions'
 
-const useLinkedDiories = (focusDiory, diograph) =>
+const linkedDiories = (focusDiory, diograph) =>
   Object.values(focusDiory.links || []).map(({ id }) => ({
     fromDiory: diograph[focusDiory.id],
     toDiory: diograph[id],
   }))
 
-const useReverseLinkedDiories = (focusDiory, diograph) =>
+const reverseLinkedDiories = (focusDiory, diograph) =>
   Object.values(diograph)
     .map((diory) =>
       Object.entries(diory.links || {}).filter(([, { id }]) => id === focusDiory.id)[0]
@@ -21,13 +21,10 @@ const useReverseLinkedDiories = (focusDiory, diograph) =>
     )
     .filter(Boolean)
 
-const useDeletedLinks = (focusDiory, linkDiory, diograph) => {
-  const linkedDiories = useLinkedDiories(focusDiory, diograph)
-  const reverseLinkedDiories = useReverseLinkedDiories(focusDiory, diograph)
-  return linkedDiories.concat(reverseLinkedDiories)
-}
+const composeDeletedLinks = (focusDiory, linkDiory, diograph) =>
+  linkedDiories(focusDiory, diograph).concat(reverseLinkedDiories(focusDiory, diograph))
 
-const useIsFocusDeleted = (focusDiory, linkDiory) =>
+const isFocusDeleted = (focusDiory, linkDiory) =>
   // TODO: Check if it has link to itself and if has => return false
   focusDiory && linkDiory ? focusDiory.id === linkDiory.id : false
 
@@ -35,10 +32,15 @@ export const useDeleteView = (focusDiory, linkDiory) => {
   const [{ diograph }] = useStore((state) => state.diograph)
   const dispatch = useDispatch()
 
-  const isFocusDeleted = useIsFocusDeleted(focusDiory, linkDiory)
-  const [deletedDiory, deletedLinks] = isFocusDeleted
-    ? [focusDiory, useDeletedLinks(focusDiory, linkDiory, diograph)]
-    : [null, [{ fromDiory: focusDiory, toDiory: linkDiory }]]
+  let deletedDiory
+  let deletedLinks
+  if (isFocusDeleted(focusDiory, linkDiory)) {
+    deletedDiory = focusDiory
+    deletedLinks = composeDeletedLinks(focusDiory, linkDiory, diograph)
+  } else {
+    deletedDiory = null
+    deletedLinks = [{ fromDiory: focusDiory, toDiory: linkDiory }]
+  }
 
   const resetView = () => {
     dispatch(setInactive())
@@ -46,19 +48,21 @@ export const useDeleteView = (focusDiory, linkDiory) => {
     dispatch(setOpen(false))
   }
 
+  const deleteDioryAndLinks = () => {
+    dispatch(deleteLinks(deletedLinks))
+
+    if (deletedDiory) {
+      dispatch(deleteDiory(deletedDiory))
+      dispatch(goBackward())
+    }
+
+    resetView()
+  }
+
   return {
     deletedDiory,
     deletedLinks,
-    deleteDioryAndLinks: () => {
-      dispatch(deleteLinks(deletedLinks))
-
-      if (deletedDiory) {
-        dispatch(deleteDiory(deletedDiory))
-        dispatch(goBackward())
-      }
-
-      resetView()
-    },
+    deleteDioryAndLinks,
     resetView,
   }
 }
