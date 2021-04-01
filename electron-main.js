@@ -50,6 +50,9 @@ app.on('activate', () => {
   }
 })
 
+const Store = require('electron-store')
+Store.initRenderer()
+
 // Set event handlers for IPC channels
 // require('./electron/channels/channels.js')
 
