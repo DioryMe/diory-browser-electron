@@ -36,9 +36,11 @@ export const useAddConnectionButton = () => {
         const result = { filePaths: [path] }
         getHome(result)
       } else {
-        window.channelsApi.showOpenDialog({ properties: ['openDirectory'] }).then((result) => {
-          getHome(result)
-        })
+        window.channelsApi
+          .showOpenDialog()({ properties: ['openDirectory'] })
+          .then((result) => {
+            getHome(result)
+          })
       }
     }
   }, [active, dispatch])
