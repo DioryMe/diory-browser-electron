@@ -5,7 +5,7 @@ if (process.env.NODE_ENV === 'test') {
 }
 
 exports.eventHandlerWrapper = function eventHandlerWrapper(channelName, eventHandler) {
-  function specificEventHandler(event, params) {
+  function specificEventHandler(params) {
     function success(responseObject) {
       backendLogger.info(
         'Backend IPC response:',
@@ -25,7 +25,7 @@ exports.eventHandlerWrapper = function eventHandlerWrapper(channelName, eventHan
       channelName,
       channelName === 'SAVE_ROOM' ? params.path : params
     )
-    return eventHandler(event, params).then(success, err)
+    return eventHandler(params).then(success, err)
   }
 
   return specificEventHandler
