@@ -3,7 +3,7 @@ const { saveDiographJson } = require('../lib/save-diograph-json')
 const { readDiographJson } = require('../lib/read-diograph-json')
 const { compareAndMergeDiographs } = require('./compare-and-merge-diographs')
 
-exports.generateDiographEventHandler = async function generateDiographEventHandler(event, path) {
+exports.generateDiographEventHandler = async function generateDiographEventHandler(path) {
   const existingDiograph = readDiographJson(path)
   const folderStructureDiograph = await generateDiograph(path)
   const diograph = existingDiograph

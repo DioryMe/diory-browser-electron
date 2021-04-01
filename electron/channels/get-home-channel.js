@@ -2,7 +2,7 @@ const HomeStore = require('electron-store')
 const path = require('path')
 const fs = require('fs')
 
-exports.getHomeEventHandler = async function getHomeEventHandler(event, params) {
+exports.getHomeEventHandler = async function getHomeEventHandler(params) {
   const store = new HomeStore({
     cwd: process.env.TESTCAFE_TEST ? `${process.env.PWD}/tmp/${Date.now()}` : undefined,
   })
