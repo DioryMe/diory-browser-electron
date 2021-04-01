@@ -33,7 +33,7 @@ describe('useDeleteView', () => {
       }
     })
 
-    it('delete link between diory and clickedDiory', () => {
+    it('delete link between focusDiory and linkDiory', () => {
       const focusDiory = deleteViewFixtureDiograph.someDioryId
       const linkDiory = deleteViewFixtureDiograph.linkedDioryId1
       useFocus.mockImplementation(() => ({ diory: focusDiory }))
@@ -50,7 +50,7 @@ describe('useDeleteView', () => {
       expect(mockDispatch).toHaveBeenCalledWith(setOpen(false))
     })
 
-    it('delete diory in focus and all its links', () => {
+    it('delete focusDiory and all its links', () => {
       const focusDiory = deleteViewFixtureDiograph.someDioryId
       useFocus.mockImplementation(() => ({ diory: focusDiory }))
       useLinkDiory.mockImplementation(() => ({ diory: focusDiory }))
@@ -77,7 +77,7 @@ describe('useDeleteView', () => {
       expect(mockDispatch).toHaveBeenCalledWith(setOpen(false))
     })
 
-    it('delete diory in focus without links', () => {
+    it('delete focusDiory without links', () => {
       const focusDiory = deleteViewFixtureDiograph.dioryWithoutLinks
       useFocus.mockImplementation(() => ({ diory: focusDiory }))
       useLinkDiory.mockImplementation(() => ({ diory: focusDiory }))
