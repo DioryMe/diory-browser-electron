@@ -21,7 +21,7 @@ const { compareAndMergeDiographs } = require('./compare-and-merge-diographs')
  * }
  *
  */
-exports.generateDiographEventHandler = async function generateDiographEventHandler(event, path) {
+exports.generateDiographEventHandler = async function generateDiographEventHandler(path) {
   const existingDiograph = readDiographJson(path)
   const folderStructureDiograph = await generateDiograph(path)
   const diograph = existingDiograph
