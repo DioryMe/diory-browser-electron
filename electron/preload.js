@@ -1,14 +1,26 @@
-const { ipcRenderer } = require('electron')
+const { contextBridge } = require('electron')
 
-window.ipcRenderer = ipcRenderer
+const { dialog } = require('electron')
+const { channels } = require('../src/shared/constants')
+const { eventHandlerWrapper } = require('./channels/channel-util')
 
-const { dialog } = require('electron').remote
+const { getHomeEventHandler } = require('./channels/get-home-channel')
+const { getRoomEventHandler } = require('./channels/get-room-channel')
+const { generateDiographEventHandler } = require('./channels/generate-diograph-channel')
+const { saveRoomEventHandler } = require('./channels/save-room-channel')
+const { saveHomeEventHandler } = require('./channels/save-home-channel')
 
-window.nativeFileDialog = dialog
-
-const frontendLogger = require('electron-log')
-
-window.frontendLogger = frontendLogger.functions
+contextBridge.exposeInMainWorld('channelsApi', {
+  [channels.GET_ROOM]: eventHandlerWrapper(channels.GET_ROOM, getRoomEventHandler),
+  [channels.GET_HOME]: eventHandlerWrapper(channels.GET_HOME, getHomeEventHandler),
+  [channels.GENERATE_DIOGRAPH]: eventHandlerWrapper(
+    channels.GENERATE_DIOGRAPH,
+    generateDiographEventHandler
+  ),
+  [channels.SAVE_ROOM]: eventHandlerWrapper(channels.SAVE_ROOM, saveRoomEventHandler),
+  [channels.SAVE_HOME]: eventHandlerWrapper(channels.SAVE_HOME, saveHomeEventHandler),
+  showOpenDialog: dialog.showOpenDialog,
+})
 
 window.processEnv = {}
 window.processEnv.TESTCAFE_TEST = process.env.TESTCAFE_TEST

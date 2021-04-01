@@ -36,7 +36,7 @@ export const useAddConnectionButton = () => {
         const result = { filePaths: [path] }
         getHome(result)
       } else {
-        window.nativeFileDialog.showOpenDialog({ properties: ['openDirectory'] }).then((result) => {
+        window.channelsApi.openNativeFileDialog().then((result) => {
           getHome(result)
         })
       }
