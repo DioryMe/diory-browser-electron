@@ -1,7 +1,6 @@
-const { contextBridge } = require('electron')
-
+const { contextBridge, dialog } = require('electron')
 const frontendLogger = require('electron-log')
-const { dialog } = require('electron')
+
 const { channels } = require('../src/shared/constants')
 const { eventHandlerWrapper } = require('./channels/channel-util')
 const { getHomeEventHandler } = require('./channels/get-home-channel')
@@ -19,10 +18,10 @@ contextBridge.exposeInMainWorld('channelsApi', {
   ),
   [channels.SAVE_ROOM]: eventHandlerWrapper(channels.SAVE_ROOM, saveRoomEventHandler),
   [channels.SAVE_HOME]: eventHandlerWrapper(channels.SAVE_HOME, saveHomeEventHandler),
-  showOpenDialog: dialog.showOpenDialog,
+  showOpenDialog: () => dialog.showOpenDialog,
   frontendLogger: () => frontendLogger.functions,
+  processEnv: {
+    TESTCAFE_TEST: process.env.TESTCAFE_TEST,
+    PWD: process.env.PWD,
+  },
 })
-
-window.processEnv = {}
-window.processEnv.TESTCAFE_TEST = process.env.TESTCAFE_TEST
-window.processEnv.PWD = process.env.PWD
