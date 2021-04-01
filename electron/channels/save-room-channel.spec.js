@@ -2,9 +2,6 @@ const { eventHandlerWrapper } = require('./channel-util')
 const { saveRoomEventHandler } = require('./save-room-channel')
 const { saveDiographJson } = require('../lib/save-diograph-json')
 
-// Mock event.reply
-const mockEventReply = jest.fn()
-const mockEvent = { reply: mockEventReply }
 // Mock saveDiographJson
 jest.mock('../lib/save-diograph-json')
 
@@ -26,10 +23,7 @@ describe('saveRoomEventHandler', () => {
       saveDiographJson.mockResolvedValue(undefined)
     })
     it('returns true', async () => {
-      const response = await eventHandlerWrapper('SAVE_ROOM', saveRoomEventHandler)(
-        mockEvent,
-        params
-      )
+      const response = await eventHandlerWrapper('SAVE_ROOM', saveRoomEventHandler)(params)
 
       expect(saveDiographJson).toHaveBeenCalledTimes(1)
       expect(saveDiographJson).toHaveBeenCalledWith(
@@ -48,10 +42,7 @@ describe('saveRoomEventHandler', () => {
     })
 
     it('returns Error', async () => {
-      const response = await eventHandlerWrapper('SAVE_ROOM', saveRoomEventHandler)(
-        mockEvent,
-        params
-      )
+      const response = await eventHandlerWrapper('SAVE_ROOM', saveRoomEventHandler)(params)
 
       expect(saveDiographJson).toHaveBeenCalledTimes(1)
       expect(saveDiographJson).toHaveBeenCalledWith(

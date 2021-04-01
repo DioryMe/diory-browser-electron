@@ -36,8 +36,7 @@ describe('generateDiographEventHandler', () => {
       ...mergedDiograph,
       path: 'some-path',
     }
-    act = async () =>
-      eventHandlerWrapper('GENERATE_DIOGRAPH', generateDiographEventHandler)('some-event', params)
+    act = async () => eventHandlerWrapper('GENERATE_DIOGRAPH', generateDiographEventHandler)(params)
   })
 
   afterEach(() => {

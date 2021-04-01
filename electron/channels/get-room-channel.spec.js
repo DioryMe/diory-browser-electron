@@ -2,15 +2,12 @@ const fs = require('fs')
 const { eventHandlerWrapper } = require('./channel-util')
 const { getRoomEventHandler } = require('./get-room-channel')
 
-const mockEventReply = jest.fn()
-const mockEvent = { reply: mockEventReply }
-
 describe('getRoomEventHandler', () => {
   it('works', async () => {
     const exampleFolderPath = './public/development-content-room'
     const params = { address: exampleFolderPath }
 
-    const response = await eventHandlerWrapper('GET_ROOM', getRoomEventHandler)(mockEvent, params)
+    const response = await eventHandlerWrapper('GET_ROOM', getRoomEventHandler)(params)
 
     const diographJsonRawContents = fs.readFileSync(`${exampleFolderPath}/diograph.json`)
     const diographObject = JSON.parse(diographJsonRawContents)
@@ -23,7 +20,7 @@ describe('getRoomEventHandler', () => {
     const exampleFolderPath = './electron/readers/example-folder'
     const params = { address: exampleFolderPath }
 
-    const response = await eventHandlerWrapper('GET_ROOM', getRoomEventHandler)(mockEvent, params)
+    const response = await eventHandlerWrapper('GET_ROOM', getRoomEventHandler)(params)
 
     expect(response).toEqual(undefined)
   })
