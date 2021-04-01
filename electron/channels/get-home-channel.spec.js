@@ -4,9 +4,6 @@ const getHomeChannel = require('./get-home-channel')
 
 const { getHomeEventHandler, defaultHome } = getHomeChannel
 
-// Mock event.reply
-const mockEventReply = jest.fn()
-const mockEvent = { reply: mockEventReply }
 // Mock electron-store
 jest.mock('electron-store')
 
@@ -39,7 +36,7 @@ describe('getHomeEventHandler', () => {
     HomeStore.mockImplementation(() => ({ get: () => undefined }))
 
     const params = {}
-    const response = await eventHandlerWrapper('GET_HOME', getHomeEventHandler)(mockEvent, params)
+    const response = await eventHandlerWrapper('GET_HOME', getHomeEventHandler)(params)
 
     expect(response).toEqual(defaultHome)
   })
@@ -48,7 +45,7 @@ describe('getHomeEventHandler', () => {
     HomeStore.mockImplementation(() => ({ get: () => homeJson }))
 
     const params = {}
-    const response = await eventHandlerWrapper('GET_HOME', getHomeEventHandler)(mockEvent, params)
+    const response = await eventHandlerWrapper('GET_HOME', getHomeEventHandler)(params)
 
     expect(response).toEqual(homeJson)
   })
@@ -59,7 +56,7 @@ describe('getHomeEventHandler', () => {
     getHomeChannel.roomConnectionOK = jest.fn(() => false)
 
     const params = {}
-    const response = await eventHandlerWrapper('GET_HOME', getHomeEventHandler)(mockEvent, params)
+    const response = await eventHandlerWrapper('GET_HOME', getHomeEventHandler)(params)
 
     // Expect 'errors' to be added to the response
     const homeJsonWithErrors = homeJson
