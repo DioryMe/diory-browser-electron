@@ -4,7 +4,7 @@ import { useDeleteView } from './useDeleteView'
 
 import { deleteDiory, deleteLinks } from '../../diograph/actions'
 import { useLinkDiory, useFocus } from '../../diograph/hooks'
-import { setOpen, setInactive } from '../../buttons/actions'
+import { inactivateButton } from '../../buttons/actions'
 import { goBackward, setSelectedLink } from '../../navigation/actions'
 
 import deleteViewFixtureDiograph from './deleteViewFixtureDiograph'
@@ -41,13 +41,12 @@ describe('useDeleteView', () => {
 
       useDeleteView().onDone()
 
-      expect(mockDispatch).toHaveBeenCalledTimes(4)
+      expect(mockDispatch).toHaveBeenCalledTimes(3)
       expect(mockDispatch).toHaveBeenCalledWith(
         deleteLinks([{ fromDiory: focusDiory, toDiory: linkDiory }])
       )
-      expect(mockDispatch).toHaveBeenCalledWith(setInactive())
       expect(mockDispatch).toHaveBeenCalledWith(setSelectedLink())
-      expect(mockDispatch).toHaveBeenCalledWith(setOpen(false))
+      expect(mockDispatch).toHaveBeenCalledWith(inactivateButton())
     })
 
     it('delete focusDiory and all its links', () => {
@@ -68,13 +67,12 @@ describe('useDeleteView', () => {
         { fromDiory: reverseLinkedDioryId2, toDiory: focusDiory },
         { fromDiory: bidirectionalLinkedDioryId3, toDiory: focusDiory },
       ]
-      expect(mockDispatch).toHaveBeenCalledTimes(6)
+      expect(mockDispatch).toHaveBeenCalledTimes(5)
       expect(mockDispatch).toHaveBeenCalledWith(deleteDiory(focusDiory))
       expect(mockDispatch).toHaveBeenCalledWith(deleteLinks(expectedDeleteLinksArguments))
       expect(mockDispatch).toHaveBeenCalledWith(goBackward())
-      expect(mockDispatch).toHaveBeenCalledWith(setInactive())
       expect(mockDispatch).toHaveBeenCalledWith(setSelectedLink())
-      expect(mockDispatch).toHaveBeenCalledWith(setOpen(false))
+      expect(mockDispatch).toHaveBeenCalledWith(inactivateButton())
     })
 
     it('delete focusDiory without links', () => {
@@ -84,13 +82,12 @@ describe('useDeleteView', () => {
 
       useDeleteView().onDone()
 
-      expect(mockDispatch).toHaveBeenCalledTimes(6)
+      expect(mockDispatch).toHaveBeenCalledTimes(5)
       expect(mockDispatch).toHaveBeenCalledWith(deleteDiory(focusDiory))
       expect(mockDispatch).toHaveBeenCalledWith(deleteLinks([]))
       expect(mockDispatch).toHaveBeenCalledWith(goBackward())
-      expect(mockDispatch).toHaveBeenCalledWith(setInactive())
       expect(mockDispatch).toHaveBeenCalledWith(setSelectedLink())
-      expect(mockDispatch).toHaveBeenCalledWith(setOpen(false))
+      expect(mockDispatch).toHaveBeenCalledWith(inactivateButton())
     })
   })
 })
