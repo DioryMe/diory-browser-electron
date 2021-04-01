@@ -1,9 +1,9 @@
 const { contextBridge } = require('electron')
 
+const frontendLogger = require('electron-log')
 const { dialog } = require('electron')
 const { channels } = require('../src/shared/constants')
 const { eventHandlerWrapper } = require('./channels/channel-util')
-
 const { getHomeEventHandler } = require('./channels/get-home-channel')
 const { getRoomEventHandler } = require('./channels/get-room-channel')
 const { generateDiographEventHandler } = require('./channels/generate-diograph-channel')
@@ -20,6 +20,7 @@ contextBridge.exposeInMainWorld('channelsApi', {
   [channels.SAVE_ROOM]: eventHandlerWrapper(channels.SAVE_ROOM, saveRoomEventHandler),
   [channels.SAVE_HOME]: eventHandlerWrapper(channels.SAVE_HOME, saveHomeEventHandler),
   showOpenDialog: dialog.showOpenDialog,
+  frontendLogger: () => frontendLogger.functions,
 })
 
 window.processEnv = {}
