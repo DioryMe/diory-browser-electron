@@ -31,7 +31,7 @@ export const enterRoom = (state, { payload }) => ({
 
 export const setLens = (state, { payload }) => ({
   ...state,
-  lens: payload.lens,
+  lens: payload.lensId,
   backward: [[state.roomId, state.focus, state.lens], ...state.backward],
   forward: [],
 })

@@ -18,14 +18,14 @@ const useNavigationButtons = () => {
       disabled: !backward.length,
       onClick: () => {
         dispatch(goBackward())
-        dispatch(selectLens(backward[0].lens))
+        dispatch(selectLens(backward[0][2]))
       },
     },
     forward: {
       disabled: !forward.length,
       onClick: () => {
         dispatch(goForward())
-        dispatch(selectLens(forward[0].lens))
+        dispatch(selectLens(forward[0][2]))
       },
     },
   }

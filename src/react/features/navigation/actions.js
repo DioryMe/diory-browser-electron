@@ -14,9 +14,9 @@ export const enterRoom = ({ id }) => ({
   payload: { id },
 })
 
-export const setLens = ({ lens }) => ({
+export const setLens = (lensId) => ({
   type: SET_LENS,
-  payload: { lens },
+  payload: { lensId },
 })
 
 export const setFocus = ({ focus, lens }) => ({
