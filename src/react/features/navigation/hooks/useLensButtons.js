@@ -2,6 +2,7 @@ import { useDispatchActions, useStore } from '../../../store'
 
 import { activateFilter } from '../../filters/actions'
 import { selectLens } from '../../lenses/actions'
+import { setLens } from '../actions'
 
 import { lenses } from '../../lenses/Lenses'
 
@@ -12,7 +13,9 @@ export const useLensButtons = () => {
   const { dispatch } = useDispatchActions()
   const handleClick = (id) => {
     if (id !== selectedLensId) {
-      return dispatch(selectLens(id))
+      dispatch(setLens(id))
+      dispatch(selectLens(id))
+      return
     }
     const { active } = filters[id] || {}
     if (!active) {

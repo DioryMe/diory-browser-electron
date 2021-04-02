@@ -7,9 +7,11 @@ export const useFocusTool = () => {
   const dispatch = useDispatch()
   return (clickedDiory) => {
     if (!active) {
-      dispatch(setFocus({ focus: clickedDiory.id }))
       if (!clickedDiory.links || Object.keys(clickedDiory.links).length === 0) {
         dispatch(selectLens('fullscreen'))
+        dispatch(setFocus({ focus: clickedDiory.id, lens: 'fullscreen' }))
+      } else {
+        dispatch(setFocus({ focus: clickedDiory.id }))
       }
     }
   }

@@ -3,6 +3,7 @@ import {
   GO_SIDE,
   GO_HOME,
   SET_FOCUS,
+  SET_LENS,
   GO_BACKWARD,
   GO_FORWARD,
   SET_SELECTED_LINK,
@@ -13,6 +14,7 @@ export const initialState = {
   roomId: undefined,
   focus: undefined,
   link: null,
+  lens: null,
   backward: [],
   forward: [],
   path: [],
@@ -27,6 +29,13 @@ export const enterRoom = (state, { payload }) => ({
   path: [payload.id],
 })
 
+export const setLens = (state, { payload }) => ({
+  ...state,
+  lens: payload.lens,
+  backward: [[state.roomId, state.focus, state.lens], ...state.backward],
+  forward: [],
+})
+
 export const setFocus = (state, { payload }) => {
   if (payload.focus === state.focus) {
     return state
@@ -35,7 +44,8 @@ export const setFocus = (state, { payload }) => {
   return {
     ...state,
     focus: payload.focus,
-    backward: [[state.roomId, state.focus], ...state.backward],
+    lens: payload.lens || state.lens,
+    backward: [[state.roomId, state.focus, state.lens], ...state.backward],
     forward: [],
     path: [...state.path, payload.focus],
   }
@@ -51,24 +61,26 @@ export const goSide = (state, { payload }) => ({
 })
 
 export const goBackward = (state) => {
-  const [[roomId, focus], ...backward] = state.backward
+  const [[roomId, focus, lens], ...backward] = state.backward
   return {
     ...state,
     roomId,
     focus,
+    lens,
     backward,
-    forward: [[state.roomId, state.focus], ...state.forward],
+    forward: [[state.roomId, state.focus, state.lens], ...state.forward],
     path: [...state.path].slice(0, -1),
   }
 }
 
 export const goForward = (state) => {
-  const [[roomId, focus], ...forward] = state.forward
+  const [[roomId, focus, lens], ...forward] = state.forward
   return {
     ...state,
     roomId,
     focus,
-    backward: [[state.roomId, state.focus], ...state.backward],
+    lens,
+    backward: [[state.roomId, state.focus, state.lens], ...state.backward],
     forward,
     path: [...state.path, focus],
   }
@@ -77,7 +89,8 @@ export const goForward = (state) => {
 export const goHome = (state) => ({
   ...state,
   focus: state.roomId,
-  backward: [[state.roomId, state.focus], ...state.backward],
+  lens: 'grid',
+  backward: [[state.roomId, state.focus, state.lens], ...state.backward],
   forward: [],
   path: [],
 })
@@ -90,6 +103,7 @@ export const setSelectedLink = (state, { payload }) => ({
 export default createReducer({
   [ENTER_ROOM]: enterRoom,
   [SET_FOCUS]: setFocus,
+  [SET_LENS]: setLens,
   [GO_BACKWARD]: goBackward,
   [GO_FORWARD]: goForward,
   [GO_HOME]: goHome,

@@ -3,6 +3,7 @@ import {
   GO_FORWARD,
   GO_BACKWARD,
   SET_FOCUS,
+  SET_LENS,
   GO_HOME,
   GO_SIDE,
   SET_SELECTED_LINK,
@@ -13,9 +14,14 @@ export const enterRoom = ({ id }) => ({
   payload: { id },
 })
 
-export const setFocus = ({ focus }) => ({
+export const setLens = ({ lens }) => ({
+  type: SET_LENS,
+  payload: { lens },
+})
+
+export const setFocus = ({ focus, lens }) => ({
   type: SET_FOCUS,
-  payload: { focus },
+  payload: { focus, lens },
 })
 
 export const goBackward = () => ({ type: GO_BACKWARD })

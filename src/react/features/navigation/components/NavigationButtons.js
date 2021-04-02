@@ -2,21 +2,31 @@ import React from 'react'
 import { Pane, IconButton } from 'evergreen-ui'
 import { useStore } from '../../../store'
 import { goHome, goBackward, goForward } from '../actions'
+import { selectLens } from '../../lenses/actions'
 import Icon from '../../../components/Icon'
 
 const useNavigationButtons = () => {
   const [{ backward, forward }, dispatch] = useStore((state) => state.navigation)
   return {
     home: {
-      onClick: () => dispatch(goHome()),
+      onClick: () => {
+        dispatch(goHome())
+        dispatch(selectLens('grid'))
+      },
     },
     back: {
       disabled: !backward.length,
-      onClick: () => dispatch(goBackward()),
+      onClick: () => {
+        dispatch(goBackward())
+        dispatch(selectLens(backward[0].lens))
+      },
     },
     forward: {
       disabled: !forward.length,
-      onClick: () => dispatch(goForward()),
+      onClick: () => {
+        dispatch(goForward())
+        dispatch(selectLens(forward[0].lens))
+      },
     },
   }
 }
