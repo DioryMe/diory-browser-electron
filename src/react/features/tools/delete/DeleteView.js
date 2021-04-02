@@ -20,7 +20,7 @@ const DeleteView = ({ diory, diorys, onDone, onCancel }) => (
         </div>
         <div>
           &quot;
-          {diory.text}
+          {diory.text || diory.id}
           &quot;
         </div>
       </div>
