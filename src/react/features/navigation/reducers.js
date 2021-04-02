@@ -76,8 +76,7 @@ export const goForward = (state) => {
 
 export const goHome = (state) => ({
   ...state,
-  roomId: null,
-  focus: null,
+  focus: state.roomId,
   backward: [[state.roomId, state.focus], ...state.backward],
   forward: [],
   path: [],
