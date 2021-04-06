@@ -5,5 +5,6 @@ module.exports = {
     SAVE_ROOM: 'SAVE_ROOM',
     GET_HOME: 'GET_HOME',
     SAVE_HOME: 'SAVE_HOME',
+    GENERATE_STRAVA_DIORYS: 'GENERATE_STRAVA_DIORYS',
   },
 }
