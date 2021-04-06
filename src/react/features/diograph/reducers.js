@@ -1,7 +1,9 @@
 import {
   GET_ROOM,
+  ADD_DIORYS,
   CREATE_DIORY,
   CREATE_LINK,
+  CREATE_LINKS,
   DELETE_DIORY,
   DELETE_LINK,
   DELETE_LINKS,
@@ -11,10 +13,37 @@ import {
 import { promiseReducers, createReducer } from '../../store'
 
 export const initialState = {
-  id: undefined,
+  rootId: undefined,
   diograph: {},
   updated: false,
 }
+
+const reduceToObject = (array) =>
+  array.reduce(
+    (obj, { id }) => ({
+      ...obj,
+      ...getLink(id),
+    }),
+    {}
+  )
+
+const reduceToDiograph = (array) =>
+  array.reduce(
+    (obj, diory) => ({
+      ...obj,
+      [diory.id]: diory,
+    }),
+    {}
+  )
+
+const addDiorys = (state, { payload }) => ({
+  ...state,
+  diograph: {
+    ...state.diograph,
+    ...reduceToDiograph(payload.diorys),
+  },
+  updated: true,
+})
 
 export const createDiory = (state, { payload: { diory } }) => ({
   ...state,
@@ -47,6 +76,10 @@ const updateDiory = (state, { payload }) => ({
   updated: true,
 })
 
+const getLink = (id) => ({
+  [id]: { id },
+})
+
 const createLink = (state, { payload }) => {
   const diory = state.diograph[payload.diory.id]
   return {
@@ -58,7 +91,26 @@ const createLink = (state, { payload }) => {
         ...payload.diory,
         links: {
           ...diory.links,
-          [payload.link.id]: { id: payload.link.id },
+          ...getLink(payload.link.id),
+        },
+      },
+    },
+    updated: true,
+  }
+}
+
+const createLinks = (state, { payload }) => {
+  const diory = state.diograph[payload.diory.id]
+  return {
+    ...state,
+    diograph: {
+      ...state.diograph,
+      [payload.diory.id]: {
+        ...diory,
+        ...payload.diory,
+        links: {
+          ...diory.links,
+          ...reduceToObject(payload.links),
         },
       },
     },
@@ -95,10 +147,12 @@ export const deleteLinks = (state, { payload: deletedLinks }) =>
   )
 
 export default createReducer({
+  [ADD_DIORYS]: addDiorys,
   [CREATE_DIORY]: createDiory,
   [DELETE_DIORY]: deleteDiory,
   [UPDATE_DIORY]: updateDiory,
   [CREATE_LINK]: createLink,
+  [CREATE_LINKS]: createLinks,
   [DELETE_LINK]: deleteLink,
   [DELETE_LINKS]: deleteLinks,
   ...promiseReducers(GET_ROOM, 'load', 'loading', 'loaded', 'error'),
