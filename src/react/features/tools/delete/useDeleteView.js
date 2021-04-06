@@ -25,9 +25,17 @@ const reverseLinkedDiories = (focusDiory, diograph) =>
 const composeDeletedLinks = (focusDiory, linkDiory, diograph) =>
   linkedDiories(focusDiory, diograph).concat(reverseLinkedDiories(focusDiory, diograph))
 
-const isFocusDeleted = (focusDiory, linkDiory) =>
-  // TODO: Check if it has link to itself and if has => return false
-  focusDiory && linkDiory ? focusDiory.id === linkDiory.id : false
+const isFocusDeleted = (focusDiory, linkDiory) => {
+  if (focusDiory && linkDiory && focusDiory.id === linkDiory.id) {
+    if (Object.values(focusDiory.links || {}).find(({ id }) => id === focusDiory.id)) {
+      return false
+    }
+
+    return true
+  }
+
+  return false
+}
 
 export const useDeleteView = () => {
   const [{ diograph }] = useStore((state) => state.diograph)
