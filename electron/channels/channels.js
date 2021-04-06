@@ -8,6 +8,8 @@ const { generateDiographEventHandler } = require('./generate-diograph-channel')
 const { saveRoomEventHandler } = require('./save-room-channel')
 const { saveHomeEventHandler } = require('./save-home-channel')
 
+const { stravaChannel } = require('./strava/stravaChannel')
+
 /* GET_ROOM */
 ipcMain.handle(channels.GET_ROOM, eventHandlerWrapper(channels.GET_ROOM, getRoomEventHandler))
 
@@ -25,3 +27,9 @@ ipcMain.handle(channels.SAVE_ROOM, eventHandlerWrapper(channels.SAVE_ROOM, saveR
 
 /* SAVE_HOME */
 ipcMain.handle(channels.SAVE_HOME, eventHandlerWrapper(channels.SAVE_HOME, saveHomeEventHandler))
+
+/* STRAVA */
+ipcMain.handle(
+  channels.GENERATE_STRAVA_DIORYS,
+  eventHandlerWrapper(channels.GENERATE_STRAVA_DIORYS, stravaChannel)
+)
