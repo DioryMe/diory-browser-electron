@@ -53,21 +53,23 @@ function mapActivityToDiory({
   elapsedTime,
 }) {
   return {
-    id: 'strava_' + id,
+    id: `strava_${id}`,
     date: formatDate(date),
     text: formatText(name, type),
     latitude,
     longitude,
-    data: {
-      '@context': 'https://schema.org',
-      '@type': 'ExerciseAction',
-      exerciseType: formatExerciseType(type),
-      distance: formatDistance(distance),
-      duration: formatDuration(movingTime),
-      startTime: formatDate(date),
-      endTime: formatEndTime(date, elapsedTime),
-      ...formatHeartrate(heartrate),
-    },
+    data: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'ExerciseAction',
+        exerciseType: formatExerciseType(type),
+        distance: formatDistance(distance),
+        duration: formatDuration(movingTime),
+        startTime: formatDate(date),
+        endTime: formatEndTime(date, elapsedTime),
+        ...formatHeartrate(heartrate),
+      },
+    ],
   }
 }
 
