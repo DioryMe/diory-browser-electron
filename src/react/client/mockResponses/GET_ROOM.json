@@ -13,6 +13,9 @@
         },
         "generic": {
           "id": "generic-content"
+        },
+        "sport": {
+          "id": "sport-diory"
         }
       },
       "modified": "2020-01-03T14:03:04.751Z"
@@ -355,6 +358,22 @@
           "id": "78e966b3-26e6-4dd9-afbe-8fbe62dc396c"
         }
       }
+    },
+    "sport-diory": {
+      "id": "sport-diory",
+      "text": "Sport diory",
+      "data": [
+        {
+          "@context": "https://schema.org",
+          "@type": "ExerciseAction",
+          "exerciseType": "Running",
+          "distance": "28,72 km",
+          "duration": "PT1H13M49S",
+          "heartrate": "134",
+          "startTime": "2021-03-16T17:42:33Z",
+          "endTime": "2021-03-16T18:42:33Z"
+        }
+      ]
     }
   }
 }
