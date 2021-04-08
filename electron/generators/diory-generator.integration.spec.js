@@ -45,11 +45,25 @@ describe('diograph-generator', () => {
 
       act()
 
-      expect(Object.keys(generatedDiory)).toEqual(['id', 'text', 'video', 'created', 'modified'])
+      // TODO: Remove video attribute as now we have diory.data.contentUrl
+      expect(Object.keys(generatedDiory)).toEqual([
+        'id',
+        'text',
+        'video',
+        'created',
+        'modified',
+        'data',
+      ])
       expect(generatedDiory.text).toEqual('some-video.mp4')
-      expect(generatedDiory.video.toString()).toEqual(
+      // TODO: Remove video attribute as now we have diory.data.contentUrl
+      expect(generatedDiory.video).toEqual(
         `file://${process.env.INIT_CWD}/electron/readers/example-folder/some-video.mp4`
       )
+      expect(generatedDiory.data).toEqual({
+        '@context': 'https://schema.org',
+        '@type': 'VideoObject',
+        contentUrl: `file://${process.env.INIT_CWD}/electron/readers/example-folder/some-video.mp4`,
+      })
     })
 
     it('generates diory from audio file', () => {
