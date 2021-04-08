@@ -24,13 +24,20 @@ describe('diograph-generator', () => {
         'longitude',
         'created',
         'modified',
+        'data',
       ])
       expect(generatedDiory.date).toEqual('2008-11-01T21:15:11.000Z')
-      expect(generatedDiory.image.toString()).toEqual(
-        `file://${process.env.INIT_CWD}/electron/readers/example-folder/some-image.jpg`
-      )
+      const imageContentUrl = `file://${process.env.INIT_CWD}/electron/readers/example-folder/some-image.jpg`
+      expect(generatedDiory.image).toEqual(imageContentUrl)
       expect(generatedDiory.latitude).toEqual(43.464455)
       expect(generatedDiory.longitude).toEqual(11.881478333333334)
+      expect(generatedDiory.data).toEqual({
+        '@context': 'https://schema.org',
+        '@type': 'ImageObject',
+        contentUrl: imageContentUrl,
+        width: 640,
+        height: 480,
+      })
     })
 
     it('generates diory from video file', () => {
