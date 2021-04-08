@@ -35,7 +35,7 @@ describe('image-reader', () => {
         imagePath = 'some-imagePath'
       })
 
-      it('reads image', async () => {
+      it('calls readFileSync with imagePath', async () => {
         await act()
 
         expect(readFileSync).toHaveBeenCalledWith('some-imagePath')

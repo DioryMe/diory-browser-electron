@@ -25,7 +25,7 @@ describe('file-reader', () => {
       await act()
     })
 
-    it('reads file', async () => {
+    it('calls statSync with filePath', async () => {
       filePath = 'some-filePath'
 
       await act()

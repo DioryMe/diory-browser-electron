@@ -38,7 +38,7 @@ describe('diory-generator', () => {
       await act()
     })
 
-    it('reads file', async () => {
+    it('calls readFile with filePath', async () => {
       filePath = 'some-filePath'
 
       await act()
@@ -78,7 +78,7 @@ describe('diory-generator', () => {
         })
 
         describe('given image data', () => {
-          it('reads image', async () => {
+          it('calls readImage with imagePath', async () => {
             filePath = 'some-imagePath'
 
             await act()
@@ -86,7 +86,7 @@ describe('diory-generator', () => {
             expect(readImage).toHaveBeenCalledWith('some-imagePath')
           })
 
-          it('sets uid to diory id', async () => {
+          it('sets uuid to diory id', async () => {
             uuid.mockReturnValue('some-uuid')
 
             const diory = act()
@@ -145,7 +145,7 @@ describe('diory-generator', () => {
       await act()
     })
 
-    it('reads folder', async () => {
+    it('calls readFolderMetadata with folderPath', async () => {
       folderPath = 'some-folderPath'
 
       await act()
@@ -153,7 +153,7 @@ describe('diory-generator', () => {
       expect(readFolderMetadata).toHaveBeenCalledWith('some-folderPath')
     })
 
-    it('sets uid to diory id', async () => {
+    it('sets uuid to diory id', async () => {
       uuid.mockReturnValue('some-uuid')
 
       const diory = act()

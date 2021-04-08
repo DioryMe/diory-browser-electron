@@ -45,7 +45,7 @@ describe('diograph-generator', () => {
           folderPath = 'some-folderPath'
         })
 
-        it('generates folder diory', async () => {
+        it('calls generateDioryFromFolder with the folderPath', async () => {
           await act()
 
           expect(generateDioryFromFolder).toHaveBeenCalledWith('some-folderPath', {})
@@ -71,7 +71,7 @@ describe('diograph-generator', () => {
           })
         })
 
-        it('reads file and subfolder paths from folder', async () => {
+        it('calls getFileAndSubfolderPaths with folderPath', async () => {
           await act()
 
           expect(getFileAndSubfolderPaths).toHaveBeenCalledWith('some-folderPath')
@@ -106,7 +106,7 @@ describe('diograph-generator', () => {
               paths = { filePaths, subfolderPaths }
             })
 
-            it('generates file diorys', async () => {
+            it('calls generateDioryFromFile with each filePath', async () => {
               await act()
 
               filePaths.forEach((file) => {
@@ -114,11 +114,11 @@ describe('diograph-generator', () => {
               })
             })
 
-            it('generates subfolder diorys', async () => {
+            it('calls generateDioryFromFolder with each subfolderPath', async () => {
               await act()
 
-              subfolderPaths.forEach((subfolder) => {
-                expect(generateDioryFromFolder).toHaveBeenCalledWith(subfolder, {})
+              subfolderPaths.forEach((subfolderPath) => {
+                expect(generateDioryFromFolder).toHaveBeenCalledWith(subfolderPath, {})
               })
             })
 

@@ -51,7 +51,7 @@ describe('folder-reader', () => {
       await act()
     })
 
-    it('reads folder', async () => {
+    it('calls statSync with folderPath', async () => {
       folderPath = 'some-folderPath'
 
       await act()
