@@ -43,18 +43,32 @@ function getLongitude({ GPSLongitude = {} }) {
   return longitude && { longitude }
 }
 
+function generateSchema(tags, imageContentUrl) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ImageObject',
+    contentUrl: imageContentUrl,
+    height: tags && tags['Image Height'] && tags['Image Height'].value,
+    width: tags && tags['Image Width'] && tags['Image Width'].value,
+  }
+}
+
 exports.readImage = async function readImage(imagePath) {
   if (!imagePath) {
     return
   }
   try {
     const tags = readExifTags(imagePath)
+    const imageContentUrl = pathToFileURL(imagePath).toString()
     return {
-      image: pathToFileURL(imagePath),
+      image: imageContentUrl,
       ...getDate(tags),
       ...getLatitude(tags),
       ...getLongitude(tags),
       ...getCreated(tags),
+      data: {
+        ...generateSchema(tags, imageContentUrl),
+      },
     }
   } catch (error) {
     console.info(`Error reading image ${imagePath}: ${error}`)

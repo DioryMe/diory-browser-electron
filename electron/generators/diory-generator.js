@@ -29,7 +29,7 @@ async function readFileData(type, filePath) {
   }
 }
 
-function generateDiory({ text, date, image, video, latitude, longitude, created, modified }) {
+function generateDiory({ text, date, image, video, latitude, longitude, created, modified, data }) {
   return {
     id: uuid(),
     ...(text && { text }),
@@ -40,6 +40,7 @@ function generateDiory({ text, date, image, video, latitude, longitude, created,
     ...(longitude && { longitude }),
     ...(created && { created }),
     ...(modified && { modified }),
+    ...(data && { data }),
   }
 }
 
