@@ -17,7 +17,7 @@ test('select new diograph folder (without diograph.json) and delete it', async (
     .click('[data-testid="tools-button"]')
     .click('[data-testid="undefined-button"]')
     .expect(dioryCount)
-    .eql(5)
+    .eql(9)
     .click('[data-testid="tools-button"]')
     .click('[data-testid="delete-button"]')
     .click(someFolderDiory)
