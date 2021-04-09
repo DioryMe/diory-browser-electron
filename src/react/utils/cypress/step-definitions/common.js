@@ -25,7 +25,7 @@ When('I click {word} button', (buttonName) => {
 })
 
 When('I click {string} focus diory', (dioryName) => {
-  cy.get('h2').contains(dioryName).click()
+  cy.get('[role=text]').contains(dioryName).click()
 })
 
 When('I type {string} in search bar', (searchString) => {

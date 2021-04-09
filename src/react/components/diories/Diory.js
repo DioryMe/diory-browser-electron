@@ -51,7 +51,7 @@ const Diory = ({ diory, onClick, children, ...props }) => {
         )}
         {video && <Video video={video} style={styleVideo} />}
         {text && (
-          <Box {...defaultStyle.text} {...styleText}>
+          <Box role="text" {...defaultStyle.text} {...styleText}>
             {text}
           </Box>
         )}
