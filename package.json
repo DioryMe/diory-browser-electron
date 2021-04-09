@@ -129,6 +129,11 @@
       "@babel/plugin-transform-runtime"
     ]
   },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!(file-url)/)"
+    ]
+  },
   "prettier": {
     "tabWidth": 2,
     "semi": false,
