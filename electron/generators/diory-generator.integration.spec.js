@@ -71,8 +71,13 @@ describe('diograph-generator', () => {
 
       await act()
 
-      expect(Object.keys(generatedDiory)).toEqual(['id', 'text', 'created', 'modified'])
+      expect(Object.keys(generatedDiory)).toEqual(['id', 'text', 'created', 'modified', 'data'])
       expect(generatedDiory.text).toEqual('some-music')
+      expect(generatedDiory.data).toEqual({
+        '@context': 'https://schema.org',
+        '@type': 'AudioObject',
+        contentUrl: `${process.env.INIT_CWD}/electron/readers/example-folder/some-music.mp3`,
+      })
     })
 
     it('generates diory from document file', async () => {
@@ -80,8 +85,13 @@ describe('diograph-generator', () => {
 
       await act()
 
-      expect(Object.keys(generatedDiory)).toEqual(['id', 'text', 'created', 'modified'])
+      expect(Object.keys(generatedDiory)).toEqual(['id', 'text', 'created', 'modified', 'data'])
       expect(generatedDiory.text).toEqual('some-document')
+      expect(generatedDiory.data).toEqual({
+        '@context': 'https://schema.org',
+        '@type': 'MediaObject',
+        contentUrl: `${process.env.INIT_CWD}/electron/readers/example-folder/some-document.pdf`,
+      })
     })
   })
 })

@@ -20,9 +20,22 @@ async function readFileData(type, filePath) {
         ...readVideo(filePath),
       }
     case 'audio':
+      return {
+        ...fileData,
+        data: {
+          '@context': 'https://schema.org',
+          '@type': 'AudioObject',
+          contentUrl: filePath,
+        },
+      }
     case 'text':
       return {
         ...fileData,
+        data: {
+          '@context': 'https://schema.org',
+          '@type': 'MediaObject',
+          contentUrl: filePath,
+        },
       }
     default:
       return fileData || {}
