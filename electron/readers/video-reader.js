@@ -1,11 +1,10 @@
 const { basename } = require('path')
-const { pathToFileURL } = require('url')
 
 function generateSchema(videoPath) {
   return {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
-    contentUrl: pathToFileURL(videoPath).toString(),
+    contentUrl: videoPath,
   }
 }
 
@@ -18,7 +17,7 @@ exports.readVideo = function readVideo(videoPath) {
     return {
       text: basename(videoPath),
       // TODO: Remove video attribute as now we have diory.data.contentUrl
-      video: pathToFileURL(videoPath).toString(),
+      video: videoPath,
       data: {
         ...generateSchema(videoPath),
       },

@@ -12,7 +12,7 @@ describe('diograph-generator', () => {
 
   describe('generateDioryFromFile', () => {
     it('generates diory from image file', () => {
-      filePath = './electron/readers/example-folder/some-image.jpg'
+      filePath = `${process.env.INIT_CWD}/electron/readers/example-folder/some-image.jpg`
 
       act()
 
@@ -27,7 +27,7 @@ describe('diograph-generator', () => {
         'data',
       ])
       expect(generatedDiory.date).toEqual('2008-11-01T21:15:11.000Z')
-      const imageContentUrl = `file://${process.env.INIT_CWD}/electron/readers/example-folder/some-image.jpg`
+      const imageContentUrl = `${process.env.INIT_CWD}/electron/readers/example-folder/some-image.jpg`
       expect(generatedDiory.image).toEqual(imageContentUrl)
       expect(generatedDiory.latitude).toEqual(43.464455)
       expect(generatedDiory.longitude).toEqual(11.881478333333334)
@@ -41,7 +41,7 @@ describe('diograph-generator', () => {
     })
 
     it('generates diory from video file', () => {
-      filePath = './electron/readers/example-folder/some-video.mp4'
+      filePath = `${process.env.INIT_CWD}/electron/readers/example-folder/some-video.mp4`
 
       act()
 
@@ -57,17 +57,17 @@ describe('diograph-generator', () => {
       expect(generatedDiory.text).toEqual('some-video.mp4')
       // TODO: Remove video attribute as now we have diory.data.contentUrl
       expect(generatedDiory.video).toEqual(
-        `file://${process.env.INIT_CWD}/electron/readers/example-folder/some-video.mp4`
+        `${process.env.INIT_CWD}/electron/readers/example-folder/some-video.mp4`
       )
       expect(generatedDiory.data).toEqual({
         '@context': 'https://schema.org',
         '@type': 'VideoObject',
-        contentUrl: `file://${process.env.INIT_CWD}/electron/readers/example-folder/some-video.mp4`,
+        contentUrl: `${process.env.INIT_CWD}/electron/readers/example-folder/some-video.mp4`,
       })
     })
 
     it('generates diory from audio file', () => {
-      filePath = './electron/readers/example-folder/some-music.mp3'
+      filePath = `${process.env.INIT_CWD}/electron/readers/example-folder/some-music.mp3`
 
       act()
 
@@ -76,7 +76,7 @@ describe('diograph-generator', () => {
     })
 
     it('generates diory from document file', () => {
-      filePath = './electron/readers/example-folder/some-document.pdf'
+      filePath = `${process.env.INIT_CWD}/electron/readers/example-folder/some-document.pdf`
 
       act()
 
