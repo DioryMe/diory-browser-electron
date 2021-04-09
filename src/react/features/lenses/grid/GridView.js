@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 
 import BackgroundDiory from '../../../components/diories/BackgroundDiory'
+import DataAwareDiory from '../../../components/diories/DataAwareDiory'
 import Diory from '../../../components/diories/Diory'
 import Draggable, { types } from '../../../components/Draggable'
 import Droppable from '../../../components/Droppable'
@@ -13,7 +14,8 @@ const GridView = ({ diory, diorys, onDrop, onClick }) => (
     isOverStyle={{ backgroundColor: '#D4EEE2' }}
     onDrop={({ id }) => onDrop({ droppedId: diory.id, draggedId: id })}
   >
-    <BackgroundDiory diory={diory} gradient onClick={onClick}>
+    <BackgroundDiory diory={{ image: diory.image }} gradient onClick={onClick}>
+      <DataAwareDiory diory={diory} flex="1 0 100%" height={480} padding={24} />
       {diorys.map((linkDiory) => (
         <Box key={linkDiory.id} flex="1 0 360px" height={240} padding={24} alignSelf="center">
           <Droppable
