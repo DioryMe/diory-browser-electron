@@ -6,11 +6,11 @@ const defaultStyle = {
   image: {
     backgroundSize: 'contain',
     backgroundColor: 'black',
-  }
+  },
 }
 
 // TODO: To diory utils
-function addStyle({  style = {}, ...props }, addedStyle) {
+function addStyle({ style = {}, ...props }, addedStyle) {
   return {
     ...props,
     style: {
@@ -20,18 +20,13 @@ function addStyle({  style = {}, ...props }, addedStyle) {
         ...(style && style.image),
         ...addedStyle.image,
       },
-    }
+    },
   }
 }
 
 const FullscreenLens = () => {
   const { diory } = useFocus()
-  return (
-    <DataAwareDiory
-      diory={addStyle(diory, defaultStyle)}
-      height='100%'
-    />
-  )
+  return <DataAwareDiory diory={addStyle(diory, defaultStyle)} height="100%" />
 }
 
 export default FullscreenLens

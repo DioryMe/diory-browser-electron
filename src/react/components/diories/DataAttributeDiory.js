@@ -10,9 +10,7 @@ const centerStyle = {
 }
 
 function getAttributes({ data = [] }) {
-  return data.map((attrs) => Object
-    .entries(attrs).map(([key, value]) => `${key}:${value}`))
-    .flat()
+  return data.map((attrs) => Object.entries(attrs).map(([key, value]) => `${key}:${value}`)).flat()
 }
 
 const DataAttributeDiory = (props) => {
@@ -20,7 +18,9 @@ const DataAttributeDiory = (props) => {
   return (
     <Diory data-testid="ExerciseDiory" {...props}>
       <div style={centerStyle}>
-        {attributes.map((attr) => <div>{attr}</div>)}
+        {attributes.map((attr) => (
+          <div>{attr}</div>
+        ))}
       </div>
     </Diory>
   )

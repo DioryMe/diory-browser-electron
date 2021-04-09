@@ -7,7 +7,7 @@ function getSchemaType({ diory: { data = [] } }) {
 
 const DataAwareDiory = (props) => {
   const schemaType = getSchemaType(props)
-  switch(schemaType) {
+  switch (schemaType) {
     case 'https://schema.org/ExerciseSummary':
     case 'https://schema.org/ExerciseAction':
       return <DataAttributeDiory {...props} />
