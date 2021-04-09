@@ -14,8 +14,8 @@
         "generic": {
           "id": "generic-content"
         },
-        "sport": {
-          "id": "sport-diory"
+        "strava-activities": {
+          "id": "strava-activities"
         }
       },
       "modified": "2020-01-03T14:03:04.751Z"
@@ -359,16 +359,47 @@
         }
       }
     },
-    "sport-diory": {
-      "id": "sport-diory",
-      "text": "Sport diory",
+    "strava-activities": {
+      "id": "strava-activities",
+      "text": "Strava activities",
+      "image": "https://play-lh.googleusercontent.com/j-ZV144PlVuTVsLuBzIKyEw9CbFnmWw9ku2NJ1ef0gZJh-iiIN1nrNPmAtvgAteyDqU",
+      "links": {
+        "sport-diory-1": {
+          "id": "sport-diory-1"
+        },
+        "sport-diory-2": {
+          "id": "sport-diory-2"
+        }
+      }
+    },
+    "sport-diory-1": {
+      "id": "sport-diory-1",
+      "text": "Sport diory 1",
+      "date": "2021-01-12",
       "data": [
         {
           "@context": "https://schema.org",
           "@type": "ExerciseAction",
           "exerciseType": "Running",
           "distance": "28,72 km",
-          "duration": "PT1H13M49S",
+          "duration": "01:10:55",
+          "heartrate": "134",
+          "startTime": "2021-03-16T17:42:33Z",
+          "endTime": "2021-03-16T18:42:33Z"
+        }
+      ]
+    },
+    "sport-diory-2": {
+      "id": "sport-diory-2",
+      "text": "Sport diory 2",
+      "date": "2021-02-13",
+      "data": [
+        {
+          "@context": "https://schema.org",
+          "@type": "ExerciseAction",
+          "exerciseType": "Running",
+          "distance": "28,72 km",
+          "duration": "00:10:55",
           "heartrate": "134",
           "startTime": "2021-03-16T17:42:33Z",
           "endTime": "2021-03-16T18:42:33Z"

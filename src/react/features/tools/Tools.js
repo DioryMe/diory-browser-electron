@@ -4,6 +4,7 @@ import CreateTool from './create/CreateTool'
 import UpdateTool from './update/UpdateTool'
 import DeleteTool from './delete/DeleteTool'
 import HandTool from './hand/HandTool'
+import SportTool from './sport/SportTool'
 
 const Tools = () => (
   <>
@@ -11,6 +12,7 @@ const Tools = () => (
     <UpdateTool />
     <DeleteTool />
     <HandTool />
+    <SportTool />
   </>
 )
 
