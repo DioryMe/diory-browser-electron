@@ -6,7 +6,7 @@ const fileTypes = {
   image: ['.jpg', '.jpeg', '.png', '.gif', '.tiff', '.bmp'], // '.eps'
   video: ['.mpg', '.mpeg', '.mov', '.mp4', '.m4v'], // '.avi', '.flv', '.mkv'
   audio: ['.mp3', '.opus', '.m4a', '.wav'], // '.it', '.s3m', '.mid'
-  text: ['.log', '.txt', '.md', '.html', '.pdf'], // '.rtf', '.rtfd'
+  text: ['.log', '.txt', '.md', '.html', '.pdf', '.odt', '.docx'], // '.rtf', '.rtfd'
 }
 
 exports.resolveFileType = function resolveFileType(filePath = '') {
