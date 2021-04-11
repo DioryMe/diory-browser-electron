@@ -5,16 +5,16 @@ describe('diograph-generator', () => {
   let filePath
   let generatedDiory
   beforeEach(() => {
-    act = () => {
-      generatedDiory = generateDioryFromFile(filePath)
+    act = async () => {
+      generatedDiory = await generateDioryFromFile(filePath)
     }
   })
 
   describe('generateDioryFromFile', () => {
-    it('generates diory from image file', () => {
-      filePath = './electron/readers/example-folder/some-image.jpg'
+    it('generates diory from image file', async () => {
+      filePath = `${process.env.INIT_CWD}/electron/readers/example-folder/some-image.jpg`
 
-      act()
+      await act()
 
       expect(Object.keys(generatedDiory)).toEqual([
         'id',
@@ -33,10 +33,10 @@ describe('diograph-generator', () => {
       expect(generatedDiory.longitude).toEqual(11.881478333333334)
     })
 
-    it('generates diory from video file', () => {
-      filePath = './electron/readers/example-folder/some-video.mp4'
+    it('generates diory from video file', async () => {
+      filePath = `${process.env.INIT_CWD}/electron/readers/example-folder/some-video.mp4`
 
-      act()
+      await act()
 
       expect(Object.keys(generatedDiory)).toEqual(['id', 'text', 'video', 'created', 'modified'])
       expect(generatedDiory.text).toEqual('some-video.mp4')
@@ -45,19 +45,19 @@ describe('diograph-generator', () => {
       )
     })
 
-    it('generates diory from audio file', () => {
-      filePath = './electron/readers/example-folder/some-music.mp3'
+    it('generates diory from audio file', async () => {
+      filePath = `${process.env.INIT_CWD}/electron/readers/example-folder/some-music.mp3`
 
-      act()
+      await act()
 
       expect(Object.keys(generatedDiory)).toEqual(['id', 'text', 'created', 'modified'])
       expect(generatedDiory.text).toEqual('some-music')
     })
 
-    it('generates diory from document file', () => {
-      filePath = './electron/readers/example-folder/some-document.pdf'
+    it('generates diory from document file', async () => {
+      filePath = `${process.env.INIT_CWD}/electron/readers/example-folder/some-document.pdf`
 
-      act()
+      await act()
 
       expect(Object.keys(generatedDiory)).toEqual(['id', 'text', 'created', 'modified'])
       expect(generatedDiory.text).toEqual('some-document')

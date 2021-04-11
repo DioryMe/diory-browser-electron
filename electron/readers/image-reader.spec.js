@@ -4,6 +4,7 @@ jest.mock('fs')
 
 const mockLoad = jest.fn()
 jest.mock('exifreader', () => ({ load: mockLoad }))
+jest.mock('file-type', () => ({ fromFile: () => 'mocked file-type' }))
 
 const { readImage } = require('./image-reader')
 
@@ -14,12 +15,12 @@ describe('image-reader', () => {
     let tags
 
     it('renders with undefined values', async () => {
-      readImage()
+      await readImage()
     })
 
     beforeEach(() => {
       tags = {}
-      act = () => {
+      act = async () => {
         readFileSync.mockReturnValue({})
         mockLoad.mockReturnValue(tags)
         return readImage(imagePath)
@@ -27,7 +28,7 @@ describe('image-reader', () => {
     })
 
     it('renders with empty responses', async () => {
-      act()
+      await act()
     })
 
     describe('given image path', () => {
@@ -43,28 +44,28 @@ describe('image-reader', () => {
 
       it('set DateTime  or DateTimeOriginal to date', async () => {
         tags.DateTimeOriginal = { value: ['1234:12:34 12:34:56'] }
-        expect(act().date).toEqual('1234-12-34T12:34:56.000Z')
+        expect((await act()).date).toEqual('1234-12-34T12:34:56.000Z')
 
         tags.DateTime = { value: ['4321:12:34 12:34:56'] }
-        expect(act().date).toEqual('4321-12-34T12:34:56.000Z')
+        expect((await act()).date).toEqual('4321-12-34T12:34:56.000Z')
       })
 
       it('set GPSLatitude description to latitude', async () => {
         tags.GPSLatitude = { description: 'some-GPSLatitude-description' }
-        expect(act().latitude).toEqual('some-GPSLatitude-description')
+        expect((await act()).latitude).toEqual('some-GPSLatitude-description')
       })
 
       it('set GPSLongitude description to longitude', async () => {
         tags.GPSLongitude = { description: 'some-GPSLongitude-description' }
-        expect(act().longitude).toEqual('some-GPSLongitude-description')
+        expect((await act()).longitude).toEqual('some-GPSLongitude-description')
       })
 
       it('set DateCreated or CreateDate to created', async () => {
         tags.CreateDate = { value: ['1234-12-34T12:34:56.000'] }
-        expect(act().created).toEqual('1234-12-34T12:34:56.000Z')
+        expect((await act()).created).toEqual('1234-12-34T12:34:56.000Z')
 
         tags.DateCreated = { value: ['4321-12-34T12:34:56.000'] }
-        expect(act().created).toEqual('4321-12-34T12:34:56.000Z')
+        expect((await act()).created).toEqual('4321-12-34T12:34:56.000Z')
       })
     })
   })
