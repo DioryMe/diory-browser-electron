@@ -1,5 +1,6 @@
 const { readFileSync } = require('fs')
 const { load } = require('exifreader')
+const FileType = require('file-type')
 
 function readExifTags(imagePath = '') {
   const file = readFileSync(imagePath)
@@ -42,13 +43,14 @@ function getLongitude({ GPSLongitude = {} }) {
   return longitude && { longitude }
 }
 
-function generateSchema(tags, imagePath) {
+async function generateSchema(tags, imagePath) {
   return {
     '@context': 'https://schema.org',
     '@type': 'ImageObject',
     contentUrl: imagePath,
     height: tags && tags['Image Height'] && tags['Image Height'].value,
     width: tags && tags['Image Width'] && tags['Image Width'].value,
+    encodingFormat: (await FileType.fromFile(imagePath)).mime,
   }
 }
 
@@ -65,7 +67,7 @@ exports.readImage = async function readImage(imagePath) {
       ...getLongitude(tags),
       ...getCreated(tags),
       data: {
-        ...generateSchema(tags, imagePath),
+        ...(await generateSchema(tags, imagePath)),
       },
     }
   } catch (error) {
