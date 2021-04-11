@@ -19,14 +19,14 @@ describe('diory-generator', () => {
     let image
 
     it('renders with undefined values', async () => {
-      generateDioryFromFile()
+      await generateDioryFromFile()
     })
 
     beforeEach(() => {
       type = undefined
       file = {}
       image = {}
-      act = () => {
+      act = async () => {
         resolveFileType.mockReturnValue(type)
         readFile.mockReturnValue(file)
         readImage.mockReturnValue(image)
@@ -49,7 +49,7 @@ describe('diory-generator', () => {
     it('sets uuid to diory id', async () => {
       uuid.mockReturnValue('some-uuid')
 
-      const diory = act()
+      const diory = await act()
 
       expect(diory.id).toEqual('some-uuid')
     })
@@ -71,7 +71,7 @@ describe('diory-generator', () => {
 
         fileData.forEach((prop) => {
           it(`sets file ${prop} to diory ${prop}`, async () => {
-            const diory = act()
+            const diory = await act()
 
             expect(diory[prop]).toEqual(`some-file-${prop}`)
           })
@@ -89,7 +89,7 @@ describe('diory-generator', () => {
           it('sets uid to diory id', async () => {
             uuid.mockReturnValue('some-uuid')
 
-            const diory = act()
+            const diory = await act()
 
             expect(diory.id).toEqual('some-uuid')
           })
@@ -100,7 +100,7 @@ describe('diory-generator', () => {
             it(`sets image ${prop} to diory ${prop}`, async () => {
               image[prop] = `some-image-${prop}`
 
-              const diory = act()
+              const diory = await act()
 
               expect(diory[prop]).toEqual(`some-image-${prop}`)
             })
@@ -116,7 +116,7 @@ describe('diory-generator', () => {
         it(`sets file ${prop} to diory ${prop}`, async () => {
           file[prop] = `some-file-${prop}`
 
-          const diory = act()
+          const diory = await act()
 
           expect(diory[prop]).toEqual(`some-file-${prop}`)
         })
@@ -156,7 +156,7 @@ describe('diory-generator', () => {
     it('sets uid to diory id', async () => {
       uuid.mockReturnValue('some-uuid')
 
-      const diory = act()
+      const diory = await act()
 
       expect(diory.id).toEqual('some-uuid')
     })
@@ -168,7 +168,7 @@ describe('diory-generator', () => {
         'second-link-key': { id: 'second-id', image: 'second-image' },
       }
 
-      const diory = act()
+      const diory = await act()
 
       expect(diory.image).toEqual('first-image')
     })
@@ -179,7 +179,7 @@ describe('diory-generator', () => {
       it(`sets folder ${prop} to diory ${prop}`, async () => {
         folder[prop] = `some-folder-${prop}`
 
-        const diory = act()
+        const diory = await act()
 
         expect(diory[prop]).toEqual(`some-folder-${prop}`)
       })
