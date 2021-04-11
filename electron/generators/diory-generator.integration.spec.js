@@ -79,7 +79,7 @@ describe('diograph-generator', () => {
         '@context': 'https://schema.org',
         '@type': 'AudioObject',
         contentUrl: `${process.env.INIT_CWD}/electron/readers/example-folder/some-music.mp3`,
-        // encodingFormat: 'audio/mpeg',
+        encodingFormat: 'audio/mpeg',
       })
     })
 

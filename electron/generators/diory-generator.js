@@ -1,4 +1,5 @@
 const { v4: uuid } = require('uuid')
+const FileType = require('file-type')
 const { resolveFileType, readFile } = require('../readers/file-reader')
 const { readFolderMetadata } = require('../readers/folder-reader')
 const { readImage } = require('../readers/image-reader')
@@ -26,6 +27,7 @@ async function readFileData(type, filePath) {
           '@context': 'https://schema.org',
           '@type': 'AudioObject',
           contentUrl: filePath,
+          encodingFormat: (await FileType.fromFile(filePath)).mime,
         },
       }
     case 'text':
@@ -35,6 +37,7 @@ async function readFileData(type, filePath) {
           '@context': 'https://schema.org',
           '@type': 'MediaObject',
           contentUrl: filePath,
+          encodingFormat: (await FileType.fromFile(filePath)).mime,
         },
       }
     default:
