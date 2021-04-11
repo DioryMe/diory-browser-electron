@@ -79,20 +79,44 @@ describe('diograph-generator', () => {
         '@context': 'https://schema.org',
         '@type': 'AudioObject',
         contentUrl: `${process.env.INIT_CWD}/electron/readers/example-folder/some-music.mp3`,
+        // encodingFormat: 'audio/mpeg',
       })
     })
 
-    it('generates diory from document file', async () => {
-      filePath = `${process.env.INIT_CWD}/electron/readers/example-folder/some-document.pdf`
+    const documentExtensionsAndMimeTypes = [
+      ['docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+      ['odt', 'application/vnd.oasis.opendocument.text'],
+      ['pdf', 'application/pdf'],
+    ]
+    documentExtensionsAndMimeTypes.forEach(([extension, mimeType]) => {
+      it(`generates diory from some-document.${extension} file`, async () => {
+        filePath = `${process.env.INIT_CWD}/electron/readers/example-folder/some-document.${extension}`
+
+        await act()
+
+        expect(Object.keys(generatedDiory)).toEqual(['id', 'text', 'created', 'modified', 'data'])
+        expect(generatedDiory.text).toEqual('some-document')
+        expect(generatedDiory.data).toEqual({
+          '@context': 'https://schema.org',
+          '@type': 'MediaObject',
+          contentUrl: `${process.env.INIT_CWD}/electron/readers/example-folder/some-document.${extension}`,
+          encodingFormat: mimeType,
+        })
+      })
+    })
+
+    it('generates diory from text file', async () => {
+      filePath = `${process.env.INIT_CWD}/electron/readers/example-folder/some-text.txt`
 
       await act()
 
       expect(Object.keys(generatedDiory)).toEqual(['id', 'text', 'created', 'modified', 'data'])
-      expect(generatedDiory.text).toEqual('some-document')
+      expect(generatedDiory.text).toEqual('some-text')
       expect(generatedDiory.data).toEqual({
         '@context': 'https://schema.org',
         '@type': 'MediaObject',
-        contentUrl: `${process.env.INIT_CWD}/electron/readers/example-folder/some-document.pdf`,
+        contentUrl: `${process.env.INIT_CWD}/electron/readers/example-folder/some-text.txt`,
+        encodingFormat: 'text/plain',
       })
     })
   })
