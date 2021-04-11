@@ -37,6 +37,7 @@ describe('diograph-generator', () => {
         contentUrl: imageContentUrl,
         width: 640,
         height: 480,
+        encodingFormat: 'image/jpeg',
       })
     })
 
