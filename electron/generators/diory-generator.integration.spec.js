@@ -64,6 +64,7 @@ describe('diograph-generator', () => {
         '@context': 'https://schema.org',
         '@type': 'VideoObject',
         contentUrl: `${process.env.INIT_CWD}/electron/readers/example-folder/some-video.mp4`,
+        encodingFormat: 'video/x-m4v',
       })
     })
 

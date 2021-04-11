@@ -1,14 +1,16 @@
 const { basename } = require('path')
+const FileType = require('file-type')
 
-function generateSchema(videoPath) {
+async function generateSchema(videoPath) {
   return {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
     contentUrl: videoPath,
+    encodingFormat: (await FileType.fromFile(videoPath)).mime,
   }
 }
 
-exports.readVideo = function readVideo(videoPath) {
+exports.readVideo = async function readVideo(videoPath) {
   if (!videoPath) {
     return
   }
@@ -19,7 +21,7 @@ exports.readVideo = function readVideo(videoPath) {
       // TODO: Remove video attribute as now we have diory.data.contentUrl
       video: videoPath,
       data: {
-        ...generateSchema(videoPath),
+        ...(await generateSchema(videoPath)),
       },
     }
   } catch (error) {

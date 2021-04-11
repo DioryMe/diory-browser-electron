@@ -17,7 +17,7 @@ async function readFileData(type, filePath) {
       return {
         created: fileData.created,
         modified: fileData.modified,
-        ...readVideo(filePath),
+        ...(await readVideo(filePath)),
       }
     case 'audio':
       return {
