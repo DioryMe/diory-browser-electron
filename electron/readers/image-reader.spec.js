@@ -4,7 +4,6 @@ jest.mock('fs')
 
 const mockLoad = jest.fn()
 jest.mock('exifreader', () => ({ load: mockLoad }))
-jest.mock('file-type', () => ({ fromFile: () => 'mocked file-type' }))
 
 const { readImage } = require('./image-reader')
 
