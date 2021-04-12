@@ -55,7 +55,7 @@ describe('diograph-generator', () => {
         'modified',
         'data',
       ])
-      expect(generatedDiory.text).toEqual('some-video.mp4')
+      expect(generatedDiory.text).toEqual('some-video')
       // TODO: Remove video attribute as now we have diory.data.contentUrl
       expect(generatedDiory.video).toEqual(
         `${process.env.INIT_CWD}/electron/readers/example-folder/some-video.mp4`
@@ -98,7 +98,7 @@ describe('diograph-generator', () => {
         expect(generatedDiory.text).toEqual('some-document')
         expect(generatedDiory.data).toEqual({
           '@context': 'https://schema.org',
-          '@type': 'MediaObject',
+          '@type': 'DigitalDocument',
           contentUrl: `${process.env.INIT_CWD}/electron/readers/example-folder/some-document.${extension}`,
           encodingFormat: mimeType,
         })
@@ -114,7 +114,7 @@ describe('diograph-generator', () => {
       expect(generatedDiory.text).toEqual('some-text')
       expect(generatedDiory.data).toEqual({
         '@context': 'https://schema.org',
-        '@type': 'MediaObject',
+        '@type': 'DigitalDocument',
         contentUrl: `${process.env.INIT_CWD}/electron/readers/example-folder/some-text.txt`,
         encodingFormat: 'text/plain',
       })
