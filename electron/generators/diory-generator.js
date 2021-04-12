@@ -30,35 +30,43 @@ async function baseData(filePath) {
 }
 
 async function typeSpecificData(filePath) {
+  const defaultSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'DigitalDocument',
+    contentUrl: filePath,
+  }
+
   const fileType = await FileType.fromFile(filePath)
   if (!fileType || !fileType.mime) {
-    return {}
+    return { data: defaultSchema }
   }
+  defaultSchema.encodingFormat = fileType.mime
 
   const type = fileType.mime.split('/')[0]
-  const defaultSchema = {
-    data: {
-      '@context': 'https://schema.org',
-      '@type': 'DigitalDocument',
-      contentUrl: filePath,
-      encodingFormat: fileType.mime,
-    },
-  }
-
   switch (type) {
     case 'image':
       return readImage(filePath)
     case 'video':
-      defaultSchema.data['@type'] = 'VideoObject'
-      defaultSchema.video = filePath
-      return defaultSchema
+      defaultSchema['@type'] = 'VideoObject'
+      break
     case 'audio':
-      defaultSchema.data['@type'] = 'AudioObject'
-      return defaultSchema
+      defaultSchema['@type'] = 'AudioObject'
+      break
     // case 'application':
     // case 'text':
     default:
-      return defaultSchema
+  }
+
+  // FIXME: Remove video attribute and use contentUrl instead
+  if (type === 'video') {
+    return {
+      video: filePath,
+      data: defaultSchema,
+    }
+  }
+
+  return {
+    data: defaultSchema,
   }
 }
 
