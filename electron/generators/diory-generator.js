@@ -1,49 +1,9 @@
 const { v4: uuid } = require('uuid')
 const FileType = require('file-type')
-const { resolveFileType, readFile } = require('../readers/file-reader')
+const { statSync } = require('fs')
+const { parse } = require('path')
 const { readFolderMetadata } = require('../readers/folder-reader')
 const { readImage } = require('../readers/image-reader')
-const { readVideo } = require('../readers/video-reader')
-
-async function readFileData(type, filePath) {
-  const fileData = readFile(filePath)
-  switch (type) {
-    case 'image':
-      return {
-        created: fileData.created,
-        modified: fileData.modified,
-        ...(await readImage(filePath)),
-      }
-    case 'video':
-      return {
-        created: fileData.created,
-        modified: fileData.modified,
-        ...(await readVideo(filePath)),
-      }
-    case 'audio':
-      return {
-        ...fileData,
-        data: {
-          '@context': 'https://schema.org',
-          '@type': 'AudioObject',
-          contentUrl: filePath,
-          encodingFormat: (await FileType.fromFile(filePath)).mime,
-        },
-      }
-    case 'text':
-      return {
-        ...fileData,
-        data: {
-          '@context': 'https://schema.org',
-          '@type': 'MediaObject',
-          contentUrl: filePath,
-          encodingFormat: (await FileType.fromFile(filePath)).mime,
-        },
-      }
-    default:
-      return fileData || {}
-  }
-}
 
 function generateDiory({ text, date, image, video, latitude, longitude, created, modified, data }) {
   return {
@@ -60,22 +20,53 @@ function generateDiory({ text, date, image, video, latitude, longitude, created,
   }
 }
 
-/**
- * Generates diograph from file
- * @param {string} filePath - Path to file which diory should be generated
- * @return {object} - File diograph generated from file
- *    {
- *      id: 'some-id',
- *      text: 'text',
- *      image: 'image'
- *      ...
- *      modified: 'modified'
- *    }
- */
+async function baseData(filePath) {
+  const { birthtime, mtime } = statSync(filePath) || {}
+  return {
+    text: parse(filePath).name, // without extension
+    created: birthtime && birthtime.toISOString(),
+    modified: mtime && mtime.toISOString(),
+  }
+}
+
+async function typeSpecificData(filePath) {
+  const fileType = await FileType.fromFile(filePath)
+  if (!fileType || !fileType.mime) {
+    return {}
+  }
+
+  const type = fileType.mime.split('/')[0]
+  const defaultSchema = {
+    data: {
+      '@context': 'https://schema.org',
+      '@type': 'DigitalDocument',
+      contentUrl: filePath,
+      encodingFormat: fileType.mime,
+    },
+  }
+
+  switch (type) {
+    case 'image':
+      return readImage(filePath)
+    case 'video':
+      defaultSchema.data['@type'] = 'VideoObject'
+      defaultSchema.video = filePath
+      return defaultSchema
+    case 'audio':
+      defaultSchema.data['@type'] = 'AudioObject'
+      return defaultSchema
+    // case 'application':
+    // case 'text':
+    default:
+      return defaultSchema
+  }
+}
+
 exports.generateDioryFromFile = async function generateDioryFromFile(filePath) {
-  const type = resolveFileType(filePath)
-  const fileData = (await readFileData(type, filePath)) || {}
-  return generateDiory(fileData)
+  return generateDiory({
+    ...(await baseData(filePath)),
+    ...(await typeSpecificData(filePath)),
+  })
 }
 
 function getFirstImage(linkedDiorys) {
