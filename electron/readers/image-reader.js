@@ -61,6 +61,7 @@ exports.readImage = async function readImage(imagePath) {
   try {
     const tags = readExifTags(imagePath)
     return {
+      text: undefined,
       image: imagePath,
       ...getDate(tags),
       ...getLatitude(tags),
