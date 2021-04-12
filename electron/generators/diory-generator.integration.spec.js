@@ -116,7 +116,6 @@ describe('diograph-generator', () => {
         '@context': 'https://schema.org',
         '@type': 'DigitalDocument',
         contentUrl: `${process.env.INIT_CWD}/electron/readers/example-folder/some-text.txt`,
-        encodingFormat: 'text/plain',
       })
     })
   })
