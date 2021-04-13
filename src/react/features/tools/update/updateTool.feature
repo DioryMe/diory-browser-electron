@@ -48,15 +48,15 @@ Feature: Update tool
 
   # Image
   Scenario: Update image
-    When I add '/test-image.png' to image field
+    When I add 'http://localhost:3300/test-image.png' to image field
     And I click Done button
     And I select tools button
     And I select update button
     And I take 'Diory 11' in focus
-    Then I see '/test-image.png' in image field
+    Then I see 'http://localhost:3300/test-image.png' in image field
 
   Scenario: Update image changes background image
-    When I add '/test-image.png' to image field
+    When I add 'http://localhost:3300/test-image.png' to image field
     And I click Done button
     Then 'diory11' has 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("http://localhost:3300/test-image.png")' as 'background-image'
 
