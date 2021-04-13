@@ -1,7 +1,7 @@
 import React from 'react'
 import Box from 'ui-box'
 import PropTypes from 'prop-types'
-import fileUrl from 'file-url'
+import { getImageUrl } from '../../utils'
 
 const defaultStyle = {
   position: 'absolute',
@@ -16,10 +16,8 @@ const defaultStyle = {
 
 const getBackgroundImage = (image, gradient, gradientRgba = '255, 255, 255, 0.5') =>
   gradient
-    ? `linear-gradient(rgba(${gradientRgba}),rgba(${gradientRgba})), url("${
-        image && image.match(/^http/) ? image : fileUrl(image.toString())
-      }")`
-    : `url("${image && image.match(/^http/) ? image : fileUrl(image.toString())}")`
+    ? `linear-gradient(rgba(${gradientRgba}),rgba(${gradientRgba})), url("${getImageUrl(image)}")`
+    : `url("${getImageUrl(image)}")`
 
 const Image = ({ image, gradient, gradientRgba, ...props }) => (
   <Box
