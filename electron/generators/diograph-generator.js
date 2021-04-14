@@ -30,11 +30,12 @@ function reduceSubfolderDiographsToDiograph(subfolderDiographs) {
 
 async function generateDioryLinksFromFiles(filePaths) {
   return Promise.all(
-    filePaths.map((filePath) => {
-      const diory = generateDioryFromFile(filePath)
-      const linkKey = basename(filePath)
-      return generateDioryLink({ linkKey, diory })
-    })
+    filePaths.map((filePath) =>
+      generateDioryFromFile(filePath).then((diory) => {
+        const linkKey = basename(filePath)
+        return generateDioryLink({ linkKey, diory })
+      })
+    )
   ).then((fileDiographs) =>
     fileDiographs.reduce(
       (obj, dioryLink) => ({
