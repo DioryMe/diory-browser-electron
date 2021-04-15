@@ -53,7 +53,7 @@ describe('file-reader', () => {
       expect(file.modified).toEqual('some-fileStats-mtime')
     })
 
-    it('returns file name with extension', async () => {
+    it('returns file name without extension', async () => {
       filePath = 'some-filePath/some-fileName.some-extension'
 
       const file = act()
