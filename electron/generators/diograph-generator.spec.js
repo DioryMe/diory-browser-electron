@@ -125,7 +125,7 @@ describe('diograph-generator', () => {
             describe('given diorys have ids', () => {
               beforeEach(() => {
                 filePaths.forEach((fileDiory) => {
-                  generateDioryFromFile.mockReturnValueOnce({ id: `${fileDiory}-id` })
+                  generateDioryFromFile.mockResolvedValueOnce({ id: `${fileDiory}-id` })
                 })
                 subfolderPaths.forEach((subfolderDiory) => {
                   function mockedGenerateDioryFromFolder(folderPath, dioryLinks = {}) {
