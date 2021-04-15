@@ -105,7 +105,7 @@ describe('diograph-generator', () => {
       })
     })
 
-    it('generates diory from text file', async () => {
+    it('generates diory from text file (which has no MIME type)', async () => {
       filePath = `${process.env.INIT_CWD}/electron/readers/example-folder/some-text.txt`
 
       await act()
