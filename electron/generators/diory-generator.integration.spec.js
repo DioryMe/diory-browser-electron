@@ -55,7 +55,7 @@ describe('diograph-generator', () => {
         'modified',
         'data',
       ])
-      expect(generatedDiory.text).toEqual('some-video')
+      expect(generatedDiory.text).toEqual('some-video.mp4')
       // TODO: Remove video attribute as now we have diory.data.contentUrl
       expect(generatedDiory.video).toEqual(
         `${process.env.INIT_CWD}/electron/readers/example-folder/some-video.mp4`
@@ -74,7 +74,7 @@ describe('diograph-generator', () => {
       await act()
 
       expect(Object.keys(generatedDiory)).toEqual(['id', 'text', 'created', 'modified', 'data'])
-      expect(generatedDiory.text).toEqual('some-music')
+      expect(generatedDiory.text).toEqual('some-music.mp3')
       expect(generatedDiory.data).toEqual({
         '@context': 'https://schema.org',
         '@type': 'AudioObject',
@@ -95,7 +95,7 @@ describe('diograph-generator', () => {
         await act()
 
         expect(Object.keys(generatedDiory)).toEqual(['id', 'text', 'created', 'modified', 'data'])
-        expect(generatedDiory.text).toEqual('some-document')
+        expect(generatedDiory.text).toEqual(`some-document.${extension}`)
         expect(generatedDiory.data).toEqual({
           '@context': 'https://schema.org',
           '@type': 'DigitalDocument',
@@ -111,7 +111,7 @@ describe('diograph-generator', () => {
       await act()
 
       expect(Object.keys(generatedDiory)).toEqual(['id', 'text', 'created', 'modified', 'data'])
-      expect(generatedDiory.text).toEqual('some-text')
+      expect(generatedDiory.text).toEqual('some-text.txt')
       expect(generatedDiory.data).toEqual({
         '@context': 'https://schema.org',
         '@type': 'DigitalDocument',
