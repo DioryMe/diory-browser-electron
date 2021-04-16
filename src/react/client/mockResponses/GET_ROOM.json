@@ -3,15 +3,16 @@
   "diograph": {
     "development-content-room": {
       "id": "development-content-room",
+      "text": "development-content-room",
       "image": "development-content-room/Kayaking%20at%20Potomac/Jane/PIXNIO-12656-2816x2112.jpeg",
       "links": {
-        "kayaking-at-potomac": {
+        "Kayaking at Potomac": {
           "id": "f1470597-1a3c-4a76-8546-2c29591a6846"
         },
         "map-content": {
           "id": "map-content"
         },
-        "generic": {
+        "Generic content": {
           "id": "generic-content"
         }
       },
@@ -24,11 +25,20 @@
         "diory1": {
           "id": "diory1"
         },
-        "4_5807613915332347351.mp4": {
-          "id": "cbe32a6d-5bc3-44d0-b680-3f4a63765f73"
-        },
-        "4_5996618057181562302.MOV": {
+        "some-video.mov": {
           "id": "5456c2c3-4a69-4d80-bd2f-caa9945cff71"
+        },
+        "some-audio.mp3": {
+          "id": "32df7219-a33c-4bc9-bdc0-f24470292871"
+        },
+        "some-website": {
+          "id": "some-website"
+        },
+        "some-document.odt": {
+          "id": "some-document-odt"
+        },
+        "some-document.pdf": {
+          "id": "some-document-pdf"
         }
       }
     },
@@ -66,19 +76,60 @@
       "id": "diory14",
       "text": "Diory 14"
     },
-    "cbe32a6d-5bc3-44d0-b680-3f4a63765f73": {
-      "id": "cbe32a6d-5bc3-44d0-b680-3f4a63765f73",
-      "text": "4_5807613915332347351.mp4",
-      "video": "development-content-room/4_5807613915332347351.mp4",
-      "created": "2020-07-05T09:39:20.000Z",
-      "modified": "2020-07-05T09:39:20.000Z"
-    },
     "5456c2c3-4a69-4d80-bd2f-caa9945cff71": {
       "id": "5456c2c3-4a69-4d80-bd2f-caa9945cff71",
-      "text": "4_5996618057181562302.MOV",
-      "video": "development-content-room/4_5996618057181562302.MOV",
+      "text": "some-video.mov",
       "created": "2020-07-05T09:39:40.000Z",
-      "modified": "2020-07-05T09:39:40.000Z"
+      "modified": "2020-07-05T09:39:40.000Z",
+      "data": {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "contentUrl": "development-content-room/Generic content/some-video.mov",
+        "encodingFormat": "video/mp4"
+      }
+    },
+    "32df7219-a33c-4bc9-bdc0-f24470292871": {
+      "id": "32df7219-a33c-4bc9-bdc0-f24470292871",
+      "text": "A beautiful sonate",
+      "created": "2021-04-15T12:14:40.319Z",
+      "modified": "2021-04-15T12:14:40.383Z",
+      "data": {
+        "@context": "https://schema.org",
+        "@type": "AudioObject",
+        "contentUrl": "development-content-room/Generic content/some-audio.m4a",
+        "encodingFormat": "audio/x-m4a"
+      }
+    },
+    "some-website": {
+      "id": "some-website",
+      "text": "A good website",
+      "data": {
+        "url": "https://hs.fi"
+      }
+    },
+    "some-document-odt": {
+      "id": "some-document-odt",
+      "text": "some-document.odt",
+      "created": "2021-04-15T10:32:20.565Z",
+      "modified": "2021-04-15T10:32:20.565Z",
+      "data": {
+        "@context": "https://schema.org",
+        "@type": "DigitalDocument",
+        "contentUrl": "development-content-room/Generic content/some-document.odt",
+        "encodingFormat": "application/vnd.oasis.opendocument.text"
+      }
+    },
+    "some-document-pdf": {
+      "id": "some-document-pdf",
+      "text": "some-document.pdf",
+      "created": "2021-04-15T10:32:20.565Z",
+      "modified": "2021-04-15T10:32:20.565Z",
+      "data": {
+        "@context": "https://schema.org",
+        "@type": "DigitalDocument",
+        "contentUrl": "development-content-room/Generic content/some-document.pdf",
+        "encodingFormat": "application/pdf"
+      }
     },
     "map-content": {
       "id": "map-content",
@@ -353,8 +404,17 @@
         },
         "PIXNIO-54454-6138x4092.jpeg": {
           "id": "78e966b3-26e6-4dd9-afbe-8fbe62dc396c"
+        },
+        "pixnio-public-domain-test-content.txt": {
+          "id": "96b8cc90-9ce8-4f21-991f-313d133a5441"
         }
       }
+    },
+    "96b8cc90-9ce8-4f21-991f-313d133a5441": {
+      "id": "96b8cc90-9ce8-4f21-991f-313d133a5441",
+      "text": "pixnio-public-domain-test-content",
+      "created": "2020-10-20T18:11:35.153Z",
+      "modified": "2020-10-20T18:11:35.155Z"
     }
   }
 }
