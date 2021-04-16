@@ -3,8 +3,8 @@
   "diograph": {
     "development-content-room": {
       "id": "development-content-room",
-      "image": "development-content-room/Kayaking%20at%20Potomac/Jane/PIXNIO-12656-2816x2112.jpeg",
       "text": "development-content-room",
+      "image": "development-content-room/Kayaking%20at%20Potomac/Jane/PIXNIO-12656-2816x2112.jpeg",
       "links": {
         "Kayaking at Potomac": {
           "id": "f1470597-1a3c-4a76-8546-2c29591a6846"
@@ -12,14 +12,8 @@
         "map-content": {
           "id": "map-content"
         },
-        "generic": {
+        "Generic content": {
           "id": "generic-content"
-        },
-        "4_5807613915332347351.mp4": {
-          "id": "2dd1fbe5-76ef-4f97-a9c7-fd9945171bdf"
-        },
-        "4_5996618057181562302.MOV": {
-          "id": "62311339-25f5-4939-b397-ffb269703bce"
         }
       },
       "modified": "2020-01-03T14:03:04.751Z"
@@ -31,11 +25,20 @@
         "diory1": {
           "id": "diory1"
         },
-        "4_5807613915332347351.mp4": {
-          "id": "cbe32a6d-5bc3-44d0-b680-3f4a63765f73"
-        },
-        "4_5996618057181562302.MOV": {
+        "some-video.mov": {
           "id": "5456c2c3-4a69-4d80-bd2f-caa9945cff71"
+        },
+        "some-audio.mp3": {
+          "id": "32df7219-a33c-4bc9-bdc0-f24470292871"
+        },
+        "some-website": {
+          "id": "some-website"
+        },
+        "some-document.odt": {
+          "id": "some-document-odt"
+        },
+        "some-document.pdf": {
+          "id": "some-document-pdf"
         }
       }
     },
@@ -73,19 +76,60 @@
       "id": "diory14",
       "text": "Diory 14"
     },
-    "cbe32a6d-5bc3-44d0-b680-3f4a63765f73": {
-      "id": "cbe32a6d-5bc3-44d0-b680-3f4a63765f73",
-      "text": "4_5807613915332347351.mp4",
-      "video": "development-content-room/4_5807613915332347351.mp4",
-      "created": "2020-07-05T09:39:20.000Z",
-      "modified": "2020-07-05T09:39:20.000Z"
-    },
     "5456c2c3-4a69-4d80-bd2f-caa9945cff71": {
       "id": "5456c2c3-4a69-4d80-bd2f-caa9945cff71",
-      "text": "4_5996618057181562302.MOV",
-      "video": "development-content-room/4_5996618057181562302.MOV",
+      "text": "some-video.mov",
       "created": "2020-07-05T09:39:40.000Z",
-      "modified": "2020-07-05T09:39:40.000Z"
+      "modified": "2020-07-05T09:39:40.000Z",
+      "data": {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "contentUrl": "development-content-room/Generic content/some-video.mov",
+        "encodingFormat": "video/mp4"
+      }
+    },
+    "32df7219-a33c-4bc9-bdc0-f24470292871": {
+      "id": "32df7219-a33c-4bc9-bdc0-f24470292871",
+      "text": "A beautiful sonate",
+      "created": "2021-04-15T12:14:40.319Z",
+      "modified": "2021-04-15T12:14:40.383Z",
+      "data": {
+        "@context": "https://schema.org",
+        "@type": "AudioObject",
+        "contentUrl": "development-content-room/Generic content/some-audio.m4a",
+        "encodingFormat": "audio/x-m4a"
+      }
+    },
+    "some-website": {
+      "id": "some-website",
+      "text": "A good website",
+      "data": {
+        "url": "https://hs.fi"
+      }
+    },
+    "some-document-odt": {
+      "id": "some-document-odt",
+      "text": "some-document.odt",
+      "created": "2021-04-15T10:32:20.565Z",
+      "modified": "2021-04-15T10:32:20.565Z",
+      "data": {
+        "@context": "https://schema.org",
+        "@type": "DigitalDocument",
+        "contentUrl": "development-content-room/Generic content/some-document.odt",
+        "encodingFormat": "application/vnd.oasis.opendocument.text"
+      }
+    },
+    "some-document-pdf": {
+      "id": "some-document-pdf",
+      "text": "some-document.pdf",
+      "created": "2021-04-15T10:32:20.565Z",
+      "modified": "2021-04-15T10:32:20.565Z",
+      "data": {
+        "@context": "https://schema.org",
+        "@type": "DigitalDocument",
+        "contentUrl": "development-content-room/Generic content/some-document.pdf",
+        "encodingFormat": "application/pdf"
+      }
     },
     "map-content": {
       "id": "map-content",
@@ -365,20 +409,6 @@
           "id": "96b8cc90-9ce8-4f21-991f-313d133a5441"
         }
       }
-    },
-    "2dd1fbe5-76ef-4f97-a9c7-fd9945171bdf": {
-      "id": "2dd1fbe5-76ef-4f97-a9c7-fd9945171bdf",
-      "text": "4_5807613915332347351.mp4",
-      "video": "/Users/Jouni/Code/diory-browser-electron/public/development-content-room/4_5807613915332347351.mp4",
-      "created": "2020-10-20T18:11:31.662Z",
-      "modified": "2020-10-20T18:11:31.718Z"
-    },
-    "62311339-25f5-4939-b397-ffb269703bce": {
-      "id": "62311339-25f5-4939-b397-ffb269703bce",
-      "text": "4_5996618057181562302.MOV",
-      "video": "/Users/Jouni/Code/diory-browser-electron/public/development-content-room/4_5996618057181562302.MOV",
-      "created": "2020-10-20T18:11:31.746Z",
-      "modified": "2020-10-20T18:11:32.563Z"
     },
     "96b8cc90-9ce8-4f21-991f-313d133a5441": {
       "id": "96b8cc90-9ce8-4f21-991f-313d133a5441",
