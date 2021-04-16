@@ -1,7 +1,7 @@
 const { v4: uuid } = require('uuid')
 const FileType = require('file-type')
 const { statSync } = require('fs')
-const { parse } = require('path')
+const { basename } = require('path')
 const { readFolderMetadata } = require('../readers/folder-reader')
 const { readImage } = require('../readers/image-reader')
 
@@ -23,7 +23,7 @@ function generateDiory({ text, date, image, video, latitude, longitude, created,
 async function baseData(filePath) {
   const { birthtime, mtime } = statSync(filePath) || {}
   return {
-    text: parse(filePath).name, // without extension
+    text: basename(filePath),
     created: birthtime && birthtime.toISOString(),
     modified: mtime && mtime.toISOString(),
   }
