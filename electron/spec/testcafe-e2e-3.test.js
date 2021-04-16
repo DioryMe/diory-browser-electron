@@ -14,11 +14,8 @@ test('select diograph folder with new subfolder (diograph.json + newly added sub
     .click('[data-testid="tools-button"]')
     .click('[data-testid="undefined-button"]')
     .expect(dioryCount)
-    // Would be 4 if could detect that "video in root folder is already linked to another diory"
-    // => currently creates new diories for those two videos (although they already exist...)
-    // .eql(4)
-    .eql(6)
+    .eql(4)
     .click(eventDiory)
     .expect(dioryCount)
-    .eql(14) // pixnio-public-domain-test-content.txt is added too
+    .eql(14)
 })

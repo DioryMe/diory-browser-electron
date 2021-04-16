@@ -16,7 +16,6 @@ mv electron-main-tmp.js electron-main.js
 
 echo "Run Testcafe E2E test 1 (with development-content-room, with diograph.json)"
 cp -r public/development-content-room/ tmp/testcafe-diograph-folder/
-rm tmp/testcafe-diograph-folder/Tampere/diograph.json
 npx testcafe "electron:." electron/spec/testcafe-e2e-1.test.js
 test_1=$?
 rm -rf tmp/testcafe-diograph-folder
