@@ -35,9 +35,7 @@ const scaleStyle = {
   transformOrigin: 'top left',
 }
 
-const HandBackground = () => (
-  <div style={{ ...itemStyle, padding: 0, width: '100%', marginLeft: -116 }} />
-)
+const HandBackground = () => <div style={{ padding: 0, width: '100%' }} />
 
 const HandView = ({ diorys = [], onDrop }) => (
   <Droppable
