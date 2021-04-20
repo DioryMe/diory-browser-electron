@@ -37,7 +37,7 @@ const scaleStyle = {
 
 const HandBackground = () => <div style={{ padding: 0, width: '100%' }} />
 
-const HandView = ({ diorys = [], onDrop }) => (
+const HandView = ({ diorys = [], onDrop, onClick }) => (
   <Droppable
     type={types.DIORY}
     style={handStyle}
@@ -50,7 +50,7 @@ const HandView = ({ diorys = [], onDrop }) => (
       <div key={diory.id} style={itemStyle}>
         <div style={scaleStyle}>
           <Draggable type={types.DIORY} id={diory.id}>
-            <Diory diory={diory} height="100%" />
+            <Diory diory={diory} onClick={onClick} height="100%" />
           </Draggable>
         </div>
       </div>
@@ -61,6 +61,7 @@ const HandView = ({ diorys = [], onDrop }) => (
 HandView.propTypes = {
   diorys: PropTypes.array.isRequired,
   onDrop: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 }
 
 export default HandView
