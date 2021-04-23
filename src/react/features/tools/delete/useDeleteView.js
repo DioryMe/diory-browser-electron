@@ -1,5 +1,4 @@
 import { useStore, useDispatch } from '../../../store'
-import { inactivateButton } from '../../buttons/actions'
 import { goBackward, setSelectedLink } from '../../navigation/actions'
 import { deleteDiory, deleteLinks } from '../../diograph/actions'
 import { useLinkDiory, useFocus } from '../../diograph/hooks'
@@ -56,7 +55,6 @@ export const useDeleteView = () => {
 
   const resetView = () => {
     dispatch(setSelectedLink())
-    dispatch(inactivateButton())
   }
 
   const deleteDioryAndLinks = () => {
