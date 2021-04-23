@@ -1,24 +1,6 @@
 const fs = require('fs')
 const backendLogger = require('electron-log')
 
-/**
- * readDiographJson
- * @function
- * @param path {string} - Path of the diograph folder
- * @return {Object} - Object with diograph as key and
- * parsed diograph.json content (or undefined if no diograph.json found)
- * as value
- *
- * @example Response object:
- * {
- *   rootId: 'diory1',
- *   diograph: {
- *      diory1: { id: 'diory1', image: '...', links: [...] },
- *      diory2: { id: 'diory2', image: '...', links: [...] }
- *   }
- * }
- *
- */
 exports.readDiographJson = function readDiographJson(path) {
   const folderPath = path
   const diographJsonPath = `${path}/diograph.json`

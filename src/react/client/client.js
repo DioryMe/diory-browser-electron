@@ -14,17 +14,6 @@ if (process.env.NODE_ENV === 'development') {
   window.frontendLogger = { info: console.log, error: console.error }
 }
 
-/**
- * Sends an event to given channel with given parameters
- *
- * @param Channel name
- * @param Parameters
- *
- * @return Promise -> resolves with responseObject, rejects on Error object
- *
- * @example invokeChannel(channels.GENERATE_DIOGRAPH, address)
- *
- */
 export const invokeChannel = (channel, params) => {
   // Development uses mock responses
   if (process.env.NODE_ENV === 'development') {
