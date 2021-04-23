@@ -62,22 +62,6 @@ function reduceSubfolderDiographsToDioryLinks(subfolderDiographs) {
     )
 }
 
-/**
- * Generates diograph object by reading the folder structure (path given as an argument)
- * @param {string} folderPath
- * @returns {object} Object with rootId and diograph
- *
- * @example
- * {
- *   rootId: '123-abc-def',
- *   linkKey: 'some-folder',
- *   diograph: {
- *     'abc-def-123': { ... },
- *     'ghi-jkl-456': { ... },
- *     ...
- *   }
- * }
- */
 exports.generateDiograph = async function generateDiograph(folderPath) {
   const { filePaths = [], subfolderPaths = [] } = (await getFileAndSubfolderPaths(folderPath)) || {}
 

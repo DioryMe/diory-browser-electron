@@ -2,32 +2,6 @@ const HomeStore = require('electron-store')
 const path = require('path')
 const fs = require('fs')
 
-/**
- * Event handler for GET_HOME channel
- * @function
- * @param event {Object} - Event from frontend via ipcMain
- * @param params {Object} - No params
- * @return {Promise} Resolves with home object (keys: rooms, connections, focus)
- *
- * @example Response object:
- * {
- *   rooms: {
- *     dev-room: { id: 'dev-room-root-diory', image: '...', links: [...] },
- *     room2: { id: 'diory2', image: '...', links: [...] }
- *   },
- *   connections: {
- *     './public/...': {
- *       room:
- *       connector:
- *     }
- *   },
- *   focus: {
- *     roomId: "dev-room",
- *     dioryId: "dev-room-root-diory"
- *   }
- * }
- *
- */
 exports.getHomeEventHandler = async function getHomeEventHandler(event, params) {
   const store = new HomeStore({
     cwd: process.env.TESTCAFE_TEST ? `${process.env.PWD}/tmp/${Date.now()}` : undefined,

@@ -130,27 +130,6 @@ function generateLinks(dioryLinks) {
   )
 }
 
-/**
- * Generates diograph from folder
- * @param {string} filePath - Path to file which diory should be generated
- * @param {object} dioryLinks - Object of diory links
- *    {
- *      'filename1': { [diory1 object] },
- *      'filename2': { [diory2 object] }
- *    }
- * @return {object} - Folder diograph generated from file
- *    {
- *      id: 'some-id',
- *      text: 'text',
- *      image: 'image'
- *      ...
- *      modified: 'modified'
- *      links: [
- *        'filename1': { [diory object] },
- *        'filename2': { [diory2 object] }
- *      ]
- *    }
- */
 exports.generateDioryFromFolder = function generateDioryFromFolder(folderPath, dioryLinks = {}) {
   const linkedDiorys = Object.values(dioryLinks)
   return {
