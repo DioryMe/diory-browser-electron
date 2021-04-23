@@ -6,8 +6,8 @@ Feature: Create location tool on timeline
     And I select timeline lens
     And I select tools button
     And I select create button
-    And I see 0 focus and 13 linked markers on map
+    And I see 0 focus and 14 linked markers on map
 
   Scenario: createLocationTool created diory appears on timeline
     When I click bottom on the timeline
-    Then I see 0 focus and 14 linked markers on map
+    Then I see 0 focus and 15 linked markers on map
