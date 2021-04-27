@@ -1,3 +1,4 @@
+import React from 'react'
 import DataAttributeDiory from './DataAttributeDiory'
 import Diory from './Diory'
 
