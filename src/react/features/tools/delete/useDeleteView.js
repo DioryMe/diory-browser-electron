@@ -2,6 +2,7 @@ import { useStore, useDispatch } from '../../../store'
 import { goBackward, setSelectedLink } from '../../navigation/actions'
 import { deleteDiory, deleteLinks } from '../../diograph/actions'
 import { useLinkDiory, useFocus } from '../../diograph/hooks'
+import { inactivateButton } from '../../buttons/actions'
 
 const linkedDiories = (focusDiory, diograph) =>
   Object.values(focusDiory.links || []).map(({ id }) => ({
@@ -63,6 +64,7 @@ export const useDeleteView = () => {
     if (deletedDiory) {
       dispatch(deleteDiory(deletedDiory))
       dispatch(goBackward())
+      dispatch(inactivateButton())
     }
 
     resetView()
