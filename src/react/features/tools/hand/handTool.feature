@@ -19,33 +19,35 @@ Feature: Hand tool
     And I click Done button
     Then 'Some diory' diory is in the hand
 
-  Scenario: Take diory into hand
+  Scenario: Take diory into hand from view
     Given  I see 'Diory 11' in view
     When I drag 'diory11' into hand
     Then 'Diory 11' diory is in the hand
 
-  @pending
-  Scenario: Link diory from hand to view
+  Scenario: Take focus diory into hand
+    Given  I take 'Diory 11' in focus
+    When I drag 'background-diory11' into hand
+    Then 'Diory 11' diory is in the hand
+
+  Scenario: Link diory from hand to view (=focus diory)
     Given  I see 'Diory 11' in view
     And  I see 'Diory 12' in view
-    And I drag 'Diory 11' into hand
+    And I drag 'diory11' into hand
     And I take 'Diory 12' in focus
-    When I drag 'Diory 11' from hand to view
+    When I drag 'hand-diory11' to 'background-diory12'
     Then I see 'Diory 11' in view
 
-  @pending
   Scenario: Link diory from hand to linked diory
     Given  I see 'Diory 11' in view
     And  I see 'Diory 12' in view
-    And I drag 'Diory 11' into hand
-    When I drag 'Diory 11' from hand on 'Diory 12'
+    And I drag 'diory11' into hand
+    When I drag 'hand-diory11' to 'diory12'
     And I take 'Diory 12' in focus
     Then I see 'Diory 11' in view
 
-  @pending
   Scenario: Link linked diory to another linked diory
     Given  I see 'Diory 11' in view
     And  I see 'Diory 12' in view
-    When I drag 'Diory 11' on 'Diory 12'
+    When I drag 'diory11' to 'diory12'
     And I take 'Diory 12' in focus
     Then I see 'Diory 11' in view
