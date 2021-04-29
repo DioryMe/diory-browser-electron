@@ -19,11 +19,10 @@ Feature: Hand tool
     And I click Done button
     Then 'Some diory' diory is in the hand
 
-  @pending
   Scenario: Take diory into hand
     Given  I see 'Diory 11' in view
-    When I drag 'Diory 11' into hand
-    Then I see 'Diory 11' in hand
+    When I drag 'diory11' into hand
+    Then 'Diory 11' diory is in the hand
 
   @pending
   Scenario: Link diory from hand to view
