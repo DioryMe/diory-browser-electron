@@ -21,3 +21,15 @@ Then('{string} link {word} in the store', (linkId, isOrNot) => {
         : expect(linksInStore).not.to.include(linkId)
     })
 })
+
+Then('{string} diory {word} in the hand', (dioryText, isOrNot) => {
+  cy.window().then((window) => {
+    const diory = Object.values(window.diographInStore).filter(
+      (diory) => diory.text === dioryText
+    )[0]
+    isOrNot === 'is'
+      ? // How hand is object?!!!? It should be an array and Object.values shouldn't be necessary...
+        expect(Object.values(window.handInStore)).to.include(diory.id)
+      : expect(Object.values(window.handInStore)).not.to.include(diory.id)
+  })
+})

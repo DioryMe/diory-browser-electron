@@ -9,6 +9,16 @@ Feature: Hand tool
   Scenario: Hand tool shown
     Then I see 'hand'
 
+  Scenario: Add diory to hand when it is set in focus
+    Then 'Generic content' diory is in the hand
+    And 'Diory 1' diory is in the hand
+
+  Scenario: Add diory to hand when it is created
+    When I select create button
+    And I add 'Some diory' to text field
+    And I click Done button
+    Then 'Some diory' diory is in the hand
+
   @pending
   Scenario: Take diory into hand
     Given  I see 'Diory 11' in view
