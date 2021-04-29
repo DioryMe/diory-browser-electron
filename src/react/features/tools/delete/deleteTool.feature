@@ -17,7 +17,7 @@ Feature: Delete tool
     And I click Delete button
     Then I do not see 'Diory 14' in view
     And I see 'Diory 11' in view
-    And 'diory14' diory not in the store
+    And 'Diory 14' diory not in the store
     And 'link14' link not in the store
 
   Scenario: Link to diory in view is deleted (not the diory!)
@@ -26,7 +26,7 @@ Feature: Delete tool
     And I click Delete button
     Then I do not see 'Diory 11' in view
     And 'link11' link not in the store
-    And 'diory11' diory is in the store
+    And 'Diory 11' diory is in the store
 
   Scenario: Link to self is deleted
     When I take 'Diory 11' in focus
