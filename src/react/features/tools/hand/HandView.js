@@ -50,7 +50,7 @@ const HandView = ({ diorys = [], onDrop, onClick }) => (
       <div key={diory.id} style={itemStyle}>
         <div style={scaleStyle}>
           <Draggable type={types.DIORY} id={diory.id}>
-            <Diory diory={diory} onClick={onClick} height="100%" />
+            <Diory id={`hand-${diory.id}`} diory={diory} onClick={onClick} height="100%" />
           </Draggable>
         </div>
       </div>
