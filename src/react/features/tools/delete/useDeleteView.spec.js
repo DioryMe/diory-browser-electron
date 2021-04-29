@@ -41,12 +41,11 @@ describe('useDeleteView', () => {
 
       useDeleteView().onDone()
 
-      expect(mockDispatch).toHaveBeenCalledTimes(3)
+      expect(mockDispatch).toHaveBeenCalledTimes(2)
       expect(mockDispatch).toHaveBeenCalledWith(
         deleteLinks([{ fromDiory: focusDiory, toDiory: linkDiory }])
       )
       expect(mockDispatch).toHaveBeenCalledWith(setSelectedLink())
-      expect(mockDispatch).toHaveBeenCalledWith(inactivateButton())
     })
 
     it('delete focusDiory and all its links', () => {
