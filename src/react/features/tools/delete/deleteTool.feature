@@ -19,8 +19,6 @@ Feature: Delete tool
     And I see 'Diory 11' in view
     And 'diory14' diory not in the store
     And 'link14' link not in the store
-    # FIXME: This is just to verify the step definition
-    And 'link11' link is in the store
 
   Scenario: Link to diory in view is deleted (not the diory!)
     When I select delete button
@@ -35,6 +33,8 @@ Feature: Delete tool
     And I select delete button
     And I take 'Diory 11' in focus
     And I click Delete button
+    # Diory 11 is in focus and 'Diory 11' is shown as heading
+    # although link to 'Diory 11' is deleted from view
     Then I see 'Diory 11' in view
     And 'link11-to-self' link not in the store
     And 'link11' link is in the store
@@ -46,17 +46,20 @@ Feature: Delete tool
     And I click Cancel button
     Then I see 'Diory 11' in view
 
-  # Scenario: Diory is deleted from search
-    # When I select delete button
-    # And I take 'Diory 11' in focus
-    # And I click Delete button
-    # And I type 'Diory 11' in search bar
-    # Then I do not see 'Diory 11' in view
-
   Scenario: Delete diory is deactivated
     When I select delete button
     And I select 'delete-button--active'
     Then I see tools button
+
+  Scenario: Multiple diories are deleted from view
+    When I select delete button
+    And I take 'Diory 11' in focus
+    And I click Delete button
+    And I take 'Diory 12' in focus
+    And I click Delete button
+    Then I do not see 'Diory 11' in view
+    And I do not see 'Diory 12' in view
+    But I see 'Diory 14' in view
 
 
 
