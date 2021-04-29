@@ -19,7 +19,7 @@ const BackgroundDiory = ({ diory, gradient, gradientRgba, onClick, children, ...
 
   return (
     <Pane
-      id={id}
+      id={`background-${id}`}
       height="100%"
       display="flex"
       flexWrap="wrap"
