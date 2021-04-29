@@ -19,6 +19,10 @@ Feature: Hand tool
     And I click Done button
     Then 'Some diory' diory is in the hand
 
+  Scenario: Clicking diory in hand sets it in focus
+    When I click 'generic-content' diory in hand
+    Then I see 'Generic content' in focus
+
   Scenario: Take diory into hand from view
     Given  I see 'Diory 11' in view
     When I drag 'diory11' into hand

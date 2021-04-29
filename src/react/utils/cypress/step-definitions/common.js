@@ -34,6 +34,10 @@ When('I type {string} in search bar', (searchString) => {
 
 // THEN
 
+Then('I see {string} in focus', (dioryName) => {
+  cy.get('h2').contains(dioryName).should('have.length', 1)
+})
+
 Then('I see {string} in view', (dioryName) => {
   cy.contains(dioryName).should('have.length', 1)
 })
