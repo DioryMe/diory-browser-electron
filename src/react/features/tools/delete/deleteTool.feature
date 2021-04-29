@@ -17,7 +17,7 @@ Feature: Delete tool
     And I click Delete button
     Then I do not see 'Diory 14' in view
     And I see 'Diory 11' in view
-    And 'diory14' diory not in the store
+    And 'Diory 14' diory not in the store
     And 'link14' link not in the store
     # FIXME: This is just to verify the step definition
     And 'link11' link is in the store
@@ -28,7 +28,7 @@ Feature: Delete tool
     And I click Delete button
     Then I do not see 'Diory 11' in view
     And 'link11' link not in the store
-    And 'diory11' diory is in the store
+    And 'Diory 11' diory is in the store
 
   Scenario: Deleting diory is cancelled
     When I select delete button

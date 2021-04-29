@@ -1,8 +1,12 @@
 import { Then } from 'cypress-cucumber-preprocessor/steps'
 
-Then('{string} diory {word} in the store', (dioryId, isOrNot) => {
-  const haveKeysOrNot = isOrNot === 'is' ? 'have.any.keys' : 'not.have.any.keys'
-  cy.window().its('diographInStore').should(haveKeysOrNot, dioryId)
+Then('{string} diory {word} in the store', (dioryText, isOrNot) => {
+  cy.window()
+    .its('diographInStore')
+    .should(($p) => {
+      const diory = Object.values($p).filter((diory) => diory.text === dioryText)[0]
+      isOrNot === 'is' ? expect(diory.text).to.equal(dioryText) : expect(diory).not.to.exist
+    })
 })
 
 Then('{string} link {word} in the store', (linkId, isOrNot) => {
