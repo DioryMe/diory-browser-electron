@@ -31,11 +31,11 @@ const DeleteView = ({ diory, diorys, onDone, onCancel }) => (
           <b>Links</b>
         </div>
         {Object.values(diorys).map((deletedLink) => (
-          <div key={deletedLink.fromDiory.id}>
+          <div key={deletedLink.fromDiory && deletedLink.fromDiory.id}>
             &quot;
-            {deletedLink.fromDiory.text || deletedLink.fromDiory.id}
+            {deletedLink.fromDiory && (deletedLink.fromDiory.text || deletedLink.fromDiory.id)}
             &quot; -&gt; &quot;
-            {deletedLink.toDiory.text || deletedLink.toDiory.id}
+            {deletedLink.toDiory && (deletedLink.toDiory.text || deletedLink.toDiory.id)}
             &quot;
           </div>
         ))}
