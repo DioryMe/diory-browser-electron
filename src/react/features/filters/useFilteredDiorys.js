@@ -31,9 +31,7 @@ export const useFilteredDiorys = () => {
   const diorys = useDiorys(dioryIds)
   return useMemo(
     () => ({
-      diory: {
-        text: 'Filter',
-      },
+      diory: diorys[0],
       diorys,
     }),
     [diorys]
