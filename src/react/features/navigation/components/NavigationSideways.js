@@ -1,26 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Icon from '../../../components/Icon'
+import useKeyPress from '../../../utils/useKeyPress'
 
-const NavigationSideways = ({ left, right, onClick }) => (
-  <div
-    data-testid={`navigate-${left ? 'left' : 'right'}`}
-    onClick={onClick}
-    style={{
-      position: 'fixed',
-      zIndex: 15,
-      top: '50%',
-      transform: 'translate(0, -50%)',
-      height: 50,
-      width: 50,
-      cursor: 'pointer',
-      left: left && 0,
-      right: right && 0,
-    }}
-  >
-    <Icon icon={`chevron-${left ? 'left' : 'right'}`} color="disabled" size={48} />
-  </div>
-)
+const NavigationSideways = ({ left, right, onClick }) => {
+  useKeyPress(left ? 'ArrowLeft' : 'ArrowRight', onClick)
+
+  return (
+    <div
+      data-testid={`navigate-${left ? 'left' : 'right'}`}
+      onClick={onClick}
+      style={{
+        position: 'fixed',
+        zIndex: 15,
+        top: '50%',
+        transform: 'translate(0, -50%)',
+        height: 50,
+        width: 50,
+        cursor: 'pointer',
+        left: left && 0,
+        right: right && 0,
+      }}
+    >
+      <Icon icon={`chevron-${left ? 'left' : 'right'}`} color="disabled" size={48} />
+    </div>
+  )
+}
 
 NavigationSideways.defaultProps = {
   left: false,
