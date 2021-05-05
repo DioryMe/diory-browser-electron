@@ -46,20 +46,8 @@ describe('diograph-generator', () => {
 
       await act()
 
-      // TODO: Remove video attribute as now we have diory.data.contentUrl
-      expect(Object.keys(generatedDiory)).toEqual([
-        'id',
-        'text',
-        'video',
-        'created',
-        'modified',
-        'data',
-      ])
+      expect(Object.keys(generatedDiory)).toEqual(['id', 'text', 'created', 'modified', 'data'])
       expect(generatedDiory.text).toEqual('some-video.mp4')
-      // TODO: Remove video attribute as now we have diory.data.contentUrl
-      expect(generatedDiory.video).toEqual(
-        `${process.env.INIT_CWD}/electron/readers/example-folder/some-video.mp4`
-      )
       expect(generatedDiory.data).toEqual({
         '@context': 'https://schema.org',
         '@type': 'VideoObject',
