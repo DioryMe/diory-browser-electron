@@ -5,12 +5,11 @@ const { basename } = require('path')
 const { readFolderMetadata } = require('../readers/folder-reader')
 const { readImage } = require('../readers/image-reader')
 
-function generateDiory({ text, date, image, video, latitude, longitude, created, modified, data }) {
+function generateDiory({ text, date, image, latitude, longitude, created, modified, data }) {
   return {
     id: uuid(),
     ...(text && { text }),
     ...(image && { image }),
-    ...(video && { video }),
     ...(date && { date }),
     ...(latitude && { latitude }),
     ...(longitude && { longitude }),
@@ -55,14 +54,6 @@ async function typeSpecificData(filePath) {
     // case 'application':
     // case 'text':
     default:
-  }
-
-  // FIXME: Remove video attribute and use contentUrl instead
-  if (type === 'video') {
-    return {
-      video: filePath,
-      data: defaultSchema,
-    }
   }
 
   return {
