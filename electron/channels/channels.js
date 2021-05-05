@@ -1,3 +1,5 @@
+const { shell } = require('electron')
+
 const { ipcMain } = require('electron')
 const { channels } = require('../../src/shared/constants')
 const { eventHandlerWrapper } = require('./channel-util')
@@ -25,3 +27,6 @@ ipcMain.handle(channels.SAVE_ROOM, eventHandlerWrapper(channels.SAVE_ROOM, saveR
 
 /* SAVE_HOME */
 ipcMain.handle(channels.SAVE_HOME, eventHandlerWrapper(channels.SAVE_HOME, saveHomeEventHandler))
+
+ipcMain.handle('openInFinder', (event, path) => shell.showItemInFolder(path))
+ipcMain.handle('openInExternalApplication', (event, path) => shell.openPath(path))
