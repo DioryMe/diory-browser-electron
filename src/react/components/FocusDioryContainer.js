@@ -3,28 +3,37 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import Draggable, { types } from './Draggable'
 import Droppable from './Droppable'
+import Icon from './Icon'
 import { invokeChannel } from '../client/client'
 
-const FocusDioryContainer = ({ diory, onDrop, onClick, children, ...props }) => {
+const defaultStyle = { backgroundColor: 'white', position: 'absolute', bottom: 2, right: 2 }
+
+const FocusDioryContainer = ({ diory, onDrop, onClick, style, children, ...props }) => {
   const showItemInFolder = () => invokeChannel('openInFinder', diory.data && diory.data.contentUrl)
   return (
-    <Box key={diory.id} {...props}>
-      <div style={{ position: 'relative', height: '100%', width: '100%' }}>{children}</div>
-      <Droppable
-        type={types.DIORY}
-        style={{ height: '100%' }}
-        isOverStyle={{ opacity: 0.5 }}
-        onDrop={({ id }) => onDrop({ droppedId: diory.id, draggedId: id })}
-      >
-        <Draggable id={diory.id} type={types.DIORY}>
-          <div onClick={() => onClick(diory)}>Handle</div>
+    <Box key={diory.id} {...style}>
+      <Box style={{ position: 'relative', height: '100%' }}>
+        {children}
+        <Box style={defaultStyle}>
           {diory.data && diory.data.contentUrl && (
-            <button type="submit" onClick={showItemInFolder}>
-              Show item in folder
-            </button>
+            <Box type="submit" onClick={showItemInFolder} marginBottom={4}>
+              <Icon size={32} icon="folder" marginLeft={4} marginRight={4} />
+            </Box>
           )}
-        </Draggable>
-      </Droppable>
+          <Droppable
+            type={types.DIORY}
+            style={{ height: '100%' }}
+            isOverStyle={{ opacity: 0.5 }}
+            onDrop={({ id }) => onDrop({ droppedId: diory.id, draggedId: id })}
+          >
+            <Draggable id={diory.id} type={types.DIORY}>
+              <Box onClick={() => onClick({ diory })}>
+                <Icon size={32} icon="hand" marginLeft={4} />
+              </Box>
+            </Draggable>
+          </Droppable>
+        </Box>
+      </Box>
     </Box>
   )
 }
@@ -33,6 +42,7 @@ FocusDioryContainer.propTypes = {
   diory: PropTypes.object.isRequired,
   onClick: PropTypes.func,
   onDrop: PropTypes.func,
+  style: PropTypes.object,
   children: PropTypes.node,
 }
 

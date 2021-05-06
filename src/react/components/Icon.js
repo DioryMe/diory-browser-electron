@@ -19,6 +19,8 @@ import {
   ChevronRightIcon,
   HomeIcon,
   ErrorIcon,
+  HandIcon,
+  FolderOpenIcon,
 } from 'evergreen-ui'
 
 const Icon = ({ icon, ...props }) => {
@@ -59,6 +61,10 @@ const Icon = ({ icon, ...props }) => {
       return <HomeIcon {...props} />
     case 'error-icon':
       return <ErrorIcon {...props} />
+    case 'hand':
+      return <HandIcon {...props} />
+    case 'folder':
+      return <FolderOpenIcon {...props} />
     default:
       return <ErrorIcon {...props} />
   }
