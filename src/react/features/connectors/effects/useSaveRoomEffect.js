@@ -16,10 +16,6 @@ function getUntrackedDiograph(diograph) {
       if (untrackedLinks) {
         untrackedDiograph[key].links = { ...untrackedLinks }
       }
-      const untrackedData = getUntrackedObject(untrackedDiograph[key].data)
-      if (untrackedData) {
-        untrackedDiograph[key].data = { ...untrackedData }
-      }
     })
   }
   return untrackedDiograph
