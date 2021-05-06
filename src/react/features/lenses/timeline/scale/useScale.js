@@ -8,7 +8,7 @@ const addDataTestIdToMarker = (id) => (marker) => {
 }
 
 function getIconContainer(children) {
-  return `<div style="text-align: center; font-size: 16px; font-weight: bold; color: white">${children}</div>`
+  return `<div style="text-align: center; font-size: 16px; font-weight: bold; color: white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black">${children}</div>`
 }
 
 function getIcon({ type, label, offset }) {
