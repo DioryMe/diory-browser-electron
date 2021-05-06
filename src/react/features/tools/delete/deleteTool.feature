@@ -38,7 +38,7 @@ Feature: Delete tool
     Then I see 'Diory 11' in view
     And 'link11-to-self' link not in the store
     And 'link11' link is in the store
-    And 'diory11' diory is in the store
+    And 'Diory 11' diory is in the store
 
   Scenario: Deleting diory is cancelled
     When I select delete button
