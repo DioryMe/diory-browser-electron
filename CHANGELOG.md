@@ -1,3 +1,48 @@
+
+## 3.1.1 (May 6, 2021)
+
+### DDA-135: Keyboard shortcuts
+- Browse diories with arrow keys in fullscreen lens
+- useKeyPress helper for future keyboard shortcuts
+
+### DDA-130: Improve hand tool
+- Add diory to hand when Diory is set in focus or is created
+- Clicking diory in hand sets it in focus
+- Don't hide diories / scroll handbar before it is full
+- Feature tests for hand tool + checking store improved
+
+### DDA-126: Render DataAwareDiory content based on MIME type
+- DataAwareDiory renders image, video, website, document & 'open in external application' based on MIME type
+- Fullscreen lens renders DataAwareDiory
+- DioryActions component for focus diory actions for update-delete-hand tools & reveal in finder (using hand and folder icons)
+- Remove video attribute & BackgroundVideo component
+- FocusDioryContainer & LinkDioryContainer
+
+### DDA-122: Grid with large focus diory
+- Show focus diory almost fullscreen in grid
+- Use DataAwareDiory as focus diory
+
+### DDA-118: Start using schemas in diograph
+- Add schemas to diory.data attribute when generating diograph
+- Resolve mime type instead of detecting file extensions
+- Use only absolute urls in diograph format
+- Integration tests for generateDioryFromFile
+- Improved development content
+
+### DDA-103: Delete tool improvements
+- Removes also reverse links of the deleted diory
+- Confirmation dialog for delete tool
+  - Lists all diories and links which are going to be deleted
+- Delete link to self
+- Leave delete tool active after deleting
+- DeleteView, storybook, feature tests, unit tests...
+
+### Other
+- Feature tests can check store state
+- Rename buttons reducers with SET_ -prefix (openButtons, activateButtons, inactivateButtons)
+- Stricter linting rules
+- Remove jsdocs as they haven't been actively updated
+
 ## 2.5.7 (March 14, 2021)
 
 ### DDA-85: Update folder
