@@ -1,6 +1,6 @@
 {
   "name": "diory-browser-electron",
-  "version": "2.5.7",
+  "version": "3.1.1",
   "productName": "Diory - Digital Memory Browser",
   "main": "electron-main.js",
   "private": true,
