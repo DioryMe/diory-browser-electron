@@ -13,7 +13,11 @@ const GridView = ({ diory, diorys, onDrop, onClick }) => (
     gradient
     onClick={onClick}
   >
-    <FocusDioryContainer diory={diory} onClick={onClick} flex="1 0 100%" height={480} padding={24}>
+    <FocusDioryContainer
+      diory={diory}
+      onClick={onClick}
+      style={{ flex: '1 0 100%', height: 480, padding: 24 }}
+    >
       <DataAwareDiory diory={diory} />
     </FocusDioryContainer>
     {diorys.map((linkDiory) => (
