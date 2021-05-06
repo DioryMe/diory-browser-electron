@@ -103,10 +103,6 @@ function getAverageDate(linkedDiorys) {
   )
 }
 
-/**
- * What is this? What does it do? Not really self-explaining...
- * Does this replace link-generator.js generateLink?
- */
 function generateLinks(dioryLinks) {
   return (
     !!dioryLinks && {
