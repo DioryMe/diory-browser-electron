@@ -16,6 +16,7 @@ const GridView = ({ diory, diorys, onDrop, onClick }) => (
     <FocusDioryContainer
       diory={diory}
       onClick={onClick}
+      onDrop={onDrop}
       style={{ flex: '1 0 100%', height: 480, padding: 24 }}
     >
       <DataAwareDiory diory={diory} />
