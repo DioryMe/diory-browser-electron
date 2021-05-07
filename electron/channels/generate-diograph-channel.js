@@ -18,7 +18,7 @@ exports.generateDiographEventHandler = async function generateDiographEventHandl
       diory.image = diory.image.replace(`${path}/`, '')
     }
     if (diory.data && diory.data.contentUrl) {
-      diory.data = diory.data.contentUrl.replace(`${path}/`, '')
+      diory.data.contentUrl = diory.data.contentUrl.replace(`${path}/`, '')
     }
   })
 
