@@ -16,6 +16,6 @@ export const useGetImageUrl = (imageUrl) => {
     return `http://localhost:3300/${imageUrl}`
   }
 
-  // Convert relative path to absolute file:// url
-  return imageUrl && fileUrl(absoluteImageUrl)
+  // Convert to file:// url
+  return absoluteImageUrl && fileUrl(absoluteImageUrl)
 }
