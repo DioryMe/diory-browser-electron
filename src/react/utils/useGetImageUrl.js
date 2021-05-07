@@ -1,10 +1,10 @@
 import fileUrl from 'file-url'
-import { useConvertRelativePath } from './useConvertRelativePath'
+import { convertRelativePath } from './convertRelativePath'
 import { useStore } from '../store'
 
 export const useGetImageUrl = (imageUrl) => {
   const [{ connections }] = useStore((state) => state.connectors)
-  const absoluteImageUrl = useConvertRelativePath(imageUrl.toString(), connections)
+  const absoluteImageUrl = convertRelativePath(imageUrl.toString(), connections)
 
   // Images from internet
   if (/^http(s)?:\/\//.exec(imageUrl)) {

@@ -1,4 +1,4 @@
-export const useConvertRelativePath = (relativePath, connections) => {
+export const convertRelativePath = (relativePath, connections) => {
   const diographFolderPath = Object.keys(connections).find((path) => connections[path].connected)
   return `${diographFolderPath}/${relativePath}`
 }
