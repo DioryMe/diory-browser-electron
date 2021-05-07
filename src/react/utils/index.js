@@ -1,2 +1,2 @@
 export { debounce } from './debounce'
-export { getImageUrl } from './getImageUrl'
+export { useGetImageUrl } from './useGetImageUrl'

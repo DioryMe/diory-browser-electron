@@ -1,7 +1,7 @@
 import React from 'react'
 import Box from 'ui-box'
 import PropTypes from 'prop-types'
-import { getImageUrl } from '../../utils'
+import { useGetImageUrl } from '../../utils'
 
 const defaultStyle = {
   position: 'absolute',
@@ -14,15 +14,17 @@ const defaultStyle = {
   backgroundRepeat: 'no-repeat',
 }
 
-const getBackgroundImage = (image, gradient, gradientRgba = '255, 255, 255, 0.5') =>
-  gradient
-    ? `linear-gradient(rgba(${gradientRgba}),rgba(${gradientRgba})), url("${getImageUrl(image)}")`
-    : `url("${getImageUrl(image)}")`
+const useGetBackgroundImage = (image, gradient, gradientRgba = '255, 255, 255, 0.5') => {
+  const imageUrl = useGetImageUrl(image)
+  return gradient
+    ? `linear-gradient(rgba(${gradientRgba}),rgba(${gradientRgba})), url("${imageUrl}")`
+    : `url("${imageUrl}")`
+}
 
 const Image = ({ image, gradient, gradientRgba, ...props }) => (
   <Box
     {...defaultStyle}
-    backgroundImage={getBackgroundImage(image, gradient, gradientRgba)}
+    backgroundImage={useGetBackgroundImage(image, gradient, gradientRgba)}
     {...props}
   />
 )
