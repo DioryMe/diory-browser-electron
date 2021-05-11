@@ -1,6 +1,6 @@
 import fileUrl from 'file-url'
 
-export const useGetImageUrl = (imageUrl) => {
+export const convertToFileUrl = (imageUrl) => {
   // Images from internet
   if (RegExp('^http(s)?://').exec(imageUrl)) {
     return imageUrl
