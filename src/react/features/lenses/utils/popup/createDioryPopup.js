@@ -1,5 +1,5 @@
 import L from 'leaflet'
-// import { getImageUrl } from '../../../../utils'
+// import { getImageUrl } from '../../../../utils/getImageUrl'
 
 const colors = ['#5bc0eb', '#fcd600', '#9bc53d', '#e55934', '#fa7921']
 const getRandom = (array) => array[Math.floor(Math.random() * array.length)]
