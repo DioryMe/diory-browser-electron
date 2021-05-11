@@ -1,29 +1,12 @@
 import { useEffect } from 'react'
-import { useStore, useDispatchActions, getUntrackedObject } from '../../../store'
+import { useStore, useDispatchActions } from '../../../store'
 
 import { saveRoom } from '../../diograph/actions'
 import { useConnections } from '../useConnections'
 
 import { invokeChannel } from '../../../client/client'
 import { channels } from '../../../../shared/constants'
-
-// Makes a copy of storeDiograph and deeply resolves the Proxy objects
-function getUntrackedDiograph(diograph) {
-  const untrackedDiograph = { ...getUntrackedObject(diograph) }
-  if (untrackedDiograph) {
-    Object.entries(untrackedDiograph).forEach(([key, value]) => {
-      const untrackedLinks = getUntrackedObject(untrackedDiograph[key].links)
-      if (untrackedLinks) {
-        untrackedDiograph[key].links = { ...untrackedLinks }
-      }
-      const untrackedData = getUntrackedObject(untrackedDiograph[key].data)
-      if (untrackedData) {
-        untrackedDiograph[key].data = { ...untrackedData }
-      }
-    })
-  }
-  return untrackedDiograph
-}
+import { getUntrackedDiograph } from '../../../utils'
 
 export const useSaveRoomEffect = (connectorId) => {
   const [{ rootId, diograph, updated }] = useStore((state) => state.diograph)
