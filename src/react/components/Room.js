@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
+import { convertToFileUrl } from '../utils'
 
 const Room = ({ diory: { id, image, text, ...diory }, onClick }) => (
   <Box
@@ -19,9 +20,9 @@ const Room = ({ diory: { id, image, text, ...diory }, onClick }) => (
       alignSelf="center"
       onClick={onClick}
       aria-controls={`panel-${id}`}
-      // backgroundImage={`linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.1)), url(${getImageUrl(
-      //   image
-      // )})`}
+      backgroundImage={`linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.1)), url('${convertToFileUrl(
+        image
+      )}')`}
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
       backgroundColor="pink"
