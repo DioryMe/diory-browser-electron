@@ -1,13 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import { convertRelativePath } from '../../utils'
 
 import Diory from './Diory'
 import Image from './Image'
 import Video from './Video'
 import { invokeChannel } from '../../client/client'
 
-const showImage = (props, diory, data) => {
+const renderImage = ({ diory }) => {
   const imageStyle = {
     ...(diory.style && diory.style.image),
     backgroundSize: 'contain',
@@ -23,22 +22,27 @@ const showImage = (props, diory, data) => {
   )
 }
 
-const showVideo = (props, diory, data) => (
-  <Video video={data && data.contentUrl} style={diory.style && diory.style.video} />
+const renderVideo = ({ diory }) => (
+  <Video video={diory.data && diory.data.contentUrl} style={diory.style && diory.style.video} />
 )
 
-const showInBrowser = (props, diory, data) => (
-  <iframe title="content-in-browser" src={data && data.contentUrl} height="100%" width="100%" />
+const renderIframe = ({ diory }) => (
+  <iframe
+    title="content-in-browser"
+    src={diory.data && diory.data.contentUrl}
+    height="100%"
+    width="100%"
+  />
 )
 
-const showWebpage = (props, diory, data) => (
-  <iframe title="web-browser" src={data && data.url} height="100%" width="100%" />
+const renderWebpage = ({ diory }) => (
+  <iframe title="web-browser" src={diory.data && diory.data.url} height="100%" width="100%" />
 )
 
-const showExternalApplicationButton = (props, diory, data) => (
+const renderExternalApplicationButton = ({ diory }) => (
   <button
     type="submit"
-    onClick={() => invokeChannel('openInExternalApplication', data && data.contentUrl)}
+    onClick={() => invokeChannel('openInExternalApplication', diory.data && diory.data.contentUrl)}
   >
     Open in external application
   </button>
@@ -46,32 +50,29 @@ const showExternalApplicationButton = (props, diory, data) => (
 
 const DataAwareDiory = (props) => {
   const { diory } = props
-  // FIXME: Remove data from showImage, showVideo etc. arguments
-  // + use diory.data elsewhere instead
-  const { data } = diory
-  const mimeType = data && data.encodingFormat
+  const mimeType = diory.data && diory.data.encodingFormat
   switch (mimeType) {
     case 'image/jpeg':
-      return showImage(props, diory, data)
+      return renderImage(props)
     case 'video/mp4':
     case 'video/x-m4v':
     case 'video/quicktime':
-      return showVideo(props, diory, data)
+      return renderVideo(props)
     case 'audio/mpeg':
     case 'audio/x-m4a':
     case 'audio/opus':
-      return showInBrowser(props, diory, data)
+      return renderIframe(props)
     case 'application/pdf':
-      return showInBrowser(props, diory, data)
+      return renderIframe(props)
     default:
-      if (data && data.url && /^http(s)?:\/\//.exec(data.url)) {
-        return showWebpage(props, diory, data)
+      if (diory.data && diory.data.url && /^http(s)?:\/\//.exec(diory.data.url)) {
+        return renderWebpage(props)
       }
-      if (data && data.contentUrl && /\.html?$/.exec(data.contentUrl)) {
-        return showInBrowser(props, diory, data)
+      if (diory.data && diory.data.contentUrl && /\.html?$/.exec(diory.data.contentUrl)) {
+        return renderIframe(props)
       }
-      if (data && data.contentUrl) {
-        return showExternalApplicationButton(props, diory, data)
+      if (diory.data && diory.data.contentUrl) {
+        return renderExternalApplicationButton(props)
       }
       return <Diory {...props} />
   }
