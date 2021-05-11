@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
 import PropTypes from 'prop-types'
 import { createContainer } from 'react-tracked'
-import { getUntrackedDiograph } from '../utils'
+import { getUntrackedDiograph } from '../utils/getUntrackedDiograph'
 
 const { Provider, useTracked } = createContainer(({ reducer, initialState }) =>
   useReducer(reducer, initialState)
