@@ -1,6 +1,6 @@
 import { getUntrackedObject } from 'react-tracked'
 
-const getUntrackedDiory = (diory) => {
+export const getUntrackedDiory = (diory) => {
   const untrackedLinks = getUntrackedObject(diory.links)
   if (untrackedLinks) {
     diory.links = { ...untrackedLinks }
@@ -11,8 +11,6 @@ const getUntrackedDiory = (diory) => {
   }
   return diory
 }
-
-export const getUntrackedDiories = (diories) => diories.map((diory) => getUntrackedDiory(diory))
 
 // Makes a copy of storeDiograph and deeply resolves the Proxy objects
 export const getUntrackedDiograph = (diograph) => {
