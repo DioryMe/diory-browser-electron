@@ -14,7 +14,7 @@ const defaultStyle = {
   backgroundRepeat: 'no-repeat',
 }
 
-const useGetBackgroundImage = (image, gradient, gradientRgba = '255, 255, 255, 0.5') =>
+const getBackgroundImage = (image, gradient, gradientRgba = '255, 255, 255, 0.5') =>
   gradient
     ? `linear-gradient(rgba(${gradientRgba}),rgba(${gradientRgba})), url("${convertToFileUrl(
         image
@@ -24,7 +24,7 @@ const useGetBackgroundImage = (image, gradient, gradientRgba = '255, 255, 255, 0
 const Image = ({ image, gradient, gradientRgba, ...props }) => (
   <Box
     {...defaultStyle}
-    backgroundImage={useGetBackgroundImage(image, gradient, gradientRgba)}
+    backgroundImage={getBackgroundImage(image, gradient, gradientRgba)}
     {...props}
   />
 )
