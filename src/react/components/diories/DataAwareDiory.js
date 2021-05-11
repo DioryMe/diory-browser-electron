@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useStore, getUntrackedObject } from '../../store'
+import { getUntrackedObject } from 'react-tracked'
+import { useStore } from '../../store'
 import { convertRelativePath } from '../../utils'
 
 import Diory from './Diory'

@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
+import { getUntrackedObject } from 'react-tracked'
 import { channels } from '../../../../shared/constants'
 import { invokeChannel } from '../../../client/client'
 
-import { useDispatchActions, useStore, getUntrackedObject } from '../../../store'
+import { useDispatchActions, useStore } from '../../../store'
 
 import { saveHome } from '../actions'
 

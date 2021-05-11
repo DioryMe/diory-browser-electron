@@ -1,4 +1,4 @@
-import { getUntrackedObject } from '../store'
+import { getUntrackedObject } from 'react-tracked'
 
 const getUntrackedDiory = (diory) => {
   const untrackedLinks = getUntrackedObject(diory.links)
