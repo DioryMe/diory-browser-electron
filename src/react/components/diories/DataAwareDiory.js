@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { getUntrackedObject } from 'react-tracked'
-import { useStore } from '../../store'
-import { convertRelativePath } from '../../utils'
+// import { convertRelativePath } from '../../utils'
 
 import Diory from './Diory'
 import Image from './Image'
@@ -48,13 +46,10 @@ const showExternalApplicationButton = (props, diory, data) => (
 
 const DataAwareDiory = (props) => {
   const { diory } = props
-  const data = getUntrackedObject(diory.data)
+  // FIXME: Remove data from showImage, showVideo etc. arguments
+  // + use diory.data elsewhere instead
+  const { data } = diory
   const mimeType = data && data.encodingFormat
-  // Convert contentUrls to absolute paths
-  const [{ connections }] = useStore((state) => state.connectors)
-  if (data) {
-    data.contentUrl = convertRelativePath(data.contentUrl, connections)
-  }
   switch (mimeType) {
     case 'image/jpeg':
       return showImage(props, diory, data)

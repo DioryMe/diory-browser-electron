@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import { useStore } from '../../store'
+import { getUntrackedDiory, convertRelativePath } from '../../utils'
 
 import Fullscreen from '../../components/Fullscreen'
 import { useFocus } from '../diograph/hooks'
@@ -12,6 +13,20 @@ import fullscreen from './fullscreen'
 import grid from './grid'
 import map from './map'
 import timeline from './timeline'
+
+const prepareDiory = (diory, connections) => {
+  const preparedDiory = getUntrackedDiory(diory)
+  if (preparedDiory) {
+    preparedDiory.image = convertRelativePath(preparedDiory.image, connections)
+    if (preparedDiory.data) {
+      preparedDiory.data.contentUrl = convertRelativePath(
+        preparedDiory.data.contentUrl,
+        connections
+      )
+    }
+  }
+  return preparedDiory
+}
 
 export const lenses = {
   grid,
@@ -44,7 +59,13 @@ const Lenses = () => {
   const { diory, diorys } = filterIsActive ? filteredDiorys : focusDiorys
   const [{ selectedLensId }] = useStore((state) => state.lenses)
 
-  return <LensesView diory={diory} diorys={diorys} selectedLensId={selectedLensId} />
+  const [{ connections }] = useStore((state) => state.connectors)
+  const preparedDiory = diory && prepareDiory(diory, connections)
+  const preparedDiorys = diorys.map((diory) => prepareDiory(diory, connections))
+
+  return (
+    <LensesView diory={preparedDiory} diorys={preparedDiorys} selectedLensId={selectedLensId} />
+  )
 }
 
 export default Lenses
