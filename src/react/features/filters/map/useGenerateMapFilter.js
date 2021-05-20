@@ -1,19 +1,16 @@
 import L from 'leaflet'
 import { useFilter } from '../hooks/useFilter'
 
-function isDefined(number) {
-  return typeof number === 'number'
-}
+function boundsContainsDiory(bounds, { latlng }) {
+  if (!latlng) {
+    return false
+  }
 
-function boundsContainsDiory(bounds, { latitude, longitude }) {
-  return (
-    isDefined(latitude) &&
-    isDefined(longitude) &&
-    L.latLngBounds(bounds).contains({
-      lat: latitude,
-      lng: longitude,
-    })
-  )
+  const [latitude, longitude] = latlng.split(', ')
+  return L.latLngBounds(bounds).contains({
+    lat: parseFloat(latitude),
+    lng: parseFloat(longitude),
+  })
 }
 export const useGenerateMapFilter = () => {
   const { active, bounds } = useFilter('map')
