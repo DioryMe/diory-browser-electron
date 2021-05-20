@@ -33,7 +33,6 @@ Object {
     "date": "2012-05-25T06:10:32.666Z",
     "id": "uuid-10",
     "image": "image-with-24-hour.jpg",
-    "latitude": 51.735696851851856,
     "links": Object {
       "image-with-24-hour.jpg": Object {
         "id": "uuid-4",
@@ -63,7 +62,6 @@ Object {
         "id": "uuid-0",
       },
     },
-    "longitude": 12.688426296296297,
     "modified": "some-modified",
     "text": "example-folder",
   },
@@ -105,8 +103,7 @@ Object {
     "date": "2019-07-09T00:01:16.000Z",
     "id": "uuid-4",
     "image": "image-with-24-hour.jpg",
-    "latitude": 68.27818055555555,
-    "longitude": 14.302322222222223,
+    "latlng": "68.27818055555555, 14.302322222222223",
     "modified": "some-modified",
   },
   "uuid-5": Object {
@@ -122,8 +119,7 @@ Object {
     "date": "2008-11-01T21:15:11.000Z",
     "id": "uuid-5",
     "image": "some-image.jpg",
-    "latitude": 43.464455,
-    "longitude": 11.881478333333334,
+    "latlng": "43.464455, 11.881478333333334",
     "modified": "some-modified",
   },
   "uuid-6": Object {
@@ -165,8 +161,7 @@ Object {
     "date": "2008-11-01T21:15:11.000Z",
     "id": "uuid-8",
     "image": "some-folder/some-folder-image.jpg",
-    "latitude": 43.464455,
-    "longitude": 11.881478333333334,
+    "latlng": "43.464455, 11.881478333333334",
     "modified": "some-modified",
   },
   "uuid-9": Object {
@@ -174,13 +169,11 @@ Object {
     "date": "2008-11-01T21:15:11.000Z",
     "id": "uuid-9",
     "image": "some-folder/some-folder-image.jpg",
-    "latitude": 43.464455,
     "links": Object {
       "some-folder-image.jpg": Object {
         "id": "uuid-8",
       },
     },
-    "longitude": 11.881478333333334,
     "modified": "some-modified",
     "text": "some-folder",
   },
