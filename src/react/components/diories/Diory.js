@@ -4,9 +4,6 @@ import Box from 'ui-box'
 import { Pane, Icon } from 'evergreen-ui'
 import Image from './Image'
 
-const colors = ['#5bc0eb', '#fcd600', '#9bc53d', '#e55934', '#fa7921']
-const getRandom = (array) => array[Math.floor(Math.random() * array.length)]
-
 const defaultStyle = {
   container: {
     position: 'relative',
@@ -32,7 +29,7 @@ const Diory = ({ diory, onClick, children, ...props }) => {
       {...style}
       onClick={(event) => onClick && onClick({ diory, event })}
     >
-      <Box {...defaultStyle.container} background={getRandom(colors)}>
+      <Box {...defaultStyle.container} background="#fa7921">
         {image && (
           <Image
             image={image}

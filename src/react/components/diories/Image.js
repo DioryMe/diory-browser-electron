@@ -15,7 +15,7 @@ const defaultStyle = {
 }
 
 const getBackgroundImage = (image, gradient, gradientRgba = '255, 255, 255, 0.5') =>
-  gradient
+  gradient && !RegExp('^data:').exec(image)
     ? `linear-gradient(rgba(${gradientRgba}),rgba(${gradientRgba})), url("${convertToFileUrl(
         image
       )}")`
