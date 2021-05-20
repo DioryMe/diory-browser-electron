@@ -1,15 +1,12 @@
 import L from 'leaflet'
 import { convertToFileUrl } from '../../../../utils'
 
-const colors = ['#5bc0eb', '#fcd600', '#9bc53d', '#e55934', '#fa7921']
-const getRandom = (array) => array[Math.floor(Math.random() * array.length)]
-
 const getPopupStyle = ({ image }) =>
   [
     'overflow: hidden',
     'min-width: 400px',
     'min-height: 200px',
-    `background-color: ${getRandom(colors)}`,
+    `background-color: #fa7921`,
     `background-image: url('${convertToFileUrl(image)}')`,
     'background-size: cover',
     'background-position: center',
