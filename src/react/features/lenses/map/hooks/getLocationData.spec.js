@@ -5,12 +5,12 @@ describe('getDioryLocationData', () => {
     it('returns center', () => {
       const { center } = getDioryLocationData({
         diory: {
-          latlng: 'some-latitude, some-longitude',
+          latlng: '12.34, 123.45',
         },
       })
       expect(center).toStrictEqual({
-        lat: 'some-latitude',
-        lng: 'some-longitude',
+        lat: 12.34,
+        lng: 123.45,
       })
     })
 
