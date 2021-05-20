@@ -3,15 +3,19 @@
 const getRandom = (array) => array[Math.floor(Math.random() * array.length)]
 
 const prefix = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42'
-const suffix = 'AAAAABJRU5ErkJggg=='
+const suffix = 'AAAABJRU5ErkJggg=='
 
 const colors = [
-  'mOMPvD6PwAGiwMHcHyXE', // #5bc0eb
-  'mP8c43hPwAHewLTbrmJl', // #fcd600
-  'mOcfdT2PwAGPgKeWQwJu', // #9bc53d
-  'mN8GmnyHwAGEAJzBJT/2', // #e55934
-  'mP8Van4HwAGngKVn65TsQ/2', // #fa7921
-  'mMUMgn7DwACmQGdtDFX8', // #123456
+  'mOMPvD6PwAGiwMHcHyXEA', // #5bc0eb
+  'mP8c43hPwAHewLTbrmJlA', // #fcd600
+  'mOcfdT2PwAGPgKeWQwJuA', // #9bc53d
+  'mN8GmnyHwAGEAJzBJT/2A', // #e55934
+  'mP8Van4HwAGngKVn65TsQ', // #fa7921
+  'mMUMgn7DwACmQGdtDFX8A', // #123456
 ]
 
-export const getDefaultImage = () => `data:image/png;base64,${prefix}${getRandom(colors)}${suffix}`
+const getDefaultImage = () => `data:image/png;base64,${prefix}${getRandom(colors)}${suffix}`
+
+module.exports = {
+  getDefaultImage,
+}
