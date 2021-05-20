@@ -1,6 +1,10 @@
 export const convertRelativePath = (relativePath, connections) => {
   const diographFolderPath = Object.keys(connections).find((path) => connections[path].connected)
 
+  if (RegExp(`^data:`).exec(relativePath)) {
+    return relativePath
+  }
+
   if (RegExp(`^development-content-room/`).exec(relativePath)) {
     return `http://localhost:3300/${relativePath}`
   }
