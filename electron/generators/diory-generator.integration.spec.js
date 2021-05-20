@@ -46,7 +46,14 @@ describe('diograph-generator', () => {
 
       await act()
 
-      expect(Object.keys(generatedDiory)).toEqual(['id', 'text', 'created', 'modified', 'data'])
+      expect(Object.keys(generatedDiory)).toEqual([
+        'id',
+        'text',
+        'image',
+        'created',
+        'modified',
+        'data',
+      ])
       expect(generatedDiory.text).toEqual('some-video.mp4')
       expect(generatedDiory.data).toEqual({
         '@context': 'https://schema.org',
@@ -61,7 +68,14 @@ describe('diograph-generator', () => {
 
       await act()
 
-      expect(Object.keys(generatedDiory)).toEqual(['id', 'text', 'created', 'modified', 'data'])
+      expect(Object.keys(generatedDiory)).toEqual([
+        'id',
+        'text',
+        'image',
+        'created',
+        'modified',
+        'data',
+      ])
       expect(generatedDiory.text).toEqual('some-music.mp3')
       expect(generatedDiory.data).toEqual({
         '@context': 'https://schema.org',
@@ -82,7 +96,14 @@ describe('diograph-generator', () => {
 
         await act()
 
-        expect(Object.keys(generatedDiory)).toEqual(['id', 'text', 'created', 'modified', 'data'])
+        expect(Object.keys(generatedDiory)).toEqual([
+          'id',
+          'text',
+          'image',
+          'created',
+          'modified',
+          'data',
+        ])
         expect(generatedDiory.text).toEqual(`some-document.${extension}`)
         expect(generatedDiory.data).toEqual({
           '@context': 'https://schema.org',
@@ -98,7 +119,14 @@ describe('diograph-generator', () => {
 
       await act()
 
-      expect(Object.keys(generatedDiory)).toEqual(['id', 'text', 'created', 'modified', 'data'])
+      expect(Object.keys(generatedDiory)).toEqual([
+        'id',
+        'text',
+        'image',
+        'created',
+        'modified',
+        'data',
+      ])
       expect(generatedDiory.text).toEqual('some-text.txt')
       expect(generatedDiory.data).toEqual({
         '@context': 'https://schema.org',

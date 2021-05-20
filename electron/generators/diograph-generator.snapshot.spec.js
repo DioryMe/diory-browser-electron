@@ -4,12 +4,14 @@ const { v4: uuid } = require('uuid')
 const { statSync } = require('fs')
 
 const { generateDiograph } = require('./diograph-generator')
+const { getDefaultImage } = require('../../src/shared/getDefaultImage')
 
 jest.mock('uuid')
 jest.mock('fs', () => ({
   ...jest.requireActual('fs'),
   statSync: jest.fn(),
 }))
+jest.mock('../../src/shared/getDefaultImage')
 
 function getNumberOfFilesAndFolders(path) {
   return glob.sync(join(path, '/**/*')).length
@@ -31,6 +33,7 @@ describe('diograph-generator', () => {
         },
       }
       statSync.mockReturnValue(fileStats)
+      getDefaultImage.mockReturnValue('some-default-image')
     })
     it('generates diograph from example folder', async () => {
       const exampleFolderPath = join(__dirname, '../readers/example-folder')
