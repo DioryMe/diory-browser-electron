@@ -11,19 +11,9 @@ export default [
     format: 'string',
   },
   {
-    key: 'style',
-    label: 'Style',
-    format: 'object',
-  },
-  {
-    key: 'latitude',
-    label: 'Latitude',
-    format: 'number',
-  },
-  {
-    key: 'longitude',
-    label: 'Longitude',
-    format: 'number',
+    key: 'latlng',
+    label: 'LatLng',
+    format: 'latlng',
   },
   {
     key: 'date',
@@ -33,6 +23,11 @@ export default [
   {
     key: 'data',
     label: 'Data',
+    format: 'object',
+  },
+  {
+    key: 'style',
+    label: 'Style',
     format: 'object',
   },
 ]
