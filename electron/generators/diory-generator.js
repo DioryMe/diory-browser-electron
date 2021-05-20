@@ -4,12 +4,13 @@ const { statSync } = require('fs')
 const { basename } = require('path')
 const { readFolderMetadata } = require('../readers/folder-reader')
 const { readImage } = require('../readers/image-reader')
+const { getDefaultImage } = require('../../src/shared/getDefaultImage')
 
 function generateDiory({ text, date, image, latitude, longitude, created, modified, data }) {
   return {
     id: uuid(),
     ...(text && { text }),
-    ...(image && { image }),
+    ...(image ? { image } : { image: getDefaultImage() }),
     ...(date && { date }),
     ...(latitude && { latitude }),
     ...(longitude && { longitude }),
@@ -69,7 +70,9 @@ exports.generateDioryFromFile = async function generateDioryFromFile(filePath) {
 }
 
 function getFirstImage(linkedDiorys) {
-  const image = linkedDiorys.map(({ image }) => image).find((image) => image)
+  const image = linkedDiorys
+    .map(({ image }) => image)
+    .find((image) => image && !RegExp('^data:').exec(image))
   return image && { image }
 }
 
