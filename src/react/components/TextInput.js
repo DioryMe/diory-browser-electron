@@ -28,12 +28,23 @@ function validateValue(value, format) {
     }
   }
 
-  if (format === 'number') {
-    return parseFloat(value) && /^-?\d*\.?\d*$/.test(value)
-  }
-
   if (format === 'date') {
     return new Date(value).toString() !== 'Invalid Date'
+  }
+
+  if (format === 'latlng') {
+    const [lat, lng] = value.split(', ')
+    return (
+      value.split(', ').length === 2 &&
+      parseFloat(lat) &&
+      parseFloat(lng) &&
+      parseFloat(lat) >= -90 &&
+      parseFloat(lat) <= 90 &&
+      parseFloat(lng) >= -180 &&
+      parseFloat(lng) <= 180 &&
+      /^-?\d*\.?\d*$/.test(lat) &&
+      /^-?\d*\.?\d*$/.test(lng)
+    )
   }
 
   return true
@@ -46,10 +57,6 @@ function parseValue(value, format) {
 
   if (format === 'object') {
     return JSON.parse(value)
-  }
-
-  if (format === 'number') {
-    return parseFloat(value)
   }
 
   return value
