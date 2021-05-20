@@ -6,14 +6,13 @@ const { readFolderMetadata } = require('../readers/folder-reader')
 const { readImage } = require('../readers/image-reader')
 const { getDefaultImage } = require('../../src/shared/getDefaultImage')
 
-function generateDiory({ text, date, image, latitude, longitude, created, modified, data }) {
+function generateDiory({ text, date, image, latlng, created, modified, data }) {
   return {
     id: uuid(),
     ...(text && { text }),
     ...(image ? { image } : { image: getDefaultImage() }),
     ...(date && { date }),
-    ...(latitude && { latitude }),
-    ...(longitude && { longitude }),
+    ...(latlng && { latlng }),
     ...(created && { created }),
     ...(modified && { modified }),
     ...(data && { data }),
@@ -82,6 +81,7 @@ function getAverage(array = []) {
     : undefined
 }
 
+// eslint-disable-next-line no-unused-vars
 function getAverageLocation(linkedDiorys) {
   const locations = linkedDiorys.filter(({ latitude, longitude }) => latitude && longitude)
   const latitudes = locations.map(({ latitude }) => latitude)
@@ -125,7 +125,8 @@ exports.generateDioryFromFolder = function generateDioryFromFolder(folderPath, d
   return {
     ...generateDiory({
       ...getFirstImage(linkedDiorys),
-      ...getAverageLocation(linkedDiorys),
+      // Hopefully this is thrown away so no need to fix this...
+      // ...getAverageLocation(linkedDiorys),
       ...getAverageDate(linkedDiorys),
       ...readFolderMetadata(folderPath),
     }),

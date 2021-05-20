@@ -113,16 +113,7 @@ describe('diory-generator', () => {
         expect(diory.text).toEqual('some-read-image-text')
       })
 
-      const imageData = [
-        'text',
-        'image',
-        'date',
-        'latitude',
-        'longitude',
-        'created',
-        'modified',
-        'data',
-      ]
+      const imageData = ['text', 'image', 'date', 'latlng', 'created', 'modified', 'data']
 
       imageData.forEach((prop) => {
         it(`sets image ${prop} to diory ${prop}`, async () => {
@@ -201,7 +192,7 @@ describe('diory-generator', () => {
       expect(diory.image).toEqual('first-image')
     })
 
-    const folderData = ['text', 'date', 'latitude', 'longitude', 'created', 'modified']
+    const folderData = ['text', 'date', 'latlng', 'created', 'modified']
 
     folderData.forEach((prop) => {
       it(`sets folder ${prop} to diory ${prop}`, async () => {
