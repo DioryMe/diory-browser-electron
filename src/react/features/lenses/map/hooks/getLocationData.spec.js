@@ -5,8 +5,7 @@ describe('getDioryLocationData', () => {
     it('returns center', () => {
       const { center } = getDioryLocationData({
         diory: {
-          latitude: 'some-latitude',
-          longitude: 'some-longitude',
+          latlng: 'some-latitude, some-longitude',
         },
       })
       expect(center).toStrictEqual({
@@ -19,17 +18,14 @@ describe('getDioryLocationData', () => {
       it('returns min and max locations of diorys', () => {
         const { min, max } = getDioryLocationData({
           diory: {
-            latitude: 0,
-            longitude: 30,
+            latlng: '0, 30',
           },
           diorys: [
             {
-              latitude: 10,
-              longitude: 20,
+              latlng: '10, 20',
             },
             {
-              latitude: 20,
-              longitude: 10,
+              latlng: '20, 10',
             },
           ],
         })
@@ -48,31 +44,31 @@ describe('getDioryLocationData', () => {
   describe('given no diory location', () => {
     const noDioryLocation = [
       {
-        latitude: undefined,
-        longitude: undefined,
+        latlng: undefined,
       },
-      {
-        latitude: 'some-latitude',
-      },
-      {
-        longitude: 'some-longitude',
-      },
-      {
-        latitude: undefined,
-        longitude: 'some-longitude',
-      },
-      {
-        latitude: NaN,
-        longitude: 'some-longitude',
-      },
-      {
-        latitude: null,
-        longitude: 'some-longitude',
-      },
-      {
-        latitude: '',
-        longitude: 'some-longitude',
-      },
+      // Not valid scenarios when we validate format / input data
+      // {
+      //   latitude: 'some-latitude',
+      // },
+      // {
+      //   longitude: 'some-longitude',
+      // },
+      // {
+      //   latitude: undefined,
+      //   longitude: 'some-longitude',
+      // },
+      // {
+      //   latitude: NaN,
+      //   longitude: 'some-longitude',
+      // },
+      // {
+      //   latitude: null,
+      //   longitude: 'some-longitude',
+      // },
+      // {
+      //   latitude: '',
+      //   longitude: 'some-longitude',
+      // },
     ]
 
     noDioryLocation.forEach((diory) => {
@@ -85,7 +81,7 @@ describe('getDioryLocationData', () => {
     it('returns false center', () => {
       const { center } = getDioryLocationData({
         diory: {
-          longitude: 'some-longitude',
+          latlng: undefined,
         },
       })
       expect(center).toBe(false)
@@ -96,12 +92,10 @@ describe('getDioryLocationData', () => {
         const { center } = getDioryLocationData({
           diorys: [
             {
-              latitude: 10,
-              longitude: 20,
+              latlng: '10, 20',
             },
             {
-              latitude: 20,
-              longitude: 10,
+              latlng: '20, 10',
             },
           ],
         })
@@ -113,12 +107,10 @@ describe('getDioryLocationData', () => {
         const { min, max } = getDioryLocationData({
           diorys: [
             {
-              latitude: 10,
-              longitude: 20,
+              latlng: '10, 20',
             },
             {
-              latitude: 20,
-              longitude: 10,
+              latlng: '20, 10',
             },
           ],
         })
@@ -132,6 +124,84 @@ describe('getDioryLocationData', () => {
           lng: 20,
         })
       })
+<<<<<<< HEAD
+=======
+
+      // Hopefully these interpolations will be thrown away so no need to convert them...
+      // - uses interpolateLocation from getLocationData
+
+      // describe('given diory with date between diorys dates', () => {
+      //   it('interpolates diory location using diorys locations and date', () => {
+      //     const { center } = getDioryLocationData({
+      //       diory: {
+      //         date: '2020-01-01T00:00:00Z',
+      //       },
+      //       diorys: [
+      //         {
+      //           date: '2016-01-01T00:00:00Z',
+      //           latlng: '10, 20',
+      //         },
+      //         {
+      //           date: '2021-01-01T00:00:00Z',
+      //           latlng: '20, 20',
+      //         },
+      //       ],
+      //     })
+      //     expect(center).toStrictEqual({
+      //       lat: 17.996715927750408,
+      //       lng: 17.996715927750408,
+      //     })
+      //   })
+      // })
+
+      // describe('given diory with date before diorys dates', () => {
+      //   it('interpolates diory location using diorys locations and date', () => {
+      //     const { center } = getDioryLocationData({
+      //       diory: {
+      //         date: '2019-01-01T00:00:00Z',
+      //       },
+      //       diorys: [
+      //         {
+      //           date: '2020-01-01T00:00:00Z',
+      //           latlng: '10, 10',
+      //         },
+      //         {
+      //           date: '2021-01-01T00:00:00Z',
+      //           latlng: '20, 20',
+      //         },
+      //       ],
+      //     })
+      //     expect(center).toStrictEqual({
+      //       lat: 0.027322404371584952,
+      //       lng: 0.027322404371584952,
+      //     })
+      //   })
+      // })
+
+      // describe('given diory with date after diorys dates', () => {
+      //   it('interpolates diory location using diorys locations and date', () => {
+      //     const { center } = getDioryLocationData({
+      //       diory: {
+      //         date: '2022-01-01T00:00:00Z',
+      //       },
+      //       diorys: [
+      //         {
+      //           date: '2020-01-01T00:00:00Z',
+      //           latlng: '10, 10',
+      //         },
+      //         {
+      //           date: '2021-01-01T00:00:00Z',
+      //           latlng: '20, 20',
+      //         },
+      //       ],
+      //     })
+      //     expect(center).toStrictEqual({
+      //       lat: 29.972677595628415,
+      //       lng: 29.972677595628415,
+      //     })
+      //   })
+      // })
+>>>>>>> cddb2673 (DDA-144: getLocationData to use latlng (instead of latitude & longitude))
     })
   })
 
@@ -141,36 +211,13 @@ describe('getDioryLocationData', () => {
         diorys: [
           {},
           {
-            latitude: 10,
-            longitude: 10,
+            latlng: '10, 10',
           },
           {
-            latitude: 20,
-            longitude: 20,
+            latlng: '20, 20',
           },
           {
-            longitude: 30,
-          },
-        ],
-      },
-      {
-        diorys: [
-          {},
-          {
-            latitude: 10,
-            longitude: 10,
-          },
-          {
-            latitude: 20,
-            longitude: 20,
-          },
-          {
-            latitude: undefined,
-            longitude: undefined,
-          },
-          {
-            latitude: 10,
-            longitude: NaN,
+            latlng: undefined,
           },
         ],
       },
@@ -200,30 +247,10 @@ describe('getDioryLocationData', () => {
         diorys: [
           {},
           {
-            latitude: 10,
+            latlng: undefined,
           },
           {
-            longitude: 10,
-          },
-        ],
-      },
-      {
-        diorys: [
-          {
-            latitude: 10,
-            longitude: null,
-          },
-          {
-            latitude: 20,
-            longitude: '',
-          },
-          {
-            latitude: 10,
-            longitude: undefined,
-          },
-          {
-            latitude: 10,
-            longitude: NaN,
+            latlng: undefined,
           },
         ],
       },
