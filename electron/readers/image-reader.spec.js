@@ -50,14 +50,16 @@ describe('image-reader', () => {
         expect((await act()).date).toEqual('4321-12-34T12:34:56.000Z')
       })
 
-      it('set GPSLatitude description to latitude', async () => {
+      it('set GPSLatitude description as a first part of latlng', async () => {
         tags.GPSLatitude = { description: 'some-GPSLatitude-description' }
-        expect((await act()).latitude).toEqual('some-GPSLatitude-description')
+        tags.GPSLongitude = { description: 'some-GPSLongitude-description' }
+        expect((await act()).latlng.split(', ')[0]).toEqual('some-GPSLatitude-description')
       })
 
-      it('set GPSLongitude description to longitude', async () => {
+      it('set GPSLongitude description as a second part of latlng', async () => {
+        tags.GPSLatitude = { description: 'some-GPSLatitude-description' }
         tags.GPSLongitude = { description: 'some-GPSLongitude-description' }
-        expect((await act()).longitude).toEqual('some-GPSLongitude-description')
+        expect((await act()).latlng.split(', ')[1]).toEqual('some-GPSLongitude-description')
       })
 
       it('set DateCreated or CreateDate to created', async () => {

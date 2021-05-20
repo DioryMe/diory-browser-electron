@@ -33,14 +33,10 @@ function getCreated({ DateCreated, CreateDate }) {
   return created && { created }
 }
 
-function getLatitude({ GPSLatitude = {} }) {
+function getLatLng({ GPSLatitude = {}, GPSLongitude = {} }) {
   const latitude = GPSLatitude.description
-  return latitude && { latitude }
-}
-
-function getLongitude({ GPSLongitude = {} }) {
   const longitude = GPSLongitude.description
-  return longitude && { longitude }
+  return latitude && longitude && { latlng: `${latitude}, ${longitude}` }
 }
 
 async function generateSchema(tags, imagePath) {
@@ -64,8 +60,7 @@ exports.readImage = async function readImage(imagePath) {
       text: undefined,
       image: imagePath,
       ...getDate(tags),
-      ...getLatitude(tags),
-      ...getLongitude(tags),
+      ...getLatLng(tags),
       ...getCreated(tags),
       data: {
         ...(await generateSchema(tags, imagePath)),
