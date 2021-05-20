@@ -1,21 +1,22 @@
 const concat = (array = [], item) => (typeof item !== 'undefined' ? array.concat(item) : array)
 
 const getDioryLocation = ({ diory, diorys }) => {
-  const { longitude, latitude } = diory
-  if (longitude && latitude) {
+  // eslint-disable-next-line no-unused-vars
+  const { latlng } = diory
+  if (latlng) {
+    const [latitude, longitude] = latlng.split(', ')
     return {
       longitude,
       latitude,
     }
   }
-
   return {}
 }
 
 export const getDioryLocationData = ({ diory = {}, diorys = [] }) => {
-  const locations = diorys.filter(({ latitude, longitude }) => latitude && longitude)
-  const latitudes = locations.map(({ latitude }) => latitude)
-  const longitudes = locations.map(({ longitude }) => longitude)
+  const locations = diorys.filter(({ latlng }) => latlng)
+  const latitudes = locations.map(({ latlng }) => latlng.split(', ')[0])
+  const longitudes = locations.map(({ latlng }) => latlng.split(', ')[1])
   const { latitude, longitude } = getDioryLocation({ diory, diorys })
 
   return {
@@ -26,12 +27,12 @@ export const getDioryLocationData = ({ diory = {}, diorys = [] }) => {
         lng: longitude,
       },
     min: !!locations.length && {
-      lat: Math.min(...concat(latitudes, diory.latitude)),
-      lng: Math.min(...concat(longitudes, diory.longitude)),
+      lat: Math.min(...concat(latitudes, diory.latlng && diory.latlng.split(', ')[0])),
+      lng: Math.min(...concat(longitudes, diory.latlng && diory.latlng.split(', ')[1])),
     },
     max: !!locations.length && {
-      lat: Math.max(...concat(latitudes, diory.latitude)),
-      lng: Math.max(...concat(longitudes, diory.longitude)),
+      lat: Math.max(...concat(latitudes, diory.latlng && diory.latlng.split(', ')[0])),
+      lng: Math.max(...concat(longitudes, diory.latlng && diory.latlng.split(', ')[1])),
     },
   }
 }
