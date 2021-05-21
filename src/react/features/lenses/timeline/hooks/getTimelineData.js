@@ -29,13 +29,13 @@ const getDioryTimelineData = ({ diory = {}, diorys = [], parent }) => {
       lat: 0,
       lng,
     },
-    min: dateLongitudes.length > 1 && {
+    min: {
       lat: 0,
-      lng: Math.min(...concat(dateLongitudes, lng)),
+      lng: dateLongitudes.length > 1 ? Math.min(...concat(dateLongitudes, lng)) : 200,
     },
-    max: dateLongitudes.length > 1 && {
+    max: {
       lat: 0,
-      lng: Math.max(...concat(dateLongitudes, lng)),
+      lng: dateLongitudes.length > 1 ? Math.max(...concat(dateLongitudes, lng)) : 550,
     },
   }
 }
