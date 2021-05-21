@@ -81,15 +81,13 @@ function getAverage(array = []) {
     : undefined
 }
 
-// eslint-disable-next-line no-unused-vars
 function getAverageLocation(linkedDiorys) {
-  const locations = linkedDiorys.filter(({ latitude, longitude }) => latitude && longitude)
-  const latitudes = locations.map(({ latitude }) => latitude)
-  const longitudes = locations.map(({ longitude }) => longitude)
+  const locations = linkedDiorys.filter(({ latlng }) => latlng)
+  const latitudes = locations.map(({ latlng }) => latlng.split(', ')[0])
+  const longitudes = locations.map(({ latlng }) => latlng.split(', ')[1])
   return (
     locations.length && {
-      latitude: getAverage(latitudes),
-      longitude: getAverage(longitudes),
+      latlng: `${getAverage(latitudes)}, ${getAverage(longitudes)}`,
     }
   )
 }
@@ -125,8 +123,7 @@ exports.generateDioryFromFolder = function generateDioryFromFolder(folderPath, d
   return {
     ...generateDiory({
       ...getFirstImage(linkedDiorys),
-      // Hopefully this is thrown away so no need to fix this...
-      // ...getAverageLocation(linkedDiorys),
+      ...getAverageLocation(linkedDiorys),
       ...getAverageDate(linkedDiorys),
       ...readFolderMetadata(folderPath),
     }),
