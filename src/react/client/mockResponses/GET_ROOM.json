@@ -190,7 +190,7 @@
     "hameenkatu": {
       "id": "hameenkatu",
       "image": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Tampere_Hameenkatu.png",
-      "latlng": "61.49785379059735,23.762902021408085",
+      "latlng": "61.49785379059735, 23.762902021408085",
       "modified": "2020-01-03T21:44:58.285Z",
       "text": "Hämeenkatu"
     },
