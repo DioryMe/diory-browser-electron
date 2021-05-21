@@ -1,6 +1,3 @@
-const getAverage = (array = []) =>
-  array.length ? array.reduce((a, b) => parseFloat(a) + parseFloat(b), 0) / array.length : undefined
-
 const concat = (array = [], item) => (typeof item !== 'undefined' ? array.concat(item) : array)
 
 export const getDateLongitude = ({ date }) =>
@@ -17,19 +14,6 @@ const getDioryDateLongitude = ({ diory, diorys, parent }) => {
   if (date) {
     return {
       lng: getDateLongitude({ date }),
-    }
-  }
-  const dioryDateLongitudes = diorys.filter(({ date }) => date).map(getDateLongitude)
-
-  if (dioryDateLongitudes.length) {
-    return {
-      lng: getAverage(dioryDateLongitudes),
-    }
-  }
-
-  if (parent && parent.date) {
-    return {
-      lng: getDateLongitude(parent) + diorys.indexOf(diory) * 0.001,
     }
   }
 
