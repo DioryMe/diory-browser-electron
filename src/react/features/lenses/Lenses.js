@@ -19,8 +19,8 @@ const prepareDiory = (diory, connections) => {
   if (preparedDiory) {
     preparedDiory.image = convertRelativePath(preparedDiory.image, connections)
     if (preparedDiory.data) {
-      preparedDiory.data.contentUrl = convertRelativePath(
-        preparedDiory.data.contentUrl,
+      preparedDiory.data[0].contentUrl = convertRelativePath(
+        preparedDiory.data[0].contentUrl,
         connections
       )
     }

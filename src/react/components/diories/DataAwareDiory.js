@@ -14,7 +14,7 @@ const renderImage = ({ diory }) => {
   }
   return (
     <Image
-      image={diory.data && diory.data.contentUrl}
+      image={diory.data && diory.data[0].contentUrl}
       style={imageStyle}
       gradient={Boolean(diory.text)}
       gradientRgba="0, 0, 0, 0.2"
@@ -23,26 +23,28 @@ const renderImage = ({ diory }) => {
 }
 
 const renderVideo = ({ diory }) => (
-  <Video video={diory.data && diory.data.contentUrl} style={diory.style && diory.style.video} />
+  <Video video={diory.data && diory.data[0].contentUrl} style={diory.style && diory.style.video} />
 )
 
 const renderIframe = ({ diory }) => (
   <iframe
     title="content-in-browser"
-    src={diory.data && diory.data.contentUrl}
+    src={diory.data && diory.data[0].contentUrl}
     height="100%"
     width="100%"
   />
 )
 
 const renderWebpage = ({ diory }) => (
-  <iframe title="web-browser" src={diory.data && diory.data.url} height="100%" width="100%" />
+  <iframe title="web-browser" src={diory.data && diory.data[0].url} height="100%" width="100%" />
 )
 
 const renderExternalApplicationButton = ({ diory }) => (
   <button
     type="submit"
-    onClick={() => invokeChannel('openInExternalApplication', diory.data && diory.data.contentUrl)}
+    onClick={() =>
+      invokeChannel('openInExternalApplication', diory.data && diory.data[0].contentUrl)
+    } // eslint-disable-line react/jsx-curly-newline
   >
     Open in external application
   </button>
@@ -50,7 +52,7 @@ const renderExternalApplicationButton = ({ diory }) => (
 
 const DataAwareDiory = (props) => {
   const { diory } = props
-  const mimeType = diory.data && diory.data.encodingFormat
+  const mimeType = diory.data && diory.data[0].encodingFormat
   switch (mimeType) {
     case 'image/jpeg':
       return renderImage(props)
@@ -65,13 +67,13 @@ const DataAwareDiory = (props) => {
     case 'application/pdf':
       return renderIframe(props)
     default:
-      if (diory.data && diory.data.url && /^http(s)?:\/\//.exec(diory.data.url)) {
+      if (diory.data && diory.data[0].url && /^http(s)?:\/\//.exec(diory.data[0].url)) {
         return renderWebpage(props)
       }
-      if (diory.data && diory.data.contentUrl && /\.html?$/.exec(diory.data.contentUrl)) {
+      if (diory.data && diory.data[0].contentUrl && /\.html?$/.exec(diory.data[0].contentUrl)) {
         return renderIframe(props)
       }
-      if (diory.data && diory.data.contentUrl) {
+      if (diory.data && diory.data[0].contentUrl) {
         return renderExternalApplicationButton(props)
       }
       return <Diory {...props} />
