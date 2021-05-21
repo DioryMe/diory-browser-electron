@@ -5,8 +5,9 @@ export const getUntrackedDiory = (diory) => {
   if (untrackedLinks) {
     diory.links = { ...untrackedLinks }
   }
-  if (diory.data) {
-    diory.data = diory.data.map((untrackedData) => ({ ...getUntrackedObject(untrackedData) }))
+  const untrackedData = getUntrackedObject(diory.data)
+  if (untrackedData) {
+    diory.data = [{ ...untrackedData[0] }]
   }
   return diory
 }
