@@ -171,7 +171,9 @@
         }
       },
       "modified": "2020-01-03T21:44:25.345Z",
-      "text": "Tampere"
+      "text": "Tampere",
+      "latitude": 61.49960404266185,
+      "longitude": 23.762183189392093
     },
     "keskustori": {
       "id": "keskustori",

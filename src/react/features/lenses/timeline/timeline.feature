@@ -13,16 +13,16 @@ Feature: Timeline lens
   # 3. Currently timeline crashes if none of the diorys in view has dates
 
   Scenario: Shows marker for each diory on view (although not all of them have dates)
-    Then I see 0 focus and 14 linked markers on timeline
+    Then I see 0 focus and 11 linked markers on timeline
 
   # FIXME: Should identify the marker to be clicked => now takes to Kayaking at Potomac just because it's the first diory in the view...
   Scenario: Shows popup when clicking marker and clicking popup takes diory in focus
     When I navigate backward
-    And I see 0 focus and 3 linked markers on timeline
+    And I see 0 focus and 1 linked markers on timeline
     And I click 'Kayaking at Potomac' marker
     And I see 'Kayaking at Potomac' in view
     And I click 'Kayaking at Potomac' popup on timeline
-    Then I see 0 focus and 14 linked markers on timeline
+    Then I see 0 focus and 11 linked markers on timeline
 
   @pending
   Scenario: Selecting tool

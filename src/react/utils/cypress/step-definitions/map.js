@@ -8,7 +8,7 @@ When('I click {string} marker', (dioryName) => {
 When('I drag marker on the map', () => {
   // FIXME: Should identify the marker to be clicked
   // => now requires to have only one marker
-  cy.get('img[data-testid=linked-diory-marker]').should('have.length', 1)
+  cy.get('img[data-testid=linked-diory-marker]').should('have.length', 2)
   cy.get('img[data-testid=linked-diory-marker]')
     .first()
     .trigger('mousedown', { which: 1, force: true })
