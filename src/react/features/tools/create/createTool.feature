@@ -65,25 +65,39 @@ Feature: Create tool
     When I add 'not an object' to style field
     Then I see 'Invalid object' in view
 
-  # Longitude
-  Scenario: Create longitude
-    When I add '123' to longitude field
+  # Latlng
+  Scenario: Create latlng
+    When I add '12, 123' to latlng field
     And I add 'Some diory' to text field
     And I click Done button
     And I select tools button
     And I select update button
     And I take 'Some diory' in focus
-    Then I see '123' in longitude field
+    Then I see '12, 123' in latlng field
 
-  # Latitude
-  Scenario: Create latitude
-    When I add '234' to latitude field
-    And I add 'Some diory' to text field
-    And I click Done button
-    And I select tools button
-    And I select update button
-    And I take 'Some diory' in focus
-    Then I see '234' in latitude field
+  Scenario: Invalid latlng (string structure)
+    When I add '12,123' to latlng field
+    Then I see 'Invalid latlng' in view
+
+  Scenario: Invalid latlng (no letters)
+    When I add 'one, 123' to latlng field
+    Then I see 'Invalid latlng' in view
+
+  Scenario: Invalid latitude (max = 90)
+    When I add '123, 123' to latlng field
+    Then I see 'Invalid latlng' in view
+
+  Scenario: Invalid latitude (min = -90)
+    When I add '-123, 123' to latlng field
+    Then I see 'Invalid latlng' in view
+
+  Scenario: Invalid longitude (max = 180)
+    When I add '12, 1234' to latlng field
+    Then I see 'Invalid latlng' in view
+
+  Scenario: Invalid latitude (min = -180)
+    When I add '12, -1234' to latlng field
+    Then I see 'Invalid latlng' in view
 
   # Date
   Scenario: Create date
