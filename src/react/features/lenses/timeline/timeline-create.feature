@@ -17,7 +17,7 @@ Feature: Creating content to Timeline lens
     And I add '2020-11-23' to date field
     And I click Done button
     And I select timeline lens
-    Then I see 0 focus and 5 linked marker on timeline
+    Then I see 0 focus and 1 linked marker on timeline
 
   # Should the diory in focus appear on timeline?
   # Scenario: createTool created diory appears on timeline (in focus)
