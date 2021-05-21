@@ -9,7 +9,7 @@ export const useDragging = (mapRef, enableDragging, onDragEnd) => {
             marker.dragging.enable()
             marker.on('dragend', () => {
               const { lat: latitude, lng: longitude } = marker.getLatLng()
-              onDragEnd({ id: marker.dioryId, latitude, longitude })
+              onDragEnd({ id: marker.dioryId, latlng: `${latitude}, ${longitude}` })
             })
           } else {
             marker.dragging.disable()
