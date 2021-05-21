@@ -18,7 +18,7 @@ export const useMapClick = (mapRef, onMapClick) => {
       mapRef.current.on('click', ({ latlng: { lat, lng } }) => {
         const tileUrl = getTileURL({ lat, lng, zoom: mapRef.current.getZoom() })
         const image = `http://a.tile.osm.org/${tileUrl}.png`
-        onMapClick({ image, latitude: lat, longitude: lng })
+        onMapClick({ image, latlng: `${lat}, ${lng}` })
       })
     }
   }, [mapRef, onMapClick])
