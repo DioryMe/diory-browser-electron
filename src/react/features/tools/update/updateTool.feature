@@ -74,13 +74,13 @@ Feature: Update tool
     Then I see 'Invalid object' in view
 
   # Latlng
-  Scenario: Update longitude
-    When I add '12, 12' to longitude field
+  Scenario: Update latlng
+    When I add '12, 12' to latlng field
     And I click Done button
     And I select tools button
     And I select update button
     And I take 'Diory 11' in focus
-    Then I see '12, 12' in longitude field
+    Then I see '12, 12' in latlng field
 
   # Date
   Scenario: Update date
