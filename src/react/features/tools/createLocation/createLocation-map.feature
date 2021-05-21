@@ -6,8 +6,8 @@ Feature: Create location tool on map
     And I select map lens
     And I select tools button
     And I select create button
-    And I see 0 focus and 1 linked markers on map
+    And I see 0 focus and 2 linked markers on map
 
   Scenario: createLocationTool created diory appears on map
     When I click bottom on the map
-    Then I see 1 focus and 3 linked markers on map
+    Then I see 0 focus and 3 linked markers on map
