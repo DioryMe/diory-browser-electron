@@ -84,8 +84,7 @@ Feature: Map lens
     And I select tools button
     And I select update button
     And I take 'Helvetinjärven kansallispuisto' in focus
-    Then I do not see '62' in latitude field
-    And I do not see '24' in longitude field
+    Then I do not see '62, 24' in latlng field
 
   @pending
   Scenario: Removing diory from map

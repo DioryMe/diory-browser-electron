@@ -73,31 +73,14 @@ Feature: Update tool
     When I add 'not an object' to style field
     Then I see 'Invalid object' in view
 
-  # Longitude
+  # Latlng
   Scenario: Update longitude
-    When I add '123' to longitude field
+    When I add '12, 12' to longitude field
     And I click Done button
     And I select tools button
     And I select update button
     And I take 'Diory 11' in focus
-    Then I see '123' in longitude field
-
-  Scenario: Invalid number
-    When I add 'asdfasdf' to longitude field
-    Then I see 'Invalid number' in view
-
-  # Latitude
-  Scenario: Update latitude
-    When I add '234' to latitude field
-    And I click Done button
-    And I select tools button
-    And I select update button
-    And I take 'Diory 11' in focus
-    Then I see '234' in latitude field
-
-  Scenario: Invalid number
-    When I add '12.12.12' to latitude field
-    Then I see 'Invalid number' in view
+    Then I see '12, 12' in longitude field
 
   # Date
   Scenario: Update date
