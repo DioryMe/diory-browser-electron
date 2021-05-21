@@ -7,10 +7,11 @@ import Icon from './Icon'
 import { invokeChannel } from '../client/client'
 
 const DioryActions = ({ diory, onDrop, onClick, style }) => {
-  const showItemInFolder = () => invokeChannel('openInFinder', diory.data && diory.data.contentUrl)
+  const showItemInFolder = () =>
+    invokeChannel('openInFinder', diory.data && diory.data[0].contentUrl)
   return (
     <Box style={style}>
-      {diory.data && diory.data.contentUrl && (
+      {diory.data && diory.data[0].contentUrl && (
         <Box type="submit" onClick={showItemInFolder} marginBottom={4}>
           <Icon size={32} icon="folder" marginLeft={4} marginRight={4} />
         </Box>
