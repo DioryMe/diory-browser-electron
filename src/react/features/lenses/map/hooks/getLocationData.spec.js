@@ -46,29 +46,6 @@ describe('getDioryLocationData', () => {
       {
         latlng: undefined,
       },
-      // Not valid scenarios when we validate format / input data
-      // {
-      //   latitude: 'some-latitude',
-      // },
-      // {
-      //   longitude: 'some-longitude',
-      // },
-      // {
-      //   latitude: undefined,
-      //   longitude: 'some-longitude',
-      // },
-      // {
-      //   latitude: NaN,
-      //   longitude: 'some-longitude',
-      // },
-      // {
-      //   latitude: null,
-      //   longitude: 'some-longitude',
-      // },
-      // {
-      //   latitude: '',
-      //   longitude: 'some-longitude',
-      // },
     ]
 
     noDioryLocation.forEach((diory) => {
@@ -124,84 +101,6 @@ describe('getDioryLocationData', () => {
           lng: 20,
         })
       })
-<<<<<<< HEAD
-=======
-
-      // Hopefully these interpolations will be thrown away so no need to convert them...
-      // - uses interpolateLocation from getLocationData
-
-      // describe('given diory with date between diorys dates', () => {
-      //   it('interpolates diory location using diorys locations and date', () => {
-      //     const { center } = getDioryLocationData({
-      //       diory: {
-      //         date: '2020-01-01T00:00:00Z',
-      //       },
-      //       diorys: [
-      //         {
-      //           date: '2016-01-01T00:00:00Z',
-      //           latlng: '10, 20',
-      //         },
-      //         {
-      //           date: '2021-01-01T00:00:00Z',
-      //           latlng: '20, 20',
-      //         },
-      //       ],
-      //     })
-      //     expect(center).toStrictEqual({
-      //       lat: 17.996715927750408,
-      //       lng: 17.996715927750408,
-      //     })
-      //   })
-      // })
-
-      // describe('given diory with date before diorys dates', () => {
-      //   it('interpolates diory location using diorys locations and date', () => {
-      //     const { center } = getDioryLocationData({
-      //       diory: {
-      //         date: '2019-01-01T00:00:00Z',
-      //       },
-      //       diorys: [
-      //         {
-      //           date: '2020-01-01T00:00:00Z',
-      //           latlng: '10, 10',
-      //         },
-      //         {
-      //           date: '2021-01-01T00:00:00Z',
-      //           latlng: '20, 20',
-      //         },
-      //       ],
-      //     })
-      //     expect(center).toStrictEqual({
-      //       lat: 0.027322404371584952,
-      //       lng: 0.027322404371584952,
-      //     })
-      //   })
-      // })
-
-      // describe('given diory with date after diorys dates', () => {
-      //   it('interpolates diory location using diorys locations and date', () => {
-      //     const { center } = getDioryLocationData({
-      //       diory: {
-      //         date: '2022-01-01T00:00:00Z',
-      //       },
-      //       diorys: [
-      //         {
-      //           date: '2020-01-01T00:00:00Z',
-      //           latlng: '10, 10',
-      //         },
-      //         {
-      //           date: '2021-01-01T00:00:00Z',
-      //           latlng: '20, 20',
-      //         },
-      //       ],
-      //     })
-      //     expect(center).toStrictEqual({
-      //       lat: 29.972677595628415,
-      //       lng: 29.972677595628415,
-      //     })
-      //   })
-      // })
->>>>>>> cddb2673 (DDA-144: getLocationData to use latlng (instead of latitude & longitude))
     })
   })
 

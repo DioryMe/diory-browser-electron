@@ -62,22 +62,6 @@ describe('useGenerateMapFilter', () => {
         })
       })
     })
-
-    // Not valid scenarios when we validate format / input data
-
-    // describe('given diory do not have latitude', () => {
-    //   it('returns true', () => {
-    //     const mapFilter = useGenerateMapFilter()
-    //     expect(mapFilter({ latlng: '15, 15' })).toEqual(false)
-    //   })
-    // })
-
-    // describe('given diory do not have longitude', () => {
-    //   it('returns true', () => {
-    //     const mapFilter = useGenerateMapFilter()
-    //     expect(mapFilter({ latlng: '15, 15' })).toEqual(false)
-    //   })
-    // })
   })
 
   describe('given map filter is active and does not have bounds', () => {
