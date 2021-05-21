@@ -114,12 +114,12 @@ Feature: Update tool
 
   # Data
   Scenario: Update data
-    When I add '{"some":"object"}' to data field
+    When I add '[{"some":"object"}]' to data field
     And I click Done button
     And I select tools button
     And I select update button
     And I take 'Diory 11' in focus
-    Then I see '{"some":"object"}' in data field
+    Then I see '[{"some":"object"}]' in data field
 
   Scenario: Invalid style
     When I add 'not an object' to data field

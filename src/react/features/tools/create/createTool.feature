@@ -97,13 +97,13 @@ Feature: Create tool
 
   # Data
   Scenario: Create data
-    When I add '{"some":"object"}' to data field
+    When I add '[{"some":"object"}]' to data field
     And I add 'Some diory' to text field
     And I click Done button
     And I select tools button
     And I select update button
     And I take 'Some diory' in focus
-    Then I see '{"some":"object"}' in data field
+    Then I see '[{"some":"object"}]' in data field
 
   Scenario: Invalid style
     When I add 'not an object' to data field
