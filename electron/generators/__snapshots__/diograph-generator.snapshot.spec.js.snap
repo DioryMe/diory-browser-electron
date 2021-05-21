@@ -33,6 +33,7 @@ Object {
     "date": "2012-05-25T06:10:32.666Z",
     "id": "uuid-10",
     "image": "image-with-24-hour.jpg",
+    "latlng": "51.735696851851856, 12.688426296296297",
     "links": Object {
       "image-with-24-hour.jpg": Object {
         "id": "uuid-4",
@@ -169,6 +170,7 @@ Object {
     "date": "2008-11-01T21:15:11.000Z",
     "id": "uuid-9",
     "image": "some-folder/some-folder-image.jpg",
+    "latlng": "43.464455, 11.881478333333334",
     "links": Object {
       "some-folder-image.jpg": Object {
         "id": "uuid-8",
