@@ -36,7 +36,7 @@ Object.keys(diograph).forEach((dioryId) => {
   }
 
   // 3. data attribute from object to an array
-  if (typeof diory.data === 'object') {
+  if (typeof diory.data === 'object' && !Array.isArray(diory.data)) {
     diory.data = [diory.data]
     changesCount += 1
     console.log('diory.data object migrated into an array', diory)
