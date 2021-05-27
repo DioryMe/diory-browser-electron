@@ -9,9 +9,9 @@ const BackgroundDiory = ({ diory, gradient, gradientRgba, onClick, children, ...
   const { id, text, image, style: dioryStyle = {} } = diory
   const { text: textStyle, image: imageStyle, ...style } = dioryStyle
   const [, drag] = useDrag({
+    type: 'DIORY',
     item: {
       id: diory.id,
-      type: 'DIORY',
     },
   })
 
