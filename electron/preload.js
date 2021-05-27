@@ -21,11 +21,10 @@ contextBridge.exposeInMainWorld('channelsApi', {
   openInFinder: () => shell.showItemInFolder,
   openInExternalApplication: () => shell.openPath,
   showOpenDialog: () => dialog.showOpenDialog,
+  frontendLogger: frontendLogger.functions,
 })
 
 contextBridge.exposeInMainWorld('processEnv', {
   TESTCAFE_TEST: process.env.TESTCAFE_TEST,
   PWD: process.env.PWD,
 })
-
-contextBridge.exposeInMainWorld('frontendLogger', () => frontendLogger.functions)

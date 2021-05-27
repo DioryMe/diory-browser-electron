@@ -1,7 +1,12 @@
 import { mockResponse } from './client.mock'
 import { invokeAlertDialog } from './alertDialog'
 
-let frontendLogger = window.frontendLogger()
+let frontendLogger
+
+if (window.channelsApi) {
+  // eslint-disable-next-line prefer-destructuring
+  frontendLogger = window.channelsApi.frontendLogger
+}
 
 if (process.env.NODE_ENV === 'test') {
   frontendLogger = { info: () => {}, error: () => {} }
