@@ -99,6 +99,10 @@ Feature: Create tool
     When I add '12, -1234' to latlng field
     Then I see 'Invalid latlng' in view
 
+  Scenario: Invalid latitude (extra dot)
+    When I add '12., 123' to latlng field
+    Then I see 'Invalid latlng' in view
+
   # Date
   Scenario: Create date
     When I add '2020-11-01' to date field
