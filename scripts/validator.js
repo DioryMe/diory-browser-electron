@@ -1,5 +1,11 @@
 const fs = require('fs')
 
+const stringAttributes = ['id', 'text', 'image', 'latlng']
+const dateAttributes = ['date', 'created', 'modified', 'deleted']
+const objectAttributes = ['style', 'links']
+const arrayAttributes = ['data']
+const allAttributes = [].concat(stringAttributes, dateAttributes, objectAttributes, arrayAttributes)
+
 const diographFolderPath = process.argv[2]
 const diographPath = `${diographFolderPath}/diograph.json`
 
@@ -33,6 +39,13 @@ Object.keys(diograph).forEach((dioryId) => {
     if (diory.latitude || diory.longitude) {
       throw new Error(`Use latlng instead of latitude / longitude`)
     }
+
+    // 3. No extra attributes
+    Object.keys(diory).forEach((attribute) => {
+      if (!allAttributes.includes(attribute)) {
+        throw new Error(`Attribute '${attribute}' is not a diory core attribute`)
+      }
+    })
   } catch (e) {
     errorCount += 1
     console.log('Diory:', diory)
