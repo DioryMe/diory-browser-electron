@@ -1,7 +1,7 @@
 import { mockResponse } from './client.mock'
 import { invokeAlertDialog } from './alertDialog'
 
-let frontendLogger = window.channelsApi.frontendLogger()
+let frontendLogger = window.frontendLogger()
 
 if (process.env.NODE_ENV === 'test') {
   frontendLogger = { info: () => {}, error: () => {} }
