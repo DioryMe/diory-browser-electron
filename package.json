@@ -85,7 +85,7 @@
     "package-mac-rc": "electron-builder build --mac -c.extraMetadata.main=build/electron-main.js --publish never --config electron-builder-rc.json",
     "package-linux": "electron-builder build --linux -c.extraMetadata.main=build/electron-main.js --publish never",
     "package-win": "electron-builder build --win -c.extraMetadata.main=build/electron-main.js --publish never",
-    "eslint": "eslint './*.{js, json}' './scripts/validator.js' './{src,electron}/**/*.{js,jsx,json,css,scss}' --fix",
+    "eslint": "eslint './*.{js, json}' './{src,electron,scripts}/**/*.{js,jsx,json,css,scss}' --fix",
     "prettier": "prettier --write '{electron,src}/**/*.{js,jsx,json,css,scss}'",
     "test": "react-scripts test",
     "test-react": "react-scripts test",
@@ -154,7 +154,7 @@
     "delay": 2000
   },
   "lint-staged": {
-    "{electron,src}/**/*.{js,jsx,json,css,scss}": [
+    "{electron,src,scripts}/**/*.{js,jsx,json,css,scss}": [
       "prettier --write",
       "eslint --fix",
       "git add"

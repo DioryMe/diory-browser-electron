@@ -1,5 +1,5 @@
 const fs = require('fs')
-const rl = require('readline').createInterface(process.stdin, process.stdout);
+const rl = require('readline').createInterface(process.stdin, process.stdout)
 
 const diographFolderPath = process.argv[2]
 const diographPath = `${diographFolderPath}/diograph.json`
@@ -33,22 +33,24 @@ changesCount === 0
   ? console.log('No need to migrate anything, all good!')
   : console.log(`Your diograph needs to be migrated, ${changesCount} changes were made.`)
 
-
 if (changesCount > 0) {
-  rl.question("Write changes to diograph.json? yes/[no]: ", (answer) => {
-    if (answer && (answer === "yes" || answer === 'y')) {
+  rl.question('Write changes to diograph.json? yes/[no]: ', (answer) => {
+    if (answer && (answer === 'yes' || answer === 'y')) {
       const originalDiograph = JSON.parse(raw)
       const migratedDiograph = JSON.parse(raw)
       migratedDiograph.diograph = diograph
-      fs.writeFile(diographPath + `.old-${parseInt(Math.random() * 10e5)}`, JSON.stringify(originalDiograph, null, 2), () => { })
+      fs.writeFile(
+        `${diographPath}.old-${parseInt(Math.random() * 10e5)}`,
+        JSON.stringify(originalDiograph, null, 2),
+        () => {}
+      )
       fs.writeFile(diographPath, JSON.stringify(migratedDiograph, null, 2), () => {
         console.log('Migration done and previous version saved as diograph.json.old!')
       })
     } else {
-      console.log ("No changes were made to diograph.json.");
+      console.log('No changes were made to diograph.json.')
     }
-    rl.close();
-    process.stdin.destroy();
+    rl.close()
+    process.stdin.destroy()
   })
 }
-
