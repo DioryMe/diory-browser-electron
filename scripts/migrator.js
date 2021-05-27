@@ -31,15 +31,19 @@ Object.keys(diograph).forEach((dioryId) => {
 console.log('------ FINAL RESULTS -----')
 changesCount === 0
   ? console.log('No need to migrate anything, all good!')
-  : console.log(`Your diograph was migrated, ${changesCount} changes were made.`)
+  : console.log(`Your diograph needs to be migrated, ${changesCount} changes were made.`)
 
 
 if (changesCount > 0) {
-
   rl.question("Write changes to diograph.json? yes/[no]: ", (answer) => {
-    if(answer && (answer === "yes" || answer === 'y')) {
-      console.log ("Writing...");
-      // fs.writeFile(filename, data, done);
+    if (answer && (answer === "yes" || answer === 'y')) {
+      const originalDiograph = JSON.parse(raw)
+      const migratedDiograph = JSON.parse(raw)
+      migratedDiograph.diograph = diograph
+      fs.writeFile(diographPath + `.old-${parseInt(Math.random() * 10e5)}`, JSON.stringify(originalDiograph, null, 2), () => { })
+      fs.writeFile(diographPath, JSON.stringify(migratedDiograph, null, 2), () => {
+        console.log('Migration done and previous version saved as diograph.json.old!')
+      })
     } else {
       console.log ("No changes were made to diograph.json.");
     }
