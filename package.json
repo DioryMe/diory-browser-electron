@@ -93,7 +93,8 @@
     "test-cypress": "yarn cypress run",
     "storybook": "ESLINT_NO_DEV_ERRORS=true start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "husky install"
   },
   "build": {
     "files": [
@@ -140,11 +141,6 @@
     "semi": false,
     "singleQuote": true,
     "printWidth": 100
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "nodemonConfig": {
     "ignore": [
