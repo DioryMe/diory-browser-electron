@@ -2,11 +2,13 @@ const fs = require('fs')
 
 const diographFolderPath = process.argv[2]
 const diographPath = `${diographFolderPath}/diograph.json`
+
 if (!diographFolderPath || !fs.existsSync(diographPath)) {
   console.log(diographFolderPath)
   throw new Error('Give diographFolder which exists!')
 }
 
+console.log(`Reading and validating ${diographPath}...`)
 const raw = fs.readFileSync(diographPath)
 const diograph = JSON.parse(raw).diograph
 
@@ -20,3 +22,5 @@ Object.keys(diograph).forEach((dioryId) => {
     }
   })
 })
+
+console.log('All good!')
