@@ -46,6 +46,33 @@ Object.keys(diograph).forEach((dioryId) => {
         throw new Error(`Attribute '${attribute}' is not a diory core attribute`)
       }
     })
+
+    // 4. Correct data type for attribute values
+    Object.entries(diory).forEach(([key, value]) => {
+      // String & date
+      if (stringAttributes.includes(key) || dateAttributes.includes(key)) {
+        if (!(typeof value === 'string')) {
+          throw new Error(
+            `Invalid value type for '${key}' attribute: should have been string, was ${typeof value} instead`
+          )
+        }
+      }
+      // Object
+      if (objectAttributes.includes(key) || arrayAttributes.includes(key)) {
+        if (!(typeof value === 'object')) {
+          throw new Error(
+            `Invalid value type for '${key}' attribute: should have been object, was ${typeof value} instead`
+          )
+        }
+      }
+      // TODO: Migrator for data attribute
+      // Array
+      // if (arrayAttributes.includes(key)) {
+      //   if (!(typeof value === 'array')) {
+      //     throw new Error(`Invalid value type for '${key}' attribute: should have been array, was ${typeof value} instead`)
+      //   }
+      // }
+    })
   } catch (e) {
     errorCount += 1
     console.log('Diory:', diory)
