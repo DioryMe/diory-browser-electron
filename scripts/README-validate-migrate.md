@@ -18,6 +18,6 @@ node scripts/migrator.js public/development-content-room
 
 ## What it migrates?
 
-1. Latitude & longitude to latlng
+1. latitude & longitude to latlng
 2. Adds single color background image if image doesn't exist
-3. Data attribute from object to an array
+3. data attribute from object to an array
