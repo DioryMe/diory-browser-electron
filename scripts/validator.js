@@ -58,20 +58,23 @@ Object.keys(diograph).forEach((dioryId) => {
         }
       }
       // Object
-      if (objectAttributes.includes(key) || arrayAttributes.includes(key)) {
-        if (!(typeof value === 'object')) {
+      if (objectAttributes.includes(key)) {
+        if (!(typeof value === 'object') || Array.isArray(value)) {
           throw new Error(
-            `Invalid value type for '${key}' attribute: should have been object, was ${typeof value} instead`
+            `Invalid value type for '${key}' attribute: should have been object, was ${
+              Array.isArray(value) ? 'array' : typeof value
+            } instead`
           )
         }
       }
-      // TODO: Migrator for data attribute
       // Array
-      // if (arrayAttributes.includes(key)) {
-      //   if (!(typeof value === 'array')) {
-      //     throw new Error(`Invalid value type for '${key}' attribute: should have been array, was ${typeof value} instead`)
-      //   }
-      // }
+      if (arrayAttributes.includes(key)) {
+        if (!Array.isArray(value)) {
+          throw new Error(
+            `Invalid value type for '${key}' attribute: should have been array, was ${typeof value} instead`
+          )
+        }
+      }
     })
   } catch (e) {
     errorCount += 1
