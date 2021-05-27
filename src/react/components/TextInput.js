@@ -42,8 +42,8 @@ function validateValue(value, format) {
       parseFloat(lat) <= 90 &&
       parseFloat(lng) >= -180 &&
       parseFloat(lng) <= 180 &&
-      /^-?\d*\.?\d*$/.test(lat) &&
-      /^-?\d*\.?\d*$/.test(lng)
+      /^-?\d+(\.\d+)?$/.test(lat) &&
+      /^-?\d+(\.\d+)?$/.test(lng)
     )
   }
 

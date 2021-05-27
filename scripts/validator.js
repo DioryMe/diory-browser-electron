@@ -32,7 +32,7 @@ Object.keys(diograph).forEach((dioryId) => {
       })
 
     // 2a. latlng has correct structure
-    if (diory.latlng && !RegExp(/^\d{1,3}(\.\d+)?, \d{1,2}(\.\d+)?$/).exec(diory.latlng)) {
+    if (diory.latlng && !RegExp(/^-?\d+(\.\d+)?, ^-?\d+(\.\d+)?$/).exec(diory.latlng)) {
       throw new Error(`latlng has invalid structure`)
     }
     // 2b. No latitude / longitude
