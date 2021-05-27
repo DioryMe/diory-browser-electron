@@ -65,7 +65,12 @@
     "diory11": {
       "id": "diory11",
       "text": "Diory 11",
-      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMUMgn7DwACmQGdtDFX8AAAAABJRU5ErkJggg=="
+      "links": {
+        "link11-to-self": {
+          "id": "diory11"
+        }
+      },
+      "image": ""
     },
     "diory12": {
       "id": "diory12",
