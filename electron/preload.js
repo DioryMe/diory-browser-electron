@@ -1,4 +1,4 @@
-const { contextBridge, dialog } = require('electron')
+const { contextBridge, dialog, shell } = require('electron')
 const frontendLogger = require('electron-log')
 
 const { channels } = require('../src/shared/constants')
@@ -18,10 +18,14 @@ contextBridge.exposeInMainWorld('channelsApi', {
   ),
   [channels.SAVE_ROOM]: eventHandlerWrapper(channels.SAVE_ROOM, saveRoomEventHandler),
   [channels.SAVE_HOME]: eventHandlerWrapper(channels.SAVE_HOME, saveHomeEventHandler),
+  openInFinder: () => shell.showItemInFolder,
+  openInExternalApplication: () => shell.openPath,
   showOpenDialog: () => dialog.showOpenDialog,
-  frontendLogger: () => frontendLogger.functions,
-  processEnv: {
-    TESTCAFE_TEST: process.env.TESTCAFE_TEST,
-    PWD: process.env.PWD,
-  },
 })
+
+contextBridge.exposeInMainWorld('processEnv', {
+  TESTCAFE_TEST: process.env.TESTCAFE_TEST,
+  PWD: process.env.PWD,
+})
+
+contextBridge.exposeInMainWorld('frontendLogger', () => frontendLogger.functions)
