@@ -12,9 +12,8 @@ Updgrading packages should be as easy as possible. We assume that our test suite
     * **NOTE:** After this kind of update everybody should set Node to the specific version on their local machine (e.g. `nvm use 12.13`) (and maybe also somehow update yarn?
     *
     1. Check the Node version of the Electron from [stable releases page](https://www.electronjs.org/releases/stable)
-    1. Change that version to `Dockerfile`, e.g. `FROM node:12.13`
-    1. Change that version for all the Github Actions (search all & replace)
-    1. Update your local node: `nvm use 12.13`
+    1. Change that version to `Dockerfile` and Github Actions (search & replace all e.g. 12.13 -> 14.17)
+    1. Update your local node: `nvm use 14.17`
     1. Install yarn: `npm install -g yarn`
       * Docker image's Dockerfile and YARN_VERSION from [Docker hub](https://github.com/nodejs/docker-node/tree/master/12/stretch) by browsing from commit history)
       *
