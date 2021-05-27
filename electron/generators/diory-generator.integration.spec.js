@@ -29,14 +29,16 @@ describe('diograph-generator', () => {
       const imageContentUrl = `${process.env.INIT_CWD}/electron/readers/example-folder/some-image.jpg`
       expect(generatedDiory.image).toEqual(imageContentUrl)
       expect(generatedDiory.latlng).toEqual('43.464455, 11.881478333333334')
-      expect(generatedDiory.data).toEqual({
-        '@context': 'https://schema.org',
-        '@type': 'ImageObject',
-        contentUrl: imageContentUrl,
-        width: 640,
-        height: 480,
-        encodingFormat: 'image/jpeg',
-      })
+      expect(generatedDiory.data).toEqual([
+        {
+          '@context': 'https://schema.org',
+          '@type': 'ImageObject',
+          contentUrl: imageContentUrl,
+          width: 640,
+          height: 480,
+          encodingFormat: 'image/jpeg',
+        },
+      ])
     })
 
     it('generates diory from video file', async () => {
@@ -53,12 +55,14 @@ describe('diograph-generator', () => {
         'data',
       ])
       expect(generatedDiory.text).toEqual('some-video.mp4')
-      expect(generatedDiory.data).toEqual({
-        '@context': 'https://schema.org',
-        '@type': 'VideoObject',
-        contentUrl: `${process.env.INIT_CWD}/electron/readers/example-folder/some-video.mp4`,
-        encodingFormat: 'video/x-m4v',
-      })
+      expect(generatedDiory.data).toEqual([
+        {
+          '@context': 'https://schema.org',
+          '@type': 'VideoObject',
+          contentUrl: `${process.env.INIT_CWD}/electron/readers/example-folder/some-video.mp4`,
+          encodingFormat: 'video/x-m4v',
+        },
+      ])
     })
 
     it('generates diory from audio file', async () => {
@@ -75,12 +79,14 @@ describe('diograph-generator', () => {
         'data',
       ])
       expect(generatedDiory.text).toEqual('some-music.mp3')
-      expect(generatedDiory.data).toEqual({
-        '@context': 'https://schema.org',
-        '@type': 'AudioObject',
-        contentUrl: `${process.env.INIT_CWD}/electron/readers/example-folder/some-music.mp3`,
-        encodingFormat: 'audio/mpeg',
-      })
+      expect(generatedDiory.data).toEqual([
+        {
+          '@context': 'https://schema.org',
+          '@type': 'AudioObject',
+          contentUrl: `${process.env.INIT_CWD}/electron/readers/example-folder/some-music.mp3`,
+          encodingFormat: 'audio/mpeg',
+        },
+      ])
     })
 
     const documentExtensionsAndMimeTypes = [
@@ -103,12 +109,14 @@ describe('diograph-generator', () => {
           'data',
         ])
         expect(generatedDiory.text).toEqual(`some-document.${extension}`)
-        expect(generatedDiory.data).toEqual({
-          '@context': 'https://schema.org',
-          '@type': 'DigitalDocument',
-          contentUrl: `${process.env.INIT_CWD}/electron/readers/example-folder/some-document.${extension}`,
-          encodingFormat: mimeType,
-        })
+        expect(generatedDiory.data).toEqual([
+          {
+            '@context': 'https://schema.org',
+            '@type': 'DigitalDocument',
+            contentUrl: `${process.env.INIT_CWD}/electron/readers/example-folder/some-document.${extension}`,
+            encodingFormat: mimeType,
+          },
+        ])
       })
     })
 
@@ -126,11 +134,13 @@ describe('diograph-generator', () => {
         'data',
       ])
       expect(generatedDiory.text).toEqual('some-text.txt')
-      expect(generatedDiory.data).toEqual({
-        '@context': 'https://schema.org',
-        '@type': 'DigitalDocument',
-        contentUrl: `${process.env.INIT_CWD}/electron/readers/example-folder/some-text.txt`,
-      })
+      expect(generatedDiory.data).toEqual([
+        {
+          '@context': 'https://schema.org',
+          '@type': 'DigitalDocument',
+          contentUrl: `${process.env.INIT_CWD}/electron/readers/example-folder/some-text.txt`,
+        },
+      ])
     })
   })
 })

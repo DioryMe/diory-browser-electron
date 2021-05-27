@@ -11,6 +11,7 @@ test('select new diograph folder (without diograph.json) and delete it', async (
   const dataFieldValue = Selector('input#data').value
   const welcomeRoomDiory = Selector('div').withExactText('Welcome room!')
   const deleteButton = Selector('button').withText('Delete')
+  const doneButton = Selector('button').withText('Done')
 
   await t
     .expect(dioryCount)
@@ -36,6 +37,7 @@ test('select new diograph folder (without diograph.json) and delete it', async (
     .eql(
       '[{"@context":"https://schema.org","@type":"AudioObject","contentUrl":"some-music.mp3","encodingFormat":"audio/mpeg"}]'
     )
+    .click(doneButton)
     // Delete room
     .click('[data-testid="home"]')
     .click('[data-testid="tools-button"]')

@@ -4,12 +4,14 @@ exports[`diograph-generator generateDiograph generates diograph from example fol
 Object {
   "uuid-0": Object {
     "created": "some-created",
-    "data": Object {
-      "@context": "https://schema.org",
-      "@type": "VideoObject",
-      "contentUrl": "some-video.mp4",
-      "encodingFormat": "video/x-m4v",
-    },
+    "data": Array [
+      Object {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "contentUrl": "some-video.mp4",
+        "encodingFormat": "video/x-m4v",
+      },
+    ],
     "id": "uuid-0",
     "image": "some-default-image",
     "modified": "some-modified",
@@ -17,12 +19,14 @@ Object {
   },
   "uuid-1": Object {
     "created": "some-created",
-    "data": Object {
-      "@context": "https://schema.org",
-      "@type": "DigitalDocument",
-      "contentUrl": "some-document.pdf",
-      "encodingFormat": "application/pdf",
-    },
+    "data": Array [
+      Object {
+        "@context": "https://schema.org",
+        "@type": "DigitalDocument",
+        "contentUrl": "some-document.pdf",
+        "encodingFormat": "application/pdf",
+      },
+    ],
     "id": "uuid-1",
     "image": "some-default-image",
     "modified": "some-modified",
@@ -68,11 +72,13 @@ Object {
   },
   "uuid-2": Object {
     "created": "some-created",
-    "data": Object {
-      "@context": "https://schema.org",
-      "@type": "DigitalDocument",
-      "contentUrl": "some-text.txt",
-    },
+    "data": Array [
+      Object {
+        "@context": "https://schema.org",
+        "@type": "DigitalDocument",
+        "contentUrl": "some-text.txt",
+      },
+    ],
     "id": "uuid-2",
     "image": "some-default-image",
     "modified": "some-modified",
@@ -80,12 +86,14 @@ Object {
   },
   "uuid-3": Object {
     "created": "some-created",
-    "data": Object {
-      "@context": "https://schema.org",
-      "@type": "DigitalDocument",
-      "contentUrl": "some-document.odt",
-      "encodingFormat": "application/vnd.oasis.opendocument.text",
-    },
+    "data": Array [
+      Object {
+        "@context": "https://schema.org",
+        "@type": "DigitalDocument",
+        "contentUrl": "some-document.odt",
+        "encodingFormat": "application/vnd.oasis.opendocument.text",
+      },
+    ],
     "id": "uuid-3",
     "image": "some-default-image",
     "modified": "some-modified",
@@ -93,14 +101,16 @@ Object {
   },
   "uuid-4": Object {
     "created": "some-created",
-    "data": Object {
-      "@context": "https://schema.org",
-      "@type": "ImageObject",
-      "contentUrl": "image-with-24-hour.jpg",
-      "encodingFormat": "image/jpeg",
-      "height": 3000,
-      "width": 4000,
-    },
+    "data": Array [
+      Object {
+        "@context": "https://schema.org",
+        "@type": "ImageObject",
+        "contentUrl": "image-with-24-hour.jpg",
+        "encodingFormat": "image/jpeg",
+        "height": 3000,
+        "width": 4000,
+      },
+    ],
     "date": "2019-07-09T00:01:16.000Z",
     "id": "uuid-4",
     "image": "image-with-24-hour.jpg",
@@ -109,14 +119,16 @@ Object {
   },
   "uuid-5": Object {
     "created": "some-created",
-    "data": Object {
-      "@context": "https://schema.org",
-      "@type": "ImageObject",
-      "contentUrl": "some-image.jpg",
-      "encodingFormat": "image/jpeg",
-      "height": 480,
-      "width": 640,
-    },
+    "data": Array [
+      Object {
+        "@context": "https://schema.org",
+        "@type": "ImageObject",
+        "contentUrl": "some-image.jpg",
+        "encodingFormat": "image/jpeg",
+        "height": 480,
+        "width": 640,
+      },
+    ],
     "date": "2008-11-01T21:15:11.000Z",
     "id": "uuid-5",
     "image": "some-image.jpg",
@@ -125,12 +137,14 @@ Object {
   },
   "uuid-6": Object {
     "created": "some-created",
-    "data": Object {
-      "@context": "https://schema.org",
-      "@type": "AudioObject",
-      "contentUrl": "some-music.mp3",
-      "encodingFormat": "audio/mpeg",
-    },
+    "data": Array [
+      Object {
+        "@context": "https://schema.org",
+        "@type": "AudioObject",
+        "contentUrl": "some-music.mp3",
+        "encodingFormat": "audio/mpeg",
+      },
+    ],
     "id": "uuid-6",
     "image": "some-default-image",
     "modified": "some-modified",
@@ -138,12 +152,14 @@ Object {
   },
   "uuid-7": Object {
     "created": "some-created",
-    "data": Object {
-      "@context": "https://schema.org",
-      "@type": "DigitalDocument",
-      "contentUrl": "some-document.docx",
-      "encodingFormat": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    },
+    "data": Array [
+      Object {
+        "@context": "https://schema.org",
+        "@type": "DigitalDocument",
+        "contentUrl": "some-document.docx",
+        "encodingFormat": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      },
+    ],
     "id": "uuid-7",
     "image": "some-default-image",
     "modified": "some-modified",
@@ -151,14 +167,16 @@ Object {
   },
   "uuid-8": Object {
     "created": "some-created",
-    "data": Object {
-      "@context": "https://schema.org",
-      "@type": "ImageObject",
-      "contentUrl": "some-folder/some-folder-image.jpg",
-      "encodingFormat": "image/jpeg",
-      "height": 480,
-      "width": 640,
-    },
+    "data": Array [
+      Object {
+        "@context": "https://schema.org",
+        "@type": "ImageObject",
+        "contentUrl": "some-folder/some-folder-image.jpg",
+        "encodingFormat": "image/jpeg",
+        "height": 480,
+        "width": 640,
+      },
+    ],
     "date": "2008-11-01T21:15:11.000Z",
     "id": "uuid-8",
     "image": "some-folder/some-folder-image.jpg",

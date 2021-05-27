@@ -81,11 +81,13 @@ describe('diory-generator', () => {
 
       const diory = await act()
 
-      expect(diory.data).toEqual({
-        '@context': 'https://schema.org',
-        '@type': 'DigitalDocument',
-        contentUrl: 'some-filePath',
-      })
+      expect(diory.data).toEqual([
+        {
+          '@context': 'https://schema.org',
+          '@type': 'DigitalDocument',
+          contentUrl: 'some-filePath',
+        },
+      ])
     })
 
     describe('image/* mime type', () => {
