@@ -62,9 +62,11 @@ exports.readImage = async function readImage(imagePath) {
       ...getDate(tags),
       ...getLatLng(tags),
       ...getCreated(tags),
-      data: {
-        ...(await generateSchema(tags, imagePath)),
-      },
+      data: [
+        {
+          ...(await generateSchema(tags, imagePath)),
+        },
+      ],
     }
   } catch (error) {
     console.info(`Error reading image ${imagePath}: ${error}`)

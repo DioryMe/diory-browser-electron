@@ -37,7 +37,7 @@ async function typeSpecificData(filePath) {
 
   const fileType = await FileType.fromFile(filePath)
   if (!fileType || !fileType.mime) {
-    return { data: defaultSchema }
+    return { data: [defaultSchema] }
   }
   defaultSchema.encodingFormat = fileType.mime
 
@@ -56,9 +56,7 @@ async function typeSpecificData(filePath) {
     default:
   }
 
-  return {
-    data: defaultSchema,
-  }
+  return { data: [defaultSchema] }
 }
 
 exports.generateDioryFromFile = async function generateDioryFromFile(filePath) {
