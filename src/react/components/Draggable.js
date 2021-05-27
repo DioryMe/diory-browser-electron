@@ -8,9 +8,9 @@ export const types = {
 
 const Draggable = ({ id, type, children }) => {
   const [, drag] = useDrag({
+    type: types[type],
     item: {
       id,
-      type: types[type],
     },
   })
 
