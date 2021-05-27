@@ -33,6 +33,7 @@ changesCount === 0
   ? console.log('No need to migrate anything, all good!')
   : console.log(`Your diograph needs to be migrated, ${changesCount} changes were made.`)
 
+// Saving & backuping diograph.json
 if (changesCount > 0) {
   rl.question('Write changes to diograph.json? yes/[no]: ', (answer) => {
     if (answer && (answer === 'yes' || answer === 'y')) {
@@ -53,4 +54,7 @@ if (changesCount > 0) {
     rl.close()
     process.stdin.destroy()
   })
+} else {
+  rl.close()
+  process.stdin.destroy()
 }
