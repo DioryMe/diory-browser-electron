@@ -1,3 +1,29 @@
+## 4.1.0 (May 27, 2021)
+
+### DDA-116: Start using ContextBridge + update packages
+- Convert channels to use ContextBridge instead of ipcMain.handle
+- Electron 13.0.1, Node 14.17
+- All the others packages also to the latest versions by May 27
+
+### DDA-144: Diograph format: latlng, data array and colors
+- diory.data as array
+- latlng attribute instead of latitude and longitude
+- Single color image/png;base64 as default image for diories
+- Remove random background-color from Diory component
+
+### DDA-136: Don't interpolate anything
+- Show only diories with dates on timeline
+- Show only diories with locations on map
+- Don't show Filters-diory on timeline or map
+- Default bounds for timeline when there's only 0 or 1 diories with dates
+
+### DDA-86: Relative paths
+- Relative paths in diograph: diory.image & diory.data.contentUrl
+- Prepared diory & diorys before passing them to Lenses
+
+### Other
+- Initial validator and migrator for diograph format
+- Remove unused stuff
 
 ## 3.1.1 (May 6, 2021)
 
