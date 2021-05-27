@@ -1,5 +1,6 @@
 const fs = require('fs')
 const rl = require('readline').createInterface(process.stdin, process.stdout)
+const { getDefaultImage } = require('../src/shared/getDefaultImage')
 
 const diographFolderPath = process.argv[2]
 const diographPath = `${diographFolderPath}/diograph.json`
@@ -25,6 +26,20 @@ Object.keys(diograph).forEach((dioryId) => {
     delete diory.longitude
     changesCount += 1
     console.log('latlng migrated for diory:', diory)
+  }
+
+  // 2. Adds single color background image if image doesn't exist
+  if (diory.image === undefined) {
+    diory.image = getDefaultImage()
+    changesCount += 1
+    console.log('Undefined diory.image migrated to single color image/png;base64', diory)
+  }
+
+  // 3. data attribute from object to an array
+  if (typeof diory.data === 'object') {
+    diory.data = [diory.data]
+    changesCount += 1
+    console.log('diory.data object migrated into an array', diory)
   }
 })
 
