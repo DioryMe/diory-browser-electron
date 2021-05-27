@@ -13,7 +13,7 @@ node scripts/migrator.js public/development-content-room
 1. Every link points to a diory that is part of the diograph
 2. latlng is string with correct structure + no latitude / longitude
 3. No extra attributes
-4. Correct type of values: array, object or string
+4. Correct data type for attribute values: string, object and array
 
 ## What it migrates?
 
