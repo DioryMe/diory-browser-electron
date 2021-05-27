@@ -32,3 +32,6 @@ yarn-error.log*
 src/react/utils/cypress/recordings
 .eslintcache
 out
+
+.husky
+
