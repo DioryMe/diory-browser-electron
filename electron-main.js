@@ -12,6 +12,8 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, 'electron/preload.js'),
       contextIsolation: true,
+      // TODO: Try to get rid of enableRemoteModule: true
+      // - by removing: const { dialog } = require('electron').remote
       enableRemoteModule: true,
     },
   })
