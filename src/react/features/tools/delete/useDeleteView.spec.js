@@ -55,8 +55,11 @@ describe('useDeleteView', () => {
 
       useDeleteView().onDone()
 
-      const { linkedDioryId1, bidirectionalLinkedDioryId3, reverseLinkedDioryId2 } =
-        mockState.diograph.diograph
+      const {
+        linkedDioryId1,
+        bidirectionalLinkedDioryId3,
+        reverseLinkedDioryId2,
+      } = mockState.diograph.diograph
       const expectedDeleteLinksArguments = [
         { fromDiory: focusDiory, toDiory: linkedDioryId1 },
         { fromDiory: focusDiory, toDiory: bidirectionalLinkedDioryId3 },

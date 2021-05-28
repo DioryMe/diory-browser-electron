@@ -8,10 +8,9 @@ import { setFilter } from '../actions'
 const useOnBoundsChange = () => {
   const { active: triggerInitialBoundsOnChange } = useFilter('map')
   const { dispatch } = useDispatchActions()
-  const dispatchSetFilter = useCallback(
-    (bounds) => dispatch(setFilter('map', { bounds })),
-    [dispatch]
-  )
+  const dispatchSetFilter = useCallback((bounds) => dispatch(setFilter('map', { bounds })), [
+    dispatch,
+  ])
 
   return triggerInitialBoundsOnChange && dispatchSetFilter
 }
