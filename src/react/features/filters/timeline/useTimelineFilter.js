@@ -9,10 +9,9 @@ import { setFilter } from '../actions'
 const useOnBoundsChange = () => {
   const { active } = useFilter('timeline')
   const { dispatch } = useDispatchActions()
-  const dispatchSetFilter = useCallback(
-    (dates) => dispatch(setFilter('timeline', { dates })),
-    [dispatch]
-  )
+  const dispatchSetFilter = useCallback((dates) => dispatch(setFilter('timeline', { dates })), [
+    dispatch,
+  ])
   return active && dispatchSetFilter
 }
 export const useTimelineFilter = () => {

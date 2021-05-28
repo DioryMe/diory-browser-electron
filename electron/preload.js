@@ -22,7 +22,7 @@ contextBridge.exposeInMainWorld('channelsApi', {
   openInFinder: (path) => shell.showItemInFolder(path),
   openInExternalApplication: (path) => shell.openPath(path),
   showOpenDialog: () => dialog.showOpenDialog({ properties: ['openDirectory'] }),
-  // frontendLogger: frontendLogger.functions,
+  frontendLogger: frontendLogger.functions,
 })
 
 contextBridge.exposeInMainWorld('processEnv', {

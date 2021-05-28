@@ -24,12 +24,10 @@ export const useDispatchActions = () => {
   const dispatch = useDispatch()
   return {
     dispatch,
-    dispatchAction:
-      (action) =>
-      (...params) => {
-        dispatch(action(...params))
-        return params
-      },
+    dispatchAction: (action) => (...params) => {
+      dispatch(action(...params))
+      return params
+    },
     dispatchPromiseAction: promiseActions(dispatch),
     debounceDispatchPromiseAction: useCallback(
       // Use the same debounce function
