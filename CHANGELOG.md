@@ -1,8 +1,9 @@
 ## 4.1.0 (May 27, 2021)
 
 ### DDA-116: Start using ContextBridge + update packages
-- Convert channels to use ContextBridge instead of ipcMain.handle
 - Electron 13.0.1, Node 14.17
+- Convert channels to use ContextBridge instead of ipcMain.handle
+- Keep Electron remote module because dialog.showOpenDialog seems to require it
 - All the others packages also to the latest versions by May 27
 
 ### DDA-144: Diograph format: latlng, data array and colors
@@ -24,6 +25,7 @@
 ### Other
 - Initial validator and migrator for diograph format
 - Remove unused stuff
+- Disable Windows appveyor test as relative paths E2E test doesn't work
 
 ## 3.1.1 (May 6, 2021)
 
