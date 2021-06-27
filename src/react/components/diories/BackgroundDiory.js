@@ -1,19 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Pane, Heading } from 'evergreen-ui'
-import { useDrag } from 'react-dnd'
+import { Pane } from 'evergreen-ui'
 
 import Image from './Image'
 
 const BackgroundDiory = ({ diory, gradient, gradientRgba, onClick, children, ...props }) => {
-  const { id, text, image, style: dioryStyle = {} } = diory
-  const { text: textStyle, image: imageStyle, ...style } = dioryStyle
-  const [, drag] = useDrag({
-    type: 'DIORY',
-    item: {
-      id: diory.id,
-    },
-  })
+  const { id, image, style: dioryStyle = {} } = diory
+  const { image: imageStyle, ...style } = dioryStyle
 
   return (
     <Pane
@@ -36,16 +29,6 @@ const BackgroundDiory = ({ diory, gradient, gradientRgba, onClick, children, ...
           {...imageStyle}
         />
       )}
-      <Heading
-        ref={drag}
-        color={image ? 'white' : 'rgb(102, 120, 138)'}
-        fontWeight="bold"
-        width="100%"
-        {...textStyle}
-        onClick={(event) => onClick({ diory, event })}
-      >
-        {text || '`'}
-      </Heading>
       {children}
     </Pane>
   )
