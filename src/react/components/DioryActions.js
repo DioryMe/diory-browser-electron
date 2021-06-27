@@ -8,7 +8,7 @@ import { invokeChannel } from '../client/client'
 
 const DioryActions = ({ diory, onDrop, onClick, style }) => {
   const showItemInFolder = () =>
-    invokeChannel('openInFinder', diory.data && diory.data[0].contentUrl)
+    invokeChannel('showItemInFolder', diory.data && diory.data[0].contentUrl)
   return (
     <Box style={style}>
       {diory.data && diory.data[0].contentUrl && (
