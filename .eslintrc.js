@@ -30,6 +30,7 @@ module.exports = {
     'arrow-parens': ['off'],
     'no-console': ['off'],
     'no-shadow': ['off'],
+    'jsx-a11y/media-has-caption': ['off'],
     'react/jsx-filename-extension': ['off'], // ok?
     'comma-dangle': ['off'], // maybe
     'import/prefer-default-export': ['off'], // maybe
