@@ -20,6 +20,7 @@ contextBridge.exposeInMainWorld('channelsApi', {
   [channels.SAVE_HOME]: eventHandlerWrapper(channels.SAVE_HOME, saveHomeEventHandler),
   showItemInFolder: (fullPath) => shell.showItemInFolder(fullPath),
   openPath: (path) => shell.openPath(path),
+  openExternal: (url) => shell.openExternal(url),
   showOpenDialog: () => ipcRenderer.invoke('showOpenDialog'),
   frontendLogger: frontendLogger.functions,
 })

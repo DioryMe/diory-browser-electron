@@ -8,6 +8,7 @@ const defaultStyle = {
   container: {
     position: 'relative',
     height: '100%',
+    cursor: 'pointer',
   },
   text: {
     position: 'relative',

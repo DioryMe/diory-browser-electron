@@ -3,7 +3,13 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import DioryActions from './DioryActions'
 
-const dioryActionsStyle = { backgroundColor: 'white', position: 'absolute', bottom: 2, right: 2 }
+const dioryActionsStyle = {
+  backgroundColor: 'white',
+  position: 'absolute',
+  bottom: 2,
+  right: 2,
+  cursor: 'pointer',
+}
 
 const FocusDioryContainer = ({ diory, onDrop, onClick, style, children, ...props }) => (
   <Box key={diory.id} {...style}>
