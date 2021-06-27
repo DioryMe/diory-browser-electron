@@ -21,6 +21,7 @@ import {
   ErrorIcon,
   HandIcon,
   FolderOpenIcon,
+  ApplicationsIcon,
 } from 'evergreen-ui'
 
 const Icon = ({ icon, ...props }) => {
@@ -65,6 +66,8 @@ const Icon = ({ icon, ...props }) => {
       return <HandIcon {...props} />
     case 'folder':
       return <FolderOpenIcon {...props} />
+    case 'applications':
+      return <ApplicationsIcon {...props} />
     default:
       return <ErrorIcon {...props} />
   }
