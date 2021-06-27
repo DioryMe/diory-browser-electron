@@ -1,5 +1,4 @@
-const { contextBridge, shell } = require('electron')
-const { dialog } = require('electron').remote
+const { contextBridge, shell, ipcRenderer } = require('electron')
 const frontendLogger = require('electron-log')
 
 const { channels } = require('../src/shared/constants')
@@ -21,7 +20,7 @@ contextBridge.exposeInMainWorld('channelsApi', {
   [channels.SAVE_HOME]: eventHandlerWrapper(channels.SAVE_HOME, saveHomeEventHandler),
   openInFinder: (path) => shell.showItemInFolder(path),
   openInExternalApplication: (path) => shell.openPath(path),
-  showOpenDialog: () => dialog.showOpenDialog({ properties: ['openDirectory'] }),
+  showOpenDialog: () => ipcRenderer.invoke('showOpenDialog'),
   frontendLogger: frontendLogger.functions,
 })
 

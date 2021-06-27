@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 const url = require('url')
 require('electron-reload')
@@ -11,10 +11,6 @@ function createWindow() {
     height: 800,
     webPreferences: {
       preload: path.join(__dirname, 'electron/preload.js'),
-      contextIsolation: true,
-      // TODO: Try to get rid of enableRemoteModule: true
-      // - by removing: const { dialog } = require('electron').remote
-      enableRemoteModule: true,
     },
   })
 
@@ -52,8 +48,10 @@ app.on('activate', () => {
   }
 })
 
-const Store = require('electron-store')
+const { showOpenDialog } = require('./electron/channels/show-open-dialog')
+ipcMain.handle('showOpenDialog', showOpenDialog)
 
+const Store = require('electron-store')
 Store.initRenderer()
 
 console.log(`User data: ${app.getPath('userData')}/config.json`)
