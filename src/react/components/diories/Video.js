@@ -20,6 +20,7 @@ const videoStyles = {
 const Video = ({ video, controls, loop, autoPlay, children, cover, ...props }) => (
   <Box {...defaultStyle} {...props}>
     <video
+      src={video}
       controls={controls}
       loop={loop}
       autoPlay={autoPlay}
@@ -27,10 +28,7 @@ const Video = ({ video, controls, loop, autoPlay, children, cover, ...props }) =
         ...videoStyles,
         ...(!cover && { maxWidth: '100%' }),
       }}
-    >
-      <source src={video} type="video/mp4" />
-      <track kind="captions" />
-    </video>
+    />
     {children}
   </Box>
 )
