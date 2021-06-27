@@ -18,8 +18,8 @@ contextBridge.exposeInMainWorld('channelsApi', {
   ),
   [channels.SAVE_ROOM]: eventHandlerWrapper(channels.SAVE_ROOM, saveRoomEventHandler),
   [channels.SAVE_HOME]: eventHandlerWrapper(channels.SAVE_HOME, saveHomeEventHandler),
-  openInFinder: (path) => shell.showItemInFolder(path),
-  openInExternalApplication: (path) => shell.openPath(path),
+  showItemInFolder: (fullPath) => shell.showItemInFolder(fullPath),
+  openPath: (path) => shell.openPath(path),
   showOpenDialog: () => ipcRenderer.invoke('showOpenDialog'),
   frontendLogger: frontendLogger.functions,
 })
