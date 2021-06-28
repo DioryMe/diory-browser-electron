@@ -33,8 +33,6 @@ Feature: Delete tool
     And I select delete button
     And I take 'Diory 11' in focus
     And I click Delete button
-    # Diory 11 is in focus and 'Diory 11' is shown as heading
-    # although link to 'Diory 11' is deleted from view
     Then I see 'Diory 11' in view
     And 'link11-to-self' link not in the store
     And 'link11' link is in the store

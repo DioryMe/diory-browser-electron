@@ -17,7 +17,7 @@ Given('I select {string}', (testId) => {
 // WHEN
 
 When('I take {string} in focus', (dioryName) => {
-  cy.contains(dioryName).click()
+  cy.get('div[draggable=true]').contains(dioryName).click()
 })
 
 When('I click {word} button', (buttonName) => {
@@ -25,7 +25,7 @@ When('I click {word} button', (buttonName) => {
 })
 
 When('I click {string} focus diory', (dioryName) => {
-  cy.get('h2').contains(dioryName).click()
+  cy.get('svg[data-icon=hand]').click()
 })
 
 When('I type {string} in search bar', (searchString) => {
@@ -33,10 +33,6 @@ When('I type {string} in search bar', (searchString) => {
 })
 
 // THEN
-
-Then('I see {string} in focus', (dioryName) => {
-  cy.get('h2').contains(dioryName).should('have.length', 1)
-})
 
 Then('I see {string} in view', (dioryName) => {
   cy.contains(dioryName).should('have.length', 1)

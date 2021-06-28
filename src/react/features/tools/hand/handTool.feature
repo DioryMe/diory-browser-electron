@@ -21,7 +21,7 @@ Feature: Hand tool
 
   Scenario: Clicking diory in hand sets it in focus
     When I click 'generic-content' diory in hand
-    Then I see 'Generic content' in focus
+    Then I see 'Generic content' in view
 
   Scenario: Take diory into hand from view
     Given  I see 'Diory 11' in view
@@ -30,7 +30,7 @@ Feature: Hand tool
 
   Scenario: Take focus diory into hand
     Given  I take 'Diory 11' in focus
-    When I drag 'background-diory11' into hand
+    When I drag focus diory into hand
     Then 'Diory 11' diory is in the hand
 
   Scenario: Link diory from hand to view (=focus diory)
