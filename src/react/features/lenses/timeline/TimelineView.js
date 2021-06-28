@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Heading } from 'evergreen-ui'
 
 import { useDragging } from '../utils/markers/useDragging'
 import { useMarkers } from '../utils/markers/useMarkers'
@@ -51,6 +52,9 @@ const TimelineView = ({
 
   return (
     <BackgroundDiory diory={diory} gradient gradientRgba="0, 0, 0, 0.2">
+      <Heading color="white" marginTop="8">
+        {diory.date}
+      </Heading>
       <Fullscreen id={timelineId} background="transparent" style={{ top: '48px' }} />
     </BackgroundDiory>
   )
