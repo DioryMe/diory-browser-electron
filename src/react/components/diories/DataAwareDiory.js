@@ -39,12 +39,10 @@ const renderWebpage = ({ diory }) => (
   <iframe title="web-browser" src={diory.data && diory.data[0].url} height="100%" width="100%" />
 )
 
-const renderExternalApplicationButton = ({ diory }) => (
+const renderOpenPathButton = ({ diory }) => (
   <button
     type="submit"
-    onClick={() =>
-      invokeChannel('openInExternalApplication', diory.data && diory.data[0].contentUrl)
-    } // eslint-disable-line react/jsx-curly-newline
+    onClick={() => invokeChannel('openPath', diory.data && diory.data[0].contentUrl)} // eslint-disable-line react/jsx-curly-newline
   >
     Open in external application
   </button>
@@ -74,7 +72,7 @@ const DataAwareDiory = (props) => {
         return renderIframe(props)
       }
       if (diory.data && diory.data[0].contentUrl) {
-        return renderExternalApplicationButton(props)
+        return renderOpenPathButton(props)
       }
       return <Diory {...props} />
   }
