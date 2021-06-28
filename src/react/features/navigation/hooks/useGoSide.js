@@ -11,12 +11,35 @@ export const useParent = () => {
   return parentId && diograph && diograph[parentId]
 }
 
+const sortByDate = (link1, link2, diograph) => {
+  const date1 = new Date(diograph[link1.id].date)
+  const date2 = new Date(diograph[link2.id].date)
+
+  if (date1 < date2) {
+    return -1
+  }
+  if (date1 > date2) {
+    return 1
+  }
+
+  return 0
+}
+
 const useSiblings = () => {
   const parent = useParent()
+  const [{ selectedLensId }] = useStore((state) => state.lenses)
+  const [{ diograph }] = useStore((state) => state.diograph)
 
   if (!parent || !parent.links) {
     return
   }
+
+  if (selectedLensId === 'timeline') {
+    return Object.values(parent.links)
+      .sort((link1, link2) => sortByDate(link1, link2, diograph))
+      .map(({ id }) => id)
+  }
+
   return Object.values(parent.links).map(({ id }) => id)
 }
 
