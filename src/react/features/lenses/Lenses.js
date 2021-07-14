@@ -63,7 +63,8 @@ const Lenses = () => {
   const [{ connections }] = useStore((state) => state.connectors)
   const preparedDiory = diory && prepareDiory(diory, connections)
   const preparedDiorys = diorys.map((diory) => prepareDiory(diory, connections))
-  const preparedReverseDiorys = reverseDiorys && reverseDiorys.map((diory) => prepareDiory(diory, connections))
+  const preparedReverseDiorys =
+    reverseDiorys && reverseDiorys.map((diory) => prepareDiory(diory, connections))
 
   return (
     <LensesView
