@@ -7,12 +7,23 @@ import Diory from '../../../components/diories/Diory'
 import FocusDioryContainer from '../../../components/FocusDioryContainer'
 import LinkDioryContainer from '../../../components/LinkDioryContainer'
 
-const GridView = ({ diory, diorys, onDrop, onClick }) => (
+const GridView = ({ diory, diorys, reverseDiorys = [], onDrop, onClick }) => (
   <BackgroundDiory
     diory={{ id: diory.id, image: diory.image, text: diory.text }}
     gradient
     onClick={onClick}
   >
+    {reverseDiorys.map((linkDiory) => (
+      <LinkDioryContainer linkDiory={linkDiory} onDrop={onDrop} onClick={onClick}>
+        <Diory
+          key={linkDiory.id}
+          diory={linkDiory}
+          onClick={onClick}
+          elevation={2}
+          aria-controls={`panel-${linkDiory.id}`}
+        />
+      </LinkDioryContainer>
+    ))}
     <FocusDioryContainer
       diory={diory}
       onClick={onClick}
@@ -43,6 +54,7 @@ GridView.defaultProps = {
 GridView.propTypes = {
   diory: PropTypes.object.isRequired,
   diorys: PropTypes.array.isRequired,
+  reverseDiorys: PropTypes.array.isRequired,
   onClick: PropTypes.func,
   onDrop: PropTypes.func,
 }
