@@ -17,5 +17,5 @@ test('select diograph folder with new subfolder (diograph.json + newly added sub
     .eql(4)
     .click(eventDiory)
     .expect(dioryCount)
-    .eql(14)
+    .eql(15)
 })

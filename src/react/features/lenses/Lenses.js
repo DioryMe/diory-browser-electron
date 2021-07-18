@@ -35,13 +35,13 @@ export const lenses = {
   fullscreen,
 }
 
-const LensesView = ({ diory, diorys, selectedLensId }) => {
+const LensesView = ({ diory, diorys, reverseDiorys, selectedLensId }) => {
   console.log('Diorys in lens', diorys.length)
   const { Lens } = lenses[selectedLensId]
 
   return diory ? (
     <Fullscreen marginTop={48} zIndex={-1}>
-      <Lens diory={diory} diorys={diorys} />
+      <Lens diory={diory} diorys={diorys} reverseDiorys={reverseDiorys} />
     </Fullscreen>
   ) : null
 }
@@ -49,6 +49,7 @@ const LensesView = ({ diory, diorys, selectedLensId }) => {
 LensesView.propTypes = {
   diory: PropTypes.object.isRequired,
   diorys: PropTypes.array.isRequired,
+  reverseDiorys: PropTypes.array.isRequired,
   selectedLensId: PropTypes.string.isRequired,
 }
 
@@ -56,15 +57,22 @@ const Lenses = () => {
   const { filterIsActive } = useFilterIsActive()
   const focusDiorys = useFocus()
   const filteredDiorys = useFilteredDiorys()
-  const { diory, diorys } = filterIsActive ? filteredDiorys : focusDiorys
+  const { diory, diorys, reverseDiorys } = filterIsActive ? filteredDiorys : focusDiorys
   const [{ selectedLensId }] = useStore((state) => state.lenses)
 
   const [{ connections }] = useStore((state) => state.connectors)
   const preparedDiory = diory && prepareDiory(diory, connections)
   const preparedDiorys = diorys.map((diory) => prepareDiory(diory, connections))
+  const preparedReverseDiorys =
+    reverseDiorys && reverseDiorys.map((diory) => prepareDiory(diory, connections))
 
   return (
-    <LensesView diory={preparedDiory} diorys={preparedDiorys} selectedLensId={selectedLensId} />
+    <LensesView
+      diory={preparedDiory}
+      diorys={preparedDiorys}
+      reverseDiorys={preparedReverseDiorys}
+      selectedLensId={selectedLensId}
+    />
   )
 }
 
