@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useFocus } from '../../diograph/hooks'
+import { useLinkDiory } from '../../diograph/hooks'
 import { useDispatchActions } from '../../../store'
 
 import { selectLens } from '../actions'
@@ -18,7 +18,7 @@ const useFullscreenLens = () => {
 }
 
 const FullscreenLens = () => {
-  const { diory } = useFocus()
+  const { diory } = useLinkDiory()
   const { onClick } = useFullscreenLens()
   return (
     <Fullscreen zIndex={10000}>

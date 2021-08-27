@@ -1,49 +1,38 @@
 import { useDispatch, useStore } from '../../../store'
-import { goSide } from '../actions'
-
-export const useParent = () => {
-  const [{ backward }] = useStore((state) => state.navigation)
-  const [{ diograph }] = useStore((state) => state.diograph)
-  if (!backward.length) {
-    return
-  }
-  const parentId = backward[0][1]
-  return parentId && diograph && diograph[parentId]
-}
+import { setSelectedLink } from '../actions'
+import { useFocus } from '../../diograph/hooks'
 
 const useSiblings = () => {
-  const parent = useParent()
+  const { diorys } = useFocus()
 
-  if (!parent || !parent.links) {
-    return
-  }
-  return Object.values(parent.links).map(({ id }) => id)
+  return Object.values(diorys).map(({ id }) => id)
 }
 
 export const useGoSide = () => {
-  const [{ focus }] = useStore((state) => state.navigation)
+  const [{ link }] = useStore((state) => state.navigation)
   const siblings = useSiblings()
+  const { diorys } = useFocus()
   const dispatch = useDispatch()
 
   if (!siblings) {
     return {}
   }
 
-  const focusIndex = siblings.indexOf(focus)
+  const focusIndex = siblings.indexOf(link)
   if (focusIndex === 0) {
     return {
-      goRight: () => dispatch(goSide({ focus: siblings[focusIndex + 1] })),
+      goRight: () => dispatch(setSelectedLink(diorys[focusIndex + 1])),
     }
   }
 
   if (focusIndex === siblings.length - 1) {
     return {
-      goLeft: () => dispatch(goSide({ focus: siblings[focusIndex - 1] })),
+      goLeft: () => dispatch(setSelectedLink(diorys[focusIndex - 1])),
     }
   }
 
   return {
-    goRight: () => dispatch(goSide({ focus: siblings[focusIndex + 1] })),
-    goLeft: () => dispatch(goSide({ focus: siblings[focusIndex - 1] })),
+    goRight: () => dispatch(setSelectedLink(diorys[focusIndex + 1])),
+    goLeft: () => dispatch(setSelectedLink(diorys[focusIndex - 1])),
   }
 }
