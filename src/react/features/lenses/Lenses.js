@@ -4,7 +4,7 @@ import React from 'react'
 import { useStore } from '../../store'
 import { getUntrackedDiory, convertRelativePath } from '../../utils'
 
-import { useFocus } from '../diograph/hooks'
+import { useFocus, useLinkDiory } from '../diograph/hooks'
 import { useFilterIsActive } from '../filters/hooks/useFilterIsActive'
 import { useFilteredDiorys } from '../filters/useFilteredDiorys'
 
@@ -34,22 +34,25 @@ export const lenses = {
   fullscreen,
 }
 
-const LensesView = ({ diory, diorys, selectedLensId }) => {
+const LensesView = ({ diory, diorys, selectedDioryId, selectedLensId }) => {
   console.log('Diorys in lens', diorys.length)
   const { Lens } = lenses[selectedLensId]
 
-  return diory ? <Lens diory={diory} diorys={diorys} /> : null
+  return diory ? <Lens diory={diory} diorys={diorys} selectedDioryId={selectedDioryId} /> : null
 }
 
 LensesView.propTypes = {
   diory: PropTypes.object.isRequired,
   diorys: PropTypes.array.isRequired,
   selectedLensId: PropTypes.string.isRequired,
+  selectedDioryId: PropTypes.string,
 }
 
 const Lenses = () => {
   const { filterIsActive } = useFilterIsActive()
   const focusDiorys = useFocus()
+  const { diory: selectedDiory } = useLinkDiory()
+  const selectedDioryId = selectedDiory ? selectedDiory.id : undefined
   const filteredDiorys = useFilteredDiorys()
   const { diory, diorys } = filterIsActive ? filteredDiorys : focusDiorys
   const [{ selectedLensId }] = useStore((state) => state.lenses)
@@ -59,7 +62,12 @@ const Lenses = () => {
   const preparedDiorys = diorys.map((diory) => prepareDiory(diory, connections))
 
   return (
-    <LensesView diory={preparedDiory} diorys={preparedDiorys} selectedLensId={selectedLensId} />
+    <LensesView
+      diory={preparedDiory}
+      diorys={preparedDiorys}
+      selectedDioryId={selectedDioryId}
+      selectedLensId={selectedLensId}
+    />
   )
 }
 
