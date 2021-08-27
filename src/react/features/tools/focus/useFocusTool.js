@@ -1,14 +1,19 @@
 import { useDispatch, useStore } from '../../../store'
-import { setFocus } from '../../navigation/actions'
+import { setFocus, setSelectedLink } from '../../navigation/actions'
 import { addDioryToHand } from '../actions'
 
 export const useFocusTool = () => {
   const [{ active }] = useStore((state) => state.buttons)
+  const [{ link }] = useStore((state) => state.navigation)
   const dispatch = useDispatch()
   return (clickedDiory) => {
     if (!active) {
-      dispatch(addDioryToHand(clickedDiory.id))
-      dispatch(setFocus({ focus: clickedDiory.id }))
+      if (link === clickedDiory.id) {
+        dispatch(addDioryToHand(clickedDiory.id))
+        dispatch(setFocus({ focus: clickedDiory.id }))
+      } else {
+        dispatch(setSelectedLink(clickedDiory))
+      }
     }
   }
 }
