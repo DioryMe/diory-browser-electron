@@ -7,6 +7,7 @@ import Diory from '../../../components/diories/Diory'
 import FocusDioryContainer from '../../../components/FocusDioryContainer'
 import LinkDioryContainer from '../../../components/LinkDioryContainer'
 import Fullscreen from '../../../components/Fullscreen'
+import FullscreenButton from '../fullscreen/FullscreenButton'
 
 const GridView = ({ diory, diorys, onDrop, onClick }) => (
   <Fullscreen marginTop={48} zIndex={-1}>
@@ -21,6 +22,7 @@ const GridView = ({ diory, diorys, onDrop, onClick }) => (
         onDrop={onDrop}
         style={{ flex: '1 0 100%', height: 480, padding: 24 }}
       >
+        <FullscreenButton />
         <DataAwareDiory diory={diory} />
       </FocusDioryContainer>
       {diorys.map((linkDiory) => (

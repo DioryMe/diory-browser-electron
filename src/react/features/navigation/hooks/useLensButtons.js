@@ -22,17 +22,19 @@ export const useLensButtons = () => {
   }
 
   return {
-    lensButtons: Object.values(lenses).map(({ diory: { id, ...diory } }) => ({
-      id,
-      key: id,
-      diory,
-      onSelect: () => handleClick(id),
-      isSelected: id === selectedLensId,
-      isFiltered: filters[id] && filters[id].active,
-      onRemove: (event) => {
-        event.stopPropagation()
-        dispatch(activateFilter(id, false))
-      },
-    })),
+    lensButtons: Object.values(lenses)
+      .map(({ diory: { id, ...diory } }) => ({
+        id,
+        key: id,
+        diory,
+        onSelect: () => handleClick(id),
+        isSelected: id === selectedLensId,
+        isFiltered: filters[id] && filters[id].active,
+        onRemove: (event) => {
+          event.stopPropagation()
+          dispatch(activateFilter(id, false))
+        },
+      }))
+      .filter(({ id }) => id !== 'fullscreen'),
   }
 }
