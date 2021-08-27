@@ -4,7 +4,6 @@ import React from 'react'
 import { useStore } from '../../store'
 import { getUntrackedDiory, convertRelativePath } from '../../utils'
 
-import Fullscreen from '../../components/Fullscreen'
 import { useFocus } from '../diograph/hooks'
 import { useFilterIsActive } from '../filters/hooks/useFilterIsActive'
 import { useFilteredDiorys } from '../filters/useFilteredDiorys'
@@ -39,11 +38,7 @@ const LensesView = ({ diory, diorys, selectedLensId }) => {
   console.log('Diorys in lens', diorys.length)
   const { Lens } = lenses[selectedLensId]
 
-  return diory ? (
-    <Fullscreen marginTop={48} zIndex={-1}>
-      <Lens diory={diory} diorys={diorys} />
-    </Fullscreen>
-  ) : null
+  return diory ? <Lens diory={diory} diorys={diorys} /> : null
 }
 
 LensesView.propTypes = {

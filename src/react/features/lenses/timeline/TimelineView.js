@@ -4,13 +4,10 @@ import PropTypes from 'prop-types'
 import { useDragging } from '../utils/markers/useDragging'
 import { useMarkers } from '../utils/markers/useMarkers'
 import { useLinkIcons } from './hooks/useLinkIcons'
-
 import { useTimeline } from './hooks/useTimeline'
 import { useTimelineBounds } from './hooks/useTimelineBounds'
-
 import { usePopups } from '../utils/popup/usePopups'
 import { useScale } from './scale/useScale'
-
 import { usePopupClick } from '../utils/popup/usePopupClick'
 import { useTimelineClick } from './hooks/useTimelineClick'
 
@@ -50,9 +47,11 @@ const TimelineView = ({
   })
 
   return (
-    <BackgroundDiory diory={diory} gradient gradientRgba="0, 0, 0, 0.2">
-      <Fullscreen id={timelineId} background="transparent" style={{ top: '48px' }} />
-    </BackgroundDiory>
+    <Fullscreen marginTop={48} zIndex={-1}>
+      <BackgroundDiory diory={diory} gradient gradientRgba="0, 0, 0, 0.2">
+        <Fullscreen id={timelineId} background="transparent" style={{ top: '48px' }} />
+      </BackgroundDiory>
+    </Fullscreen>
   )
 }
 

@@ -6,33 +6,36 @@ import DataAwareDiory from '../../../components/diories/DataAwareDiory'
 import Diory from '../../../components/diories/Diory'
 import FocusDioryContainer from '../../../components/FocusDioryContainer'
 import LinkDioryContainer from '../../../components/LinkDioryContainer'
+import Fullscreen from '../../../components/Fullscreen'
 
 const GridView = ({ diory, diorys, onDrop, onClick }) => (
-  <BackgroundDiory
-    diory={{ id: diory.id, image: diory.image, text: diory.text }}
-    gradient
-    onClick={onClick}
-  >
-    <FocusDioryContainer
-      diory={diory}
+  <Fullscreen marginTop={48} zIndex={-1}>
+    <BackgroundDiory
+      diory={{ id: diory.id, image: diory.image, text: diory.text }}
+      gradient
       onClick={onClick}
-      onDrop={onDrop}
-      style={{ flex: '1 0 100%', height: 480, padding: 24 }}
     >
-      <DataAwareDiory diory={diory} />
-    </FocusDioryContainer>
-    {diorys.map((linkDiory) => (
-      <LinkDioryContainer linkDiory={linkDiory} onDrop={onDrop} onClick={onClick}>
-        <Diory
-          key={linkDiory.id}
-          diory={linkDiory}
-          onClick={onClick}
-          elevation={2}
-          aria-controls={`panel-${linkDiory.id}`}
-        />
-      </LinkDioryContainer>
-    ))}
-  </BackgroundDiory>
+      <FocusDioryContainer
+        diory={diory}
+        onClick={onClick}
+        onDrop={onDrop}
+        style={{ flex: '1 0 100%', height: 480, padding: 24 }}
+      >
+        <DataAwareDiory diory={diory} />
+      </FocusDioryContainer>
+      {diorys.map((linkDiory) => (
+        <LinkDioryContainer linkDiory={linkDiory} onDrop={onDrop} onClick={onClick}>
+          <Diory
+            key={linkDiory.id}
+            diory={linkDiory}
+            onClick={onClick}
+            elevation={2}
+            aria-controls={`panel-${linkDiory.id}`}
+          />
+        </LinkDioryContainer>
+      ))}
+    </BackgroundDiory>
+  </Fullscreen>
 )
 
 GridView.defaultProps = {

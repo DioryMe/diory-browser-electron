@@ -3,15 +3,15 @@ import PropTypes from 'prop-types'
 
 import { useMap } from './hooks/useMap'
 import { useMapBounds } from './hooks/useMapBounds'
-
 import { useMarkers } from '../utils/markers/useMarkers'
 import { usePopups } from '../utils/popup/usePopups'
-
 import { usePopupClick } from '../utils/popup/usePopupClick'
 import { useMapClick } from './hooks/useMapClick'
 import { useDragging } from '../utils/markers/useDragging'
 
 import { getLocationData } from './hooks/getLocationData'
+
+import Fullscreen from '../../../components/Fullscreen'
 
 const MapView = ({
   diory,
@@ -38,7 +38,11 @@ const MapView = ({
   useMapClick(map, onMapClick)
   useDragging(map, enableDragging, onDragEnd)
 
-  return <div id={id} style={{ height: '100%' }} />
+  return (
+    <Fullscreen marginTop={48} zIndex={-1}>
+      <div id={id} style={{ height: '100%' }} />
+    </Fullscreen>
+  )
 }
 
 MapView.defaultProps = {
