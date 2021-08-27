@@ -9,7 +9,7 @@ import LinkDioryContainer from '../../../components/LinkDioryContainer'
 import Fullscreen from '../../../components/Fullscreen'
 import FullscreenButton from '../fullscreen/FullscreenButton'
 
-const GridView = ({ diory, diorys, selectedDioryId, onDrop, onClick }) => (
+const GridView = ({ diory, diorys, selectedDiory, onDrop, onClick }) => (
   <Fullscreen marginTop={48} zIndex={-1}>
     <BackgroundDiory
       diory={{ id: diory.id, image: diory.image, text: diory.text }}
@@ -33,7 +33,7 @@ const GridView = ({ diory, diorys, selectedDioryId, onDrop, onClick }) => (
             onClick={onClick}
             elevation={2}
             aria-controls={`panel-${linkDiory.id}`}
-            style={linkDiory.id === selectedDioryId ? { border: '10px solid blue' } : undefined}
+            style={linkDiory.id === selectedDiory.id ? { border: '10px solid blue' } : undefined}
           />
         </LinkDioryContainer>
       ))}
@@ -51,7 +51,7 @@ GridView.propTypes = {
   diorys: PropTypes.array.isRequired,
   onClick: PropTypes.func,
   onDrop: PropTypes.func,
-  selectedDioryId: PropTypes.string,
+  selectedDiory: PropTypes.string,
 }
 
 export default GridView
