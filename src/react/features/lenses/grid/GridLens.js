@@ -38,7 +38,7 @@ const GridLens = ({ diory, diorys, selectedDiory }) => (
 GridLens.propTypes = {
   diory: PropTypes.object.isRequired,
   diorys: PropTypes.array.isRequired,
-  selectedDiory: PropTypes.string,
+  selectedDiory: PropTypes.object,
 }
 
 export default GridLens

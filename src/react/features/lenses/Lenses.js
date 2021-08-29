@@ -45,7 +45,7 @@ LensesView.propTypes = {
   diory: PropTypes.object.isRequired,
   diorys: PropTypes.array.isRequired,
   selectedLensId: PropTypes.string.isRequired,
-  selectedDiory: PropTypes.string,
+  selectedDiory: PropTypes.object,
 }
 
 const Lenses = () => {

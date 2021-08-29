@@ -33,7 +33,11 @@ const GridView = ({ diory, diorys, selectedDiory, onDrop, onClick }) => (
             onClick={onClick}
             elevation={2}
             aria-controls={`panel-${linkDiory.id}`}
-            style={linkDiory.id === selectedDiory.id ? { border: '10px solid blue' } : undefined}
+            style={
+              selectedDiory && linkDiory.id === selectedDiory.id
+                ? { border: '10px solid blue' }
+                : undefined
+            }
           />
         </LinkDioryContainer>
       ))}
@@ -51,7 +55,7 @@ GridView.propTypes = {
   diorys: PropTypes.array.isRequired,
   onClick: PropTypes.func,
   onDrop: PropTypes.func,
-  selectedDiory: PropTypes.string,
+  selectedDiory: PropTypes.object,
 }
 
 export default GridView
