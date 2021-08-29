@@ -11,7 +11,6 @@ const useSiblings = () => {
 export const useGoSide = () => {
   const [{ link }] = useStore((state) => state.navigation)
   const siblings = useSiblings()
-  const { diorys } = useFocus()
   const dispatch = useDispatch()
 
   if (!siblings) {
@@ -21,18 +20,18 @@ export const useGoSide = () => {
   const focusIndex = siblings.indexOf(link)
   if (focusIndex === 0) {
     return {
-      goRight: () => dispatch(setSelectedLink(diorys[focusIndex + 1])),
+      goRight: () => dispatch(setSelectedLink({ id: siblings[focusIndex + 1] })),
     }
   }
 
   if (focusIndex === siblings.length - 1) {
     return {
-      goLeft: () => dispatch(setSelectedLink(diorys[focusIndex - 1])),
+      goLeft: () => dispatch(setSelectedLink({ id: siblings[focusIndex - 1] })),
     }
   }
 
   return {
-    goRight: () => dispatch(setSelectedLink(diorys[focusIndex + 1])),
-    goLeft: () => dispatch(setSelectedLink(diorys[focusIndex - 1])),
+    goRight: () => dispatch(setSelectedLink({ id: siblings[focusIndex + 1] })),
+    goLeft: () => dispatch(setSelectedLink({ id: siblings[focusIndex - 1] })),
   }
 }
