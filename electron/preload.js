@@ -23,6 +23,8 @@ contextBridge.exposeInMainWorld('channelsApi', {
   openExternal: (url) => shell.openExternal(url),
   showOpenDialog: () => ipcRenderer.invoke('showOpenDialog'),
   frontendLogger: frontendLogger.functions,
+  send: (channel, data) => ipcRenderer.send(channel, data),
+  receive: (channel, callback) => ipcRenderer.on(channel, (event, ...args) => callback(args)),
 })
 
 contextBridge.exposeInMainWorld('processEnv', {

@@ -55,3 +55,31 @@ const Store = require('electron-store')
 Store.initRenderer()
 
 console.log(`User data: ${app.getPath('userData')}/config.json`)
+
+
+// IPC SOCKET SERVER
+
+const express = require('express');
+const expressApp = express();
+const http = require('http');
+const server = http.createServer(expressApp);
+const { Server } = require('socket.io');
+const io = new Server(server);
+
+// CONNECTION
+io.on('connection', (socket) => {
+  // SEND MESSAGE
+  socket.emit('Welcome!')
+
+  // RECEIVE ACTIONS
+  socket.on('setFocus', (dioryId) => {
+    console.log('setFocus: ' + dioryId);
+    mainWindow.webContents.send('setFocus', dioryId);
+  });
+
+});
+
+// RUN SERVER
+server.listen(9210, () => {
+  console.log('listening on *:9210');
+});
