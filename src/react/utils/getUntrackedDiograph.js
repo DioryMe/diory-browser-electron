@@ -1,6 +1,6 @@
 import { getUntrackedObject } from 'react-tracked'
 
-export const getUntrackedDiory = (diory) => {
+export const getUntrackedDiory = (diory = {}) => {
   const untrackedLinks = getUntrackedObject(diory.links)
   if (untrackedLinks) {
     diory.links = { ...untrackedLinks }

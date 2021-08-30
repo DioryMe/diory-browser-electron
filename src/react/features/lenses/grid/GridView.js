@@ -1,18 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import BackgroundDiory from '../../../components/diories/BackgroundDiory'
+import Background from '../../../components/Background'
 import DataAwareDiory from '../../../components/diories/DataAwareDiory'
 import Diory from '../../../components/diories/Diory'
 import FocusDioryContainer from '../../../components/FocusDioryContainer'
 import LinkDioryContainer from '../../../components/LinkDioryContainer'
 
 const GridView = ({ diory, diorys, reverseDiorys = [], onDrop, onClick }) => (
-  <BackgroundDiory
-    diory={{ id: diory.id, image: diory.image, text: diory.text }}
-    gradient
-    onClick={onClick}
-  >
+  <Background>
     {reverseDiorys.map((linkDiory) => (
       <LinkDioryContainer linkDiory={linkDiory} onDrop={onDrop} onClick={onClick}>
         <Diory
@@ -43,7 +39,7 @@ const GridView = ({ diory, diorys, reverseDiorys = [], onDrop, onClick }) => (
         />
       </LinkDioryContainer>
     ))}
-  </BackgroundDiory>
+  </Background>
 )
 
 GridView.defaultProps = {

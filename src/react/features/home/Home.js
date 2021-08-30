@@ -7,12 +7,14 @@ import Rooms from '../rooms/Rooms'
 import Tools from '../tools/Tools'
 import Buttons from '../buttons'
 import Connectors from '../connectors/Connectors'
+import Focus from '../focus/Focus'
 
 const Home = () => (
   <div className="App">
     <Navigation />
     <Rooms />
     <Lenses />
+    <Focus />
     <Filters />
     <Tools />
     <Buttons />

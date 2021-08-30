@@ -1,7 +1,7 @@
 import { ADD_LENS, SELECT_LENS } from './actionsTypes'
 import { createReducer } from '../../store'
 
-const DEFAULT_LENS = 'grid'
+const DEFAULT_LENS = 'timeline'
 
 export const initialState = {
   selectedLensId: DEFAULT_LENS,
