@@ -9,7 +9,6 @@ import {
   UPDATE_DIORY,
 } from './actionsTypes'
 import { promiseReducers, createReducer } from '../../store'
-import { resolveReverseDiograph } from './resolveReverseDiograph'
 
 export const initialState = {
   id: undefined,
@@ -21,7 +20,6 @@ export const initialState = {
 export const getDiograph = (state, { payload: { diograph } }) => ({
   ...state,
   diograph,
-  reverseDiograph: resolveReverseDiograph(diograph),
   updated: true,
 })
 

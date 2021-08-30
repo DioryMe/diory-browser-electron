@@ -1,4 +1,5 @@
 import { useStore } from '../../store'
+import {resolveReverseDiograph} from './resolveReverseDiograph'
 
 const useDiory = (id) => {
   const [{ diograph = {} }] = useStore((state) => state.diograph)
@@ -21,7 +22,7 @@ const useLinkedDiorys = (id, diograph) => {
 export const useFocus = () => {
   const [{ focus }] = useStore((state) => state.navigation)
   const [{ diograph = {} }] = useStore((state) => state.diograph)
-  const [{ reverseDiograph = {} }] = useStore((state) => state.diograph)
+  const reverseDiograph = resolveReverseDiograph(diograph)
   return {
     diory: useDiory(focus),
     diorys: useLinkedDiorys(focus, diograph),
