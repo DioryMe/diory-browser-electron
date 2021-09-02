@@ -4,8 +4,7 @@ import React from 'react'
 import { useStore } from '../../store'
 import { getUntrackedDiory, convertRelativePath } from '../../utils'
 
-import Fullscreen from '../../components/Fullscreen'
-import { useFocus } from '../diograph/hooks'
+import { useFocus, useLinkDiory } from '../diograph/hooks'
 import { useFilterIsActive } from '../filters/hooks/useFilterIsActive'
 import { useFilteredDiorys } from '../filters/useFilteredDiorys'
 
@@ -35,26 +34,24 @@ export const lenses = {
   fullscreen,
 }
 
-const LensesView = ({ diory, diorys, selectedLensId }) => {
+const LensesView = ({ diory, diorys, selectedDiory, selectedLensId }) => {
   console.log('Diorys in lens', diorys.length)
   const { Lens } = lenses[selectedLensId]
 
-  return diory ? (
-    <Fullscreen marginTop={48} zIndex={-1}>
-      <Lens diory={diory} diorys={diorys} />
-    </Fullscreen>
-  ) : null
+  return diory ? <Lens diory={diory} diorys={diorys} selectedDiory={selectedDiory} /> : null
 }
 
 LensesView.propTypes = {
   diory: PropTypes.object.isRequired,
   diorys: PropTypes.array.isRequired,
   selectedLensId: PropTypes.string.isRequired,
+  selectedDiory: PropTypes.object,
 }
 
 const Lenses = () => {
   const { filterIsActive } = useFilterIsActive()
   const focusDiorys = useFocus()
+  const { diory: selectedDiory } = useLinkDiory()
   const filteredDiorys = useFilteredDiorys()
   const { diory, diorys } = filterIsActive ? filteredDiorys : focusDiorys
   const [{ selectedLensId }] = useStore((state) => state.lenses)
@@ -62,9 +59,15 @@ const Lenses = () => {
   const [{ connections }] = useStore((state) => state.connectors)
   const preparedDiory = diory && prepareDiory(diory, connections)
   const preparedDiorys = diorys.map((diory) => prepareDiory(diory, connections))
+  const preparedSelectedDiory = selectedDiory && prepareDiory(selectedDiory, connections)
 
   return (
-    <LensesView diory={preparedDiory} diorys={preparedDiorys} selectedLensId={selectedLensId} />
+    <LensesView
+      diory={preparedDiory}
+      diorys={preparedDiorys}
+      selectedDiory={preparedSelectedDiory}
+      selectedLensId={selectedLensId}
+    />
   )
 }
 
