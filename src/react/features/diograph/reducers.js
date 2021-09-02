@@ -56,19 +56,10 @@ const updateDiory = (state, { payload }) => ({
 
 const createLink = (state, { payload }) => {
   const diory = state.diograph[payload.diory.id]
-  const linkedDiory = state.diograph[payload.link.id]
   return {
     ...state,
     diograph: {
       ...state.diograph,
-      [payload.link.id]: {
-        ...linkedDiory,
-        ...payload.link,
-        links: {
-          ...linkedDiory.links,
-          [payload.diory.id]: { id: payload.diory.id },
-        },
-      },
       [payload.diory.id]: {
         ...diory,
         ...payload.diory,
