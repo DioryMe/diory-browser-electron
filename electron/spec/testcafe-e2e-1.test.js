@@ -19,7 +19,7 @@ test('select diograph folder (with diograph.json)', async (t) => {
     .eql(3)
     .click(eventDiory)
     .expect(dioryCount)
-    .eql(14)
+    .eql(15)
     .click(imageDiory)
     .click('[data-testid="tools-button"]')
     .click('[data-testid="create-button"]')

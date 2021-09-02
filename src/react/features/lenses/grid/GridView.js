@@ -9,13 +9,24 @@ import LinkDioryContainer from '../../../components/LinkDioryContainer'
 import Fullscreen from '../../../components/Fullscreen'
 import FullscreenButton from '../fullscreen/FullscreenButton'
 
-const GridView = ({ diory, diorys, selectedDiory, onDrop, onClick }) => (
+const GridView = ({ diory, diorys, reverseDiorys = [], selectedDiory, onDrop, onClick }) => (
   <Fullscreen marginTop={48} zIndex={-1}>
     <BackgroundDiory
       diory={{ id: diory.id, image: diory.image, text: diory.text }}
       gradient
       onClick={onClick}
     >
+      {reverseDiorys.map((linkDiory) => (
+        <LinkDioryContainer linkDiory={linkDiory} onDrop={onDrop} onClick={onClick}>
+          <Diory
+            key={linkDiory.id}
+            diory={linkDiory}
+            onClick={onClick}
+            elevation={2}
+            aria-controls={`panel-${linkDiory.id}`}
+          />
+        </LinkDioryContainer>
+      ))}
       <FocusDioryContainer
         diory={diory}
         onClick={onClick}
@@ -53,6 +64,7 @@ GridView.defaultProps = {
 GridView.propTypes = {
   diory: PropTypes.object.isRequired,
   diorys: PropTypes.array.isRequired,
+  reverseDiorys: PropTypes.array.isRequired,
   onClick: PropTypes.func,
   onDrop: PropTypes.func,
   selectedDiory: PropTypes.object,
