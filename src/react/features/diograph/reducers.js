@@ -13,15 +13,8 @@ import { promiseReducers, createReducer } from '../../store'
 export const initialState = {
   id: undefined,
   diograph: {},
-  reverseDiograph: {},
   updated: false,
 }
-
-export const getDiograph = (state, { payload: { diograph } }) => ({
-  ...state,
-  diograph,
-  updated: true,
-})
 
 export const createDiory = (state, { payload: { diory } }) => ({
   ...state,
@@ -108,6 +101,6 @@ export default createReducer({
   [CREATE_LINK]: createLink,
   [DELETE_LINK]: deleteLink,
   [DELETE_LINKS]: deleteLinks,
-  ...promiseReducers(GET_ROOM, 'load', 'loading', 'loaded', 'error', getDiograph),
+  ...promiseReducers(GET_ROOM, 'load', 'loading', 'loaded', 'error'),
   ...promiseReducers(SAVE_ROOM, 'updated', 'saving', 'saved', 'error'),
 })
