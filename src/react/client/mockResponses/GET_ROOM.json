@@ -1,8 +1,8 @@
 {
-  "rootId": "development-content-room",
+  "rootId": "diory-demo-content",
   "diograph": {
-    "development-content-room": {
-      "id": "development-content-room",
+    "diory-demo-content": {
+      "id": "diory-demo-content",
       "text": "Diory demo content",
       "image": "diory-demo-content/demo-content.png",
       "links": {
@@ -232,7 +232,7 @@
     },
     "3e2ddc49-b3b6-4212-8a0a-80b9150a57ae": {
       "id": "3e2ddc49-b3b6-4212-8a0a-80b9150a57ae",
-      "text": "Jane",
+      "text": "Jane (person)",
       "image": "diory-demo-content/Jane/PIXNIO-12656-2816x2112.jpeg",
       "created": "2020-05-17T16:03:52.473Z",
       "modified": "2020-05-17T16:04:03.620Z",
@@ -253,7 +253,7 @@
     },
     "e07c2f1d-5f5a-488a-a505-34f7b9f55105": {
       "id": "e07c2f1d-5f5a-488a-a505-34f7b9f55105",
-      "text": "Mary",
+      "text": "Mary (person)",
       "image": "diory-demo-content/Mary/PIXNIO-53747-4118x3088.jpeg",
       "created": "2020-05-17T16:03:44.704Z",
       "modified": "2020-05-17T16:03:58.614Z",
@@ -277,7 +277,7 @@
     },
     "ef79b80c-e319-4bfb-8faa-ebbc1150f27f": {
       "id": "ef79b80c-e319-4bfb-8faa-ebbc1150f27f",
-      "text": "Adamstown Middle School",
+      "text": "Adamstown Middle School (event)",
       "image": "diory-demo-content/Adamstown Middle School/PIXNIO-54298-5970x3980.jpeg",
       "date": "2012-06-25T08:23:35.000Z",
       "created": "2021-07-19T16:44:13.940Z",
@@ -293,7 +293,7 @@
     },
     "506cd9dd-97f4-4b98-9172-87f5c8966ade": {
       "id": "506cd9dd-97f4-4b98-9172-87f5c8966ade",
-      "text": "Potomac Kayaking Center",
+      "text": "Potomac Kayaking Center (place)",
       "image": "diory-demo-content/Potomac Kayaking Center/PIXNIO-54348-6177x4118.jpeg",
       "date": "2012-09-25T10:59:28.000Z",
       "latlng": "39.14977588053471, -77.52475284039974",
@@ -316,7 +316,7 @@
     },
     "d031d5a8-0a37-49cb-b800-54e437a7c78e": {
       "id": "d031d5a8-0a37-49cb-b800-54e437a7c78e",
-      "text": "Riverfest 2014",
+      "text": "Riverfest 2014 (event)",
       "image": "diory-demo-content/Riverfest 2014/PIXNIO-53350-6177x4118.jpeg",
       "date": "2014-09-20T17:44:52.000Z",
       "created": "2021-07-19T16:43:54.533Z",
@@ -329,7 +329,7 @@
     },
     "f1470597-1a3c-4a76-8546-2c29591a6846": {
       "id": "f1470597-1a3c-4a76-8546-2c29591a6846",
-      "text": "Scouts BSA International",
+      "text": "Scouts BSA International (event)",
       "date": "2013-06-25T09:21:43.000Z",
       "image": "diory-demo-content/Scouts BSA International/PIXNIO-54454-6138x4092.jpeg",
       "created": "2020-04-19T18:47:25.152Z",
@@ -338,11 +338,11 @@
         "PIXNIO-53541-1782x1188.jpeg": {
           "id": "103f852d-4a2a-44de-8f4f-08ccddc3d280"
         },
-        "PIXNIO-53549-1782x1188.jpeg": {
-          "id": "640518ab-fd17-4b22-9fae-ed4a0384d12f"
-        },
         "PIXNIO-53543-1782x1188.jpeg": {
           "id": "bea0b059-413d-42a8-a7ad-62d0f252b596"
+        },
+        "PIXNIO-53549-1782x1188.jpeg": {
+          "id": "640518ab-fd17-4b22-9fae-ed4a0384d12f"
         },
         "PIXNIO-53551-1782x1188.jpeg": {
           "id": "5c58666b-a7ad-4011-aa9d-d0c2be9a26c7"

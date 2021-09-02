@@ -1,18 +1,18 @@
 {
   "rooms": {
-    "development-content-room": {
-      "id": "development-content-room"
+    "diory-demo-content": {
+      "id": "diory-demo-content"
     }
   },
   "connections": {
     "./public/diory-demo-content": {
-      "room": "development-content-room",
+      "room": "diory-demo-content",
       "connector": "file"
     }
   },
   "focus": {
-    "roomId": "development-content-room",
-    "dioryId": "development-content-room"
+    "roomId": "diory-demo-content",
+    "dioryId": "diory-demo-content"
   },
   "errors": []
 }
