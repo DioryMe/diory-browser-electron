@@ -45,10 +45,10 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "evergreen-ui": "6.0.1",
     "file-url": "^4.0.0",
+    "husky": "^6.0.0",
     "jest-electron": "^0.1.11",
     "leaflet": "^1.6.0",
-    "husky": "^4.3.8",
-    "lint-staged": "^10.5.3",
+    "lint-staged": "^11.0.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.3.0",
     "prop-types": "^15.7.2",
@@ -89,7 +89,8 @@
     "test-cypress": "yarn cypress run",
     "storybook": "ESLINT_NO_DEV_ERRORS=true start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "husky install"
   },
   "build": {
     "files": [
@@ -143,11 +144,6 @@
       "docs/*"
     ],
     "delay": 2000
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "{electron,src,scripts}/**/*.{js,jsx,json,css,scss}": [
