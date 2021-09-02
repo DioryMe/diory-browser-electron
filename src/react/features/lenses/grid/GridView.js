@@ -24,6 +24,11 @@ const GridView = ({ diory, diorys, reverseDiorys = [], selectedDiory, onDrop, on
             onClick={onClick}
             elevation={2}
             aria-controls={`panel-${linkDiory.id}`}
+            style={
+              selectedDiory && linkDiory.id === selectedDiory.id
+                ? { border: '10px solid blue' }
+                : undefined
+            }
           />
         </LinkDioryContainer>
       ))}
