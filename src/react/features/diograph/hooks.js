@@ -1,5 +1,5 @@
 import { useStore } from '../../store'
-import {resolveReverseDiograph} from './resolveReverseDiograph'
+import { resolveReverseDiograph } from './resolveReverseDiograph'
 
 const useDiory = (id) => {
   const [{ diograph = {} }] = useStore((state) => state.diograph)

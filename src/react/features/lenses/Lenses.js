@@ -38,7 +38,14 @@ const LensesView = ({ diory, diorys, reverseDiorys, selectedDiory, selectedLensI
   console.log('Diorys in lens', diorys.length)
   const { Lens } = lenses[selectedLensId]
 
-  return diory ? <Lens diory={diory} diorys={diorys} reverseDiorys={reverseDiorys} selectedDiory={selectedDiory} /> : null
+  return diory ? (
+    <Lens
+      diory={diory}
+      diorys={diorys}
+      reverseDiorys={reverseDiorys}
+      selectedDiory={selectedDiory}
+    />
+  ) : null
 }
 
 LensesView.propTypes = {
