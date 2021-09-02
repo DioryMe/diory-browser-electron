@@ -2,10 +2,10 @@
 
 ```
 # Validate
-node scripts/validator.js public/development-content-room
+node scripts/validator.js public/diory-demo-content
 
 # Migrate
-node scripts/migrator.js public/development-content-room
+node scripts/migrator.js public/diory-demo-content
 ```
 
 ## What it validates?

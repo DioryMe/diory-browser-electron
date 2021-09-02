@@ -9,9 +9,7 @@ function jsonDiograph(filename) {
 describe('compareAndMergeDiographs', () => {
   describe('GIVEN two same diographs with circular linked diories (bi-directional)', () => {
     it('returns the same diograph', () => {
-      const diograph = JSON.parse(
-        fs.readFileSync('./public/development-content-room/diograph.json')
-      )
+      const diograph = JSON.parse(fs.readFileSync('./public/diory-demo-content/diograph.json'))
       const response = compareAndMergeDiographs(diograph, diograph)
       expect(response).toEqual(diograph)
     })

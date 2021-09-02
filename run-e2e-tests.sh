@@ -15,7 +15,7 @@ cp electron-main.js electron-main-original.js
 mv electron-main-tmp.js electron-main.js
 
 echo "Run Testcafe E2E test 1 (with development-content-room, with diograph.json)"
-cp -r public/development-content-room/ tmp/testcafe-diograph-folder/
+cp -r public/diory-demo-content/ tmp/testcafe-diograph-folder/
 npx testcafe "electron:." electron/spec/testcafe-e2e-1.test.js
 test_1=$?
 rm -rf tmp/testcafe-diograph-folder
@@ -27,7 +27,7 @@ test_2=$?
 rm -rf tmp/testcafe-diograph-folder
 
 echo "Run Testcafe E2E test 3 (with development-content-room + example-folder as subfolder)"
-cp -r public/development-content-room tmp/testcafe-diograph-folder
+cp -r public/diory-demo-content tmp/testcafe-diograph-folder
 cp -r electron/readers/example-folder tmp/testcafe-diograph-folder/
 npx testcafe "electron:." electron/spec/testcafe-e2e-3.test.js
 test_3=$?

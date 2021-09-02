@@ -5,7 +5,7 @@
     }
   },
   "connections": {
-    "./public/development-content-room": {
+    "./public/diory-demo-content": {
       "room": "development-content-room",
       "connector": "file"
     }
