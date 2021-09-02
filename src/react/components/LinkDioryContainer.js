@@ -4,7 +4,7 @@ import Box from 'ui-box'
 import Draggable, { types } from './Draggable'
 import Droppable from './Droppable'
 
-const LinkDioryContainer = ({ linkDiory, onDrop, onClick, children }) => (
+const LinkDioryContainer = ({ linkDiory, onDrop, children }) => (
   <Box key={linkDiory.id} flex="1 0 360px" height={240} padding={24} alignSelf="center">
     <Droppable
       type={types.DIORY}
@@ -21,7 +21,6 @@ const LinkDioryContainer = ({ linkDiory, onDrop, onClick, children }) => (
 
 LinkDioryContainer.propTypes = {
   linkDiory: PropTypes.object.isRequired,
-  onClick: PropTypes.func,
   onDrop: PropTypes.func,
   children: PropTypes.node,
 }

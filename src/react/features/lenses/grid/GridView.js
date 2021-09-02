@@ -9,12 +9,11 @@ import LinkDioryContainer from '../../../components/LinkDioryContainer'
 
 const GridView = ({ diory, diorys, reverseDiorys = [], onDrop, onClick }) => (
   <BackgroundDiory
-    diory={{ id: diory.id, image: diory.image, text: diory.text }}
+    diory={{ id: diory.id, image: diory.image }}
     gradient
-    onClick={onClick}
   >
     {reverseDiorys.map((linkDiory) => (
-      <LinkDioryContainer linkDiory={linkDiory} onDrop={onDrop} onClick={onClick}>
+      <LinkDioryContainer linkDiory={linkDiory} onDrop={onDrop}>
         <Diory
           key={linkDiory.id}
           diory={linkDiory}
@@ -33,7 +32,7 @@ const GridView = ({ diory, diorys, reverseDiorys = [], onDrop, onClick }) => (
       <DataAwareDiory diory={diory} />
     </FocusDioryContainer>
     {diorys.map((linkDiory) => (
-      <LinkDioryContainer linkDiory={linkDiory} onDrop={onDrop} onClick={onClick}>
+      <LinkDioryContainer linkDiory={linkDiory} onDrop={onDrop}>
         <Diory
           key={linkDiory.id}
           diory={linkDiory}
