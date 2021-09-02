@@ -4,7 +4,7 @@ const { getRoomEventHandler } = require('./get-room-channel')
 
 describe('getRoomEventHandler', () => {
   it('works', async () => {
-    const exampleFolderPath = './public/development-content-room'
+    const exampleFolderPath = './public/diory-demo-content'
     const params = { address: exampleFolderPath }
 
     const response = await eventHandlerWrapper('GET_ROOM', getRoomEventHandler)(params)

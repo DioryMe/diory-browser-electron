@@ -14,7 +14,7 @@ const homeJson = {
     },
   },
   connections: {
-    './public/development-content-room': {
+    './public/diory-demo-content': {
       room: 'development-content-room',
       connector: 'file',
     },
@@ -60,7 +60,7 @@ describe('getHomeEventHandler', () => {
 
     // Expect 'errors' to be added to the response
     const homeJsonWithErrors = homeJson
-    homeJsonWithErrors.errors = ['./public/development-content-room']
+    homeJsonWithErrors.errors = ['./public/diory-demo-content']
     expect(response).toEqual(homeJsonWithErrors)
   })
 })

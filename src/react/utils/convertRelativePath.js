@@ -5,7 +5,7 @@ export const convertRelativePath = (relativePath, connections) => {
     return relativePath
   }
 
-  if (RegExp(`^development-content-room/`).exec(relativePath)) {
+  if (RegExp(`^diory-demo-content/`).exec(relativePath)) {
     return `http://localhost:3300/${relativePath}`
   }
 
