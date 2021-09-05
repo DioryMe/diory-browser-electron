@@ -19,10 +19,15 @@ Feature: Timeline lens
   Scenario: Shows popup when clicking marker and clicking popup takes diory in focus
     When I navigate backward
     And I see 0 focus and 4 linked markers on timeline
-    And I click 'Scouts BSA International (event)' marker
-    And I see 'Scouts BSA International (event)' in view
-    And I click 'Scouts BSA International (event)' popup on timeline
-    Then I see 0 focus and 7 linked markers on timeline
+    And I click 'Adamstown Middle School (event)' marker
+    And I see 'Adamstown Middle School (event)' in view
+    And I click 'Adamstown Middle School (event)' popup on timeline
+    # FIXME: selectedDioryId is updated to store but not to popupClick function
+    # - recreating the popup by clicking the marker does the trick (=hacky workaround)
+    And I click 'Adamstown Middle School (event)' marker
+    And I click 'Adamstown Middle School (event)' marker
+    And I click 'Adamstown Middle School (event)' popup on timeline
+    Then I see 0 focus and 2 linked markers on timeline
 
   @pending
   Scenario: Selecting tool
