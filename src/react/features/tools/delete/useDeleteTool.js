@@ -1,7 +1,7 @@
 import { useDispatch, useStore } from '../../../store'
 import { useButtons } from '../../buttons'
 
-import { setSelectedLink } from '../../navigation/actions'
+import { setSelectedDiory } from '../../navigation/actions'
 import { buttons, DELETE_TOOL_BUTTON } from './buttons'
 
 export const useDeleteTool = () => {
@@ -12,7 +12,7 @@ export const useDeleteTool = () => {
   const dispatch = useDispatch()
   return (clickedDiory) => {
     if (DELETE_TOOL_BUTTON === active) {
-      dispatch(setSelectedLink(clickedDiory))
+      dispatch(setSelectedDiory(clickedDiory))
     }
   }
 }
