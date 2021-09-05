@@ -101,9 +101,9 @@ Feature: Map lens
     And I select move button
     And I drag marker on the map
     And I select grid lens
+    And I select 'Helvetinjärven kansallispuisto' diory
     And I select tools button
     And I select update button
-    And I select and take 'Helvetinjärven kansallispuisto' in focus
     Then I do not see '62, 24' in latlng field
 
   @pending

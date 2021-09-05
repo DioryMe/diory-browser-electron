@@ -21,7 +21,7 @@ When('I select and take {string} in focus', (dioryName) => {
   cy.get('div[draggable=true]').contains(dioryName).click()
 })
 
-When('I select {string}', (dioryName) => {
+When('I select {string} diory', (dioryName) => {
   cy.get('div[draggable=true]').contains(dioryName).click()
 })
 
