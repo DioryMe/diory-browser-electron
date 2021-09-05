@@ -10,28 +10,28 @@ const useSiblings = () => {
 
 export const useGoSide = () => {
   const [{ selectedDioryId }] = useStore((state) => state.navigation)
-  const siblings = useSiblings()
+  const siblingIds = useSiblings()
   const dispatch = useDispatch()
 
-  if (!siblings) {
+  if (!siblingIds) {
     return {}
   }
 
-  const focusIndex = siblings.indexOf(selectedDioryId)
+  const focusIndex = siblingIds.indexOf(selectedDioryId)
   if (focusIndex === 0) {
     return {
-      goRight: () => dispatch(setSelectedDiory({ id: siblings[focusIndex + 1] })),
+      goRight: () => dispatch(setSelectedDiory({ id: siblingIds[focusIndex + 1] })),
     }
   }
 
-  if (focusIndex === siblings.length - 1) {
+  if (focusIndex === siblingIds.length - 1) {
     return {
-      goLeft: () => dispatch(setSelectedDiory({ id: siblings[focusIndex - 1] })),
+      goLeft: () => dispatch(setSelectedDiory({ id: siblingIds[focusIndex - 1] })),
     }
   }
 
   return {
-    goRight: () => dispatch(setSelectedDiory({ id: siblings[focusIndex + 1] })),
-    goLeft: () => dispatch(setSelectedDiory({ id: siblings[focusIndex - 1] })),
+    goRight: () => dispatch(setSelectedDiory({ id: siblingIds[focusIndex + 1] })),
+    goLeft: () => dispatch(setSelectedDiory({ id: siblingIds[focusIndex - 1] })),
   }
 }
