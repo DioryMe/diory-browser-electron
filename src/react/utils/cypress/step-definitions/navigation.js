@@ -19,3 +19,7 @@ When('I navigate(d) to right', () => {
 When('I navigate(d) to left', () => {
   cy.get('div[data-testid="navigate-left"]').click()
 })
+
+When('I click fullscreen icon', () => {
+  cy.get('svg[data-icon=fullscreen]').click()
+})
