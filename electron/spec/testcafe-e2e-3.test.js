@@ -5,7 +5,7 @@ fixture`GIVEN welcome room`.page('../../build/index.html')
 
 test('select diograph folder with new subfolder (diograph.json + newly added subfolder)', async (t) => {
   const dioryCount = Selector('.ub-flx_1-0-360px').count
-  const eventDiory = Selector('div').withExactText('Kayaking at Potomac')
+  const eventDiory = Selector('div').withExactText('Scouts BSA International (event)')
 
   await t
     .expect(dioryCount)
