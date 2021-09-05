@@ -29,9 +29,9 @@ Feature: Create tool
   Scenario: Create text
     When I add 'Some diory' to text field
     And I click Done button
+    And I select 'Some diory' diory
     And I select tools button
     And I select update button
-    And I select and take 'Some diory' in focus
     Then I see 'Some diory' in text field
 
   # Image
@@ -39,9 +39,9 @@ Feature: Create tool
     When I add '/test-image.png' to image field
     And I add 'Some diory' to text field
     And I click Done button
+    And I select 'Some diory' diory
     And I select tools button
     And I select update button
-    And I select and take 'Some diory' in focus
     Then I see '/test-image.png' in image field
 
   # TODO: Checking background-image is dioryId dependent
@@ -56,9 +56,9 @@ Feature: Create tool
     When I add '{"some":"object"}' to style field
     And I add 'Some diory' to text field
     And I click Done button
+    And I select 'Some diory' diory
     And I select tools button
     And I select update button
-    And I select and take 'Some diory' in focus
     Then I see '{"some":"object"}' in style field
 
   Scenario: Invalid style
@@ -70,9 +70,9 @@ Feature: Create tool
     When I add '12, 123' to latlng field
     And I add 'Some diory' to text field
     And I click Done button
+    And I select 'Some diory' diory
     And I select tools button
     And I select update button
-    And I select and take 'Some diory' in focus
     Then I see '12, 123' in latlng field
 
   Scenario: Invalid latlng (string structure)
@@ -108,9 +108,9 @@ Feature: Create tool
     When I add '2020-11-01' to date field
     And I add 'Some diory' to text field
     And I click Done button
+    And I select 'Some diory' diory
     And I select tools button
     And I select update button
-    And I select and take 'Some diory' in focus
     Then I see '2020-11-01' in date field
 
   # Data
@@ -118,9 +118,9 @@ Feature: Create tool
     When I add '[{"some":"object"}]' to data field
     And I add 'Some diory' to text field
     And I click Done button
+    And I select 'Some diory' diory
     And I select tools button
     And I select update button
-    And I select and take 'Some diory' in focus
     Then I see '[{"some":"object"}]' in data field
 
   Scenario: Invalid style
