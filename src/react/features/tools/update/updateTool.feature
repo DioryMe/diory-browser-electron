@@ -2,11 +2,11 @@ Feature: Update tool
 
   Background:
     Given I am at home
-    When I take 'Generic content' in focus
-    And I take 'Diory 1' in focus
+    When I select and take 'Generic content' in focus
+    And I select and take 'Diory 1' in focus
     And I select tools button
     And I select update button
-    And I take 'Diory 11' in focus
+    And I select and take 'Diory 11' in focus
 
   Scenario: Update tool shown
     Then update tool is active
@@ -43,7 +43,7 @@ Feature: Update tool
     And I click Done button
     And I select tools button
     And I select update button
-    And I take 'Diory 11' in focus
+    And I select and take 'Diory 11' in focus
     Then I see 'Diory 11 some text' in text field
 
   # Image
@@ -52,7 +52,7 @@ Feature: Update tool
     And I click Done button
     And I select tools button
     And I select update button
-    And I take 'Diory 11' in focus
+    And I select and take 'Diory 11' in focus
     Then I see 'http://localhost:3300/test-image.png' in image field
 
   Scenario: Update image changes background image
@@ -66,7 +66,7 @@ Feature: Update tool
     And I click Done button
     And I select tools button
     And I select update button
-    And I take 'Diory 11' in focus
+    And I select and take 'Diory 11' in focus
     Then I see '{"some":"object"}' in style field
 
   Scenario: Invalid style
@@ -79,7 +79,7 @@ Feature: Update tool
     And I click Done button
     And I select tools button
     And I select update button
-    And I take 'Diory 11' in focus
+    And I select and take 'Diory 11' in focus
     Then I see '12, 12' in latlng field
 
   # Date
@@ -88,7 +88,7 @@ Feature: Update tool
     And I click Done button
     And I select tools button
     And I select update button
-    And I take 'Diory 11' in focus
+    And I select and take 'Diory 11' in focus
     Then I see '2020-11-01' in date field
 
   Scenario: Invalid date
@@ -101,7 +101,7 @@ Feature: Update tool
     And I click Done button
     And I select tools button
     And I select update button
-    And I take 'Diory 11' in focus
+    And I select and take 'Diory 11' in focus
     Then I see '[{"some":"object"}]' in data field
 
   Scenario: Invalid style

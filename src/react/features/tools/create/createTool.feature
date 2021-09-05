@@ -2,9 +2,9 @@ Feature: Create tool
 
   Background:
     Given I am at home
-    When I take 'Generic content' in focus
-    And I take 'Diory 1' in focus
-    And I take 'Diory 11' in focus
+    When I select and take 'Generic content' in focus
+    And I select and take 'Diory 1' in focus
+    And I select and take 'Diory 11' in focus
     And I select tools button
     And I select create button
 
@@ -31,7 +31,7 @@ Feature: Create tool
     And I click Done button
     And I select tools button
     And I select update button
-    And I take 'Some diory' in focus
+    And I select and take 'Some diory' in focus
     Then I see 'Some diory' in text field
 
   # Image
@@ -41,7 +41,7 @@ Feature: Create tool
     And I click Done button
     And I select tools button
     And I select update button
-    And I take 'Some diory' in focus
+    And I select and take 'Some diory' in focus
     Then I see '/test-image.png' in image field
 
   # TODO: Checking background-image is dioryId dependent
@@ -58,7 +58,7 @@ Feature: Create tool
     And I click Done button
     And I select tools button
     And I select update button
-    And I take 'Some diory' in focus
+    And I select and take 'Some diory' in focus
     Then I see '{"some":"object"}' in style field
 
   Scenario: Invalid style
@@ -72,7 +72,7 @@ Feature: Create tool
     And I click Done button
     And I select tools button
     And I select update button
-    And I take 'Some diory' in focus
+    And I select and take 'Some diory' in focus
     Then I see '12, 123' in latlng field
 
   Scenario: Invalid latlng (string structure)
@@ -110,7 +110,7 @@ Feature: Create tool
     And I click Done button
     And I select tools button
     And I select update button
-    And I take 'Some diory' in focus
+    And I select and take 'Some diory' in focus
     Then I see '2020-11-01' in date field
 
   # Data
@@ -120,7 +120,7 @@ Feature: Create tool
     And I click Done button
     And I select tools button
     And I select update button
-    And I take 'Some diory' in focus
+    And I select and take 'Some diory' in focus
     Then I see '[{"some":"object"}]' in data field
 
   Scenario: Invalid style

@@ -2,8 +2,8 @@ Feature: Hand tool
 
   Background:
     Given I am at home
-    And I take 'Generic content' in focus
-    And I take 'Diory 1' in focus
+    And I select and take 'Generic content' in focus
+    And I select and take 'Diory 1' in focus
     And I select tools button
 
   Scenario: Hand tool shown
@@ -29,7 +29,7 @@ Feature: Hand tool
     Then 'Diory 11' diory is in the hand
 
   Scenario: Take focus diory into hand
-    Given  I take 'Diory 11' in focus
+    Given  I select and take 'Diory 11' in focus
     When I drag focus diory into hand
     Then 'Diory 11' diory is in the hand
 
@@ -37,7 +37,7 @@ Feature: Hand tool
     Given  I see 'Diory 11' in view
     And  I see 'Diory 12' in view
     And I drag 'diory11' into hand
-    And I take 'Diory 12' in focus
+    And I select and take 'Diory 12' in focus
     When I drag 'hand-diory11' to 'background-diory12'
     Then I see 'Diory 11' in view
 
@@ -46,12 +46,12 @@ Feature: Hand tool
     And  I see 'Diory 12' in view
     And I drag 'diory11' into hand
     When I drag 'hand-diory11' to 'diory12'
-    And I take 'Diory 12' in focus
+    And I select and take 'Diory 12' in focus
     Then I see 'Diory 11' in view
 
   Scenario: Link linked diory to another linked diory
     Given  I see 'Diory 11' in view
     And  I see 'Diory 12' in view
     When I drag 'diory11' to 'diory12'
-    And I take 'Diory 12' in focus
+    And I select and take 'Diory 12' in focus
     Then I see 'Diory 11' in view

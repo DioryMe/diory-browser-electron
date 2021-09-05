@@ -2,7 +2,7 @@ Feature: Create location tool on map
 
   Background:
     Given I am at home
-    And I take 'Map content' in focus
+    And I select and take 'Map content' in focus
     And I select map lens
     And I select tools button
     And I select create button

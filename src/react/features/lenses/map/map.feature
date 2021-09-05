@@ -4,8 +4,8 @@ Feature: Map lens
 
   Background:
     Given I am at home
-    When I take 'Map content' in focus
-    When I take 'Tampere' in focus
+    When I select and take 'Map content' in focus
+    When I select and take 'Tampere' in focus
     And I select map lens
 
   Scenario: Markers on map
@@ -16,7 +16,7 @@ Feature: Map lens
 
   Scenario: Diory in focus persists when changing lenses
     When I select grid lens
-    When I take 'Frenkell' in focus
+    When I select and take 'Frenkell' in focus
     When I select map lens
     Then I see 'Frenkell' in view
 
@@ -83,7 +83,7 @@ Feature: Map lens
     And I select grid lens
     And I select tools button
     And I select update button
-    And I take 'Helvetinjärven kansallispuisto' in focus
+    And I select and take 'Helvetinjärven kansallispuisto' in focus
     Then I do not see '62, 24' in latlng field
 
   @pending
@@ -100,8 +100,8 @@ Feature: Map lens
     Given I select grid lens
     And I navigate backward
     And I navigate backward
-    And I take 'Generic content' in focus
-    And I take 'Diory 1' in focus
+    And I select and take 'Generic content' in focus
+    And I select and take 'Diory 1' in focus
     When I select map lens
     Then I see 0 focus and 0 linked markers on map
 

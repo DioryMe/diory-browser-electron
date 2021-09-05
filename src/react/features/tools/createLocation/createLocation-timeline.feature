@@ -2,7 +2,7 @@ Feature: Create location tool on timeline
 
   Background:
     Given I am at home
-    And I take 'Kayaking at Potomac' in focus
+    And I select and take 'Kayaking at Potomac' in focus
     And I select timeline lens
     And I select tools button
     And I select create button

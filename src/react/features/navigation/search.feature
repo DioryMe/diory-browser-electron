@@ -21,5 +21,5 @@ Feature: Search
 
   Scenario: When clicked it sets diory in focus
     When I type 'dior' in search bar
-    And I take 'Diory 14' in focus
+    And I select and take 'Diory 14' in focus
     Then I do not see 'Diory 12' in view

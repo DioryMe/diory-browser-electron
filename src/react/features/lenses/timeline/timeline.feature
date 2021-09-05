@@ -2,7 +2,7 @@ Feature: Timeline lens
 
   Background:
     Given I am at home
-    When I take 'Kayaking at Potomac' in focus
+    When I select and take 'Kayaking at Potomac' in focus
     And I select timeline lens
 
   # NOTE:

@@ -2,8 +2,8 @@ Feature: Creating content to Map lens
 
   Background:
     Given I am at home
-    When I take 'Generic content' in focus
-    And I take 'Diory 1' in focus
+    When I select and take 'Generic content' in focus
+    And I select and take 'Diory 1' in focus
 
   Scenario: Map with diories without locations
     And I select map lens
@@ -24,7 +24,7 @@ Feature: Creating content to Map lens
     And I add 'Map diory' to text field
     And I add '62, 24' to latlng field
     And I click Done button
-    And I take 'Map diory' in focus
+    And I select and take 'Map diory' in focus
     And I select map lens
     Then I see 1 focus and 0 linked markers on map
 
