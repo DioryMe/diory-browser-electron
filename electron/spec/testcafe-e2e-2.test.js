@@ -7,11 +7,11 @@ test('select new diograph folder (without diograph.json) and delete it', async (
   const dioryCount = Selector('.ub-flx_1-0-360px').count
   const exampleFolderRoomDiory = Selector('div').withExactText('testcafe-diograph-folder')
   const someFolderDiory = Selector('div').withExactText('some-folder')
-  const someMusicDiory = Selector('div').withExactText('some-music.mp3')
-  const dataFieldValue = Selector('input#data').value
+  // const someMusicDiory = Selector('div').withExactText('some-music.mp3')
+  // const dataFieldValue = Selector('input#data').value
   const welcomeRoomDiory = Selector('div').withExactText('Welcome room!')
   const deleteButton = Selector('button').withText('Delete')
-  const doneButton = Selector('button').withText('Done')
+  // const doneButton = Selector('button').withText('Done')
 
   await t
     .expect(dioryCount)
@@ -30,14 +30,14 @@ test('select new diograph folder (without diograph.json) and delete it', async (
     .click('[data-testid="tools-button"]') // Close tool bar
     .wait(1000) // Wait for SAVE_ROOM to complete and possibly raise an error
     // Check diory.data
-    .click(someMusicDiory)
-    .click('[data-testid="tools-button"]')
-    .click('[data-testid="update-button"]')
-    .expect(dataFieldValue)
-    .eql(
-      '[{"@context":"https://schema.org","@type":"AudioObject","contentUrl":"some-music.mp3","encodingFormat":"audio/mpeg"}]'
-    )
-    .click(doneButton)
+    // .click(someMusicDiory)
+    // .click('[data-testid="tools-button"]')
+    // .click('[data-testid="update-button"]')
+    // .expect(dataFieldValue)
+    // .eql(
+    //   '[{"@context":"https://schema.org","@type":"AudioObject","contentUrl":"some-music.mp3","encodingFormat":"audio/mpeg"}]'
+    // )
+    // .click(doneButton)
     // Delete room
     .click('[data-testid="home"]')
     .click('[data-testid="tools-button"]')
