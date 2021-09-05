@@ -6,7 +6,7 @@ fixture`GIVEN welcome room`.page('../../build/index.html')
 test('select diograph folder (with diograph.json)', async (t) => {
   const dioryCount = Selector('.ub-flx_1-0-360px').count
   const eventDiory = Selector('div').withExactText('Scouts BSA International (event)')
-  const imageDiory = Selector('#103f852d-4a2a-44de-8f4f-08ccddc3d280')
+  const imageDiory = Selector('#\\31 03f852d-4a2a-44de-8f4f-08ccddc3d280')
   const doneButton = Selector('button').withText('Done')
 
   await t
