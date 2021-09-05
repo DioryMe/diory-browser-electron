@@ -1,6 +1,6 @@
 import { useDispatch, useStore } from '../../../store'
 import { useButtons } from '../../buttons'
-import { setSelectedLink } from '../../navigation/actions'
+import { setSelectedDiory } from '../../navigation/actions'
 import { buttons, UPDATE_TOOL_BUTTON } from './buttons'
 
 export const useUpdateTool = () => {
@@ -10,7 +10,7 @@ export const useUpdateTool = () => {
   const dispatch = useDispatch()
   return (clickedDiory) => {
     if (UPDATE_TOOL_BUTTON === active) {
-      dispatch(setSelectedLink(clickedDiory))
+      dispatch(setSelectedDiory(clickedDiory))
     }
   }
 }

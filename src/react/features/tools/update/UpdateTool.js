@@ -10,11 +10,11 @@ import { UPDATE_TOOL_BUTTON } from './buttons'
 
 const UpdateTool = () => {
   const [{ active }] = useStore((state) => state.buttons)
-  const [{ link }] = useStore((state) => state.navigation)
+  const [{ selectedDioryId }] = useStore((state) => state.navigation)
   const { diory } = useLinkDiory()
 
   const { dispatchAction } = useDispatchActions()
-  return UPDATE_TOOL_BUTTON === active && !!link ? (
+  return UPDATE_TOOL_BUTTON === active && !!selectedDioryId ? (
     <UpdateView diory={diory} title="Update diory" isShown onDone={dispatchAction(updateDiory)} />
   ) : null
 }

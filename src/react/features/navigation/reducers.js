@@ -5,7 +5,7 @@ import {
   SET_FOCUS,
   GO_BACKWARD,
   GO_FORWARD,
-  SET_SELECTED_LINK,
+  SET_SELECTED_DIORY,
 } from './actionsTypes'
 import { createReducer } from '../../store'
 
@@ -83,9 +83,9 @@ export const goHome = (state) => ({
   path: [],
 })
 
-export const setSelectedLink = (state, { payload }) => ({
+export const setSelectedDiory = (state, { payload }) => ({
   ...state,
-  link: payload.link.id,
+  selectedDioryId: payload.diory.id,
 })
 
 export default createReducer({
@@ -95,5 +95,5 @@ export default createReducer({
   [GO_FORWARD]: goForward,
   [GO_HOME]: goHome,
   [GO_SIDE]: goSide,
-  [SET_SELECTED_LINK]: setSelectedLink,
+  [SET_SELECTED_DIORY]: setSelectedDiory,
 })

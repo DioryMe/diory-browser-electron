@@ -1,5 +1,5 @@
 import { useDispatch, useStore } from '../../../store'
-import { setSelectedLink } from '../actions'
+import { setSelectedDiory } from '../actions'
 import { useFocus } from '../../diograph/hooks'
 
 const useSiblings = () => {
@@ -9,7 +9,7 @@ const useSiblings = () => {
 }
 
 export const useGoSide = () => {
-  const [{ link }] = useStore((state) => state.navigation)
+  const [{ selectedDioryId }] = useStore((state) => state.navigation)
   const siblings = useSiblings()
   const dispatch = useDispatch()
 
@@ -17,21 +17,21 @@ export const useGoSide = () => {
     return {}
   }
 
-  const focusIndex = siblings.indexOf(link)
+  const focusIndex = siblings.indexOf(selectedDioryId)
   if (focusIndex === 0) {
     return {
-      goRight: () => dispatch(setSelectedLink({ id: siblings[focusIndex + 1] })),
+      goRight: () => dispatch(setSelectedDiory({ id: siblings[focusIndex + 1] })),
     }
   }
 
   if (focusIndex === siblings.length - 1) {
     return {
-      goLeft: () => dispatch(setSelectedLink({ id: siblings[focusIndex - 1] })),
+      goLeft: () => dispatch(setSelectedDiory({ id: siblings[focusIndex - 1] })),
     }
   }
 
   return {
-    goRight: () => dispatch(setSelectedLink({ id: siblings[focusIndex + 1] })),
-    goLeft: () => dispatch(setSelectedLink({ id: siblings[focusIndex - 1] })),
+    goRight: () => dispatch(setSelectedDiory({ id: siblings[focusIndex + 1] })),
+    goLeft: () => dispatch(setSelectedDiory({ id: siblings[focusIndex - 1] })),
   }
 }
