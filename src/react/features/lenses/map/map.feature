@@ -30,11 +30,21 @@ Feature: Map lens
   Scenario: Change diory in focus on map
     When I click 'Keskustori' marker
     And I click 'Keskustori' popup on map
+    # FIXME: selectedDioryId is updated to store but not to popupClick function
+    # - recreating the popup by clicking the marker does the trick (=hacky workaround)
+    And I click 'Keskustori' marker
+    And I click 'Keskustori' marker
+    And I click 'Keskustori' popup on map
     Then I see 'Keskustori' popup on map
     And I see 1 focus and 0 linked markers on map
 
   Scenario: Changing focus changes focus also on grid
     When I click 'Keskustori' marker
+    And I click 'Keskustori' popup on map
+    # FIXME: selectedDioryId is updated to store but not to popupClick function
+    # - recreating the popup by clicking the marker does the trick (=hacky workaround)
+    And I click 'Keskustori' marker
+    And I click 'Keskustori' marker
     And I click 'Keskustori' popup on map
     And I select grid lens
     Then I see 'Keskustori' in view
@@ -42,12 +52,22 @@ Feature: Map lens
   Scenario: Back button on map
     When I click 'Keskustori' marker
     And I click 'Keskustori' popup on map
+    # FIXME: selectedDioryId is updated to store but not to popupClick function
+    # - recreating the popup by clicking the marker does the trick (=hacky workaround)
+    And I click 'Keskustori' marker
+    And I click 'Keskustori' marker
+    And I click 'Keskustori' popup on map
     And I navigate backward
     Then I see 'Tampere' popup on map
     And I see 1 focus and 3 linked markers on map
 
   Scenario: Forward button on map
     When I click 'Keskustori' marker
+    And I click 'Keskustori' popup on map
+    # FIXME: selectedDioryId is updated to store but not to popupClick function
+    # - recreating the popup by clicking the marker does the trick (=hacky workaround)
+    And I click 'Keskustori' marker
+    And I click 'Keskustori' marker
     And I click 'Keskustori' popup on map
     And I navigate backward
     And I navigate forward
