@@ -42,7 +42,7 @@ Feature: Create tool
     And I select 'Some diory' diory
     And I select tools button
     And I select update button
-    Then I see '/test-image.png' in image field
+    Then I see './public/diory-demo-content//test-image.png' in image field
 
   # TODO: Checking background-image is dioryId dependent
   #       and as we don't know the created diory dioryId this is not possible
