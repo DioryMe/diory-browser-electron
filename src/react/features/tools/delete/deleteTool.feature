@@ -13,7 +13,6 @@ Feature: Delete tool
   Scenario: Diory in focus and its links are deleted
     When I select and take 'Diory 14' in focus
     And I select delete button
-    And I click 'Diory 14' focus diory
     And I click Delete button
     Then I do not see 'Diory 14' in view
     And I see 'Diory 11' in view
@@ -21,8 +20,8 @@ Feature: Delete tool
     And 'link14' link not in the store
 
   Scenario: Link to diory in view is deleted (not the diory!)
-    When I select delete button
-    And I select and take 'Diory 11' in focus
+    When I select 'Diory 11' diory
+    And I select delete button
     And I click Delete button
     Then I do not see 'Diory 11' in view
     And 'link11' link not in the store
@@ -31,7 +30,6 @@ Feature: Delete tool
   Scenario: Link to self is deleted
     When I select and take 'Diory 11' in focus
     And I select delete button
-    And I select and take 'Diory 11' in focus
     And I click Delete button
     Then I see 'Diory 11' in view
     And 'link11-to-self' link not in the store
@@ -39,21 +37,22 @@ Feature: Delete tool
     And 'Diory 11' diory is in the store
 
   Scenario: Deleting diory is cancelled
-    When I select delete button
-    And I select and take 'Diory 11' in focus
+    When I select 'Diory 11' diory
+    And I select delete button
     And I click Cancel button
     Then I see 'Diory 11' in view
 
   Scenario: Delete diory is deactivated
     When I select delete button
+    And I click Cancel button
     And I select 'delete-button--active'
     Then I see tools button
 
   Scenario: Multiple diories are deleted from view
+    When I select 'Diory 11' diory
     When I select delete button
-    And I select and take 'Diory 11' in focus
     And I click Delete button
-    And I select and take 'Diory 12' in focus
+    When I select 'Diory 12' diory
     And I click Delete button
     Then I do not see 'Diory 11' in view
     And I do not see 'Diory 12' in view
