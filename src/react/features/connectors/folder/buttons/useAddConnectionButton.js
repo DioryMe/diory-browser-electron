@@ -25,7 +25,7 @@ export const useAddConnectionButton = () => {
         dispatch(addConnection({ address, room: roomId, connector: 'file' }))
         dispatch(addRoom(roomId, diograph[rootId]))
         dispatch(enterRoom({ id: roomId }))
-        dispatch(setFocus({ focus: rootId }))
+        dispatch(setFocus({ focusId: rootId }))
       })
     }
 
