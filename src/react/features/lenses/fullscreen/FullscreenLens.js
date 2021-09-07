@@ -1,29 +1,76 @@
 import React from 'react'
+import Box from 'ui-box'
 
 import { useLinkDiory } from '../../diograph/hooks'
 import { useDispatchActions } from '../../../store'
 
 import { selectLens } from '../actions'
 
+import { useFocusTool } from '../../tools/focus'
+
 import Fullscreen from '../../../components/Fullscreen'
 import DataAwareDiory from '../../../components/diories/DataAwareDiory'
 import CloseButton from '../../../components/CloseButton'
+import Diory from '../../../components/diories/Diory'
+import LinkDioryContainer from '../../../components/LinkDioryContainer'
 
 const useFullscreenLens = () => {
+  const focusDiory = useFocusTool()
   const { dispatch } = useDispatchActions()
 
   return {
-    onClick: () => dispatch(selectLens('grid')),
+    onCloseClick: () => dispatch(selectLens('grid')),
+    onClick: ({ diory }) => {
+      focusDiory(diory)
+    },
   }
 }
 
 const FullscreenLens = () => {
-  const { diory } = useLinkDiory()
-  const { onClick } = useFullscreenLens()
+  const { diory, diorys, reverseDiorys } = useLinkDiory()
+  const { onCloseClick, onClick } = useFullscreenLens()
   return (
     <Fullscreen zIndex={10000}>
       <DataAwareDiory diory={diory} />
-      <CloseButton onClick={onClick} />
+      <CloseButton onClick={onCloseClick} />
+      <Box style={{ position: 'absolute', top: 0, width: '100%', textAlign: 'center' }}>
+        {reverseDiorys &&
+          reverseDiorys.map((reverseDiory) => (
+            <LinkDioryContainer
+              linkDiory={reverseDiory}
+              onClick={onClick}
+              style={{ display: 'inline-block', width: 100, height: 100 }}
+            >
+              <Diory
+                key={reverseDiory.id}
+                diory={reverseDiory}
+                onClick={onClick}
+                elevation={2}
+                aria-controls={`panel-${reverseDiory.id}`}
+                style={{ width: 100, height: 100 }}
+              />
+            </LinkDioryContainer>
+          ))}
+      </Box>
+      <Box style={{ position: 'absolute', bottom: 0, width: '100%', textAlign: 'center' }}>
+        {diorys &&
+          diorys.map((linkDiory) => (
+            <LinkDioryContainer
+              linkDiory={linkDiory}
+              onClick={onClick}
+              style={{ display: 'inline-block', width: 100, height: 100 }}
+            >
+              <Diory
+                key={linkDiory.id}
+                diory={linkDiory}
+                // onClick={onClick}
+                elevation={2}
+                aria-controls={`panel-${linkDiory.id}`}
+                style={{ width: 100, height: 100 }}
+              />
+            </LinkDioryContainer>
+          ))}
+      </Box>
     </Fullscreen>
   )
 }
