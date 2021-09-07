@@ -11,7 +11,7 @@ import { createReducer } from '../../store'
 
 export const initialState = {
   roomId: undefined,
-  focus: undefined,
+  focusId: undefined,
   link: null,
   backward: [],
   forward: [],
@@ -21,64 +21,64 @@ export const initialState = {
 export const enterRoom = (state, { payload }) => ({
   ...state,
   roomId: payload.id,
-  focus: payload.id, // rootId
+  focusId: payload.id, // rootId
   backward: [[]],
   forward: [],
   path: [payload.id],
 })
 
 export const setFocus = (state, { payload }) => {
-  if (payload.focus === state.focus) {
+  if (payload.focusId === state.focusId) {
     return state
   }
 
   return {
     ...state,
-    focus: payload.focus,
-    backward: [[state.roomId, state.focus], ...state.backward],
+    focusId: payload.focusId,
+    backward: [[state.roomId, state.focusId], ...state.backward],
     forward: [],
-    path: [...state.path, payload.focus],
+    path: [...state.path, payload.focusId],
   }
 }
 
 export const goSide = (state, { payload }) => ({
   ...state,
-  focus: payload.focus,
+  focusId: payload.focusId,
   forward: [],
   path: Object.assign([], state.path, {
-    [state.path.length - 1]: payload.focus,
+    [state.path.length - 1]: payload.focusId,
   }),
 })
 
 export const goBackward = (state) => {
-  const [[roomId, focus], ...backward] = state.backward
+  const [[roomId, focusId], ...backward] = state.backward
   return {
     ...state,
     roomId,
-    focus,
+    focusId,
     backward,
-    forward: [[state.roomId, state.focus], ...state.forward],
+    forward: [[state.roomId, state.focusId], ...state.forward],
     path: [...state.path].slice(0, -1),
   }
 }
 
 export const goForward = (state) => {
-  const [[roomId, focus], ...forward] = state.forward
+  const [[roomId, focusId], ...forward] = state.forward
   return {
     ...state,
     roomId,
-    focus,
-    backward: [[state.roomId, state.focus], ...state.backward],
+    focusId,
+    backward: [[state.roomId, state.focusId], ...state.backward],
     forward,
-    path: [...state.path, focus],
+    path: [...state.path, focusId],
   }
 }
 
 export const goHome = (state) => ({
   ...state,
   roomId: null,
-  focus: null,
-  backward: [[state.roomId, state.focus], ...state.backward],
+  focusId: null,
+  backward: [[state.roomId, state.focusId], ...state.backward],
   forward: [],
   path: [],
 })
