@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import BackgroundDiory from '../../../components/diories/BackgroundDiory'
 import DataAwareDiory from '../../../components/diories/DataAwareDiory'
 import Diory from '../../../components/diories/Diory'
-import FocusDioryContainer from '../../../components/FocusDioryContainer'
+import FocusContainer from '../../../components/FocusContainer'
 import LinkDioryContainer from '../../../components/LinkDioryContainer'
 import Fullscreen from '../../../components/Fullscreen'
 import FullscreenButton from '../fullscreen/FullscreenButton'
@@ -32,7 +32,7 @@ const GridView = ({ diory, diorys, reverseDiorys = [], selectedDiory, onDrop, on
           />
         </LinkDioryContainer>
       ))}
-      <FocusDioryContainer
+      <FocusContainer
         diory={diory}
         onClick={onClick}
         onDrop={onDrop}
@@ -40,7 +40,7 @@ const GridView = ({ diory, diorys, reverseDiorys = [], selectedDiory, onDrop, on
       >
         <FullscreenButton />
         <DataAwareDiory diory={diory} />
-      </FocusDioryContainer>
+      </FocusContainer>
       {diorys.map((linkDiory) => (
         <LinkDioryContainer linkDiory={linkDiory} onDrop={onDrop} onClick={onClick}>
           <Diory

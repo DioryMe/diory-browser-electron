@@ -11,7 +11,7 @@ const dioryActionsStyle = {
   cursor: 'pointer',
 }
 
-const FocusDioryContainer = ({ diory, onDrop, onClick, style, children, ...props }) => (
+const FocusContainer = ({ diory, onDrop, onClick, style, children, ...props }) => (
   <Box key={diory.id} {...style}>
     <Box style={{ position: 'relative', height: '100%' }}>
       {children}
@@ -20,7 +20,7 @@ const FocusDioryContainer = ({ diory, onDrop, onClick, style, children, ...props
   </Box>
 )
 
-FocusDioryContainer.propTypes = {
+FocusContainer.propTypes = {
   diory: PropTypes.object.isRequired,
   onClick: PropTypes.func,
   onDrop: PropTypes.func,
@@ -28,4 +28,4 @@ FocusDioryContainer.propTypes = {
   children: PropTypes.node,
 }
 
-export default FocusDioryContainer
+export default FocusContainer
