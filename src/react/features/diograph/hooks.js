@@ -33,8 +33,10 @@ export const useFocus = () => {
 export const useLinkDiory = () => {
   const [{ selectedDioryId }] = useStore((state) => state.navigation)
   const [{ diograph = {} }] = useStore((state) => state.diograph)
+  const reverseDiograph = resolveReverseDiograph(diograph)
   return {
     diory: useDiory(selectedDioryId),
     diorys: useLinkedDiorys(selectedDioryId, diograph),
+    reverseDiorys: useLinkedDiorys(selectedDioryId, reverseDiograph),
   }
 }

@@ -12,7 +12,7 @@ import { createReducer } from '../../store'
 export const initialState = {
   roomId: undefined,
   focusId: undefined,
-  link: null,
+  selectedDioryId: null,
   backward: [],
   forward: [],
   path: [],
