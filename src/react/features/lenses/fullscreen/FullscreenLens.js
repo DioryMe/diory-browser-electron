@@ -1,5 +1,6 @@
 import React from 'react'
 import Box from 'ui-box'
+import PropTypes from 'prop-types'
 
 import { useLinkDiory } from '../../diograph/hooks'
 import { useDispatchActions } from '../../../store'
@@ -26,7 +27,7 @@ const useFullscreenLens = () => {
   }
 }
 
-const FullscreenLens = () => {
+const FullscreenLens = ({ diory: focusDiory }) => {
   const { diory, diorys, reverseDiorys } = useLinkDiory()
   const { onCloseClick, onClick } = useFullscreenLens()
   return (
@@ -35,22 +36,26 @@ const FullscreenLens = () => {
       <CloseButton onClick={onCloseClick} />
       <Box style={{ position: 'absolute', top: 0, width: '100%', textAlign: 'center' }}>
         {reverseDiorys &&
-          reverseDiorys.map((reverseDiory) => (
-            <LinkDioryContainer
-              linkDiory={reverseDiory}
-              onClick={onClick}
-              style={{ display: 'inline-block', width: 100, height: 100 }}
-            >
-              <Diory
-                key={reverseDiory.id}
-                diory={reverseDiory}
+          reverseDiorys.map((reverseDiory) => {
+            const borderStyle =
+              focusDiory && reverseDiory.id === focusDiory.id ? { border: '7px solid blue' } : {}
+            return (
+              <LinkDioryContainer
+                linkDiory={reverseDiory}
                 onClick={onClick}
-                elevation={2}
-                aria-controls={`panel-${reverseDiory.id}`}
-                style={{ width: 100, height: 100 }}
-              />
-            </LinkDioryContainer>
-          ))}
+                style={{ display: 'inline-block', width: 100, height: 100 }}
+              >
+                <Diory
+                  key={reverseDiory.id}
+                  diory={reverseDiory}
+                  onClick={onClick}
+                  elevation={2}
+                  aria-controls={`panel-${reverseDiory.id}`}
+                  style={{ width: 100, height: 100, ...borderStyle }}
+                />
+              </LinkDioryContainer>
+            )
+          })}
       </Box>
       <Box style={{ position: 'absolute', bottom: 0, width: '100%', textAlign: 'center' }}>
         {diorys &&
@@ -73,6 +78,10 @@ const FullscreenLens = () => {
       </Box>
     </Fullscreen>
   )
+}
+
+FullscreenLens.propTypes = {
+  diory: PropTypes.object.isRequired,
 }
 
 export default FullscreenLens
