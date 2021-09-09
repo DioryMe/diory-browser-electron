@@ -33,3 +33,26 @@ Then('{string} diory {word} in the hand', (dioryText, isOrNot) => {
       : expect(Object.values(window.handInStore)).not.to.include(diory.id)
   })
 })
+
+Then('focusId {word} {string}', (isOrNot, dioryId) => {
+  cy.window()
+    .its('navigationInStore')
+    .should(($p) => {
+      isOrNot === 'is'
+        ? expect($p.focusId).to.equal(dioryId)
+        : expect($p.focusId).not.to.equal(dioryId)
+    })
+})
+
+Then('selectedDioryId {word} {string}', (isOrNot, dioryId) => {
+  cy.window()
+    .its('navigationInStore')
+    .should(($p) => {
+      // eslint-disable-next-line no-nested-ternary
+      dioryId === 'null'
+        ? expect($p.selectedDioryId).to.equal(null)
+        : isOrNot === 'is'
+        ? expect($p.selectedDioryId).to.equal(dioryId)
+        : expect($p.selectedDioryId).not.to.equal(dioryId)
+    })
+})

@@ -26,6 +26,7 @@ export const useStore = (selector) => {
   if (window.Cypress && process.env.NODE_ENV === 'development') {
     window.diographInStore = getUntrackedDiograph(state.diograph.diograph)
     window.handInStore = getUntrackedDiograph(state.tools.hand)
+    window.navigationInStore = state.navigation
   }
   const selectedState = selector ? selector(state) : state
   return [selectedState, dispatch]

@@ -44,7 +44,9 @@ Feature: Navigation
     When I navigate to home
     Then I am at home
 
-  Scenario: Navigate with map lens
+  Scenario: Focus
+    Then focusId is 'diory1'
 
-  Scenario: Navigate with timeline lens
+  Scenario: Selected
+    Then selectedDioryId is 'null'
 
