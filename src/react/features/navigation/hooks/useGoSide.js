@@ -12,8 +12,9 @@ export const useGoSide = () => {
   const [{ selectedDioryId }] = useStore((state) => state.navigation)
   const siblingIds = useSiblings()
   const dispatch = useDispatch()
+  const { diory } = useFocus()
 
-  if (!siblingIds) {
+  if (!siblingIds || (diory && selectedDioryId === diory.id)) {
     return {}
   }
 
