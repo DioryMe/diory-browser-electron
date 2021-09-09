@@ -36,6 +36,8 @@ export const lenses = {
 
 const LensesView = ({ diory, diorys, reverseDiorys, selectedDiory, selectedLensId }) => {
   console.log('Diorys in lens', diorys.length)
+  console.log('focus', diory && diory.id)
+  console.log('selectedDiory', selectedDiory && selectedDiory.id)
   const { Lens } = lenses[selectedLensId]
 
   return diory ? (
