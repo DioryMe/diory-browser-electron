@@ -19,20 +19,20 @@ const FullscreenButton = () => {
 
   return (
     <div
-      data-testid="close-button"
+      data-testid="fullscreen-button"
       onClick={onClick}
       style={{
         position: 'absolute',
         right: 0,
         zIndex: 15,
-        height: 36,
-        width: 36,
+        height: 18,
+        width: 18,
         cursor: 'pointer',
         padding: 10,
         color: 'white',
       }}
     >
-      <Icon icon="fullscreen" size={36} />
+      <Icon icon="fullscreen" size={18} />
     </div>
   )
 }
