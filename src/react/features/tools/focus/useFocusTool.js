@@ -14,6 +14,7 @@ export const useFocusTool = () => {
       if (selectedDioryId === clickedDiory.id) {
         dispatch(addDioryToHand(clickedDiory.id))
         dispatch(setFocus({ focusId: clickedDiory.id }))
+        dispatch(setSelectedDiory({ id: null }))
       } else {
         dispatch(setSelectedDiory(clickedDiory))
       }
