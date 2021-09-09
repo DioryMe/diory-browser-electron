@@ -28,7 +28,7 @@ const useFullscreenLens = () => {
 }
 
 const FullscreenLens = ({ diory: focusDiory }) => {
-  const { diory, diorys, reverseDiorys } = useLinkDiory()
+  const { diory, reverseDiorys } = useLinkDiory()
   const { onCloseClick, onClick } = useFullscreenLens()
   return (
     <Fullscreen zIndex={10000}>
@@ -56,25 +56,6 @@ const FullscreenLens = ({ diory: focusDiory }) => {
               </LinkDioryContainer>
             )
           })}
-      </Box>
-      <Box style={{ position: 'absolute', bottom: 0, width: '100%', textAlign: 'center' }}>
-        {diorys &&
-          diorys.map((linkDiory) => (
-            <LinkDioryContainer
-              linkDiory={linkDiory}
-              onClick={onClick}
-              style={{ display: 'inline-block', width: 100, height: 100 }}
-            >
-              <Diory
-                key={linkDiory.id}
-                diory={linkDiory}
-                // onClick={onClick}
-                elevation={2}
-                aria-controls={`panel-${linkDiory.id}`}
-                style={{ width: 100, height: 100 }}
-              />
-            </LinkDioryContainer>
-          ))}
       </Box>
     </Fullscreen>
   )
