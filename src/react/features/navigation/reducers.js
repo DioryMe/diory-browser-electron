@@ -28,25 +28,25 @@ export const enterRoom = (state, { payload }) => ({
 })
 
 export const setFocus = (state, { payload }) => {
-  if (payload.focusId === state.focusId) {
+  if (payload.id === state.focusId) {
     return state
   }
 
   return {
     ...state,
-    focusId: payload.focusId,
+    focusId: payload.id,
     backward: [[state.roomId, state.focusId], ...state.backward],
     forward: [],
-    path: [...state.path, payload.focusId],
+    path: [...state.path, payload.id],
   }
 }
 
 export const goSide = (state, { payload }) => ({
   ...state,
-  focusId: payload.focusId,
+  focusId: payload.id,
   forward: [],
   path: Object.assign([], state.path, {
-    [state.path.length - 1]: payload.focusId,
+    [state.path.length - 1]: payload.id,
   }),
 })
 

@@ -13,9 +13,9 @@ export const enterRoom = ({ id }) => ({
   payload: { id },
 })
 
-export const setFocus = ({ focusId }) => ({
+export const setFocus = ({ id }) => ({
   type: SET_FOCUS,
-  payload: { focusId },
+  payload: { id },
 })
 
 export const goBackward = () => ({ type: GO_BACKWARD })
@@ -24,9 +24,9 @@ export const goForward = () => ({ type: GO_FORWARD })
 
 export const goHome = () => ({ type: GO_HOME })
 
-export const goSide = ({ focusId }) => ({
+export const goSide = ({ id }) => ({
   type: GO_SIDE,
-  payload: { focusId },
+  payload: { id },
 })
 
 export const setSelectedDiory = (diory = {}) => ({
