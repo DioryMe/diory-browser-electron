@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 import { useLinkDiory } from '../../diograph/hooks'
 import { useDispatchActions } from '../../../store'
+import { setFocus, setSelectedDiory } from '../../navigation/actions'
 
 import { selectLens } from '../actions'
 
@@ -28,8 +29,9 @@ const useFullscreenLens = () => {
 }
 
 const FullscreenLens = ({ diory: focusDiory }) => {
-  const { diory, reverseDiorys } = useLinkDiory()
+  const { diory, diorys, reverseDiorys } = useLinkDiory()
   const { onCloseClick, onClick } = useFullscreenLens()
+  const { dispatch } = useDispatchActions()
   return (
     <Fullscreen zIndex={10000}>
       <DataAwareDiory diory={diory} />
@@ -56,6 +58,28 @@ const FullscreenLens = ({ diory: focusDiory }) => {
               </LinkDioryContainer>
             )
           })}
+      </Box>
+      <Box style={{ position: 'absolute', bottom: 0, width: '100%', textAlign: 'center' }}>
+        {diorys &&
+          diorys.map((linkDiory) => (
+            <LinkDioryContainer
+              linkDiory={linkDiory}
+              onClick={onClick}
+              style={{ display: 'inline-block', width: 100, height: 100 }}
+            >
+              <Diory
+                key={linkDiory.id}
+                diory={linkDiory}
+                onClick={() => {
+                  dispatch(setSelectedDiory(linkDiory))
+                  dispatch(setFocus(diory))
+                }}
+                elevation={2}
+                aria-controls={`panel-${linkDiory.id}`}
+                style={{ width: 100, height: 100 }}
+              />
+            </LinkDioryContainer>
+          ))}
       </Box>
     </Fullscreen>
   )
