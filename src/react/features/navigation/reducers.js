@@ -35,7 +35,6 @@ export const setFocus = (state, { payload }) => {
   return {
     ...state,
     focusId: payload.focusId,
-    selectedDioryId: null,
     backward: [[state.roomId, state.focusId], ...state.backward],
     forward: [],
     path: [...state.path, payload.focusId],

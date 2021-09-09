@@ -50,3 +50,7 @@ Feature: Navigation
   Scenario: Selected
     Then selectedDioryId is 'null'
 
+  Scenario: Change story
+    Given I select 'Diory 11' diory
+    When I click fullscreen icon
+    And I select 'Diory 11' diory
