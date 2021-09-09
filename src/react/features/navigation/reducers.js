@@ -1,6 +1,5 @@
 import {
   ENTER_ROOM,
-  GO_SIDE,
   GO_HOME,
   SET_FOCUS,
   GO_BACKWARD,
@@ -40,15 +39,6 @@ export const setFocus = (state, { payload }) => {
     path: [...state.path, payload.id],
   }
 }
-
-export const goSide = (state, { payload }) => ({
-  ...state,
-  focusId: payload.id,
-  forward: [],
-  path: Object.assign([], state.path, {
-    [state.path.length - 1]: payload.id,
-  }),
-})
 
 export const goBackward = (state) => {
   const [[roomId, focusId], ...backward] = state.backward
@@ -94,6 +84,5 @@ export default createReducer({
   [GO_BACKWARD]: goBackward,
   [GO_FORWARD]: goForward,
   [GO_HOME]: goHome,
-  [GO_SIDE]: goSide,
   [SET_SELECTED_DIORY]: setSelectedDiory,
 })

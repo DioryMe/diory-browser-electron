@@ -4,7 +4,6 @@ import {
   GO_BACKWARD,
   SET_FOCUS,
   GO_HOME,
-  GO_SIDE,
   SET_SELECTED_DIORY,
 } from './actionsTypes'
 
@@ -23,11 +22,6 @@ export const goBackward = () => ({ type: GO_BACKWARD })
 export const goForward = () => ({ type: GO_FORWARD })
 
 export const goHome = () => ({ type: GO_HOME })
-
-export const goSide = ({ id }) => ({
-  type: GO_SIDE,
-  payload: { id },
-})
 
 export const setSelectedDiory = (diory = {}) => ({
   type: SET_SELECTED_DIORY,
