@@ -9,11 +9,11 @@ export const useFocusTool = () => {
   const dispatch = useDispatch()
   return (clickedDiory) => {
     if (selectedLensId === 'fullscreen') {
-      dispatch(setFocus({ focusId: clickedDiory.id }))
+      dispatch(setFocus(clickedDiory))
     } else if (!active) {
       if (selectedDioryId === clickedDiory.id) {
         dispatch(addDioryToHand(clickedDiory.id))
-        dispatch(setFocus({ focusId: clickedDiory.id }))
+        dispatch(setFocus(clickedDiory))
         dispatch(setSelectedDiory({ id: null }))
       } else {
         dispatch(setSelectedDiory(clickedDiory))

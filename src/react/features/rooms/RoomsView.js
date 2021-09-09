@@ -24,7 +24,7 @@ const useHome = () => {
             break
           default:
             dispatch(enterRoom({ id }))
-            dispatch(setFocus({ focusId: diory.id }))
+            dispatch(setFocus({ id: diory.id }))
         }
       },
     })),
