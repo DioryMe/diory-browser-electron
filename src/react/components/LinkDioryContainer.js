@@ -8,7 +8,7 @@ const LinkDioryContainer = ({ linkDiory, onDrop, onClick, style, children }) => 
   <Box key={linkDiory.id} flex="1 0 360px" height={240} padding={24} alignSelf="center" {...style}>
     <Droppable
       type={types.DIORY}
-      style={{ height: '100%' }}
+      style={{ position: 'relative', height: '100%' }}
       isOverStyle={{ opacity: 0.5 }}
       onDrop={({ id }) => onDrop({ droppedId: linkDiory.id, draggedId: id })}
     >
