@@ -38,6 +38,9 @@ const LensesView = ({ diory, diorys, reverseDiorys, selectedDiory, selectedLensI
   console.log('Diorys in lens', diorys.length)
   console.log('focus', diory && diory.id)
   console.log('selectedDiory', selectedDiory && selectedDiory.id)
+  if (selectedDiory && diory && selectedDiory.id === diory.id) {
+    console.log('ERRRORRORORR: focus should never be same as selectedDiory')
+  }
   const { Lens } = lenses[selectedLensId]
 
   return diory ? (
