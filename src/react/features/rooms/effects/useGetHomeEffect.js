@@ -26,7 +26,7 @@ export const useGetHomeEffect = () => {
       dispatch(setRooms(rooms))
       dispatch(setConnections(connections))
       dispatch(enterRoom({ id: focus.roomId }))
-      dispatch(setFocus({ focusId: focus.dioryId }))
+      dispatch(setFocus({ id: focus.dioryId }))
     })
   }, [dispatch])
 }
