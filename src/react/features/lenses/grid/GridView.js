@@ -38,6 +38,7 @@ const GridView = ({ diory, diorys, reverseDiorys = [], selectedDiory, onDrop, on
         onDrop={onDrop}
         style={{ flex: '1 0 100%', height: 480, padding: 24 }}
       >
+        <FullscreenButton focusId={diory.id} />
         <DataAwareDiory diory={diory} />
       </FocusContainer>
       {diorys.map((linkDiory) => (
