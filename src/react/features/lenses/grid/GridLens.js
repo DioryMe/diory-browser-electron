@@ -11,12 +11,14 @@ import { useUpdateTool } from '../../tools/update'
 import { createLink } from '../../diograph/actions'
 
 import GridView from './GridView'
+import { useImportTools } from '../../tools/import/useImportTools'
 
 const useTools = () => {
   const focusDiory = useFocusTool()
   const deleteDiory = useDeleteTool()
   const updateDiory = useUpdateTool()
   useCreateTool()
+  useImportTools()
 
   const { dispatch } = useDispatchActions()
   return {
