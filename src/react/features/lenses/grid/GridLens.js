@@ -14,6 +14,7 @@ import { usePageTool } from '../../tools/page/usePageTool'
 import { createLink } from '../../diograph/actions'
 
 import GridView from './GridView'
+import { useImportTools } from '../../tools/import/useImportTools'
 
 import button from './diory'
 
@@ -27,6 +28,7 @@ const useTools = () => {
 
   useCreateTool()
   useOpenTool()
+  useImportTools()
 
   const { playRef } = usePlayTool()
   const { dispatch } = useDispatchActions()
