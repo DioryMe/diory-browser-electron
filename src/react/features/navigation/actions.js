@@ -5,7 +5,7 @@ import {
   SET_FOCUS,
   GO_HOME,
   GO_SIDE,
-  SET_SELECTED_LINK,
+  SET_SELECTED_DIORY,
 } from './actionsTypes'
 
 export const enterRoom = ({ id }) => ({
@@ -13,9 +13,9 @@ export const enterRoom = ({ id }) => ({
   payload: { id },
 })
 
-export const setFocus = ({ focus }) => ({
+export const setFocus = ({ id }) => ({
   type: SET_FOCUS,
-  payload: { focus },
+  payload: { id },
 })
 
 export const goBackward = () => ({ type: GO_BACKWARD })
@@ -29,7 +29,7 @@ export const goSide = ({ focus }) => ({
   payload: { focus },
 })
 
-export const setSelectedLink = (link = {}) => ({
-  type: SET_SELECTED_LINK,
-  payload: { link },
+export const setSelectedDiory = (diory = {}) => ({
+  type: SET_SELECTED_DIORY,
+  payload: { diory },
 })

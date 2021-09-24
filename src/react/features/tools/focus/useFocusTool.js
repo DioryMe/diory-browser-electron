@@ -8,7 +8,7 @@ export const useFocusTool = () => {
   return (clickedDiory) => {
     if (!active) {
       dispatch(addDioryToHand(clickedDiory.id))
-      dispatch(setFocus({ focus: clickedDiory.id }))
+      dispatch(setFocus(clickedDiory))
     }
   }
 }
