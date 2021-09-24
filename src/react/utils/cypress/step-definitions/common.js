@@ -34,7 +34,7 @@ When('I click {word} button', (buttonName) => {
 })
 
 When('I click {string} focus diory', (dioryName) => {
-  cy.get('svg[data-icon=hand]').click()
+  cy.get('svg[data-icon=hand]').click({ force: true })
 })
 
 When('I type {string} in search bar', (searchString) => {
