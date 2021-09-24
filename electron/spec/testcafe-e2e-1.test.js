@@ -5,8 +5,8 @@ fixture`GIVEN welcome room`.page('../../build/index.html')
 
 test('select diograph folder (with diograph.json)', async (t) => {
   const dioryCount = Selector('.ub-flx_1-0-360px').count
-  const eventDiory = Selector('div').withExactText('Kayaking at Potomac')
-  const imageDiory = Selector('#c60c4384-6cb1-4569-b6f8-d6ece4dd75e0')
+  const eventDiory = Selector('div').withExactText('Scouts BSA International (event)')
+  const imageDiory = Selector('#\\31 03f852d-4a2a-44de-8f4f-08ccddc3d280')
   const doneButton = Selector('button').withText('Done')
 
   await t
@@ -16,10 +16,10 @@ test('select diograph folder (with diograph.json)', async (t) => {
     .click('[data-testid="tools-button"]')
     .click('[data-testid="undefined-button"]')
     .expect(dioryCount)
-    .eql(3)
+    .eql(9)
     .click(eventDiory)
     .expect(dioryCount)
-    .eql(14)
+    .eql(8)
     .click(imageDiory)
     .click('[data-testid="tools-button"]')
     .click('[data-testid="create-button"]')
