@@ -21,5 +21,5 @@ When('I navigate(d) to left', () => {
 })
 
 When('I click fullscreen icon', () => {
-  cy.get('svg[data-icon=fullscreen]').click()
+  cy.get('svg[data-icon=fullscreen]').last().click()
 })
