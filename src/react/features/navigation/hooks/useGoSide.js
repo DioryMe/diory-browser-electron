@@ -21,29 +21,29 @@ const useSiblings = () => {
 }
 
 export const useGoSide = () => {
-  const [{ focus }] = useStore((state) => state.navigation)
-  const siblings = useSiblings()
+  const [{ focusId }] = useStore((state) => state.navigation)
+  const siblingIds = useSiblings()
   const dispatch = useDispatch()
 
-  if (!siblings) {
+  if (!siblingIds) {
     return {}
   }
 
-  const focusIndex = siblings.indexOf(focus)
+  const focusIndex = siblingIds.indexOf(focusId)
   if (focusIndex === 0) {
     return {
-      goRight: () => dispatch(goSide({ focus: siblings[focusIndex + 1] })),
+      goRight: () => dispatch(goSide({ focus: siblingIds[focusIndex + 1] })),
     }
   }
 
-  if (focusIndex === siblings.length - 1) {
+  if (focusIndex === siblingIds.length - 1) {
     return {
-      goLeft: () => dispatch(goSide({ focus: siblings[focusIndex - 1] })),
+      goLeft: () => dispatch(goSide({ focus: siblingIds[focusIndex - 1] })),
     }
   }
 
   return {
-    goRight: () => dispatch(goSide({ focus: siblings[focusIndex + 1] })),
-    goLeft: () => dispatch(goSide({ focus: siblings[focusIndex - 1] })),
+    goRight: () => dispatch(goSide({ focus: siblingIds[focusIndex + 1] })),
+    goLeft: () => dispatch(goSide({ focus: siblingIds[focusIndex - 1] })),
   }
 }

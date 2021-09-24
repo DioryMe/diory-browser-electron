@@ -5,14 +5,14 @@ import {
   SET_FOCUS,
   GO_BACKWARD,
   GO_FORWARD,
-  SET_SELECTED_LINK,
+  SET_SELECTED_DIORY,
 } from './actionsTypes'
 import { createReducer } from '../../store'
 
 export const initialState = {
   roomId: undefined,
-  focus: undefined,
-  link: null,
+  focusId: undefined,
+  selectedDioryId: null,
   backward: [],
   forward: [],
   path: [],
@@ -21,23 +21,23 @@ export const initialState = {
 export const enterRoom = (state, { payload }) => ({
   ...state,
   roomId: payload.id,
-  focus: payload.id, // rootId
+  focusId: payload.id, // rootId
   backward: [[]],
   forward: [],
   path: [payload.id],
 })
 
 export const setFocus = (state, { payload }) => {
-  if (payload.focus === state.focus) {
+  if (payload.id === state.focusId) {
     return state
   }
 
   return {
     ...state,
-    focus: payload.focus,
-    backward: [[state.roomId, state.focus], ...state.backward],
+    focusId: payload.id,
+    backward: [[state.roomId, state.focusId], ...state.backward],
     forward: [],
-    path: [...state.path, payload.focus],
+    path: [...state.path, payload.id],
   }
 }
 
@@ -51,41 +51,41 @@ export const goSide = (state, { payload }) => ({
 })
 
 export const goBackward = (state) => {
-  const [[roomId, focus], ...backward] = state.backward
+  const [[roomId, focusId], ...backward] = state.backward
   return {
     ...state,
     roomId,
-    focus,
+    focusId,
     backward,
-    forward: [[state.roomId, state.focus], ...state.forward],
+    forward: [[state.roomId, state.focusId], ...state.forward],
     path: [...state.path].slice(0, -1),
   }
 }
 
 export const goForward = (state) => {
-  const [[roomId, focus], ...forward] = state.forward
+  const [[roomId, focusId], ...forward] = state.forward
   return {
     ...state,
     roomId,
-    focus,
-    backward: [[state.roomId, state.focus], ...state.backward],
+    focusId,
+    backward: [[state.roomId, state.focusId], ...state.backward],
     forward,
-    path: [...state.path, focus],
+    path: [...state.path, focusId],
   }
 }
 
 export const goHome = (state) => ({
   ...state,
   roomId: null,
-  focus: null,
-  backward: [[state.roomId, state.focus], ...state.backward],
+  focusId: null,
+  backward: [[state.roomId, state.focusId], ...state.backward],
   forward: [],
   path: [],
 })
 
-export const setSelectedLink = (state, { payload }) => ({
+export const setSelectedDiory = (state, { payload }) => ({
   ...state,
-  link: payload.link.id,
+  selectedDioryId: payload.diory.id,
 })
 
 export default createReducer({
@@ -95,5 +95,5 @@ export default createReducer({
   [GO_FORWARD]: goForward,
   [GO_HOME]: goHome,
   [GO_SIDE]: goSide,
-  [SET_SELECTED_LINK]: setSelectedLink,
+  [SET_SELECTED_DIORY]: setSelectedDiory,
 })

@@ -19,7 +19,7 @@ const transformConnections = (connections) =>
 export const useSaveHomeEffect = () => {
   const [{ rooms, updated: homeUpdated }] = useStore((state) => state.rooms)
   const [{ connections, updated: connectionsUpdated }] = useStore((state) => state.connectors)
-  const [{ roomId, focus: dioryId }] = useStore((state) => state.navigation)
+  const [{ roomId, focusId: dioryId }] = useStore((state) => state.navigation)
   const home = {
     rooms: getUntrackedObject(rooms),
     connections: transformConnections(connections),
