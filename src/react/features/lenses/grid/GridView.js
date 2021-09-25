@@ -42,8 +42,8 @@ const GridView = ({ playRef, story, memories, page, onDrop, onClick }) => {
 }
 
 GridView.defaultProps = {
-  onClick: () => {},
-  onDrop: () => {},
+  onClick: () => { },
+  onDrop: () => { },
 }
 
 GridView.propTypes = {
