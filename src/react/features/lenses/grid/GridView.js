@@ -6,7 +6,6 @@ import DataAwareDiory from '../../../components/diories/DataAwareDiory'
 import Diory from '../../../components/diories/Diory'
 import FocusDioryContainer from '../../../components/FocusDioryContainer'
 import LinkDioryContainer from '../../../components/LinkDioryContainer'
-import Search from '../../search/Search'
 
 const GridView = ({ diory, diorys, onDrop, onClick }) => (
   <BackgroundDiory
@@ -14,7 +13,6 @@ const GridView = ({ diory, diorys, onDrop, onClick }) => (
     gradient
     onClick={onClick}
   >
-    <Search />
     <FocusDioryContainer
       diory={diory}
       onClick={onClick}

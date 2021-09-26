@@ -4,7 +4,8 @@ import { useStore } from '../../../store'
 
 import NavigationButtons from './NavigationButtons'
 import NavigationLenses from './NavigationLenses'
-import TextFilter from '../../filters/text/TextFilter'
+// import TextFilter from '../../filters/text/TextFilter'
+import Search from '../../search/Search'
 
 const NavigationBar = () => {
   const [{ roomId }] = useStore((state) => state.navigation)
@@ -21,7 +22,7 @@ const NavigationBar = () => {
     >
       <NavigationButtons display="flex" alignSelf="center" />
       {roomId && <NavigationLenses display="flex" />}
-      {roomId && <TextFilter />}
+      {roomId && <Search /> /* <TextFilter */}
     </Pane>
   )
 }
