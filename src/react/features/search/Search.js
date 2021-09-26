@@ -6,7 +6,6 @@ import { setQuery, setSearchResults } from './actions'
 
 const Search = (props) => {
   const [{ diograph }] = useStore((state) => state.diograph)
-  const [{ searchResults }] = useStore((state) => state.search)
   const { dispatch } = useDispatchActions()
 
   const onChange = ({ target: { value } }) => {
@@ -22,9 +21,6 @@ const Search = (props) => {
   return (
     <Pane {...props}>
       <SearchInput id="Search" width={200} onChange={onChange} autoComplete="off" />
-      {searchResults.map((searchResult) => (
-        <div>1: {searchResult.text}</div>
-      ))}
     </Pane>
   )
 }

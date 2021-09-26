@@ -5,6 +5,7 @@ import { useStore } from '../../store'
 import { getUntrackedDiory, convertRelativePath } from '../../utils'
 
 import Fullscreen from '../../components/Fullscreen'
+import SearchResults from '../search/SearchResults'
 import { useFocus } from '../diograph/hooks'
 import { useFilterIsActive } from '../filters/hooks/useFilterIsActive'
 import { useFilteredDiorys } from '../filters/useFilteredDiorys'
@@ -41,7 +42,14 @@ const LensesView = ({ diory, diorys, selectedLensId }) => {
 
   return diory ? (
     <Fullscreen marginTop={48} zIndex={-1}>
-      <Lens diory={diory} diorys={diorys} />
+      <div>
+        <div style={{ display: 'inline-block', width: '80%' }}>
+          <Lens diory={diory} diorys={diorys} />
+        </div>
+        <div style={{ display: 'inline-block', width: '20%' }}>
+          <SearchResults />
+        </div>
+      </div>
     </Fullscreen>
   ) : null
 }
