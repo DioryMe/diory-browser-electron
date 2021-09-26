@@ -6,6 +6,7 @@ import { initialState as rooms } from '../features/rooms/reducers'
 import { initialState as lenses } from '../features/lenses/reducers'
 import { initialState as navigation } from '../features/navigation/reducers'
 import { initialState as diograph } from '../features/diograph/reducers'
+import { initialState as search } from '../features/search/reducers'
 
 export const initialState = {
   buttons,
@@ -16,4 +17,5 @@ export const initialState = {
   lenses,
   navigation,
   diograph,
+  search,
 }
