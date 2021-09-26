@@ -40,16 +40,25 @@ const LensesView = ({ diory, diorys, selectedLensId }) => {
   console.log('Diorys in lens', diorys.length)
   const { Lens } = lenses[selectedLensId]
 
+  const [{ query }] = useStore((state) => state.search)
+
+  if (query) {
+    return diory ? (
+      <Fullscreen marginTop={48} zIndex={-1}>
+        <div>
+          <div style={{ display: 'inline-block', width: '80%' }}>
+            <Lens diory={diory} diorys={diorys} />
+          </div>
+          <div style={{ display: 'inline-block', width: '20%' }}>
+            <SearchResults />
+          </div>
+        </div>
+      </Fullscreen>
+    ) : null
+  }
   return diory ? (
     <Fullscreen marginTop={48} zIndex={-1}>
-      <div>
-        <div style={{ display: 'inline-block', width: '80%' }}>
-          <Lens diory={diory} diorys={diorys} />
-        </div>
-        <div style={{ display: 'inline-block', width: '20%' }}>
-          <SearchResults />
-        </div>
-      </div>
+      <Lens diory={diory} diorys={diorys} />
     </Fullscreen>
   ) : null
 }
