@@ -3,13 +3,15 @@ import { Pane } from 'evergreen-ui'
 
 import { useStore } from '../../store'
 
+import SearchResult from './SearchResult'
+
 const SearchResults = (props) => {
   const [{ searchResults }] = useStore((state) => state.search)
 
   return (
     <Pane {...props}>
       {searchResults.map((searchResult) => (
-        <div>1: {searchResult.text}</div>
+        <SearchResult {...searchResult} />
       ))}
     </Pane>
   )
