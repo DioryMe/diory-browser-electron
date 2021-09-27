@@ -6,6 +6,7 @@ import { getUntrackedDiory, convertRelativePath } from '../../utils'
 
 import Fullscreen from '../../components/Fullscreen'
 import SearchResults from '../search/SearchResults'
+import SearchResultAutocomplete from '../search/SearchResultAutocomplete'
 import { useFocus } from '../diograph/hooks'
 import { useFilterIsActive } from '../filters/hooks/useFilterIsActive'
 import { useFilteredDiorys } from '../filters/useFilteredDiorys'
@@ -50,6 +51,7 @@ const LensesView = ({ diory, diorys, selectedLensId }) => {
             <Lens diory={diory} diorys={diorys} />
           </div>
           <div style={{ display: 'inline-block', width: '20%' }}>
+            <SearchResultAutocomplete />
             <SearchResults />
           </div>
         </div>
