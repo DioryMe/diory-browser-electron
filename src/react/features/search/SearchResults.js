@@ -13,7 +13,7 @@ const SearchResults = (props) => {
   }
 
   return (
-    <Pane {...props}>
+    <Pane position="absolute" right="0" width="20%" height="500px" overflow="auto" {...props}>
       {searchResults.map((searchResult) => (
         <SearchResult {...searchResult} onClick={onClick} />
       ))}
