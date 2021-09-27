@@ -6,11 +6,12 @@ const style = {
   border: '1px solid black',
   height: '50px',
   cursor: 'pointer',
+  padding: 'auto',
 }
 
 const SearchResult = ({ text, onClick }) => (
   <Pane style={style} onClick={onClick}>
-    3: {text}
+    <center>{text}</center>
   </Pane>
 )
 
