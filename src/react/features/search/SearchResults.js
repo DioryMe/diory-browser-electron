@@ -7,11 +7,15 @@ import SearchResult from './SearchResult'
 
 const SearchResults = (props) => {
   const [{ searchResults }] = useStore((state) => state.search)
+  const onClick = () => {
+    // TODO: How to get searchResult.text to this as parameter?
+    alert('jee')
+  }
 
   return (
     <Pane {...props}>
       {searchResults.map((searchResult) => (
-        <SearchResult {...searchResult} />
+        <SearchResult {...searchResult} onClick={onClick} />
       ))}
     </Pane>
   )
