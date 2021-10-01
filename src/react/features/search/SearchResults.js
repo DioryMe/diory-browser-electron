@@ -1,19 +1,19 @@
 import React from 'react'
 import { Pane } from 'evergreen-ui'
 
-import { useStore } from '../../store'
+import { useDispatch, useStore } from '../../store'
+import { setFocus } from '../navigation/actions'
 
 import SearchResult from './SearchResult'
 
 const SearchResults = (props) => {
   const [{ searchResults }] = useStore((state) => state.search)
-  const onClick = () => {
-    // TODO: How to get searchResult.text to this as parameter?
-    alert('jee')
-  }
+  const dispatch = useDispatch()
+
+  const onClick = (dioryId) => dispatch(setFocus({ id: dioryId }))
 
   return (
-    <Pane height="500px" overflow="auto" {...props}>
+    <Pane height="100%" overflow="auto" {...props}>
       {searchResults.map((searchResult) => (
         <SearchResult {...searchResult} onClick={onClick} />
       ))}
