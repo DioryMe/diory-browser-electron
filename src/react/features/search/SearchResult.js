@@ -9,15 +9,16 @@ const style = {
   padding: 'auto',
 }
 
-const SearchResult = ({ text, onClick }) => (
-  <Pane style={style} onClick={onClick}>
+const SearchResult = ({ id, text, onClick }) => (
+  <Pane style={style} onClick={() => onClick(id)}>
     <center>{text}</center>
   </Pane>
 )
 
 SearchResult.propTypes = {
-  onClick: PropTypes.func,
+  id: PropTypes.string,
   text: PropTypes.string,
+  onClick: PropTypes.func,
 }
 
 export default SearchResult
