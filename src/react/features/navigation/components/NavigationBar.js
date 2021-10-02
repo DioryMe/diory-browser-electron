@@ -4,7 +4,7 @@ import { Pane } from 'evergreen-ui'
 import NavigationButtons from './NavigationButtons'
 import NavigationLenses from './NavigationLenses'
 // import TextFilter from '../../filters/text/TextFilter'
-import Search from '../../search/Search'
+import Icon from '../../../components/Icon'
 
 const NavigationBar = () => (
   <Pane
@@ -18,7 +18,12 @@ const NavigationBar = () => (
   >
     <NavigationButtons display="flex" alignSelf="center" />
     <NavigationLenses display="flex" />
-    {<Search /> /* <TextFilter */}
+    <Pane>
+      <Icon size={24} icon="filter" marginRight="24px" />
+      <Icon size={24} icon="search" marginRight="24px" />
+      <Icon size={24} icon="cog" marginRight="24px" />
+    </Pane>
+    {/* <TextFilter /> */}
   </Pane>
 )
 
