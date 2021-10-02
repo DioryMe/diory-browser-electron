@@ -4,6 +4,8 @@ import { Pane, SearchInput } from 'evergreen-ui'
 import { useStore, useDispatchActions } from '../../store'
 import { setQuery, setSearchResults } from './actions'
 
+import Icon from '../../components/Icon'
+
 const Search = (props) => {
   const [{ diograph }] = useStore((state) => state.diograph)
   const { dispatch } = useDispatchActions()
@@ -20,7 +22,8 @@ const Search = (props) => {
 
   return (
     <Pane {...props}>
-      <SearchInput id="Search" width={200} onChange={onChange} autoComplete="off" />
+      <SearchInput id="Search" width="250px" onChange={onChange} autoComplete="off" />
+      <Icon icon="cross" size="24" />
     </Pane>
   )
 }
