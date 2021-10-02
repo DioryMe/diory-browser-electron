@@ -22,6 +22,9 @@ import {
   HandIcon,
   FolderOpenIcon,
   ApplicationsIcon,
+  SearchIcon,
+  CogIcon,
+  FilterIcon,
 } from 'evergreen-ui'
 
 const Icon = ({ icon, ...props }) => {
@@ -68,6 +71,12 @@ const Icon = ({ icon, ...props }) => {
       return <FolderOpenIcon {...props} />
     case 'applications':
       return <ApplicationsIcon {...props} />
+    case 'search':
+      return <SearchIcon {...props} />
+    case 'cog':
+      return <CogIcon {...props} />
+    case 'filter':
+      return <FilterIcon {...props} />
     default:
       return <ErrorIcon {...props} />
   }
