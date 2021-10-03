@@ -26,7 +26,7 @@ const Search = () => {
   return active ? (
     <div
       style={{
-        backgroundColor: 'white',
+        backgroundColor: '#F9FAFC',
         position: 'fixed',
         top: '48px',
         right: 0,
@@ -34,7 +34,7 @@ const Search = () => {
         height: '100%',
       }}
     >
-      <Pane>
+      <Pane style={{ backgroundColor: '#F9FAFC' }}>
         <SearchInput id="Search" width="250px" autoFocus onChange={onChange} autoComplete="off" />
         <Icon
           icon="cross"
