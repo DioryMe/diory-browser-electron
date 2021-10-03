@@ -14,8 +14,8 @@ const SearchResults = (props) => {
 
   return (
     <Pane height="100%" overflow="auto" {...props}>
-      {searchResults.map((searchResult) => (
-        <SearchResult {...searchResult} onClick={onClick} />
+      {searchResults.map((diory) => (
+        <SearchResult diory={diory} onClick={onClick} />
       ))}
     </Pane>
   )
