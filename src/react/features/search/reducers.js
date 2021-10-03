@@ -19,6 +19,7 @@ export const setSearchResults = (state, { payload }) => ({
 
 export const toggleSearchBar = (state) => ({
   ...state,
+  query: '',
   active: !state.active,
 })
 
