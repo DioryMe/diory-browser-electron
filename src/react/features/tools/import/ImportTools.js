@@ -16,7 +16,7 @@ const useImportTools = () => {
   return {
     onClick: ({ diory }) => dispatch(activateButton(diory.id)),
     onDone: () => dispatch(inactivateButton()),
-    onCancel: ()  => dispatch(inactivateButton()),
+    onCancel: () => dispatch(inactivateButton()),
   }
 }
 
