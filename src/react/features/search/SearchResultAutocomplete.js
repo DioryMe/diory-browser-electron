@@ -1,7 +1,9 @@
 import React from 'react'
 import { Pane } from 'evergreen-ui'
 
-import { useStore } from '../../store'
+import { useDispatch, useStore } from '../../store'
+import { createDiory } from '../diograph/actions'
+import { setSearchResults } from './actions'
 
 import Icon from '../../components/Icon'
 
@@ -13,9 +15,12 @@ const style = {
 }
 
 const SearchResultAutocomplete = () => {
-  const [{ query }] = useStore((state) => state.search)
+  const [{ query, searchResults }] = useStore((state) => state.search)
+  const dispatch = useDispatch()
+
   const onClick = () => {
-    alert('dispatch(createDiory(query))')
+    dispatch(createDiory({ text: query }))
+    dispatch(setSearchResults([{ text: query }].concat(searchResults)))
   }
 
   return (
