@@ -1,6 +1,7 @@
 import React from 'react'
 import { Pane } from 'evergreen-ui'
-import { useStore } from '../../../store'
+import { useStore, useDispatchActions } from '../../../store'
+import { toggleSearchBar } from '../../search/actions'
 
 import NavigationButtons from './NavigationButtons'
 import NavigationLenses from './NavigationLenses'
@@ -9,6 +10,8 @@ import Icon from '../../../components/Icon'
 
 const NavigationBar = () => {
   const [{ roomId }] = useStore((state) => state.navigation)
+  const [{ active }] = useStore((state) => state.search)
+  const { dispatch } = useDispatchActions()
 
   return (
     <Pane
@@ -24,9 +27,18 @@ const NavigationBar = () => {
       {roomId && <NavigationLenses display="flex" />}
       {roomId && (
         <Pane>
-          <Icon size={24} icon="filter" marginRight="24px" />
-          <Icon size={24} icon="search" marginRight="24px" />
-          <Icon size={24} icon="cog" marginRight="24px" />
+          {/* A icon is only a svg element and should not have onClick handlers.
+          If you need a clickable icon, use IconButton instead. */}
+          <Icon size={20} icon="filter" marginRight="24px" style={{ cursor: 'hand' }} />
+          <Icon
+            size={20}
+            icon="search"
+            marginRight="24px"
+            color={active ? 'selected' : ''}
+            style={{ cursor: 'hand' }}
+            onClick={() => dispatch(toggleSearchBar())}
+          />
+          <Icon size={20} icon="cog" marginRight="24px" style={{ cursor: 'hand' }} />
         </Pane>
       )}
       {/* roomId && <TextFilter /> */}

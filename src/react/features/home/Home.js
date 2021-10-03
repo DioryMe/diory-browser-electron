@@ -1,6 +1,6 @@
 import React from 'react'
 
-// import { useStore } from '../../store'
+import { useStore } from '../../store'
 
 import Navigation from '../navigation/Navigation'
 import Filters from '../filters/Filters'
@@ -13,25 +13,26 @@ import Search from '../search/Search'
 import SearchResults from '../search/SearchResults'
 import SearchResultAutocomplete from '../search/SearchResultAutocomplete'
 
-const Search2 = () => (
-  // const [{ query }] = useStore((state) => state.search)
+const Search2 = () => {
+  const [{ active }] = useStore((state) => state.search)
 
-  // return query ? (
-  <div
-    style={{
-      backgroundColor: 'white',
-      position: 'fixed',
-      top: '48px',
-      right: 0,
-      width: '300px',
-      height: '100%',
-    }}
-  >
-    <Search />
-    <SearchResultAutocomplete />
-    <SearchResults />
-  </div>
-) // : null
+  return active ? (
+    <div
+      style={{
+        backgroundColor: 'white',
+        position: 'fixed',
+        top: '48px',
+        right: 0,
+        width: '300px',
+        height: '100%',
+      }}
+    >
+      <Search />
+      <SearchResultAutocomplete />
+      <SearchResults />
+    </div>
+  ) : null
+}
 
 const Home = () => (
   <div className="App">
