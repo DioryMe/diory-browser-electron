@@ -27,8 +27,9 @@ const NavigationBar = () => {
       {roomId && <NavigationLenses display="flex" />}
       {roomId && (
         <Pane>
-          {/* A icon is only a svg element and should not have onClick handlers.
-          If you need a clickable icon, use IconButton instead. */}
+          {/* TODO: A icon is only a svg element and should not have onClick handlers.
+          If you need a clickable icon, use IconButton instead.
+          https://evergreen.segment.com/components/buttons#icon_buttons */}
           <Icon size={20} icon="filter" marginRight="24px" style={{ cursor: 'hand' }} />
           <Icon
             size={20}

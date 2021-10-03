@@ -14,7 +14,7 @@ import SearchResults from '../search/SearchResults'
 import SearchResultAutocomplete from '../search/SearchResultAutocomplete'
 
 const Search2 = () => {
-  const [{ active }] = useStore((state) => state.search)
+  const [{ query, active }] = useStore((state) => state.search)
 
   return active ? (
     <div
@@ -28,7 +28,7 @@ const Search2 = () => {
       }}
     >
       <Search />
-      <SearchResultAutocomplete />
+      {query ? <SearchResultAutocomplete /> : null}
       <SearchResults />
     </div>
   ) : null
