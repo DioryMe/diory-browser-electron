@@ -1,4 +1,5 @@
 import { useStore } from '../../store'
+import { resolveReverseDiograph } from './resolveReverseDiograph'
 
 const useDiory = (id) => {
   const [{ diograph = {} }] = useStore((state) => state.diograph)
@@ -12,8 +13,7 @@ export const useDiorys = (ids = {}) => {
     .filter(({ id }) => id)
 }
 
-const useLinkedDiorys = (id) => {
-  const [{ diograph = {} }] = useStore((state) => state.diograph)
+const useLinkedDiorys = (id, diograph) => {
   const diory = diograph[id]
   const links = diory && diory.links
   return useDiorys(links)
@@ -21,16 +21,22 @@ const useLinkedDiorys = (id) => {
 
 export const useFocus = () => {
   const [{ focusId }] = useStore((state) => state.navigation)
+  const [{ diograph = {} }] = useStore((state) => state.diograph)
+  const reverseDiograph = resolveReverseDiograph(diograph)
   return {
     diory: useDiory(focusId),
-    diorys: useLinkedDiorys(focusId),
+    diorys: useLinkedDiorys(focusId, diograph),
+    reverseDiorys: useLinkedDiorys(focusId, reverseDiograph),
   }
 }
 
 export const useLinkDiory = () => {
   const [{ selectedDioryId }] = useStore((state) => state.navigation)
+  const [{ diograph = {} }] = useStore((state) => state.diograph)
+  const reverseDiograph = resolveReverseDiograph(diograph)
   return {
     diory: useDiory(selectedDioryId),
-    diorys: useLinkedDiorys(selectedDioryId),
+    diorys: useLinkedDiorys(selectedDioryId, diograph),
+    reverseDiorys: useLinkedDiorys(selectedDioryId, reverseDiograph),
   }
 }
