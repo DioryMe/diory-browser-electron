@@ -2,7 +2,7 @@ import React from 'react'
 import { Pane, SearchInput } from 'evergreen-ui'
 
 import { useStore, useDispatchActions } from '../../store'
-import { setQuery, setSearchResults } from './actions'
+import { setQuery, setSearchResults, toggleSearchBar } from './actions'
 
 import Icon from '../../components/Icon'
 
@@ -23,7 +23,12 @@ const Search = (props) => {
   return (
     <Pane {...props}>
       <SearchInput id="Search" width="250px" onChange={onChange} autoComplete="off" />
-      <Icon icon="cross" size={20} />
+      <Icon
+        icon="cross"
+        size={20}
+        style={{ cursor: 'hand' }}
+        onClick={() => dispatch(toggleSearchBar())}
+      />
     </Pane>
   )
 }
