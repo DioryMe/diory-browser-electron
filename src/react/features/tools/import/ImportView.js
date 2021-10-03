@@ -19,6 +19,8 @@ const ImportView = ({ onDone, onCancel, children }) => (
 )
 
 ImportView.propTypes = {
+  onDone: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
 }
 
