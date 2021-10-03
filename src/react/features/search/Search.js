@@ -23,7 +23,7 @@ const Search = (props) => {
   return (
     <Pane {...props}>
       <SearchInput id="Search" width="250px" onChange={onChange} autoComplete="off" />
-      <Icon icon="cross" size="24" />
+      <Icon icon="cross" size={20} />
     </Pane>
   )
 }
