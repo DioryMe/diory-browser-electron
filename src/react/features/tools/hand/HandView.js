@@ -27,6 +27,9 @@ const HandView = ({ diorys = [], onDrop, onClick, onDropToItem }) => (
     {diorys.map((diory) => (
       <SearchResult diory={diory} onClick={onClick} onDrop={onDropToItem} />
     ))}
+    <br />
+    <br />
+    <br />
   </Droppable>
 )
 
