@@ -10,6 +10,6 @@ export const useHand = () => {
   return {
     diorys: diograph && hand.map((id) => diograph[id]).filter(Boolean),
     onDrop: ({ id }) => dispatch(addDioryToHand(id)),
-    onClick: ({ diory: { id } }) => dispatch(setFocus({ id })),
+    onClick: (id) => dispatch(setFocus({ id })),
   }
 }
