@@ -16,7 +16,7 @@ const handStyle = {
   background: 'rgba(200,200,200,0.5)',
 }
 
-const HandView = ({ diorys = [], onDrop, onClick }) => (
+const HandView = ({ diorys = [], onDrop, onClick, onDropToItem }) => (
   <Droppable
     type={types.DIORY}
     style={handStyle}
@@ -25,7 +25,7 @@ const HandView = ({ diorys = [], onDrop, onClick }) => (
     data-testid="hand"
   >
     {diorys.map((diory) => (
-      <SearchResult diory={diory} onClick={onClick} />
+      <SearchResult diory={diory} onClick={onClick} onDrop={onDropToItem} />
     ))}
   </Droppable>
 )
@@ -33,7 +33,8 @@ const HandView = ({ diorys = [], onDrop, onClick }) => (
 HandView.propTypes = {
   diorys: PropTypes.array.isRequired,
   onDrop: PropTypes.func.isRequired,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
+  onDropToItem: PropTypes.func.isRequired,
 }
 
 export default HandView
