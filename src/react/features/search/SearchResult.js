@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import Diory from '../../components/diories/Diory'
 import Draggable, { types } from '../../components/Draggable'
+import Droppable from '../../components/Droppable'
 
 const itemStyle = {
   height: '56px',
@@ -18,12 +19,19 @@ const scaleStyle = {
   transformOrigin: 'top left',
 }
 
-const SearchResult = ({ diory, onClick }) => (
+const SearchResult = ({ diory, onClick, onDrop }) => (
   <div key={diory.id} style={itemStyle} onClick={() => onClick(diory.id)}>
     <div style={scaleStyle}>
-      <Draggable type={types.DIORY} id={diory.id}>
-        <Diory id={`search-${diory.id}`} diory={diory} height="50px" />
-      </Draggable>
+      <Droppable
+        type={types.DIORY}
+        style={{ height: '100%' }}
+        isOverStyle={{ opacity: 0.5 }}
+        onDrop={({ id }) => onDrop({ droppedId: diory.id, draggedId: id })}
+      >
+        <Draggable type={types.DIORY} id={diory.id}>
+          <Diory id={`search-${diory.id}`} diory={diory} height="50px" />
+        </Draggable>
+      </Droppable>
     </div>
   </div>
 )
@@ -31,6 +39,7 @@ const SearchResult = ({ diory, onClick }) => (
 SearchResult.propTypes = {
   diory: PropTypes.object,
   onClick: PropTypes.func,
+  onDrop: PropTypes.func,
 }
 
 export default SearchResult
