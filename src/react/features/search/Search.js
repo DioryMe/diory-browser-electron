@@ -33,7 +33,7 @@ const Search = () => {
           top: '48px',
           right: 0,
           width: '300px',
-          height: '80%',
+          height: '66%',
         }}
       >
         <Pane style={{ backgroundColor: '#F9FAFC' }}>
@@ -56,7 +56,7 @@ const Search = () => {
           bottom: '0px',
           right: 0,
           width: '300px',
-          height: '20%',
+          height: '34%',
         }}
       >
         <Pane style={{ backgroundColor: '#F9FAFC', height: '100%' }}>
