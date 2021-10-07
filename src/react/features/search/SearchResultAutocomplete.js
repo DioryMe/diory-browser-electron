@@ -1,5 +1,6 @@
 import React from 'react'
 import { Pane } from 'evergreen-ui'
+import { v4 as uuid } from 'uuid'
 
 import { useDispatch, useStore } from '../../store'
 import { createDiory } from '../diograph/actions'
@@ -19,8 +20,9 @@ const SearchResultAutocomplete = () => {
   const dispatch = useDispatch()
 
   const onClick = () => {
-    dispatch(createDiory({ text: query }))
-    dispatch(setSearchResults([{ text: query }].concat(searchResults)))
+    const newDiory = { id: uuid(), text: query }
+    dispatch(createDiory(newDiory))
+    dispatch(setSearchResults([newDiory].concat(searchResults)))
   }
 
   return (
