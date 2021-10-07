@@ -6,7 +6,7 @@ import Droppable from '../../../components/Droppable'
 import SearchResult from '../../search/SearchResult'
 
 const handStyle = {
-  height: '20%',
+  height: '34%',
   width: '300px',
   position: 'fixed',
   zIndex: 15,
