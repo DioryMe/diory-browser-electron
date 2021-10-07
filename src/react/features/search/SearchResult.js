@@ -7,15 +7,15 @@ import Droppable from '../../components/Droppable'
 
 const itemStyle = {
   height: '56px',
-  width: '200px',
+  width: '150px',
   padding: '0 8px',
   flexShrink: 0,
 }
 
 const scaleStyle = {
-  transform: 'scale(0.5)',
+  transform: 'scale(0.9)',
   width: '200%',
-  height: '200%',
+  height: '100%',
   transformOrigin: 'top left',
 }
 
