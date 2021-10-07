@@ -7,6 +7,7 @@ import { setQuery, setSearchResults, toggleSearchBar } from './actions'
 import Icon from '../../components/Icon'
 import SearchResults from './SearchResults'
 import SearchResultAutocomplete from './SearchResultAutocomplete'
+import HandTool from '../tools/hand/HandTool'
 
 const Search = () => {
   const [{ diograph }] = useStore((state) => state.diograph)
@@ -24,27 +25,44 @@ const Search = () => {
   }
 
   return active ? (
-    <div
-      style={{
-        backgroundColor: '#F9FAFC',
-        position: 'fixed',
-        top: '48px',
-        right: 0,
-        width: '300px',
-        height: '100%',
-      }}
-    >
-      <Pane style={{ backgroundColor: '#F9FAFC' }}>
-        <SearchInput id="Search" width="250px" autoFocus onChange={onChange} autoComplete="off" />
-        <Icon
-          icon="cross"
-          size={20}
-          style={{ cursor: 'hand' }}
-          onClick={() => dispatch(toggleSearchBar())}
-        />
-      </Pane>
-      {query ? <SearchResultAutocomplete /> : null}
-      <SearchResults />
+    <div style={{ height: '100%' }}>
+      <div
+        style={{
+          backgroundColor: '#F9FAFC',
+          position: 'fixed',
+          top: '48px',
+          right: 0,
+          width: '300px',
+          height: '80%',
+        }}
+      >
+        <Pane style={{ backgroundColor: '#F9FAFC' }}>
+          <SearchInput id="Search" width="250px" autoFocus onChange={onChange} autoComplete="off" />
+          <Icon
+            icon="cross"
+            size={20}
+            style={{ cursor: 'hand' }}
+            onClick={() => dispatch(toggleSearchBar())}
+          />
+        </Pane>
+        {query ? <SearchResultAutocomplete /> : null}
+        <SearchResults />
+      </div>
+      <div
+        style={{
+          border: '1px solid black',
+          backgroundColor: '#F9FAFC',
+          position: 'fixed',
+          bottom: '0px',
+          right: 0,
+          width: '300px',
+          height: '20%',
+        }}
+      >
+        <Pane style={{ backgroundColor: '#F9FAFC', height: '100%' }}>
+          <HandTool />
+        </Pane>
+      </div>
     </div>
   ) : null
 }
