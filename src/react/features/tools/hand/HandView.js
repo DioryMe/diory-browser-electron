@@ -6,13 +6,10 @@ import Droppable from '../../../components/Droppable'
 import SearchResult from '../../search/SearchResult'
 
 const handStyle = {
-  height: '34%',
+  height: '200px',
   width: '300px',
-  position: 'fixed',
   zIndex: 15,
-  bottom: 0,
-  right: 0,
-  overflowX: 'auto',
+  overflow: 'auto',
   background: 'rgba(200,200,200,0.5)',
 }
 

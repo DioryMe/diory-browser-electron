@@ -33,7 +33,7 @@ const Search = () => {
           top: '48px',
           right: 0,
           width: '300px',
-          height: '66%',
+          height: '100%',
         }}
       >
         <Pane style={{ backgroundColor: '#F9FAFC' }}>
@@ -47,21 +47,7 @@ const Search = () => {
         </Pane>
         {query ? <SearchResultAutocomplete /> : null}
         <SearchResults />
-      </div>
-      <div
-        style={{
-          border: '1px solid black',
-          backgroundColor: '#F9FAFC',
-          position: 'fixed',
-          bottom: '0px',
-          right: 0,
-          width: '300px',
-          height: '34%',
-        }}
-      >
-        <Pane style={{ backgroundColor: '#F9FAFC', height: '100%' }}>
-          <HandTool />
-        </Pane>
+        <HandTool />
       </div>
     </div>
   ) : null
