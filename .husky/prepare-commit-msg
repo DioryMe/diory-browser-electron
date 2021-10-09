@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# 1. Attach DDA-xxx prefix to every commit according to the branch name
+
+if [ -z "$BRANCHES_TO_SKIP" ]; then
+  BRANCHES_TO_SKIP=(master develop)
+fi
+
+BRANCH_NAME=$(git symbolic-ref --short HEAD)
+[[ "$BRANCH_NAME" =~ ((DDA|POC){1}-[0-9]+) ]] && BRANCH_NAME=${BASH_REMATCH[1]}
+
+BRANCH_EXCLUDED=$(printf "%s\n" "${BRANCHES_TO_SKIP[@]}" | grep -c "^$BRANCH_NAME$")
+BRANCH_IN_COMMIT=$(grep -c "\$BRANCH_NAME "$1)
+
+if [ -n "$BRANCH_NAME" ] && ! [[ $BRANCH_EXCLUDED -eq 1 ]] && ! [[ $BRANCH_IN_COMMIT -ge 1 ]]; then
+  sed -i.bak -e "1s/^/$BRANCH_NAME: /" $1
+fi
