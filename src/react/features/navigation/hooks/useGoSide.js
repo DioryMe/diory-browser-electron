@@ -1,14 +1,27 @@
 import { useDispatch, useStore } from '../../../store'
 import { goSide } from '../actions'
+import { useStoryDiorys } from '../../diograph/hooks'
 
 export const useParent = () => {
-  const [{ backward }] = useStore((state) => state.navigation)
+  const [{ storyId, backward }] = useStore((state) => state.navigation)
   const [{ diograph }] = useStore((state) => state.diograph)
-  if (!backward.length) {
-    return
+  const storyDiorys = useStoryDiorys()
+  const storyDioryIds = storyDiorys.map(({ id }) => id)
+
+  if (!storyDioryIds.length) {
+    return undefined
   }
-  const parentId = backward[0][1]
-  return parentId && diograph && diograph[parentId]
+
+  if (storyDioryIds.includes(storyId)) {
+    return diograph[storyId]
+  }
+
+  const previousDiory = backward.length && backward[0][1]
+  if (storyDioryIds.includes(previousDiory)) {
+    return diograph[previousDiory]
+  }
+
+  return diograph[storyDioryIds[0]]
 }
 
 const useSiblings = () => {
