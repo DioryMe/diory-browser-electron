@@ -7,7 +7,7 @@ const dioryActionsStyle = {
   backgroundColor: 'white',
   position: 'absolute',
   bottom: 2,
-  right: 2,
+  left: 2,
   cursor: 'pointer',
 }
 
