@@ -3,7 +3,6 @@ import { v4 as uuid } from 'uuid'
 import { useDispatchActions, useStore } from '../../../store'
 import { inactivateButton } from '../../buttons/actions'
 import { useFocus } from '../../diograph/hooks'
-import { addDioryToHand } from '../actions'
 
 import { createDiory, createLink } from '../../diograph/actions'
 import { getDefaultImage } from '../../../../shared/getDefaultImage'
@@ -24,7 +23,6 @@ export const useCreateDiory = () => {
       dispatch(createDiory({ ...newDiory, id }))
       dispatch(createLink(focusDiory, { id }))
       dispatch(inactivateButton())
-      dispatch(addDioryToHand(id))
     }
   }
 }
