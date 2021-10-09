@@ -7,11 +7,7 @@ import LinkDioryContainer from '../../../components/LinkDioryContainer'
 import { Pane } from 'evergreen-ui'
 
 const GridView = ({ diory, diorys, reverseDiorys, parent, onDrop, onClick, onStoryClick }) => (
-  <BackgroundDiory
-    diory={diory}
-    gradient
-    onClick={onClick}
-  >
+  <BackgroundDiory diory={diory} gradient onClick={onClick}>
     {reverseDiorys.map((linkDiory) => (
       <LinkDioryContainer linkDiory={linkDiory} onDrop={onDrop} onClick={onStoryClick}>
         <Diory

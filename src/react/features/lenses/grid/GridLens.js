@@ -29,8 +29,7 @@ const useTools = () => {
     onStoryClick: ({ diory }) => {
       if (diory.id === selectedStoryDiory.id) {
         focusDiory(diory)
-      }
-      else {
+      } else {
         dispatch(selectStory(diory))
       }
     },
@@ -48,7 +47,15 @@ const useTools = () => {
 const GridLens = () => {
   const { diory, diorys, reverseDiorys } = useLens()
   const parent = useParent()
-  return <GridView diory={diory} diorys={diorys} reverseDiorys={reverseDiorys} parent={parent} {...useTools()} />
+  return (
+    <GridView
+      diory={diory}
+      diorys={diorys}
+      reverseDiorys={reverseDiorys}
+      parent={parent}
+      {...useTools()}
+    />
+  )
 }
 
 GridLens.propTypes = {

@@ -17,7 +17,7 @@ const BackgroundDiory = ({ diory, gradient, gradientRgba, onClick, children, ...
       {...props}
     >
       <Fullscreen marginTop={48}>
-        <Diory diory={diory}/>
+        <Diory diory={diory} />
       </Fullscreen>
       {children}
     </Pane>
