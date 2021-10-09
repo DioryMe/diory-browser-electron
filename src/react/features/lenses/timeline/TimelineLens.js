@@ -9,6 +9,7 @@ import { useUpdateTool } from '../../tools/update'
 import { useTimelineFilter } from '../../filters/timeline/useTimelineFilter'
 
 import TimelineView from './TimelineView'
+import { useLens } from '../useLens'
 
 const useToolActions = () => {
   const focusDiory = useFocusTool()
@@ -29,9 +30,10 @@ const useToolActions = () => {
   }
 }
 
-const TimelineLens = ({ diory, diorys }) => (
-  <TimelineView diory={diory} diorys={diorys} {...useToolActions()} />
-)
+const TimelineLens = () => {
+  const { diory, diorys } = useLens()
+  return <TimelineView diory={diory} diorys={diorys} {...useToolActions()} />
+}
 
 TimelineLens.propTypes = {
   diory: PropTypes.object.isRequired,

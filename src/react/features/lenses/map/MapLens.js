@@ -9,6 +9,7 @@ import { useMoveTool, useMoveToolIsActive } from '../../tools/move'
 import { useMapFilter } from '../../filters/map/useMapFilter'
 
 import MapView from './MapView'
+import { useLens } from '../useLens'
 
 const useToolActions = () => {
   const focusDiory = useFocusTool()
@@ -27,9 +28,10 @@ const useToolActions = () => {
   }
 }
 
-const MapLens = ({ diory, diorys }) => (
-  <MapView diory={diory} diorys={diorys} {...useToolActions()} />
-)
+const MapLens = () => {
+  const { diory, diorys } = useLens()
+  return <MapView diory={diory} diorys={diorys} {...useToolActions()} />
+}
 
 MapLens.propTypes = {
   diory: PropTypes.object.isRequired,
