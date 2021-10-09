@@ -2,37 +2,25 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
-import Image from './Image'
+import Fullscreen from '../Fullscreen'
+import Diory from './Diory'
 
-const BackgroundDiory = ({ diory, gradient, gradientRgba, onClick, children, ...props }) => {
-  const { id, image, style: dioryStyle = {} } = diory
-  const { image: imageStyle, ...style } = dioryStyle
-
-  return (
-    <Pane
-      id={`background-${id}`}
-      height="100%"
-      display="flex"
-      flexWrap="wrap"
-      margin={24}
-      alignContent="flex-start"
-      style={style}
-      {...props}
-    >
-      {image && (
-        <Image
-          image={image}
-          zIndex={-1}
-          position="fixed"
-          gradient={gradient}
-          gradientRgba={gradientRgba}
-          {...imageStyle}
-        />
-      )}
-      {children}
-    </Pane>
-  )
-}
+const BackgroundDiory = ({ diory, gradient, gradientRgba, onClick, children, ...props }) => (
+  <Pane
+    id={`background-${diory.id}`}
+    height="100%"
+    display="flex"
+    flexWrap="wrap"
+    margin={24}
+    alignContent="flex-start"
+    {...props}
+  >
+    <Fullscreen marginTop={48}>
+      <Diory diory={diory} />
+    </Fullscreen>
+    {children}
+  </Pane>
+)
 
 BackgroundDiory.propTypes = {
   diory: PropTypes.shape({

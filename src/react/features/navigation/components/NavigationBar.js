@@ -1,7 +1,10 @@
 import React from 'react'
 import { Pane } from 'evergreen-ui'
+
 import { useStore, useDispatchActions } from '../../../store'
 import { toggleSearchBar } from '../../search/actions'
+import { setFocus } from '../actions'
+import { useParent } from '../hooks/useGoSide'
 
 import NavigationButtons from './NavigationButtons'
 import NavigationLenses from './NavigationLenses'
@@ -11,7 +14,12 @@ import Icon from '../../../components/Icon'
 const NavigationBar = () => {
   const [{ roomId }] = useStore((state) => state.navigation)
   const [{ active }] = useStore((state) => state.search)
+  const parent = useParent()
+
   const { dispatch } = useDispatchActions()
+  const goBack = () => {
+    dispatch(setFocus(parent))
+  }
 
   return (
     <Pane
@@ -24,6 +32,7 @@ const NavigationBar = () => {
       width="100%"
     >
       <NavigationButtons display="flex" alignSelf="center" />
+      {parent && <Pane onClick={goBack}>{parent.text}</Pane>}
       {roomId && <NavigationLenses display="flex" />}
       {roomId && (
         <Pane>
