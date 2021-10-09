@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { Pane } from 'evergreen-ui'
 import BackgroundDiory from '../../../components/diories/BackgroundDiory'
 import Diory from '../../../components/diories/Diory'
 import LinkDioryContainer from '../../../components/LinkDioryContainer'
-import { Pane } from 'evergreen-ui'
 
 const GridView = ({ diory, diorys, reverseDiorys, parent, onDrop, onClick, onStoryClick }) => (
   <BackgroundDiory diory={diory} gradient onClick={onClick}>
@@ -37,13 +37,17 @@ const GridView = ({ diory, diorys, reverseDiorys, parent, onDrop, onClick, onSto
 
 GridView.defaultProps = {
   onClick: () => {},
+  onStoryClick: () => {},
   onDrop: () => {},
 }
 
 GridView.propTypes = {
   diory: PropTypes.object.isRequired,
   diorys: PropTypes.array.isRequired,
+  parent: PropTypes.object.isRequired,
+  reverseDiorys: PropTypes.array.isRequired,
   onClick: PropTypes.func,
+  onStoryClick: PropTypes.func,
   onDrop: PropTypes.func,
 }
 
