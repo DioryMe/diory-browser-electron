@@ -5,12 +5,16 @@ import { useDispatchActions } from '../../../store'
 
 import { useCreateTool } from '../../tools/create'
 import { useDeleteTool } from '../../tools/delete'
-import { useFocusTool } from '../../tools/focus'
 import { useUpdateTool } from '../../tools/update'
+import { useFocusTool } from '../../tools/focus'
+
+import { useLens } from '../useLens'
 
 import { createLink } from '../../diograph/actions'
+import { selectStory } from '../../navigation/actions'
 
 import GridView from './GridView'
+import { useParent } from '../../navigation/hooks/useGoSide'
 
 const useTools = () => {
   const focusDiory = useFocusTool()
@@ -18,8 +22,18 @@ const useTools = () => {
   const updateDiory = useUpdateTool()
   useCreateTool()
 
+  const selectedStoryDiory = useParent()
+
   const { dispatch } = useDispatchActions()
   return {
+    onStoryClick: ({ diory }) => {
+      if (diory.id === selectedStoryDiory.id) {
+        focusDiory(diory)
+      }
+      else {
+        dispatch(selectStory(diory))
+      }
+    },
     onClick: ({ diory }) => {
       focusDiory(diory)
       deleteDiory(diory)
@@ -31,7 +45,11 @@ const useTools = () => {
   }
 }
 
-const GridLens = ({ diory, diorys }) => <GridView diory={diory} diorys={diorys} {...useTools()} />
+const GridLens = () => {
+  const { diory, diorys, reverseDiorys } = useLens()
+  const parent = useParent()
+  return <GridView diory={diory} diorys={diorys} reverseDiorys={reverseDiorys} parent={parent} {...useTools()} />
+}
 
 GridLens.propTypes = {
   diory: PropTypes.object.isRequired,
