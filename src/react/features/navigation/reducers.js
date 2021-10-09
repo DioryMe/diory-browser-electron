@@ -2,6 +2,7 @@ import {
   ENTER_ROOM,
   GO_SIDE,
   GO_HOME,
+  SELECT_STORY,
   SET_FOCUS,
   GO_BACKWARD,
   GO_FORWARD,
@@ -11,6 +12,7 @@ import { createReducer } from '../../store'
 
 export const initialState = {
   roomId: undefined,
+  storyId: undefined,
   focusId: undefined,
   selectedDioryId: null,
   backward: [],
@@ -27,6 +29,19 @@ export const enterRoom = (state, { payload }) => ({
   path: [payload.id],
 })
 
+export const selectStory = (state, { payload }) => {
+  if (payload.story.id === state.storyId) {
+    return state
+  }
+
+  return {
+    ...state,
+    storyId: payload.story.id,
+    backward: [[state.roomId, state.focusId, state.storyId], ...state.backward],
+    forward: [],
+  }
+}
+
 export const setFocus = (state, { payload }) => {
   if (payload.id === state.focusId) {
     return state
@@ -34,8 +49,9 @@ export const setFocus = (state, { payload }) => {
 
   return {
     ...state,
+    storyId: undefined,
     focusId: payload.id,
-    backward: [[state.roomId, state.focusId], ...state.backward],
+    backward: [[state.roomId, state.focusId, state.storyId], ...state.backward],
     forward: [],
     path: [...state.path, payload.id],
   }
@@ -51,24 +67,26 @@ export const goSide = (state, { payload }) => ({
 })
 
 export const goBackward = (state) => {
-  const [[roomId, focusId], ...backward] = state.backward
+  const [[roomId, focusId, storyId], ...backward] = state.backward
   return {
     ...state,
     roomId,
     focusId,
+    storyId,
     backward,
-    forward: [[state.roomId, state.focusId], ...state.forward],
+    forward: [[state.roomId, state.focusId, state.storyId], ...state.forward],
     path: [...state.path].slice(0, -1),
   }
 }
 
 export const goForward = (state) => {
-  const [[roomId, focusId], ...forward] = state.forward
+  const [[roomId, focusId, storyId], ...forward] = state.forward
   return {
     ...state,
     roomId,
     focusId,
-    backward: [[state.roomId, state.focusId], ...state.backward],
+    storyId,
+    backward: [[state.roomId, state.focusId, state.storyId], ...state.backward],
     forward,
     path: [...state.path, focusId],
   }
@@ -78,7 +96,7 @@ export const goHome = (state) => ({
   ...state,
   roomId: null,
   focusId: null,
-  backward: [[state.roomId, state.focusId], ...state.backward],
+  backward: [[state.roomId, state.focusId, state.storyId], ...state.backward],
   forward: [],
   path: [],
 })
@@ -90,6 +108,7 @@ export const setSelectedDiory = (state, { payload }) => ({
 
 export default createReducer({
   [ENTER_ROOM]: enterRoom,
+  [SELECT_STORY]: selectStory,
   [SET_FOCUS]: setFocus,
   [GO_BACKWARD]: goBackward,
   [GO_FORWARD]: goForward,
