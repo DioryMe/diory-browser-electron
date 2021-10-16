@@ -4,6 +4,7 @@ import { Pane } from 'evergreen-ui'
 import { useDispatch, useStore } from '../../store'
 import { setFocus } from '../navigation/actions'
 import { createLink } from '../diograph/actions'
+import { toggleSearchBar } from './actions'
 
 import SearchResult from './SearchResult'
 
@@ -11,7 +12,10 @@ const SearchResults = (props) => {
   const [{ searchResults }] = useStore((state) => state.search)
   const dispatch = useDispatch()
 
-  const onClick = (dioryId) => dispatch(setFocus({ id: dioryId }))
+  const onClick = (dioryId) => {
+    dispatch(setFocus({ id: dioryId }))
+    dispatch(toggleSearchBar())
+  }
 
   const onDrop = ({ droppedId, draggedId }) =>
     dispatch(createLink({ id: droppedId }, { id: draggedId }))
