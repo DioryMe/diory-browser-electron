@@ -14,13 +14,13 @@ describe('getDioryLocationData', () => {
       })
     })
 
-    describe('given diorys with location', () => {
-      it('returns min and max locations of diorys', () => {
+    describe('given memories with location', () => {
+      it('returns min and max locations of memories', () => {
         const { min, max } = getDioryLocationData({
           diory: {
             latlng: '0, 30',
           },
-          diorys: [
+          memories: [
             {
               latlng: '10, 20',
             },
@@ -64,10 +64,10 @@ describe('getDioryLocationData', () => {
       expect(center).toBe(false)
     })
 
-    describe('given diorys with location', () => {
+    describe('given memories with location', () => {
       it('returns false center', () => {
         const { center } = getDioryLocationData({
-          diorys: [
+          memories: [
             {
               latlng: '10, 20',
             },
@@ -80,9 +80,9 @@ describe('getDioryLocationData', () => {
         expect(center).toEqual(false)
       })
 
-      it('returns min and max locations of diorys', () => {
+      it('returns min and max locations of memories', () => {
         const { min, max } = getDioryLocationData({
-          diorys: [
+          memories: [
             {
               latlng: '10, 20',
             },
@@ -104,10 +104,10 @@ describe('getDioryLocationData', () => {
     })
   })
 
-  describe('given some locations of diorys', () => {
+  describe('given some locations of memories', () => {
     const someDiorysLocation = [
       {
-        diorys: [
+        memories: [
           {},
           {
             latlng: '10, 10',
@@ -122,9 +122,9 @@ describe('getDioryLocationData', () => {
       },
     ]
 
-    someDiorysLocation.forEach(({ diorys }) => {
+    someDiorysLocation.forEach(({ memories }) => {
       it('returns min and max of defined locations', () => {
-        const { min, max } = getDioryLocationData({ diorys })
+        const { min, max } = getDioryLocationData({ memories })
         expect(min).toStrictEqual({
           lat: 10,
           lng: 10,
@@ -137,13 +137,13 @@ describe('getDioryLocationData', () => {
     })
   })
 
-  describe('given no locations of diorys', () => {
+  describe('given no locations of memories', () => {
     const noDiorysLocation = [
       {
-        diorys: [],
+        memories: [],
       },
       {
-        diorys: [
+        memories: [
           {},
           {
             latlng: undefined,
@@ -155,9 +155,9 @@ describe('getDioryLocationData', () => {
       },
     ]
 
-    noDiorysLocation.forEach(({ diorys }) => {
+    noDiorysLocation.forEach(({ memories }) => {
       it('returns undefined min and max', () => {
-        const { min, max } = getDioryLocationData({ diorys })
+        const { min, max } = getDioryLocationData({ memories })
         expect(min).toBe(false)
         expect(max).toBe(false)
       })

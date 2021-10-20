@@ -28,12 +28,12 @@ export const useFilteredDiorys = () => {
     [diograph, graphFilter, mapFilter, timelineFilter, textFilter]
   )
 
-  const diorys = useDiorys(dioryIds)
+  const memories = useDiorys(dioryIds)
   return useMemo(
     () => ({
-      diory: diorys[0],
-      diorys,
+      diory: memories[0],
+      memories,
     }),
-    [diorys]
+    [memories]
   )
 }

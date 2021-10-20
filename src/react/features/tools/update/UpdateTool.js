@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatchActions, useStore } from '../../../store'
 
 import { updateDiory } from '../../diograph/actions'
-import { useLinkDiory } from '../../diograph/hooks'
+import { useMemory } from '../../diograph/hooks'
 
 import UpdateView from './UpdateView'
 
@@ -10,12 +10,12 @@ import { UPDATE_TOOL_BUTTON } from './buttons'
 
 const UpdateTool = () => {
   const [{ active }] = useStore((state) => state.buttons)
-  const [{ selectedDioryId }] = useStore((state) => state.navigation)
-  const { diory } = useLinkDiory()
+  const [{ memoryId }] = useStore((state) => state.navigation)
+  const { memory } = useMemory()
 
   const { dispatchAction } = useDispatchActions()
-  return UPDATE_TOOL_BUTTON === active && !!selectedDioryId ? (
-    <UpdateView diory={diory} title="Update diory" isShown onDone={dispatchAction(updateDiory)} />
+  return UPDATE_TOOL_BUTTON === active && !!memoryId ? (
+    <UpdateView diory={memory} title="Update diory" isShown onDone={dispatchAction(updateDiory)} />
   ) : null
 }
 

@@ -31,11 +31,13 @@ const useTools = () => {
   }
 }
 
-const GridLens = ({ diory, diorys }) => <GridView diory={diory} diorys={diorys} {...useTools()} />
+const GridLens = ({ diory, memories }) => (
+  <GridView diory={diory} memories={memories} {...useTools()} />
+)
 
 GridLens.propTypes = {
   diory: PropTypes.object.isRequired,
-  diorys: PropTypes.array.isRequired,
+  memories: PropTypes.array.isRequired,
 }
 
 export default GridLens

@@ -7,7 +7,7 @@ import Diory from '../../../components/diories/Diory'
 import FocusDioryContainer from '../../../components/FocusDioryContainer'
 import LinkDioryContainer from '../../../components/LinkDioryContainer'
 
-const GridView = ({ diory, diorys, onDrop, onClick }) => (
+const GridView = ({ diory, memories, onDrop, onClick }) => (
   <BackgroundDiory
     diory={{ id: diory.id, image: diory.image, text: diory.text }}
     gradient
@@ -21,7 +21,7 @@ const GridView = ({ diory, diorys, onDrop, onClick }) => (
     >
       <DataAwareDiory diory={diory} />
     </FocusDioryContainer>
-    {diorys.map((linkDiory) => (
+    {memories.map((linkDiory) => (
       <LinkDioryContainer linkDiory={linkDiory} onDrop={onDrop} onClick={onClick}>
         <Diory
           key={linkDiory.id}
@@ -42,7 +42,7 @@ GridView.defaultProps = {
 
 GridView.propTypes = {
   diory: PropTypes.object.isRequired,
-  diorys: PropTypes.array.isRequired,
+  memories: PropTypes.array.isRequired,
   onClick: PropTypes.func,
   onDrop: PropTypes.func,
 }

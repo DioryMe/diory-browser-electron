@@ -29,13 +29,13 @@ const useToolActions = () => {
   }
 }
 
-const TimelineLens = ({ diory, diorys }) => (
-  <TimelineView diory={diory} diorys={diorys} {...useToolActions()} />
+const TimelineLens = ({ diory, memories }) => (
+  <TimelineView diory={diory} memories={memories} {...useToolActions()} />
 )
 
 TimelineLens.propTypes = {
   diory: PropTypes.object.isRequired,
-  diorys: PropTypes.array.isRequired,
+  memories: PropTypes.array.isRequired,
 }
 
 export default TimelineLens

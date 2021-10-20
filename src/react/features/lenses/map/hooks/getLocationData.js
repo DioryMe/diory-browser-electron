@@ -1,6 +1,6 @@
 const concat = (array = [], item) => (typeof item !== 'undefined' ? array.concat(item) : array)
 
-const getDioryLocation = ({ diory, diorys }) => {
+const getDioryLocation = ({ diory, memories }) => {
   // eslint-disable-next-line no-unused-vars
   const { latlng } = diory
   if (latlng) {
@@ -13,11 +13,11 @@ const getDioryLocation = ({ diory, diorys }) => {
   return {}
 }
 
-export const getDioryLocationData = ({ diory = {}, diorys = [] }) => {
-  const locations = diorys.filter(({ latlng }) => latlng)
+export const getDioryLocationData = ({ diory = {}, memories = [] }) => {
+  const locations = memories.filter(({ latlng }) => latlng)
   const latitudes = locations.map(({ latlng }) => parseFloat(latlng.split(', ')[0]))
   const longitudes = locations.map(({ latlng }) => parseFloat(latlng.split(', ')[1]))
-  const { latitude, longitude } = getDioryLocation({ diory, diorys })
+  const { latitude, longitude } = getDioryLocation({ diory, memories })
 
   return {
     id: diory.id,
@@ -37,12 +37,12 @@ export const getDioryLocationData = ({ diory = {}, diorys = [] }) => {
   }
 }
 
-export const getLinksLocationData = ({ diory, diorys }) =>
-  diorys
-    .map((child) => getDioryLocationData({ diory: child, diorys, parent: diory }))
+export const getLinksLocationData = ({ diory, memories }) =>
+  memories
+    .map((child) => getDioryLocationData({ diory: child, memories, parent: diory }))
     .filter(({ center }) => !!center)
 
-export const getLocationData = ({ diory, diorys }) => ({
-  diory: getDioryLocationData({ diory, diorys }),
-  diorys: getLinksLocationData({ diory, diorys }),
+export const getLocationData = ({ diory, memories }) => ({
+  diory: getDioryLocationData({ diory, memories }),
+  memories: getLinksLocationData({ diory, memories }),
 })
