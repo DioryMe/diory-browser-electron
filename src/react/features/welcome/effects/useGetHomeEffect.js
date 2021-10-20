@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useDispatchActions } from '../../../store'
 
 import { enterRoom, setFocus } from '../../navigation/actions'
+import { addDiograph } from '../../diograph/actions'
 
 import { invokeChannel } from '../../../client/client'
 import { channels } from '../../../../shared/constants'
@@ -15,9 +16,7 @@ export const useGetHomeEffect = () => {
       if (!rootId) {
         invokeAlertDialog('Error getting diograph')
       }
-
-      // TODO: PUT DIOGRAPH IN STORE => needs own store action (GET_ROOM used to do this)
-
+      dispatch(addDiograph(diograph))
       dispatch(enterRoom({ id: rootId }))
       dispatch(setFocus({ id: rootId }))
     })
