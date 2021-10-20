@@ -1,11 +1,12 @@
 import {
   GET_ROOM,
+  SAVE_ROOM,
+  ADD_DIOGRAPH,
   CREATE_DIORY,
   CREATE_LINK,
   DELETE_DIORY,
   DELETE_LINK,
   DELETE_LINKS,
-  SAVE_ROOM,
   UPDATE_DIORY,
 } from './actionsTypes'
 import { promiseReducers, createReducer } from '../../store'
@@ -16,6 +17,15 @@ export const initialState = {
   loaded: false,
   updated: false,
 }
+
+export const addDiograph = (state, { payload: { diograph } }) => ({
+  ...state,
+  diograph: {
+    ...state.diograph,
+    ...diograph,
+  },
+  updated: true,
+})
 
 export const createDiory = (state, { payload: { diory } }) => ({
   ...state,
@@ -96,6 +106,7 @@ export const deleteLinks = (state, { payload: deletedLinks }) =>
   )
 
 export default createReducer({
+  [ADD_DIOGRAPH]: addDiograph,
   [CREATE_DIORY]: createDiory,
   [DELETE_DIORY]: deleteDiory,
   [UPDATE_DIORY]: updateDiory,
