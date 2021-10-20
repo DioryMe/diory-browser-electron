@@ -21,16 +21,18 @@ export const useAddConnectionButton = () => {
   useEffect(() => {
     const getHome = (result) => {
       const diographFolderPath = result.filePaths[0]
-      invokeChannel(channels.GENERATE_DIOGRAPH, diographFolderPath).then(({ rootId, diograph }) => {
-        const roomId = uuid()
-        dispatchPromiseAction(
-          () => invokeChannel(channels.GENERATE_DIOGRAPH, diographFolderPath),
-          () => getRoom({ rootId, diograph, address: diographFolderPath })
-        ).then(() => {
-          dispatch(enterRoom({ id: roomId }))
-          dispatch(setFocus({ id: rootId }))
-        })
-      })
+      invokeChannel(channels.CHOOSE_DIOGRAPH_FOLDER, diographFolderPath).then(
+        ({ rootId, diograph }) => {
+          const roomId = uuid()
+          dispatchPromiseAction(
+            () => invokeChannel(channels.CHOOSE_DIOGRAPH_FOLDER, diographFolderPath),
+            () => getRoom({ rootId, diograph, address: diographFolderPath })
+          ).then(() => {
+            dispatch(enterRoom({ id: roomId }))
+            dispatch(setFocus({ id: rootId }))
+          })
+        }
+      )
     }
 
     if (ADD_CONNECTION_BUTTON === active) {
