@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid'
 
 import { useDispatchActions, useStore } from '../../../store'
 import { inactivateButton } from '../../buttons/actions'
-import { useFocus } from '../../diograph/hooks'
+import { useStory } from '../../diograph/hooks'
 import { addDioryToHand } from '../actions'
 
 import { createDiory, createLink } from '../../diograph/actions'
@@ -12,7 +12,7 @@ import { CREATE_TOOL_BUTTON } from './buttons'
 
 export const useCreateDiory = () => {
   const [{ active }] = useStore((state) => state.buttons)
-  const { diory: focusDiory } = useFocus()
+  const { story } = useStory()
   const { dispatch } = useDispatchActions()
 
   return (newDiory) => {
@@ -22,7 +22,7 @@ export const useCreateDiory = () => {
       }
       const id = uuid()
       dispatch(createDiory({ ...newDiory, id }))
-      dispatch(createLink(focusDiory, { id }))
+      dispatch(createLink(story, { id }))
       dispatch(inactivateButton())
       dispatch(addDioryToHand(id))
     }

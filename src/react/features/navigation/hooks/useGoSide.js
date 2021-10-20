@@ -21,7 +21,7 @@ const useSiblings = () => {
 }
 
 export const useGoSide = () => {
-  const [{ focusId }] = useStore((state) => state.navigation)
+  const [{ storyId }] = useStore((state) => state.navigation)
   const siblingIds = useSiblings()
   const dispatch = useDispatch()
 
@@ -29,7 +29,7 @@ export const useGoSide = () => {
     return {}
   }
 
-  const focusIndex = siblingIds.indexOf(focusId)
+  const focusIndex = siblingIds.indexOf(storyId)
   if (focusIndex === 0) {
     return {
       goRight: () => dispatch(goSide({ focus: siblingIds[focusIndex + 1] })),

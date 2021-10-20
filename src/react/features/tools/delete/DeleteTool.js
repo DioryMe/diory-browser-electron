@@ -8,10 +8,10 @@ import { DELETE_TOOL_BUTTON } from './buttons'
 
 const DeleteTool = () => {
   const [{ active }] = useStore((state) => state.buttons)
-  const [{ selectedDioryId }] = useStore((state) => state.navigation)
+  const [{ memoryId }] = useStore((state) => state.navigation)
   const props = useDeleteView()
 
-  if (DELETE_TOOL_BUTTON === active && !!selectedDioryId) {
+  if (DELETE_TOOL_BUTTON === active && !!memoryId) {
     return <DeleteView {...props} />
   }
 

@@ -24,8 +24,8 @@ const links = [
 
 export const initially = () => <DeleteView />
 
-export const withLink = () => <DeleteView diorys={links} />
+export const withLink = () => <DeleteView memories={links} />
 
 export const withDiory = () => <DeleteView diory={focusDiory} />
 
-export const withDioryAndLinks = () => <DeleteView diory={focusDiory} diorys={links} />
+export const withDioryAndLinks = () => <DeleteView diory={focusDiory} memories={links} />

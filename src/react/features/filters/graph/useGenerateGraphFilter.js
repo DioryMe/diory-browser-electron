@@ -1,5 +1,5 @@
 import { useStore } from '../../../store'
-import { useFocus } from '../../diograph/hooks'
+import { useStory } from '../../diograph/hooks'
 
 import { useFilter } from '../hooks/useFilter'
 
@@ -24,17 +24,17 @@ const getLinkedDioryIdsFromZoomLevel = (dioryId, zoom, diograph) =>
   getZoomLevels(zoom).reduce(reduceLinkedDioryIds(diograph), [dioryId])
 
 const useLinkedDioryIds = () => {
-  const { diory } = useFocus()
+  const { story } = useStory()
   const { zoom } = useFilter('grid')
   const [{ diograph }] = useStore((state) => state.diograph)
 
-  if (!diory) {
+  if (!story) {
     return []
   }
   if (zoom === 0) {
-    return [diory.id]
+    return [story.id]
   }
-  return getLinkedDioryIdsFromZoomLevel(diory.id, zoom, diograph)
+  return getLinkedDioryIdsFromZoomLevel(story.id, zoom, diograph)
 }
 
 export const useGenerateGraphFilter = () => {

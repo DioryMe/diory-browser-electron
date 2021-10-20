@@ -47,7 +47,7 @@ describe('useGraphFilter', () => {
 
     describe('given diory in focus', () => {
       beforeEach(() => {
-        mockState.navigation = { focusId: 'someDioryId' }
+        mockState.navigation = { storyId: 'someDioryId' }
       })
 
       const graphFilterReturnsExpected = [
@@ -110,7 +110,7 @@ describe('useGraphFilter', () => {
 
     describe('given no focus', () => {
       beforeEach(() => {
-        mockState.navigation = { focusId: undefined }
+        mockState.navigation = { storyId: undefined }
       })
 
       describe('given active grid filter', () => {
@@ -180,7 +180,7 @@ describe('useGraphFilter', () => {
 
     describe('given diory in focus', () => {
       beforeEach(() => {
-        mockState.navigation = { focusId: 'someDioryId' }
+        mockState.navigation = { storyId: 'someDioryId' }
       })
 
       describe('given grid filter', () => {
@@ -194,7 +194,7 @@ describe('useGraphFilter', () => {
 
         const dioryIdsInCycle = ['someDioryId', 'otherDioryId']
         dioryIdsInCycle.forEach((id) => {
-          it('returns true for diorys included in cycle', () => {
+          it('returns true for memories included in cycle', () => {
             expect(useGenerateGraphFilter()({ id })).toEqual(true)
           })
         })
@@ -209,7 +209,7 @@ describe('useGraphFilter', () => {
 
     describe('given diory in focus', () => {
       beforeEach(() => {
-        mockState.navigation = { focusId: 'someDioryId' }
+        mockState.navigation = { storyId: 'someDioryId' }
       })
 
       describe('given grid filter', () => {

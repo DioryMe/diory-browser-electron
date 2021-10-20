@@ -27,13 +27,13 @@ const useToolActions = () => {
   }
 }
 
-const MapLens = ({ diory, diorys }) => (
-  <MapView diory={diory} diorys={diorys} {...useToolActions()} />
+const MapLens = ({ diory, memories }) => (
+  <MapView diory={diory} memories={memories} {...useToolActions()} />
 )
 
 MapLens.propTypes = {
   diory: PropTypes.object.isRequired,
-  diorys: PropTypes.array.isRequired,
+  memories: PropTypes.array.isRequired,
 }
 
 export default MapLens

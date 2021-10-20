@@ -3,9 +3,9 @@ import { useLinkPopups } from './useLinkPopups'
 import { useTogglePopup } from './useTogglePopup'
 import { useUpdatePopup } from './useUpdatePopup'
 
-export const usePopups = (ref, { dioryMarker, linkMarkers }, diory, diorys) => {
+export const usePopups = (ref, { dioryMarker, linkMarkers }, diory, memories) => {
   useDioryPopup(dioryMarker, diory)
-  useLinkPopups(linkMarkers, diorys)
+  useLinkPopups(linkMarkers, memories)
   useUpdatePopup(ref)
   useTogglePopup(ref)
 }

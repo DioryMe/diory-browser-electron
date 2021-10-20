@@ -3,13 +3,13 @@ import { useDispatchActions, useStore } from '../../../store'
 import { activateFilter } from '../actions'
 
 const useInactivateFilterOnFocusChange = (filterId) => {
-  const [{ focusId }] = useStore((state) => state.navigation)
+  const [{ storyId }] = useStore((state) => state.navigation)
   const { dispatch } = useDispatchActions()
   useEffect(() => {
-    if (focusId) {
+    if (storyId) {
       dispatch(activateFilter(filterId, false))
     }
-  }, [focusId, filterId, dispatch])
+  }, [storyId, filterId, dispatch])
 }
 
 export const useFilterEffects = (filterId) => {

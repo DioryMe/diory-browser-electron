@@ -3,7 +3,7 @@ import { initialState } from '../../../store/initialState'
 import { useDeleteView } from './useDeleteView'
 
 import { deleteDiory, deleteLinks } from '../../diograph/actions'
-import { useLinkDiory, useFocus } from '../../diograph/hooks'
+import { useMemory, useStory } from '../../diograph/hooks'
 import { inactivateButton } from '../../buttons/actions'
 import { goBackward, setSelectedDiory } from '../../navigation/actions'
 
@@ -36,8 +36,8 @@ describe('useDeleteView', () => {
     it('delete link between focusDiory and linkDiory', () => {
       const focusDiory = deleteViewFixtureDiograph.someDioryId
       const linkDiory = deleteViewFixtureDiograph.linkedDioryId1
-      useFocus.mockImplementation(() => ({ diory: focusDiory }))
-      useLinkDiory.mockImplementation(() => ({ diory: linkDiory }))
+      useStory.mockImplementation(() => ({ story: focusDiory }))
+      useMemory.mockImplementation(() => ({ memory: linkDiory }))
 
       useDeleteView().onDone()
 
@@ -50,8 +50,8 @@ describe('useDeleteView', () => {
 
     it('delete focusDiory and all its links', () => {
       const focusDiory = deleteViewFixtureDiograph.someDioryId
-      useFocus.mockImplementation(() => ({ diory: focusDiory }))
-      useLinkDiory.mockImplementation(() => ({ diory: focusDiory }))
+      useStory.mockImplementation(() => ({ story: focusDiory }))
+      useMemory.mockImplementation(() => ({ memory: focusDiory }))
 
       useDeleteView().onDone()
 
@@ -73,8 +73,8 @@ describe('useDeleteView', () => {
 
     it('delete focusDiory without links', () => {
       const focusDiory = deleteViewFixtureDiograph.dioryWithoutLinks
-      useFocus.mockImplementation(() => ({ diory: focusDiory }))
-      useLinkDiory.mockImplementation(() => ({ diory: focusDiory }))
+      useStory.mockImplementation(() => ({ story: focusDiory }))
+      useMemory.mockImplementation(() => ({ memory: focusDiory }))
 
       useDeleteView().onDone()
 
