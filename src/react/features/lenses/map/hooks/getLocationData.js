@@ -1,8 +1,8 @@
 const concat = (array = [], item) => (typeof item !== 'undefined' ? array.concat(item) : array)
 
-const getDioryLocation = ({ diory, memories }) => {
+const getDioryLocation = ({ story, memories }) => {
   // eslint-disable-next-line no-unused-vars
-  const { latlng } = diory
+  const { latlng } = story
   if (latlng) {
     const [latitude, longitude] = latlng.split(', ')
     return {
@@ -13,36 +13,36 @@ const getDioryLocation = ({ diory, memories }) => {
   return {}
 }
 
-export const getDioryLocationData = ({ diory = {}, memories = [] }) => {
+export const getDioryLocationData = ({ story = {}, memories = [] }) => {
   const locations = memories.filter(({ latlng }) => latlng)
   const latitudes = locations.map(({ latlng }) => parseFloat(latlng.split(', ')[0]))
   const longitudes = locations.map(({ latlng }) => parseFloat(latlng.split(', ')[1]))
-  const { latitude, longitude } = getDioryLocation({ diory, memories })
+  const { latitude, longitude } = getDioryLocation({ story, memories })
 
   return {
-    id: diory.id,
+    id: story.id,
     center: !!longitude &&
       !!latitude && {
         lat: latitude,
         lng: longitude,
       },
     min: !!locations.length && {
-      lat: Math.min(...concat(latitudes, diory.latlng && parseFloat(diory.latlng.split(', ')[0]))),
-      lng: Math.min(...concat(longitudes, diory.latlng && parseFloat(diory.latlng.split(', ')[1]))),
+      lat: Math.min(...concat(latitudes, story.latlng && parseFloat(story.latlng.split(', ')[0]))),
+      lng: Math.min(...concat(longitudes, story.latlng && parseFloat(story.latlng.split(', ')[1]))),
     },
     max: !!locations.length && {
-      lat: Math.max(...concat(latitudes, diory.latlng && parseFloat(diory.latlng.split(', ')[0]))),
-      lng: Math.max(...concat(longitudes, diory.latlng && parseFloat(diory.latlng.split(', ')[1]))),
+      lat: Math.max(...concat(latitudes, story.latlng && parseFloat(story.latlng.split(', ')[0]))),
+      lng: Math.max(...concat(longitudes, story.latlng && parseFloat(story.latlng.split(', ')[1]))),
     },
   }
 }
 
-export const getLinksLocationData = ({ diory, memories }) =>
+export const getLinksLocationData = ({ story, memories }) =>
   memories
-    .map((child) => getDioryLocationData({ diory: child, memories, parent: diory }))
+    .map((child) => getDioryLocationData({ story: child, memories, parent: story }))
     .filter(({ center }) => !!center)
 
-export const getLocationData = ({ diory, memories }) => ({
-  diory: getDioryLocationData({ diory, memories }),
-  memories: getLinksLocationData({ diory, memories }),
+export const getLocationData = ({ story, memories }) => ({
+  story: getDioryLocationData({ story, memories }),
+  memories: getLinksLocationData({ story, memories }),
 })

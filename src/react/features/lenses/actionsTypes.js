@@ -1,2 +1,3 @@
-export const ADD_LENS = 'ADD_LENS'
 export const SELECT_LENS = 'SELECT_LENS'
+export const ADD_LENS_BUTTONS = 'ADD_LENS_BUTTONS'
+export const REMOVE_LENS_BUTTONS = 'REMOVE_LENS_BUTTONS'

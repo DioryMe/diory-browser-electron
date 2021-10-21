@@ -1,8 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import { useDispatchActions } from '../../../store'
 
+import { useLens } from '../useLens'
 import { useCreateTool } from '../../tools/create'
 import { useDeleteTool } from '../../tools/delete'
 import { useFocusTool } from '../../tools/focus'
@@ -10,7 +10,10 @@ import { useUpdateTool } from '../../tools/update'
 
 import { createLink } from '../../diograph/actions'
 
+import { withLensContainer } from '../LensContainer'
 import GridView from './GridView'
+
+import button from './diory'
 
 const useTools = () => {
   const focusDiory = useFocusTool()
@@ -31,13 +34,6 @@ const useTools = () => {
   }
 }
 
-const GridLens = ({ diory, memories }) => (
-  <GridView diory={diory} memories={memories} {...useTools()} />
-)
+const GridLens = () => <GridView {...useLens()} {...useTools()} />
 
-GridLens.propTypes = {
-  diory: PropTypes.object.isRequired,
-  memories: PropTypes.array.isRequired,
-}
-
-export default GridLens
+export default withLensContainer('grid', button)(GridLens)

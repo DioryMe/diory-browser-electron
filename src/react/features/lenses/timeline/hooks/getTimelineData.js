@@ -9,8 +9,8 @@ export const getLongitudeDate = (lng) =>
 export const getIsoDate = (lng) =>
   new Date((lng * Date.parse('1971-01-01T00:00:00.000Z')) / 10).toISOString()
 
-const getDioryDateLongitude = ({ diory, memories, parent }) => {
-  const { date } = diory
+const getDioryDateLongitude = ({ story, memories, parent }) => {
+  const { date } = story
   if (date) {
     return {
       lng: getDateLongitude({ date }),
@@ -20,11 +20,11 @@ const getDioryDateLongitude = ({ diory, memories, parent }) => {
   return {}
 }
 
-const getDioryTimelineData = ({ diory = {}, memories = [], parent }) => {
+const getDioryTimelineData = ({ story = {}, memories = [], parent }) => {
   const dateLongitudes = memories.filter(({ date }) => date).map(getDateLongitude)
-  const { lng } = getDioryDateLongitude({ diory, memories, parent })
+  const { lng } = getDioryDateLongitude({ story, memories, parent })
   return {
-    id: diory.id,
+    id: story.id,
     center: lng && {
       lat: 0,
       lng,
@@ -40,12 +40,12 @@ const getDioryTimelineData = ({ diory = {}, memories = [], parent }) => {
   }
 }
 
-const getLinksTimelineData = ({ diory = {}, memories = [] }) =>
+const getLinksTimelineData = ({ story = {}, memories = [] }) =>
   memories
-    .map((child) => getDioryTimelineData({ diory: child, memories, parent: diory }))
+    .map((child) => getDioryTimelineData({ story: child, memories, parent: story }))
     .filter(({ center }) => !!center)
 
-export const getTimelineData = ({ diory, memories }) => ({
-  diory: getDioryTimelineData({ diory, memories }),
-  memories: getLinksTimelineData({ diory, memories }),
+export const getTimelineData = ({ story, memories }) => ({
+  story: getDioryTimelineData({ story, memories }),
+  memories: getLinksTimelineData({ story, memories }),
 })

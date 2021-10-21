@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 
+import { useLens } from '../useLens'
 import { useCreateTool } from '../../tools/createLocation'
 import { useDeleteTool } from '../../tools/delete'
 import { useFocusTool } from '../../tools/focus'
@@ -10,7 +10,11 @@ import { useTimelineFilter } from '../../filters/timeline/useTimelineFilter'
 
 import TimelineView from './TimelineView'
 
-const useToolActions = () => {
+import { withLensContainer } from '../LensContainer'
+
+import button from './diory'
+
+const useTools = () => {
   const focusDiory = useFocusTool()
   const deleteDiory = useDeleteTool()
   const updateDiory = useUpdateTool()
@@ -29,13 +33,6 @@ const useToolActions = () => {
   }
 }
 
-const TimelineLens = ({ diory, memories }) => (
-  <TimelineView diory={diory} memories={memories} {...useToolActions()} />
-)
+const TimelineLens = () => <TimelineView {...useLens()} {...useTools()} />
 
-TimelineLens.propTypes = {
-  diory: PropTypes.object.isRequired,
-  memories: PropTypes.array.isRequired,
-}
-
-export default TimelineLens
+export default withLensContainer('timeline', button)(TimelineLens)
