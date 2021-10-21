@@ -1,24 +1,40 @@
-import { ADD_LENS, SELECT_LENS } from './actionsTypes'
+import { ADD_LENS_BUTTONS, REMOVE_LENS_BUTTONS, SELECT_LENS } from './actionsTypes'
 import { createReducer } from '../../store'
 
 const DEFAULT_LENS = 'grid'
 
 export const initialState = {
   selectedLensId: DEFAULT_LENS,
-  lenses: [],
+  buttons: {},
 }
-
-const addLens = (state, { payload }) => ({
-  ...state,
-  lenses: [...state.lenses, payload.id],
-})
 
 const selectLens = (state, { payload }) => ({
   ...state,
   selectedLensId: payload.id || DEFAULT_LENS,
 })
 
+const addLensButtons = (state, { payload }) => ({
+  ...state,
+  buttons: payload.buttons.reduce(
+    (initialButtons, button) => ({
+      ...initialButtons,
+      [button.id]: button,
+    }),
+    state.buttons
+  ),
+})
+
+const removeLensButtons = (state, { payload }) => ({
+  ...state,
+  buttons: payload.buttons.reduce((initialButtons, button) => {
+    // eslint-disable-next-line no-unused-vars
+    const { [button.id]: omit, ...buttons } = initialButtons
+    return buttons
+  }, state.buttons),
+})
+
 export default createReducer({
-  [ADD_LENS]: addLens,
   [SELECT_LENS]: selectLens,
+  [ADD_LENS_BUTTONS]: addLensButtons,
+  [REMOVE_LENS_BUTTONS]: removeLensButtons,
 })

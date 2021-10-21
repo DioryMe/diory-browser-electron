@@ -14,7 +14,7 @@ import { useDragging } from '../utils/markers/useDragging'
 import { getLocationData } from './hooks/getLocationData'
 
 const MapView = ({
-  diory,
+  story,
   memories,
   onMapClick,
   onPopupClick,
@@ -28,12 +28,12 @@ const MapView = ({
 
   usePopupClick(map, onPopupClick)
 
-  const locationData = getLocationData({ diory, memories })
+  const locationData = getLocationData({ story, memories })
 
-  useMapBounds(map, locationData.diory, fitToBounds, onBoundsChange)
-  const markers = useMarkers(map, locationData.diory, locationData.memories)
+  useMapBounds(map, locationData.story, fitToBounds, onBoundsChange)
+  const markers = useMarkers(map, locationData.story, locationData.memories)
 
-  usePopups(map, markers, diory, memories)
+  usePopups(map, markers, story, memories)
 
   useMapClick(map, onMapClick)
   useDragging(map, enableDragging, onDragEnd)
@@ -51,7 +51,7 @@ MapView.defaultProps = {
 }
 
 MapView.propTypes = {
-  diory: PropTypes.object.isRequired,
+  story: PropTypes.object.isRequired,
   memories: PropTypes.array.isRequired,
   fitToBounds: PropTypes.bool,
   onMapClick: PropTypes.func,

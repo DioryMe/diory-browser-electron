@@ -1,10 +1,10 @@
 import { getDioryLocationData } from './getLocationData'
 
 describe('getDioryLocationData', () => {
-  describe('given diory location', () => {
+  describe('given story location', () => {
     it('returns center', () => {
       const { center } = getDioryLocationData({
-        diory: {
+        story: {
           latlng: '12.34, 123.45',
         },
       })
@@ -17,7 +17,7 @@ describe('getDioryLocationData', () => {
     describe('given memories with location', () => {
       it('returns min and max locations of memories', () => {
         const { min, max } = getDioryLocationData({
-          diory: {
+          story: {
             latlng: '0, 30',
           },
           memories: [
@@ -41,23 +41,23 @@ describe('getDioryLocationData', () => {
     })
   })
 
-  describe('given no diory location', () => {
+  describe('given no story location', () => {
     const noDioryLocation = [
       {
         latlng: undefined,
       },
     ]
 
-    noDioryLocation.forEach((diory) => {
+    noDioryLocation.forEach((story) => {
       it('returns false center', () => {
-        const { center } = getDioryLocationData({ diory })
+        const { center } = getDioryLocationData({ story })
         expect(center).toBe(false)
       })
     })
 
     it('returns false center', () => {
       const { center } = getDioryLocationData({
-        diory: {
+        story: {
           latlng: undefined,
         },
       })

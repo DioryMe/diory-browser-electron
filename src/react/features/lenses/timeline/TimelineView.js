@@ -20,7 +20,7 @@ import BackgroundDiory from '../../../components/diories/BackgroundDiory'
 import Fullscreen from '../../../components/Fullscreen'
 
 const TimelineView = ({
-  diory,
+  story,
   memories,
   onMapClick,
   onPopupClick,
@@ -34,11 +34,11 @@ const TimelineView = ({
 
   usePopupClick(timeline, onPopupClick)
 
-  const timelineData = getTimelineData({ diory, memories })
+  const timelineData = getTimelineData({ story, memories })
 
-  useTimelineBounds(timeline, timelineData.diory, fitToBounds, onBoundsChange)
+  useTimelineBounds(timeline, timelineData.story, fitToBounds, onBoundsChange)
   const markers = useMarkers(timeline, null, timelineData.memories)
-  useLinkIcons(timeline, markers.linkMarkers, diory)
+  useLinkIcons(timeline, markers.linkMarkers, story)
 
   usePopups(timeline, markers, null, memories)
 
@@ -50,7 +50,7 @@ const TimelineView = ({
   })
 
   return (
-    <BackgroundDiory diory={diory} gradient gradientRgba="0, 0, 0, 0.2">
+    <BackgroundDiory diory={story} gradient gradientRgba="0, 0, 0, 0.2">
       <Fullscreen id={timelineId} background="transparent" style={{ top: '48px' }} />
     </BackgroundDiory>
   )
@@ -64,7 +64,7 @@ TimelineView.defaultProps = {
 }
 
 TimelineView.propTypes = {
-  diory: PropTypes.object.isRequired,
+  story: PropTypes.object.isRequired,
   memories: PropTypes.array.isRequired,
   enableDragging: PropTypes.bool,
   onMapClick: PropTypes.func,

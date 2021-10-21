@@ -1,6 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
+import { useLens } from '../useLens'
 import { useFocusTool } from '../../tools/focus'
 import { useCreateTool } from '../../tools/createLocation'
 import { useDeleteTool } from '../../tools/delete'
@@ -10,7 +10,11 @@ import { useMapFilter } from '../../filters/map/useMapFilter'
 
 import MapView from './MapView'
 
-const useToolActions = () => {
+import { withLensContainer } from '../LensContainer'
+
+import button from './diory'
+
+const useTools = () => {
   const focusDiory = useFocusTool()
   const deleteDiory = useDeleteTool()
   const { active, onBoundsChange } = useMapFilter()
@@ -27,13 +31,6 @@ const useToolActions = () => {
   }
 }
 
-const MapLens = ({ diory, memories }) => (
-  <MapView diory={diory} memories={memories} {...useToolActions()} />
-)
+const MapLens = () => <MapView {...useLens()} {...useTools()} />
 
-MapLens.propTypes = {
-  diory: PropTypes.object.isRequired,
-  memories: PropTypes.array.isRequired,
-}
-
-export default MapLens
+export default withLensContainer('map', button)(MapLens)
