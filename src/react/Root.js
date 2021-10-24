@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatchActions } from './store'
 
-import { setFocus } from './features/navigation/actions'
+import { enterRoom, setFocus } from './features/navigation/actions'
 import { addDiograph } from './features/diograph/actions'
 import { useFocus } from './features/diograph/hooks'
 
@@ -20,9 +20,8 @@ export const useGetDiograph = () => {
       if (!rootId) {
         invokeAlertDialog('Error getting diograph')
       }
-      console.log(diograph)
-      console.log(rootId)
       dispatch(addDiograph(diograph))
+      dispatch(enterRoom({ id: rootId }))
       dispatch(setFocus({ id: rootId }))
     })
   }, [dispatch])
