@@ -7,12 +7,12 @@ import { reducerWithMiddleware } from './utils/middleware'
 import { reducer } from './store/reducer'
 import { initialState } from './store/initialState'
 
-import Home from './features/home/Home'
+import Root from './Root'
 
 const App = () => (
   <StoreProvider reducer={reducerWithMiddleware(reducer)} initialState={initialState}>
     <DndProvider backend={HTML5Backend}>
-      <Home />
+      <Root />
     </DndProvider>
   </StoreProvider>
 )

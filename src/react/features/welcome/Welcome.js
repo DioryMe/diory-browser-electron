@@ -7,7 +7,6 @@ import { useDispatch, useStore, useDispatchActions } from '../../store'
 import { getRoom } from '../diograph/actions'
 import { invokeChannel } from '../../client/client'
 import { channels } from '../../../shared/constants'
-import { useGetHomeEffect } from './effects/useGetHomeEffect'
 
 import { enterRoom, setFocus } from '../navigation/actions'
 import { activateButton, inactivateButton } from '../buttons/actions'
@@ -54,7 +53,6 @@ const Welcome = () => {
   const [{ active }] = useStore((state) => state.buttons)
   const dispatch = useDispatch()
 
-  useGetHomeEffect()
   useAddConnectionButton()
 
   const onClick = () => {
@@ -69,7 +67,7 @@ const Welcome = () => {
       <Pane
         style={{
           position: 'absolute',
-          top: 50,
+          top: 0,
           width: '100%',
           textAlign: 'center',
         }}
