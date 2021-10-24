@@ -1,35 +1,28 @@
 import React, { useEffect } from 'react'
 import { Pane } from 'evergreen-ui'
-import { v4 as uuid } from 'uuid'
 
 import { useFocus } from '../diograph/hooks'
 import { useDispatch, useStore, useDispatchActions } from '../../store'
-import { getRoom } from '../diograph/actions'
+import { addDiograph } from '../diograph/actions'
 import { invokeChannel } from '../../client/client'
 import { channels } from '../../../shared/constants'
 
-import { enterRoom, setFocus } from '../navigation/actions'
+import { setFocus } from '../navigation/actions'
 import { activateButton, inactivateButton } from '../buttons/actions'
 
 const ADD_CONNECTION_BUTTON = 'ADD_CONNECTION_BUTTON'
 
 export const useAddConnectionButton = () => {
   const [{ active }] = useStore((state) => state.buttons)
-  const { dispatch, dispatchPromiseAction } = useDispatchActions()
+  const { dispatch } = useDispatchActions()
 
   useEffect(() => {
     const getHome = (result) => {
       const diographFolderPath = result.filePaths[0]
       invokeChannel(channels.CHOOSE_DIOGRAPH_FOLDER, diographFolderPath).then(
         ({ rootId, diograph }) => {
-          const roomId = uuid()
-          dispatchPromiseAction(
-            () => invokeChannel(channels.CHOOSE_DIOGRAPH_FOLDER, diographFolderPath),
-            () => getRoom({ rootId, diograph, address: diographFolderPath })
-          ).then(() => {
-            dispatch(enterRoom({ id: roomId }))
-            dispatch(setFocus({ id: rootId }))
-          })
+          dispatch(addDiograph(diograph))
+          dispatch(setFocus({ id: rootId }))
         }
       )
     }
@@ -89,12 +82,12 @@ const Welcome = () => {
             justifyContent: 'center',
             margin: '0 auto',
             width: '350px',
-            height: '60px',
+            height: '80px',
+            padding: '0px 20px',
             border: '3px solid',
-            color: ADD_CONNECTION_BUTTON === active ? 'blue' : 'black',
           }}
         >
-          + Choose folder for your diograph
+          + Choose where your Diory folder is located on this Mac
         </Pane>
       </Pane>
     )
