@@ -24,9 +24,9 @@ export const goForward = () => ({ type: GO_FORWARD })
 
 export const goHome = () => ({ type: GO_HOME })
 
-export const goSide = ({ focus }) => ({
+export const goSide = ({ storyId }) => ({
   type: GO_SIDE,
-  payload: { focus },
+  payload: { storyId },
 })
 
 export const setSelectedDiory = (diory = {}) => ({

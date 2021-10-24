@@ -1,7 +1,7 @@
 import { useStore, useDispatch } from '../../../store'
 import { goBackward, setSelectedDiory } from '../../navigation/actions'
 import { deleteDiory, deleteLinks } from '../../diograph/actions'
-import { useMemory, useStory } from '../../diograph/hooks'
+import { useDiograph } from '../../diograph/hooks'
 import { inactivateButton } from '../../buttons/actions'
 
 const linkedDiories = (focusDiory, diograph) =>
@@ -39,8 +39,8 @@ const isFocusDeleted = (focusDiory, linkDiory) => {
 
 export const useDeleteView = () => {
   const [{ diograph }] = useStore((state) => state.diograph)
-  const { story } = useStory()
-  const { memory } = useMemory()
+  const { story } = useDiograph()
+  const { memory } = useDiograph()
   const dispatch = useDispatch()
 
   let deletedDiory
@@ -70,7 +70,7 @@ export const useDeleteView = () => {
   }
 
   return {
-    diory: deletedDiory,
+    story: deletedDiory,
     memories: deletedLinks,
     onDone: deleteDioryAndLinks,
     onCancel: resetView,

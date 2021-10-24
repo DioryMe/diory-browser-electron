@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatchActions, useStore } from '../../../store'
 
 import { updateDiory } from '../../diograph/actions'
-import { useMemory } from '../../diograph/hooks'
+import { useDiograph } from '../../diograph/hooks'
 
 import UpdateView from './UpdateView'
 
@@ -11,7 +11,7 @@ import { UPDATE_TOOL_BUTTON } from './buttons'
 const UpdateTool = () => {
   const [{ active }] = useStore((state) => state.buttons)
   const [{ memoryId }] = useStore((state) => state.navigation)
-  const { memory } = useMemory()
+  const { memory } = useDiograph()
 
   const { dispatchAction } = useDispatchActions()
   return UPDATE_TOOL_BUTTON === active && !!memoryId ? (

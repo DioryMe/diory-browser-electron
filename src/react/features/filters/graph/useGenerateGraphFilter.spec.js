@@ -47,7 +47,7 @@ describe('useGraphFilter', () => {
 
     describe('given diory in focus', () => {
       beforeEach(() => {
-        mockState.navigation = { storyId: 'someDioryId' }
+        mockState.navigation = { storyId: 'someDioryId', backward: [] }
       })
 
       const graphFilterReturnsExpected = [
@@ -110,7 +110,7 @@ describe('useGraphFilter', () => {
 
     describe('given no focus', () => {
       beforeEach(() => {
-        mockState.navigation = { storyId: undefined }
+        mockState.navigation = { storyId: undefined, backward: [] }
       })
 
       describe('given active grid filter', () => {
@@ -180,7 +180,7 @@ describe('useGraphFilter', () => {
 
     describe('given diory in focus', () => {
       beforeEach(() => {
-        mockState.navigation = { storyId: 'someDioryId' }
+        mockState.navigation = { storyId: 'someDioryId', backward: [] }
       })
 
       describe('given grid filter', () => {
@@ -209,7 +209,7 @@ describe('useGraphFilter', () => {
 
     describe('given diory in focus', () => {
       beforeEach(() => {
-        mockState.navigation = { storyId: 'someDioryId' }
+        mockState.navigation = { storyId: 'someDioryId', backward: [] }
       })
 
       describe('given grid filter', () => {
