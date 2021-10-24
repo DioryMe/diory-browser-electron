@@ -1,5 +1,5 @@
 import { useStore } from '../../../store'
-import { useStory } from '../../diograph/hooks'
+import { useDiograph } from '../../diograph/hooks'
 
 import { useFilter } from '../hooks/useFilter'
 
@@ -24,7 +24,7 @@ const getLinkedDioryIdsFromZoomLevel = (dioryId, zoom, diograph) =>
   getZoomLevels(zoom).reduce(reduceLinkedDioryIds(diograph), [dioryId])
 
 const useLinkedDioryIds = () => {
-  const { story } = useStory()
+  const { story } = useDiograph()
   const { zoom } = useFilter('grid')
   const [{ diograph }] = useStore((state) => state.diograph)
 

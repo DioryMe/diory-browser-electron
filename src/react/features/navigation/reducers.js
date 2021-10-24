@@ -43,10 +43,10 @@ export const setFocus = (state, { payload }) => {
 
 export const goSide = (state, { payload }) => ({
   ...state,
-  storyId: payload.focus,
+  storyId: payload.storyId,
   forward: [],
   path: Object.assign([], state.path, {
-    [state.path.length - 1]: payload.focus,
+    [state.path.length - 1]: payload.storyId,
   }),
 })
 

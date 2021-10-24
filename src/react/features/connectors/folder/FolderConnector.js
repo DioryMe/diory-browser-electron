@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useButtons } from '../../buttons'
-import { useStory } from '../../diograph/hooks'
+import { useDiograph } from '../../diograph/hooks'
 
 import { useGetRoomEffect } from '../effects/useGetRoomEffect'
 import { useSaveRoomEffect } from '../effects/useSaveRoomEffect'
@@ -16,7 +16,7 @@ const FolderConnectorButtons = () => {
 }
 
 const FolderConnector = () => {
-  const { story } = useStory()
+  const { story } = useDiograph()
   useGetRoomEffect('file')
   useSaveRoomEffect('file')
   return <div data-testid="connector">{!story && <FolderConnectorButtons />}</div>

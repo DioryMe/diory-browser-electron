@@ -1,5 +1,5 @@
 import React from 'react'
-import { useStory } from '../diograph/hooks'
+import { useDiograph } from '../diograph/hooks'
 
 import { useGetHomeEffect } from './effects/useGetHomeEffect'
 import { useSaveHomeEffect } from './effects/useSaveHomeEffect'
@@ -10,7 +10,7 @@ const Rooms = () => {
   useGetHomeEffect()
   useSaveHomeEffect()
 
-  const { story } = useStory()
+  const { story } = useDiograph()
   return !story && <RoomsView />
 }
 

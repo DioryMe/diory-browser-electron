@@ -12,24 +12,20 @@ export const useDiorys = (ids = {}) => {
     .filter(({ id }) => id)
 }
 
-const useLinkedDiorys = (id) => {
-  const [{ diograph = {} }] = useStore((state) => state.diograph)
+const useLinkedDiorys = (id, diograph) => {
   const diory = diograph[id]
   const links = diory && diory.links
   return useDiorys(links)
 }
 
-export const useStory = () => {
-  const [{ storyId }] = useStore((state) => state.navigation)
+export const useDiograph = () => {
+  const [{ storyId, memoryId }] = useStore((state) => state.navigation)
+  const [{ diograph = {} }] = useStore((state) => state.diograph)
+
   return {
     story: useDiory(storyId),
-    memories: useLinkedDiorys(storyId),
-  }
-}
-
-export const useMemory = () => {
-  const [{ memoryId }] = useStore((state) => state.navigation)
-  return {
+    stories: useLinkedDiorys(contextId, diograph),
     memory: useDiory(memoryId),
+    memories: useLinkedDiorys(storyId, diograph),
   }
 }
