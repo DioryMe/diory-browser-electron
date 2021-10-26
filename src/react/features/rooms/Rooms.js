@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDiograph } from '../diograph/hooks'
+import { useStore } from '../../store'
 
 import { useGetHomeEffect } from './effects/useGetHomeEffect'
 import { useSaveHomeEffect } from './effects/useSaveHomeEffect'
@@ -10,8 +10,8 @@ const Rooms = () => {
   useGetHomeEffect()
   useSaveHomeEffect()
 
-  const { story } = useDiograph()
-  return !story && <RoomsView />
+  const [{ loaded }] = useStore((state) => state.diograph)
+  return !loaded && <RoomsView />
 }
 
 export default Rooms
