@@ -22,6 +22,8 @@ import {
   HandIcon,
   FolderOpenIcon,
   ApplicationsIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
 } from 'evergreen-ui'
 
 const Icon = ({ icon, ...props }) => {
@@ -58,6 +60,10 @@ const Icon = ({ icon, ...props }) => {
       return <ChevronLeftIcon {...props} />
     case 'chevron-right':
       return <ChevronRightIcon {...props} />
+    case 'chevron-up':
+      return <ChevronUpIcon {...props} />
+    case 'chevron-down':
+      return <ChevronDownIcon {...props} />
     case 'home':
       return <HomeIcon {...props} />
     case 'error-icon':
