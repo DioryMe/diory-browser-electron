@@ -10,11 +10,13 @@ import { useFocusTool } from '../../tools/focus'
 import { useUpdateTool } from '../../tools/update'
 
 import { createLink } from '../../diograph/actions'
+import { selectContext } from '../../navigation/actions'
 
-import { withLensContainer } from '../LensContainer'
 import GridView from './GridView'
 
 import button from './diory'
+
+import { withLensContainer } from '../LensContainer'
 
 const useTools = () => {
   const focusDiory = useFocusTool()
@@ -22,8 +24,17 @@ const useTools = () => {
   const updateDiory = useUpdateTool()
   useCreateTool()
 
+  const { context } = useDiograph()
+
   const { dispatch } = useDispatchActions()
   return {
+    onStoryClick: ({ diory }) => {
+      if (diory.id === context.id) {
+        focusDiory(diory)
+      } else {
+        dispatch(selectContext(diory))
+      }
+    },
     onClick: ({ diory }) => {
       focusDiory(diory)
       deleteDiory(diory)
