@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { useDispatchActions } from '../../../store'
+import { useDiograph } from '../../diograph/useDiograph'
 
 import { useLens } from '../useLens'
 import { useCreateTool } from '../../tools/create'

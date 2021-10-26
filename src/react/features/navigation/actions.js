@@ -2,6 +2,7 @@ import {
   ENTER_ROOM,
   GO_FORWARD,
   GO_BACKWARD,
+  SELECT_CONTEXT,
   SET_FOCUS,
   GO_HOME,
   GO_SIDE,
@@ -11,6 +12,11 @@ import {
 export const enterRoom = ({ id }) => ({
   type: ENTER_ROOM,
   payload: { id },
+})
+
+export const selectContext = (context) => ({
+  type: SELECT_CONTEXT,
+  payload: { context },
 })
 
 export const setFocus = ({ id }) => ({

@@ -1,6 +1,6 @@
 import React from 'react'
 import DataAwareDiory from '../../../components/diories/DataAwareDiory'
-import { useDiograph } from '../../diograph/hooks'
+import { useDiograph } from '../../diograph/useDiograph'
 
 const FullscreenLens = () => {
   const { story } = useDiograph()

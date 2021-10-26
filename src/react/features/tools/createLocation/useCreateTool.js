@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid'
 import { useDispatchActions, useStore } from '../../../store'
 import { useButtons } from '../../buttons'
 import { inactivateButton } from '../../buttons/actions'
-import { useDiograph } from '../../diograph/hooks'
+import { useDiograph } from '../../diograph/useDiograph'
 
 import { createDiory, createLink } from '../../diograph/actions'
 

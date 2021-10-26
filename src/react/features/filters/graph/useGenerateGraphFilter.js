@@ -1,5 +1,5 @@
 import { useStore } from '../../../store'
-import { useDiograph } from '../../diograph/hooks'
+import { useDiograph } from '../../diograph/useDiograph'
 
 import { useFilter } from '../hooks/useFilter'
 
