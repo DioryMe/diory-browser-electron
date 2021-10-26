@@ -1,17 +1,17 @@
 import React from 'react'
 
 import { useInitializeLensButtons } from './useInitializeLensButtons'
-import { useLens } from './useLens'
+import { useStore } from '../../store'
 
 const LensContainer = ({ id, buttons, children }) => {
   useInitializeLensButtons(buttons)
-  const { selectedLensId, story } = useLens()
-  return id === selectedLensId && story ? children : null
+  const [{ selectedLensId }] = useStore((state) => state.lenses)
+  const [{ loaded }] = useStore((state) => state.diograph)
+  return loaded && id === selectedLensId ? children : null
 }
 
-export const withLensContainer = (id, button) => (Component) => () =>
-  (
-    <LensContainer id={id} buttons={[button]}>
-      <Component />
-    </LensContainer>
-  )
+export const withLensContainer = (id, button) => (Component) => () => (
+  <LensContainer id={id} buttons={[button]}>
+    <Component />
+  </LensContainer>
+)
