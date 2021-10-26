@@ -11,7 +11,7 @@ import deleteViewFixtureDiograph from './deleteViewFixtureDiograph'
 import { useDeleteView } from './useDeleteView'
 
 jest.mock('../../../store')
-jest.mock('../../diograph/hooks')
+jest.mock('../../diograph/useDiograph')
 
 describe('useDeleteView', () => {
   let mockState
