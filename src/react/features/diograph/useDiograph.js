@@ -20,11 +20,7 @@ const useSelectedContext = (contexts) => {
   }
 
   const previousStoryId = backward.length && backward[0][1]
-  return (
-    contexts.find(idIs(contextId)) ||
-    contexts.find(idIs(previousStoryId)) ||
-    contexts[0]
-  )
+  return contexts.find(idIs(contextId)) || contexts.find(idIs(previousStoryId)) || contexts[0]
 }
 
 const useContexts = () => {
