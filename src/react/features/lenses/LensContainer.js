@@ -10,8 +10,9 @@ const LensContainer = ({ id, buttons, children }) => {
   return loaded && id === selectedLensId ? children : null
 }
 
-export const withLensContainer = (id, button) => (Component) => () => (
-  <LensContainer id={id} buttons={[button]}>
-    <Component />
-  </LensContainer>
-)
+export const withLensContainer = (id, button) => (Component) => () =>
+  (
+    <LensContainer id={id} buttons={[button]}>
+      <Component />
+    </LensContainer>
+  )
