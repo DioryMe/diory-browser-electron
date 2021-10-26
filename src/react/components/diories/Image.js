@@ -1,7 +1,8 @@
 import React from 'react'
 import Box from 'ui-box'
 import PropTypes from 'prop-types'
-import { convertToFileUrl } from '../../utils'
+import { convertRelativePath, convertToFileUrl, getUntrackedDiory } from '../../utils'
+import { useStore } from '../../store'
 
 const defaultStyle = {
   position: 'absolute',
@@ -21,13 +22,17 @@ const getBackgroundImage = (image, gradient, gradientRgba = '255, 255, 255, 0.5'
       )}")`
     : `url("${convertToFileUrl(image)}")`
 
-const Image = ({ image, gradient, gradientRgba, ...props }) => (
-  <Box
-    {...defaultStyle}
-    backgroundImage={getBackgroundImage(image, gradient, gradientRgba)}
-    {...props}
-  />
-)
+const Image = ({ image, gradient, gradientRgba, ...props }) => {
+  const [{ connections }] = useStore((state) => state.connectors)
+  const absoluteImageUrl = convertRelativePath(image, connections)
+  return (
+    <Box
+      {...defaultStyle}
+      backgroundImage={getBackgroundImage(absoluteImageUrl, gradient, gradientRgba)}
+      {...props}
+    />
+  )
+}
 
 Image.propTypes = {
   image: PropTypes.string,

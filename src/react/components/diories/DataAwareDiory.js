@@ -1,12 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { useStore } from '../../store'
+
+import { invokeChannel } from '../../client/client'
+import { convertRelativePath } from '../../utils'
+
 import Diory from './Diory'
 import Image from './Image'
 import Video from './Video'
-import { invokeChannel } from '../../client/client'
 
-const renderImage = ({ diory }) => {
+const BackgroundImage = ({ diory, contentUrl }) => {
   const imageStyle = {
     ...(diory.style && diory.style.image),
     backgroundSize: 'contain',
@@ -14,7 +18,7 @@ const renderImage = ({ diory }) => {
   }
   return (
     <Image
-      image={diory.data && diory.data[0].contentUrl}
+      image={contentUrl}
       style={imageStyle}
       gradient={Boolean(diory.text)}
       gradientRgba="0, 0, 0, 0.2"
@@ -22,11 +26,11 @@ const renderImage = ({ diory }) => {
   )
 }
 
-const renderVideo = ({ diory }) => (
-  <Video video={diory.data && diory.data[0].contentUrl} style={diory.style && diory.style.video} />
+const BackgroundVideo = ({ diory, contentUrl }) => (
+  <Video video={contentUrl} style={diory.style && diory.style.video} />
 )
 
-const renderIframe = ({ diory }) => (
+const BackgroundIframe = ({ diory }) => (
   <iframe
     title="content-in-browser"
     src={diory.data && diory.data[0].contentUrl}
@@ -35,46 +39,48 @@ const renderIframe = ({ diory }) => (
   />
 )
 
-const renderWebpage = ({ diory }) => (
-  <iframe title="web-browser" src={diory.data && diory.data[0].url} height="100%" width="100%" />
+const BackgroundWebpage = ({ contentUrl }) => (
+  <iframe title="web-browser" src={contentUrl} height="100%" width="100%" />
 )
 
-const renderOpenPathButton = ({ diory }) => (
+const OpenPathButton = ({ contentUrl }) => (
   <button
     type="submit"
-    onClick={() => invokeChannel('openPath', diory.data && diory.data[0].contentUrl)} // eslint-disable-line react/jsx-curly-newline
+    onClick={() => invokeChannel('openPath', contentUrl)} // eslint-disable-line react/jsx-curly-newline
   >
     Open in external application
   </button>
 )
 
-const DataAwareDiory = (props) => {
-  const { diory } = props
-  const mimeType = diory.data && diory.data[0].encodingFormat
-  switch (mimeType) {
+const DataAwareDiory = ({ diory }) => {
+  const [{ connections }] = useStore((state) => state.connectors)
+
+  const { data = [] } = diory
+  const { contentUrl, encodingFormat } = (data && data[0]) || {}
+  const absoluteContentUrl = convertRelativePath(contentUrl, connections)
+  switch (encodingFormat) {
     case 'image/jpeg':
-      return renderImage(props)
+      return <BackgroundImage diory={diory} contentUrl={absoluteContentUrl} />
     case 'video/mp4':
     case 'video/x-m4v':
     case 'video/quicktime':
-      return renderVideo(props)
+      return <BackgroundVideo diory={diory} contentUrl={absoluteContentUrl} />
     case 'audio/mpeg':
     case 'audio/x-m4a':
     case 'audio/opus':
-      return renderIframe(props)
     case 'application/pdf':
-      return renderIframe(props)
+      return <BackgroundIframe diory={diory} contentUrl={absoluteContentUrl} />
     default:
       if (diory.data && diory.data[0].url && /^http(s)?:\/\//.exec(diory.data[0].url)) {
-        return renderWebpage(props)
+        return <BackgroundImage diory={diory} contentUrl={absoluteContentUrl} />
       }
-      if (diory.data && diory.data[0].contentUrl && /\.html?$/.exec(diory.data[0].contentUrl)) {
-        return renderIframe(props)
+      if (absoluteContentUrl && /\.html?$/.exec(absoluteContentUrl)) {
+        return <BackgroundWebpage contentUrl={absoluteContentUrl} />
       }
-      if (diory.data && diory.data[0].contentUrl) {
-        return renderOpenPathButton(props)
+      if (absoluteContentUrl) {
+        return <OpenPathButton contentUrl={absoluteContentUrl} />
       }
-      return <Diory {...props} />
+      return <Diory diory={diory} />
   }
 }
 
