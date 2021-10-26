@@ -2,7 +2,7 @@ import { useStore, useDispatch } from '../../../store'
 import { initialState } from '../../../store/initialState'
 
 import { deleteDiory, deleteLinks } from '../../diograph/actions'
-import { useDiograph } from '../../diograph/hooks'
+import { useDiograph } from '../../diograph/useDiograph'
 import { inactivateButton } from '../../buttons/actions'
 import { goBackward, setSelectedDiory } from '../../navigation/actions'
 

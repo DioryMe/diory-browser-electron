@@ -5,7 +5,7 @@ import { useGraphFilter } from './graph/useGraphFilter'
 import { useMapFilter } from './map/useMapFilter'
 import { useTimelineFilter } from './timeline/useTimelineFilter'
 import { useTextFilter } from './text/useTextFilter'
-import { useDiorys } from '../diograph/hooks'
+import { useDiorys } from '../diograph/useDiorys'
 
 import { reduceIdsToKeys } from '../../utils/reduceIdsToKeys'
 

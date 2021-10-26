@@ -1,5 +1,5 @@
 import { useDispatch, useStore } from '../../../store'
-import { useDiograph } from '../../diograph/hooks'
+import { useDiograph } from '../../diograph/useDiograph'
 
 import { goSide } from '../actions'
 
