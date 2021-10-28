@@ -11,7 +11,7 @@ const handStyle = {
   bottom: 0,
   left: 0,
   right: 0,
-  height: 'initial',
+  height: '80px',
   margin: 16,
   padding: '0 8px',
   marginLeft: 44,
