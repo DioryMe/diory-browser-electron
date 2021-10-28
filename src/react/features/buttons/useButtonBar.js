@@ -41,8 +41,8 @@ export const useButtonBar = () => {
     }
   }
 
-  const visibleButtons = toolButtons.filter(({ data: { visible }}) => visible)
-  const hiddenButtons = toolButtons.filter(({ data: { visible }}) => !visible)
+  const visibleButtons = toolButtons.filter(({ data: { visible } }) => visible)
+  const hiddenButtons = toolButtons.filter(({ data: { visible } }) => !visible)
 
   if (!open) {
     return {

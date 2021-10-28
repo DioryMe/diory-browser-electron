@@ -9,7 +9,16 @@ import ScrollUpAndDown from '../../../components/ScrollUpAndDown'
 import Fullscreen from '../../../components/Fullscreen'
 import DataAwareDiory from '../../../components/diories/DataAwareDiory'
 
-const GridView = ({ playRef, context, contexts, story, memories, onDrop, onClick, onStoryClick }) => {
+const GridView = ({
+  playRef,
+  context,
+  contexts,
+  story,
+  memories,
+  onDrop,
+  onClick,
+  onStoryClick,
+}) => {
   const contextRef = useRef()
   const storyRef = useRef()
   const memoryRef = useRef()
@@ -76,10 +85,7 @@ GridView.defaultProps = {
 }
 
 GridView.propTypes = {
-  playElement: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.any })
-  ]),
+  playRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.any })]),
   context: PropTypes.object.isRequired,
   contexts: PropTypes.array.isRequired,
   story: PropTypes.object.isRequired,
