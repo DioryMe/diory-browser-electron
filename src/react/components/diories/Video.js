@@ -17,9 +17,10 @@ const videoStyles = {
   margin: '0 auto',
 }
 
-const Video = ({ video, controls, loop, autoPlay, children, cover, ...props }) => (
+const Video = ({ playRef, video, controls, loop, autoPlay, children, cover, ...props }) => (
   <Box {...defaultStyle} {...props}>
     <video
+      ref={playRef}
       src={video}
       controls={controls}
       loop={loop}
@@ -34,13 +35,17 @@ const Video = ({ video, controls, loop, autoPlay, children, cover, ...props }) =
 )
 
 Video.defaultProps = {
-  controls: true,
-  loop: false,
-  autoPlay: false,
+  controls: false,
+  loop: true,
+  autoPlay: true,
   cover: false,
 }
 
 Video.propTypes = {
+  playElement: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.any })
+  ]),
   video: PropTypes.string.isRequired,
   controls: PropTypes.bool,
   loop: PropTypes.bool,

@@ -26,8 +26,8 @@ const BackgroundImage = ({ diory, contentUrl }) => {
   )
 }
 
-const BackgroundVideo = ({ diory, contentUrl }) => (
-  <Video video={contentUrl} style={diory.style && diory.style.video} />
+const BackgroundVideo = ({ playRef, diory, contentUrl }) => (
+  <Video playRef={playRef} video={contentUrl} style={diory.style && diory.style.video} />
 )
 
 const BackgroundIframe = ({ diory }) => (
@@ -52,7 +52,7 @@ const OpenPathButton = ({ contentUrl }) => (
   </button>
 )
 
-const DataAwareDiory = ({ diory }) => {
+const DataAwareDiory = ({ playRef, diory }) => {
   const [{ connections }] = useStore((state) => state.connectors)
 
   const { data = [] } = diory
@@ -64,7 +64,7 @@ const DataAwareDiory = ({ diory }) => {
     case 'video/mp4':
     case 'video/x-m4v':
     case 'video/quicktime':
-      return <BackgroundVideo diory={diory} contentUrl={absoluteContentUrl} />
+      return <BackgroundVideo playRef={playRef} diory={diory} contentUrl={absoluteContentUrl} />
     case 'audio/mpeg':
     case 'audio/x-m4a':
     case 'audio/opus':

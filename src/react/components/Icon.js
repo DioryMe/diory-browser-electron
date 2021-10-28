@@ -24,10 +24,16 @@ import {
   ApplicationsIcon,
   ChevronDownIcon,
   ChevronUpIcon,
+  PlayIcon,
+  PauseIcon,
 } from 'evergreen-ui'
 
 const Icon = ({ icon, ...props }) => {
   switch (icon) {
+    case 'pause':
+      return <PauseIcon {...props} />
+    case 'play':
+      return <PlayIcon {...props} />
     case 'plus':
       return <PlusIcon {...props} />
     case 'small-plus':
