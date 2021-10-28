@@ -11,7 +11,7 @@ exports.getDiographEventHandler = async function getDiographEventHandler(params)
 
   // Check that the path still exists
   if (!fs.existsSync(myDioryFolderPath)) {
-    return null
+    return { folderLocation: null, diograph: {}, rootId: undefined }
   }
 
   return { folderLocation: null, ...readDiographJson(myDioryFolderPath) }
