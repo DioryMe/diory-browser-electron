@@ -28,7 +28,7 @@ exports.importFolderEventHandler = async function importFolderEventHandler(impor
   // Create new folder to My Diory folder
   let importedFolderPathInDioryFolder = path.join(folderLocation, path.basename(importFolderPath))
   // Add suffix to folder name if it already exists
-  if (fs.lstatSync(importedFolderPathInDioryFolder).isDirectory()) {
+  if (fs.existsSync(importedFolderPathInDioryFolder)) {
     importedFolderPathInDioryFolder = `${importedFolderPathInDioryFolder}-${Date.now()}`
   }
   fs.mkdirSync(importedFolderPathInDioryFolder)
@@ -38,7 +38,8 @@ exports.importFolderEventHandler = async function importFolderEventHandler(impor
   // Read existing diograph.json
   const existingDiograph = readDiographJson(importedFolderPathInDioryFolder)
   if (existingDiograph) {
-    return existingDiograph
+    throw new Error('NOT IMPLEMENTED: Imported folder had diograph.json file')
+    // return existingDiograph
   }
 
   // Generate diograph if no diograph.json
