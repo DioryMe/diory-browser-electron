@@ -10,8 +10,7 @@ const useAddAndRemoveButtons = (playElement) => {
   useEffect(() => {
     if (playElement) {
       dispatch(addButtons([buttons.pause]))
-    }
-    else {
+    } else {
       dispatch(removeButtons([buttons.play, buttons.pause]))
     }
   }, [dispatch, playElement])
@@ -41,14 +40,14 @@ const useToggleButtons = (playElement) => {
 
 export const usePlayTool = () => {
   const [playElement, setPlayElement] = useState(null)
-  const playRef = useCallback(node => {
-    setPlayElement(node);
+  const playRef = useCallback((node) => {
+    setPlayElement(node)
   }, [])
 
   useAddAndRemoveButtons(playElement)
   useToggleButtons(playElement)
 
   return {
-    playRef
+    playRef,
   }
 }

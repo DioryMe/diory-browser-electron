@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 
 import { useDispatchActions } from '../../../store'
 import { useDiograph } from '../../diograph/useDiograph'
