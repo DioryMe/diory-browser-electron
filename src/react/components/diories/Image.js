@@ -1,7 +1,7 @@
 import React from 'react'
 import Box from 'ui-box'
 import PropTypes from 'prop-types'
-import { convertRelativePath, convertToFileUrl, getUntrackedDiory } from '../../utils'
+import { convertRelativePath, convertToFileUrl } from '../../utils'
 import { useStore } from '../../store'
 
 const defaultStyle = {

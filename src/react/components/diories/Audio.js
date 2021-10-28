@@ -17,11 +17,11 @@ const videoStyles = {
   margin: '0 auto',
 }
 
-const Video = ({ playRef, video, controls, loop, autoPlay, children, cover, ...props }) => (
+const Audio = ({ playRef, audio, controls, loop, autoPlay, children, cover, ...props }) => (
   <Box {...defaultStyle} {...props}>
-    <video
+    <audio
       ref={playRef}
-      src={video}
+      src={audio}
       controls={controls}
       loop={loop}
       autoPlay={autoPlay}
@@ -34,16 +34,16 @@ const Video = ({ playRef, video, controls, loop, autoPlay, children, cover, ...p
   </Box>
 )
 
-Video.defaultProps = {
+Audio.defaultProps = {
   controls: false,
   loop: true,
   autoPlay: true,
   cover: false,
 }
 
-Video.propTypes = {
+Audio.propTypes = {
   playRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.any })]),
-  video: PropTypes.string.isRequired,
+  audio: PropTypes.string.isRequired,
   controls: PropTypes.bool,
   loop: PropTypes.bool,
   autoPlay: PropTypes.bool,
@@ -51,4 +51,4 @@ Video.propTypes = {
   children: PropTypes.node,
 }
 
-export default Video
+export default Audio
