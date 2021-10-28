@@ -1,4 +1,5 @@
 const fs = require('fs')
+const HomeStore = require('electron-store')
 const { saveDiographJson } = require('../lib/save-diograph-json')
 
 const defaultDiograph = {
@@ -32,5 +33,11 @@ exports.chooseFolderLocationEventHandler = async function chooseFolderLocationEv
   fs.mkdirSync(myDioryFolderPath)
 
   await saveDiographJson(myDioryFolderPath, defaultDiograph.diograph, defaultDiograph.rootId)
+
+  const store = new HomeStore({
+    cwd: process.env.TESTCAFE_TEST ? `${process.env.PWD}/tmp/${Date.now()}` : undefined,
+  })
+  store.set({ folderLocation: myDioryFolderPath })
+
   return { ...defaultDiograph, myDioryFolderPath }
 }
