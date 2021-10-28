@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 
 import { useDispatchActions } from '../../../store'
 import { useDiograph } from '../../diograph/useDiograph'
@@ -8,6 +8,7 @@ import { useCreateTool } from '../../tools/create'
 import { useDeleteTool } from '../../tools/delete'
 import { useFocusTool } from '../../tools/focus'
 import { useUpdateTool } from '../../tools/update'
+import { usePlayTool } from '../../tools/play/usePlayTool'
 
 import { createLink } from '../../diograph/actions'
 import { selectContext } from '../../navigation/actions'
@@ -27,7 +28,11 @@ const useTools = () => {
   const { context } = useDiograph()
 
   const { dispatch } = useDispatchActions()
+
+  const { playRef } = usePlayTool()
+
   return {
+    playRef,
     onStoryClick: ({ diory }) => {
       if (diory.id === context.id) {
         focusDiory(diory)

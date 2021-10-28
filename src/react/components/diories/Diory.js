@@ -61,7 +61,7 @@ Diory.propTypes = {
     text: PropTypes.string,
     image: PropTypes.string,
     style: PropTypes.object,
-    data: PropTypes.object,
+    data: PropTypes.array,
   }),
   onClick: PropTypes.func,
   children: PropTypes.node,
