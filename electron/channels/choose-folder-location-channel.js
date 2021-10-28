@@ -1,6 +1,7 @@
 const fs = require('fs')
 const HomeStore = require('electron-store')
 const { saveDiographJson } = require('../lib/save-diograph-json')
+const { readDiographJson } = require('../lib/read-diograph-json')
 
 const defaultDiograph = {
   diograph: {
@@ -15,16 +16,20 @@ const defaultDiograph = {
 exports.chooseFolderLocationEventHandler = async function chooseFolderLocationEventHandler(
   folderLocation
 ) {
+  const store = new HomeStore({
+    cwd: process.env.TESTCAFE_TEST ? `${process.env.PWD}/tmp/${Date.now()}` : undefined,
+  })
   const myDioryFolderPath = `${folderLocation}/My Diory`
 
-  // TODO: Read already existing My Diory folder (=diograph.json)
-  if (fs.existsSync(`${myDioryFolderPath}/diograph.json`)) {
-    const errorMessage = `NOT IMPLEMENTED: chooseFolderLocation: diograph.json already exists in My Diory folder`
-    throw new Error(errorMessage)
-  }
-
-  // TODO: Detect if My Diory folder is empty or non-empty and act accordingly
   if (fs.existsSync(myDioryFolderPath)) {
+    // Read existing diograph.json
+    if (fs.existsSync(`${myDioryFolderPath}/diograph.json`)) {
+      const existingDiographJson = await readDiographJson(myDioryFolderPath)
+      store.set({ folderLocation: myDioryFolderPath })
+      return { ...existingDiographJson, myDioryFolderPath }
+    }
+
+    // TODO: Detect if My Diory folder is empty or non-empty and act accordingly
     const errorMessage = `NOT IMPLEMENTED: chooseFolderLocation: My Diory folder already exists in the given location`
     // const errorMessage = `NOT IMPLEMENTED: chooseFolderLocation: My Diory folder is not empty`
     throw new Error(errorMessage)
@@ -34,9 +39,6 @@ exports.chooseFolderLocationEventHandler = async function chooseFolderLocationEv
 
   await saveDiographJson(myDioryFolderPath, defaultDiograph.diograph, defaultDiograph.rootId)
 
-  const store = new HomeStore({
-    cwd: process.env.TESTCAFE_TEST ? `${process.env.PWD}/tmp/${Date.now()}` : undefined,
-  })
   store.set({ folderLocation: myDioryFolderPath })
 
   return { ...defaultDiograph, myDioryFolderPath }
