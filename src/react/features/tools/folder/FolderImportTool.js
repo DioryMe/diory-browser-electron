@@ -12,13 +12,14 @@ import { channels } from '../../../../shared/constants'
 import { FOLDER_IMPORT } from './buttons'
 
 export const useImportFolder = () => {
-  const [{ rootId: diographRootId }] = useStore((state) => state.diograph)
+  // const [{ rootId: diographRootId }] = useStore((state) => state.diograph)
+  const [{ focusId }] = useStore((state) => state.navigation)
 
   const dispatch = useDispatch()
   const importFolder = (path) => {
     invokeChannel(channels.IMPORT_FOLDER, path).then(({ rootId, diograph }) => {
       dispatch(addDiograph(diograph))
-      dispatch(createLink({ id: diographRootId }, { id: rootId }))
+      dispatch(createLink({ id: focusId }, { id: rootId }))
       dispatch(setFocus({ id: rootId }))
     })
   }
