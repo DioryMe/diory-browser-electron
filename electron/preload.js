@@ -8,6 +8,7 @@ const { getRoomEventHandler } = require('./channels/get-room-channel')
 const { generateDiographEventHandler } = require('./channels/generate-diograph-channel')
 const { getDiographEventHandler } = require('./channels/get-diograph-channel')
 const { chooseFolderLocationEventHandler } = require('./channels/choose-folder-location-channel')
+const { importFolderEventHandler } = require('./channels/import-folder-channel')
 const { saveRoomEventHandler } = require('./channels/save-room-channel')
 const { saveHomeEventHandler } = require('./channels/save-home-channel')
 
@@ -23,6 +24,7 @@ contextBridge.exposeInMainWorld('channelsApi', {
     chooseFolderLocationEventHandler
   ),
   [channels.GET_DIOGRAPH]: eventHandlerWrapper(channels.GET_DIOGRAPH, getDiographEventHandler),
+  [channels.IMPORT_FOLDER]: eventHandlerWrapper(channels.IMPORT_FOLDER, importFolderEventHandler),
   [channels.SAVE_ROOM]: eventHandlerWrapper(channels.SAVE_ROOM, saveRoomEventHandler),
   [channels.SAVE_HOME]: eventHandlerWrapper(channels.SAVE_HOME, saveHomeEventHandler),
   showItemInFolder: (fullPath) => shell.showItemInFolder(fullPath),

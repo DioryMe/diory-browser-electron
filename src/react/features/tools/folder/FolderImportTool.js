@@ -11,24 +11,24 @@ import { invokeChannel } from '../../../client/client'
 import { channels } from '../../../../shared/constants'
 import { FOLDER_IMPORT } from './buttons'
 
-export const useGenerageDiograph = () => {
+export const useImportFolder = () => {
   const [{ rootId: diographRootId }] = useStore((state) => state.diograph)
 
   const dispatch = useDispatch()
-  const generateDiograph = (path) => {
-    invokeChannel(channels.GENERATE_DIOGRAPH, path).then(({ rootId, diograph }) => {
+  const importFolder = (path) => {
+    invokeChannel(channels.IMPORT_FOLDER, path).then(({ rootId, diograph }) => {
       dispatch(addDiograph(diograph))
       dispatch(createLink({ id: diographRootId }, { id: rootId }))
-      dispatch(setFocus({ focus: rootId }))
+      dispatch(setFocus({ id: rootId }))
     })
   }
 
-  return { generateDiograph }
+  return { importFolder }
 }
 
 export const useFolderImportTool = () => {
   const [{ active }] = useStore((state) => state.buttons)
-  const { generateDiograph } = useGenerageDiograph()
+  const { importFolder } = useImportFolder()
 
   const dispatch = useDispatch()
   useEffect(() => {
@@ -36,7 +36,7 @@ export const useFolderImportTool = () => {
       dispatch(inactivateButton())
       window.channelsApi.showOpenDialog().then(({ filePaths }) => {
         const path = filePaths[0]
-        generateDiograph(path)
+        importFolder(path)
       })
     }
   }, [active, dispatch])
