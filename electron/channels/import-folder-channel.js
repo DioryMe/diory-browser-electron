@@ -26,8 +26,11 @@ exports.importFolderEventHandler = async function importFolderEventHandler(impor
   const folderLocation = '/Users/Jouni/My Diory'
 
   // Create new folder to My Diory folder
-  const importedFolderPathInDioryFolder = path.join(folderLocation, path.basename(importFolderPath))
-  console.log(importedFolderPathInDioryFolder)
+  let importedFolderPathInDioryFolder = path.join(folderLocation, path.basename(importFolderPath))
+  // Add suffix to folder name if it already exists
+  if (fs.lstatSync(importedFolderPathInDioryFolder).isDirectory()) {
+    importedFolderPathInDioryFolder = `${importedFolderPathInDioryFolder}-${Date.now()}`
+  }
   fs.mkdirSync(importedFolderPathInDioryFolder)
   // Copy everything recursively from importFolderPath to the new destination
   copyFolderRecursiveSync(importFolderPath, importedFolderPathInDioryFolder, { recursive: true })
