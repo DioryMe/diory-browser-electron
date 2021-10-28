@@ -14,5 +14,5 @@ exports.getDiographEventHandler = async function getDiographEventHandler(params)
     return null
   }
 
-  return readDiographJson(myDioryFolderPath)
+  return { folderLocation: null, ...readDiographJson(myDioryFolderPath) }
 }
