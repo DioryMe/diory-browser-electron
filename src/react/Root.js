@@ -3,7 +3,6 @@ import { useDispatchActions } from './store'
 
 import { setFocus } from './features/navigation/actions'
 import { addDiograph } from './features/diograph/actions'
-import { useFocus } from './features/diograph/hooks'
 
 import { invokeChannel } from './client/client'
 import { invokeAlertDialog } from './client/alertDialog'
@@ -11,6 +10,8 @@ import { channels } from '../shared/constants'
 
 import Browser from './Browser'
 import Welcome from './features/welcome/Welcome'
+
+let retrievedFolderLocation
 
 export const useGetDiograph = () => {
   const { dispatch } = useDispatchActions()
@@ -20,6 +21,7 @@ export const useGetDiograph = () => {
       if (!rootId) {
         invokeAlertDialog('Error getting diograph')
       }
+      retrievedFolderLocation = folderLocation
       dispatch(addDiograph(diograph, rootId, folderLocation))
       dispatch(setFocus({ id: rootId }))
     })
@@ -28,9 +30,12 @@ export const useGetDiograph = () => {
 
 const Root = () => {
   useGetDiograph()
-  const { diory } = useFocus()
 
-  return diory ? <Browser /> : <Welcome />
+  if (retrievedFolderLocation === undefined) {
+    return <div>Loading...</div>
+  }
+
+  return retrievedFolderLocation === null ? <Welcome /> : <Browser />
 }
 
 export default Root
