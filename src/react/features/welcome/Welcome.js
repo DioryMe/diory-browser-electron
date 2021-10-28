@@ -9,16 +9,16 @@ import { channels } from '../../../shared/constants'
 import { setFocus } from '../navigation/actions'
 import { activateButton, inactivateButton } from '../buttons/actions'
 
-const CHOOSE_DIOGRAPH_FOLDER_BUTTON = 'CHOOSE_DIOGRAPH_FOLDER_BUTTON'
+const CHOOSE_FOLDER_LOCATION_BUTTON = 'CHOOSE_FOLDER_LOCATION_BUTTON'
 
-export const useChooseDiographFolderButton = () => {
+export const useChooseFolderLocationButton = () => {
   const [{ active }] = useStore((state) => state.buttons)
   const { dispatch } = useDispatchActions()
 
   useEffect(() => {
-    const getHome = (result) => {
+    const chooseDioryFolderLocation = (result) => {
       const diographFolderPath = result.filePaths[0]
-      invokeChannel(channels.CHOOSE_DIOGRAPH_FOLDER, diographFolderPath).then(
+      invokeChannel(channels.CHOOSE_FOLDER_LOCATION, diographFolderPath).then(
         ({ rootId, diograph }) => {
           dispatch(addDiograph(diograph))
           dispatch(setFocus({ id: rootId }))
@@ -26,15 +26,15 @@ export const useChooseDiographFolderButton = () => {
       )
     }
 
-    if (CHOOSE_DIOGRAPH_FOLDER_BUTTON === active) {
+    if (CHOOSE_FOLDER_LOCATION_BUTTON === active) {
       dispatch(inactivateButton())
       if (window.processEnv.TESTCAFE_TEST) {
-        const path = `${window.processEnv.PWD}/tmp/testcafe-diograph-folder`
+        const path = `${window.processEnv.PWD}/tmp`
         const result = { filePaths: [path] }
-        getHome(result)
+        chooseDioryFolderLocation(result)
       } else {
         window.channelsApi.showOpenDialog().then((result) => {
-          getHome(result)
+          chooseDioryFolderLocation(result)
         })
       }
     }
@@ -44,9 +44,9 @@ export const useChooseDiographFolderButton = () => {
 const Welcome = () => {
   const dispatch = useDispatch()
 
-  useChooseDiographFolderButton()
+  useChooseFolderLocationButton()
 
-  const onClick = () => dispatch(activateButton(CHOOSE_DIOGRAPH_FOLDER_BUTTON))
+  const onClick = () => dispatch(activateButton(CHOOSE_FOLDER_LOCATION_BUTTON))
 
   return (
     <Pane
