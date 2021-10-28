@@ -7,12 +7,12 @@ exports.getDiographEventHandler = async function getDiographEventHandler(params)
   const store = new HomeStore({
     cwd: process.env.TESTCAFE_TEST ? `${process.env.PWD}/tmp/${Date.now()}` : undefined,
   })
-  const { diographFolderPath } = store.get('home')
+  const myDioryFolderPath = store.get('folderLocation')
 
   // Check that the path still exists
-  if (!fs.existsSync(diographFolderPath)) {
+  if (!fs.existsSync(myDioryFolderPath)) {
     return null
   }
 
-  return readDiographJson(diographFolderPath)
+  return readDiographJson(myDioryFolderPath)
 }
