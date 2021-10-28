@@ -23,7 +23,7 @@ function copyFolderRecursiveSync(source, target) {
 
 exports.importFolderEventHandler = async function importFolderEventHandler(importFolderPath) {
   // TODO: Replace path with { importFolderPath, folderLocation }
-  const folderLocation = '/Users/Jouni/My Diory'
+  const folderLocation = '/Volumes/Lacie SSD/My Friends copy'
 
   // Create new folder to My Diory folder
   let importedFolderPathInDioryFolder = path.join(folderLocation, path.basename(importFolderPath))
