@@ -7,7 +7,6 @@ import { setQuery, setSearchResults, toggleSearchBar } from './actions'
 import Icon from '../../components/Icon'
 import SearchResults from './SearchResults'
 import SearchResultAutocomplete from './SearchResultAutocomplete'
-import HandTool from '../tools/hand/HandTool'
 
 const Search = () => {
   const [{ diograph }] = useStore((state) => state.diograph)
@@ -47,7 +46,6 @@ const Search = () => {
         </Pane>
         {query ? <SearchResultAutocomplete /> : null}
         <SearchResults />
-        <HandTool />
       </div>
     </div>
   ) : null
