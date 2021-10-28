@@ -1,24 +1,36 @@
-const { generateDiograph } = require('../generators/diograph-generator')
+const fs = require('fs')
 const { saveDiographJson } = require('../lib/save-diograph-json')
-const { readDiographJson } = require('../lib/read-diograph-json')
 
-exports.chooseFolderLocationEventHandler = async function chooseFolderLocationEventHandler(path) {
-  const existingDiograph = readDiographJson(path)
-  const folderStructureDiograph = await generateDiograph(path)
-  const diograph = existingDiograph || folderStructureDiograph
+const defaultDiograph = {
+  diograph: {
+    'my-diory': {
+      id: 'my-diory',
+      text: 'My Diory',
+    },
+  },
+  rootId: 'my-diory',
+}
 
-  // Relative paths for image & contentUrl
-  // TODO: Move to own function, how to make immutable?
-  Object.keys(diograph.diograph).forEach((dioryId) => {
-    const diory = diograph.diograph[dioryId]
-    if (diory.image) {
-      diory.image = diory.image.replace(`${path}/`, '')
-    }
-    if (diory.data && diory.data[0].contentUrl) {
-      diory.data[0].contentUrl = diory.data[0].contentUrl.replace(`${path}/`, '')
-    }
-  })
+exports.chooseFolderLocationEventHandler = async function chooseFolderLocationEventHandler(
+  folderLocation
+) {
+  const myDioryFolderPath = `${folderLocation}/My Diory`
 
-  await saveDiographJson(path, diograph.diograph, diograph.rootId)
-  return { ...diograph, path }
+  // TODO: Read already existing My Diory folder (=diograph.json)
+  if (fs.existsSync(`${myDioryFolderPath}/diograph.json`)) {
+    const errorMessage = `NOT IMPLEMENTED: chooseFolderLocation: diograph.json already exists in My Diory folder`
+    throw new Error(errorMessage)
+  }
+
+  // TODO: Detect if My Diory folder is empty or non-empty and act accordingly
+  if (fs.existsSync(myDioryFolderPath)) {
+    const errorMessage = `NOT IMPLEMENTED: chooseFolderLocation: My Diory folder already exists in the given location`
+    // const errorMessage = `NOT IMPLEMENTED: chooseFolderLocation: My Diory folder is not empty`
+    throw new Error(errorMessage)
+  }
+
+  fs.mkdirSync(myDioryFolderPath)
+
+  await saveDiographJson(myDioryFolderPath, defaultDiograph.diograph, defaultDiograph.rootId)
+  return { ...defaultDiograph, myDioryFolderPath }
 }
