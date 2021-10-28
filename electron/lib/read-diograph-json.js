@@ -11,13 +11,13 @@ exports.readDiographJson = function readDiographJson(path) {
   }
 
   if (fs.existsSync(diographJsonPath)) {
-    backendLogger.info('readDiographJson: reading diograph.json in', path)
+    backendLogger.info(`readDiographJson: reading ${path}/diograph.json`)
     const raw = fs.readFileSync(diographJsonPath)
     const { rootId, diograph } = JSON.parse(raw)
     return { rootId, diograph }
   }
 
-  backendLogger.info('readDiographJson: diograph.json not found in', path)
+  backendLogger.info(`readDiographJson: ${path}/diograph.json not found`)
 
   return undefined
 }
