@@ -3,7 +3,6 @@ import React from 'react'
 import { useDispatchActions } from '../../../store'
 
 import { useLens } from '../useLens'
-import { useCreateTool } from '../../tools/create'
 import { useDeleteTool } from '../../tools/delete'
 import { useFocusTool } from '../../tools/focus'
 import { useUpdateTool } from '../../tools/update'
@@ -26,7 +25,6 @@ const useTools = () => {
   const updateDiory = useUpdateTool()
   const page = usePageTool()
 
-  useCreateTool()
   useOpenTool()
   useImportTools()
 
