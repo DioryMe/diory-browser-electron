@@ -17,13 +17,13 @@ const GridView = ({
   memories,
   onDrop,
   onClick,
-  onStoryClick,
+  onContextClick,
 }) => {
   const contextRef = useRef()
   const storyRef = useRef()
   const memoryRef = useRef()
 
-  const storiesWithoutParent = contexts.filter(({ id }) => !context || id !== context.id)
+  const otherContexts = contexts.filter(({ id }) => !context || id !== context.id)
   return (
     <Background>
       <Fullscreen marginTop={48} zIndex={-1}>
@@ -40,14 +40,14 @@ const GridView = ({
       )}
       <DiorysGrid
         ref={contextRef}
-        diorys={storiesWithoutParent}
+        diorys={otherContexts}
         onDrop={onDrop}
-        onClick={onStoryClick}
+        onClick={onContextClick}
       />
       {context && (
         <DragDropDiory
           diory={context}
-          onClick={onStoryClick}
+          onClick={onContextClick}
           onDrop={onDrop}
           flex="1 0 360px"
           margin={24}
@@ -80,7 +80,7 @@ const GridView = ({
 
 GridView.defaultProps = {
   onClick: () => {},
-  onStoryClick: () => {},
+  onContextClick: () => {},
   onDrop: () => {},
 }
 
@@ -91,7 +91,7 @@ GridView.propTypes = {
   story: PropTypes.object.isRequired,
   memories: PropTypes.array.isRequired,
   onClick: PropTypes.func,
-  onStoryClick: PropTypes.func,
+  onContextClick: PropTypes.func,
   onDrop: PropTypes.func,
 }
 

@@ -18,22 +18,23 @@ import GridView from './GridView'
 import button from './diory'
 
 import { withLensContainer } from '../LensContainer'
+import { useOpenTool } from '../../tools/open/useOpenTool'
 
 const useTools = () => {
   const focusDiory = useFocusTool()
   const deleteDiory = useDeleteTool()
   const updateDiory = useUpdateTool()
+
   useCreateTool()
+  useOpenTool()
 
   const { context } = useDiograph()
-
-  const { dispatch } = useDispatchActions()
-
   const { playRef } = usePlayTool()
+  const { dispatch } = useDispatchActions()
 
   return {
     playRef,
-    onStoryClick: ({ diory }) => {
+    onContextClick: ({ diory }) => {
       if (diory.id === context.id) {
         focusDiory(diory)
       } else {
