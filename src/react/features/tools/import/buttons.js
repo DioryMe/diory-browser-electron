@@ -5,7 +5,7 @@ export const buttons = [
     id: IMPORT_TOOLS,
     text: 'Import',
     data: {
-      icon: 'folder',
+      icon: 'plus',
       testid: 'import',
     },
   },
