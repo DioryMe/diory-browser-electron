@@ -4,7 +4,6 @@ import { useDispatch, useStore } from '../../../store'
 
 import { inactivateButton } from '../../buttons/actions'
 import { addDiograph, createLink } from '../../diograph/actions'
-import { setFocus } from '../../navigation/actions'
 
 import { invokeChannel } from '../../../client/client'
 
@@ -22,7 +21,6 @@ export const useImportFolder = () => {
       ({ rootId, diograph }) => {
         dispatch(addDiograph(diograph))
         dispatch(createLink({ id: focusId }, { id: rootId }))
-        dispatch(setFocus({ id: rootId }))
       }
     )
   }
