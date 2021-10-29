@@ -1,6 +1,8 @@
 import {
   GET_ROOM,
   SAVE_ROOM,
+  GET_DIOGRAPH,
+  SAVE_DIOGRAPH,
   ADD_DIOGRAPH,
   CREATE_DIORY,
   CREATE_LINK,
@@ -18,6 +20,14 @@ export const initialState = {
   loaded: false,
   updated: false,
 }
+
+export const getDiograph = (state, { payload: { diograph, rootId, folderLocation } }) => ({
+  ...state,
+  rootId,
+  folderLocation,
+  diograph,
+  updated: false,
+})
 
 export const addDiograph = (state, { payload: { diograph, rootId, folderLocation } }) => ({
   ...state,
@@ -116,6 +126,8 @@ export default createReducer({
   [CREATE_LINK]: createLink,
   [DELETE_LINK]: deleteLink,
   [DELETE_LINKS]: deleteLinks,
+  [GET_DIOGRAPH]: getDiograph,
+  ...promiseReducers(SAVE_DIOGRAPH, 'updated', 'saving', 'saved', 'error'),
   ...promiseReducers(GET_ROOM, 'load', 'loading', 'loaded', 'error'),
   ...promiseReducers(SAVE_ROOM, 'updated', 'saving', 'saved', 'error'),
 })
