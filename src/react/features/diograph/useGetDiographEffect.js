@@ -8,7 +8,7 @@ import { getDiograph } from './actions'
 import { invokeChannel } from '../../client/client'
 import { channels } from '../../../shared/constants'
 
-export const useGetDiograph = () => {
+export const useGetDiographEffect = () => {
   const { dispatch } = useDispatchActions()
 
   useEffect(() => {
