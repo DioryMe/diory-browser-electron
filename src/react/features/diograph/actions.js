@@ -1,6 +1,8 @@
 import {
   GET_ROOM,
   SAVE_ROOM,
+  GET_DIOGRAPH,
+  SAVE_DIOGRAPH,
   ADD_DIOGRAPH,
   CREATE_DIORY,
   UPDATE_DIORY,
@@ -17,6 +19,15 @@ export const getRoom = (room) => ({
 
 export const saveRoom = () => ({
   type: SAVE_ROOM,
+})
+
+export const getDiograph = (diograph, rootId, folderLocation) => ({
+  type: GET_DIOGRAPH,
+  payload: { diograph, rootId, folderLocation },
+})
+
+export const saveDiograph = () => ({
+  type: SAVE_DIOGRAPH,
 })
 
 export const addDiograph = (diograph, rootId, folderLocation) => ({
