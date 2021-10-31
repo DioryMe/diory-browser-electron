@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Pane } from 'evergreen-ui'
@@ -20,17 +20,25 @@ const centerStyle = {
   transform: 'translate(-50%, -50%)',
 }
 
-const Pdf = ({ pdf, pageNumber, ...props }) => (
-  <Box {...defaultStyle} {...props}>
-    <Document file={pdf}>
-      <Pane style={centerStyle}>
-        <Page pageNumber={1} height={500} />
-      </Pane>
-    </Document>
-  </Box>
-)
+const Pdf = ({ page = {}, pdf, ...props }) => {
+  const [{ numPages }, setPages] = useState({ numPages: 1 })
+  const pageNumber = Math.max(0, Math.min(numPages, page.number))
+  return (
+    <Box ref={page.ref} {...defaultStyle} {...props}>
+      <Document file={pdf} onLoadSuccess={setPages}>
+        <Pane style={centerStyle}>
+          <Page pageNumber={pageNumber} height={500} />
+        </Pane>
+      </Document>
+    </Box>
+  )
+}
 
 Pdf.propTypes = {
+  page: PropTypes.shape({
+    ref: PropTypes.func.isRequired,
+    number: PropTypes.number.isRequired,
+  }).isRequired,
   pdf: PropTypes.string.isRequired,
 }
 
