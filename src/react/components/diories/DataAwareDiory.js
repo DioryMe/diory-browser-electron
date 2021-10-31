@@ -11,7 +11,7 @@ import Pdf from '../content/Pdf'
 
 import { convertRelativePath } from '../../utils'
 
-const DataAwareDiory = ({ playRef, diory }) => {
+const DataAwareDiory = ({ playRef, page, diory }) => {
   const [{ connections }] = useStore((state) => state.connectors)
   const { data = [] } = diory
   const { contentUrl, encodingFormat } = (data && data[0]) || {}
@@ -29,19 +29,23 @@ const DataAwareDiory = ({ playRef, diory }) => {
     case 'audio/opus':
       return <Audio playRef={playRef} audio={absoluteContentUrl} />
     case 'application/pdf':
-      return <Pdf pdf={absoluteContentUrl} />
+      return <Pdf page={page} pdf={absoluteContentUrl} />
     default:
       return <Diory diory={diory} />
   }
 }
 
 DataAwareDiory.propTypes = {
-  playRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.any })]),
+  playRef: PropTypes.func.isRequired,
   diory: PropTypes.shape({
     image: PropTypes.string,
     style: PropTypes.object,
     data: PropTypes.object,
   }),
+  page: PropTypes.shape({
+    ref: PropTypes.func.isRequired,
+    number: PropTypes.number.isRequired,
+  }).isRequired,
 }
 
 export default DataAwareDiory

@@ -15,6 +15,7 @@ const GridView = ({
   contexts,
   story,
   memories,
+  page,
   onDrop,
   onClick,
   onContextClick,
@@ -27,7 +28,7 @@ const GridView = ({
   return (
     <Background>
       <Fullscreen marginTop={48} zIndex={-1}>
-        <DataAwareDiory playRef={playRef} diory={story} />
+        <DataAwareDiory page={page} playRef={playRef} diory={story} />
       </Fullscreen>
       {!!contexts.length && (
         <ScrollUpAndDown
@@ -86,6 +87,10 @@ GridView.defaultProps = {
 
 GridView.propTypes = {
   playRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.any })]),
+  page: PropTypes.shape({
+    ref: PropTypes.func.isRequired,
+    number: PropTypes.number.isRequired,
+  }).isRequired,
   context: PropTypes.object.isRequired,
   contexts: PropTypes.array.isRequired,
   story: PropTypes.object.isRequired,

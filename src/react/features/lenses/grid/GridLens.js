@@ -9,6 +9,8 @@ import { useDeleteTool } from '../../tools/delete'
 import { useFocusTool } from '../../tools/focus'
 import { useUpdateTool } from '../../tools/update'
 import { usePlayTool } from '../../tools/play/usePlayTool'
+import { useOpenTool } from '../../tools/open/useOpenTool'
+import { usePageTool } from '../../tools/page/usePageTool'
 
 import { createLink } from '../../diograph/actions'
 import { selectContext } from '../../navigation/actions'
@@ -18,12 +20,12 @@ import GridView from './GridView'
 import button from './diory'
 
 import { withLensContainer } from '../LensContainer'
-import { useOpenTool } from '../../tools/open/useOpenTool'
 
 const useTools = () => {
   const focusDiory = useFocusTool()
   const deleteDiory = useDeleteTool()
   const updateDiory = useUpdateTool()
+  const page = usePageTool()
 
   useCreateTool()
   useOpenTool()
@@ -33,6 +35,7 @@ const useTools = () => {
   const { dispatch } = useDispatchActions()
 
   return {
+    page,
     playRef,
     onContextClick: ({ diory }) => {
       if (diory.id === context.id) {
