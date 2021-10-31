@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 
 import { useStore } from '../../store'
 
-import { convertRelativePath } from '../../utils'
-
-import Diory from './Diory'
-import Video from './Video'
-import Audio from './Audio'
 import BackgroundDiory from './BackgroundDiory'
+import Diory from './Diory'
+import Video from '../content/Video'
+import Audio from '../content/Audio'
+import Pdf from '../content/Pdf'
+
+import { convertRelativePath } from '../../utils'
 
 const DataAwareDiory = ({ playRef, diory }) => {
   const [{ connections }] = useStore((state) => state.connectors)
@@ -27,6 +28,8 @@ const DataAwareDiory = ({ playRef, diory }) => {
     case 'audio/x-m4a':
     case 'audio/opus':
       return <Audio playRef={playRef} audio={absoluteContentUrl} />
+    case 'application/pdf':
+      return <Pdf pdf={absoluteContentUrl} />
     default:
       return <Diory diory={diory} />
   }
