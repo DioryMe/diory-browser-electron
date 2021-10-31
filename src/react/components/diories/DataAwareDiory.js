@@ -8,13 +8,14 @@ import Diory from './Diory'
 import Video from '../content/Video'
 import Audio from '../content/Audio'
 import Pdf from '../content/Pdf'
+import WebPage from '../content/WebPage'
 
 import { convertRelativePath } from '../../utils'
 
 const DataAwareDiory = ({ playRef, page, diory }) => {
   const [{ connections }] = useStore((state) => state.connectors)
   const { data = [] } = diory
-  const { contentUrl, encodingFormat } = (data && data[0]) || {}
+  const { contentUrl, encodingFormat, url } = (data && data[0]) || {}
   const absoluteContentUrl = convertRelativePath(contentUrl, connections)
 
   switch (encodingFormat) {
@@ -31,6 +32,10 @@ const DataAwareDiory = ({ playRef, page, diory }) => {
     case 'application/pdf':
       return <Pdf page={page} pdf={absoluteContentUrl} />
     default:
+      if (url && /^http(s)?:\/\//.exec(url)) {
+        return <WebPage address={url} />
+      }
+
       return <Diory diory={diory} />
   }
 }
