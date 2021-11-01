@@ -8,11 +8,12 @@ import DragDropDiory from '../../../components/DragDropDiory'
 import ScrollUpAndDown from '../../../components/ScrollUpAndDown'
 import Fullscreen from '../../../components/Fullscreen'
 import DataAwareDiory from '../../../components/diories/DataAwareDiory'
+import DragDropBackground from '../../../components/DragDropBackground'
 
 const GridView = ({
   playRef,
   context,
-  contexts,
+  contexts = [],
   story,
   memories,
   page,
@@ -32,6 +33,7 @@ const GridView = ({
       </Fullscreen>
       {!!contexts.length && (
         <ScrollUpAndDown
+          data-testid="navigate-up"
           initialRef={storyRef}
           scrolledRef={contextRef}
           initialDirection="down"
@@ -57,17 +59,19 @@ const GridView = ({
           alignSelf="center"
         />
       )}
-      <Pane
+      <DragDropBackground
         ref={storyRef}
-        id={`background-${story.id}`}
+        onClick={() => onClick({ diory: story })}
+        diory={story}
+        onDrop={onDrop}
         position="relative"
         height="80%"
         width="100%"
-        onClick={() => onClick({ story })}
       />
       <DiorysGrid ref={memoryRef} diorys={memories} onDrop={onDrop} onClick={onClick} />
       {!!memories.length && (
         <ScrollUpAndDown
+          data-testid="navigate-down"
           initialRef={storyRef}
           scrolledRef={memoryRef}
           initialDirection="up"
