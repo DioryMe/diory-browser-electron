@@ -31,7 +31,7 @@ export const useFilteredDiorys = () => {
   const memories = useDiorys(dioryIds)
   return useMemo(
     () => ({
-      story: memories[0],
+      story: memories[0] || {},
       memories,
     }),
     [memories]
