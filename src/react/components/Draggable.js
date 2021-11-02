@@ -30,7 +30,7 @@ const Draggable = ({ id, type, children }) => {
 Draggable.propTypes = {
   id: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 }
 
 export default Draggable

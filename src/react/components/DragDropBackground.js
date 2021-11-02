@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import Draggable, { types } from './Draggable'
 import Droppable from './Droppable'
 
-const DragDropBackground = ({ diory, onDrop, ...props }) => (
-  <Box {...props}>
+const DragDropBackground = forwardRef(({ diory, onDrop, ...props }, ref) => (
+  <Box ref={ref} {...props}>
     <Droppable
       type={types.DIORY}
       style={{ height: '100%' }}
@@ -15,7 +15,7 @@ const DragDropBackground = ({ diory, onDrop, ...props }) => (
       <Draggable id={diory.id} type={types.DIORY} />
     </Droppable>
   </Box>
-)
+))
 
 DragDropBackground.propTypes = {
   diory: PropTypes.object.isRequired,
