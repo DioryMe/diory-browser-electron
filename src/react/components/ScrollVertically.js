@@ -20,7 +20,7 @@ const useScroll = (initialRef, scrolledRef, initialDirection) => {
   }
 }
 
-const ScrollUpAndDown = ({ initialRef, scrolledRef, initialDirection, ...props }) => {
+const ScrollVertically = ({ initialRef, scrolledRef, initialDirection, ...props }) => {
   const { direction, onClick } = useScroll(initialRef, scrolledRef, initialDirection)
   return (
     <Box
@@ -42,10 +42,10 @@ const ScrollUpAndDown = ({ initialRef, scrolledRef, initialDirection, ...props }
   )
 }
 
-ScrollUpAndDown.propTypes = {
+ScrollVertically.propTypes = {
   initialRef: PropTypes.node.isRequired,
   scrolledRef: PropTypes.node.isRequired,
   initialDirection: PropTypes.string.isRequired,
 }
 
-export default ScrollUpAndDown
+export default ScrollVertically

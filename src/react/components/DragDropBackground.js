@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import Draggable, { types } from './Draggable'
 import Droppable from './Droppable'
-import Diory from './diories/Diory'
 
 const DragDropBackground = ({ diory, onDrop, ...props }) => (
   <Box {...props}>
@@ -13,7 +12,7 @@ const DragDropBackground = ({ diory, onDrop, ...props }) => (
       isOverStyle={{ backgroundColor: 'white', opacity: 0.5 }}
       onDrop={({ id }) => onDrop({ droppedId: diory.id, draggedId: id })}
     >
-      <Draggable id={diory.id} type={types.DIORY}/>
+      <Draggable id={diory.id} type={types.DIORY} />
     </Droppable>
   </Box>
 )
