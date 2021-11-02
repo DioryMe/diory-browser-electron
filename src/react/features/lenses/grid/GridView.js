@@ -5,7 +5,7 @@ import { Pane } from 'evergreen-ui'
 import Background from '../../../components/Background'
 import DiorysGrid from '../../../components/DiorysGrid'
 import DragDropDiory from '../../../components/DragDropDiory'
-import ScrollUpAndDown from '../../../components/ScrollUpAndDown'
+import ScrollVertically from '../../../components/ScrollVertically'
 import Fullscreen from '../../../components/Fullscreen'
 import DataAwareDiory from '../../../components/diories/DataAwareDiory'
 import DragDropBackground from '../../../components/DragDropBackground'
@@ -32,7 +32,7 @@ const GridView = ({
         <DataAwareDiory page={page} playRef={playRef} diory={story} />
       </Fullscreen>
       {!!contexts.length && (
-        <ScrollUpAndDown
+        <ScrollVertically
           data-testid="navigate-up"
           initialRef={storyRef}
           scrolledRef={contextRef}
@@ -70,7 +70,7 @@ const GridView = ({
       />
       <DiorysGrid ref={memoryRef} diorys={memories} onDrop={onDrop} onClick={onClick} />
       {!!memories.length && (
-        <ScrollUpAndDown
+        <ScrollVertically
           data-testid="navigate-down"
           initialRef={storyRef}
           scrolledRef={memoryRef}
