@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { useDispatchActions } from '../../../store'
-import { useDiograph } from '../../diograph/useDiograph'
 
 import { useLens } from '../useLens'
 import { useCreateTool } from '../../tools/create'
@@ -13,7 +12,6 @@ import { useOpenTool } from '../../tools/open/useOpenTool'
 import { usePageTool } from '../../tools/page/usePageTool'
 
 import { createLink } from '../../diograph/actions'
-import { selectContext } from '../../navigation/actions'
 
 import GridView from './GridView'
 
@@ -30,20 +28,12 @@ const useTools = () => {
   useCreateTool()
   useOpenTool()
 
-  const { context } = useDiograph()
   const { playRef } = usePlayTool()
   const { dispatch } = useDispatchActions()
 
   return {
     page,
     playRef,
-    onContextClick: ({ diory }) => {
-      if (diory.id === context.id) {
-        focusDiory(diory)
-      } else {
-        dispatch(selectContext(diory))
-      }
-    },
     onClick: ({ diory }) => {
       focusDiory(diory)
       deleteDiory(diory)

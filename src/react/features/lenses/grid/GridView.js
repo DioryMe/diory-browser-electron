@@ -1,74 +1,33 @@
 import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
-
 import { Pane } from 'evergreen-ui'
+
 import Background from '../../../components/Background'
 import DiorysGrid from '../../../components/DiorysGrid'
-import DragDropDiory from '../../../components/DragDropDiory'
 import ScrollVertically from '../../../components/ScrollVertically'
 import Fullscreen from '../../../components/Fullscreen'
 import DataAwareDiory from '../../../components/diories/DataAwareDiory'
 import DragDropBackground from '../../../components/DragDropBackground'
 
-const GridView = ({
-  playRef,
-  context,
-  contexts = [],
-  story,
-  memories,
-  page,
-  onDrop,
-  onClick,
-  onContextClick,
-}) => {
-  const contextRef = useRef()
+const GridView = ({ playRef, story, memories, page, onDrop, onClick }) => {
   const storyRef = useRef()
   const memoryRef = useRef()
 
-  const otherContexts = contexts.filter(({ id }) => !context || id !== context.id)
   return (
     <Background>
-      <Fullscreen marginTop={48} zIndex={-1}>
-        <DataAwareDiory page={page} playRef={playRef} diory={story} />
+      <Fullscreen marginTop={48}>
+        <DragDropBackground onClick={() => onClick({ diory: story })} diory={story} onDrop={onDrop}>
+          <DataAwareDiory page={page} playRef={playRef} diory={story} />
+        </DragDropBackground>
       </Fullscreen>
-      {!!contexts.length && (
-        <ScrollVertically
-          data-testid="navigate-up"
-          initialRef={storyRef}
-          scrolledRef={contextRef}
-          initialDirection="down"
-          location="top"
-          top={48}
-        />
-      )}
+      <Pane ref={storyRef} width="100%" />
       <DiorysGrid
-        ref={contextRef}
-        diorys={otherContexts}
+        ref={memoryRef}
+        diorys={memories}
         onDrop={onDrop}
-        onClick={onContextClick}
+        onClick={onClick}
+        marginTop="70%"
       />
-      {context && (
-        <DragDropDiory
-          diory={context}
-          onClick={onContextClick}
-          onDrop={onDrop}
-          flex="1 0 360px"
-          margin={24}
-          padding={24}
-          height={240}
-          alignSelf="center"
-        />
-      )}
-      <DragDropBackground
-        ref={storyRef}
-        onClick={() => onClick({ diory: story })}
-        diory={story}
-        onDrop={onDrop}
-        position="relative"
-        height="80%"
-        width="100%"
-      />
-      <DiorysGrid ref={memoryRef} diorys={memories} onDrop={onDrop} onClick={onClick} />
       {!!memories.length && (
         <ScrollVertically
           data-testid="navigate-down"
@@ -78,14 +37,12 @@ const GridView = ({
           bottom={0}
         />
       )}
-      <Pane position="relative" height="85%" width="100%" />
     </Background>
   )
 }
 
 GridView.defaultProps = {
   onClick: () => {},
-  onContextClick: () => {},
   onDrop: () => {},
 }
 
@@ -95,12 +52,9 @@ GridView.propTypes = {
     ref: PropTypes.func.isRequired,
     number: PropTypes.number.isRequired,
   }).isRequired,
-  context: PropTypes.object,
-  contexts: PropTypes.array.isRequired,
   story: PropTypes.object.isRequired,
   memories: PropTypes.array.isRequired,
   onClick: PropTypes.func,
-  onContextClick: PropTypes.func,
   onDrop: PropTypes.func,
 }
 
