@@ -95,7 +95,7 @@ GridView.propTypes = {
     ref: PropTypes.func.isRequired,
     number: PropTypes.number.isRequired,
   }).isRequired,
-  context: PropTypes.object.isRequired,
+  context: PropTypes.object,
   contexts: PropTypes.array.isRequired,
   story: PropTypes.object.isRequired,
   memories: PropTypes.array.isRequired,

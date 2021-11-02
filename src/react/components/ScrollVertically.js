@@ -43,8 +43,8 @@ const ScrollVertically = ({ initialRef, scrolledRef, initialDirection, ...props 
 }
 
 ScrollVertically.propTypes = {
-  initialRef: PropTypes.node.isRequired,
-  scrolledRef: PropTypes.node.isRequired,
+  initialRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.any })]),
+  scrolledRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.any })]),
   initialDirection: PropTypes.string.isRequired,
 }
 
