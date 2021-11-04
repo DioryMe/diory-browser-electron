@@ -8,6 +8,7 @@ import NavigationButtons from './NavigationButtons'
 import NavigationLenses from './NavigationLenses'
 // import TextFilter from '../../filters/text/TextFilter'
 import Icon from '../../../components/Icon'
+import { resetStore } from '../../../store/reducer'
 
 const NavigationBar = () => {
   const [{ active }] = useStore((state) => state.search)
@@ -44,7 +45,11 @@ const NavigationBar = () => {
           icon="cog"
           marginRight="24px"
           style={{ cursor: 'hand' }}
-          onClick={() => dispatch(addDiograph({}, undefined, null))}
+          onClick={() => {
+            dispatch(resetStore())
+            // Default folderLocation needs to be changed to null
+            dispatch(addDiograph({}, undefined, null))
+          }}
         />
       </Pane>
       {/* <TextFilter /> */}
