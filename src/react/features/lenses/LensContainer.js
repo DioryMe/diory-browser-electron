@@ -6,13 +6,14 @@ import { useStore } from '../../store'
 const LensContainer = ({ id, buttons, children }) => {
   useInitializeLensButtons(buttons)
   const [{ selectedLensId }] = useStore((state) => state.lenses)
-  const [{ loaded }] = useStore((state) => state.diograph)
-  return loaded && id === selectedLensId ? children : null
+  return id === selectedLensId ? children : null
 }
 
-export const withLensContainer = (id, button) => (Component) => () =>
-  (
+// eslint-disable-next-line arrow-body-style
+export const withLensContainer = (id, button) => (Component) => () => {
+  return (
     <LensContainer id={id} buttons={[button]}>
       <Component />
     </LensContainer>
   )
+}

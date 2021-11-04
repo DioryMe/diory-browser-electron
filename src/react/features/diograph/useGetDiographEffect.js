@@ -13,8 +13,8 @@ export const useGetDiographEffect = () => {
 
   useEffect(() => {
     invokeChannel(channels.GET_DIOGRAPH).then(({ diograph, rootId, folderLocation }) => {
-      dispatch(getDiograph(diograph, rootId, folderLocation))
       dispatch(setFocus({ id: rootId }))
+      dispatch(getDiograph(diograph, rootId, folderLocation))
     })
   }, [dispatch])
 }
