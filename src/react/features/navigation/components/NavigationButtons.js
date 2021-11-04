@@ -1,5 +1,6 @@
 import React from 'react'
 import { Pane, IconButton } from 'evergreen-ui'
+
 import { useStore } from '../../../store'
 import { goBackward, goForward, setFocus } from '../actions'
 import Icon from '../../../components/Icon'
