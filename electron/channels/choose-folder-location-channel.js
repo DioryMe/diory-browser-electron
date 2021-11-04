@@ -26,7 +26,7 @@ exports.chooseFolderLocationEventHandler = async function chooseFolderLocationEv
     if (fs.existsSync(`${myDioryFolderPath}/diograph.json`)) {
       const existingDiographJson = await readDiographJson(myDioryFolderPath)
       store.set({ folderLocation: myDioryFolderPath })
-      return { ...existingDiographJson, myDioryFolderPath }
+      return existingDiographJson
     }
 
     // TODO: Detect if My Diory folder is empty or non-empty and act accordingly
@@ -41,5 +41,5 @@ exports.chooseFolderLocationEventHandler = async function chooseFolderLocationEv
 
   store.set({ folderLocation: myDioryFolderPath })
 
-  return { ...defaultDiograph, myDioryFolderPath }
+  return { ...defaultDiograph, folderLocation: myDioryFolderPath }
 }

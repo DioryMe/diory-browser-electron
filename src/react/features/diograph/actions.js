@@ -19,9 +19,9 @@ export const saveRoom = () => ({
   type: SAVE_ROOM,
 })
 
-export const addDiograph = (diograph) => ({
+export const addDiograph = (diograph, rootId, folderLocation) => ({
   type: ADD_DIOGRAPH,
-  payload: { diograph },
+  payload: { diograph, rootId, folderLocation },
 })
 
 export const createDiory = (diory) => ({

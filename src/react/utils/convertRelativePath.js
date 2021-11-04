@@ -1,6 +1,4 @@
-export const convertRelativePath = (relativePath, connections) => {
-  const diographFolderPath = Object.keys(connections).find((path) => connections[path].connected)
-
+export const convertRelativePath = (relativePath, folderLocation) => {
   if (RegExp(`^data:`).exec(relativePath)) {
     return relativePath
   }
@@ -9,8 +7,8 @@ export const convertRelativePath = (relativePath, connections) => {
     return `http://localhost:3300/${relativePath}`
   }
 
-  if (relativePath && !RegExp(`^(${diographFolderPath}|https?://)`).exec(relativePath)) {
-    return `${diographFolderPath}/${relativePath}`
+  if (relativePath && !RegExp(`^(${folderLocation}|https?://)`).exec(relativePath)) {
+    return `${folderLocation}/${relativePath}`
   }
 
   return relativePath
