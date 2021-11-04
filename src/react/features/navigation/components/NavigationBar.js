@@ -2,7 +2,7 @@ import React from 'react'
 import { Pane } from 'evergreen-ui'
 import { useStore, useDispatchActions } from '../../../store'
 import { toggleSearchBar } from '../../search/actions'
-import { addDiograph } from '../../diograph/actions'
+import { getDiograph } from '../../diograph/actions'
 
 import NavigationButtons from './NavigationButtons'
 import NavigationLenses from './NavigationLenses'
@@ -48,7 +48,7 @@ const NavigationBar = () => {
           onClick={() => {
             dispatch(resetStore())
             // Default folderLocation needs to be changed to null
-            dispatch(addDiograph({}, undefined, null))
+            dispatch(getDiograph({}, undefined, null))
           }}
         />
       </Pane>
