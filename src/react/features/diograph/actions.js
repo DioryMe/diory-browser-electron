@@ -30,9 +30,9 @@ export const saveDiograph = () => ({
   type: SAVE_DIOGRAPH,
 })
 
-export const addDiograph = (diograph, rootId, folderLocation) => ({
+export const addDiograph = (diograph) => ({
   type: ADD_DIOGRAPH,
-  payload: { diograph, rootId, folderLocation },
+  payload: { diograph },
 })
 
 export const createDiory = (diory) => ({
