@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const dayjs = require('dayjs')
 const { generateDiograph } = require('../generators/diograph-generator')
 const { readDiographJson } = require('../lib/read-diograph-json')
 
@@ -29,7 +30,8 @@ exports.importFolderEventHandler = async function importFolderEventHandler({
   let importedFolderPathInDioryFolder = path.join(folderLocation, path.basename(importFolderPath))
   // Add suffix to folder name if it already exists
   if (fs.existsSync(importedFolderPathInDioryFolder)) {
-    importedFolderPathInDioryFolder = `${importedFolderPathInDioryFolder}-${Date.now()}`
+    const datePrefix = dayjs().format('YYYY-MM-DDTHHmmss')
+    importedFolderPathInDioryFolder = `${importedFolderPathInDioryFolder}-${datePrefix}`
   }
   fs.mkdirSync(importedFolderPathInDioryFolder)
   // Copy everything recursively from importFolderPath to the new destination
