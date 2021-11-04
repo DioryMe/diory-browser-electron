@@ -1,5 +1,4 @@
 {
-  "diographFolderPath": "./public/diory-demo-content",
   "rooms": {
     "diory-demo-content": {
       "id": "diory-demo-content"

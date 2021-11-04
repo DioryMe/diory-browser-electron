@@ -19,8 +19,8 @@ export const useChooseFolderLocationButton = () => {
     const chooseDioryFolderLocation = (result) => {
       const diographFolderPath = result.filePaths[0]
       invokeChannel(channels.CHOOSE_FOLDER_LOCATION, diographFolderPath).then(
-        ({ rootId, diograph }) => {
-          dispatch(addDiograph(diograph))
+        ({ diograph, rootId, folderLocation }) => {
+          dispatch(addDiograph(diograph, rootId, folderLocation))
           dispatch(setFocus({ id: rootId }))
         }
       )

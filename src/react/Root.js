@@ -16,11 +16,11 @@ export const useGetDiograph = () => {
   const { dispatch } = useDispatchActions()
 
   useEffect(() => {
-    invokeChannel(channels.GET_DIOGRAPH).then(({ rootId, diograph }) => {
+    invokeChannel(channels.GET_DIOGRAPH).then(({ diograph, rootId, folderLocation }) => {
       if (!rootId) {
         invokeAlertDialog('Error getting diograph')
       }
-      dispatch(addDiograph(diograph))
+      dispatch(addDiograph(diograph, rootId, folderLocation))
       dispatch(setFocus({ id: rootId }))
     })
   }, [dispatch])
