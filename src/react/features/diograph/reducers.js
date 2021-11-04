@@ -31,8 +31,8 @@ export const getDiograph = (state, { payload: { diograph, rootId, folderLocation
 
 export const addDiograph = (state, { payload: { diograph, rootId, folderLocation } }) => ({
   ...state,
-  rootId: rootId === undefined ? state.rootId : rootId,
-  folderLocation: folderLocation === undefined ? state.folderLocation : folderLocation,
+  rootId,
+  folderLocation,
   diograph: {
     ...state.diograph,
     ...diograph,
