@@ -6,6 +6,7 @@ import Lenses from './features/lenses/Lenses'
 // import Rooms from './features/rooms/Rooms'
 import Tools from './features/tools/Tools'
 import Buttons from './features/buttons'
+import Search from './features/search/Search'
 
 const Browser = () => (
   <div className="App">
@@ -15,6 +16,7 @@ const Browser = () => (
     <Filters />
     <Tools />
     <Buttons />
+    <Search />
   </div>
 )
 
