@@ -23,8 +23,8 @@ const getBackgroundImage = (image, gradient, gradientRgba = '255, 255, 255, 0.5'
     : `url("${convertToFileUrl(image)}")`
 
 const Image = ({ image, gradient, gradientRgba, ...props }) => {
-  const [{ connections }] = useStore((state) => state.connectors)
-  const absoluteImageUrl = convertRelativePath(image, connections)
+  const [{ folderLocation }] = useStore((state) => state.diograph)
+  const absoluteImageUrl = convertRelativePath(image, folderLocation)
   return (
     <Box
       {...defaultStyle}
