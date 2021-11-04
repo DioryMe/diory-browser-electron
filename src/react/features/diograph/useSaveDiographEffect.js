@@ -12,7 +12,7 @@ export const useSaveDiographEffect = () => {
 
   const { debounceDispatchPromiseAction } = useDispatchActions()
   useEffect(() => {
-    if (updated) {
+    if (updated && folderLocation) {
       debounceDispatchPromiseAction(
         () =>
           invokeChannel(channels.SAVE_ROOM, {
