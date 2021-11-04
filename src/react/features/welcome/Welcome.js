@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Pane } from 'evergreen-ui'
 
 import { useDispatch, useStore, useDispatchActions } from '../../store'
-import { addDiograph } from '../diograph/actions'
+import { getDiograph } from '../diograph/actions'
 import { invokeChannel } from '../../client/client'
 import { channels } from '../../../shared/constants'
 
@@ -20,8 +20,8 @@ export const useChooseFolderLocationButton = () => {
       const diographFolderPath = result.filePaths[0]
       invokeChannel(channels.CHOOSE_FOLDER_LOCATION, diographFolderPath).then(
         ({ diograph, rootId, folderLocation }) => {
-          dispatch(addDiograph(diograph, rootId, folderLocation))
           dispatch(setFocus({ id: rootId }))
+          dispatch(getDiograph(diograph, rootId, folderLocation))
         }
       )
     }
