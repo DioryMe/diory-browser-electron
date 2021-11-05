@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Pane, Icon } from 'evergreen-ui'
 import Image from './Image'
+import { useStore } from '../../store'
+import { convertRelativePath } from '../../utils'
 
 const defaultStyle = {
   container: {
@@ -21,6 +23,9 @@ const defaultStyle = {
 const Diory = ({ diory, onClick, children, ...props }) => {
   const { id, text, image, style: dioryStyle = {}, data } = diory
   const { image: styleImage, text: styleText, width: flexBasis, ...style } = dioryStyle
+
+  const [{ folderLocation }] = useStore((state) => state.diograph)
+
   return (
     <Box
       id={id}
@@ -33,7 +38,7 @@ const Diory = ({ diory, onClick, children, ...props }) => {
       <Box {...defaultStyle.container} background="#fa7921">
         {image && (
           <Image
-            image={image}
+            image={convertRelativePath(image, folderLocation)}
             style={styleImage}
             gradient={Boolean(text) && !RegExp('^data:').exec(image)}
             gradientRgba="0, 0, 0, 0.2"

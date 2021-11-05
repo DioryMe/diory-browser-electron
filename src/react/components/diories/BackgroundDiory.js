@@ -2,11 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
+import { useStore } from '../../store'
+
 import Image from './Image'
+import { convertRelativePath } from '../../utils'
 
 const BackgroundDiory = ({ diory, gradient, gradientRgba, onClick, children, ...props }) => {
   const { id, image, style: dioryStyle = {} } = diory
   const { image: imageStyle, ...style } = dioryStyle
+
+  const [{ folderLocation }] = useStore((state) => state.diograph)
 
   return (
     <Pane
@@ -21,7 +26,7 @@ const BackgroundDiory = ({ diory, gradient, gradientRgba, onClick, children, ...
     >
       {image && (
         <Image
-          image={image}
+          image={convertRelativePath(image, folderLocation)}
           zIndex={-1}
           position="fixed"
           gradient={gradient}
