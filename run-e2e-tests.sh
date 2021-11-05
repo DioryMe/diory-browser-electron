@@ -30,7 +30,7 @@ test_2=$?
 rm -rf tmp/testcafe-diograph-folder
 rm -rf tmp/My\ Diory
 
-echo "Run Testcafe E2E test 3 (import example-folder + re-choose example-folder)"
+echo "Run Testcafe E2E test 3 (import example-folder + re-choose diory-demo-content with diograph.json)"
 awk 'BEGIN{print "process.env.TESTCAFE_TEST=2;"}{print}' electron-main-original.js > electron-main-tmp.js
 mv electron-main-tmp.js electron-main.js
 cp -r electron/readers/example-folder tmp/testcafe-diograph-folder/
@@ -41,10 +41,6 @@ test_3=$?
 rm -rf tmp/testcafe-diograph-folder
 rm -rf tmp/test-my-diory
 rm -rf tmp/My\ Diory
-
-# echo "Run Testcafe E2E test 4 (with development-content-room + example-folder as subfolder + Tampere folder diograph.json)"
-# => loads diograph.json from Tampere subfolder properly
-#     => if this works then that diograph.json has to be deleted before test 1
 
 echo "Remove TESTCAFE_TEST_ENV from electron-main.js"
 mv electron-main-original.js electron-main.js

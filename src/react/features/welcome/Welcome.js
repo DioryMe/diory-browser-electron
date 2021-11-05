@@ -33,7 +33,7 @@ export const useChooseFolderLocationButton = () => {
         const result = { filePaths: [path] }
         chooseDioryFolderLocation(result)
       } else if (window.processEnv.TESTCAFE_TEST === '2') {
-        const path = `${window.processEnv.PWD}/tmp/example-folder-my-diory`
+        const path = `${window.processEnv.PWD}/tmp/test-my-diory`
         const result = { filePaths: [path] }
         chooseDioryFolderLocation(result)
       } else {
