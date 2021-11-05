@@ -35,10 +35,15 @@ export const useFolderImportTool = () => {
   useEffect(() => {
     if (FOLDER_IMPORT === active) {
       dispatch(inactivateButton())
-      window.channelsApi.showOpenDialog().then(({ filePaths }) => {
-        const path = filePaths[0]
+      if (window.processEnv.TESTCAFE_TEST) {
+        const path = `${window.processEnv.PWD}/tmp/testcafe-diograph-folder`
         importFolder(path)
-      })
+      } else {
+        window.channelsApi.showOpenDialog().then(({ filePaths }) => {
+          const path = filePaths[0]
+          importFolder(path)
+        })
+      }
     }
   }, [importFolder, active, dispatch])
 }
