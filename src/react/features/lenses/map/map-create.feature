@@ -11,7 +11,8 @@ Feature: Creating content to Map lens
 
   Scenario: createTool created diory appears on map (in view)
     When I select tools button
-    And I select create button
+    And I select import button
+    And I click element with id 'CREATE_TOOL_BUTTON'
     And I add 'Map diory' to text field
     And I add '62, 24' to latlng field
     And I click Done button
@@ -20,11 +21,11 @@ Feature: Creating content to Map lens
 
   Scenario: createTool created diory to map (in focus)
     When I select tools button
-    And I select create button
+    And I select import button
+    And I click element with id 'CREATE_TOOL_BUTTON'
     And I add 'Map diory' to text field
     And I add '62, 24' to latlng field
     And I click Done button
     And I take 'Map diory' in focus
     And I select map lens
     Then I see 1 focus and 0 linked markers on map
-

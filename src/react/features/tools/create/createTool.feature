@@ -10,7 +10,7 @@ Feature: Create tool
     And I click element with id 'CREATE_TOOL_BUTTON'
 
   Scenario: Create tool shown
-    Then create tool is active
+    # Then import tool is active # <-- should it be?
     Then I see 'Create diory' in view
 
   # Done & cancel
@@ -37,13 +37,13 @@ Feature: Create tool
 
   # Image
   Scenario: Create image
-    When I add '/test-image.png' to image field
+    When I add 'public/diory-demo-content//test-image.png' to image field
     And I add 'Some diory' to text field
     And I click Done button
     And I select tools button
     And I select update button
     And I take 'Some diory' in focus
-    Then I see '/test-image.png' in image field
+    Then I see 'public/diory-demo-content//test-image.png' in image field
 
   # TODO: Checking background-image is dioryId dependent
   #       and as we don't know the created diory dioryId this is not possible
