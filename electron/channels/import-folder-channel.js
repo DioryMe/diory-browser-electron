@@ -41,11 +41,22 @@ exports.importFolderEventHandler = async function importFolderEventHandler({
   const existingDiograph = readDiographJson(importedFolderPathInDioryFolder)
   if (existingDiograph) {
     throw new Error('NOT IMPLEMENTED: Imported folder had diograph.json file')
-    // return existingDiograph
   }
 
   // Generate diograph if no diograph.json
   const diograph = await generateDiograph(importedFolderPathInDioryFolder)
-  // await saveDiographJson(path, diograph.diograph, diograph.rootId)
+
+  // Relative paths for image & contentUrl
+  // TODO: Move to own function, how to make immutable?
+  Object.keys(diograph.diograph).forEach((dioryId) => {
+    const diory = diograph.diograph[dioryId]
+    if (diory.image) {
+      diory.image = diory.image.replace(`${folderLocation}/`, '')
+    }
+    if (diory.data && diory.data[0].contentUrl) {
+      diory.data[0].contentUrl = diory.data[0].contentUrl.replace(`${folderLocation}/`, '')
+    }
+  })
+
   return diograph
 }
