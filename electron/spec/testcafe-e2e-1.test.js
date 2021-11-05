@@ -4,17 +4,18 @@ import { Selector } from 'testcafe'
 fixture`GIVEN welcome room`.page('../../build/index.html')
 
 test('select diograph folder (with diograph.json)', async (t) => {
-  const dioryCount = Selector('.ub-flx_1-0-360px').count
-  const importedFolderDiory = Selector('div').withExactText('testcafe-diograph-folder')
   const chooseFolderButton = Selector('div').withExactText(
     '+ Choose where your Diory folder is located on this Mac'
   )
+  const dioryCount = Selector('.ub-flx_1-0-360px').count
+  const importedFolderDiory = Selector('div').withExactText('testcafe-diograph-folder')
   const doneButton = Selector('button').withText('Done')
 
   await t
     .click(chooseFolderButton)
     .expect(dioryCount)
     .eql(0) // Welcome screen doesn't have any diories
+    // Import diory-demo-content folder
     .click('[data-testid="tools-button"]')
     .click('[data-testid="import-button"]')
     .click('#FOLDER_IMPORT')
