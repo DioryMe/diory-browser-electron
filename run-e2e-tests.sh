@@ -14,17 +14,21 @@ awk 'BEGIN{print "process.env.TESTCAFE_TEST=1;" ENVIRON["TESTCAFE_TEST_ENV"]}{pr
 cp electron-main.js electron-main-original.js
 mv electron-main-tmp.js electron-main.js
 
-echo "Run Testcafe E2E test 1 (with development-content-room, with diograph.json)"
+echo "Run Testcafe E2E test 1 (with diory-demo-content + create new diory)"
 cp -r public/diory-demo-content/ tmp/testcafe-diograph-folder/
+# FIXME: Implement import folder for folders with diograph.json
+rm tmp/testcafe-diograph-folder/diograph.json
 npx testcafe "electron:." electron/spec/testcafe-e2e-1.test.js
 test_1=$?
 rm -rf tmp/testcafe-diograph-folder
+rm -rf tmp/My\ Diory
 
-echo "Run Testcafe E2E test 2 (with example-folder, no diograph.json)"
+echo "Run Testcafe E2E test 2 (with example-folder + delete diory + audio diory.data)"
 cp -r electron/readers/example-folder/ tmp/testcafe-diograph-folder/
 npx testcafe "electron:." electron/spec/testcafe-e2e-2.test.js
 test_2=$?
 rm -rf tmp/testcafe-diograph-folder
+rm -rf tmp/My\ Diory
 
 echo "Run Testcafe E2E test 3 (with development-content-room + example-folder as subfolder)"
 cp -r public/diory-demo-content tmp/testcafe-diograph-folder
@@ -32,6 +36,7 @@ cp -r electron/readers/example-folder tmp/testcafe-diograph-folder/
 npx testcafe "electron:." electron/spec/testcafe-e2e-3.test.js
 test_3=$?
 rm -rf tmp/testcafe-diograph-folder
+rm -rf tmp/My\ Diory
 
 # echo "Run Testcafe E2E test 4 (with development-content-room + example-folder as subfolder + Tampere folder diograph.json)"
 # => loads diograph.json from Tampere subfolder properly
