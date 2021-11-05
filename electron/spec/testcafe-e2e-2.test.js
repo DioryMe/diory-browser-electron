@@ -44,7 +44,7 @@ test('select new diograph folder (without diograph.json) and delete it', async (
     .click(someMusicDiory)
     .expect(dataFieldValue)
     .eql(
-      '[{"@context":"https://schema.org","@type":"AudioObject","contentUrl":"some-music.mp3","encodingFormat":"audio/mpeg"}]'
+      '[{"@context":"https://schema.org","@type":"AudioObject","contentUrl":"testcafe-diograph-folder/some-music.mp3","encodingFormat":"audio/mpeg"}]'
     )
     .click(doneButton)
 })
