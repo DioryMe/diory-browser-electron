@@ -1,23 +1,7 @@
 import { useStore } from '../../store'
-import { convertRelativePath, getUntrackedDiory } from '../../utils'
 import { resolveReverseDiograph } from './resolveReverseDiograph'
 import { useDiorys } from './useDiorys'
 
-const prepareDiory = (diory, folderLocation) => {
-  const preparedDiory = getUntrackedDiory(diory)
-  if (preparedDiory) {
-    preparedDiory.image = convertRelativePath(preparedDiory.image, folderLocation)
-    if (preparedDiory.data) {
-      preparedDiory.data[0].contentUrl = convertRelativePath(
-        preparedDiory.data[0].contentUrl,
-        folderLocation
-      )
-    }
-  }
-  return preparedDiory
-}
-
-// TODO: These are unprepared
 const useLinkedDiorys = (id, diograph) => {
   const diory = diograph[id]
   const links = diory && diory.links
@@ -53,21 +37,16 @@ const useContexts = () => {
 
 export const useDiograph = () => {
   const [{ storyId, memoryId }] = useStore((state) => state.navigation)
-  const [{ diograph = {}, folderLocation }] = useStore((state) => state.diograph)
-
-  const preparedStory = diograph[storyId] && prepareDiory(diograph[storyId], folderLocation)
-  const preparedMemory = diograph[memoryId] && prepareDiory(diograph[memoryId], folderLocation)
+  const [{ diograph = {} /* , folderLocation */ }] = useStore((state) => state.diograph)
 
   const { context, contexts } = useContexts()
   const contextId = context && context.id
   return {
     context,
     contexts,
-    story: preparedStory,
-    // TODO: These are unprepared
+    story: diograph[storyId],
     stories: useLinkedDiorys(contextId, diograph),
-    memory: preparedMemory,
-    // TODO: These are unprepared
+    memory: diograph[memoryId],
     memories: useLinkedDiorys(storyId, diograph),
   }
 }
