@@ -5,26 +5,33 @@ fixture`GIVEN welcome room`.page('../../build/index.html')
 
 test('select diograph folder (with diograph.json)', async (t) => {
   const dioryCount = Selector('.ub-flx_1-0-360px').count
-  const eventDiory = Selector('div').withExactText('Scouts BSA International (event)')
-  const imageDiory = Selector('#\\31 03f852d-4a2a-44de-8f4f-08ccddc3d280')
+  const importedFolderDiory = Selector('div').withExactText('testcafe-diograph-folder')
+  const chooseFolderButton = Selector('div').withExactText(
+    '+ Choose where your Diory folder is located on this Mac'
+  )
   const doneButton = Selector('button').withText('Done')
 
   await t
+    .click(chooseFolderButton)
+    .expect(dioryCount)
+    .eql(0) // Welcome screen doesn't have any diories
+    .click('[data-testid="tools-button"]')
+    .click('[data-testid="import-button"]')
+    .click('#FOLDER_IMPORT')
     .expect(dioryCount)
     .eql(1)
-    .click('[data-testid="home"]')
-    .click('[data-testid="tools-button"]')
-    .click('[data-testid="undefined-button"]')
-    .expect(dioryCount)
-    .eql(9)
-    .click(eventDiory)
+    .click(importedFolderDiory)
     .expect(dioryCount)
     .eql(8)
-    .click(imageDiory)
     .click('[data-testid="tools-button"]')
-    .click('[data-testid="create-button"]')
+    .click('[data-testid="import-button"]')
+    .click('#CREATE_TOOL_BUTTON')
     .typeText('input#text', 'New diory')
     .click(doneButton)
     .wait(1000) // Wait for SAVE_ROOM to complete and possibly raise an error
+    .expect(dioryCount)
+    .eql(9)
     .click('button[data-testid="home"]')
+    .expect(dioryCount)
+    .eql(1)
 })
