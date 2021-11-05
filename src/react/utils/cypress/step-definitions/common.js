@@ -28,6 +28,10 @@ When('I click {string} focus diory', (dioryName) => {
   cy.get('[data-testid=background]').contains(dioryName).click()
 })
 
+When('I click element with id {string}', (id) => {
+  cy.get(`#${id}`).click()
+})
+
 When('I type {string} in search bar', (searchString) => {
   cy.get('input#NavigationSearch').type(searchString)
 })

@@ -6,7 +6,8 @@ Feature: Create tool
     And I take 'Diory 1' in focus
     And I take 'Diory 11' in focus
     And I select tools button
-    And I select create button
+    And I select import button
+    And I click element with id 'CREATE_TOOL_BUTTON'
 
   Scenario: Create tool shown
     Then create tool is active
