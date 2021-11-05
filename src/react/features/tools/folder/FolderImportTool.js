@@ -39,7 +39,7 @@ export const useFolderImportTool = () => {
         const path = `${window.processEnv.PWD}/tmp/testcafe-diograph-folder`
         importFolder(path)
       } else if (window.processEnv.TESTCAFE_TEST === '2') {
-        const path = `${window.processEnv.PWD}/tmp/testcafe-diograph-folder`
+        const path = `${window.processEnv.PWD}/electron/readers/example-folder`
         importFolder(path)
       } else {
         window.channelsApi.showOpenDialog().then(({ filePaths }) => {

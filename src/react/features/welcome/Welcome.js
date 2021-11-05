@@ -28,8 +28,12 @@ export const useChooseFolderLocationButton = () => {
 
     if (CHOOSE_FOLDER_LOCATION_BUTTON === active) {
       dispatch(inactivateButton())
-      if (window.processEnv.TESTCAFE_TEST) {
+      if (window.processEnv.TESTCAFE_TEST === '1') {
         const path = `${window.processEnv.PWD}/tmp`
+        const result = { filePaths: [path] }
+        chooseDioryFolderLocation(result)
+      } else if (window.processEnv.TESTCAFE_TEST === '2') {
+        const path = `${window.processEnv.PWD}/tmp/example-folder-my-diory`
         const result = { filePaths: [path] }
         chooseDioryFolderLocation(result)
       } else {

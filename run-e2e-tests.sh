@@ -1,6 +1,6 @@
 # !/bin/bash
 
-# Always cleanup in the end, ignore failures
+# Always run until the end & cleanup (=ignore failures=
 set +e
 
 # Build frontend changes before running tests (although not necessary on CI pipeline)
@@ -8,9 +8,11 @@ yarn build
 
 mkdir tmp
 rm -rf tmp/testcafe-diograph-folder
+rm -rf tmp/test-my-diory
+rm -rf tmp/My\ Diory
 cp electron-main.js electron-main-original.js
 
-echo "Run Testcafe E2E test 1 (with diory-demo-content + create new diory)"
+echo "Run Testcafe E2E test 1 (import diory-demo-content)"
 awk 'BEGIN{print "process.env.TESTCAFE_TEST=1;"}{print}' electron-main.js > electron-main-tmp.js
 mv electron-main-tmp.js electron-main.js
 cp -r public/diory-demo-content/ tmp/testcafe-diograph-folder/
@@ -21,21 +23,23 @@ test_1=$?
 rm -rf tmp/testcafe-diograph-folder
 rm -rf tmp/My\ Diory
 
-echo "Run Testcafe E2E test 2 (with example-folder + delete diory + audio diory.data)"
-awk 'BEGIN{print "process.env.TESTCAFE_TEST=2;"}{print}' electron-main.js > electron-main-tmp.js
-mv electron-main-tmp.js electron-main.js
+echo "Run Testcafe E2E test 2 (import diory-demo-content + delete diory + check audio diory.data)"
 cp -r electron/readers/example-folder/ tmp/testcafe-diograph-folder/
 npx testcafe "electron:." electron/spec/testcafe-e2e-2.test.js
 test_2=$?
 rm -rf tmp/testcafe-diograph-folder
 rm -rf tmp/My\ Diory
 
-echo "Run Testcafe E2E test 3 (with development-content-room + example-folder as subfolder)"
-cp -r public/diory-demo-content tmp/testcafe-diograph-folder
+echo "Run Testcafe E2E test 3 (import example-folder + re-choose example-folder)"
+awk 'BEGIN{print "process.env.TESTCAFE_TEST=2;"}{print}' electron-main-original.js > electron-main-tmp.js
+mv electron-main-tmp.js electron-main.js
 cp -r electron/readers/example-folder tmp/testcafe-diograph-folder/
+mkdir tmp/test-my-diory
+cp -r public/diory-demo-content/ tmp/test-my-diory/My\ Diory
 npx testcafe "electron:." electron/spec/testcafe-e2e-3.test.js
 test_3=$?
 rm -rf tmp/testcafe-diograph-folder
+rm -rf tmp/test-my-diory
 rm -rf tmp/My\ Diory
 
 # echo "Run Testcafe E2E test 4 (with development-content-room + example-folder as subfolder + Tampere folder diograph.json)"
