@@ -3,7 +3,7 @@ import { Selector } from 'testcafe'
 // eslint-disable-next-line no-undef
 fixture`GIVEN welcome room`.page('../../build/index.html')
 
-test('select diograph folder (with diograph.json)', async (t) => {
+test('Import diory-demo-content', async (t) => {
   const chooseFolderButton = Selector('div').withExactText(
     '+ Choose where your Diory folder is located on this Mac'
   )
