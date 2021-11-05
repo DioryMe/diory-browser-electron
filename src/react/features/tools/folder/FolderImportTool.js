@@ -35,7 +35,10 @@ export const useFolderImportTool = () => {
   useEffect(() => {
     if (FOLDER_IMPORT === active) {
       dispatch(inactivateButton())
-      if (window.processEnv.TESTCAFE_TEST) {
+      if (window.processEnv.TESTCAFE_TEST === '1') {
+        const path = `${window.processEnv.PWD}/tmp/testcafe-diograph-folder`
+        importFolder(path)
+      } else if (window.processEnv.TESTCAFE_TEST === '2') {
         const path = `${window.processEnv.PWD}/tmp/testcafe-diograph-folder`
         importFolder(path)
       } else {
