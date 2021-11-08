@@ -25,7 +25,7 @@ Feature: Hand tool
 
   Scenario: Take diory into hand from view
     Given  I see 'Diory 11' in view
-    When I drag 'diory11' into hand
+    When I drag 'Diory 11' into hand
     Then 'Diory 11' diory is in the hand
 
   Scenario: Take focus diory into hand
@@ -36,7 +36,7 @@ Feature: Hand tool
   Scenario: Link diory from hand to view (=focus diory)
     Given  I see 'Diory 11' in view
     And  I see 'Diory 12' in view
-    And I drag 'diory11' into hand
+    And I drag 'Diory 11' into hand
     And I take 'Diory 12' in focus
     When I drag 'hand-diory11' to 'diory12'
     Then I see 'Diory 11' in view
@@ -44,7 +44,7 @@ Feature: Hand tool
   Scenario: Link diory from hand to linked diory
     Given  I see 'Diory 11' in view
     And  I see 'Diory 12' in view
-    And I drag 'diory11' into hand
+    And I drag 'Diory 11' into hand
     When I drag 'hand-diory11' to 'diory12'
     And I take 'Diory 12' in focus
     Then I see 'Diory 11' in view
