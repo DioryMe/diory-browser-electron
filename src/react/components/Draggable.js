@@ -16,7 +16,6 @@ const Draggable = ({ id, type, children }) => {
 
   return (
     <div
-      id={id}
       ref={drag}
       style={{
         height: '100%',
