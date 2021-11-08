@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Pane } from 'evergreen-ui'
+import { Heading, Pane } from 'evergreen-ui'
 
 import { useDispatch, useStore, useDispatchActions } from '../../store'
 import { getDiograph } from '../diograph/actions'
@@ -8,6 +8,7 @@ import { channels } from '../../../shared/constants'
 
 import { setFocus } from '../navigation/actions'
 import { activateButton, inactivateButton } from '../buttons/actions'
+import Fullscreen from '../../components/Fullscreen'
 
 const CHOOSE_FOLDER_LOCATION_BUTTON = 'CHOOSE_FOLDER_LOCATION_BUTTON'
 
@@ -53,39 +54,34 @@ const Welcome = () => {
   const onClick = () => dispatch(activateButton(CHOOSE_FOLDER_LOCATION_BUTTON))
 
   return (
-    <Pane
-      style={{
-        position: 'absolute',
-        top: 0,
-        width: '100%',
-        textAlign: 'center',
-      }}
-    >
+    <Fullscreen background="#fcd600" display="flex" alignItems="center" justifyContent="center">
       <Pane
-        style={{
-          fontSize: 40,
-          lineHeight: 3,
-        }}
+        height={200}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        flexWrap="wrap"
+        textAlign="center"
       >
-        Welcome to Diory!
+        <Heading size={900} width="100%">
+          Welcome to Diory!
+        </Heading>
+        <Pane
+          onClick={onClick}
+          style={{
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            width: '300px',
+            height: '80px',
+            padding: '0px 20px',
+            border: '3px solid',
+          }}
+        >
+          + Choose where your Diory is located on this Mac
+        </Pane>
       </Pane>
-      <Pane
-        onClick={onClick}
-        style={{
-          cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          margin: '0 auto',
-          width: '350px',
-          height: '80px',
-          padding: '0px 20px',
-          border: '3px solid',
-        }}
-      >
-        + Choose where your Diory folder is located on this Mac
-      </Pane>
-    </Pane>
+    </Fullscreen>
   )
 }
 
