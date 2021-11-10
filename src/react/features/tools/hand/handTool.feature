@@ -14,7 +14,8 @@ Feature: Hand tool
     And 'Diory 1' diory is in the hand
 
   Scenario: Add diory to hand when it is created
-    When I select create button
+    And I select import button
+    And I click element with id 'CREATE_TOOL_BUTTON'
     And I add 'Some diory' to text field
     And I click Done button
     Then 'Some diory' diory is in the hand
@@ -30,7 +31,7 @@ Feature: Hand tool
 
   Scenario: Take focus diory into hand
     Given  I take 'Diory 11' in focus
-    When I drag focus diory into hand
+    When I drag 'Diory 11' into hand
     Then 'Diory 11' diory is in the hand
 
   Scenario: Link diory from hand to view (=focus diory)
@@ -38,7 +39,7 @@ Feature: Hand tool
     And  I see 'Diory 12' in view
     And I drag 'Diory 11' into hand
     And I take 'Diory 12' in focus
-    When I drag 'hand-diory11' to 'background-diory12'
+    When I drag 'hand-diory11' to 'diory12'
     Then I see 'Diory 11' in view
 
   Scenario: Link diory from hand to linked diory
