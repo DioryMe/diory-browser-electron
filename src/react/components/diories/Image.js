@@ -1,7 +1,7 @@
 import React from 'react'
 import Box from 'ui-box'
 import PropTypes from 'prop-types'
-import { convertRelativePath, convertToFileUrl } from '../../utils'
+import { convertToFileUrl } from '../../utils'
 import { useStore } from '../../store'
 
 const defaultStyle = {
@@ -15,20 +15,18 @@ const defaultStyle = {
   backgroundRepeat: 'no-repeat',
 }
 
-const getBackgroundImage = (image, gradient, gradientRgba = '255, 255, 255, 0.5') =>
+const getBackgroundImage = (absoluteImageFileUrl, gradient, gradientRgba = '255, 255, 255, 0.5') =>
   gradient
-    ? `linear-gradient(rgba(${gradientRgba}),rgba(${gradientRgba})), url("${convertToFileUrl(
-        image
-      )}")`
-    : `url("${convertToFileUrl(image)}")`
+    ? `linear-gradient(rgba(${gradientRgba}),rgba(${gradientRgba})), url("${absoluteImageFileUrl}")`
+    : `url("${absoluteImageFileUrl}")`
 
 const Image = ({ image, gradient, gradientRgba, ...props }) => {
   const [{ folderLocation }] = useStore((state) => state.diograph)
-  const absoluteImageUrl = convertRelativePath(image, folderLocation)
+  const absoluteImageFileUrl = convertToFileUrl(image, folderLocation)
   return (
     <Box
       {...defaultStyle}
-      backgroundImage={getBackgroundImage(absoluteImageUrl, gradient, gradientRgba)}
+      backgroundImage={getBackgroundImage(absoluteImageFileUrl, gradient, gradientRgba)}
       {...props}
     />
   )

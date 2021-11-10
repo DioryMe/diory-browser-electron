@@ -1,16 +1,25 @@
 import fileUrl from 'file-url'
 
-export const convertToFileUrl = (imageUrl) => {
+export const convertToFileUrl = (relativePath, folderLocation) => {
   // Base64 images
-  if (RegExp('^data:').exec(imageUrl)) {
-    return imageUrl
+  if (RegExp(`^data:`).exec(relativePath)) {
+    return relativePath
+  }
+
+  // Test content
+  if (RegExp(`^diory-demo-content/`).exec(relativePath)) {
+    return `http://localhost:3300/${relativePath}`
   }
 
   // Images from internet
-  if (RegExp('^http(s)?://').exec(imageUrl)) {
-    return imageUrl
+  if (RegExp('^http(s)?://').exec(relativePath)) {
+    return relativePath
   }
 
-  // Convert to file:// url
-  return imageUrl && fileUrl(imageUrl)
+  // Already absolute path
+  if (RegExp(`^${folderLocation}`).exec(relativePath)) {
+    return fileUrl(relativePath)
+  }
+
+  return relativePath && fileUrl(`${folderLocation}/${relativePath}`)
 }
