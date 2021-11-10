@@ -5,7 +5,7 @@ fixture`GIVEN welcome room`.page('../../build/index.html')
 
 test('Import diory-demo-content with diograph.json and choose it again', async (t) => {
   const chooseFolderButton = Selector('div').withExactText(
-    '+ Choose where your Diory folder is located on this Mac'
+    '+ Choose where your Diory is located on this Mac'
   )
   const dioryCount = Selector('.ub-flx_1-0-360px').count
   const exampleFolderDiory = Selector('div').withExactText('example-folder')
