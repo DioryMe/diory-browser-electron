@@ -21,7 +21,7 @@ const SearchResults = (props) => {
     dispatch(createLink({ id: droppedId }, { id: draggedId }))
 
   return (
-    <Pane height="50%" overflow="auto" {...props}>
+    <Pane height="70%" overflow="auto" {...props}>
       {searchResults.map((diory) => (
         <SearchResult diory={diory} onClick={onClick} onDrop={onDrop} />
       ))}
