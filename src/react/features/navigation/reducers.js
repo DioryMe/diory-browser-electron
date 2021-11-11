@@ -20,11 +20,12 @@ export const initialState = {
   path: [],
 }
 
+// This is still used in useGetDiographEffect
 export const enterRoom = (state, { payload }) => ({
   ...state,
   roomId: payload.id,
   storyId: payload.id, // rootId
-  backward: [[]],
+  backward: [],
   forward: [],
   path: [payload.id],
 })
