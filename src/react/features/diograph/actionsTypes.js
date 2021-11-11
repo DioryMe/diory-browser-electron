@@ -1,6 +1,3 @@
-export const GET_ROOM = 'GET_ROOM'
-export const SAVE_ROOM = 'SAVE_ROOM'
-
 export const GET_DIOGRAPH = 'GET_DIOGRAPH'
 export const SAVE_DIOGRAPH = 'SAVE_DIOGRAPH'
 export const ADD_DIOGRAPH = 'ADD_DIOGRAPH'

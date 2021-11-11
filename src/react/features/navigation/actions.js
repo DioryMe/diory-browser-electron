@@ -1,5 +1,4 @@
 import {
-  ENTER_ROOM,
   GO_FORWARD,
   GO_BACKWARD,
   SELECT_CONTEXT,
@@ -8,11 +7,6 @@ import {
   GO_SIDE,
   SET_SELECTED_DIORY,
 } from './actionsTypes'
-
-export const enterRoom = ({ id }) => ({
-  type: ENTER_ROOM,
-  payload: { id },
-})
 
 export const selectContext = (context) => ({
   type: SELECT_CONTEXT,
