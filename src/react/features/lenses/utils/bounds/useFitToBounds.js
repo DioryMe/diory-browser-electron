@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useInitial } from '../../../../utils/useCompare'
 
-export const useFitToBounds = (ref, { center, min, max }, fitToBounds, config) => {
+export const useFitToBounds = (ref, { center, min, max }, config) => {
   const isInitial = useInitial(center)
   useEffect(() => {
     if (ref.current && isInitial) {
@@ -12,7 +12,7 @@ export const useFitToBounds = (ref, { center, min, max }, fitToBounds, config) =
       } else {
         ref.current.setView(config.DEFAULT_LOCATION, config.DEFAULT_ZOOM)
       }
-    } else if (ref.current && fitToBounds) {
+    } else if (ref.current) {
       if (min && max) {
         ref.current.flyToBounds([min, max], { maxZoom: config.MAX_ZOOM })
       } else if (center) {
@@ -21,5 +21,5 @@ export const useFitToBounds = (ref, { center, min, max }, fitToBounds, config) =
         ref.current.flyTo(config.DEFAULT_LOCATION, config.DEFAULT_ZOOM)
       }
     }
-  }, [ref, fitToBounds, isInitial, center, min, max, config])
+  }, [ref, isInitial, center, min, max, config])
 }

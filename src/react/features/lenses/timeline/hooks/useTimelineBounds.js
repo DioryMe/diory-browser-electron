@@ -1,7 +1,6 @@
-import { useCallback, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useFitToBounds } from '../../utils/bounds/useFitToBounds'
-import { useGetBounds } from '../../utils/bounds/useGetBounds'
-import { getDateLongitude, getIsoDate } from './getTimelineData'
+import { getDateLongitude } from './getTimelineData'
 
 const boundsConfig = {
   MAX_ZOOM: 20,
@@ -23,20 +22,7 @@ const useSetMaxBounds = (ref) => {
   }, [ref])
 }
 
-const useOnBoundsChange = (onBoundsChange) =>
-  useCallback(
-    ([end, start]) => {
-      onBoundsChange &&
-        onBoundsChange({
-          startDate: getIsoDate(start[1]),
-          endDate: getIsoDate(end[1]),
-        })
-    },
-    [onBoundsChange]
-  )
-
-export const useTimelineBounds = (mapRef, dioryLocationData, fitToBounds, onBoundsChange) => {
+export const useTimelineBounds = (mapRef, dioryLocationData) => {
   useSetMaxBounds(mapRef)
-  useFitToBounds(mapRef, dioryLocationData, fitToBounds, boundsConfig)
-  useGetBounds(mapRef, useOnBoundsChange(onBoundsChange))
+  useFitToBounds(mapRef, dioryLocationData, boundsConfig)
 }

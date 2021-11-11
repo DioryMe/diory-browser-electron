@@ -1,7 +1,6 @@
 import React from 'react'
 
 import Navigation from './features/navigation/Navigation'
-import Filters from './features/filters/Filters'
 import Lenses from './features/lenses/Lenses'
 import Tools from './features/tools/Tools'
 import Buttons from './features/buttons'
@@ -11,7 +10,6 @@ const Browser = () => (
   <div className="App">
     <Navigation />
     <Lenses />
-    <Filters />
     <Tools />
     <Buttons />
     <Search />

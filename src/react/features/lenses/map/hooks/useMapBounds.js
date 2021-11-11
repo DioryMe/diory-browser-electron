@@ -1,5 +1,4 @@
 import { useFitToBounds } from '../../utils/bounds/useFitToBounds'
-import { useGetBounds } from '../../utils/bounds/useGetBounds'
 
 const boundsConfig = {
   MAX_ZOOM: 14,
@@ -10,7 +9,6 @@ const boundsConfig = {
   },
 }
 
-export const useMapBounds = (mapRef, dioryLocationData, fitToBounds, onBoundsChange) => {
-  useFitToBounds(mapRef, dioryLocationData, fitToBounds, boundsConfig)
-  useGetBounds(mapRef, onBoundsChange)
+export const useMapBounds = (mapRef, dioryLocationData) => {
+  useFitToBounds(mapRef, dioryLocationData, boundsConfig)
 }

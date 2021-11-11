@@ -1,12 +1,11 @@
 import React from 'react'
 
-import { useLens } from '../useLens'
+import { useDiograph } from '../../diograph/useDiograph'
 import { useCreateTool } from '../../tools/createLocation'
 import { useDeleteTool } from '../../tools/delete'
 import { useFocusTool } from '../../tools/focus'
 import { useMoveTool, useMoveToolIsActive } from '../../tools/move'
 import { useUpdateTool } from '../../tools/update'
-import { useTimelineFilter } from '../../filters/timeline/useTimelineFilter'
 
 import TimelineView from './TimelineView'
 
@@ -18,7 +17,6 @@ const useTools = () => {
   const focusDiory = useFocusTool()
   const deleteDiory = useDeleteTool()
   const updateDiory = useUpdateTool()
-  const { active, onBoundsChange } = useTimelineFilter()
   return {
     onPopupClick: (diory) => {
       focusDiory(diory)
@@ -28,11 +26,9 @@ const useTools = () => {
     onMapClick: useCreateTool(),
     onDragEnd: useMoveTool(),
     enableDragging: useMoveToolIsActive(),
-    fitToBounds: !active,
-    onBoundsChange,
   }
 }
 
-const TimelineLens = () => <TimelineView {...useLens()} {...useTools()} />
+const TimelineLens = () => <TimelineView {...useDiograph()} {...useTools()} />
 
 export default withLensContainer('timeline', button)(TimelineLens)

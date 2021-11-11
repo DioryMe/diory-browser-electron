@@ -9,7 +9,7 @@ export const getLongitudeDate = (lng) =>
 export const getIsoDate = (lng) =>
   new Date((lng * Date.parse('1971-01-01T00:00:00.000Z')) / 10).toISOString()
 
-const getDioryDateLongitude = ({ story, memories, parent }) => {
+const getDioryDateLongitude = ({ story }) => {
   const { date } = story
   if (date) {
     return {

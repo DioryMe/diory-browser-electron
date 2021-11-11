@@ -19,16 +19,7 @@ import { getIsoDate, getTimelineData } from './hooks/getTimelineData'
 import BackgroundDiory from '../../../components/diories/BackgroundDiory'
 import Fullscreen from '../../../components/Fullscreen'
 
-const TimelineView = ({
-  story,
-  memories,
-  onMapClick,
-  onPopupClick,
-  enableDragging,
-  onDragEnd,
-  fitToBounds,
-  onBoundsChange,
-}) => {
+const TimelineView = ({ story, memories, onMapClick, onPopupClick, enableDragging, onDragEnd }) => {
   const timelineId = 'timelineId'
   const timeline = useTimeline(timelineId)
 
@@ -36,7 +27,7 @@ const TimelineView = ({
 
   const timelineData = getTimelineData({ story, memories })
 
-  useTimelineBounds(timeline, timelineData.story, fitToBounds, onBoundsChange)
+  useTimelineBounds(timeline, timelineData.story)
   const markers = useMarkers(timeline, null, timelineData.memories)
   useLinkIcons(timeline, markers.linkMarkers, story)
 
@@ -70,8 +61,6 @@ TimelineView.propTypes = {
   onMapClick: PropTypes.func,
   onPopupClick: PropTypes.func,
   onDragEnd: PropTypes.func,
-  fitToBounds: PropTypes.bool,
-  onBoundsChange: PropTypes.bool,
 }
 
 export default TimelineView
