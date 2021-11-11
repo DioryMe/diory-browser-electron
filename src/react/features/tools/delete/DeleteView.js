@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Modal from '../../../components/Modal'
 
-const DeleteView = ({ diory, memories, onDone, onCancel }) => (
+const DeleteView = ({ diory, links, onDone, onCancel }) => (
   <Modal
     title="Delete tool"
     onDone={onDone}
@@ -25,12 +25,12 @@ const DeleteView = ({ diory, memories, onDone, onCancel }) => (
         </div>
       </div>
     )}
-    {memories && memories.length > 0 && (
+    {links && links.length > 0 && (
       <div>
         <div>
           <b>Links</b>
         </div>
-        {Object.values(memories).map((deletedLink) => (
+        {Object.values(links).map((deletedLink) => (
           <div key={deletedLink.fromDiory && deletedLink.fromDiory.id}>
             &quot;
             {deletedLink.fromDiory && (deletedLink.fromDiory.text || deletedLink.fromDiory.id)}
@@ -49,7 +49,7 @@ DeleteView.propTypes = {
     id: PropTypes.string,
     text: PropTypes.string,
   }),
-  memories: PropTypes.arrayOf(
+  links: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
       text: PropTypes.string,
