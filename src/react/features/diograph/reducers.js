@@ -1,6 +1,4 @@
 import {
-  GET_ROOM,
-  SAVE_ROOM,
   GET_DIOGRAPH,
   SAVE_DIOGRAPH,
   ADD_DIOGRAPH,
@@ -126,6 +124,4 @@ export default createReducer({
   [DELETE_LINKS]: deleteLinks,
   [GET_DIOGRAPH]: getDiograph,
   ...promiseReducers(SAVE_DIOGRAPH, 'updated', 'saving', 'saved', 'error'),
-  ...promiseReducers(GET_ROOM, 'load', 'loading', 'loaded', 'error'),
-  ...promiseReducers(SAVE_ROOM, 'updated', 'saving', 'saved', 'error'),
 })

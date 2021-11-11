@@ -1,6 +1,4 @@
 import {
-  GET_ROOM,
-  SAVE_ROOM,
   GET_DIOGRAPH,
   SAVE_DIOGRAPH,
   ADD_DIOGRAPH,
@@ -11,15 +9,6 @@ import {
   DELETE_LINK,
   DELETE_LINKS,
 } from './actionsTypes'
-
-export const getRoom = (room) => ({
-  type: GET_ROOM,
-  payload: room,
-})
-
-export const saveRoom = () => ({
-  type: SAVE_ROOM,
-})
 
 export const getDiograph = (diograph, rootId, folderLocation) => ({
   type: GET_DIOGRAPH,
