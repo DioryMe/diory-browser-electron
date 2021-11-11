@@ -10,16 +10,15 @@ Feature: Delete tool
     Then I see delete button
     And I see 'Diory 11' in view
 
-  # TODO: Hand icon gets hidden under the tool bar (now when its on the right)
-  # Scenario: Diory in focus and its links are deleted
-  #   When I take 'Diory 14' in focus
-  #   And I select delete button
-  #   And I click 'Diory 14' focus diory
-  #   And I click Delete button
-  #   Then I do not see 'Diory 14' in view
-  #   And I see 'Diory 11' in view
-  #   And 'Diory 14' diory not in the store
-  #   And 'link14' link not in the store
+  Scenario: Diory in focus and its links are deleted
+    When I take 'Diory 14' in focus
+    And I select delete button
+    And I click 'Diory 14' focus diory
+    And I click Delete button
+    Then I do not see 'Diory 14' in view
+    And I see 'Diory 11' in view
+    And 'Diory 14' diory not in the store
+    And 'link14' link not in the store
 
   Scenario: Link to diory in view is deleted (not the diory!)
     When I select delete button
@@ -59,6 +58,3 @@ Feature: Delete tool
     Then I do not see 'Diory 11' in view
     And I do not see 'Diory 12' in view
     But I see 'Diory 14' in view
-
-
-
