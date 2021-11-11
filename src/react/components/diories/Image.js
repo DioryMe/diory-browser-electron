@@ -1,8 +1,10 @@
 import React from 'react'
 import Box from 'ui-box'
 import PropTypes from 'prop-types'
-import { convertToFileUrl } from '../../utils'
+
 import { useStore } from '../../store'
+
+import { convertToFileUrl } from '../../utils'
 
 const defaultStyle = {
   position: 'absolute',

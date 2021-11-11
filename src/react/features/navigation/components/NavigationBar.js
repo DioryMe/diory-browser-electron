@@ -1,6 +1,8 @@
 import React from 'react'
 import { Pane } from 'evergreen-ui'
+
 import { useStore, useDispatchActions } from '../../../store'
+import { resetStore } from '../../../store/reducer'
 import { toggleSearchBar } from '../../search/actions'
 import { getDiograph } from '../../diograph/actions'
 
@@ -8,7 +10,6 @@ import NavigationButtons from './NavigationButtons'
 import NavigationLenses from './NavigationLenses'
 // import TextFilter from '../../filters/text/TextFilter'
 import Icon from '../../../components/Icon'
-import { resetStore } from '../../../store/reducer'
 
 const NavigationBar = () => {
   const [{ active }] = useStore((state) => state.search)

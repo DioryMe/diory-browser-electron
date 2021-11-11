@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { useDispatchActions } from '../../../store'
-
 import { useLens } from '../useLens'
 import { useDeleteTool } from '../../tools/delete'
 import { useFocusTool } from '../../tools/focus'
@@ -9,15 +8,14 @@ import { useUpdateTool } from '../../tools/update'
 import { usePlayTool } from '../../tools/play/usePlayTool'
 import { useOpenTool } from '../../tools/open/useOpenTool'
 import { usePageTool } from '../../tools/page/usePageTool'
+import { useImportTools } from '../../tools/import/useImportTools'
+import { withLensContainer } from '../LensContainer'
 
 import { createLink } from '../../diograph/actions'
 
 import GridView from './GridView'
-import { useImportTools } from '../../tools/import/useImportTools'
 
 import button from './diory'
-
-import { withLensContainer } from '../LensContainer'
 
 const useTools = () => {
   const focusDiory = useFocusTool()
