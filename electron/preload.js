@@ -27,8 +27,11 @@ contextBridge.exposeInMainWorld('channelsApi', {
   [channels.IMPORT_FOLDER]: eventHandlerWrapper(channels.IMPORT_FOLDER, importFolderEventHandler),
   [channels.SAVE_ROOM]: eventHandlerWrapper(channels.SAVE_ROOM, saveRoomEventHandler),
   [channels.SAVE_HOME]: eventHandlerWrapper(channels.SAVE_HOME, saveHomeEventHandler),
-  showItemInFolder: (fullPath) => shell.showItemInFolder(fullPath),
-  openPath: (path) => shell.openPath(path),
+  showItemInFolder: (fullPath) =>
+    new Promise((resolve) => {
+      shell.showItemInFolder(fullPath)
+      resolve()
+    }),
   openExternal: (url) => shell.openExternal(url),
   showOpenDialog: () => ipcRenderer.invoke('showOpenDialog'),
   frontendLogger: frontendLogger.functions,

@@ -25,8 +25,8 @@ export const useOpenTool = () => {
   const open = active === OPEN_TOOL_BUTTON
   useEffect(() => {
     if (open) {
-      invokeChannel('openPath', contentUrl)
+      invokeChannel('showItemInFolder', contentUrl)
       dispatch(inactivateButton())
     }
-  }, [contentUrl, open])
+  }, [dispatch, contentUrl, open])
 }
