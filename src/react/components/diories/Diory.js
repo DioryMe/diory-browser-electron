@@ -2,8 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Pane, Icon } from 'evergreen-ui'
-import Image from './Image'
+
 import { useStore } from '../../store'
+
+import Image from './Image'
 import { convertRelativePath } from '../../utils'
 
 const defaultStyle = {
