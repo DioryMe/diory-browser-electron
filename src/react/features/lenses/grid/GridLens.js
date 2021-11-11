@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useDispatchActions } from '../../../store'
-import { useLens } from '../useLens'
+import { useDiograph } from '../../diograph/useDiograph'
 import { useDeleteTool } from '../../tools/delete'
 import { useFocusTool } from '../../tools/focus'
 import { useUpdateTool } from '../../tools/update'
@@ -43,6 +43,6 @@ const useTools = () => {
   }
 }
 
-const GridLens = () => <GridView {...useLens()} {...useTools()} />
+const GridLens = () => <GridView {...useDiograph()} {...useTools()} />
 
 export default withLensContainer('grid', button)(GridLens)

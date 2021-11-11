@@ -1,5 +1,4 @@
 import buttons from '../features/buttons/reducers'
-import filters from '../features/filters/reducers'
 import tools from '../features/tools/reducers'
 import lenses from '../features/lenses/reducers'
 import navigation from '../features/navigation/reducers'
@@ -18,7 +17,6 @@ const combineReducers = (reducers) => (state, action) =>
 
 const appReducer = combineReducers({
   buttons,
-  filters,
   tools,
   lenses,
   navigation,

@@ -5,9 +5,7 @@ import { addLensButtons, removeLensButtons } from './actions'
 export const useInitializeLensButtons = (buttons = []) => {
   const dispatch = useDispatch()
   useEffect(() => {
-    if (buttons.length) {
-      dispatch(addLensButtons(buttons))
-      return () => dispatch(removeLensButtons(buttons))
-    }
+    dispatch(addLensButtons(buttons))
+    return () => dispatch(removeLensButtons(buttons))
   }, [dispatch])
 }

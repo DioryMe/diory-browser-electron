@@ -8,14 +8,11 @@ import { getDiograph } from '../../diograph/actions'
 
 import NavigationButtons from './NavigationButtons'
 import NavigationLenses from './NavigationLenses'
-// import TextFilter from '../../filters/text/TextFilter'
 import Icon from '../../../components/Icon'
 
 const NavigationBar = () => {
   const [{ active }] = useStore((state) => state.search)
-
   const { dispatch } = useDispatchActions()
-
   return (
     <Pane
       display="flex"
@@ -53,7 +50,6 @@ const NavigationBar = () => {
           }}
         />
       </Pane>
-      {/* <TextFilter /> */}
     </Pane>
   )
 }
