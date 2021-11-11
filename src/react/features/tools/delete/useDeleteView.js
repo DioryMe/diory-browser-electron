@@ -70,8 +70,8 @@ export const useDeleteView = () => {
   }
 
   return {
-    story: deletedDiory,
-    memories: deletedLinks,
+    diory: deletedDiory,
+    links: deletedLinks,
     onDone: deleteDioryAndLinks,
     onCancel: resetView,
   }
