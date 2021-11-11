@@ -41,7 +41,9 @@ export const setFocus = (state, { payload }) => {
     ...state,
     contextId: undefined,
     storyId: payload.id,
-    backward: [[state.storyId, state.contextId], ...state.backward],
+    backward: state.storyId
+      ? [[state.storyId, state.contextId], ...state.backward]
+      : state.backward,
     forward: [],
     path: [...state.path, payload.id],
   }
