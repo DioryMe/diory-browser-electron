@@ -37,7 +37,7 @@ const useContexts = () => {
 
 export const useDiograph = () => {
   const [{ storyId, memoryId }] = useStore((state) => state.navigation)
-  const [{ diograph = {} /* , folderLocation */ }] = useStore((state) => state.diograph)
+  const [{ diograph = {} }] = useStore((state) => state.diograph)
 
   const { context, contexts } = useContexts()
   const contextId = context && context.id

@@ -9,11 +9,9 @@ const LensContainer = ({ id, buttons, children }) => {
   return id === selectedLensId ? children : null
 }
 
-// eslint-disable-next-line arrow-body-style
-export const withLensContainer = (id, button) => (Component) => () => {
-  return (
+export const withLensContainer = (id, button) => (Component) => () =>
+  (
     <LensContainer id={id} buttons={[button]}>
       <Component />
     </LensContainer>
   )
-}
