@@ -32,7 +32,9 @@ test('Delete diory and check diory.data relative path', async (t) => {
     // Delete diory
     .click('[data-testid="tools-button"]')
     .click('[data-testid="delete-button"]')
+    .takeScreenshot('testcafe-e2e-2/delete-tool-activated')
     .click(someFolderDiory)
+    .takeScreenshot('testcafe-e2e-2/delete-tool-modal')
     .click(deleteButton)
     .click('[data-testid="tools-button"]') // Close tool bar
     .wait(1000) // Wait for SAVE_ROOM to complete and possibly raise an error
@@ -41,7 +43,9 @@ test('Delete diory and check diory.data relative path', async (t) => {
     // Check diory.data
     .click('[data-testid="tools-button"]')
     .click('[data-testid="update-button"]')
+    .takeScreenshot('testcafe-e2e-2/update-tool-activated')
     .click(someMusicDiory)
+    .takeScreenshot('testcafe-e2e-2/update-tool-modal')
     .expect(dataFieldValue)
     .eql(
       '[{"@context":"https://schema.org","@type":"AudioObject","contentUrl":"testcafe-diograph-folder/some-music.mp3","encodingFormat":"audio/mpeg"}]'

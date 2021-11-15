@@ -12,21 +12,26 @@ test('Import diory-demo-content', async (t) => {
   const doneButton = Selector('button').withText('Done')
 
   await t
+    .takeScreenshot('testcafe-e2e-1/welcome-screen.png')
     .click(chooseFolderButton)
     .expect(dioryCount)
     .eql(0) // Welcome screen doesn't have any diories
     // Import diory-demo-content folder
     .click('[data-testid="tools-button"]')
+    .takeScreenshot('testcafe-e2e-1/home-with-tools.png')
     .click('[data-testid="import-button"]')
+    .takeScreenshot('testcafe-e2e-1/import-tools.png')
     .click('#FOLDER_IMPORT')
     .expect(dioryCount)
     .eql(1)
     .click(importedFolderDiory)
+    .takeScreenshot('testcafe-e2e-1/imported-folder-story.png')
     .expect(dioryCount)
     .eql(8)
     .click('[data-testid="tools-button"]')
     .click('[data-testid="import-button"]')
     .click('#CREATE_TOOL_BUTTON')
+    .takeScreenshot('testcafe-e2e-1/create-tool.png')
     .typeText('input#text', 'New diory')
     .click(doneButton)
     .wait(1000) // Wait for SAVE_ROOM to complete and possibly raise an error

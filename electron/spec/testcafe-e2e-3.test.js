@@ -26,6 +26,7 @@ test('Import diory-demo-content with diograph.json and choose it again', async (
     .eql(9)
     // Re-choose example-folder
     .click(settingsButton)
+    .takeScreenshot('testcafe-e2e-3/re-choose-example-folder')
     .click(chooseFolderButton)
     .expect(dioryCount)
     .eql(9)
