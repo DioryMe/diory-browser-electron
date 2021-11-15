@@ -12,7 +12,7 @@ function idIs(contextId) {
   return ({ id }) => id === contextId
 }
 
-const useSelectedContext = (contexts) => {
+const useContext = (contexts) => {
   const [{ contextId, backward }] = useStore((state) => state.navigation)
 
   if (!contexts.length) {
@@ -30,7 +30,7 @@ const useContexts = () => {
 
   const contexts = useLinkedDiorys(storyId, reverseDiograph)
   return {
-    context: useSelectedContext(contexts),
+    context: useContext(contexts),
     contexts,
   }
 }

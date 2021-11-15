@@ -1,5 +1,5 @@
 import { useStore, useDispatch } from '../../../store'
-import { goBackward, setSelectedDiory } from '../../navigation/actions'
+import { goBackward, selectMemory } from '../../navigation/actions'
 import { deleteDiory, deleteLinks } from '../../diograph/actions'
 import { useDiograph } from '../../diograph/useDiograph'
 import { inactivateButton } from '../../buttons/actions'
@@ -54,7 +54,7 @@ export const useDeleteView = () => {
   }
 
   const resetView = () => {
-    dispatch(setSelectedDiory())
+    dispatch(selectMemory())
   }
 
   const deleteDioryAndLinks = () => {

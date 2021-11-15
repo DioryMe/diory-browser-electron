@@ -4,7 +4,7 @@ import { initialState } from '../../../store/initialState'
 import { deleteDiory, deleteLinks } from '../../diograph/actions'
 import { useDiograph } from '../../diograph/useDiograph'
 import { inactivateButton } from '../../buttons/actions'
-import { goBackward, setSelectedDiory } from '../../navigation/actions'
+import { goBackward, selectMemory } from '../../navigation/actions'
 
 import deleteViewFixtureDiograph from './deleteViewFixtureDiograph'
 
@@ -44,7 +44,7 @@ describe('useDeleteView', () => {
       expect(mockDispatch).toHaveBeenCalledWith(
         deleteLinks([{ fromDiory: focusDiory, toDiory: linkDiory }])
       )
-      expect(mockDispatch).toHaveBeenCalledWith(setSelectedDiory())
+      expect(mockDispatch).toHaveBeenCalledWith(selectMemory())
       expect(mockDispatch).toHaveBeenCalledTimes(2)
     })
 
@@ -65,7 +65,7 @@ describe('useDeleteView', () => {
       expect(mockDispatch).toHaveBeenCalledWith(deleteDiory(focusDiory))
       expect(mockDispatch).toHaveBeenCalledWith(deleteLinks(expectedDeleteLinksArguments))
       expect(mockDispatch).toHaveBeenCalledWith(goBackward())
-      expect(mockDispatch).toHaveBeenCalledWith(setSelectedDiory())
+      expect(mockDispatch).toHaveBeenCalledWith(selectMemory())
       expect(mockDispatch).toHaveBeenCalledWith(inactivateButton())
       expect(mockDispatch).toHaveBeenCalledTimes(5)
     })
@@ -79,7 +79,7 @@ describe('useDeleteView', () => {
       expect(mockDispatch).toHaveBeenCalledWith(deleteDiory(focusDiory))
       expect(mockDispatch).toHaveBeenCalledWith(deleteLinks([]))
       expect(mockDispatch).toHaveBeenCalledWith(goBackward())
-      expect(mockDispatch).toHaveBeenCalledWith(setSelectedDiory())
+      expect(mockDispatch).toHaveBeenCalledWith(selectMemory())
       expect(mockDispatch).toHaveBeenCalledWith(inactivateButton())
       expect(mockDispatch).toHaveBeenCalledTimes(5)
     })

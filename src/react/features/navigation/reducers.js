@@ -1,11 +1,11 @@
 import {
-  GO_SIDE,
-  GO_HOME,
   SELECT_CONTEXT,
   SELECT_STORY,
+  SELECT_MEMORY,
   GO_BACKWARD,
   GO_FORWARD,
-  SET_SELECTED_DIORY,
+  GO_SIDE,
+  GO_HOME,
 } from './actionsTypes'
 
 import { createReducer } from '../../store'
@@ -20,13 +20,13 @@ export const initialState = {
 }
 
 export const selectContext = (state, { payload }) => {
-  if (payload.context.id === state.contextId) {
+  if (payload.id === state.contextId) {
     return state
   }
 
   return {
     ...state,
-    contextId: payload.context.id,
+    contextId: payload.id,
     backward: [[state.storyId, state.contextId], ...state.backward],
     forward: [],
   }
@@ -48,6 +48,11 @@ export const selectStory = (state, { payload }) => {
     path: [...state.path, payload.id],
   }
 }
+
+export const selectMemory = (state, { payload }) => ({
+  ...state,
+  memoryId: payload.id,
+})
 
 export const goSide = (state, { payload }) => ({
   ...state,
@@ -91,17 +96,12 @@ export const goHome = (state) => ({
   path: [],
 })
 
-export const setSelectedDiory = (state, { payload }) => ({
-  ...state,
-  memoryId: payload.diory.id,
-})
-
 export default createReducer({
   [SELECT_CONTEXT]: selectContext,
   [SELECT_STORY]: selectStory,
+  [SELECT_MEMORY]: selectMemory,
   [GO_BACKWARD]: goBackward,
   [GO_FORWARD]: goForward,
-  [GO_HOME]: goHome,
   [GO_SIDE]: goSide,
-  [SET_SELECTED_DIORY]: setSelectedDiory,
+  [GO_HOME]: goHome,
 })
