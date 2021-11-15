@@ -2,7 +2,7 @@ import {
   GO_FORWARD,
   GO_BACKWARD,
   SELECT_CONTEXT,
-  SET_FOCUS,
+  SELECT_STORY,
   GO_HOME,
   GO_SIDE,
   SET_SELECTED_DIORY,
@@ -13,8 +13,8 @@ export const selectContext = (context) => ({
   payload: { context },
 })
 
-export const setFocus = ({ id }) => ({
-  type: SET_FOCUS,
+export const selectStory = ({ id }) => ({
+  type: SELECT_STORY,
   payload: { id },
 })
 

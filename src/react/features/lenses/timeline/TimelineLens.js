@@ -3,7 +3,7 @@ import React from 'react'
 import { useDiograph } from '../../diograph/useDiograph'
 import { useCreateTool } from '../../tools/createLocation'
 import { useDeleteTool } from '../../tools/delete'
-import { useFocusTool } from '../../tools/focus'
+import { useStoryTool } from '../../tools/story'
 import { useMoveTool, useMoveToolIsActive } from '../../tools/move'
 import { useUpdateTool } from '../../tools/update'
 
@@ -14,12 +14,12 @@ import { withLensContainer } from '../LensContainer'
 import button from './diory'
 
 const useTools = () => {
-  const focusDiory = useFocusTool()
+  const selectStory = useStoryTool()
   const deleteDiory = useDeleteTool()
   const updateDiory = useUpdateTool()
   return {
     onPopupClick: (diory) => {
-      focusDiory(diory)
+      selectStory(diory)
       deleteDiory(diory)
       updateDiory(diory)
     },

@@ -2,7 +2,7 @@ import {
   GO_SIDE,
   GO_HOME,
   SELECT_CONTEXT,
-  SET_FOCUS,
+  SELECT_STORY,
   GO_BACKWARD,
   GO_FORWARD,
   SET_SELECTED_DIORY,
@@ -32,7 +32,7 @@ export const selectContext = (state, { payload }) => {
   }
 }
 
-export const setFocus = (state, { payload }) => {
+export const selectStory = (state, { payload }) => {
   if (payload.id === state.storyId) {
     return state
   }
@@ -84,7 +84,8 @@ export const goForward = (state) => {
 
 export const goHome = (state) => ({
   ...state,
-  focusId: null,
+  storyId: undefined,
+  contextId: undefined,
   backward: [[state.storyId, state.contextId], ...state.backward],
   forward: [],
   path: [],
@@ -97,7 +98,7 @@ export const setSelectedDiory = (state, { payload }) => ({
 
 export default createReducer({
   [SELECT_CONTEXT]: selectContext,
-  [SET_FOCUS]: setFocus,
+  [SELECT_STORY]: selectStory,
   [GO_BACKWARD]: goBackward,
   [GO_FORWARD]: goForward,
   [GO_HOME]: goHome,

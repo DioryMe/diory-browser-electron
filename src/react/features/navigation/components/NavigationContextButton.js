@@ -4,14 +4,14 @@ import { Button, Pane } from 'evergreen-ui'
 import { useDispatchActions } from '../../../store'
 import { useDiograph } from '../../diograph/useDiograph'
 
-import { setFocus } from '../actions'
+import { selectStory } from '../actions'
 
 const NavigationContextButton = () => {
   const { context } = useDiograph()
   const { dispatch } = useDispatchActions()
   return context ? (
     <Pane alignSelf="center">
-      <Button appearance="minimal" onClick={() => context && dispatch(setFocus(context))}>
+      <Button appearance="minimal" onClick={() => context && dispatch(selectStory(context))}>
         {context.text}
       </Button>
     </Pane>

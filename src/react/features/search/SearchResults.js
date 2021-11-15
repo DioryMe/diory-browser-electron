@@ -2,7 +2,7 @@ import React from 'react'
 import { Pane } from 'evergreen-ui'
 
 import { useDispatch, useStore } from '../../store'
-import { setFocus } from '../navigation/actions'
+import { selectStory } from '../navigation/actions'
 import { createLink } from '../diograph/actions'
 import { toggleSearchBar } from './actions'
 
@@ -13,7 +13,7 @@ const SearchResults = (props) => {
   const dispatch = useDispatch()
 
   const onClick = (dioryId) => {
-    dispatch(setFocus({ id: dioryId }))
+    dispatch(selectStory({ id: dioryId }))
     dispatch(toggleSearchBar())
   }
 
