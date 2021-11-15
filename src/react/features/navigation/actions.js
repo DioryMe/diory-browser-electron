@@ -5,16 +5,21 @@ import {
   SELECT_STORY,
   GO_HOME,
   GO_SIDE,
-  SET_SELECTED_DIORY,
+  SELECT_MEMORY,
 } from './actionsTypes'
 
-export const selectContext = (context) => ({
+export const selectContext = ({ id } = {}) => ({
   type: SELECT_CONTEXT,
-  payload: { context },
+  payload: { id },
 })
 
 export const selectStory = ({ id }) => ({
   type: SELECT_STORY,
+  payload: { id },
+})
+
+export const selectMemory = ({ id } = {}) => ({
+  type: SELECT_MEMORY,
   payload: { id },
 })
 
@@ -27,9 +32,4 @@ export const goHome = () => ({ type: GO_HOME })
 export const goSide = ({ storyId }) => ({
   type: GO_SIDE,
   payload: { storyId },
-})
-
-export const setSelectedDiory = (diory = {}) => ({
-  type: SET_SELECTED_DIORY,
-  payload: { diory },
 })

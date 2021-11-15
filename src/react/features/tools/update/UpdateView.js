@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { useDispatch } from '../../../store'
 
 import { inactivateButton } from '../../buttons/actions'
-import { setSelectedDiory } from '../../navigation/actions'
+import { selectMemory } from '../../navigation/actions'
 
 import Modal from '../../../components/Modal'
 import TextInput from '../../../components/TextInput'
@@ -22,7 +22,7 @@ const useUpdateView = (diory = {}) => {
     updatedDiory,
     resetView: () => {
       dispatch(inactivateButton())
-      dispatch(setSelectedDiory())
+      dispatch(selectMemory())
       setValues({})
     },
   }
