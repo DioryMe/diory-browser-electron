@@ -1,0 +1,10 @@
+{
+  "name": "visual-regression-compare",
+  "version": "0.1",
+  "productName": "Visual Regression compare tool",
+  "main": "visual-regression-compare.js",
+  "private": true,
+  "dependencies": {
+    "rembrandt": "^0.1.3"
+  }
+}

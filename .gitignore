@@ -34,3 +34,6 @@ src/react/utils/cypress/recordings
 out
 
 .husky/prepare-commit-msg
+
+/screenshots/diffs
+/screenshots/test
