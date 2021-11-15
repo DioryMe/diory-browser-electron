@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 
 import { useDispatchActions } from '../../store'
 
-import { setFocus } from '../navigation/actions'
+import { selectStory } from '../navigation/actions'
 import { getDiograph } from './actions'
 
 import { invokeChannel } from '../../client/client'
@@ -13,7 +13,7 @@ export const useGetDiographEffect = () => {
 
   useEffect(() => {
     invokeChannel(channels.GET_DIOGRAPH).then(({ diograph, rootId, folderLocation }) => {
-      dispatch(setFocus({ id: rootId }))
+      dispatch(selectStory({ id: rootId }))
       dispatch(getDiograph(diograph, rootId, folderLocation))
     })
   }, [dispatch])

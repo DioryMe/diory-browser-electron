@@ -4,7 +4,7 @@ import { Pane, Pill, SelectMenu } from 'evergreen-ui'
 import { useDispatchActions } from '../../../store'
 import { useDiograph } from '../../diograph/useDiograph'
 
-import { setFocus } from '../actions'
+import { selectStory } from '../actions'
 
 const useNavigationContexts = () => {
   const { context, contexts } = useDiograph()
@@ -15,7 +15,7 @@ const useNavigationContexts = () => {
 
   return {
     contexts: otherContexts,
-    onContextLick: ({ value }) => dispatch(setFocus({ id: value })),
+    onContextLick: ({ value }) => dispatch(selectStory({ id: value })),
   }
 }
 

@@ -13,21 +13,21 @@ export const useGoSide = () => {
     return {}
   }
 
-  const focusIndex = storyIds.indexOf(storyId)
-  if (focusIndex === 0) {
+  const storyIndex = storyIds.indexOf(storyId)
+  if (storyIndex === 0) {
     return {
-      goRight: () => dispatch(goSide({ storyId: storyIds[focusIndex + 1] })),
+      goRight: () => dispatch(goSide({ storyId: storyIds[storyIndex + 1] })),
     }
   }
 
-  if (focusIndex === storyIds.length - 1) {
+  if (storyIndex === storyIds.length - 1) {
     return {
-      goLeft: () => dispatch(goSide({ storyId: storyIds[focusIndex - 1] })),
+      goLeft: () => dispatch(goSide({ storyId: storyIds[storyIndex - 1] })),
     }
   }
 
   return {
-    goRight: () => dispatch(goSide({ storyId: storyIds[focusIndex + 1] })),
-    goLeft: () => dispatch(goSide({ storyId: storyIds[focusIndex - 1] })),
+    goRight: () => dispatch(goSide({ storyId: storyIds[storyIndex + 1] })),
+    goLeft: () => dispatch(goSide({ storyId: storyIds[storyIndex - 1] })),
   }
 }

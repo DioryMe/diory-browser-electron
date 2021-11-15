@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useDiograph } from '../../diograph/useDiograph'
-import { useFocusTool } from '../../tools/focus'
+import { useStoryTool } from '../../tools/story'
 import { useCreateTool } from '../../tools/createLocation'
 import { useDeleteTool } from '../../tools/delete'
 import { useMoveTool, useMoveToolIsActive } from '../../tools/move'
@@ -13,11 +13,11 @@ import { withLensContainer } from '../LensContainer'
 import button from './diory'
 
 const useTools = () => {
-  const focusDiory = useFocusTool()
+  const selectStory = useStoryTool()
   const deleteDiory = useDeleteTool()
   return {
     onPopupClick: (diory) => {
-      focusDiory(diory)
+      selectStory(diory)
       deleteDiory(diory)
     },
     onMapClick: useCreateTool(),

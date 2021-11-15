@@ -6,7 +6,7 @@ import { getDiograph } from '../diograph/actions'
 import { invokeChannel } from '../../client/client'
 import { channels } from '../../../shared/constants'
 
-import { setFocus } from '../navigation/actions'
+import { selectStory } from '../navigation/actions'
 import { activateButton, inactivateButton } from '../buttons/actions'
 import Fullscreen from '../../components/Fullscreen'
 
@@ -21,7 +21,7 @@ export const useChooseFolderLocationButton = () => {
       const diographFolderPath = result.filePaths[0]
       invokeChannel(channels.CHOOSE_FOLDER_LOCATION, diographFolderPath).then(
         ({ diograph, rootId, folderLocation }) => {
-          dispatch(setFocus({ id: rootId }))
+          dispatch(selectStory({ id: rootId }))
           dispatch(getDiograph(diograph, rootId, folderLocation))
         }
       )

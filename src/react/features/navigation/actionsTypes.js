@@ -1,5 +1,5 @@
 export const SELECT_CONTEXT = 'SELECT_CONTEXT'
-export const SET_FOCUS = 'SET_FOCUS'
+export const SELECT_STORY = 'SELECT_STORY'
 export const GO_BACKWARD = 'GO_BACKWARD'
 export const GO_FORWARD = 'GO_FORWARD'
 export const GO_HOME = 'GO_HOME'
