@@ -20,9 +20,9 @@ const getDioryDateLongitude = ({ story }) => {
   return {}
 }
 
-const getDioryTimelineData = ({ story = {}, memories = [], parent }) => {
+const getDioryTimelineData = ({ story = {}, memories = [] }) => {
   const dateLongitudes = memories.filter(({ date }) => date).map(getDateLongitude)
-  const { lng } = getDioryDateLongitude({ story, memories, parent })
+  const { lng } = getDioryDateLongitude({ story })
   return {
     id: story.id,
     center: lng && {
@@ -40,12 +40,12 @@ const getDioryTimelineData = ({ story = {}, memories = [], parent }) => {
   }
 }
 
-const getLinksTimelineData = ({ story = {}, memories = [] }) =>
+const getLinksTimelineData = ({ memories = [] }) =>
   memories
-    .map((child) => getDioryTimelineData({ story: child, memories, parent: story }))
+    .map((memory) => getDioryTimelineData({ story: memory, memories }))
     .filter(({ center }) => !!center)
 
 export const getTimelineData = ({ story, memories }) => ({
   story: getDioryTimelineData({ story, memories }),
-  memories: getLinksTimelineData({ story, memories }),
+  memories: getLinksTimelineData({ memories }),
 })

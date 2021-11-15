@@ -37,12 +37,12 @@ export const getDioryLocationData = ({ story = {}, memories = [] }) => {
   }
 }
 
-export const getLinksLocationData = ({ story, memories }) =>
+export const getLinksLocationData = ({ memories }) =>
   memories
-    .map((child) => getDioryLocationData({ story: child, memories, parent: story }))
+    .map((memory) => getDioryLocationData({ story: memory, memories }))
     .filter(({ center }) => !!center)
 
 export const getLocationData = ({ story, memories }) => ({
   story: getDioryLocationData({ story, memories }),
-  memories: getLinksLocationData({ story, memories }),
+  memories: getLinksLocationData({ memories }),
 })
