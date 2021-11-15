@@ -1,6 +1,6 @@
 # !/bin/bash
 
-# Always run until the end & cleanup (=ignore failures=
+# Always run until the end & cleanup (=ignore failures)
 set +e
 
 # Build frontend changes before running tests (although not necessary on CI pipeline)
