@@ -1,10 +1,9 @@
 image:
   - macos-mojave
   # FIXME: Relative path E2E test fails on Windows
-  # - Visual Studio 2019
+  # - Visual Studio 2019 # could be 2022 as well
 environment:
   CI: false
-  TESTCAFE_TEST_ENV: "process.env.PWD=process.env.APPVEYOR_BUILD_FOLDER"
 install:
   - npm install -g yarn
   - yarn global add testcafe electron
@@ -13,3 +12,7 @@ before_build:
   - mkdir tmp
 build_script:
   - bash ./run-e2e-tests.sh
+artifacts:
+  - path: tmp/screenshots
+    name: vr
+    type: zip
