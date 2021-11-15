@@ -16,11 +16,6 @@ const { argv } = require('process')
 
 const baselineImage = argv[2]
 const newlyTakenImage = argv[3]
-// const testFolder = argv[2]
-// const screenshotName = argv[3]
-// const screenshotRelativePath = `${testFolder}/${screenshotName}`
-// const baselineImage = `./screenshots/${screenshotRelativePath}`
-// const newlyTakenImage = `./tmp/screenshots/${screenshotRelativePath}`
 
 if (!fs.existsSync(baselineImage)) {
   console.log("ERROR: Path didn't exist:", baselineImage)
@@ -47,7 +42,6 @@ rembrandt.compare().then((result) => {
   const passOrFail = result.passed ? 'PASS' : 'FAIL'
   const difference = result.differences
   const fileName = `./diffs/${passOrFail}-${difference}-difference.png`
-  // const fileName = `./tmp/screenshots/${passOrFail}-${difference}-${screenshotName}-difference.png`
   fs.writeFileSync(fileName, result.compositionImage)
 
   console.log(`${passOrFail}, Pixel Difference: ${difference}, ${fileName}`)

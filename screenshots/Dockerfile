@@ -1,4 +1,3 @@
-
 # Heavily influenced by https://github.com/geekduck/docker-node-canvas
 FROM node:14
 
