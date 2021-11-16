@@ -2,38 +2,42 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
-import { useStore } from '../../store'
-
 import Image from './Image'
-import { convertRelativePath } from '../../utils'
+import Diory from './Diory'
+import Fullscreen from '../Fullscreen'
 
-const BackgroundDiory = ({ diory, gradient, gradientRgba, onClick, children, ...props }) => {
-  const { id, image, style: dioryStyle = {} } = diory
-  const { image: imageStyle, ...style } = dioryStyle
+const blurStyle = {
+  filter: 'blur(20px)',
+  top: '-20px',
+  left: '-20px',
+  bottom: '-20px',
+  right: '-20px',
+}
 
-  const [{ folderLocation }] = useStore((state) => state.diograph)
+const BackgroundDiory = ({ diory, onClick, children, ...props }) => {
+  const style = {
+    ...diory.style,
+    image: {
+      ...(diory.style && diory.style.image),
+      ...blurStyle,
+    },
+  }
 
   return (
     <Pane
-      id={`background-${id}`}
+      id={`background-${diory.id}`}
       height="100%"
       display="flex"
       flexWrap="wrap"
       margin={24}
       alignContent="flex-start"
-      style={style}
       {...props}
     >
-      {image && (
-        <Image
-          image={convertRelativePath(image, folderLocation)}
-          zIndex={-1}
-          position="fixed"
-          gradient={gradient}
-          gradientRgba={gradientRgba}
-          {...imageStyle}
-        />
-      )}
+      <Fullscreen marginTop={48}>
+        <Diory diory={{ ...diory, style }}>
+          <Image image={diory.image} backgroundSize="contain" />
+        </Diory>
+      </Fullscreen>
       {children}
     </Pane>
   )
@@ -46,8 +50,6 @@ BackgroundDiory.propTypes = {
     image: PropTypes.string,
     style: PropTypes.object,
   }),
-  gradient: PropTypes.bool,
-  gradientRgba: PropTypes.string,
   onClick: PropTypes.func,
   children: PropTypes.node,
 }
