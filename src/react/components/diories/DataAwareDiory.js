@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { useStore } from '../../store'
 
 import BackgroundDiory from './BackgroundDiory'
-import Diory from './Diory'
 import Video from '../content/Video'
 import Audio from '../content/Audio'
 import Pdf from '../content/Pdf'
@@ -36,7 +35,7 @@ const DataAwareDiory = ({ playRef, page, diory }) => {
         return <WebPage address={url} />
       }
 
-      return <Diory diory={diory} />
+      return <BackgroundDiory diory={diory} />
   }
 }
 
