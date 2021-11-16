@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
-import { Pane } from 'evergreen-ui'
 
 import { useDiograph } from '../../diograph/useDiograph'
 
@@ -27,18 +26,18 @@ const GridView = ({ playRef, story, memories, page, onDrop, onClick }) => {
   return (
     <Background>
       <Fullscreen marginTop={48}>
-        <DragDropBackground onClick={() => onClick({ diory: story })} diory={story} onDrop={onDrop}>
-          <DataAwareDiory page={page} playRef={playRef} diory={story} />
-        </DragDropBackground>
+        <DataAwareDiory page={page} playRef={playRef} diory={story} />
       </Fullscreen>
-      <Pane ref={storyRef} width="100%" />
-      <DiorysGrid
-        ref={memoryRef}
-        diorys={memories}
+      <DragDropBackground
+        ref={storyRef}
+        position="relative"
+        width="100%"
+        height="80vh"
+        onClick={() => onClick({ diory: story })}
+        diory={story}
         onDrop={onDrop}
-        onClick={onClick}
-        marginTop="80vh"
       />
+      <DiorysGrid ref={memoryRef} diorys={memories} onDrop={onDrop} onClick={onClick} />
       {!!memories.length && (
         <ScrollVertically
           data-testid="navigate-down"
