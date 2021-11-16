@@ -26,7 +26,7 @@ const GridView = ({ playRef, story, memories, page, onDrop, onClick }) => {
         diorys={memories}
         onDrop={onDrop}
         onClick={onClick}
-        marginTop="70%"
+        marginTop="80vh"
       />
       {!!memories.length && (
         <ScrollVertically
