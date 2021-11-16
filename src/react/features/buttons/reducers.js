@@ -10,6 +10,7 @@ import { createReducer } from '../../store'
 export const initialState = {
   buttons: {},
   active: null,
+  activeButton: {},
   open: false,
 }
 
@@ -41,11 +42,13 @@ const openButtons = (state) => ({
 const activateButton = (state, { payload: { buttonId } }) => ({
   ...state,
   active: buttonId,
+  activeButton: state.buttons[buttonId],
 })
 
 const inactivateButton = (state) => ({
   ...state,
   active: null,
+  activeButton: {},
   open: false,
 })
 

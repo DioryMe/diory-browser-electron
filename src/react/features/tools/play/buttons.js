@@ -9,6 +9,7 @@ export const buttons = {
       icon: 'play',
       testid: 'play',
       visible: true,
+      enableDioryClick: true,
     },
   },
   pause: {
@@ -18,6 +19,7 @@ export const buttons = {
       icon: 'pause',
       testid: 'pause',
       visible: true,
+      enableDioryClick: true,
     },
   },
 }
