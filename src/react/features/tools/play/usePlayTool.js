@@ -5,7 +5,7 @@ import { buttons, PLAY_BUTTON, PAUSE_BUTTON } from './buttons'
 
 import { addButtons, inactivateButton, removeButtons } from '../../buttons/actions'
 
-const useAddAndRemoveButtons = (playElement) => {
+const useShowButtons = (playElement) => {
   const { dispatch } = useDispatchActions()
   useEffect(() => {
     if (playElement) {
@@ -17,7 +17,7 @@ const useAddAndRemoveButtons = (playElement) => {
   }, [dispatch, playElement])
 }
 
-const useToggleButtons = (playElement) => {
+const useTogglePlayAndPause = (playElement) => {
   const [{ active }] = useStore((state) => state.buttons)
   const isPlaying = active === PLAY_BUTTON
   const isPause = active === PAUSE_BUTTON
@@ -45,8 +45,8 @@ export const usePlayTool = () => {
     setPlayElement(node)
   }, [])
 
-  useAddAndRemoveButtons(playElement)
-  useToggleButtons(playElement)
+  useShowButtons(playElement)
+  useTogglePlayAndPause(playElement)
 
   return {
     playRef,
