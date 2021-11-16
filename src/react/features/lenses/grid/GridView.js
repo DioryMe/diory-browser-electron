@@ -1,6 +1,8 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
+
+import { useDiograph } from '../../diograph/useDiograph'
 
 import Background from '../../../components/Background'
 import DiorysGrid from '../../../components/DiorysGrid'
@@ -9,9 +11,18 @@ import Fullscreen from '../../../components/Fullscreen'
 import DataAwareDiory from '../../../components/diories/DataAwareDiory'
 import DragDropBackground from '../../../components/DragDropBackground'
 
+const useScrollToTopOnStoryChange = (elementRef) => {
+  const { story } = useDiograph()
+  useEffect(() => {
+    elementRef.current.scrollIntoView()
+  }, [elementRef, story])
+}
+
 const GridView = ({ playRef, story, memories, page, onDrop, onClick }) => {
   const storyRef = useRef()
   const memoryRef = useRef()
+
+  useScrollToTopOnStoryChange(storyRef)
 
   return (
     <Background>
