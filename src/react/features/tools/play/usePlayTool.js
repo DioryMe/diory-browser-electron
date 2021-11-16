@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useDispatchActions, useStore } from '../../../store'
 import { buttons, PLAY_BUTTON, PAUSE_BUTTON } from './buttons'
 
-import { addButtons, removeButtons } from '../../buttons/actions'
+import { addButtons, inactivateButton, removeButtons } from '../../buttons/actions'
 
 const useAddAndRemoveButtons = (playElement) => {
   const { dispatch } = useDispatchActions()
@@ -12,6 +12,7 @@ const useAddAndRemoveButtons = (playElement) => {
       dispatch(addButtons([buttons.pause]))
     } else {
       dispatch(removeButtons([buttons.play, buttons.pause]))
+      dispatch(inactivateButton())
     }
   }, [dispatch, playElement])
 }
