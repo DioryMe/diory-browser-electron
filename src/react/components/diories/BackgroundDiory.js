@@ -25,7 +25,6 @@ const BackgroundDiory = ({ diory, onClick, children, ...props }) => {
 
   return (
     <Pane
-      id={`background-${diory.id}`}
       height="100%"
       display="flex"
       flexWrap="wrap"

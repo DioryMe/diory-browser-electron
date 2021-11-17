@@ -36,6 +36,7 @@ const GridView = ({ playRef, story, memories, page, onDrop, onClick }) => {
         onClick={() => onClick({ diory: story })}
         diory={story}
         onDrop={onDrop}
+        data-testid="story"
       />
       <DiorysGrid ref={memoryRef} diorys={memories} onDrop={onDrop} onClick={onClick} />
       {!!memories.length && (

@@ -25,7 +25,7 @@ When('I click {word} button', (buttonName) => {
 })
 
 When('I click {string} focus diory', (dioryName) => {
-  cy.get('[data-testid=background]').contains(dioryName).click()
+  cy.get('[data-testid=background]').click()
 })
 
 When('I click element with id {string}', (id) => {

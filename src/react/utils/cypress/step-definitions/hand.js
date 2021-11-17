@@ -15,3 +15,7 @@ When('I drag {string} into hand', (dioryName) => {
 When('I drag {string} to {string}', (fromDioryId, toDioryId) => {
   cy.get(`#${fromDioryId}`).drag(`#${toDioryId}`)
 })
+
+When('I drag {string} to story', (fromDioryId) => {
+  cy.get(`#${fromDioryId}`).drag('[data-testid=story]')
+})
