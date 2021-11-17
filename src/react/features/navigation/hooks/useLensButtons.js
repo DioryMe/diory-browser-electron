@@ -10,7 +10,7 @@ export const useLensButtons = () => {
       id,
       key: id,
       diory,
-      onSelect: () => dispatch(selectLens(id)),
+      onSelect: () => dispatch(selectLens(id !== selectedLensId ? id : undefined)),
       isSelected: id === selectedLensId,
     })),
   }
