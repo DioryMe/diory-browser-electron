@@ -39,7 +39,7 @@ Feature: Hand tool
     And  I see 'Diory 12' in view
     And I drag 'Diory 11' into hand
     And I take 'Diory 12' in focus
-    When I drag 'hand-diory11' to 'diory12'
+    When I drag 'hand-diory11' to story
     Then I see 'Diory 11' in view
 
   Scenario: Link diory from hand to linked diory
