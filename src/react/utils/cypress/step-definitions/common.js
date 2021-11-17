@@ -56,9 +56,7 @@ Then('I see {word} button', (buttonName) => {
 })
 
 Then('I select {word} lens', (lensName) => {
-  cy.get(`span[data-testid=${lensName}-lens]`).should('have.attr', 'aria-selected', 'false')
   cy.get(`span[data-testid=${lensName}-lens]`).click()
-  cy.get(`span[data-testid=${lensName}-lens]`).should('have.attr', 'aria-selected', 'true')
 })
 
 Then('I do not see {word} to {word} button', (word1, word2) => {
