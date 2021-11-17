@@ -15,7 +15,7 @@ Feature: Map lens
     Then I see 'Tampere' popup on map
 
   Scenario: Diory in focus persists when changing lenses
-    When I select grid lens
+    When I select map lens
     When I take 'Frenkell' in focus
     When I select map lens
     Then I see 'Frenkell' in view
@@ -36,7 +36,7 @@ Feature: Map lens
   Scenario: Changing focus changes focus also on grid
     When I click 'Keskustori' marker
     And I click 'Keskustori' popup on map
-    And I select grid lens
+    And I select map lens
     Then I see 'Keskustori' in view
 
   Scenario: Back button on map
@@ -80,7 +80,7 @@ Feature: Map lens
     When I select tools button
     And I select move button
     And I drag marker on the map
-    And I select grid lens
+    And I select map lens
     And I select tools button
     And I select update button
     And I take 'Helvetinjärven kansallispuisto' in focus
@@ -97,7 +97,7 @@ Feature: Map lens
     And room 1 has 1 linked diory
 
   Scenario: Map with diories without locations
-    Given I select grid lens
+    Given I select map lens
     And I navigate backward
     And I navigate backward
     And I take 'Generic content' in focus
