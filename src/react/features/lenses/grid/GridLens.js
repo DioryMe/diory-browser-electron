@@ -15,8 +15,6 @@ import { createLink } from '../../diograph/actions'
 
 import GridView from './GridView'
 
-import button from './diory'
-
 const useTools = () => {
   const selectStory = useStoryTool()
   const deleteDiory = useDeleteTool()
@@ -45,4 +43,4 @@ const useTools = () => {
 
 const GridLens = () => <GridView {...useDiograph()} {...useTools()} />
 
-export default withLensContainer('grid', button)(GridLens)
+export default withLensContainer('grid')(GridLens)
