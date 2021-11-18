@@ -13,7 +13,7 @@ const Browser = () => {
   return (
     <div className="App">
       <Navigation />
-      <Lenses right={showSearchBar && 300} />
+      <Lenses right={showSearchBar ? 300 : 0} />
       <Search width={300} />
       <Tools />
       <Buttons />
