@@ -6,7 +6,7 @@ import { useStore } from '../../store'
 import SearchCreateDioryButton from './SearchCreateDioryButton'
 import SearchResults from './SearchResults'
 
-const Search = () => {
+const Search = (props) => {
   const [{ showSearchBar }] = useStore((state) => state.search)
 
   return showSearchBar ? (
@@ -16,9 +16,9 @@ const Search = () => {
       top={48}
       right={0}
       bottom={0}
-      width={300}
       display="flex"
       flexDirection="column"
+      {...props}
     >
       <SearchCreateDioryButton />
       <SearchResults />
