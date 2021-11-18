@@ -22,7 +22,13 @@ const defaultStyle = {
 
 const Diory = ({ diory, onClick, children, ...props }) => {
   const { id, text, image, style: dioryStyle = {}, data } = diory
-  const { image: styleImage, text: styleText, width: flexBasis, ...style } = dioryStyle
+  const {
+    image: styleImage,
+    text: styleText,
+    width: flexBasis,
+    background = '#fa7921',
+    ...style
+  } = dioryStyle
 
   return (
     <Box
@@ -33,7 +39,7 @@ const Diory = ({ diory, onClick, children, ...props }) => {
       {...style}
       onClick={(event) => onClick && onClick({ diory, event })}
     >
-      <Box {...defaultStyle.container} background="#fa7921">
+      <Box {...defaultStyle.container} background={background}>
         {image && (
           <Image
             image={image}
