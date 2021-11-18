@@ -1,53 +1,28 @@
 import React from 'react'
-import { Pane, SearchInput } from 'evergreen-ui'
+import { Pane } from 'evergreen-ui'
 
-import { useStore, useDispatchActions } from '../../store'
-import { setQuery, setSearchResults, toggleSearchBar } from './actions'
+import { useStore } from '../../store'
 
-import Icon from '../../components/Icon'
+import SearchCreateDioryButton from './SearchCreateDioryButton'
 import SearchResults from './SearchResults'
-import SearchResultAutocomplete from './SearchResultAutocomplete'
 
 const Search = () => {
-  const [{ diograph }] = useStore((state) => state.diograph)
-  const [{ query, active }] = useStore((state) => state.search)
-  const { dispatch } = useDispatchActions()
+  const [{ showSearchBar }] = useStore((state) => state.search)
 
-  const onChange = ({ target: { value } }) => {
-    const searchResults = value
-      ? Object.values(diograph || {}).filter(
-          ({ text }) => !!text && text.toLowerCase().includes(value.toLowerCase())
-        )
-      : []
-    dispatch(setQuery(value))
-    dispatch(setSearchResults(searchResults))
-  }
-
-  return active ? (
-    <div style={{ height: '100%' }}>
-      <div
-        style={{
-          backgroundColor: '#F9FAFC',
-          position: 'fixed',
-          top: '48px',
-          right: 0,
-          width: '300px',
-          height: '100%',
-        }}
-      >
-        <Pane style={{ backgroundColor: '#F9FAFC' }}>
-          <SearchInput id="Search" width="250px" autoFocus onChange={onChange} autoComplete="off" />
-          <Icon
-            icon="cross"
-            size={20}
-            style={{ cursor: 'hand' }}
-            onClick={() => dispatch(toggleSearchBar())}
-          />
-        </Pane>
-        {query ? <SearchResultAutocomplete /> : null}
-        <SearchResults />
-      </div>
-    </div>
+  return showSearchBar ? (
+    <Pane
+      background="tint2"
+      position="fixed"
+      top={48}
+      right={0}
+      bottom={0}
+      width={300}
+      display="flex"
+      flexDirection="column"
+    >
+      <SearchCreateDioryButton />
+      <SearchResults />
+    </Pane>
   ) : null
 }
 
