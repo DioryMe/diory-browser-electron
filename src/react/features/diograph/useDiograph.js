@@ -1,6 +1,8 @@
+import { useMemo } from 'react'
 import { useStore } from '../../store'
-import { resolveReverseDiograph } from './resolveReverseDiograph'
 import { useDiorys } from './useDiorys'
+
+import { resolveReverseDiograph } from './resolveReverseDiograph'
 
 const useLinkedDiorys = (id, diograph) => {
   const diory = diograph[id]
@@ -26,7 +28,7 @@ const useContext = (contexts) => {
 const useContexts = () => {
   const [{ storyId }] = useStore((state) => state.navigation)
   const [{ diograph = {} }] = useStore((state) => state.diograph)
-  const reverseDiograph = resolveReverseDiograph(diograph)
+  const reverseDiograph = useMemo(() => resolveReverseDiograph(diograph), [diograph])
 
   const contexts = useLinkedDiorys(storyId, reverseDiograph)
   return {
