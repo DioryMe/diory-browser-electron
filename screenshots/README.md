@@ -11,20 +11,27 @@ Uses node-canvas and rembrandt packages.
 ./run-e2e-tests.sh
 ```
 
-2. Copy results to test/ folder
+2. Clear old results and diffs
 
 ```
-cp -r tmp/screenshots screenshots/test
+rm -rf screenshots/test
+rm -rf screenshots/diffs
 ```
 
-3. Run visual regression compare tool
+3. Copy results to test/ folder
+
+```
+cp -r tmp/screenshots/* screenshots/test
+```
+
+4. Run visual regression compare tool
 
 ```
 cd screenshots
 ./run-visual-regression-tests.sh
 ```
 
-4. Inspect diffs / composition images
+5. Inspect diffs / composition images
 
 ```
 open diffs
