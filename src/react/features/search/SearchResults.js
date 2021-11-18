@@ -1,29 +1,42 @@
 import React from 'react'
 import { Pane } from 'evergreen-ui'
 
-import { useDispatch, useStore } from '../../store'
+import { useDispatchActions, useStore } from '../../store'
+import { toggleSearchBar } from './actions'
 import { selectStory } from '../navigation/actions'
 import { createLink } from '../diograph/actions'
-import { toggleSearchBar } from './actions'
 
 import SearchResult from './SearchResult'
 
-const SearchResults = (props) => {
-  const [{ searchResults }] = useStore((state) => state.search)
-  const dispatch = useDispatch()
+const useSearchResults = () => {
+  const [{ query }] = useStore((state) => state.search)
+  const [{ diograph }] = useStore((state) => state.diograph)
 
-  const onClick = (dioryId) => {
-    dispatch(selectStory({ id: dioryId }))
-    dispatch(toggleSearchBar())
+  const results =
+    query && diograph
+      ? Object.values(diograph).filter(
+          ({ text }) => !!text && text.toLowerCase().includes(query.toLowerCase())
+        )
+      : []
+
+  const { dispatch } = useDispatchActions()
+  return {
+    results,
+    onClick: (dioryId) => {
+      dispatch(selectStory({ id: dioryId }))
+      dispatch(toggleSearchBar())
+    },
+    onDrop: ({ droppedId, draggedId }) =>
+      dispatch(createLink({ id: droppedId }, { id: draggedId })),
   }
+}
 
-  const onDrop = ({ droppedId, draggedId }) =>
-    dispatch(createLink({ id: droppedId }, { id: draggedId }))
-
+const SearchResults = (props) => {
+  const { results, onClick, onDrop } = useSearchResults()
   return (
-    <Pane height="70%" overflow="auto" {...props}>
-      {searchResults.map((diory) => (
-        <SearchResult diory={diory} onClick={onClick} onDrop={onDrop} />
+    <Pane {...props} paddingX={8} overflow="auto">
+      {results.map((diory) => (
+        <SearchResult key={diory.id} diory={diory} onClick={onClick} onDrop={onDrop} />
       ))}
     </Pane>
   )
