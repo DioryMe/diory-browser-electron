@@ -1,17 +1,11 @@
 import {
   GO_FORWARD,
   GO_BACKWARD,
-  SELECT_CONTEXT,
   SELECT_STORY,
   GO_HOME,
   GO_SIDE,
   SELECT_MEMORY,
 } from './actionsTypes'
-
-export const selectContext = ({ id } = {}) => ({
-  type: SELECT_CONTEXT,
-  payload: { id },
-})
 
 export const selectStory = ({ id }) => ({
   type: SELECT_STORY,

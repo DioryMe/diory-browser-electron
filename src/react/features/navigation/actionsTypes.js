@@ -1,4 +1,3 @@
-export const SELECT_CONTEXT = 'SELECT_CONTEXT'
 export const SELECT_STORY = 'SELECT_STORY'
 export const GO_BACKWARD = 'GO_BACKWARD'
 export const GO_FORWARD = 'GO_FORWARD'
