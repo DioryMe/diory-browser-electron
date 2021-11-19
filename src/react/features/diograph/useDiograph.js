@@ -21,7 +21,7 @@ const useContext = (contexts) => {
     return undefined
   }
 
-  const previousStoryId = backward.length && backward[0][1]
+  const previousStoryId = backward.length && backward[0][0]
   return contexts.find(idIs(contextId)) || contexts.find(idIs(previousStoryId)) || contexts[0]
 }
 
