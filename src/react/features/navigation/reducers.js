@@ -1,5 +1,4 @@
 import {
-  SELECT_CONTEXT,
   SELECT_STORY,
   SELECT_MEMORY,
   GO_BACKWARD,
@@ -11,25 +10,11 @@ import {
 import { createReducer } from '../../store'
 
 export const initialState = {
-  contextId: undefined,
   storyId: undefined,
   memoryId: null,
   backward: [],
   forward: [],
   path: [],
-}
-
-export const selectContext = (state, { payload }) => {
-  if (payload.id === state.contextId) {
-    return state
-  }
-
-  return {
-    ...state,
-    contextId: payload.id,
-    backward: [[state.storyId, state.contextId], ...state.backward],
-    forward: [],
-  }
 }
 
 export const selectStory = (state, { payload }) => {
@@ -39,11 +24,8 @@ export const selectStory = (state, { payload }) => {
 
   return {
     ...state,
-    contextId: undefined,
     storyId: payload.id,
-    backward: state.storyId
-      ? [[state.storyId, state.contextId], ...state.backward]
-      : state.backward,
+    backward: state.storyId ? [state.storyId, ...state.backward] : state.backward,
     forward: [],
     path: [...state.path, payload.id],
   }
@@ -64,24 +46,22 @@ export const goSide = (state, { payload }) => ({
 })
 
 export const goBackward = (state) => {
-  const [[storyId, contextId], ...backward] = state.backward
+  const [storyId, ...backward] = state.backward
   return {
     ...state,
-    contextId,
     storyId,
     backward,
-    forward: [[state.storyId, state.contextId], ...state.forward],
+    forward: [state.storyId, ...state.forward],
     path: [...state.path].slice(0, -1),
   }
 }
 
 export const goForward = (state) => {
-  const [[storyId, contextId], ...forward] = state.forward
+  const [storyId, ...forward] = state.forward
   return {
     ...state,
-    contextId,
     storyId,
-    backward: [[state.storyId, state.contextId], ...state.backward],
+    backward: [state.storyId, ...state.backward],
     forward,
     path: [...state.path, storyId],
   }
@@ -90,14 +70,12 @@ export const goForward = (state) => {
 export const goHome = (state) => ({
   ...state,
   storyId: undefined,
-  contextId: undefined,
-  backward: [[state.storyId, state.contextId], ...state.backward],
+  backward: [state.storyId, ...state.backward],
   forward: [],
   path: [],
 })
 
 export default createReducer({
-  [SELECT_CONTEXT]: selectContext,
   [SELECT_STORY]: selectStory,
   [SELECT_MEMORY]: selectMemory,
   [GO_BACKWARD]: goBackward,

@@ -10,19 +10,19 @@ const useLinkedDiorys = (id, diograph) => {
   return useDiorys(links)
 }
 
-function idIs(contextId) {
-  return ({ id }) => id === contextId
+function idIs(dioryId) {
+  return ({ id }) => id === dioryId
 }
 
 const useContext = (contexts) => {
-  const [{ contextId, backward }] = useStore((state) => state.navigation)
+  const [{ backward }] = useStore((state) => state.navigation)
 
   if (!contexts.length) {
     return undefined
   }
 
-  const previousStoryId = backward.length && backward[0][0]
-  return contexts.find(idIs(contextId)) || contexts.find(idIs(previousStoryId)) || contexts[0]
+  const previousStoryId = backward.length && backward[0]
+  return contexts.find(idIs(previousStoryId)) || contexts[0]
 }
 
 const useContexts = () => {
