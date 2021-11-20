@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useStore } from '../../store'
 import { addLensButton } from './actions'
 
-const LensContainer = ({ id, button, children }) => {
+const WithLensContainer = ({ id, button, children }) => {
   const dispatch = useDispatch()
   useEffect(() => {
     button && dispatch(addLensButton(button))
@@ -15,7 +15,7 @@ const LensContainer = ({ id, button, children }) => {
 
 export const withLensContainer = (id, button) => (Component) => () =>
   (
-    <LensContainer id={id} button={button}>
+    <WithLensContainer id={id} button={button}>
       <Component />
-    </LensContainer>
+    </WithLensContainer>
   )

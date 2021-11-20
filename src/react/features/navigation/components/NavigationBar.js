@@ -7,8 +7,8 @@ import { resetStore } from '../../../store/reducer'
 import { getDiograph } from '../../diograph/actions'
 
 import NavigationButtons from './NavigationButtons'
-import NavigationLenses from './NavigationLenses'
-import NavigationSearch from './NavigationSearch'
+import LensesNavigation from '../../lenses/Navigation'
+import SearchNavigation from '../../search/Navigation'
 import Icon from '../../../components/Icon'
 
 const NavigationBar = () => {
@@ -24,8 +24,8 @@ const NavigationBar = () => {
       width="100%"
     >
       <NavigationButtons display="flex" alignSelf="center" />
-      <NavigationLenses display="flex" />
-      <NavigationSearch display="flex" alignSelf="center" />
+      <LensesNavigation display="flex" />
+      <SearchNavigation display="flex" alignSelf="center" />
       <Icon
         size={20}
         icon="cog"

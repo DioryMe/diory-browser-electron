@@ -1,11 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { v4 as uuid } from 'uuid'
 
 import { Button } from 'evergreen-ui'
-import { useDispatch, useStore } from '../../store'
-import { createDiory } from '../diograph/actions'
+import { useDispatch } from '../../../store'
+import { createDiory } from '../../diograph/actions'
 
-import Icon from '../../components/Icon'
+import Icon from '../../../components/Icon'
 
 const useCreateDiory = () => {
   const dispatch = useDispatch()
@@ -14,21 +15,24 @@ const useCreateDiory = () => {
   }
 }
 
-const SearchCreateDioryButton = () => {
-  const [{ query }] = useStore((state) => state.search)
+const CreateDioryButton = ({ text }) => {
   const createDiory = useCreateDiory()
-  return query ? (
+  return (
     <Button
       appearance="primary"
       intent="success"
       margin={8}
       iconBefore={<Icon icon="plus" />}
-      onClick={() => createDiory({ text: query })}
+      onClick={() => createDiory({ text })}
       data-testid="add-button"
     >
-      {query}
+      {text}
     </Button>
-  ) : null
+  )
 }
 
-export default SearchCreateDioryButton
+CreateDioryButton.propTypes = {
+  text: PropTypes.string.isRequired,
+}
+
+export default CreateDioryButton

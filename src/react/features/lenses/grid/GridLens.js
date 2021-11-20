@@ -9,7 +9,7 @@ import { usePlayTool } from '../../tools/play/usePlayTool'
 import { useOpenTool } from '../../tools/open/useOpenTool'
 import { usePageTool } from '../../tools/page/usePageTool'
 import { useImportTools } from '../../tools/import/useImportTools'
-import { withLensContainer } from '../LensContainer'
+import { withLensContainer } from '../withLensContainer'
 
 import { createLink } from '../../diograph/actions'
 

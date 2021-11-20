@@ -1,12 +1,12 @@
 import React from 'react'
 import { IconButton, Pane, SearchInput } from 'evergreen-ui'
 
-import { useStore, useDispatchActions } from '../../../store'
-import { setQuery, toggleSearchBar } from '../../search/actions'
+import { useStore, useDispatchActions } from '../../store'
+import { setQuery, toggleSearchBar } from './actions'
 
-import Icon from '../../../components/Icon'
+import Icon from '../../components/Icon'
 
-const useNavigationSearch = () => {
+const useSearchNavigation = () => {
   const [{ showSearchBar }] = useStore((state) => state.search)
 
   const { dispatch, dispatchAction } = useDispatchActions()
@@ -17,8 +17,8 @@ const useNavigationSearch = () => {
   }
 }
 
-const NavigationSearch = (props) => {
-  const { showSearchBar, onSearch, onToggleSearch } = useNavigationSearch()
+const SearchNavigation = (props) => {
+  const { showSearchBar, onSearch, onToggleSearch } = useSearchNavigation()
   return (
     <Pane {...props}>
       {showSearchBar ? (
@@ -49,4 +49,4 @@ const NavigationSearch = (props) => {
   )
 }
 
-export default NavigationSearch
+export default SearchNavigation

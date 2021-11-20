@@ -6,7 +6,7 @@ import { toggleSearchBar } from './actions'
 import { selectStory } from '../navigation/actions'
 import { createLink } from '../diograph/actions'
 
-import SearchResult from './SearchResult'
+import Result from './Result'
 
 const useSearchResults = () => {
   const [{ query }] = useStore((state) => state.search)
@@ -31,15 +31,15 @@ const useSearchResults = () => {
   }
 }
 
-const SearchResults = (props) => {
+const Results = (props) => {
   const { results, onClick, onDrop } = useSearchResults()
   return (
     <Pane {...props} paddingX={8} overflow="auto">
       {results.map((diory) => (
-        <SearchResult key={diory.id} diory={diory} onClick={onClick} onDrop={onDrop} />
+        <Result key={diory.id} diory={diory} onClick={onClick} onDrop={onDrop} />
       ))}
     </Pane>
   )
 }
 
-export default SearchResults
+export default Results
