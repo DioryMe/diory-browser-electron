@@ -9,7 +9,7 @@ import { useUpdateTool } from '../../tools/update'
 
 import TimelineView from './TimelineView'
 
-import { withLensContainer } from '../LensContainer'
+import { withLensContainer } from '../withLensContainer'
 
 import button from './diory'
 

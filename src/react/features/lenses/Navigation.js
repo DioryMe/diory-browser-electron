@@ -1,11 +1,11 @@
 import React from 'react'
 import { Pane, Tablist } from 'evergreen-ui'
 
-import { useLensButtons } from '../hooks/useLensButtons'
+import { useLensButtons } from '../navigation/hooks/useLensButtons'
 
-import LensButton from '../../../components/LensButton'
+import LensButton from '../../components/LensButton'
 
-const NavigationLenses = () => {
+const LensesNavigation = () => {
   const { lensButtons } = useLensButtons()
   return (
     <Pane display="flex">
@@ -18,4 +18,4 @@ const NavigationLenses = () => {
   )
 }
 
-export default NavigationLenses
+export default LensesNavigation

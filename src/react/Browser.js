@@ -3,10 +3,10 @@ import React from 'react'
 import { useStore } from './store'
 
 import Navigation from './features/navigation/Navigation'
-import Lenses from './features/lenses/Lenses'
+import Lenses from './features/lenses'
 import Tools from './features/tools/Tools'
 import Buttons from './features/buttons'
-import Search from './features/search/Search'
+import Search from './features/search'
 
 const Browser = () => {
   const [{ showSearchBar }] = useStore((state) => state.search)
