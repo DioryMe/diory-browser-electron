@@ -1,16 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
 import { Pane } from 'evergreen-ui'
-
-const defaultStyle = {
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  bottom: 0,
-  left: 0,
-  backgroundImage: 'linear-gradient(rgba(50,50,50), rgba(50,50,50),rgba(0,0,0))',
-}
 
 const centerStyle = {
   position: 'absolute',
@@ -22,11 +12,9 @@ const centerStyle = {
 }
 
 const WebPage = ({ address, ...props }) => (
-  <Box {...defaultStyle} {...props}>
-    <Pane style={centerStyle}>
-      <iframe title="web-browser" src={address} height="100%" width="100%" />
-    </Pane>
-  </Box>
+  <Pane style={centerStyle}>
+    <iframe title="web-browser" src={address} height="100%" width="100%" />
+  </Pane>
 )
 
 WebPage.propTypes = {

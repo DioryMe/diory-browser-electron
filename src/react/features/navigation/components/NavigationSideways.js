@@ -16,7 +16,7 @@ const NavigationSideways = ({ left, right, onClick }) => {
       data-testid={`navigate-${left ? 'left' : 'right'}`}
       onClick={onClick}
       style={{
-        position: 'fixed',
+        position: 'absolute',
         zIndex: 15,
         top: '50%',
         transform: 'translate(0, -50%)',

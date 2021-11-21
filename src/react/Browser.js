@@ -2,23 +2,25 @@ import React from 'react'
 
 import { useStore } from './store'
 
-import Navigation from './features/navigation/Navigation'
+import Fullscreen from './components/Fullscreen'
+import Navigation from './features/navigation'
 import Lenses from './features/lenses'
 import Tools from './features/tools/Tools'
 import Buttons from './features/buttons'
 import Search from './features/search'
 
-const Browser = () => {
+const Browser = (props) => {
   const [{ showSearchBar }] = useStore((state) => state.search)
-  return (
-    <div className="App">
+  const [{ loaded }] = useStore((state) => state.diograph)
+  return loaded ? (
+    <Fullscreen {...props}>
       <Navigation />
       <Lenses right={showSearchBar ? 300 : 0} />
       <Search width={300} />
       <Tools />
       <Buttons />
-    </div>
-  )
+    </Fullscreen>
+  ) : null
 }
 
 export default Browser
