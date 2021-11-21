@@ -1,23 +1,22 @@
 import React from 'react'
+
+import { useDiographEffects } from './features/diograph/useDiographEffects'
+
+import Welcome from './features/welcome'
+import Settings from './features/settings'
+import Browser from './Browser'
 import { useStore } from './store'
 
-import { useGetDiographEffect } from './features/diograph/useGetDiographEffect'
-import { useSaveDiographEffect } from './features/diograph/useSaveDiographEffect'
-
-import Browser from './Browser'
-import Welcome from './features/welcome/Welcome'
-
 const Root = () => {
-  const [{ folderLocation }] = useStore((state) => state.diograph)
-
-  useGetDiographEffect()
-  useSaveDiographEffect()
-
-  if (folderLocation === undefined) {
-    return <div>Loading...</div>
-  }
-
-  return folderLocation === null ? <Welcome /> : <Browser />
+  useDiographEffects()
+  const [{ showSettingsBar }] = useStore((state) => state.settings)
+  return (
+    <>
+      <Settings />
+      <Browser left={showSettingsBar ? 300 : 0} />
+      <Welcome />
+    </>
+  )
 }
 
 export default Root
