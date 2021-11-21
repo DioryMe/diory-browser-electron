@@ -1,97 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  PlusIcon,
-  SmallPlusIcon,
-  MinusIcon,
-  EditIcon,
-  WrenchIcon,
-  CrossIcon,
-  SmallCrossIcon,
-  MoveIcon,
-  FullscreenIcon,
-  MapIcon,
-  TimeIcon,
-  GridViewIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  HomeIcon,
-  ErrorIcon,
-  HandIcon,
-  FolderOpenIcon,
-  ApplicationsIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
-  PlayIcon,
-  PauseIcon,
-  SearchIcon,
-  CogIcon,
-  FilterIcon,
-} from 'evergreen-ui'
+import * as Icons from 'evergreen-ui'
+
+function getIconComponentName(iconString) {
+  return iconString
+    .split('-')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join('')
+}
 
 const Icon = ({ icon, ...props }) => {
-  switch (icon) {
-    case 'pause':
-      return <PauseIcon {...props} />
-    case 'play':
-      return <PlayIcon {...props} />
-    case 'plus':
-      return <PlusIcon {...props} />
-    case 'small-plus':
-      return <SmallPlusIcon {...props} />
-    case 'minus':
-      return <MinusIcon {...props} />
-    case 'edit':
-      return <EditIcon {...props} />
-    case 'wrench':
-      return <WrenchIcon {...props} />
-    case 'cross':
-      return <CrossIcon {...props} />
-    case 'small-cross':
-      return <SmallCrossIcon {...props} />
-    case 'move':
-      return <MoveIcon {...props} />
-    case 'fullscreen':
-      return <FullscreenIcon {...props} />
-    case 'map':
-      return <MapIcon {...props} />
-    case 'time':
-      return <TimeIcon {...props} />
-    case 'grid-view':
-      return <GridViewIcon {...props} />
-    case 'arrow-left':
-      return <ArrowLeftIcon {...props} />
-    case 'arrow-right':
-      return <ArrowRightIcon {...props} />
-    case 'chevron-left':
-      return <ChevronLeftIcon {...props} />
-    case 'chevron-right':
-      return <ChevronRightIcon {...props} />
-    case 'chevron-up':
-      return <ChevronUpIcon {...props} />
-    case 'chevron-down':
-      return <ChevronDownIcon {...props} />
-    case 'home':
-      return <HomeIcon {...props} />
-    case 'error-icon':
-      return <ErrorIcon {...props} />
-    case 'hand':
-      return <HandIcon {...props} />
-    case 'folder':
-      return <FolderOpenIcon {...props} />
-    case 'applications':
-      return <ApplicationsIcon {...props} />
-    case 'search':
-      return <SearchIcon {...props} />
-    case 'cog':
-      return <CogIcon {...props} />
-    case 'filter':
-      return <FilterIcon {...props} />
-    default:
-      return <ErrorIcon {...props} />
+  const iconName = `${getIconComponentName(icon)}Icon`
+  const IconComponent = Icons[iconName]
+  if (IconComponent) {
+    return <IconComponent {...props} />
   }
+
+  console.error('Missing icon', iconName)
+  return <Icons.ErrorIcon {...props} />
 }
 
 Icon.defaultProps = {
