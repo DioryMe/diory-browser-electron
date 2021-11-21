@@ -6,7 +6,7 @@ import Button from './Button'
 const ButtonBar = ({ buttons }) => (
   <div
     style={{
-      position: 'fixed',
+      position: 'absolute',
       zIndex: 15,
       bottom: 0,
       cursor: 'pointer',

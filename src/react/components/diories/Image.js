@@ -22,7 +22,7 @@ const getBackgroundImage = (absoluteImageFileUrl, gradient, gradientRgba = '255,
     ? `linear-gradient(rgba(${gradientRgba}),rgba(${gradientRgba})), url("${absoluteImageFileUrl}")`
     : `url("${absoluteImageFileUrl}")`
 
-const Image = ({ image, gradient, gradientRgba, ...props }) => {
+const Image = ({ image, gradient, gradientRgba, children, ...props }) => {
   const [{ folderLocation }] = useStore((state) => state.diograph)
   const absoluteImageFileUrl = convertToFileUrl(image, folderLocation)
   return (
@@ -30,7 +30,9 @@ const Image = ({ image, gradient, gradientRgba, ...props }) => {
       {...defaultStyle}
       backgroundImage={getBackgroundImage(absoluteImageFileUrl, gradient, gradientRgba)}
       {...props}
-    />
+    >
+      {children}
+    </Box>
   )
 }
 
@@ -39,6 +41,7 @@ Image.propTypes = {
   style: PropTypes.object,
   gradient: PropTypes.bool,
   gradientRgba: PropTypes.string,
+  children: PropTypes.node,
 }
 
 export default Image

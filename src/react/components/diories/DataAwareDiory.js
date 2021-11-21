@@ -44,7 +44,7 @@ DataAwareDiory.propTypes = {
   diory: PropTypes.shape({
     image: PropTypes.string,
     style: PropTypes.object,
-    data: PropTypes.object,
+    data: PropTypes.array,
   }),
   page: PropTypes.shape({
     ref: PropTypes.func.isRequired,

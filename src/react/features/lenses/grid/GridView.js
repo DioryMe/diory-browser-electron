@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 
 import { useDiograph } from '../../diograph/useDiograph'
 
-import Background from '../../../components/Background'
+import ScrollBackground from '../../../components/ScrollBackground'
 import DiorysGrid from '../../../components/DiorysGrid'
 import ScrollVertically from '../../../components/ScrollVertically'
-import Fullscreen from '../../../components/Fullscreen'
 import DataAwareDiory from '../../../components/diories/DataAwareDiory'
 import DragDropBackground from '../../../components/DragDropBackground'
+import FullscreenBackground from '../../../components/FullscreenBackground'
 
 const useScrollToTopOnStoryChange = (elementRef) => {
   const { story } = useDiograph()
@@ -24,31 +24,33 @@ const GridView = ({ playRef, story, memories, page, onDrop, onClick }) => {
   useScrollToTopOnStoryChange(storyRef)
 
   return (
-    <Background>
-      <Fullscreen marginTop={48}>
+    <>
+      <FullscreenBackground>
         <DataAwareDiory page={page} playRef={playRef} diory={story} />
-      </Fullscreen>
-      <DragDropBackground
-        ref={storyRef}
-        position="relative"
-        width="100%"
-        height="80vh"
-        onClick={() => onClick({ diory: story })}
-        diory={story}
-        onDrop={onDrop}
-        data-testid="story"
-      />
-      <DiorysGrid ref={memoryRef} diorys={memories} onDrop={onDrop} onClick={onClick} />
-      {!!memories.length && (
-        <ScrollVertically
-          data-testid="navigate-down"
-          initialRef={storyRef}
-          scrolledRef={memoryRef}
-          initialDirection="up"
-          bottom={0}
+      </FullscreenBackground>
+      <ScrollBackground>
+        <DragDropBackground
+          ref={storyRef}
+          position="relative"
+          width="100%"
+          height="80vh"
+          onClick={() => onClick({ diory: story })}
+          diory={story}
+          onDrop={onDrop}
+          data-testid="story"
         />
-      )}
-    </Background>
+        <DiorysGrid ref={memoryRef} diorys={memories} onDrop={onDrop} onClick={onClick} />
+        {!!memories.length && (
+          <ScrollVertically
+            data-testid="navigate-down"
+            initialRef={storyRef}
+            scrolledRef={memoryRef}
+            initialDirection="up"
+            bottom={0}
+          />
+        )}
+      </ScrollBackground>
+    </>
   )
 }
 

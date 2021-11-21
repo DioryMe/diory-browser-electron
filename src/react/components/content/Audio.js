@@ -1,15 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
-
-const defaultStyle = {
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  bottom: 0,
-  left: 0,
-  backgroundImage: 'linear-gradient(rgba(50,50,50), rgba(50,50,50),rgba(0,0,0))',
-}
 
 const videoStyles = {
   display: 'block',
@@ -17,21 +7,18 @@ const videoStyles = {
   margin: '0 auto',
 }
 
-const Audio = ({ playRef, audio, controls, loop, autoPlay, children, cover, ...props }) => (
-  <Box {...defaultStyle} {...props}>
-    <audio
-      ref={playRef}
-      src={audio}
-      controls={controls}
-      loop={loop}
-      autoPlay={autoPlay}
-      style={{
-        ...videoStyles,
-        ...(!cover && { maxWidth: '100%' }),
-      }}
-    />
-    {children}
-  </Box>
+const Audio = ({ playRef, audio, controls, loop, autoPlay, children, cover }) => (
+  <audio
+    ref={playRef}
+    src={audio}
+    controls={controls}
+    loop={loop}
+    autoPlay={autoPlay}
+    style={{
+      ...videoStyles,
+      ...(!cover && { maxWidth: '100%' }),
+    }}
+  />
 )
 
 Audio.defaultProps = {
