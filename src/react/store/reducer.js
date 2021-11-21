@@ -1,3 +1,7 @@
+import { RESET_STORE } from './actionsTypes'
+
+import { initialState } from './initialState'
+
 import buttons from '../features/buttons/reducers'
 import tools from '../features/tools/reducers'
 import lenses from '../features/lenses/reducers'
@@ -22,12 +26,6 @@ const appReducer = combineReducers({
   navigation,
   diograph,
   search,
-})
-
-export const RESET_STORE = 'RESET_STORE'
-
-export const resetStore = () => ({
-  type: RESET_STORE,
 })
 
 export const reducer = (state, action) => {
