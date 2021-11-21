@@ -24,6 +24,7 @@ export const getDiograph = (state, { payload: { diograph, rootId, folderLocation
   rootId,
   folderLocation,
   diograph,
+  loaded: true,
   updated: false,
 })
 
