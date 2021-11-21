@@ -12,7 +12,9 @@ import Root from './Root'
 const App = () => (
   <StoreProvider reducer={reducerWithMiddleware(reducer)} initialState={initialState}>
     <DndProvider backend={HTML5Backend}>
-      <Root />
+      <div className="App">
+        <Root />
+      </div>
     </DndProvider>
   </StoreProvider>
 )
