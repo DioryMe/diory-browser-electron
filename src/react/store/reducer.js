@@ -8,7 +8,7 @@ import lenses from '../features/lenses/reducers'
 import navigation from '../features/navigation/reducers'
 import diograph from '../features/diograph/reducers'
 import search from '../features/search/reducers'
-import { initialState } from './initialState'
+import settings from '../features/settings/reducers'
 
 const combineReducers = (reducers) => (state, action) =>
   Object.entries(reducers).reduce(
@@ -26,6 +26,7 @@ const appReducer = combineReducers({
   navigation,
   diograph,
   search,
+  settings,
 })
 
 export const reducer = (state, action) => {
