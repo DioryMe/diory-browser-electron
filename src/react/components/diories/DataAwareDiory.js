@@ -45,7 +45,7 @@ DataAwareDiory.propTypes = {
     image: PropTypes.string,
     style: PropTypes.object,
     data: PropTypes.array,
-  }),
+  }).isRequired,
   page: PropTypes.shape({
     ref: PropTypes.func.isRequired,
     number: PropTypes.number.isRequired,
