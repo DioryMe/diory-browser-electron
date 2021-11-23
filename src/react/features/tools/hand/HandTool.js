@@ -6,10 +6,9 @@ import { useHand } from './useHand'
 import HandView from './HandView'
 
 const HandTool = () => {
-  const [{ open }] = useStore((state) => state.buttons)
-  const [{ selectedLensId }] = useStore((state) => state.lenses)
+  const [{ showSearchBar }] = useStore((state) => state.search)
   const props = useHand()
-  return open && selectedLensId === 'grid' ? <HandView {...props} /> : null
+  return showSearchBar && <HandView {...props} />
 }
 
 export default HandTool
