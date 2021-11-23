@@ -17,8 +17,8 @@ const useChooseDioryFolderLocation = () => {
       ({ diograph, rootId, folderLocation }) => {
         dispatch(resetStore())
         dispatch(setDioryLocation(folderLocation))
-        dispatch(getDiograph(diograph, rootId, folderLocation))
         dispatch(selectStory({ id: rootId }))
+        dispatch(getDiograph(diograph, rootId, folderLocation))
       }
     )
   }

@@ -14,7 +14,7 @@ export const useOpenTool = () => {
   const [{ active }] = useStore((state) => state.buttons)
   const [{ folderLocation }] = useStore((state) => state.diograph)
 
-  const contentUrl = story.data && story.data[0].contentUrl
+  const contentUrl = story && story.data && story.data[0].contentUrl
   const { dispatch } = useDispatchActions()
   useEffect(() => {
     if (contentUrl) {

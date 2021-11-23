@@ -6,14 +6,14 @@ const backgroundGradient = {
   backgroundImage: 'linear-gradient(rgba(50,50,50), rgba(50,50,50),rgba(0,0,0))',
 }
 
-const ScrollBackground = ({ children, ...props }) => (
+const FullscreenBackground = ({ children, ...props }) => (
   <Fullscreen overflow="hidden" {...backgroundGradient} {...props}>
     {children}
   </Fullscreen>
 )
 
-ScrollBackground.propTypes = {
+FullscreenBackground.propTypes = {
   children: PropTypes.node,
 }
 
-export default ScrollBackground
+export default FullscreenBackground

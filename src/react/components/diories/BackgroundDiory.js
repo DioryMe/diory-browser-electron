@@ -8,6 +8,7 @@ import Fullscreen from '../Fullscreen'
 const blurStyle = {
   filter: 'blur(20px)',
   inset: '-40px',
+  backgroundColor: '#9bc53d',
 }
 
 const BackgroundDiory = ({ diory, children }) => {

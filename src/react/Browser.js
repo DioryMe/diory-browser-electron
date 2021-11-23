@@ -12,7 +12,8 @@ import Search from './features/search'
 const Browser = (props) => {
   const [{ showSearchBar }] = useStore((state) => state.search)
   const [{ loaded }] = useStore((state) => state.diograph)
-  return loaded ? (
+  const [{ storyId }] = useStore((state) => state.navigation)
+  return loaded && storyId ? (
     <Fullscreen {...props}>
       <Navigation />
       <Lenses right={showSearchBar ? 300 : 0} />
