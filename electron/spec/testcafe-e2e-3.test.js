@@ -9,10 +9,10 @@ test('Import diory-demo-content with diograph.json and choose it again', async (
   )
   const dioryCount = Selector('.ub-flx_1-0-360px').count
   const exampleFolderDiory = Selector('div').withExactText('example-folder')
-  const settingsButton = Selector('[data-icon=cog]')
 
   await t
     .click(chooseFolderButton)
+    .wait(3000) // Wait for welcome screen to disappear
     .expect(dioryCount)
     .eql(8)
     // Import example-folder folder
@@ -25,8 +25,8 @@ test('Import diory-demo-content with diograph.json and choose it again', async (
     .expect(dioryCount)
     .eql(9)
     // Re-choose example-folder
-    .click(settingsButton)
-    .click(chooseFolderButton)
+    .click('[data-testid="settings-navigation"]')
+    .click('[data-testid="settings-dioryFolderLocation"]')
     .expect(dioryCount)
     .eql(9)
     // Import example-folder folder again

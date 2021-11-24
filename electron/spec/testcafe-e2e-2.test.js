@@ -18,6 +18,7 @@ test('Delete diory and check diory.data relative path', async (t) => {
 
   await t
     .click(chooseFolderButton)
+    .wait(3000) // Wait for welcome screen to disappear
     .expect(dioryCount)
     .eql(0) // Welcome screen doesn't have any diories
     // Import example-folder folder
