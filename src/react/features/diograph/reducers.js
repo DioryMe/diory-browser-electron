@@ -13,16 +13,14 @@ import { promiseReducers, createReducer } from '../../store'
 
 export const initialState = {
   rootId: undefined,
-  folderLocation: undefined,
   diograph: {},
   loaded: false,
   updated: false,
 }
 
-export const getDiograph = (state, { payload: { diograph, rootId, folderLocation } }) => ({
+export const getDiograph = (state, { payload: { diograph, rootId } }) => ({
   ...state,
   rootId,
-  folderLocation,
   diograph,
   loaded: true,
   updated: false,

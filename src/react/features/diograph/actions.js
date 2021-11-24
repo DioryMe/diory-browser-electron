@@ -10,9 +10,9 @@ import {
   DELETE_LINKS,
 } from './actionsTypes'
 
-export const getDiograph = (diograph, rootId, folderLocation) => ({
+export const getDiograph = (diograph, rootId) => ({
   type: GET_DIOGRAPH,
-  payload: { diograph, rootId, folderLocation },
+  payload: { diograph, rootId },
 })
 
 export const saveDiograph = () => ({
