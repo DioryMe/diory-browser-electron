@@ -1,7 +1,7 @@
 import { useDispatch, useStore } from '../../../store'
 import { useDiograph } from '../../diograph/useDiograph'
 
-import { goSide } from '../actions'
+import { goSide } from '../navigationActions'
 
 export const useGoSide = () => {
   const [{ storyId }] = useStore((state) => state.navigation)

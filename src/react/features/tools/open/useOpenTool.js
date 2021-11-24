@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useDispatchActions, useStore } from '../../../store'
 import { useDiograph } from '../../diograph/useDiograph'
 
-import { addButtons, inactivateButton, removeButtons } from '../../buttons/actions'
+import { addButtons, inactivateButton, removeButtons } from '../../buttons/buttonsActions'
 
 import { invokeChannel } from '../../../client/client'
 import { buttons, OPEN_TOOL_BUTTON } from './buttons'

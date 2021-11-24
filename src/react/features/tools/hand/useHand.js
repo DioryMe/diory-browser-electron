@@ -1,6 +1,6 @@
 import { useDispatchActions, useStore } from '../../../store'
-import { addDioryToHand } from '../actions'
-import { selectStory } from '../../navigation/actions'
+import { addDioryToHand } from '../toolsActions'
+import { selectStory } from '../../navigation/navigationActions'
 
 export const useHand = () => {
   const [{ hand }] = useStore((state) => state.tools)

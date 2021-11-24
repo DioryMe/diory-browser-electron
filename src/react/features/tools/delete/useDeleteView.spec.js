@@ -1,10 +1,10 @@
 import { useStore, useDispatch } from '../../../store'
 import { initialState } from '../../../store/initialState'
 
-import { deleteDiory, deleteLinks } from '../../diograph/actions'
+import { deleteDiory, deleteLinks } from '../../diograph/diographActions'
 import { useDiograph } from '../../diograph/useDiograph'
-import { inactivateButton } from '../../buttons/actions'
-import { goBackward, selectMemory } from '../../navigation/actions'
+import { inactivateButton } from '../../buttons/buttonsActions'
+import { goBackward, selectMemory } from '../../navigation/navigationActions'
 
 import deleteViewFixtureDiograph from './deleteViewFixtureDiograph'
 

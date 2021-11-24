@@ -1,11 +1,11 @@
 import { v4 as uuid } from 'uuid'
 
 import { useDispatchActions, useStore } from '../../../store'
-import { useButtons } from '../../buttons'
-import { inactivateButton } from '../../buttons/actions'
+import { useButtons } from '../../buttons/useButtons'
+import { inactivateButton } from '../../buttons/buttonsActions'
 import { useDiograph } from '../../diograph/useDiograph'
 
-import { createDiory, createLink } from '../../diograph/actions'
+import { createDiory, createLink } from '../../diograph/diographActions'
 
 import { buttons, CREATE_LOCATION_TOOL_BUTTON } from './buttons'
 

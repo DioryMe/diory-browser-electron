@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 
 import { useDispatch, useStore } from '../../../store'
 
-import { inactivateButton } from '../../buttons/actions'
-import { addDiograph, createLink } from '../../diograph/actions'
+import { inactivateButton } from '../../buttons/buttonsActions'
+import { addDiograph, createLink } from '../../diograph/diographActions'
 
 import { invokeChannel } from '../../../client/client'
 

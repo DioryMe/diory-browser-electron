@@ -1,4 +1,4 @@
-import { useButtons } from '../../buttons'
+import { useButtons } from '../../buttons/useButtons'
 
 import { buttons } from './buttons'
 

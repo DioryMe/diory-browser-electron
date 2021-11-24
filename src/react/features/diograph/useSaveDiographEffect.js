@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useStore, useDispatchActions } from '../../store'
 
-import { saveDiograph } from './actions'
+import { saveDiograph } from './diographActions'
 
 import { invokeChannel } from '../../client/client'
 import { channels } from '../../../shared/constants'

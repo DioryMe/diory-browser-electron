@@ -2,7 +2,7 @@ import React from 'react'
 import { Pane, IconButton } from 'evergreen-ui'
 
 import { useStore } from '../../../store'
-import { goBackward, goForward, selectStory } from '../actions'
+import { goBackward, goForward, selectStory } from '../navigationActions'
 import Icon from '../../../components/Icon'
 import NavigationContextsPill from './NavigationContextsPill'
 import NavigationContextButton from './NavigationContextButton'

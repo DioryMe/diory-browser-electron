@@ -5,7 +5,7 @@ import {
   GO_HOME,
   GO_SIDE,
   SELECT_MEMORY,
-} from './actionsTypes'
+} from './navigationActionTypes'
 
 export const selectStory = ({ id }) => ({
   type: SELECT_STORY,

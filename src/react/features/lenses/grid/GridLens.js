@@ -11,7 +11,7 @@ import { usePageTool } from '../../tools/page/usePageTool'
 import { useImportTools } from '../../tools/import/useImportTools'
 import { withLensContainer } from '../withLensContainer'
 
-import { createLink } from '../../diograph/actions'
+import { createLink } from '../../diograph/diographActions'
 
 import GridView from './GridView'
 

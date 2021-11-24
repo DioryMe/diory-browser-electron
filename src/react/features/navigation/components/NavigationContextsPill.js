@@ -4,7 +4,7 @@ import { Pane, Pill, SelectMenu } from 'evergreen-ui'
 import { useDispatchActions } from '../../../store'
 import { useDiograph } from '../../diograph/useDiograph'
 
-import { selectStory } from '../actions'
+import { selectStory } from '../navigationActions'
 
 const useNavigationContexts = () => {
   const { context, contexts } = useDiograph()

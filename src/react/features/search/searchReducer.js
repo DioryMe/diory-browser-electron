@@ -1,4 +1,4 @@
-import { SET_QUERY, TOGGLE_SEARCH_BAR } from './actionsTypes'
+import { SET_QUERY, TOGGLE_SEARCH_BAR } from './searchActionTypes'
 import { createReducer } from '../../store'
 
 export const initialState = {

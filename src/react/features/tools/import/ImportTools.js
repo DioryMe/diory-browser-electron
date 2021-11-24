@@ -9,7 +9,7 @@ import { buttons as folderButtons } from '../folder/buttons'
 
 import ImportView from './ImportView'
 import Diory from '../../../components/diories/Diory'
-import { activateButton, inactivateButton } from '../../buttons/actions'
+import { activateButton, inactivateButton } from '../../buttons/buttonsActions'
 
 const useImportTools = () => {
   const { dispatch } = useDispatchActions()

@@ -1,6 +1,6 @@
 import { useDispatchActions, useStore } from '../../../store'
 
-import { selectLens } from '../../lenses/actions'
+import { selectLens } from '../../lenses/lensesActions'
 
 export const useLensButtons = () => {
   const [{ selectedLensId, buttons }] = useStore((state) => state.lenses)

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 
 import { useDispatchActions } from '../../store'
 
-import { setDioryFolderLocation } from './actions'
+import { setDioryFolderLocation } from './settingsActions'
 
 import { invokeChannel } from '../../client/client'
 import { channels } from '../../../shared/constants'

@@ -5,7 +5,7 @@ import {
   GO_FORWARD,
   GO_SIDE,
   GO_HOME,
-} from './actionsTypes'
+} from './navigationActionTypes'
 
 import { createReducer } from '../../store'
 

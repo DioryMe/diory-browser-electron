@@ -1,4 +1,4 @@
-import { SET_DIORY_LOCATION } from './actionsTypes'
+import { SET_DIORY_LOCATION } from './settingsActionTypes'
 
 export const setDioryFolderLocation = (dioryFolderLocation) => ({
   type: SET_DIORY_LOCATION,

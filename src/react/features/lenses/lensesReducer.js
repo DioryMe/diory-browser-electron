@@ -1,4 +1,4 @@
-import { ADD_LENS_BUTTON, SELECT_LENS } from './actionsTypes'
+import { ADD_LENS_BUTTON, SELECT_LENS } from './lensesActionTypes'
 import { createReducer } from '../../store'
 
 const DEFAULT_LENS = 'grid'

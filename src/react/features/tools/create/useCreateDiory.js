@@ -3,9 +3,9 @@ import { v4 as uuid } from 'uuid'
 import { useDispatchActions, useStore } from '../../../store'
 import { useDiograph } from '../../diograph/useDiograph'
 
-import { inactivateButton } from '../../buttons/actions'
-import { addDioryToHand } from '../actions'
-import { createDiory, createLink } from '../../diograph/actions'
+import { inactivateButton } from '../../buttons/buttonsActions'
+import { addDioryToHand } from '../toolsActions'
+import { createDiory, createLink } from '../../diograph/diographActions'
 
 import { getDefaultImage } from '../../../../shared/getDefaultImage'
 

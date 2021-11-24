@@ -2,13 +2,13 @@ import { RESET_STORE } from './actionsTypes'
 
 import { initialState } from './initialState'
 
-import buttons from '../features/buttons/reducers'
-import tools from '../features/tools/reducers'
-import lenses from '../features/lenses/reducers'
-import navigation from '../features/navigation/reducers'
-import diograph from '../features/diograph/reducers'
-import search from '../features/search/reducers'
-import settings from '../features/settings/reducers'
+import buttons from '../features/buttons/buttonsReducer'
+import tools from '../features/tools/toolsReducer'
+import lenses from '../features/lenses/lensesReducer'
+import navigation from '../features/navigation/navigationReducer'
+import diograph from '../features/diograph/diographReducer'
+import search from '../features/search/searchReducer'
+import settings from '../features/settings/settingsReducer'
 
 const combineReducers = (reducers) => (state, action) =>
   Object.entries(reducers).reduce(

@@ -2,11 +2,11 @@ import React from 'react'
 import { Pane } from 'evergreen-ui'
 
 import { useDispatchActions, useStore } from '../../store'
-import { toggleSearchBar } from './actions'
-import { selectStory } from '../navigation/actions'
-import { createLink } from '../diograph/actions'
+import { toggleSearchBar } from './searchActions'
+import { selectStory } from '../navigation/navigationActions'
+import { createLink } from '../diograph/diographActions'
 
-import Result from './Result'
+import SearchResult from './SearchResult'
 
 const useSearchResults = () => {
   const [{ query }] = useStore((state) => state.search)
@@ -31,15 +31,15 @@ const useSearchResults = () => {
   }
 }
 
-const Results = (props) => {
+const SearchResults = (props) => {
   const { results, onClick, onDrop } = useSearchResults()
   return (
     <Pane {...props} paddingX={8} overflow="auto">
       {results.map((diory) => (
-        <Result key={diory.id} diory={diory} onClick={onClick} onDrop={onDrop} />
+        <SearchResult key={diory.id} diory={diory} onClick={onClick} onDrop={onDrop} />
       ))}
     </Pane>
   )
 }
 
-export default Results
+export default SearchResults

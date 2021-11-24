@@ -8,7 +8,7 @@ import {
   DELETE_LINK,
   DELETE_LINKS,
   UPDATE_DIORY,
-} from './actionsTypes'
+} from './diographActionTypes'
 import { promiseReducers, createReducer } from '../../store'
 
 export const initialState = {

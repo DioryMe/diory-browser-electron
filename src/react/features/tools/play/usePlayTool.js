@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useDispatchActions, useStore } from '../../../store'
 import { buttons, PLAY_BUTTON, PAUSE_BUTTON } from './buttons'
 
-import { addButtons, inactivateButton, removeButtons } from '../../buttons/actions'
+import { addButtons, inactivateButton, removeButtons } from '../../buttons/buttonsActions'
 
 const useShowButtons = (playElement) => {
   const { dispatch } = useDispatchActions()

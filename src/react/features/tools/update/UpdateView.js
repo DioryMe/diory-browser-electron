@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 
 import { useDispatch } from '../../../store'
 
-import { inactivateButton } from '../../buttons/actions'
-import { selectMemory } from '../../navigation/actions'
+import { inactivateButton } from '../../buttons/buttonsActions'
+import { selectMemory } from '../../navigation/navigationActions'
 
 import Modal from '../../../components/Modal'
 import TextInput from '../../../components/TextInput'

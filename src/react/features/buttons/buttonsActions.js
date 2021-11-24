@@ -4,7 +4,7 @@ import {
   OPEN_BUTTONS,
   ACTIVATE_BUTTON,
   INACTIVATE_BUTTON,
-} from './actionsTypes'
+} from './buttonsActionTypes'
 
 export const addButtons = (addedButtons) => ({
   type: ADD_BUTTONS,
