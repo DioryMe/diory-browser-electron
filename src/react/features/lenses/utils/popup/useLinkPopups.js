@@ -3,7 +3,7 @@ import { useStore } from '../../../../store'
 import { createDioryPopup } from './createDioryPopup'
 
 export const useLinkPopups = (markerRefs, memories) => {
-  const [{ dioryLocation }] = useStore((state) => state.settings)
+  const [{ dioryFolderLocation }] = useStore((state) => state.settings)
 
   useEffect(() => {
     if (markerRefs.current) {
@@ -11,12 +11,12 @@ export const useLinkPopups = (markerRefs, memories) => {
         .filter((marker) => !marker.getPopup())
         .forEach((marker) => {
           const diory = memories.find(({ id }) => id === marker.dioryId)
-          const popup = createDioryPopup({ diory }, dioryLocation)
+          const popup = createDioryPopup({ diory }, dioryFolderLocation)
           marker.bindPopup(popup, {
             maxWidth: 600,
             autoPan: false,
           })
         })
     }
-  }, [markerRefs, memories, dioryLocation])
+  }, [markerRefs, memories, dioryFolderLocation])
 }
