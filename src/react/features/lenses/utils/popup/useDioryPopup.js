@@ -3,11 +3,11 @@ import { useStore } from '../../../../store'
 import { createDioryPopup } from './createDioryPopup'
 
 export const useDioryPopup = (markerRef, diory) => {
-  const [{ folderLocation }] = useStore((state) => state.diograph)
+  const [{ dioryLocation }] = useStore((state) => state.settings)
 
   useEffect(() => {
     if (markerRef && markerRef.current) {
-      const popup = createDioryPopup({ diory }, folderLocation)
+      const popup = createDioryPopup({ diory }, dioryLocation)
       markerRef.current
         .bindPopup(popup, {
           maxWidth: 600,
@@ -15,5 +15,5 @@ export const useDioryPopup = (markerRef, diory) => {
         })
         .openPopup()
     }
-  }, [markerRef, diory, folderLocation])
+  }, [markerRef, diory, dioryLocation])
 }

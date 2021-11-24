@@ -12,10 +12,10 @@ import WebPage from '../content/WebPage'
 import { convertRelativePath } from '../../utils'
 
 const DataAwareDiory = ({ playRef, page, diory }) => {
-  const [{ folderLocation }] = useStore((state) => state.diograph)
+  const [{ dioryLocation }] = useStore((state) => state.settings)
   const { data = [] } = diory
   const { contentUrl, encodingFormat, url } = (data && data[0]) || {}
-  const absoluteContentUrl = convertRelativePath(contentUrl, folderLocation)
+  const absoluteContentUrl = convertRelativePath(contentUrl, dioryLocation)
 
   switch (encodingFormat) {
     case 'image/jpeg':
