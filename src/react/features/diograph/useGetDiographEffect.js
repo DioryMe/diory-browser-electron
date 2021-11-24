@@ -14,8 +14,8 @@ export const useGetDiographEffect = () => {
   useEffect(() => {
     if (dioryLocation) {
       invokeChannel(channels.GET_DIOGRAPH, dioryLocation).then(({ diograph, rootId }) => {
-        dispatch(selectStory({ id: rootId }))
         dispatch(getDiograph(diograph, rootId))
+        dispatch(selectStory({ id: rootId }))
       })
     }
   }, [dispatch, dioryLocation])
