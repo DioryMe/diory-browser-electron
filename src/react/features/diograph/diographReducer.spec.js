@@ -1,4 +1,4 @@
-import { createDiory, deleteDiory, deleteLink, deleteLinks } from './reducers'
+import { createDiory, deleteDiory, deleteLink, deleteLinks } from './diographReducer'
 import diographFixture from '../tools/delete/deleteViewFixtureDiograph'
 
 let act

@@ -2,8 +2,8 @@ import React from 'react'
 import { Pane } from 'evergreen-ui'
 
 import NavigationButtons from './NavigationButtons'
-import LensesNavigation from '../../lenses/Navigation'
-import SearchNavigation from '../../search/Navigation'
+import LensesNavigation from '../../lenses/LensesNavigation'
+import SearchNavigation from '../../search/SearchNavigation'
 
 const NavigationBar = () => (
   <Pane

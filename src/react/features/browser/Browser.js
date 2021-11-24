@@ -1,13 +1,13 @@
 import React from 'react'
 
-import { useStore } from './store'
+import { useStore } from '../../store'
 
-import Fullscreen from './components/Fullscreen'
-import Navigation from './features/navigation'
-import Lenses from './features/lenses'
-import Tools from './features/tools/Tools'
-import Buttons from './features/buttons'
-import Search from './features/search'
+import Fullscreen from '../../components/Fullscreen'
+import Navigation from '../navigation/Navigation'
+import Lenses from '../lenses/Lenses'
+import Tools from '../tools/Tools'
+import Buttons from '../buttons/Buttons'
+import Search from '../search/Search'
 
 const Browser = (props) => {
   const [{ showSearchBar }] = useStore((state) => state.search)

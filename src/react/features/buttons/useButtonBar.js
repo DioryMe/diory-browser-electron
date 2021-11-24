@@ -1,6 +1,6 @@
 import { useDispatchActions, useStore } from '../../store'
 
-import { openButtons, activateButton, inactivateButton } from './actions'
+import { openButtons, activateButton, inactivateButton } from './buttonsActions'
 
 const useButtonsArray = () => {
   const [{ buttons }] = useStore((state) => state.buttons)

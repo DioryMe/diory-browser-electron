@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch } from '../../store'
-import { addButtons, removeButtons } from './actions'
+import { addButtons, removeButtons } from './buttonsActions'
 
 export const useButtons = (buttons = []) => {
   const dispatch = useDispatch()

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 import { useDispatch, useStore } from '../../store'
-import { addLensButton } from './actions'
+import { addLensButton } from './lensesActions'
 
 const WithLensContainer = ({ id, button, children }) => {
   const dispatch = useDispatch()

@@ -2,7 +2,7 @@ import React from 'react'
 import { IconButton, Pane, SearchInput } from 'evergreen-ui'
 
 import { useStore, useDispatchActions } from '../../store'
-import { setQuery, toggleSearchBar } from './actions'
+import { setQuery, toggleSearchBar } from './searchActions'
 
 import Icon from '../../components/Icon'
 

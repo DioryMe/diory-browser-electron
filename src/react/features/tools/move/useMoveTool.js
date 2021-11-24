@@ -1,9 +1,9 @@
 import { useDispatch } from '../../../store'
-import { useButtons } from '../../buttons'
+import { useButtons } from '../../buttons/useButtons'
 import { useMoveToolIsActive } from './useMoveToolIsActive'
 
-import { inactivateButton } from '../../buttons/actions'
-import { updateDiory } from '../../diograph/actions'
+import { inactivateButton } from '../../buttons/buttonsActions'
+import { updateDiory } from '../../diograph/diographActions'
 
 import { buttons } from './buttons'
 

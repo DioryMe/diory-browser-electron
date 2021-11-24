@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 
 import { useDispatchActions, useStore } from '../../store'
 
-import { selectStory } from '../navigation/actions'
-import { getDiograph } from './actions'
+import { selectStory } from '../navigation/navigationActions'
+import { getDiograph } from './diographActions'
 
 import { invokeChannel } from '../../client/client'
 import { channels } from '../../../shared/constants'

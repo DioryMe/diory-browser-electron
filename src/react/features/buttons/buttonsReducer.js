@@ -4,7 +4,7 @@ import {
   OPEN_BUTTONS,
   ACTIVATE_BUTTON,
   INACTIVATE_BUTTON,
-} from './actionsTypes'
+} from './buttonsActionTypes'
 import { createReducer } from '../../store'
 
 export const initialState = {

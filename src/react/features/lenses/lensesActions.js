@@ -1,4 +1,4 @@
-import { SELECT_LENS, ADD_LENS_BUTTON } from './actionsTypes'
+import { SELECT_LENS, ADD_LENS_BUTTON } from './lensesActionTypes'
 
 export const selectLens = (id) => ({ type: SELECT_LENS, payload: { id } })
 

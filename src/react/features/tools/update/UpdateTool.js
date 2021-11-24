@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatchActions, useStore } from '../../../store'
 
-import { updateDiory } from '../../diograph/actions'
+import { updateDiory } from '../../diograph/diographActions'
 import { useDiograph } from '../../diograph/useDiograph'
 
 import UpdateView from './UpdateView'

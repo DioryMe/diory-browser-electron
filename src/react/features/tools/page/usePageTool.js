@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useDispatchActions, useStore } from '../../../store'
 import { buttons, NEXT_BUTTON, PREVIOUS_BUTTON } from './buttons'
 
-import { addButtons, inactivateButton, removeButtons } from '../../buttons/actions'
+import { addButtons, inactivateButton, removeButtons } from '../../buttons/buttonsActions'
 
 const useAddAndRemoveButtons = (pageRef) => {
   const { dispatch } = useDispatchActions()

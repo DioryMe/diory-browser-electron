@@ -1,8 +1,8 @@
 import { useStore, useDispatch } from '../../../store'
-import { goBackward, selectMemory } from '../../navigation/actions'
-import { deleteDiory, deleteLinks } from '../../diograph/actions'
+import { goBackward, selectMemory } from '../../navigation/navigationActions'
+import { deleteDiory, deleteLinks } from '../../diograph/diographActions'
 import { useDiograph } from '../../diograph/useDiograph'
-import { inactivateButton } from '../../buttons/actions'
+import { inactivateButton } from '../../buttons/buttonsActions'
 
 const linkedDiories = (focusDiory, diograph) =>
   Object.values(focusDiory.links || []).map(({ id }) => ({

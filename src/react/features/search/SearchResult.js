@@ -16,7 +16,7 @@ const scaleStyle = {
   transformOrigin: 'top left',
 }
 
-const Result = ({ diory, onClick, onDrop }) => (
+const SearchResult = ({ diory, onClick, onDrop }) => (
   <Droppable
     type={types.DIORY}
     style={itemStyle}
@@ -32,10 +32,10 @@ const Result = ({ diory, onClick, onDrop }) => (
   </Droppable>
 )
 
-Result.propTypes = {
+SearchResult.propTypes = {
   diory: PropTypes.object,
   onClick: PropTypes.func,
   onDrop: PropTypes.func,
 }
 
-export default Result
+export default SearchResult
