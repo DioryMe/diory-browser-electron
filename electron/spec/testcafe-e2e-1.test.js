@@ -13,6 +13,7 @@ test('Import diory-demo-content', async (t) => {
 
   await t
     .click(chooseFolderButton)
+    .wait(3000) // Wait for welcome screen to disappear
     .expect(dioryCount)
     .eql(0) // Welcome screen doesn't have any diories
     // Import diory-demo-content folder
