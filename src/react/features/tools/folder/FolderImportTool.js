@@ -11,7 +11,7 @@ import { channels } from '../../../../shared/constants'
 import { FOLDER_IMPORT } from './buttons'
 
 export const useImportFolder = () => {
-  const [{ dioryLocation: folderLocation }] = useStore((state) => state.settings)
+  const [{ dioryFolderLocation: folderLocation }] = useStore((state) => state.settings)
   const [{ storyId }] = useStore((state) => state.navigation)
 
   const dispatch = useDispatch()

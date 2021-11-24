@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Heading, IconButton, Pane, TextInputField } from 'evergreen-ui'
 import { useDispatchActions, useStore } from '../../store'
-import { useSetDioryLocation } from './useSetDioryLocation'
+import { useSetDioryFolderLocation } from './useSetDioryFolderLocation'
 
 import { toggleSettingsBar } from './actions'
 
@@ -10,9 +10,9 @@ import Icon from '../../components/Icon'
 import SettingsBar from './Bar'
 
 const Settings = () => {
-  const [{ dioryLocation, showSettingsBar }] = useStore((state) => state.settings)
+  const [{ dioryFolderLocation, showSettingsBar }] = useStore((state) => state.settings)
   const { dispatchAction } = useDispatchActions()
-  const { onClick } = useSetDioryLocation()
+  const { onClick } = useSetDioryFolderLocation()
   return showSettingsBar ? (
     <SettingsBar>
       <Pane display="flex" justifyContent="space-between">
@@ -27,7 +27,7 @@ const Settings = () => {
           data-testid="search-close"
         />
       </Pane>
-      <TextInputField label="Diory location" defaultValue={dioryLocation} onClick={onClick} />
+      <TextInputField label="Diory location" defaultValue={dioryFolderLocation} onClick={onClick} />
     </SettingsBar>
   ) : null
 }

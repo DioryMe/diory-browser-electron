@@ -9,14 +9,14 @@ import { invokeChannel } from '../../client/client'
 import { channels } from '../../../shared/constants'
 
 export const useGetDiographEffect = () => {
-  const [{ dioryLocation }] = useStore((state) => state.settings)
+  const [{ dioryFolderLocation }] = useStore((state) => state.settings)
   const { dispatch } = useDispatchActions()
   useEffect(() => {
-    if (dioryLocation) {
-      invokeChannel(channels.GET_DIOGRAPH, dioryLocation).then(({ diograph, rootId }) => {
+    if (dioryFolderLocation) {
+      invokeChannel(channels.GET_DIOGRAPH, dioryFolderLocation).then(({ diograph, rootId }) => {
         dispatch(getDiograph(diograph, rootId))
         dispatch(selectStory({ id: rootId }))
       })
     }
-  }, [dispatch, dioryLocation])
+  }, [dispatch, dioryFolderLocation])
 }
