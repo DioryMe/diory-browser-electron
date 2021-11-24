@@ -1,14 +1,17 @@
 import React from 'react'
 
+import { useStore } from './store'
+import { useGetDioryLocation } from './features/settings/useGetDioryLocation'
 import { useDiographEffects } from './features/diograph/useDiographEffects'
 
 import Welcome from './features/welcome'
 import Settings from './features/settings'
 import Browser from './Browser'
-import { useStore } from './store'
 
 const Root = () => {
+  useGetDioryLocation()
   useDiographEffects()
+
   const [{ showSettingsBar }] = useStore((state) => state.settings)
   return (
     <>

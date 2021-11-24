@@ -8,19 +8,20 @@ import { channels } from '../../../shared/constants'
 import { getUntrackedDiograph } from '../../utils'
 
 export const useSaveDiographEffect = () => {
-  const [{ folderLocation, rootId, diograph, updated }] = useStore((state) => state.diograph)
+  const [{ rootId, diograph, updated }] = useStore((state) => state.diograph)
+  const [{ dioryLocation }] = useStore((state) => state.settings)
 
   const { debounceDispatchPromiseAction } = useDispatchActions()
   useEffect(() => {
-    if (updated && folderLocation) {
+    if (updated && dioryLocation) {
       debounceDispatchPromiseAction(
         () =>
           invokeChannel(channels.SAVE_ROOM, {
-            path: folderLocation,
+            path: dioryLocation,
             room: { rootId, diograph: getUntrackedDiograph(diograph) },
           }),
         saveDiograph
       )
     }
-  }, [rootId, updated, folderLocation, diograph, debounceDispatchPromiseAction])
+  }, [rootId, updated, dioryLocation, diograph, debounceDispatchPromiseAction])
 }
