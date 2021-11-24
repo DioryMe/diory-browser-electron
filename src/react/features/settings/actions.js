@@ -1,8 +1,8 @@
 import { SET_DIORY_LOCATION, TOGGLE_SETTINGS_BAR } from './actionsTypes'
 
-export const setDioryLocation = (dioryLocation) => ({
+export const setDioryFolderLocation = (dioryFolderLocation) => ({
   type: SET_DIORY_LOCATION,
-  payload: { dioryLocation },
+  payload: { dioryFolderLocation },
 })
 
 export const toggleSettingsBar = () => ({

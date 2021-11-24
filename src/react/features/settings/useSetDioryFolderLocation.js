@@ -1,7 +1,7 @@
 import { useDispatchActions } from '../../store'
 
 import { resetStore } from '../../store/actions'
-import { setDioryLocation } from './actions'
+import { setDioryFolderLocation } from './actions'
 
 import { invokeChannel } from '../../client/client'
 import { channels } from '../../../shared/constants'
@@ -12,12 +12,12 @@ const useChooseDioryFolderLocation = () => {
     const dioryFolderPath = result.filePaths[0]
     invokeChannel(channels.CHOOSE_FOLDER_LOCATION, dioryFolderPath).then(({ folderLocation }) => {
       dispatch(resetStore())
-      dispatch(setDioryLocation(folderLocation))
+      dispatch(setDioryFolderLocation(folderLocation))
     })
   }
 }
 
-export const useSetDioryLocation = () => {
+export const useSetDioryFolderLocation = () => {
   const chooseDioryFolderLocation = useChooseDioryFolderLocation()
 
   return {

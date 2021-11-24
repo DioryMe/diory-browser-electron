@@ -23,8 +23,8 @@ const getBackgroundImage = (absoluteImageFileUrl, gradient, gradientRgba = '255,
     : `url("${absoluteImageFileUrl}")`
 
 const Image = ({ image, gradient, gradientRgba, children, ...props }) => {
-  const [{ dioryLocation }] = useStore((state) => state.settings)
-  const absoluteImageFileUrl = convertToFileUrl(image, dioryLocation)
+  const [{ dioryFolderLocation }] = useStore((state) => state.settings)
+  const absoluteImageFileUrl = convertToFileUrl(image, dioryFolderLocation)
   return (
     <Box
       {...defaultStyle}

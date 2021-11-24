@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Heading, Pane } from 'evergreen-ui'
 
 import Fullscreen from '../../components/Fullscreen'
-import SetDioryLocationButton from '../settings/SetDioryLocationButton'
+import SetDioryFolderLocationButton from '../settings/SetDioryFolderLocationButton'
 import { useStore } from '../../store'
 
 const Welcome = () => {
-  const [{ initializing, dioryLocation }] = useStore((state) => state.settings)
+  const [{ initializing, dioryFolderLocation }] = useStore((state) => state.settings)
 
   const [showInitially, setShowInitially] = useState(true)
 
@@ -16,7 +16,7 @@ const Welcome = () => {
     }, 2000)
   }, [])
 
-  return !dioryLocation || showInitially ? (
+  return !dioryFolderLocation || showInitially ? (
     <Fullscreen
       background="#fcd600"
       display="flex"
@@ -35,7 +35,7 @@ const Welcome = () => {
         <Heading size={900} width="100%">
           Welcome to Diory!
         </Heading>
-        {!dioryLocation && !initializing ? <SetDioryLocationButton /> : null}
+        {!dioryFolderLocation && !initializing ? <SetDioryFolderLocationButton /> : null}
       </Pane>
     </Fullscreen>
   ) : null

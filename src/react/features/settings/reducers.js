@@ -3,14 +3,14 @@ import { createReducer } from '../../store'
 
 export const initialState = {
   initializing: true,
-  dioryLocation: undefined,
+  dioryFolderLocation: undefined,
   showSettingsBar: false,
 }
 
-export const setDioryLocation = (state, { payload }) => ({
+export const setDioryFolderLocation = (state, { payload }) => ({
   ...state,
   initializing: false,
-  dioryLocation: payload.dioryLocation,
+  dioryFolderLocation: payload.dioryFolderLocation,
 })
 
 export const toggleSettingsBar = (state) => ({
@@ -19,6 +19,6 @@ export const toggleSettingsBar = (state) => ({
 })
 
 export default createReducer({
-  [SET_DIORY_LOCATION]: setDioryLocation,
+  [SET_DIORY_LOCATION]: setDioryFolderLocation,
   [TOGGLE_SETTINGS_BAR]: toggleSettingsBar,
 })
