@@ -24,17 +24,18 @@ test('Import diory-demo-content with diograph.json and choose it again', async (
     .click(exampleFolderDiory)
     .expect(dioryCount)
     .eql(9)
-    // Re-choose example-folder
-    .click('[data-testid="settings-navigation"]')
-    .click('[data-testid="settings-dioryFolderLocation"]')
-    .expect(dioryCount)
-    .eql(9)
-    // Import example-folder folder again
-    .click('[data-testid="tools-button"]')
-    .click('[data-testid="import-button"]')
-    .click('#FOLDER_IMPORT')
-    .expect(dioryCount)
-    .eql(10)
+  // FUNCTIONALITY CURRENTLY NOT AVAILABLE
+  // Re-choose example-folder
+  // .click('[data-testid="settings-navigation"]')
+  // .click('[data-testid="settings-dioryFolderLocation"]')
+  // .expect(dioryCount)
+  // .eql(9)
+  // // Import example-folder folder again
+  // .click('[data-testid="tools-button"]')
+  // .click('[data-testid="import-button"]')
+  // .click('#FOLDER_IMPORT')
+  // .expect(dioryCount)
+  // .eql(10)
   // TODO: Check that the diory name is not "example-folder" but "example-folder-2021-01-01T123456"
   // TODO2: Try searching something to verify that the store has been cleared (requires creating new diory in first phase)
 })
