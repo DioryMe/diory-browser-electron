@@ -2,7 +2,7 @@ const fs = require('fs')
 const { eventHandlerWrapper } = require('./channel-util')
 const { getRoomEventHandler } = require('./get-room-channel')
 
-describe('getRoomEventHandler', () => {
+describe.skip('getRoomEventHandler', () => {
   it('works', async () => {
     const exampleFolderPath = './public/diory-demo-content'
     const params = { address: exampleFolderPath }
