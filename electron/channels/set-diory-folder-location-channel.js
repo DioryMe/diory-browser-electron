@@ -7,8 +7,8 @@ function directoryExists(folderPath) {
   return fs.existsSync(folderPath) && fs.lstatSync(folderPath).isDirectory()
 }
 
-async function initiateDioryFolder(myDioryFolderPath) {
-  fs.mkdirSync(myDioryFolderPath)
+async function initiateDioryFolder(dioryFolderLocation) {
+  fs.mkdirSync(dioryFolderLocation)
 
   const defaultDiograph = {
     diograph: {
@@ -20,7 +20,7 @@ async function initiateDioryFolder(myDioryFolderPath) {
     rootId: 'my-diory',
   }
   return saveDiographJson({
-    diographJsonPath: path.join(myDioryFolderPath, 'diograph.json'),
+    dioryFolderLocation,
     diograph: defaultDiograph.diograph,
     rootId: defaultDiograph.rootId,
   })
