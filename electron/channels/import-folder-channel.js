@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const dayjs = require('dayjs')
 const { generateDiograph } = require('../generators/diograph-generator')
-const { readDiographJson } = require('../lib/read-diograph-json')
+// const { readDiographJson } = require('../lib/read-diograph-json')
 
 function copyFolderRecursiveSync(source, target) {
   if (!fs.lstatSync(source).isDirectory()) {
@@ -38,10 +38,10 @@ exports.importFolderEventHandler = async function importFolderEventHandler({
   copyFolderRecursiveSync(importFolderPath, importedFolderPathInDioryFolder, { recursive: true })
 
   // Read existing diograph.json
-  const existingDiograph = readDiographJson(importedFolderPathInDioryFolder)
-  if (existingDiograph) {
-    throw new Error('NOT IMPLEMENTED: Imported folder had diograph.json file')
-  }
+  // const existingDiograph = readDiographJson(path.join(importedFolderPathInDioryFolder, 'diograph.json'))
+  // if (existingDiograph) {
+  //   throw new Error('NOT IMPLEMENTED: Imported folder had diograph.json file')
+  // }
 
   // Generate diograph if no diograph.json
   const diograph = await generateDiograph(importedFolderPathInDioryFolder)
