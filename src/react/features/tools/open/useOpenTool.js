@@ -7,10 +7,12 @@ import { addButtons, inactivateButton, removeButtons } from '../../buttons/actio
 
 import { invokeChannel } from '../../../client/client'
 import { buttons, OPEN_TOOL_BUTTON } from './buttons'
+import { convertRelativePath } from '../../../utils'
 
 export const useOpenTool = () => {
   const { story } = useDiograph()
   const [{ active }] = useStore((state) => state.buttons)
+  const [{ folderLocation }] = useStore((state) => state.diograph)
 
   const contentUrl = story.data && story.data[0].contentUrl
   const { dispatch } = useDispatchActions()
@@ -25,8 +27,9 @@ export const useOpenTool = () => {
   const open = active === OPEN_TOOL_BUTTON
   useEffect(() => {
     if (open) {
-      invokeChannel('showItemInFolder', contentUrl)
+      const absoluteContentUrl = convertRelativePath(contentUrl, folderLocation)
+      invokeChannel('showItemInFolder', absoluteContentUrl)
       dispatch(inactivateButton())
     }
-  }, [dispatch, contentUrl, open])
+  }, [dispatch, contentUrl, open, folderLocation])
 }
