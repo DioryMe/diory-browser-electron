@@ -13,7 +13,6 @@ export const useGetDiographEffect = () => {
   const { dispatch } = useDispatchActions()
   useEffect(() => {
     if (dioryFolderLocation) {
-      console.log(dioryFolderLocation)
       invokeChannel(channels.GET_DIOGRAPH, dioryFolderLocation).then(({ diograph, rootId }) => {
         dispatch(getDiograph(diograph, rootId))
         dispatch(selectStory({ id: rootId }))

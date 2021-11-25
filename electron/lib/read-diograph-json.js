@@ -7,7 +7,7 @@ exports.readDiographJson = function readDiographJson(diographJsonPath) {
     throw new Error(errorMessage)
   }
 
-  backendLogger.info(`readDiographJson: reading ${diographJsonPath}/diograph.json`)
+  backendLogger.info(`readDiographJson: reading ${diographJsonPath}`)
   const raw = fs.readFileSync(diographJsonPath)
   return JSON.parse(raw)
 }
