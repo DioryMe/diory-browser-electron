@@ -18,7 +18,7 @@ describe('saveRoomEventHandler', () => {
     }
   })
 
-  describe('when saveDiographJson resolves properly', () => {
+  describe.skip('when saveDiographJson resolves properly', () => {
     beforeEach(() => {
       saveDiographJson.mockResolvedValue(undefined)
     })
@@ -36,7 +36,7 @@ describe('saveRoomEventHandler', () => {
     })
   })
 
-  describe('when saveDiographJson rejects', () => {
+  describe.skip('when saveDiographJson rejects', () => {
     beforeEach(() => {
       saveDiographJson.mockRejectedValue(new Error('some-error'))
     })
