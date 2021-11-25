@@ -20,9 +20,9 @@ async function initiateDioryFolder(myDioryFolderPath) {
     rootId: 'my-diory',
   }
   return saveDiographJson({
-    path: myDioryFolderPath,
-    diograph: defaultDiograph,
-    rootId: 'my-diory',
+    diographJsonPath: path.join(myDioryFolderPath, 'diograph.json'),
+    diograph: defaultDiograph.diograph,
+    rootId: defaultDiograph.rootId,
   })
 }
 
@@ -33,8 +33,8 @@ async function validateOrInitiateDioryFolder(dioryFolderLocation) {
   }
 
   const myDioryFolderPath = path.join(dioryFolderLocation, 'My Diory')
-  const diographJsonPath = path.join(myDioryFolderPath, 'diograph.json')
   if (directoryExists(myDioryFolderPath)) {
+    const diographJsonPath = path.join(myDioryFolderPath, 'diograph.json')
     if (!fs.existsSync(diographJsonPath)) {
       const errorMessage =
         "My Diory folder already exists in the given location but doesn't have diograph.json"
