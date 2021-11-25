@@ -1,18 +1,14 @@
-const HomeStore = require('electron-store')
 const fs = require('fs')
-
+const path = require('path').posix
 const { readDiographJson } = require('../lib/read-diograph-json')
 
-exports.getDiographEventHandler = async function getDiographEventHandler(params) {
-  const store = new HomeStore({
-    cwd: process.env.TESTCAFE_TEST ? `${process.env.PWD}/tmp/${Date.now()}` : undefined,
-  })
-  const myDioryFolderPath = store.get('folderLocation')
+exports.getDiograph = async function getDiograph(dioryFolderLocation) {
+  const diographJsonPath = path.join(dioryFolderLocation, 'diograph.json')
 
-  // Check that the path still exists
-  if (!fs.existsSync(myDioryFolderPath)) {
-    return { folderLocation: null, diograph: {}, rootId: undefined }
+  if (!fs.existsSync(dioryFolderLocation)) {
+    const errorMessage = `GET_DIOGRAPH: Diory folder location didn't exist anymore: ${dioryFolderLocation}`
+    throw new Error(errorMessage)
   }
 
-  return { folderLocation: null, ...readDiographJson(myDioryFolderPath) }
+  return readDiographJson(diographJsonPath)
 }
