@@ -10,8 +10,8 @@ import { channels } from '../../../shared/constants'
 export const useGetDioryFolderLocation = () => {
   const { dispatch } = useDispatchActions()
   useEffect(() => {
-    invokeChannel(channels.GET_DIOGRAPH).then(({ folderLocation }) => {
-      dispatch(setDioryFolderLocation(folderLocation))
+    invokeChannel(channels.GET_DIORY_FOLDER_LOCATION).then(({ dioryFolderLocation }) => {
+      dispatch(setDioryFolderLocation(dioryFolderLocation))
     })
   }, [dispatch])
 }

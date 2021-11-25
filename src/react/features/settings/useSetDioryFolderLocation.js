@@ -10,10 +10,12 @@ const useChooseDioryFolderLocation = () => {
   const { dispatch } = useDispatchActions()
   return (result) => {
     const dioryFolderPath = result.filePaths[0]
-    invokeChannel(channels.CHOOSE_FOLDER_LOCATION, dioryFolderPath).then(({ folderLocation }) => {
-      dispatch(resetStore())
-      dispatch(setDioryFolderLocation(folderLocation))
-    })
+    invokeChannel(channels.SET_DIORY_FOLDER_LOCATION, dioryFolderPath).then(
+      ({ dioryFolderLocation }) => {
+        dispatch(resetStore())
+        dispatch(setDioryFolderLocation(dioryFolderLocation))
+      }
+    )
   }
 }
 
