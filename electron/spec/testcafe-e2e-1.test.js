@@ -47,7 +47,7 @@ test('Import diory-demo-content', async (t) => {
     .click('[data-testid="tools-button"]') // Close tool bar
     .wait(1000) // Wait for SAVE_ROOM to complete and possibly raise an error
     .expect(dioryCount)
-    .eql(7)
+    .eql(8)
     // Check diory.data
     .click('[data-testid="tools-button"]')
     .click('[data-testid="update-button"]')
