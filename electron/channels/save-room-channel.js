@@ -1,9 +1,10 @@
 const { saveDiographJson } = require('../lib/save-diograph-json')
 
 exports.saveRoomEventHandler = async function saveRoomEventHandler({
-  path,
-  room: { rootId, diograph },
+  diographJsonPath,
+  rootId,
+  diograph,
 }) {
-  await saveDiographJson(path, diograph, rootId)
+  await saveDiographJson({ diographJsonPath, diograph, rootId })
   return true
 }
