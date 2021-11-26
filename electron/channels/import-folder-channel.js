@@ -24,10 +24,13 @@ function copyFolderRecursiveSync(source, target) {
 
 exports.importFolderEventHandler = async function importFolderEventHandler({
   importFolderPath,
-  folderLocation,
+  dioryFolderLocation,
 }) {
   // Create new folder to My Diory folder
-  let importedFolderPathInDioryFolder = path.join(folderLocation, path.basename(importFolderPath))
+  let importedFolderPathInDioryFolder = path.join(
+    dioryFolderLocation,
+    path.basename(importFolderPath)
+  )
   // Add suffix to folder name if it already exists
   if (fs.existsSync(importedFolderPathInDioryFolder)) {
     const datePrefix = dayjs().format('YYYY-MM-DDTHHmmss')
@@ -51,10 +54,10 @@ exports.importFolderEventHandler = async function importFolderEventHandler({
   Object.keys(diograph.diograph).forEach((dioryId) => {
     const diory = diograph.diograph[dioryId]
     if (diory.image) {
-      diory.image = diory.image.replace(`${folderLocation}/`, '')
+      diory.image = diory.image.replace(`${dioryFolderLocation}/`, '')
     }
     if (diory.data && diory.data[0].contentUrl) {
-      diory.data[0].contentUrl = diory.data[0].contentUrl.replace(`${folderLocation}/`, '')
+      diory.data[0].contentUrl = diory.data[0].contentUrl.replace(`${dioryFolderLocation}/`, '')
     }
   })
 
