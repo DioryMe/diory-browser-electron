@@ -22,7 +22,7 @@ function channelLogger(handler, params) {
 contextBridge.exposeInMainWorld('channelsApi', {
   [channels.IMPORT_FOLDER]: (params) => channelLogger(importFolder, params),
   [channels.GET_DIOGRAPH]: (params) => channelLogger(getDiograph, params),
-  [channels.SAVE_DIOGRAPH]: saveDiograph,
+  [channels.SAVE_DIOGRAPH]: (params) => channelLogger(saveDiograph, params),
   [channels.GET_DIORY_FOLDER_LOCATION]: (params) => channelLogger(getDioryFolderLocation, params),
   [channels.SET_DIORY_FOLDER_LOCATION]: (params) => channelLogger(setDioryFolderLocation, params),
   showItemInFolder: async (fullPath) => shell.showItemInFolder(fullPath),

@@ -19,7 +19,7 @@ describe('saveDiograph', () => {
     const dioryFolderLocation = '/some/path'
     const prettyPrintedJson = JSON.stringify(mockedDiograph, null, 2)
 
-    await saveDiograph(dioryFolderLocation, mockedDiograph)
+    await saveDiograph({ dioryFolderLocation, ...mockedDiograph })
 
     expect(fs.promises.writeFile).toHaveBeenCalledTimes(1)
     expect(fs.promises.writeFile).toHaveBeenCalledWith(
