@@ -11,12 +11,12 @@ import { channels } from '../../../../shared/constants'
 import { FOLDER_IMPORT } from './buttons'
 
 export const useImportFolder = () => {
-  const [{ dioryFolderLocation: folderLocation }] = useStore((state) => state.settings)
+  const [{ dioryFolderLocation }] = useStore((state) => state.settings)
   const [{ storyId }] = useStore((state) => state.navigation)
 
   const dispatch = useDispatch()
   const importFolder = (importFolderPath) => {
-    invokeChannel(channels.IMPORT_FOLDER, { importFolderPath, folderLocation }).then(
+    invokeChannel(channels.IMPORT_FOLDER, { importFolderPath, dioryFolderLocation }).then(
       ({ rootId, diograph }) => {
         dispatch(addDiograph(diograph))
         dispatch(createLink({ id: storyId }, { id: rootId }))
