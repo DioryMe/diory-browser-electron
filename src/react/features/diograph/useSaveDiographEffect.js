@@ -16,8 +16,7 @@ export const useSaveDiographEffect = () => {
     if (updated && dioryFolderLocation) {
       debounceDispatchPromiseAction(
         () =>
-          invokeChannel(channels.SAVE_DIOGRAPH, {
-            dioryFolderLocation,
+          invokeChannel(channels.SAVE_DIOGRAPH, dioryFolderLocation, {
             rootId,
             diograph: getUntrackedDiograph(diograph),
           }),

@@ -19,11 +19,7 @@ async function initiateDioryFolder(dioryFolderLocation) {
     },
     rootId: 'my-diory',
   }
-  return saveDiographJson({
-    dioryFolderLocation,
-    diograph: defaultDiograph.diograph,
-    rootId: defaultDiograph.rootId,
-  })
+  return saveDiographJson(dioryFolderLocation, defaultDiograph)
 }
 
 async function validateOrInitiateDioryFolder(selectedFolderLocation) {
