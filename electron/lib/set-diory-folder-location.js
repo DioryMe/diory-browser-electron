@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path').posix
 const HomeStore = require('electron-store')
-const { saveDiographJson } = require('./save-diograph-json')
+const { saveDiograph } = require('./save-diograph')
 
 function directoryExists(folderPath) {
   return fs.existsSync(folderPath) && fs.lstatSync(folderPath).isDirectory()
@@ -19,7 +19,7 @@ async function initiateDioryFolder(dioryFolderLocation) {
     },
     rootId: 'my-diory',
   }
-  return saveDiographJson(dioryFolderLocation, defaultDiograph)
+  return saveDiograph(dioryFolderLocation, defaultDiograph)
 }
 
 async function validateOrInitiateDioryFolder(selectedFolderLocation) {
