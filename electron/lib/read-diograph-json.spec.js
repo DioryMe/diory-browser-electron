@@ -1,30 +1,45 @@
 const fs = require('fs')
-const { getDiograph } = require('./get-diograph')
+const { readDiographJson } = require('./read-diograph-json')
 
-describe.skip('getRoomEventHandler', () => {
-  it('works', async () => {
-    const exampleFolderPath = './public/diory-demo-content'
-    const params = { address: exampleFolderPath }
+describe('readDiographJson', () => {
+  describe('returns diograph object', () => {
+    it('valid diograph.json path', async () => {
+      const diographJsonPath = './public/diory-demo-content/diograph.json'
 
-    const response = await getDiograph(params)
+      const response = await readDiographJson({ diographJsonPath })
 
-    const diographJsonRawContents = fs.readFileSync(`${exampleFolderPath}/diograph.json`)
-    const diographObject = JSON.parse(diographJsonRawContents)
-    const returnValue = {
-      folderLocation: './public/diory-demo-content',
-      rootId: diographObject.rootId,
-      diograph: diographObject.diograph,
-    }
+      const diographJsonRawContents = fs.readFileSync(diographJsonPath)
+      const diographObject = JSON.parse(diographJsonRawContents)
+      const returnValue = {
+        rootId: diographObject.rootId,
+        diograph: diographObject.diograph,
+      }
 
-    expect(response).toEqual(returnValue)
+      expect(response).toEqual(returnValue)
+    })
   })
 
-  it('doesnt work', async () => {
-    const exampleFolderPath = './electron/readers/example-folder'
-    const params = { address: exampleFolderPath }
+  describe('returns undefined', () => {
+    let diographJsonPath
+    afterEach(async () => {
+      const response = await readDiographJson({ diographJsonPath })
+      expect(response).toEqual(undefined)
+    })
 
-    const response = await getDiograph(params)
+    it('folder path only (although diograph.json inside)', async () => {
+      diographJsonPath = './public/diory-demo-content'
+    })
 
-    expect(response).toEqual(undefined)
+    it('non-json text file', async () => {
+      diographJsonPath = './electron/readers/example-folder/some-text.txt'
+    })
+  })
+
+  describe('throws error', () => {
+    it('invalid path', () => {
+      const diographJsonPath = './some/invalid/path'
+      const callDiographJson = () => readDiographJson({ diographJsonPath })
+      expect(callDiographJson).toThrow()
+    })
   })
 })
