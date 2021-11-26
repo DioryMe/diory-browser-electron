@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path').posix
 const { readDiographJson } = require('./read-diograph-json')
 
-exports.getDiograph = function getDiograph(dioryFolderLocation) {
+exports.getDiograph = async function getDiograph(dioryFolderLocation) {
   if (!fs.existsSync(dioryFolderLocation)) {
     const errorMessage = `GET_DIOGRAPH: Provided dioryFolderLocation didn't exist anymore: ${dioryFolderLocation}`
     throw new Error(errorMessage)
