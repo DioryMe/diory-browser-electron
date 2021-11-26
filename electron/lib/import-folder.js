@@ -38,7 +38,8 @@ exports.importFolder = async function importFolder({ importFolderPath, dioryFold
   copyFolderRecursiveSync(importFolderPath, importedFolderPathInDioryFolder, { recursive: true })
 
   // Read existing diograph.json
-  // const existingDiograph = readDiographJson(path.join(importedFolderPathInDioryFolder, 'diograph.json'))
+  // const diographJsonPathpath.join(importedFolderPathInDioryFolder, 'diograph.json')
+  // const existingDiograph = readDiographJson({ diographJsonPath })
   // if (existingDiograph) {
   //   throw new Error('NOT IMPLEMENTED: Imported folder had diograph.json file')
   // }

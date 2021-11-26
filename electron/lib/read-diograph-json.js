@@ -2,7 +2,7 @@ const fs = require('fs')
 
 exports.readDiographJson = function readDiographJson({ diographJsonPath }) {
   if (!fs.existsSync(diographJsonPath)) {
-    const errorMessage = `readDiographJson: Provided diograph folder path doesn't exist (${diographJsonPath}). Did you use FileDialog to select it?`
+    const errorMessage = `readDiographJson: Provided diographJsonPath (${diographJsonPath}) doesn't exist`
     throw new Error(errorMessage)
   }
 
