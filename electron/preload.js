@@ -2,12 +2,12 @@ const { contextBridge, shell, ipcRenderer } = require('electron')
 const frontendLogger = require('electron-log')
 
 const { channels } = require('../src/shared/constants')
-const { eventHandlerWrapper } = require('./channels/channel-util')
+const { eventHandlerWrapper } = require('./lib/channel-util')
 
-const { importFolderEventHandler } = require('./channels/import-folder-channel')
-const { getDiograph } = require('./channels/get-diograph-channel')
-const { getDioryFolderLocation } = require('./channels/get-diory-folder-location-channel')
-const { setDioryFolderLocation } = require('./channels/set-diory-folder-location-channel')
+const { importFolderEventHandler } = require('./lib/import-folder-channel')
+const { getDiograph } = require('./lib/get-diograph-channel')
+const { getDioryFolderLocation } = require('./lib/get-diory-folder-location-channel')
+const { setDioryFolderLocation } = require('./lib/set-diory-folder-location-channel')
 const { saveDiographJson } = require('./lib/save-diograph-json')
 
 contextBridge.exposeInMainWorld('channelsApi', {
