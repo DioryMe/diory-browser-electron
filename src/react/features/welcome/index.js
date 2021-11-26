@@ -10,9 +10,12 @@ const Welcome = () => {
   const [showInitially, setShowInitially] = useState(true)
 
   useEffect(() => {
-    setTimeout(() => {
-      setShowInitially(false)
-    }, 2000)
+    setTimeout(
+      () => {
+        setShowInitially(false)
+      },
+      window.Cypress && process.env.NODE_ENV === 'development' ? 0 : 2000
+    )
   }, [])
 
   return !dioryFolderLocation || showInitially ? (
