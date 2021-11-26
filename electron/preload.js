@@ -6,7 +6,7 @@ const { importFolder } = require('./lib/import-folder')
 const { getDiograph } = require('./lib/get-diograph')
 const { getDioryFolderLocation } = require('./lib/get-diory-folder-location')
 const { setDioryFolderLocation } = require('./lib/set-diory-folder-location')
-const { saveDiographJson } = require('./lib/save-diograph-json')
+const { saveDiograph } = require('./lib/save-diograph')
 
 function channelLogger(handler, params) {
   console.log(`BACK-REQ: ${handler.name} called with`, params)
@@ -21,7 +21,7 @@ function channelLogger(handler, params) {
 contextBridge.exposeInMainWorld('channelsApi', {
   [channels.IMPORT_FOLDER]: (params) => channelLogger(importFolder, params),
   [channels.GET_DIOGRAPH]: (params) => channelLogger(getDiograph, params),
-  [channels.SAVE_DIOGRAPH]: saveDiographJson,
+  [channels.SAVE_DIOGRAPH]: saveDiograph,
   [channels.GET_DIORY_FOLDER_LOCATION]: (params) => channelLogger(getDioryFolderLocation, params),
   [channels.SET_DIORY_FOLDER_LOCATION]: (params) => channelLogger(setDioryFolderLocation, params),
   showItemInFolder: async (fullPath) => shell.showItemInFolder(fullPath),

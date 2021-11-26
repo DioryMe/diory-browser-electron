@@ -5,7 +5,7 @@ jest.mock('fs', () => ({
 }))
 
 const fs = require('fs')
-const { saveDiographJson } = require('./save-diograph-json')
+const { saveDiograph } = require('./save-diograph')
 
 const mockedDiograph = {
   rootId: 'some-diory',
@@ -14,12 +14,12 @@ const mockedDiograph = {
   },
 }
 
-describe('saveDiographJson', () => {
+describe('saveDiograph', () => {
   it('calls writeFile with correct params', async () => {
     const dioryFolderLocation = '/some/path'
     const prettyPrintedJson = JSON.stringify(mockedDiograph, null, 2)
 
-    await saveDiographJson(dioryFolderLocation, mockedDiograph)
+    await saveDiograph(dioryFolderLocation, mockedDiograph)
 
     expect(fs.promises.writeFile).toHaveBeenCalledTimes(1)
     expect(fs.promises.writeFile).toHaveBeenCalledWith(
