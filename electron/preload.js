@@ -4,14 +4,14 @@ const frontendLogger = require('electron-log')
 const { channels } = require('../src/shared/constants')
 const { eventHandlerWrapper } = require('./lib/channel-util')
 
-const { importFolderEventHandler } = require('./lib/import-folder-channel')
-const { getDiograph } = require('./lib/get-diograph-channel')
-const { getDioryFolderLocation } = require('./lib/get-diory-folder-location-channel')
-const { setDioryFolderLocation } = require('./lib/set-diory-folder-location-channel')
+const { importFolder } = require('./lib/import-folder')
+const { getDiograph } = require('./lib/get-diograph')
+const { getDioryFolderLocation } = require('./lib/get-diory-folder-location')
+const { setDioryFolderLocation } = require('./lib/set-diory-folder-location')
 const { saveDiographJson } = require('./lib/save-diograph-json')
 
 contextBridge.exposeInMainWorld('channelsApi', {
-  [channels.IMPORT_FOLDER]: eventHandlerWrapper(channels.IMPORT_FOLDER, importFolderEventHandler),
+  [channels.IMPORT_FOLDER]: eventHandlerWrapper(channels.IMPORT_FOLDER, importFolder),
   [channels.GET_DIOGRAPH]: eventHandlerWrapper(channels.GET_DIOGRAPH, getDiograph),
   [channels.SAVE_DIOGRAPH]: eventHandlerWrapper(channels.SAVE_DIOGRAPH, saveDiographJson),
   [channels.GET_DIORY_FOLDER_LOCATION]: eventHandlerWrapper(
