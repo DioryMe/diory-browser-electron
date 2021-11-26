@@ -12,7 +12,7 @@ import { convertRelativePath } from '../../../utils'
 export const useOpenTool = () => {
   const { story } = useDiograph()
   const [{ active }] = useStore((state) => state.buttons)
-  const [{ folderLocation }] = useStore((state) => state.diograph)
+  const [{ dioryFolderLocation }] = useStore((state) => state.settings)
 
   const contentUrl = story && story.data && story.data[0].contentUrl
   const { dispatch } = useDispatchActions()
@@ -27,9 +27,9 @@ export const useOpenTool = () => {
   const open = active === OPEN_TOOL_BUTTON
   useEffect(() => {
     if (open) {
-      const absoluteContentUrl = convertRelativePath(contentUrl, folderLocation)
+      const absoluteContentUrl = convertRelativePath(contentUrl, dioryFolderLocation)
       invokeChannel('showItemInFolder', absoluteContentUrl)
       dispatch(inactivateButton())
     }
-  }, [dispatch, contentUrl, open, folderLocation])
+  }, [dispatch, contentUrl, open, dioryFolderLocation])
 }
