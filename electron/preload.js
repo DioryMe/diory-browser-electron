@@ -1,5 +1,4 @@
 const { contextBridge, shell, ipcRenderer } = require('electron')
-const frontendLogger = require('electron-log')
 
 const { channels } = require('../src/shared/constants')
 
@@ -19,7 +18,6 @@ contextBridge.exposeInMainWorld('channelsApi', {
   openItemInDesktopManner: (path) => shell.openPath(path),
   openWebsiteInBrowser: (url) => shell.openExternal(url),
   showOpenDialog: () => ipcRenderer.invoke('showOpenDialog'),
-  frontendLogger: frontendLogger.functions,
 })
 
 contextBridge.exposeInMainWorld('processEnv', {
