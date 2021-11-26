@@ -1,4 +1,3 @@
-const { eventHandlerWrapper } = require('./channel-util')
 const { saveDiographJson } = require('./save-diograph-json')
 
 // Mock saveDiographJson
@@ -22,7 +21,7 @@ describe('saveRoomEventHandler', () => {
       saveDiographJson.mockResolvedValue(undefined)
     })
     it('returns true', async () => {
-      const response = await eventHandlerWrapper('SAVE_ROOM', saveDiographJson)(params)
+      const response = await saveDiographJson(params)
 
       expect(saveDiographJson).toHaveBeenCalledTimes(1)
       expect(saveDiographJson).toHaveBeenCalledWith(
@@ -41,7 +40,7 @@ describe('saveRoomEventHandler', () => {
     })
 
     it('returns Error', async () => {
-      const response = await eventHandlerWrapper('SAVE_ROOM', saveDiographJson)(params)
+      const response = await saveDiographJson(params)
 
       expect(saveDiographJson).toHaveBeenCalledTimes(1)
       expect(saveDiographJson).toHaveBeenCalledWith(
