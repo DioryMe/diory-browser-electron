@@ -17,11 +17,11 @@ function channelLogger(handler, params) {
   return response
 }
 
-// NOTE: Currently channels can receive only one parameter!
+// NOTE: Currently channels using channelLogger can receive only one parameter!
 contextBridge.exposeInMainWorld('channelsApi', {
   [channels.IMPORT_FOLDER]: (params) => channelLogger(importFolder, params),
   [channels.GET_DIOGRAPH]: (params) => channelLogger(getDiograph, params),
-  [channels.SAVE_DIOGRAPH]: (params) => channelLogger(saveDiographJson, params),
+  [channels.SAVE_DIOGRAPH]: saveDiographJson,
   [channels.GET_DIORY_FOLDER_LOCATION]: (params) => channelLogger(getDioryFolderLocation, params),
   [channels.SET_DIORY_FOLDER_LOCATION]: (params) => channelLogger(setDioryFolderLocation, params),
   showItemInFolder: async (fullPath) => shell.showItemInFolder(fullPath),
