@@ -1,5 +1,4 @@
 const fs = require('fs')
-const backendLogger = require('electron-log')
 
 exports.readDiographJson = function readDiographJson(diographJsonPath) {
   if (!fs.existsSync(diographJsonPath)) {
@@ -7,7 +6,6 @@ exports.readDiographJson = function readDiographJson(diographJsonPath) {
     throw new Error(errorMessage)
   }
 
-  backendLogger.info(`readDiographJson: reading ${diographJsonPath}`)
   const raw = fs.readFileSync(diographJsonPath)
   return JSON.parse(raw)
 }
