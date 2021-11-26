@@ -3,7 +3,7 @@ import { Selector } from 'testcafe'
 // eslint-disable-next-line no-undef
 fixture`GIVEN welcome room`.page('../../build/index.html')
 
-test('Import diory-demo-content', async (t) => {
+test('Import example-folder', async (t) => {
   const chooseFolderButton = Selector('div').withExactText(
     '+ Choose where your Diory is located on this Computer'
   )
