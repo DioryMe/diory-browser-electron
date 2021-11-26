@@ -26,30 +26,30 @@ async function initiateDioryFolder(dioryFolderLocation) {
   })
 }
 
-async function validateOrInitiateDioryFolder(dioryFolderLocation) {
-  if (!directoryExists(dioryFolderLocation)) {
-    const errorMessage = `Provided diory folder location doesn't exist (${dioryFolderLocation}). Did you use FileDialog to select it?`
+async function validateOrInitiateDioryFolder(selectedFolderLocation) {
+  if (!directoryExists(selectedFolderLocation)) {
+    const errorMessage = `Provided diory folder location doesn't exist (${selectedFolderLocation}). Did you use FileDialog to select it?`
     throw new Error(errorMessage)
   }
 
-  const myDioryFolderPath = path.join(dioryFolderLocation, 'My Diory')
-  if (directoryExists(myDioryFolderPath)) {
-    const diographJsonPath = path.join(myDioryFolderPath, 'diograph.json')
+  const dioryFolderLocation = path.join(selectedFolderLocation, 'My Diory')
+  if (directoryExists(dioryFolderLocation)) {
+    const diographJsonPath = path.join(dioryFolderLocation, 'diograph.json')
     if (!fs.existsSync(diographJsonPath)) {
       const errorMessage =
         "My Diory folder already exists in the given location but doesn't have diograph.json"
       throw new Error(errorMessage)
     }
-    return myDioryFolderPath
+    return dioryFolderLocation
   }
 
-  await initiateDioryFolder(myDioryFolderPath)
+  await initiateDioryFolder(dioryFolderLocation)
 
-  return myDioryFolderPath
+  return dioryFolderLocation
 }
 
-exports.setDioryFolderLocation = async function setDioryFolderLocation(folderLocation) {
-  const dioryFolderLocation = await validateOrInitiateDioryFolder(folderLocation)
+exports.setDioryFolderLocation = async function setDioryFolderLocation(selectedFolderLocation) {
+  const dioryFolderLocation = await validateOrInitiateDioryFolder(selectedFolderLocation)
 
   const store = new HomeStore({
     // E2E tests needs to create config.json file to different path every time
