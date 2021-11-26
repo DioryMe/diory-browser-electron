@@ -11,7 +11,7 @@ const { setDioryFolderLocation } = require('./lib/set-diory-folder-location')
 const { saveDiographJson } = require('./lib/save-diograph-json')
 
 contextBridge.exposeInMainWorld('channelsApi', {
-  [channels.IMPORT_FOLDER]: eventHandlerWrapper(channels.IMPORT_FOLDER, importFolder),
+  [channels.IMPORT_FOLDER]: (params) => importFolder(params),
   [channels.GET_DIOGRAPH]: eventHandlerWrapper(channels.GET_DIOGRAPH, getDiograph),
   [channels.SAVE_DIOGRAPH]: eventHandlerWrapper(channels.SAVE_DIOGRAPH, saveDiographJson),
   [channels.GET_DIORY_FOLDER_LOCATION]: eventHandlerWrapper(
