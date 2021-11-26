@@ -1,55 +1,30 @@
+jest.mock('fs', () => ({
+  promises: {
+    writeFile: jest.fn().mockResolvedValue(),
+  },
+}))
+
+const fs = require('fs')
 const { saveDiographJson } = require('./save-diograph-json')
 
-// Mock saveDiographJson
-jest.mock('../lib/save-diograph-json')
+const mockedReadDiographJsonValue = {
+  rootId: 'some-diory',
+  diograph: {
+    'some-diory': { id: 'some-diory' },
+  },
+}
 
-describe('saveRoomEventHandler', () => {
-  let params
+describe('saveDiographJson', () => {
+  it('calls writeFile with correct params', async () => {
+    const dioryFolderLocation = '/some/path'
+    const prettyPrintedJson = JSON.stringify(mockedReadDiographJsonValue, null, 2)
 
-  beforeEach(() => {
-    params = {
-      path: 'some-path',
-      room: {
-        rootId: 'root-diory-id',
-        diograph: 'some-diograph',
-      },
-    }
-  })
+    await saveDiographJson({ dioryFolderLocation, ...mockedReadDiographJsonValue })
 
-  describe.skip('when saveDiographJson resolves properly', () => {
-    beforeEach(() => {
-      saveDiographJson.mockResolvedValue(undefined)
-    })
-    it('returns true', async () => {
-      const response = await saveDiographJson(params)
-
-      expect(saveDiographJson).toHaveBeenCalledTimes(1)
-      expect(saveDiographJson).toHaveBeenCalledWith(
-        params.path,
-        params.room.diograph,
-        'root-diory-id'
-      )
-
-      expect(response).toEqual(true)
-    })
-  })
-
-  describe.skip('when saveDiographJson rejects', () => {
-    beforeEach(() => {
-      saveDiographJson.mockRejectedValue(new Error('some-error'))
-    })
-
-    it('returns Error', async () => {
-      const response = await saveDiographJson(params)
-
-      expect(saveDiographJson).toHaveBeenCalledTimes(1)
-      expect(saveDiographJson).toHaveBeenCalledWith(
-        params.path,
-        params.room.diograph,
-        'root-diory-id'
-      )
-
-      expect(response).toEqual(new Error('some-error'))
-    })
+    expect(fs.promises.writeFile).toHaveBeenCalledTimes(1)
+    expect(fs.promises.writeFile).toHaveBeenCalledWith(
+      '/some/path/diograph.json',
+      prettyPrintedJson
+    )
   })
 })
