@@ -13,10 +13,10 @@ readDiographJson.mockImplementation(() => mockedReadDiographJsonValue)
 
 describe('getDiograph', () => {
   describe('returns readDiographJson return value', () => {
-    it('valid diory folder location', () => {
+    it('valid diory folder location', async () => {
       const dioryFolderLocation = './public/diory-demo-content'
 
-      const response = getDiograph(dioryFolderLocation)
+      const response = await getDiograph(dioryFolderLocation)
 
       const diographJsonPath = path.join(dioryFolderLocation, 'diograph.json')
       expect(readDiographJson).toHaveBeenCalledTimes(1)
@@ -26,18 +26,18 @@ describe('getDiograph', () => {
   })
 
   describe('throws error', () => {
-    it('folder without diograph.json', () => {
+    it('folder without diograph.json', async () => {
       const dioryFolderLocation = './electron/readers/example-folder'
 
-      const callGetDiograph = () => getDiograph(dioryFolderLocation)
-      expect(callGetDiograph).toThrow(/didn't contain/)
+      const callGetDiograph = async () => getDiograph(dioryFolderLocation)
+      expect(callGetDiograph).rejects.toThrow(/didn't contain/)
     })
 
     it('invalid path', () => {
       const invalidDioryFolderLocation = './some/invalid/path'
 
-      const callGetDiograph = () => getDiograph(invalidDioryFolderLocation)
-      expect(callGetDiograph).toThrow(/didn't exist/)
+      const callGetDiograph = async () => getDiograph(invalidDioryFolderLocation)
+      expect(callGetDiograph).rejects.toThrow(/didn't exist/)
     })
   })
 })

@@ -18,6 +18,7 @@ function channelLogger(handler, params) {
 }
 
 // NOTE: Currently channels using channelLogger can receive only one parameter!
+// NOTE2: All functions used as channels must return a Promise!
 contextBridge.exposeInMainWorld('channelsApi', {
   [channels.IMPORT_FOLDER]: (params) => channelLogger(importFolder, params),
   [channels.GET_DIOGRAPH]: (params) => channelLogger(getDiograph, params),
