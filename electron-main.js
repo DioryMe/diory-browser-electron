@@ -49,7 +49,7 @@ app.on('activate', () => {
 })
 
 const Store = require('electron-store')
-const { showOpenDialog } = require('./electron/channels/show-open-dialog')
+const { showOpenDialog } = require('./electron/lib/show-open-dialog')
 
 ipcMain.handle('showOpenDialog', showOpenDialog)
 
