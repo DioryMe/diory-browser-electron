@@ -15,11 +15,7 @@ contextBridge.exposeInMainWorld('channelsApi', {
   [channels.SAVE_DIOGRAPH]: saveDiographJson,
   [channels.GET_DIORY_FOLDER_LOCATION]: getDioryFolderLocation,
   [channels.SET_DIORY_FOLDER_LOCATION]: setDioryFolderLocation,
-  showItemInFolder: (fullPath) =>
-    new Promise((resolve) => {
-      shell.showItemInFolder(fullPath)
-      resolve()
-    }),
+  showItemInFolder: async (fullPath) => shell.showItemInFolder(fullPath),
   openExternal: (url) => shell.openExternal(url),
   showOpenDialog: () => ipcRenderer.invoke('showOpenDialog'),
   frontendLogger: frontendLogger.functions,
