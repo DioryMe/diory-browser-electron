@@ -2,7 +2,6 @@ const { contextBridge, shell, ipcRenderer } = require('electron')
 const frontendLogger = require('electron-log')
 
 const { channels } = require('../src/shared/constants')
-const { eventHandlerWrapper } = require('./lib/channel-util')
 
 const { importFolder } = require('./lib/import-folder')
 const { getDiograph } = require('./lib/get-diograph')
@@ -11,17 +10,11 @@ const { setDioryFolderLocation } = require('./lib/set-diory-folder-location')
 const { saveDiographJson } = require('./lib/save-diograph-json')
 
 contextBridge.exposeInMainWorld('channelsApi', {
-  [channels.IMPORT_FOLDER]: (params) => importFolder(params),
-  [channels.GET_DIOGRAPH]: eventHandlerWrapper(channels.GET_DIOGRAPH, getDiograph),
-  [channels.SAVE_DIOGRAPH]: eventHandlerWrapper(channels.SAVE_DIOGRAPH, saveDiographJson),
-  [channels.GET_DIORY_FOLDER_LOCATION]: eventHandlerWrapper(
-    channels.GET_DIORY_FOLDER_LOCATION,
-    getDioryFolderLocation
-  ),
-  [channels.SET_DIORY_FOLDER_LOCATION]: eventHandlerWrapper(
-    channels.SET_DIORY_FOLDER_LOCATION,
-    setDioryFolderLocation
-  ),
+  [channels.IMPORT_FOLDER]: importFolder,
+  [channels.GET_DIOGRAPH]: getDiograph,
+  [channels.SAVE_DIOGRAPH]: saveDiographJson,
+  [channels.GET_DIORY_FOLDER_LOCATION]: getDioryFolderLocation,
+  [channels.SET_DIORY_FOLDER_LOCATION]: setDioryFolderLocation,
   showItemInFolder: (fullPath) =>
     new Promise((resolve) => {
       shell.showItemInFolder(fullPath)
