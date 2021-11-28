@@ -6,7 +6,6 @@ import { goBackward, goForward, selectStory } from '../actions'
 import Icon from '../../../components/Icon'
 import NavigationContextsPill from './NavigationContextsPill'
 import NavigationContextButton from './NavigationContextButton'
-import SettingsNavigation from '../../settings/Navigation'
 
 const useNavigationButtons = () => {
   const [{ backward, forward }, dispatch] = useStore((state) => state.navigation)
@@ -30,7 +29,6 @@ const NavigationButtons = (props) => {
   const { home, back, forward } = useNavigationButtons()
   return (
     <Pane {...props}>
-      <SettingsNavigation display="flex" alignSelf="center" />
       <IconButton appearance="minimal" icon={<Icon icon="home" />} data-testid="home" {...home} />
       <NavigationContextButton />
       <NavigationContextsPill />
