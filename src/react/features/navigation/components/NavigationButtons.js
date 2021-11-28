@@ -30,8 +30,6 @@ const NavigationButtons = (props) => {
   return (
     <Pane {...props}>
       <IconButton appearance="minimal" icon={<Icon icon="home" />} data-testid="home" {...home} />
-      <NavigationContextButton />
-      <NavigationContextsPill />
       <IconButton
         appearance="minimal"
         icon={<Icon icon="arrow-left" />}
@@ -44,6 +42,8 @@ const NavigationButtons = (props) => {
         data-testid="navigate-forward"
         {...forward}
       />
+      <NavigationContextButton />
+      <NavigationContextsPill />
     </Pane>
   )
 }
