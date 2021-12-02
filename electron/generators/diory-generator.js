@@ -95,6 +95,8 @@ function getAverageDate(linkedDiorys) {
     .map(({ date }) => date)
     .filter(Boolean)
     .map(Date.parse)
+    // eslint-disable-next-line no-restricted-globals
+    .filter((date) => !isNaN(date))
   return (
     dates.length && {
       date: new Date(getAverage(dates)).toISOString(),
