@@ -1,7 +1,5 @@
 const path = require('path')
-const { generateDiograph } = require('../generators/diograph-generator')
 const { importFolder } = require('./import-folder')
-const { copyFolderRecursiveSync } = require('./utils')
 
 const someDiograph = {
   diograph: {
@@ -14,10 +12,12 @@ jest.mock('fs', () => ({
   ...jest.requireActual('fs'),
   mkdirSync: () => true,
 }))
-jest.mock('./utils')
-copyFolderRecursiveSync.mockImplementation(() => true)
-jest.mock('../generators/diograph-generator')
-generateDiograph.mockImplementation(() => someDiograph)
+jest.mock('./utils', () => ({
+  copyFolderRecursiveSync: () => true,
+}))
+jest.mock('../generators/diograph-generator', () => ({
+  generateDiograph: () => someDiograph,
+}))
 
 // Copies folder to dioryFolderLocation from given path
 // - luo folderin
