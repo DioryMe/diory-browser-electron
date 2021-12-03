@@ -1,28 +1,16 @@
 const fs = require('fs')
 const path = require('path')
 const dayjs = require('dayjs')
+const { copyFolderRecursiveSync } = require('./utils')
 const { generateDiograph } = require('../generators/diograph-generator')
 // const { readDiographJson } = require('../lib/read-diograph-json')
 
-function copyFolderRecursiveSync(source, target) {
-  if (!fs.lstatSync(source).isDirectory()) {
-    throw new Error(`copyFolderRecursiveSync: source folder (${source}) is not a folder!`)
+exports.importFolder = async function importFolder({ importFolderPath, dioryFolderLocation }) {
+  if (!fs.existsSync(importFolderPath)) {
+    const errorMessage = `importFolder: Provided importFolderPath (${importFolderPath}) doesn't exist`
+    throw new Error(errorMessage)
   }
 
-  fs.readdirSync(source).forEach((itemName) => {
-    const sourcePath = path.join(source, itemName)
-    const targetPath = path.join(target, itemName)
-
-    if (fs.lstatSync(sourcePath).isDirectory()) {
-      fs.mkdirSync(targetPath)
-      copyFolderRecursiveSync(sourcePath, targetPath)
-    } else {
-      fs.copyFileSync(sourcePath, targetPath)
-    }
-  })
-}
-
-exports.importFolder = async function importFolder({ importFolderPath, dioryFolderLocation }) {
   // Create new folder to My Diory folder
   let importedFolderPathInDioryFolder = path.join(
     dioryFolderLocation,
@@ -35,7 +23,7 @@ exports.importFolder = async function importFolder({ importFolderPath, dioryFold
   }
   fs.mkdirSync(importedFolderPathInDioryFolder)
   // Copy everything recursively from importFolderPath to the new destination
-  copyFolderRecursiveSync(importFolderPath, importedFolderPathInDioryFolder, { recursive: true })
+  copyFolderRecursiveSync(importFolderPath, importedFolderPathInDioryFolder)
 
   // Read existing diograph.json
   // const diographJsonPathpath.join(importedFolderPathInDioryFolder, 'diograph.json')
