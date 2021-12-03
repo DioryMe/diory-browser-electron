@@ -10,6 +10,10 @@ exports.importFolder = async function importFolder({ importFolderPath, dioryFold
     const errorMessage = `importFolder: Provided importFolderPath (${importFolderPath}) doesn't exist`
     throw new Error(errorMessage)
   }
+  if (!fs.existsSync(dioryFolderLocation)) {
+    const errorMessage = `importFolder: Provided dioryFolderLocation (${dioryFolderLocation}) doesn't exist`
+    throw new Error(errorMessage)
+  }
 
   // Create new folder to My Diory folder
   let importedFolderPathInDioryFolder = path.join(

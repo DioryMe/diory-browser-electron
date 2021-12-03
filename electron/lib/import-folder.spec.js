@@ -1,6 +1,8 @@
 const path = require('path')
 const { importFolder } = require('./import-folder')
 
+const someValidPath = path.join(__dirname, '../readers/example-folder')
+
 const someDiograph = {
   diograph: {
     'some-diory': { id: 'some-diory' },
@@ -37,8 +39,8 @@ jest.mock('../generators/diograph-generator', () => ({
 describe('importFolder', () => {
   describe('e2e test with real path', () => {
     it('works', async () => {
-      const importFolderPath = path.join(__dirname, '../readers/example-folder')
-      const dioryFolderLocation = './some-path'
+      const importFolderPath = someValidPath
+      const dioryFolderLocation = someValidPath
 
       const response = await importFolder({ importFolderPath, dioryFolderLocation })
 
@@ -47,9 +49,17 @@ describe('importFolder', () => {
   })
 
   describe('throws error', () => {
-    it('error', async () => {
+    it("importFolderPath doesn't exist", async () => {
       const importFolderPath = './invalid-path'
-      const dioryFolderLocation = './some-path'
+      const dioryFolderLocation = someValidPath
+
+      const callImportFolder = importFolder({ importFolderPath, dioryFolderLocation })
+      await expect(callImportFolder).rejects.toThrowError()
+    })
+
+    it("dioryFolderLocation doesn't exist", async () => {
+      const importFolderPath = someValidPath
+      const dioryFolderLocation = './invalid-path'
 
       const callImportFolder = importFolder({ importFolderPath, dioryFolderLocation })
       await expect(callImportFolder).rejects.toThrowError()
