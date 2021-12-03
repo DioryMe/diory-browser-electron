@@ -1,7 +1,10 @@
 const path = require('path')
+const { generateDiograph } = require('../generators/diograph-generator')
 const { importFolder } = require('./import-folder')
+const { copyFolderRecursiveSync } = require('./utils')
 
 const someValidPath = path.join(__dirname, '../readers/example-folder')
+const someCreatedFolderPath = `${someValidPath}/folderName`
 
 const someDiograph = {
   diograph: {
@@ -10,16 +13,18 @@ const someDiograph = {
   rootId: 'some-diory',
 }
 
+jest.mock('path', () => ({
+  ...jest.requireActual('path'),
+  basename: () => 'folderName',
+}))
 jest.mock('fs', () => ({
   ...jest.requireActual('fs'),
   mkdirSync: () => true,
 }))
-jest.mock('./utils', () => ({
-  copyFolderRecursiveSync: () => true,
-}))
-jest.mock('../generators/diograph-generator', () => ({
-  generateDiograph: () => someDiograph,
-}))
+jest.mock('./utils')
+copyFolderRecursiveSync.mockReturnValue(true)
+jest.mock('../generators/diograph-generator')
+generateDiograph.mockResolvedValue(someDiograph)
 
 // Copies folder to dioryFolderLocation from given path
 // - luo folderin
@@ -37,14 +42,27 @@ jest.mock('../generators/diograph-generator', () => ({
 // Returns diograph with relative path
 
 describe('importFolder', () => {
-  describe('e2e test with real path', () => {
-    it('works', async () => {
+  describe('creates new folder and calls copyFolderRecursiveSync and generateDiograph with it', () => {
+    it('happy case', async () => {
       const importFolderPath = someValidPath
       const dioryFolderLocation = someValidPath
 
       const response = await importFolder({ importFolderPath, dioryFolderLocation })
 
       expect(response).toEqual(someDiograph)
+      expect(copyFolderRecursiveSync).toHaveBeenCalledWith(someValidPath, someCreatedFolderPath)
+      expect(generateDiograph).toHaveBeenCalledWith(someCreatedFolderPath)
+    })
+
+    it('already existing folder with importFolder name', async () => {
+      const importFolderPath = someValidPath
+      const dioryFolderLocation = someValidPath
+
+      const response = await importFolder({ importFolderPath, dioryFolderLocation })
+
+      expect(response).toEqual(someDiograph)
+      expect(copyFolderRecursiveSync).toHaveBeenCalledWith(someValidPath, someCreatedFolderPath)
+      expect(generateDiograph).toHaveBeenCalledWith(someCreatedFolderPath)
     })
   })
 
