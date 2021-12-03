@@ -1,10 +1,11 @@
+const { existsSync, mkdirSync } = require('fs')
 const path = require('path')
 const { generateDiograph } = require('../generators/diograph-generator')
 const { importFolder } = require('./import-folder')
 const { copyFolderRecursiveSync } = require('./utils')
 
 const someValidPath = path.join(__dirname, '../readers/example-folder')
-const someCreatedFolderPath = `${someValidPath}/folderName`
+const someCreatedFolderPath = path.join(someValidPath, 'folderName')
 
 const someDiograph = {
   diograph: {
@@ -19,12 +20,12 @@ jest.mock('path', () => ({
 }))
 jest.mock('fs', () => ({
   ...jest.requireActual('fs'),
-  mkdirSync: () => true,
+  existsSync: jest.fn(),
+  mkdirSync: jest.fn(),
 }))
+
 jest.mock('./utils')
-copyFolderRecursiveSync.mockReturnValue(true)
 jest.mock('../generators/diograph-generator')
-generateDiograph.mockResolvedValue(someDiograph)
 
 // Copies folder to dioryFolderLocation from given path
 // - luo folderin
@@ -34,14 +35,18 @@ generateDiograph.mockResolvedValue(someDiograph)
 // => pitäiskö olla omansa? kutsuisi varsinaista importFolderia vasta myöhemmin...?
 
 // Error if has diograph.json
-// Error if path doesn't exist
-// Error if folder is empty
 
 // Generates diograph (calls generateDiograph with correct params: copied folderPath from dioryFolderPath)
 // Saves diograph (calls saveDiograph with correct params: generateDiograph return value)
 // Returns diograph with relative path
 
 describe('importFolder', () => {
+  beforeEach(() => {
+    mkdirSync.mockReturnValue(true)
+    existsSync.mockImplementation((path) => path === someValidPath)
+    copyFolderRecursiveSync.mockReturnValue(true)
+    generateDiograph.mockResolvedValue(someDiograph)
+  })
   describe('creates new folder and calls copyFolderRecursiveSync and generateDiograph with it', () => {
     it('happy case', async () => {
       const importFolderPath = someValidPath
@@ -54,25 +59,38 @@ describe('importFolder', () => {
       expect(generateDiograph).toHaveBeenCalledWith(someCreatedFolderPath)
     })
 
-    it('already existing folder with importFolder name', async () => {
+    it('importFolder name already exists in diory folder', async () => {
+      existsSync.mockImplementation(() => true)
       const importFolderPath = someValidPath
       const dioryFolderLocation = someValidPath
 
       const response = await importFolder({ importFolderPath, dioryFolderLocation })
 
       expect(response).toEqual(someDiograph)
-      expect(copyFolderRecursiveSync).toHaveBeenCalledWith(someValidPath, someCreatedFolderPath)
-      expect(generateDiograph).toHaveBeenCalledWith(someCreatedFolderPath)
+      // Calls with .../example-folder/folderName-2021-12-03T170304
+      expect(copyFolderRecursiveSync).not.toHaveBeenCalledWith(someValidPath, someCreatedFolderPath)
+      expect(generateDiograph).not.toHaveBeenCalledWith(someCreatedFolderPath)
     })
   })
 
   describe('throws error', () => {
-    it("importFolderPath doesn't exist", async () => {
-      const importFolderPath = './invalid-path'
-      const dioryFolderLocation = someValidPath
+    describe('importFolderPath', () => {
+      it("doesn't exist", async () => {
+        const importFolderPath = './invalid-path'
+        const dioryFolderLocation = someValidPath
 
-      const callImportFolder = importFolder({ importFolderPath, dioryFolderLocation })
-      await expect(callImportFolder).rejects.toThrowError()
+        const callImportFolder = importFolder({ importFolderPath, dioryFolderLocation })
+        await expect(callImportFolder).rejects.toThrowError()
+      })
+
+      // TODO: Shouldn't do anything if folder to be imported is empty
+      // it('is empty', async () => {
+      //   const importFolderPath = './empty-path'
+      //   const dioryFolderLocation = someValidPath
+
+      //   const callImportFolder = importFolder({ importFolderPath, dioryFolderLocation })
+      //   await expect(callImportFolder).rejects.toThrowError()
+      // })
     })
 
     it("dioryFolderLocation doesn't exist", async () => {
