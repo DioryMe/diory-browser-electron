@@ -1,7 +1,7 @@
-# Jest Mocking Cheatsheet
+# Jest Cheatsheet
 
 Best cheatsheet I found from internets:
-https://github.com/sapegin/jest-cheat-sheet#mock-functions
+https://github.com/sapegin/jest-cheat-sheet
 
 ### Expect Promise value in async test
 
@@ -15,36 +15,62 @@ test('resolve to lemon', async () => {
 })
 ```
 
-### Static mock the whole module
+## Expect throwing an error / rejecting
+
+```js
+// Non-promise
+const callFunction = () => thisIsFunction(params)
+expect(callFunction).toThrow()
+// Promise
+const callPromiseFunction = promiseFunction(params)
+await expect(callPromiseFunction).rejects.toThrowError()
+```
+
+## Mocking
+
+## Principles
+
+1. By default use static mocking
+2. Use dynamic mocking on if you need to spy or change the values between tests
+
+## Static mock
+
+### Whole module
 
 ```js
 jest.mock('fs', () => ({
   func1: () => 'mockedValue',
-  func2: () => true
+  func2: () => true,
 })
 ```
 
-### Static mock part of the module
+### Part of the module
 
 ```js
 jest.mock('fs', () => ({
   ...jest.requireActual('fs'),
-  mkdirSync: () => true),
+  mkdirSync: () => true,
 }))
 ```
 
-### Dynamic mock the whole module
+## Dynamic mock
+
+### Whole module
 
 ```js
-const { mkdirSync, existsSync } = require('fs')
+const { nonPromiseFunc, promiseFunc } = require('utils')
+jest.mock('./utils')
 
-jest.mock('fs')
-
-mkdirSync.mockImplementation(() => true)
-existsSync.mockImplementation(() => true)
+nonPromiseFunc.mockImplementation(() => true)
+nonPromiseFunc.mockReturnValue(true)
+nonPromiseFunc.mockReturnValueOnce('some-file.txt')
+promiseFunc.mockResolvedValue(returnValue)
+promiseFunc.mockResolvedValueOnce(returnValue)
+const failedPromise = jest.fn().mockRejectedValue('Error')
+const failedPromiseOnce = jest.fn().mockRejectedValueOnce('Error')
 ```
 
-### Dynamic mock part of the module
+### Part of module
 
 ```js
 const { mkdirSync } = require('fs')
@@ -57,45 +83,15 @@ jest.mock('fs', () => ({
 mkdirSync.mockImplementation(() => true)
 ```
 
-### Dynamic mock Promise
-
-```js
-promiseFunc.mockResolvedValue(returnValue)
-promiseFunc.mockResolvedValueOnce(returnValue)
-const failedPromise = jest.fn().mockRejectedValue('Error')
-const failedPromiseOnce = jest.fn().mockRejectedValueOnce('Error')
-```
-
-### Dynamic mock non-promise
-
-```js
-nonPromiseFunc.mockImplementation(() => true)
-anotherNonPromiseFunc.mockReturnValueOnce('some-file.txt')
-```
-
-### Spy
+## Spying
 
 ```js
 import { useDispatch } from './store'
-jest.mock('../../../store')
+jest.mock('./store')
 
 const mockDispatch = jest.fn()
 useDispatch.mockImplementation(() => mockDispatch)
 
 expect(mockDispatch).toHaveBeenCalledTimes(1)
 expect(mockDispatch).toHaveBeenCalledWith(params)
-```
-
-### Non-Promise to throw error:
-
-```js
-const callFunction = () => thisIsFunction(params)
-expect(callFunction).toThrow()
-```
-
-### Promise to throw error:
-
-```js
-const callPromiseFunction = promiseFunction(params)
-await expect(callPromiseFunction).rejects.toThrowError()
 ```
