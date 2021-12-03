@@ -22,8 +22,8 @@ describe('readDiographJson', () => {
   describe('returns undefined', () => {
     let diographJsonPath
     afterEach(async () => {
-      const response = await readDiographJson({ diographJsonPath })
-      expect(response).toEqual(undefined)
+      const callDiographJson = () => readDiographJson({ diographJsonPath })
+      expect(callDiographJson).toThrow() // <--- specify the error?
     })
 
     it('folder path only (although diograph.json inside)', async () => {
