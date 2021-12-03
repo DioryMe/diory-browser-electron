@@ -2,6 +2,7 @@ const { existsSync, mkdirSync } = require('fs')
 const path = require('path')
 const { generateDiograph } = require('../generators/diograph-generator')
 const { importFolder } = require('./import-folder')
+const { readDiographJson } = require('./read-diograph-json')
 const { copyFolderRecursiveSync } = require('./utils')
 
 const someValidPath = path.join(__dirname, '../readers/example-folder')
@@ -26,6 +27,7 @@ jest.mock('fs', () => ({
 
 jest.mock('./utils')
 jest.mock('../generators/diograph-generator')
+jest.mock('./read-diograph-json')
 
 // Copies folder to dioryFolderLocation from given path
 // - luo folderin
@@ -46,6 +48,7 @@ describe('importFolder', () => {
     existsSync.mockImplementation((path) => path === someValidPath)
     copyFolderRecursiveSync.mockReturnValue(true)
     generateDiograph.mockResolvedValue(someDiograph)
+    readDiographJson.mockReturnValue(undefined)
   })
   describe('creates new folder and calls copyFolderRecursiveSync and generateDiograph with it', () => {
     it('happy case', async () => {
@@ -83,6 +86,15 @@ describe('importFolder', () => {
         await expect(callImportFolder).rejects.toThrowError()
       })
 
+      it('contains diograph.json', async () => {
+        readDiographJson.mockReturnValue(someDiograph)
+        const importFolderPath = someValidPath
+        const dioryFolderLocation = someValidPath
+
+        const callImportFolder = importFolder({ importFolderPath, dioryFolderLocation })
+        await expect(callImportFolder).rejects.toThrowError()
+      })
+
       // TODO: Shouldn't do anything if folder to be imported is empty
       // it('is empty', async () => {
       //   const importFolderPath = './empty-path'
@@ -93,12 +105,14 @@ describe('importFolder', () => {
       // })
     })
 
-    it("dioryFolderLocation doesn't exist", async () => {
-      const importFolderPath = someValidPath
-      const dioryFolderLocation = './invalid-path'
+    describe('dioryFolderLocation', () => {
+      it("doesn't exist", async () => {
+        const importFolderPath = someValidPath
+        const dioryFolderLocation = './invalid-path'
 
-      const callImportFolder = importFolder({ importFolderPath, dioryFolderLocation })
-      await expect(callImportFolder).rejects.toThrowError()
+        const callImportFolder = importFolder({ importFolderPath, dioryFolderLocation })
+        await expect(callImportFolder).rejects.toThrowError()
+      })
     })
   })
 })
