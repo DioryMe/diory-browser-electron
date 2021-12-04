@@ -28,37 +28,15 @@ await expect(callPromiseFunction).rejects.toThrowError()
 
 ## Mocking
 
-## Principles
+### Principles
 
-1. By default use static mocking
-2. Use dynamic mocking on if you need to spy or change the values between tests
-
-## Static mock
+1. beforeEach() for all the mock default values
+2. Change specific mock in the first row of the it block
 
 ### Whole module
 
 ```js
-jest.mock('fs', () => ({
-  func1: () => 'mockedValue',
-  func2: () => true,
-})
-```
-
-### Part of the module
-
-```js
-jest.mock('fs', () => ({
-  ...jest.requireActual('fs'),
-  mkdirSync: () => true,
-}))
-```
-
-## Dynamic mock
-
-### Whole module
-
-```js
-const { nonPromiseFunc, promiseFunc } = require('utils')
+const { nonPromiseFunc, promiseFunc } = require('./utils')
 jest.mock('./utils')
 
 nonPromiseFunc.mockImplementation(() => true)
@@ -70,7 +48,7 @@ const failedPromise = jest.fn().mockRejectedValue('Error')
 const failedPromiseOnce = jest.fn().mockRejectedValueOnce('Error')
 ```
 
-### Part of module
+### Only part of the module
 
 ```js
 const { mkdirSync } = require('fs')
@@ -86,12 +64,22 @@ mkdirSync.mockImplementation(() => true)
 ## Spying
 
 ```js
-import { useDispatch } from './store'
-jest.mock('./store')
+const { nonPromiseFunc, promiseFunc } = require('./utils')
+jest.mock('./utils')
 
-const mockDispatch = jest.fn()
-useDispatch.mockImplementation(() => mockDispatch)
+const mockNonPromiseFunc = jest.fn()
+const mockPromiseFunc = jest.fn()
 
-expect(mockDispatch).toHaveBeenCalledTimes(1)
-expect(mockDispatch).toHaveBeenCalledWith(params)
+beforeEach(() => {
+  nonPromiseFunc.mockImplementation(() => mockNonPromiseFunc)
+  promiseFunc.mockImplementation(() => mockPromiseFunc)
+})
+
+it('', () => {
+  expect(mockNonPromiseFunc).toHaveBeenCalledTimes(1)
+  expect(mockNonPromiseFunc).toHaveBeenCalledWith(params)
+
+  expect(mockPromiseFunc).toHaveBeenCalledTimes(1)
+  expect(mockPromiseFunc).toHaveBeenCalledWith(params)
+})
 ```
