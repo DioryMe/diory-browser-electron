@@ -16,10 +16,9 @@ export const convertToFileUrl = (relativePath, folderLocation) => {
     return relativePath
   }
 
-  // Already absolute path
-  if (RegExp(`^${folderLocation}`).exec(relativePath)) {
-    return fileUrl(relativePath)
+  if (!folderLocation) {
+    return relativePath
   }
 
-  return relativePath && fileUrl(`${folderLocation}/${relativePath}`)
+  return relativePath && new URL(relativePath, fileUrl(`${folderLocation}/#`)).href
 }
