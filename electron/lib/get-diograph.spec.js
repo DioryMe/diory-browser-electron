@@ -9,9 +9,12 @@ const someDiograph = {
   rootId: 'some-diory',
 }
 jest.mock('./read-diograph-json')
-readDiographJson.mockImplementation(() => someDiograph)
 
 describe('getDiograph', () => {
+  beforeEach(() => {
+    readDiographJson.mockImplementation(() => someDiograph)
+  })
+
   describe('returns readDiographJson return value', () => {
     it('valid diory folder location', async () => {
       const dioryFolderLocation = './public/diory-demo-content'
@@ -27,6 +30,7 @@ describe('getDiograph', () => {
 
   describe('throws error', () => {
     it('folder without diograph.json', async () => {
+      readDiographJson.mockImplementation(() => someDiograph) // <--- change this to throw error
       const dioryFolderLocation = './electron/readers/example-folder'
 
       const callGetDiograph = async () => getDiograph(dioryFolderLocation)
@@ -34,6 +38,7 @@ describe('getDiograph', () => {
     })
 
     it('invalid path', () => {
+      readDiographJson.mockImplementation(() => someDiograph) // <--- change this to throw error
       const invalidDioryFolderLocation = './some/invalid/path'
 
       const callGetDiograph = async () => getDiograph(invalidDioryFolderLocation)
