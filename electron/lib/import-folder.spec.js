@@ -48,7 +48,7 @@ describe('importFolder', () => {
     existsSync.mockImplementation((path) => path === someValidPath)
     copyFolderRecursiveSync.mockReturnValue(true)
     generateDiograph.mockResolvedValue(someDiograph)
-    readDiographJson.mockReturnValue(undefined)
+    readDiographJson.mockReturnValue(undefined) // <--- change this to throwing an error
   })
   describe('creates new folder and calls copyFolderRecursiveSync and generateDiograph with it', () => {
     it('happy case', async () => {
