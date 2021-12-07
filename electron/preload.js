@@ -1,4 +1,5 @@
 const { contextBridge, shell, ipcRenderer } = require('electron')
+const { fileURLToPath } = require('url')
 
 const { channels } = require('../src/shared/constants')
 
@@ -25,8 +26,8 @@ contextBridge.exposeInMainWorld('channelsApi', {
   [channels.SAVE_DIOGRAPH]: (params) => channelLogger(saveDiograph, params),
   [channels.GET_DIORY_FOLDER_LOCATION]: (params) => channelLogger(getDioryFolderLocation, params),
   [channels.SET_DIORY_FOLDER_LOCATION]: (params) => channelLogger(setDioryFolderLocation, params),
-  showItemInFolder: async (fullPath) => shell.showItemInFolder(fullPath),
-  openItemInDesktopManner: (path) => shell.openPath(path),
+  showItemInFolder: async (fileUrl) => shell.showItemInFolder(fileURLToPath(fileUrl)),
+  openItemInDesktopManner: (fileUrl) => shell.openPath(fileURLToPath(fileUrl)),
   openWebsiteInBrowser: (url) => shell.openExternal(url),
   showOpenDialog: () => ipcRenderer.invoke('showOpenDialog'),
 })
