@@ -9,13 +9,13 @@ import Audio from '../content/Audio'
 import Pdf from '../content/Pdf'
 import WebPage from '../content/WebPage'
 
-import { convertRelativePath } from '../../utils'
+import { convertToFileUrl } from '../../utils'
 
 const DataAwareDiory = ({ playRef, page, diory }) => {
   const [{ dioryFolderLocation }] = useStore((state) => state.settings)
   const { data = [] } = diory
   const { contentUrl, encodingFormat, url } = (data && data[0]) || {}
-  const absoluteContentUrl = convertRelativePath(contentUrl, dioryFolderLocation)
+  const absoluteContentUrl = convertToFileUrl(contentUrl, dioryFolderLocation)
 
   switch (encodingFormat) {
     case 'image/jpeg':

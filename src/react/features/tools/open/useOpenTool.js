@@ -7,7 +7,7 @@ import { addButtons, inactivateButton, removeButtons } from '../../buttons/butto
 
 import { invokeChannel } from '../../../client/client'
 import { buttons, OPEN_TOOL_BUTTON } from './buttons'
-import { convertRelativePath } from '../../../utils'
+import { convertToFileUrl } from '../../../utils'
 
 export const useOpenTool = () => {
   const { story } = useDiograph()
@@ -27,7 +27,7 @@ export const useOpenTool = () => {
   const open = active === OPEN_TOOL_BUTTON
   useEffect(() => {
     if (open) {
-      const absoluteContentUrl = convertRelativePath(contentUrl, dioryFolderLocation)
+      const absoluteContentUrl = convertToFileUrl(contentUrl, dioryFolderLocation)
       invokeChannel('showItemInFolder', absoluteContentUrl)
       dispatch(inactivateButton())
     }

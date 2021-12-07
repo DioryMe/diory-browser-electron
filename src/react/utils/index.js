@@ -1,4 +1,4 @@
 export { debounce } from './debounce'
 export { convertToFileUrl } from './convertToFileUrl'
-export { convertRelativePath } from './convertRelativePath'
+// export { convertToFileUrl } from './convertToFileUrl'
 export { getUntrackedDiograph, getUntrackedDiory } from './getUntrackedDiograph'
