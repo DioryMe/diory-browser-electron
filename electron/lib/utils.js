@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const SettingsStore = require('electron-store')
+const SettingsStore = process.env.NODE_ENV === 'test' ? {} : require('electron-store')
 
 exports.isEmpty = function isEmpty(obj) {
   return typeof obj === 'object' && Object.keys(obj).length === 0
