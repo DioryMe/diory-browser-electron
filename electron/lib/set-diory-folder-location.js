@@ -47,6 +47,9 @@ async function validateOrInitiateDioryFolder(selectedFolderLocation) {
 exports.setDioryFolderLocation = async function setDioryFolderLocation(selectedFolderLocation) {
   const dioryFolderLocation = await validateOrInitiateDioryFolder(selectedFolderLocation)
   settingsStore().set('dioryFolderLocation', dioryFolderLocation)
+  console.log(
+    `setDioryFolderLocation: Saved dioryFolderLocation ${dioryFolderLocation} to config.json`
+  )
 
   return { dioryFolderLocation }
 }
