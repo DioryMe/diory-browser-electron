@@ -12,7 +12,7 @@ test('resolve to diory', async () => {
   expect.assertions(4)
   await expect(promiseFunc(params)).resolves.toEqual('diory')
   await expect(promiseFunc(params)).resolves.not.toEqual('google')
-  await expect(promiseFunc(params)).rejects.toThrow()
+  await expect(promiseFunc(params)).rejects.toThrowError()
   await expect(promiseFunc(params)).rejects.toBeDefined()
 
   const returnValue = await promiseFunc(params)
@@ -25,7 +25,7 @@ test('resolve to diory', async () => {
 ```js
 // Non-promise
 const callFunction = () => thisIsFunction(params)
-expect(callFunction).toThrow()
+expect(callFunction).toThrowError()
 // Promise
 const callPromiseFunction = promiseFunction(params)
 await expect(callPromiseFunction).rejects.toThrowError()
