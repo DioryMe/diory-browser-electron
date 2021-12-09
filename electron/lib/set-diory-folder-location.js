@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path').posix
-const HomeStore = require('electron-store')
+const { settingsStore } = require('./utils')
 const { saveDiograph } = require('./save-diograph')
 
 function directoryExists(folderPath) {
@@ -50,13 +50,7 @@ async function validateOrInitiateDioryFolder(selectedFolderLocation) {
 
 exports.setDioryFolderLocation = async function setDioryFolderLocation(selectedFolderLocation) {
   const dioryFolderLocation = await validateOrInitiateDioryFolder(selectedFolderLocation)
-
-  const store = new HomeStore({
-    // E2E tests needs to create config.json file to different path every time
-    // - otherwise use default
-    cwd: process.env.TESTCAFE_TEST ? `${process.env.PWD}/tmp/${Date.now()}` : undefined,
-  })
-  store.set('dioryFolderLocation', dioryFolderLocation)
+  settingsStore().set('dioryFolderLocation', dioryFolderLocation)
 
   return { dioryFolderLocation }
 }

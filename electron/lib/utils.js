@@ -1,8 +1,16 @@
 const fs = require('fs')
 const path = require('path')
+const SettingsStore = require('electron-store')
 
 exports.isEmpty = function isEmpty(obj) {
   return typeof obj === 'object' && Object.keys(obj).length === 0
+}
+
+exports.settingsStore = function settingsStore() {
+  return new SettingsStore({
+    // E2E tests needs to create config.json file to a different path every time
+    cwd: process.env.TESTCAFE_TEST ? `${process.env.PWD}/tmp/${Date.now()}` : undefined,
+  })
 }
 
 exports.copyFolderRecursiveSync = function copyFolderRecursiveSync(source, target) {
