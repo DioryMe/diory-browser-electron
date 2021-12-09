@@ -6,6 +6,10 @@ exports.isEmpty = function isEmpty(obj) {
   return typeof obj === 'object' && Object.keys(obj).length === 0
 }
 
+exports.directoryExists = function directoryExists(folderPath) {
+  return fs.existsSync(folderPath) && fs.lstatSync(folderPath).isDirectory()
+}
+
 exports.settingsStore = function settingsStore() {
   return new SettingsStore({
     // E2E tests needs to create config.json file to a different path every time
