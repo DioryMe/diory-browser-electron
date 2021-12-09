@@ -3,6 +3,7 @@ const glob = require('glob')
 const { v4: uuid } = require('uuid')
 const { statSync } = require('fs')
 
+const { escapeStringToRegex } = require('../lib/utils')
 const { generateDiograph } = require('./diograph-generator')
 const { getDefaultImage } = require('../../src/shared/getDefaultImage')
 
@@ -50,13 +51,18 @@ describe('diograph-generator', () => {
       Object.keys(diograph).forEach((dioryId) => {
         const diory = diograph[dioryId]
         if (diory.image) {
-          diory.image = diory.image.replace(`${exampleFolderPath}/`, '')
+          diory.image = diory.image.replace(
+            new RegExp(`${escapeStringToRegex(exampleFolderPath)}[\\/]{1,2}`),
+            ''
+          )
         }
         if (diory.data && diory.data[0].contentUrl) {
-          diory.data[0].contentUrl = diory.data[0].contentUrl.replace(`${exampleFolderPath}/`, '')
+          diory.data[0].contentUrl = diory.data[0].contentUrl.replace(
+            new RegExp(`${escapeStringToRegex(exampleFolderPath)}[\\/]{1,2}`),
+            ''
+          )
         }
       })
-
       expect(diograph).toMatchSnapshot()
     })
   })

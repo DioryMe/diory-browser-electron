@@ -34,3 +34,7 @@ exports.copyFolderRecursiveSync = function copyFolderRecursiveSync(source, targe
     }
   })
 }
+
+exports.escapeStringToRegex = function escapeStringToRegex(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // $& means the whole matched string
+}
