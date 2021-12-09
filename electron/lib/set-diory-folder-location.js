@@ -3,22 +3,22 @@ const path = require('path').posix
 const { settingsStore, directoryExists } = require('./utils')
 const { saveDiograph } = require('./save-diograph')
 
+exports.defaultDiograph = {
+  diograph: {
+    'my-diory': {
+      id: 'my-diory',
+      text: 'My Diory',
+    },
+  },
+  rootId: 'my-diory',
+}
+
 async function initiateDioryFolder(dioryFolderLocation) {
   fs.mkdirSync(dioryFolderLocation)
 
-  const defaultDiograph = {
-    diograph: {
-      'my-diory': {
-        id: 'my-diory',
-        text: 'My Diory',
-      },
-    },
-    rootId: 'my-diory',
-  }
   return saveDiograph({
     dioryFolderLocation,
-    diograph: defaultDiograph.diograph,
-    rootId: defaultDiograph.rootId,
+    ...exports.defaultDiograph,
   })
 }
 
