@@ -28,19 +28,6 @@ jest.mock('./utils')
 jest.mock('../generators/diograph-generator')
 jest.mock('./read-diograph-json')
 
-// Copies folder to dioryFolderLocation from given path
-// - luo folderin
-// - jos on jo olemassa
-// - same name folder raise error => tries again with different path?
-// - if folder with same name already exists, add timestamp
-// => pitäiskö olla omansa? kutsuisi varsinaista importFolderia vasta myöhemmin...?
-
-// Error if has diograph.json
-
-// Generates diograph (calls generateDiograph with correct params: copied folderPath from dioryFolderPath)
-// Saves diograph (calls saveDiograph with correct params: generateDiograph return value)
-// Returns diograph with relative path
-
 describe('importFolder', () => {
   beforeEach(() => {
     mkdirSync.mockReturnValue(true)
