@@ -3,7 +3,6 @@ const path = require('path')
 const dayjs = require('dayjs')
 const { copyFolderRecursiveSync } = require('./utils')
 const { generateDiograph } = require('../generators/diograph-generator')
-const { readDiographJson } = require('./read-diograph-json')
 
 exports.importFolder = async function importFolder({ importFolderPath, dioryFolderLocation }) {
   if (!fs.existsSync(importFolderPath)) {
@@ -29,17 +28,11 @@ exports.importFolder = async function importFolder({ importFolderPath, dioryFold
   // Copy everything recursively from importFolderPath to the new destination
   copyFolderRecursiveSync(importFolderPath, importedFolderPathInDioryFolder)
 
-  // Try to read existing diograph.json
-  try {
-    const diographJsonPath = path.join(importedFolderPathInDioryFolder, 'diograph.json')
-    // eslint-disable-next-lin
-    existingDiograph = readDiographJson({ diographJsonPath })
-    // TODO: Allow folders with diograph.json
+  // Throw error if folder includes a diograph.json
+  // TODO: Support for folders with diograph.json
+  const diographJsonPath = path.join(importedFolderPathInDioryFolder, 'diograph.json')
+  if (fs.existsSync(diographJsonPath)) {
     throw new Error('NOT IMPLEMENTED: Imported folder had diograph.json file')
-    // return existingDiograph?
-  } catch (e) {
-    // If we ended up here, there was a problem with diograph.json and we don't need to care about it?
-    // - just ignore it and continue?
   }
 
   // Generate diograph if no diograph.json
