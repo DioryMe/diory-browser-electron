@@ -1,7 +1,7 @@
 image:
   - macos-mojave
   # FIXME: Relative path E2E test fails on Windows
-  # - Visual Studio 2019 # could be 2022 as well
+  - Visual Studio 2019 # could be 2022 as well
 environment:
   CI: false
 install:
