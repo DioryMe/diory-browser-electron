@@ -8,10 +8,10 @@ https://github.com/sapegin/jest-cheat-sheet
 ```js
 test('resolve to lemon', async () => {
   expect.assertions(4)
-  await expect(Promise.resolve('lemon')).resolves.toBe('lemon')
-  await expect(Promise.resolve('lemon')).resolves.not.toBe('octopus')
-  await expect(Promise.reject(Error('pizza'))).rejects.toThrow()
-  await expect(Promise.reject('octopus')).rejects.toBeDefined()
+  await expect(promiseFunc).resolves.toEqual('lemon')
+  await expect(promiseFunc).resolves.not.toEqual('octopus')
+  await expect(promiseFunc).rejects.toThrow()
+  await expect(promiseFunc).rejects.toBeDefined()
 })
 ```
 
