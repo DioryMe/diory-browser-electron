@@ -2,7 +2,6 @@ const { existsSync, mkdirSync } = require('fs')
 const path = require('path')
 const { generateDiograph } = require('../generators/diograph-generator')
 const { importFolder } = require('./import-folder')
-const { readDiographJson } = require('./read-diograph-json')
 const { copyFolderRecursiveSync } = require('./utils')
 
 const someValidPath = path.join(__dirname, '../readers/example-folder')
@@ -48,7 +47,6 @@ describe('importFolder', () => {
     existsSync.mockImplementation((path) => path === someValidPath)
     copyFolderRecursiveSync.mockReturnValue(true)
     generateDiograph.mockResolvedValue(someDiograph)
-    readDiographJson.mockReturnValue(undefined) // <--- change this to throwing an error
   })
   describe('creates new folder and calls copyFolderRecursiveSync and generateDiograph with it', () => {
     it('happy case', async () => {
@@ -63,7 +61,8 @@ describe('importFolder', () => {
     })
 
     it('importFolder name already exists in diory folder', async () => {
-      existsSync.mockImplementation(() => true)
+      // All the other paths exists except when asking about if it includes diograph.json
+      existsSync.mockImplementationOnce((path) => !path.match(/diograph\.json$/))
       const importFolderPath = someValidPath
       const dioryFolderLocation = someValidPath
 
@@ -71,8 +70,11 @@ describe('importFolder', () => {
 
       expect(response).toEqual(someDiograph)
       // Calls with .../example-folder/folderName-2021-12-03T170304
-      expect(copyFolderRecursiveSync).not.toHaveBeenCalledWith(someValidPath, someCreatedFolderPath)
-      expect(generateDiograph).not.toHaveBeenCalledWith(someCreatedFolderPath)
+      expect(copyFolderRecursiveSync).toHaveBeenCalledWith(
+        someValidPath,
+        expect.stringMatching(/folderName[\d-T]*$/)
+      )
+      expect(generateDiograph).toHaveBeenCalledWith(expect.stringMatching(/folderName[\d-T]*$/))
     })
   })
 
@@ -87,22 +89,15 @@ describe('importFolder', () => {
       })
 
       it('contains diograph.json', async () => {
-        readDiographJson.mockReturnValue(someDiograph)
-        const importFolderPath = someValidPath
+        const importFolderPath = path.join(__dirname, '../../public/diory-demo-content')
         const dioryFolderLocation = someValidPath
 
         const callImportFolder = importFolder({ importFolderPath, dioryFolderLocation })
         await expect(callImportFolder).rejects.toThrowError()
       })
 
-      // TODO: Shouldn't do anything if folder to be imported is empty
-      // it('is empty', async () => {
-      //   const importFolderPath = './empty-path'
-      //   const dioryFolderLocation = someValidPath
-
-      //   const callImportFolder = importFolder({ importFolderPath, dioryFolderLocation })
-      //   await expect(callImportFolder).rejects.toThrowError()
-      // })
+      // TODO: Should throw error if folder is empty
+      // it('is empty', async () => { })
     })
 
     describe('dioryFolderLocation', () => {
