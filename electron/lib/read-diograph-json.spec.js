@@ -23,7 +23,7 @@ describe('readDiographJson', () => {
     let diographJsonPath
     afterEach(async () => {
       const callDiographJson = () => readDiographJson({ diographJsonPath })
-      expect(callDiographJson).toThrow() // <--- specify the error?
+      expect(callDiographJson).toThrowError()
     })
 
     it('folder path only (although diograph.json inside)', async () => {
@@ -39,7 +39,7 @@ describe('readDiographJson', () => {
     it('invalid path', () => {
       const diographJsonPath = './some/invalid/path'
       const callDiographJson = () => readDiographJson({ diographJsonPath })
-      expect(callDiographJson).toThrow()
+      expect(callDiographJson).toThrowError()
     })
   })
 })

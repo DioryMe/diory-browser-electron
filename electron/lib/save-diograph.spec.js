@@ -1,4 +1,5 @@
 const fs = require('fs')
+const path = require('path').posix
 const { saveDiograph } = require('./save-diograph')
 
 const someDiograph = {
@@ -23,7 +24,7 @@ describe('saveDiograph', () => {
 
     expect(fs.promises.writeFile).toHaveBeenCalledTimes(1)
     expect(fs.promises.writeFile).toHaveBeenCalledWith(
-      '/some/path/diograph.json',
+      path.join(dioryFolderLocation, 'diograph.json'),
       prettyPrintedJson
     )
   })
