@@ -35,7 +35,7 @@ describe('diograph-generator', () => {
         }
       })
 
-      it('renders with empty responses', async () => {
+      it("doesn't raise error with invalid folder path", async () => {
         folderPath = 'undefined string'
         await act()
       })
@@ -43,6 +43,14 @@ describe('diograph-generator', () => {
       describe('given a folderPath', () => {
         beforeEach(() => {
           folderPath = 'some-folderPath'
+        })
+
+        it('return value has 3 keys', async () => {
+          const response = await act()
+          const responseKeys = Object.keys(response)
+
+          expect(responseKeys.length).toEqual(3)
+          expect(responseKeys).toEqual(['linkKey', 'rootId', 'diograph'])
         })
 
         it('generates folder diory', async () => {
