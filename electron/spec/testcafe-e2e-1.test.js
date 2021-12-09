@@ -17,14 +17,17 @@ test('Import example-folder', async (t) => {
   const deleteButton = Selector('button').withText('Delete')
 
   await t
+    .takeScreenshot('testcafe-e2e-1/welcome-screen.png')
     .click(chooseFolderButton)
     .wait(2200) // Wait for welcome screen to disappear
     .expect(dioryCount)
     .eql(0) // Default diograph doesn't have any diories
     // ----- Create diory
     .click('[data-testid="tools-button"]')
+    .takeScreenshot('testcafe-e2e-1/home-with-tools.png')
     .click('[data-testid="import-button"]')
     .click('#CREATE_TOOL_BUTTON')
+    .takeScreenshot('testcafe-e2e-1/create-tool.png')
     .typeText('input#text', 'New diory')
     .click(doneButton)
     .wait(1000) // Wait for SAVE_DIOGRAPH to complete and possibly raise an error
@@ -33,16 +36,20 @@ test('Import example-folder', async (t) => {
     // ------ Import diory-demo-content folder
     .click('[data-testid="tools-button"]')
     .click('[data-testid="import-button"]')
+    .takeScreenshot('testcafe-e2e-1/import-tools.png')
     .click('#FOLDER_IMPORT')
     .expect(dioryCount)
     .eql(2)
     .click(importedFolderDiory)
+    .takeScreenshot('testcafe-e2e-1/imported-folder-story.png')
     .expect(dioryCount)
     .eql(9)
     // ------ Delete diory
     .click('[data-testid="tools-button"]')
     .click('[data-testid="delete-button"]')
+    .takeScreenshot('testcafe-e2e-2/delete-tool-activated')
     .click(someFolderDiory)
+    .takeScreenshot('testcafe-e2e-2/delete-tool-modal')
     .click(deleteButton)
     .click('[data-testid="tools-button"]') // Close tool bar
     .wait(1000) // Wait for SAVE_ROOM to complete and possibly raise an error
@@ -51,7 +58,9 @@ test('Import example-folder', async (t) => {
     // Check diory.data
     .click('[data-testid="tools-button"]')
     .click('[data-testid="update-button"]')
+    .takeScreenshot('testcafe-e2e-2/update-tool-activated')
     .click(someMusicDiory)
+    .takeScreenshot('testcafe-e2e-2/update-tool-modal')
     .expect(dataFieldValue)
     .match(
       /\[\{"@context":"https:\/\/schema.org","@type":"AudioObject","contentUrl":"testcafe-diograph-folder[\\/]{1,2}some-music\.mp3","encodingFormat":"audio\/mpeg"\}\]/
