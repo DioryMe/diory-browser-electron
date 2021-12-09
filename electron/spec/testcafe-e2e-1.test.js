@@ -53,8 +53,8 @@ test('Import example-folder', async (t) => {
     .click('[data-testid="update-button"]')
     .click(someMusicDiory)
     .expect(dataFieldValue)
-    .eql(
-      '[{"@context":"https://schema.org","@type":"AudioObject","contentUrl":"testcafe-diograph-folder/some-music.mp3","encodingFormat":"audio/mpeg"}]'
+    .match(
+      /\[\{"@context":"https:\/\/schema.org","@type":"AudioObject","contentUrl":"testcafe-diograph-folder[\\/]{1,2}some-music\.mp3","encodingFormat":"audio\/mpeg"\}\]/
     )
     .click(doneButton)
 })
