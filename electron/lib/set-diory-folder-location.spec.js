@@ -1,6 +1,6 @@
 const path = require('path')
 const { existsSync } = require('fs')
-const { setDioryFolderLocation } = require('./set-diory-folder-location')
+const { setDioryFolderLocation, defaultDiograph } = require('./set-diory-folder-location')
 const { settingsStore, directoryExists } = require('./utils')
 const { saveDiograph } = require('./save-diograph')
 
@@ -8,6 +8,8 @@ const someSelectedFolderLocation = 'some-selected-folder-location'
 const someDioryFolderLocation = {
   dioryFolderLocation: path.join(someSelectedFolderLocation, 'My Diory'),
 }
+
+const setStore = jest.fn()
 
 jest.mock('./save-diograph')
 jest.mock('./utils')
@@ -21,29 +23,43 @@ describe('setDioryFolderLocation', () => {
   beforeEach(() => {
     existsSync.mockImplementation(() => true)
     settingsStore.mockImplementation(() => ({
-      set: () => true,
+      set: setStore,
     }))
     directoryExists.mockImplementation(() => true)
   })
 
   describe('given empty folder', () => {
-    it('saves diograph + saves & returns dioryFolderLocation', async () => {
+    it('saves defaultDiograph diograph.json + saves & returns dioryFolderLocation', async () => {
       directoryExists.mockImplementation((path) => !path.match(/My Diory$/))
-      await expect(setDioryFolderLocation(someSelectedFolderLocation)).resolves.toEqual(
-        someDioryFolderLocation
+
+      const returnValue = await setDioryFolderLocation(someSelectedFolderLocation)
+
+      expect(returnValue).toEqual(someDioryFolderLocation)
+      expect(setStore).toHaveBeenCalledTimes(1)
+      expect(setStore).toHaveBeenCalledWith(
+        'dioryFolderLocation',
+        someDioryFolderLocation.dioryFolderLocation
       )
-      expect(settingsStore).toHaveBeenCalled() // with set
       expect(saveDiograph).toHaveBeenCalledTimes(1)
+      expect(saveDiograph).toHaveBeenCalledWith({
+        ...someDioryFolderLocation,
+        ...defaultDiograph,
+      })
     })
   })
 
   describe('given folder where diograph.json already exists', () => {
     it('returns dioryFolderLocation', async () => {
       existsSync.mockImplementation(() => true)
-      await expect(setDioryFolderLocation(someSelectedFolderLocation)).resolves.toEqual(
-        someDioryFolderLocation
+
+      const returnValue = await setDioryFolderLocation(someSelectedFolderLocation)
+
+      expect(returnValue).toEqual(someDioryFolderLocation)
+      expect(setStore).toHaveBeenCalledTimes(1)
+      expect(setStore).toHaveBeenCalledWith(
+        'dioryFolderLocation',
+        someDioryFolderLocation.dioryFolderLocation
       )
-      expect(settingsStore).toHaveBeenCalled() // with set
       expect(saveDiograph).toHaveBeenCalledTimes(0)
     })
   })
