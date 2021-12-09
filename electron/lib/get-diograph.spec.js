@@ -30,19 +30,17 @@ describe('getDiograph', () => {
 
   describe('throws error', () => {
     it('folder without diograph.json', async () => {
-      readDiographJson.mockImplementation(() => someDiograph) // <--- change this to throw error
       const dioryFolderLocation = './electron/readers/example-folder'
 
       const callGetDiograph = async () => getDiograph(dioryFolderLocation)
-      expect(callGetDiograph).rejects.toThrow(/didn't contain/)
+      expect(callGetDiograph).rejects.toThrowError(/didn't contain/)
     })
 
     it('invalid path', () => {
-      readDiographJson.mockImplementation(() => someDiograph) // <--- change this to throw error
       const invalidDioryFolderLocation = './some/invalid/path'
 
       const callGetDiograph = async () => getDiograph(invalidDioryFolderLocation)
-      expect(callGetDiograph).rejects.toThrow(/didn't exist/)
+      expect(callGetDiograph).rejects.toThrowError(/didn't exist/)
     })
   })
 })
