@@ -3,25 +3,9 @@ const glob = require('glob')
 const { v4: uuid } = require('uuid')
 const { statSync } = require('fs')
 
-const { escapeStringToRegex } = require('../lib/utils')
 const { generateDiograph } = require('./diograph-generator')
 const { getDefaultImage } = require('../../src/shared/getDefaultImage')
-
-function convertDiographUrlsRelative({ diograph, baseUrl }) {
-  Object.keys(diograph).forEach((dioryId) => {
-    const diory = diograph[dioryId]
-    if (diory.image) {
-      diory.image = diory.image.replace(new RegExp(`${escapeStringToRegex(baseUrl)}[\\/]{1,2}`), '')
-    }
-    if (diory.data && diory.data[0].contentUrl) {
-      diory.data[0].contentUrl = diory.data[0].contentUrl.replace(
-        new RegExp(`${escapeStringToRegex(baseUrl)}[\\/]{1,2}`),
-        ''
-      )
-    }
-  })
-  return diograph
-}
+const { convertDiographUrlsRelative } = require('../lib/convertDiographUrlsRelative')
 
 jest.mock('uuid')
 jest.mock('fs', () => ({

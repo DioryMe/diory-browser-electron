@@ -2,24 +2,9 @@ const fs = require('fs')
 const path = require('path')
 const dayjs = require('dayjs')
 const { copyFolderRecursiveSync } = require('./utils')
-const { escapeStringToRegex } = require('./utils')
-const { generateDiograph } = require('../generators/diograph-generator')
+const { convertDiographUrlsRelative } = require('./convertDiographUrlsRelative')
 
-function convertDiographUrlsRelative({ diograph, baseUrl }) {
-  Object.keys(diograph).forEach((dioryId) => {
-    const diory = diograph[dioryId]
-    if (diory.image) {
-      diory.image = diory.image.replace(new RegExp(`${escapeStringToRegex(baseUrl)}[\\/]{1,2}`), '')
-    }
-    if (diory.data && diory.data[0].contentUrl) {
-      diory.data[0].contentUrl = diory.data[0].contentUrl.replace(
-        new RegExp(`${escapeStringToRegex(baseUrl)}[\\/]{1,2}`),
-        ''
-      )
-    }
-  })
-  return diograph
-}
+const { generateDiograph } = require('../generators/diograph-generator')
 
 exports.importFolder = async function importFolder({ importFolderPath, dioryFolderLocation }) {
   if (!fs.existsSync(importFolderPath)) {
