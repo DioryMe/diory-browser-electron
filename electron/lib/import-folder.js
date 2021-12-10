@@ -5,6 +5,22 @@ const { copyFolderRecursiveSync } = require('./utils')
 const { escapeStringToRegex } = require('./utils')
 const { generateDiograph } = require('../generators/diograph-generator')
 
+function convertDiographUrlsRelative({ diograph, baseUrl }) {
+  Object.keys(diograph).forEach((dioryId) => {
+    const diory = diograph[dioryId]
+    if (diory.image) {
+      diory.image = diory.image.replace(new RegExp(`${escapeStringToRegex(baseUrl)}[\\/]{1,2}`), '')
+    }
+    if (diory.data && diory.data[0].contentUrl) {
+      diory.data[0].contentUrl = diory.data[0].contentUrl.replace(
+        new RegExp(`${escapeStringToRegex(baseUrl)}[\\/]{1,2}`),
+        ''
+      )
+    }
+  })
+  return diograph
+}
+
 exports.importFolder = async function importFolder({ importFolderPath, dioryFolderLocation }) {
   if (!fs.existsSync(importFolderPath)) {
     const errorMessage = `importFolder: Provided importFolderPath (${importFolderPath}) doesn't exist`
@@ -39,23 +55,11 @@ exports.importFolder = async function importFolder({ importFolderPath, dioryFold
   // Generate diograph if no diograph.json
   const diograph = await generateDiograph(importedFolderPathInDioryFolder)
 
-  // Relative paths for image & contentUrl
-  // TODO: Move to own function, how to make immutable?
-  Object.keys(diograph.diograph).forEach((dioryId) => {
-    const diory = diograph.diograph[dioryId]
-    if (diory.image) {
-      diory.image = diory.image.replace(
-        new RegExp(`${escapeStringToRegex(dioryFolderLocation)}[\\/]{1,2}`),
-        ''
-      )
-    }
-    if (diory.data && diory.data[0].contentUrl) {
-      diory.data[0].contentUrl = diory.data[0].contentUrl.replace(
-        new RegExp(`${escapeStringToRegex(dioryFolderLocation)}[\\/]{1,2}`),
-        ''
-      )
-    }
-  })
-
-  return diograph
+  return {
+    ...diograph,
+    diograph: convertDiographUrlsRelative({
+      diograph: diograph.diograph,
+      baseUrl: dioryFolderLocation,
+    }),
+  }
 }

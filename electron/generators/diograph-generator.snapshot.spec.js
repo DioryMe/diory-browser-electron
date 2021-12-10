@@ -7,6 +7,22 @@ const { escapeStringToRegex } = require('../lib/utils')
 const { generateDiograph } = require('./diograph-generator')
 const { getDefaultImage } = require('../../src/shared/getDefaultImage')
 
+function convertDiographUrlsRelative({ diograph, baseUrl }) {
+  Object.keys(diograph).forEach((dioryId) => {
+    const diory = diograph[dioryId]
+    if (diory.image) {
+      diory.image = diory.image.replace(new RegExp(`${escapeStringToRegex(baseUrl)}[\\/]{1,2}`), '')
+    }
+    if (diory.data && diory.data[0].contentUrl) {
+      diory.data[0].contentUrl = diory.data[0].contentUrl.replace(
+        new RegExp(`${escapeStringToRegex(baseUrl)}[\\/]{1,2}`),
+        ''
+      )
+    }
+  })
+  return diograph
+}
+
 jest.mock('uuid')
 jest.mock('fs', () => ({
   ...jest.requireActual('fs'),
@@ -46,24 +62,12 @@ describe('diograph-generator', () => {
       const { diograph } = await generateDiograph(exampleFolderPath)
 
       // Relative paths for image & contentUrl
-      // TODO: Move to own function in generate-diograph-channel
-      //       && call it from there instead of copy-pasting here
-      Object.keys(diograph).forEach((dioryId) => {
-        const diory = diograph[dioryId]
-        if (diory.image) {
-          diory.image = diory.image.replace(
-            new RegExp(`${escapeStringToRegex(exampleFolderPath)}[\\/]{1,2}`),
-            ''
-          )
-        }
-        if (diory.data && diory.data[0].contentUrl) {
-          diory.data[0].contentUrl = diory.data[0].contentUrl.replace(
-            new RegExp(`${escapeStringToRegex(exampleFolderPath)}[\\/]{1,2}`),
-            ''
-          )
-        }
+      const diographWithRelativePaths = convertDiographUrlsRelative({
+        diograph,
+        baseUrl: exampleFolderPath,
       })
-      expect(diograph).toMatchSnapshot()
+
+      expect(diographWithRelativePaths).toMatchSnapshot()
     })
   })
 })
