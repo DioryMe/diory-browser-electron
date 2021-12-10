@@ -62,8 +62,8 @@ test('Import example-folder', async (t) => {
     .click(someMusicDiory)
     .takeScreenshot('testcafe-e2e-2/update-tool-modal')
     .expect(dataFieldValue)
-    .match(
-      /\[\{"@context":"https:\/\/schema.org","@type":"AudioObject","contentUrl":"testcafe-diograph-folder[\\/]{1,2}some-music\.mp3","encodingFormat":"audio\/mpeg"\}\]/
+    .eql(
+      '[{"@context":"https://schema.org","@type":"AudioObject","contentUrl":"testcafe-diograph-folder/some-music.mp3","encodingFormat":"audio/mpeg"}]'
     )
     .click(doneButton)
 })
