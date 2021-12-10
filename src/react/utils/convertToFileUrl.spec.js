@@ -48,17 +48,3 @@ describe('convertToFileUrl', () => {
     expect(convertToFileUrl(relativePath, undefined)).toEqual(relativePath)
   })
 })
-
-describe('convertToFileUrl (Windows)', () => {
-  beforeEach(() => {
-    dioryFolderLocation = 'D:\\Users\\Jouni\\My Diories\\2004-2013\\My Diory'
-  })
-
-  it.skip('relative path (Windows)', () => {
-    const relativePath =
-      'D:\\Users\\Jouni\\My Diories\\2004-2013\\My Diory\\NewFolderToBeImported\\2004-07-Ilosaarirock\\026_24A.JPG'
-    const fileUrl =
-      'file:///d:/Users/Jouni/My%20Diories/2004-2013/My%20Diory/NewFolderToBeImported/2004-07-Ilosaarirock/026_24A.JPG'
-    expect(convertToFileUrl(relativePath, dioryFolderLocation)).toEqual(fileUrl)
-  })
-})
