@@ -9,7 +9,7 @@ import SearchResult from './SearchResult'
 const SearchView = ({ query, results, onClick, onDrop, ...props }) => (
   <SearchBar {...props}>
     {query && <CreateDioryButton text={query} />}
-    <Pane {...props} paddingX={8} overflow="auto">
+    <Pane paddingX={8} overflow="auto">
       {results.map((diory) => (
         <SearchResult key={diory.id} diory={diory} onClick={onClick} onDrop={onDrop} />
       ))}
