@@ -5,8 +5,8 @@ import { Pane } from 'evergreen-ui'
 const SearchBar = ({ children, ...props }) => (
   <Pane
     background="tint2"
-    position="fixed"
-    top={48}
+    position="absolute"
+    top={0}
     right={0}
     bottom={0}
     display="flex"

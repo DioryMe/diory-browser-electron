@@ -8,11 +8,9 @@ import { useUpdateTool } from '../tools/update'
 import { createLink } from '../diograph/diographActions'
 import { toggleSearchBar } from './searchActions'
 
-import CreateDioryButton from '../tools/create/CreateDioryButton'
-import SearchResults from './SearchResults'
-import SearchBar from './SearchBar'
+import SearchView from './SearchView'
 
-const useTools = () => {
+const useToolActions = () => {
   const selectStory = useStoryTool()
   const deleteDiory = useDeleteTool()
   const updateDiory = useUpdateTool()
@@ -31,14 +29,29 @@ const useTools = () => {
   }
 }
 
+const useSearch = () => {
+  const [{ query, showSearchBar }] = useStore((state) => state.search)
+  const [{ diograph }] = useStore((state) => state.diograph)
+
+  const results =
+    query && diograph
+      ? Object.values(diograph).filter(
+          ({ text }) => !!text && text.toLowerCase().includes(query.toLowerCase())
+        )
+      : []
+
+  return {
+    showSearchBar,
+    query,
+    results,
+  }
+}
+
 const Search = (props) => {
-  const [{ showSearchBar, query }] = useStore((state) => state.search)
-  const tools = useTools()
+  const { showSearchBar, query, results } = useSearch()
+  const actions = useToolActions()
   return showSearchBar ? (
-    <SearchBar {...props}>
-      <CreateDioryButton text={query} />
-      <SearchResults {...tools} />
-    </SearchBar>
+    <SearchView query={query} results={results} {...actions} {...props} />
   ) : null
 }
 
