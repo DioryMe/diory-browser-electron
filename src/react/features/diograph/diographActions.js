@@ -9,6 +9,7 @@ import {
   DELETE_LINK,
   DELETE_LINKS,
 } from './diographActionTypes'
+import { getDefaultImage } from '../../../shared/getDefaultImage'
 
 export const getDiograph = (diograph, rootId) => ({
   type: GET_DIOGRAPH,
@@ -28,6 +29,8 @@ export const createDiory = (diory) => ({
   type: CREATE_DIORY,
   payload: {
     diory: {
+      id: uuid(),
+      image: diory.image || getDefaultImage(),
       ...diory,
       created: new Date().toISOString(),
     },
