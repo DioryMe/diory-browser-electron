@@ -21,7 +21,7 @@ const SearchResult = ({ diory, onClick, onDrop }) => (
     type={types.DIORY}
     style={itemStyle}
     isOverStyle={{ opacity: 0.5 }}
-    onClick={() => onClick(diory.id)}
+    onClick={() => onClick({ diory })}
     onDrop={({ id }) => onDrop({ droppedId: diory.id, draggedId: id })}
   >
     <div style={scaleStyle}>
