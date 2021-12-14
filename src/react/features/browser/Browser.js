@@ -16,8 +16,8 @@ const Browser = (props) => {
   return loaded && storyId ? (
     <Fullscreen {...props}>
       <Navigation />
-      <Lenses right={showSearchBar ? 300 : 0} />
-      <Search width={300} />
+      <Lenses right={showSearchBar ? 300 : 0} marginTop={48} />
+      <Search width={300} marginTop={48} />
       <Tools />
       <Buttons />
     </Fullscreen>
