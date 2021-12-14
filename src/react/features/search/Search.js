@@ -2,7 +2,6 @@ import React from 'react'
 
 import { useDispatchActions, useStore } from '../../store'
 import { useStoryTool } from '../tools/story'
-import { useDeleteTool } from '../tools/delete'
 import { useUpdateTool } from '../tools/update'
 
 import { createLink } from '../diograph/diographActions'
@@ -12,14 +11,12 @@ import SearchView from './SearchView'
 
 const useToolActions = () => {
   const selectStory = useStoryTool()
-  const deleteDiory = useDeleteTool()
   const updateDiory = useUpdateTool()
 
   const { dispatch } = useDispatchActions()
   return {
     onClick: ({ diory }) => {
       selectStory(diory)
-      deleteDiory(diory)
       updateDiory(diory)
       dispatch(toggleSearchBar())
     },
