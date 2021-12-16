@@ -29,9 +29,8 @@ export const createDiory = (diory) => ({
   type: CREATE_DIORY,
   payload: {
     diory: {
-      id: uuid(),
-      image: diory.image || getDefaultImage(),
       ...diory,
+      image: diory.image || getDefaultImage(),
       created: new Date().toISOString(),
     },
   },
