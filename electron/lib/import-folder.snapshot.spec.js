@@ -15,40 +15,46 @@ let dioryFolderLocation
 
 describe('importFolder snapshot spec', () => {
   beforeEach(() => {
-    const fileStats = {
-      mtime: {
-        toISOString: jest.fn().mockReturnValue('some-modified'),
-      },
-      birthtime: {
-        toISOString: jest.fn().mockReturnValue('some-created'),
-      },
-    }
-    statSync.mockReturnValue(fileStats)
-    getDefaultImage.mockReturnValue('some-default-image')
-
     dioryFolderLocation = join(__dirname, `../../tmp/dir-${Date.now()}`)
     mkdirSync(dioryFolderLocation)
-
-    for (let id = 0; id < 500; id += 1) {
-      uuid.mockReturnValueOnce(`uuid-${id}`)
-    }
   })
 
   afterEach(() => {
     rmSync(dioryFolderLocation, { recursive: true, force: true })
   })
 
-  it('folder without diograph.json: returns imported folder diograph', async () => {
-    const importFolderPath = join(__dirname, '../readers/example-folder')
-    const importedFolderDiograph = await importFolder({ importFolderPath, dioryFolderLocation })
-    expect(Object.keys(importedFolderDiograph)).toEqual(['rootId', 'diograph'])
-    expect(importedFolderDiograph).toMatchSnapshot()
+  describe('folder without diograph.json', () => {
+    beforeEach(() => {
+      const fileStats = {
+        mtime: {
+          toISOString: jest.fn().mockReturnValue('some-modified'),
+        },
+        birthtime: {
+          toISOString: jest.fn().mockReturnValue('some-created'),
+        },
+      }
+      statSync.mockReturnValue(fileStats)
+      getDefaultImage.mockReturnValue('some-default-image')
+
+      for (let id = 0; id < 500; id += 1) {
+        uuid.mockReturnValueOnce(`uuid-${id}`)
+      }
+    })
+
+    it('returns imported folder diograph', async () => {
+      const importFolderPath = join(__dirname, '../readers/example-folder')
+      const importedFolderDiograph = await importFolder({ importFolderPath, dioryFolderLocation })
+      expect(Object.keys(importedFolderDiograph)).toEqual(['rootId', 'diograph'])
+      expect(importedFolderDiograph).toMatchSnapshot()
+    })
   })
 
-  it('folder with diograph.json: returns imported folder diograph', async () => {
-    const importFolderPath = join(__dirname, '../../public/diory-demo-content')
-    const importedFolderDiograph = await importFolder({ importFolderPath, dioryFolderLocation })
-    expect(Object.keys(importedFolderDiograph)).toEqual(['rootId', 'diograph'])
-    expect(importedFolderDiograph).toMatchSnapshot()
+  describe('folder with diograph.json', () => {
+    it('returns imported folder diograph', async () => {
+      const importFolderPath = join(__dirname, '../../public/diory-demo-content')
+      const importedFolderDiograph = await importFolder({ importFolderPath, dioryFolderLocation })
+      expect(Object.keys(importedFolderDiograph)).toEqual(['rootId', 'diograph'])
+      expect(importedFolderDiograph).toMatchSnapshot()
+    })
   })
 })
