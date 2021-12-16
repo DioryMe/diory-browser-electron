@@ -5,6 +5,7 @@ const { copyFolderRecursiveSync } = require('./utils')
 const { convertDiographUrlsRelative } = require('./convertDiographUrlsRelative')
 
 const { generateDiograph } = require('../generators/diograph-generator')
+const { readDiographJson } = require('./read-diograph-json')
 
 exports.importFolder = async function importFolder({ importFolderPath, dioryFolderLocation }) {
   if (!fs.existsSync(importFolderPath)) {
@@ -30,11 +31,10 @@ exports.importFolder = async function importFolder({ importFolderPath, dioryFold
   // Copy everything recursively from importFolderPath to the new destination
   copyFolderRecursiveSync(importFolderPath, importedFolderPathInDioryFolder)
 
-  // Throw error if folder includes a diograph.json
-  // TODO: Support for folders with diograph.json
+  // Read diograph.json if contains one
   const diographJsonPath = path.join(importedFolderPathInDioryFolder, 'diograph.json')
   if (fs.existsSync(diographJsonPath)) {
-    throw new Error('NOT IMPLEMENTED: Imported folder had diograph.json file')
+    return readDiographJson({ diographJsonPath })
   }
 
   // Generate diograph if no diograph.json
