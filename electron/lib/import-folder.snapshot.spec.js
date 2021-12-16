@@ -41,12 +41,14 @@ describe('importFolder snapshot spec', () => {
   it('folder without diograph.json: returns imported folder diograph', async () => {
     const importFolderPath = join(__dirname, '../readers/example-folder')
     const importedFolderDiograph = await importFolder({ importFolderPath, dioryFolderLocation })
+    expect(Object.keys(importedFolderDiograph)).toEqual(['rootId', 'diograph'])
     expect(importedFolderDiograph).toMatchSnapshot()
   })
 
   it('folder with diograph.json: returns imported folder diograph', async () => {
     const importFolderPath = join(__dirname, '../../public/diory-demo-content')
     const importedFolderDiograph = await importFolder({ importFolderPath, dioryFolderLocation })
+    expect(Object.keys(importedFolderDiograph)).toEqual(['rootId', 'diograph'])
     expect(importedFolderDiograph).toMatchSnapshot()
   })
 })

@@ -41,7 +41,7 @@ exports.importFolder = async function importFolder({ importFolderPath, dioryFold
   const diograph = await generateDiograph(importedFolderPathInDioryFolder)
 
   return {
-    ...diograph,
+    rootId: diograph.rootId,
     diograph: convertDiographUrlsRelative({
       diograph: diograph.diograph,
       baseUrl: dioryFolderLocation,

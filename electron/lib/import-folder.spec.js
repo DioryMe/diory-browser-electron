@@ -12,6 +12,7 @@ const someDiograph = {
     'some-diory': { id: 'some-diory' },
   },
   rootId: 'some-diory',
+  linkKey: 'some-link-key',
 }
 
 jest.mock('path', () => ({
@@ -42,7 +43,8 @@ describe('importFolder', () => {
 
       const response = await importFolder({ importFolderPath, dioryFolderLocation })
 
-      expect(response).toEqual(someDiograph)
+      expect(response).toEqual({ diograph: someDiograph.diograph, rootId: someDiograph.rootId })
+      expect(Object.keys(response)).toEqual(['rootId', 'diograph'])
       expect(copyFolderRecursiveSync).toHaveBeenCalledWith(someValidPath, someCreatedFolderPath)
       expect(generateDiograph).toHaveBeenCalledWith(someCreatedFolderPath)
     })
@@ -55,7 +57,7 @@ describe('importFolder', () => {
 
       const response = await importFolder({ importFolderPath, dioryFolderLocation })
 
-      expect(response).toEqual(someDiograph)
+      expect(response).toEqual({ diograph: someDiograph.diograph, rootId: someDiograph.rootId })
       // Calls with .../example-folder/folderName-2021-12-03T170304
       expect(copyFolderRecursiveSync).toHaveBeenCalledWith(
         someValidPath,
