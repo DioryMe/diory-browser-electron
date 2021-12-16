@@ -199,7 +199,6 @@ Object {
       "text": "some-folder",
     },
   },
-  "linkKey": "example-folder",
   "rootId": "uuid-10",
 }
 `;
