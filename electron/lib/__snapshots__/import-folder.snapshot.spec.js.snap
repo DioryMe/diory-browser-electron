@@ -1,0 +1,205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`importFolder snapshot spec folder without diograph.json: returns imported folder diograph 1`] = `
+Object {
+  "diograph": Object {
+    "uuid-0": Object {
+      "created": "some-created",
+      "data": Array [
+        Object {
+          "@context": "https://schema.org",
+          "@type": "VideoObject",
+          "contentUrl": "example-folder/some-video.mp4",
+          "encodingFormat": "video/x-m4v",
+        },
+      ],
+      "id": "uuid-0",
+      "image": "some-default-image",
+      "modified": "some-modified",
+      "text": "some-video.mp4",
+    },
+    "uuid-1": Object {
+      "created": "some-created",
+      "data": Array [
+        Object {
+          "@context": "https://schema.org",
+          "@type": "DigitalDocument",
+          "contentUrl": "example-folder/some-document.pdf",
+          "encodingFormat": "application/pdf",
+        },
+      ],
+      "id": "uuid-1",
+      "image": "some-default-image",
+      "modified": "some-modified",
+      "text": "some-document.pdf",
+    },
+    "uuid-10": Object {
+      "created": "some-created",
+      "date": "2012-05-25T06:10:32.666Z",
+      "id": "uuid-10",
+      "image": "example-folder/image-with-24-hour.jpg",
+      "latlng": "51.735696851851856, 12.688426296296297",
+      "links": Object {
+        "image-with-24-hour.jpg": Object {
+          "id": "uuid-4",
+        },
+        "some-document.docx": Object {
+          "id": "uuid-7",
+        },
+        "some-document.odt": Object {
+          "id": "uuid-3",
+        },
+        "some-document.pdf": Object {
+          "id": "uuid-1",
+        },
+        "some-folder": Object {
+          "id": "uuid-9",
+        },
+        "some-image.jpg": Object {
+          "id": "uuid-5",
+        },
+        "some-music.mp3": Object {
+          "id": "uuid-6",
+        },
+        "some-text.txt": Object {
+          "id": "uuid-2",
+        },
+        "some-video.mp4": Object {
+          "id": "uuid-0",
+        },
+      },
+      "modified": "some-modified",
+      "text": "example-folder",
+    },
+    "uuid-2": Object {
+      "created": "some-created",
+      "data": Array [
+        Object {
+          "@context": "https://schema.org",
+          "@type": "DigitalDocument",
+          "contentUrl": "example-folder/some-text.txt",
+        },
+      ],
+      "id": "uuid-2",
+      "image": "some-default-image",
+      "modified": "some-modified",
+      "text": "some-text.txt",
+    },
+    "uuid-3": Object {
+      "created": "some-created",
+      "data": Array [
+        Object {
+          "@context": "https://schema.org",
+          "@type": "DigitalDocument",
+          "contentUrl": "example-folder/some-document.odt",
+          "encodingFormat": "application/vnd.oasis.opendocument.text",
+        },
+      ],
+      "id": "uuid-3",
+      "image": "some-default-image",
+      "modified": "some-modified",
+      "text": "some-document.odt",
+    },
+    "uuid-4": Object {
+      "created": "some-created",
+      "data": Array [
+        Object {
+          "@context": "https://schema.org",
+          "@type": "ImageObject",
+          "contentUrl": "example-folder/image-with-24-hour.jpg",
+          "encodingFormat": "image/jpeg",
+          "height": 3000,
+          "width": 4000,
+        },
+      ],
+      "date": "2019-07-09T00:01:16.000Z",
+      "id": "uuid-4",
+      "image": "example-folder/image-with-24-hour.jpg",
+      "latlng": "68.27818055555555, 14.302322222222223",
+      "modified": "some-modified",
+    },
+    "uuid-5": Object {
+      "created": "some-created",
+      "data": Array [
+        Object {
+          "@context": "https://schema.org",
+          "@type": "ImageObject",
+          "contentUrl": "example-folder/some-image.jpg",
+          "encodingFormat": "image/jpeg",
+          "height": 480,
+          "width": 640,
+        },
+      ],
+      "date": "2008-11-01T21:15:11.000Z",
+      "id": "uuid-5",
+      "image": "example-folder/some-image.jpg",
+      "latlng": "43.464455, 11.881478333333334",
+      "modified": "some-modified",
+    },
+    "uuid-6": Object {
+      "created": "some-created",
+      "data": Array [
+        Object {
+          "@context": "https://schema.org",
+          "@type": "AudioObject",
+          "contentUrl": "example-folder/some-music.mp3",
+          "encodingFormat": "audio/mpeg",
+        },
+      ],
+      "id": "uuid-6",
+      "image": "some-default-image",
+      "modified": "some-modified",
+      "text": "some-music.mp3",
+    },
+    "uuid-7": Object {
+      "created": "some-created",
+      "data": Array [
+        Object {
+          "@context": "https://schema.org",
+          "@type": "DigitalDocument",
+          "contentUrl": "example-folder/some-document.docx",
+          "encodingFormat": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        },
+      ],
+      "id": "uuid-7",
+      "image": "some-default-image",
+      "modified": "some-modified",
+      "text": "some-document.docx",
+    },
+    "uuid-8": Object {
+      "created": "some-created",
+      "data": Array [
+        Object {
+          "@context": "https://schema.org",
+          "@type": "ImageObject",
+          "contentUrl": "example-folder/some-folder/some-folder-image.jpg",
+          "encodingFormat": "image/jpeg",
+          "height": 480,
+          "width": 640,
+        },
+      ],
+      "date": "2008-11-01T21:15:11.000Z",
+      "id": "uuid-8",
+      "image": "example-folder/some-folder/some-folder-image.jpg",
+      "latlng": "43.464455, 11.881478333333334",
+      "modified": "some-modified",
+    },
+    "uuid-9": Object {
+      "created": "some-created",
+      "date": "2008-11-01T21:15:11.000Z",
+      "id": "uuid-9",
+      "image": "example-folder/some-folder/some-folder-image.jpg",
+      "latlng": "43.464455, 11.881478333333334",
+      "links": Object {
+        "some-folder-image.jpg": Object {
+          "id": "uuid-8",
+        },
+      },
+      "modified": "some-modified",
+      "text": "some-folder",
+    },
+  },
+  "linkKey": "example-folder",
+  "rootId": "uuid-10",
+}
+`;
