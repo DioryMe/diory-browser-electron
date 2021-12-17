@@ -12,6 +12,6 @@ export const setDioryFolderLocation = (state, { payload }) => ({
   dioryFolderLocation: payload.dioryFolderLocation,
 })
 
-export default createReducer({
+export default createReducer(initialState, {
   [SET_DIORY_LOCATION]: setDioryFolderLocation,
 })
