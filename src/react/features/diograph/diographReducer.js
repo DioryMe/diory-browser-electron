@@ -113,7 +113,7 @@ export const deleteLinks = (state, { payload: deletedLinks }) =>
     state
   )
 
-export default createReducer({
+export default createReducer(initialState, {
   [ADD_DIOGRAPH]: addDiograph,
   [CREATE_DIORY]: createDiory,
   [DELETE_DIORY]: deleteDiory,

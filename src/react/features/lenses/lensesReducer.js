@@ -21,7 +21,7 @@ const addLensButton = (state, { payload }) => ({
   },
 })
 
-export default createReducer({
+export default createReducer(initialState, {
   [SELECT_LENS]: selectLens,
   [ADD_LENS_BUTTON]: addLensButton,
 })

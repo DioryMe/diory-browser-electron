@@ -75,7 +75,7 @@ export const goHome = (state) => ({
   path: [],
 })
 
-export default createReducer({
+export default createReducer(initialState, {
   [SELECT_STORY]: selectStory,
   [SELECT_MEMORY]: selectMemory,
   [GO_BACKWARD]: goBackward,

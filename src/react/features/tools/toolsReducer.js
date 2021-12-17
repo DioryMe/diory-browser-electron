@@ -10,6 +10,6 @@ const addDioryToHand = (state, { payload }) => ({
   hand: [payload.dioryId, ...state.hand.filter((dioryId) => dioryId !== payload.dioryId)],
 })
 
-export default createReducer({
+export default createReducer(initialState, {
   [ADD_DIORY_TO_HAND]: addDioryToHand,
 })

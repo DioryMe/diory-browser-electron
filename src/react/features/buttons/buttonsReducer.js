@@ -52,7 +52,7 @@ const inactivateButton = (state) => ({
   open: false,
 })
 
-export default createReducer({
+export default createReducer(initialState, {
   [ADD_BUTTONS]: addButtons,
   [REMOVE_BUTTONS]: removeButtons,
   [OPEN_BUTTONS]: openButtons,

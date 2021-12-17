@@ -17,7 +17,7 @@ export const toggleSearchBar = (state) => ({
   showSearchBar: !state.showSearchBar,
 })
 
-export default createReducer({
+export default createReducer(initialState, {
   [SET_QUERY]: setQuery,
   [TOGGLE_SEARCH_BAR]: toggleSearchBar,
 })
