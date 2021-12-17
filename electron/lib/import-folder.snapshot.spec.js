@@ -24,11 +24,7 @@ describe('importFolder snapshot spec', () => {
     mkdirSync(dioryFolderLocation)
   })
 
-  afterEach(async () => {
-    const importedFolderDiograph = await importFolder({ importFolderPath, dioryFolderLocation })
-    expect(Object.keys(importedFolderDiograph)).toEqual(['rootId', 'diograph'])
-    expect(importedFolderDiograph).toMatchSnapshot()
-
+  afterEach(() => {
     rmSync(dioryFolderLocation, { recursive: true, force: true })
   })
 
@@ -50,14 +46,20 @@ describe('importFolder snapshot spec', () => {
       }
     })
 
-    it('returns imported folder diograph', () => {
+    it('returns imported folder diograph', async () => {
       importFolderPath = join(__dirname, '../readers/example-folder')
+      const importedFolderDiograph = await importFolder({ importFolderPath, dioryFolderLocation })
+      expect(Object.keys(importedFolderDiograph)).toEqual(['rootId', 'diograph'])
+      expect(importedFolderDiograph).toMatchSnapshot()
     })
   })
 
   describe('folder with diograph.json', () => {
-    it('returns imported folder diograph', () => {
+    it('returns imported folder diograph', async () => {
       importFolderPath = join(__dirname, '../../public/diory-demo-content')
+      const importedFolderDiograph = await importFolder({ importFolderPath, dioryFolderLocation })
+      expect(Object.keys(importedFolderDiograph)).toEqual(['rootId', 'diograph'])
+      expect(importedFolderDiograph).toMatchSnapshot()
     })
   })
 })
