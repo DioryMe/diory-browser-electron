@@ -68,6 +68,9 @@ describe('importFolder', () => {
   })
 
   describe('throws error', () => {
+    beforeEach(() => {
+      existsSync.mockImplementation((path) => jest.requireActual('fs').existsSync(path))
+    })
     describe('importFolderPath', () => {
       it("doesn't exist", async () => {
         const importFolderPath = './invalid-path'
