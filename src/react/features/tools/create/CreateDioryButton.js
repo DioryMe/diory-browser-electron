@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { v4 as uuid } from 'uuid'
 
 import { Button } from 'evergreen-ui'
 import { useDispatch } from '../../../store'
@@ -15,7 +16,10 @@ const CreateDioryButton = ({ text }) => {
       intent="success"
       margin={8}
       iconBefore={<Icon icon="plus" />}
-      onClick={() => dispatch(createDiory({ text }))}
+      onClick={() => {
+        const id = uuid()
+        dispatch(createDiory({ id, text }))
+      }}
       data-testid="add-button"
     >
       {text}
