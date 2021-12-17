@@ -69,7 +69,7 @@ exports.generateDioryFromFile = async function generateDioryFromFile(filePath) {
 function getFirstImage(linkedDiorys) {
   const image = linkedDiorys
     .map(({ image }) => image)
-    .find((image) => image && !RegExp('^data:').exec(image))
+    .find((image) => image && !/^data:/.exec(image))
   return image && { image }
 }
 
