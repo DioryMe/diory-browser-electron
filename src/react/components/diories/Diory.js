@@ -44,7 +44,7 @@ const Diory = ({ diory, onClick, children, ...props }) => {
           <Image
             image={image}
             style={styleImage}
-            gradient={Boolean(text) && !RegExp('^data:').exec(image)}
+            gradient={Boolean(text) && !/^data:/.exec(image)}
             gradientRgba="0, 0, 0, 0.2"
           />
         )}
