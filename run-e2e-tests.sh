@@ -7,30 +7,22 @@ set +e
 yarn build
 
 mkdir tmp
-rm -rf tmp/testcafe-diograph-folder
-rm -rf tmp/test-my-diory
 rm -rf tmp/My\ Diory
 cp electron-main.js electron-main-original.js
 
-echo "Run Testcafe E2E test 1 (import example-folder)"
+echo "Run electron/spec/testcafe-e2e-1.test.js"
 awk 'BEGIN{print "process.env.TESTCAFE_TEST=1;"}{print}' electron-main.js > electron-main-tmp.js
 mv electron-main-tmp.js electron-main.js
-cp -r electron/readers/example-folder/ tmp/testcafe-diograph-folder/
 npx testcafe "electron:." electron/spec/testcafe-e2e-1.test.js
 test_1=$?
-rm -rf tmp/testcafe-diograph-folder
 rm -rf tmp/My\ Diory
 
-echo "Run Testcafe E2E test 2 (import example-folder + re-choose diory-demo-content with diograph.json)"
+echo "Run electron/spec/testcafe-e2e-2.test.js"
 awk 'BEGIN{print "process.env.TESTCAFE_TEST=2;"}{print}' electron-main-original.js > electron-main-tmp.js
 mv electron-main-tmp.js electron-main.js
-cp -r electron/readers/example-folder tmp/testcafe-diograph-folder/
-mkdir tmp/test-my-diory
-cp -r public/diory-demo-content/ tmp/test-my-diory/My\ Diory
+cp -r public/diory-demo-content/ tmp/My\ Diory
 npx testcafe "electron:." electron/spec/testcafe-e2e-2.test.js
 test_2=$?
-rm -rf tmp/testcafe-diograph-folder
-rm -rf tmp/test-my-diory
 rm -rf tmp/My\ Diory
 
 echo "Remove TESTCAFE_TEST_ENV from electron-main.js"
