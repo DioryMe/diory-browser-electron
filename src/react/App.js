@@ -1,22 +1,24 @@
 import React from 'react'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
 
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import { StoreProvider } from './store/StoreContext'
-import { reducerWithMiddleware } from './utils/middleware'
+
 import { reducer } from './store/reducer'
-import { initialState } from './store/initialState'
 
 import Root from './Root'
 
+const store = createStore(reducer)
+
 const App = () => (
-  <StoreProvider reducer={reducerWithMiddleware(reducer)} initialState={initialState}>
+  <Provider store={store}>
     <DndProvider backend={HTML5Backend}>
       <div className="App">
         <Root />
       </div>
     </DndProvider>
-  </StoreProvider>
+  </Provider>
 )
 
 export default App
