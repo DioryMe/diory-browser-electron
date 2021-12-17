@@ -1,3 +1,4 @@
+// eslint-disable-next-line default-param-last
 const concat = (array = [], item) => (typeof item !== 'undefined' ? array.concat(item) : array)
 
 export const getDateLongitude = ({ date }) =>
