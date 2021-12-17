@@ -1,5 +1,5 @@
-const { statSync, mkdirSync, rmSync } = require('fs')
-const { join } = require('path')
+const { statSync, mkdirSync, rmSync, existsSync } = require('fs')
+const { join } = require('path').posix
 const { v4: uuid } = require('uuid')
 const { importFolder } = require('./import-folder')
 const { getDefaultImage } = require('../../src/shared/getDefaultImage')
@@ -16,7 +16,11 @@ let importFolderPath
 
 describe('importFolder snapshot spec', () => {
   beforeEach(() => {
-    dioryFolderLocation = join(__dirname, `../../tmp/dir-${Date.now()}`)
+    const tempFolderPath = join(__dirname, `../../tmp`)
+    dioryFolderLocation = join(tempFolderPath, `dir-${Date.now()}`)
+    if (!existsSync(tempFolderPath)) {
+      mkdirSync(tempFolderPath)
+    }
     mkdirSync(dioryFolderLocation)
   })
 
