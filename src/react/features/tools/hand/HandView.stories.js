@@ -2,7 +2,7 @@ import React from 'react'
 import { action } from '@storybook/addon-actions'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import { StoreProvider } from '../../../store/StoreContext'
+import StoreProvider from '../../../store/StoreProvider'
 
 import HandView from './HandView'
 

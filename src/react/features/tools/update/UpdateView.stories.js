@@ -1,6 +1,6 @@
 import React from 'react'
 import { action } from '@storybook/addon-actions'
-import { StoreProvider } from '../../../store/StoreContext'
+import StoreProvider from '../../../store/StoreProvider'
 
 import UpdateView from './UpdateView'
 
