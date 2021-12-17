@@ -38,6 +38,7 @@ module.exports = {
     'react/require-default-props': ['off'],
     'react/forbid-prop-types': ['off'],
     'react/jsx-props-no-spreading': ['off'], // personal opinion
+    'react/function-component-definition': ['error', { namedComponents: 'arrow-function' }],
     'consistent-return': ['off'], // Personal opinion
     'no-underscore-dangle': ['off'],
     'import/no-extraneous-dependencies': ['warn', { devDependencies: true }],
