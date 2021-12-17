@@ -12,6 +12,7 @@ jest.mock('fs', () => ({
 jest.mock('../../src/shared/getDefaultImage')
 
 let dioryFolderLocation
+let importFolderPath
 
 describe('importFolder snapshot spec', () => {
   beforeEach(() => {
@@ -19,7 +20,11 @@ describe('importFolder snapshot spec', () => {
     mkdirSync(dioryFolderLocation)
   })
 
-  afterEach(() => {
+  afterEach(async () => {
+    const importedFolderDiograph = await importFolder({ importFolderPath, dioryFolderLocation })
+    expect(Object.keys(importedFolderDiograph)).toEqual(['rootId', 'diograph'])
+    expect(importedFolderDiograph).toMatchSnapshot()
+
     rmSync(dioryFolderLocation, { recursive: true, force: true })
   })
 
@@ -36,25 +41,19 @@ describe('importFolder snapshot spec', () => {
       statSync.mockReturnValue(fileStats)
       getDefaultImage.mockReturnValue('some-default-image')
 
-      for (let id = 0; id < 500; id += 1) {
+      for (let id = 0; id < 50; id += 1) {
         uuid.mockReturnValueOnce(`uuid-${id}`)
       }
     })
 
-    it('returns imported folder diograph', async () => {
-      const importFolderPath = join(__dirname, '../readers/example-folder')
-      const importedFolderDiograph = await importFolder({ importFolderPath, dioryFolderLocation })
-      expect(Object.keys(importedFolderDiograph)).toEqual(['rootId', 'diograph'])
-      expect(importedFolderDiograph).toMatchSnapshot()
+    it('returns imported folder diograph', () => {
+      importFolderPath = join(__dirname, '../readers/example-folder')
     })
   })
 
   describe('folder with diograph.json', () => {
-    it('returns imported folder diograph', async () => {
-      const importFolderPath = join(__dirname, '../../public/diory-demo-content')
-      const importedFolderDiograph = await importFolder({ importFolderPath, dioryFolderLocation })
-      expect(Object.keys(importedFolderDiograph)).toEqual(['rootId', 'diograph'])
-      expect(importedFolderDiograph).toMatchSnapshot()
+    it('returns imported folder diograph', () => {
+      importFolderPath = join(__dirname, '../../public/diory-demo-content')
     })
   })
 })
