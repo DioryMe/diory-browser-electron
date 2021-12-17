@@ -13,6 +13,7 @@ const WithLensContainer = ({ id, button, children }) => {
   return id === selectedLensId ? children : null
 }
 
+// eslint-disable-next-line react/function-component-definition
 export const withLensContainer = (id, button) => (Component) => () =>
   (
     <WithLensContainer id={id} button={button}>
