@@ -80,14 +80,6 @@ describe('importFolder', () => {
         await expect(callImportFolder).rejects.toThrowError()
       })
 
-      it('contains diograph.json', async () => {
-        const importFolderPath = path.join(__dirname, '../../public/diory-demo-content')
-        const dioryFolderLocation = someValidPath
-
-        const callImportFolder = importFolder({ importFolderPath, dioryFolderLocation })
-        await expect(callImportFolder).rejects.toThrowError()
-      })
-
       // TODO: Should throw error if folder is empty
       // it('is empty', async () => { })
     })
