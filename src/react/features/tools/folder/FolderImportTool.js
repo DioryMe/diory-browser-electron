@@ -36,7 +36,7 @@ export const useFolderImportTool = () => {
     if (FOLDER_IMPORT === active) {
       dispatch(inactivateButton())
       if (window.processEnv.TESTCAFE_TEST === '1') {
-        const path = `${window.processEnv.PWD}/tmp/testcafe-diograph-folder`
+        const path = `${window.processEnv.PWD}/public/diory-demo-content`
         importFolder(path)
       } else if (window.processEnv.TESTCAFE_TEST === '2') {
         const path = `${window.processEnv.PWD}/electron/readers/example-folder`

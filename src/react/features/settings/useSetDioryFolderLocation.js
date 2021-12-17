@@ -24,12 +24,8 @@ export const useSetDioryFolderLocation = () => {
 
   return {
     onClick: () => {
-      if (window.processEnv.TESTCAFE_TEST === '1') {
+      if (window.processEnv.TESTCAFE_TEST) {
         const path = `${window.processEnv.PWD}/tmp`
-        const result = { filePaths: [path] }
-        chooseDioryFolderLocation(result)
-      } else if (window.processEnv.TESTCAFE_TEST === '2') {
-        const path = `${window.processEnv.PWD}/tmp/test-my-diory`
         const result = { filePaths: [path] }
         chooseDioryFolderLocation(result)
       } else {
