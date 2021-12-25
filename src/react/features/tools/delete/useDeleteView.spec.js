@@ -1,5 +1,4 @@
 import { useSelector, useDispatchActions } from '../../../store'
-import { initialState } from '../../../store/initialState'
 
 import { deleteDiory, deleteLinks } from '../../diograph/diographActions'
 import { useDiograph } from '../../diograph/useDiograph'
@@ -17,7 +16,7 @@ describe('useDeleteView', () => {
   let mockState
   const mockDispatch = jest.fn()
   beforeEach(() => {
-    mockState = { ...initialState }
+    mockState = {}
     useSelector.mockImplementation((selector) => selector(mockState))
     useDispatchActions.mockImplementation(() => ({
       dispatch: mockDispatch,
