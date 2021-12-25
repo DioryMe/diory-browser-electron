@@ -1,7 +1,7 @@
 import React from 'react'
 import { Pane, IconButton } from 'evergreen-ui'
 
-import { useDispatchActions, useStore } from '../../../store'
+import { useDispatchActions, useSelector } from '../../../store'
 import { goBackward, goForward, selectStory } from '../navigationActions'
 import Icon from '../../../components/Icon'
 import NavigationContextsPill from './NavigationContextsPill'
@@ -9,8 +9,8 @@ import NavigationContextButton from './NavigationContextButton'
 
 const useNavigationButtons = () => {
   const { dispatch } = useDispatchActions()
-  const [{ backward, forward }] = useStore((state) => state.navigation)
-  const [{ rootId }] = useStore((state) => state.diograph)
+  const { backward, forward } = useSelector((state) => state.navigation)
+  const { rootId } = useSelector((state) => state.diograph)
   return {
     home: {
       onClick: () => dispatch(selectStory({ id: rootId })),

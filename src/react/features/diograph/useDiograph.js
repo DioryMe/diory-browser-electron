@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useStore } from '../../store'
+import { useSelector } from '../../store'
 import { useDiorys } from './useDiorys'
 
 import { resolveReverseDiograph } from './resolveReverseDiograph'
@@ -15,7 +15,7 @@ function idIs(dioryId) {
 }
 
 const useContext = (contexts) => {
-  const [{ backward }] = useStore((state) => state.navigation)
+  const { backward } = useSelector((state) => state.navigation)
 
   if (!contexts.length) {
     return undefined
@@ -26,8 +26,8 @@ const useContext = (contexts) => {
 }
 
 const useContexts = () => {
-  const [{ storyId }] = useStore((state) => state.navigation)
-  const [{ diograph = {} }] = useStore((state) => state.diograph)
+  const { storyId } = useSelector((state) => state.navigation)
+  const { diograph = {} } = useSelector((state) => state.diograph)
   const reverseDiograph = useMemo(() => resolveReverseDiograph(diograph), [diograph])
 
   const contexts = useLinkedDiorys(storyId, reverseDiograph)
@@ -38,8 +38,8 @@ const useContexts = () => {
 }
 
 export const useDiograph = () => {
-  const [{ storyId, memoryId }] = useStore((state) => state.navigation)
-  const [{ diograph = {} }] = useStore((state) => state.diograph)
+  const { storyId, memoryId } = useSelector((state) => state.navigation)
+  const { diograph = {} } = useSelector((state) => state.diograph)
 
   const { context, contexts } = useContexts()
   const contextId = context && context.id

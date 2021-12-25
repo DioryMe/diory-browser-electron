@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Icon from '../../../components/Icon'
 import useKeyPress from '../../../utils/useKeyPress'
-import { useStore } from '../../../store'
+import { useSelector } from '../../../store'
 
 const NavigationSideways = ({ left, right, onClick }) => {
-  const [{ selectedLensId }] = useStore((state) => state.lenses)
+  const { selectedLensId } = useSelector((state) => state.lenses)
   useKeyPress(
     left ? 'ArrowLeft' : 'ArrowRight',
     selectedLensId === 'fullscreen' ? onClick : () => {}

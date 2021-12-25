@@ -1,12 +1,12 @@
-import { useDispatch, useStore } from '../../../store'
+import { useDispatchActions, useSelector } from '../../../store'
 import { useDiograph } from '../../diograph/useDiograph'
 
 import { goSide } from '../navigationActions'
 
 export const useGoSide = () => {
-  const [{ storyId }] = useStore((state) => state.navigation)
+  const { storyId } = useSelector((state) => state.navigation)
   const { stories } = useDiograph()
-  const dispatch = useDispatch()
+  const { dispatch } = useDispatchActions()
   const storyIds = stories.map(({ id }) => id)
 
   if (!storyIds.length) {

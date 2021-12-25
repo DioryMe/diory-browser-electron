@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid'
 
-import { useDispatchActions, useStore } from '../../../store'
+import { useDispatchActions, useSelector } from '../../../store'
 import { useDiograph } from '../../diograph/useDiograph'
 
 import { inactivateButton } from '../../buttons/buttonsActions'
@@ -10,7 +10,7 @@ import { createDiory, createLink } from '../../diograph/diographActions'
 import { CREATE_TOOL_BUTTON } from './buttons'
 
 export const useCreateDiory = () => {
-  const [{ active }] = useStore((state) => state.buttons)
+  const { active } = useSelector((state) => state.buttons)
   const { story } = useDiograph()
   const { dispatch } = useDispatchActions()
 

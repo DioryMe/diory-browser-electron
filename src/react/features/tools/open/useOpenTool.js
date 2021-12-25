@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { useDispatchActions, useStore } from '../../../store'
+import { useDispatchActions, useSelector } from '../../../store'
 import { useDiograph } from '../../diograph/useDiograph'
 
 import { addButtons, inactivateButton, removeButtons } from '../../buttons/buttonsActions'
@@ -11,8 +11,8 @@ import { convertToFileUrl } from '../../../utils'
 
 export const useOpenTool = () => {
   const { story } = useDiograph()
-  const [{ active }] = useStore((state) => state.buttons)
-  const [{ dioryFolderLocation }] = useStore((state) => state.settings)
+  const { active } = useSelector((state) => state.buttons)
+  const { dioryFolderLocation } = useSelector((state) => state.settings)
 
   const contentUrl = story && story.data && story.data[0].contentUrl
   const { dispatch } = useDispatchActions()

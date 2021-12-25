@@ -1,13 +1,13 @@
 import React from 'react'
 
-import { useStore } from '../../../store'
+import { useSelector } from '../../../store'
 import { useHand } from './useHand'
 
 import HandView from './HandView'
 
 const HandTool = () => {
-  const [{ open }] = useStore((state) => state.buttons)
-  const [{ selectedLensId }] = useStore((state) => state.lenses)
+  const { open } = useSelector((state) => state.buttons)
+  const { selectedLensId } = useSelector((state) => state.lenses)
   const props = useHand()
   return open && selectedLensId === 'grid' ? <HandView {...props} /> : null
 }

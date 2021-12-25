@@ -1,4 +1,4 @@
-import { useDispatch } from '../../../store'
+import { useDispatchActions } from '../../../store'
 import { useButtons } from '../../buttons/useButtons'
 import { useMoveToolIsActive } from './useMoveToolIsActive'
 
@@ -11,7 +11,7 @@ export const useMoveTool = () => {
   useButtons(buttons)
 
   const isActive = useMoveToolIsActive()
-  const dispatch = useDispatch()
+  const { dispatch } = useDispatchActions()
   return (diory) => {
     if (isActive) {
       dispatch(updateDiory(diory))

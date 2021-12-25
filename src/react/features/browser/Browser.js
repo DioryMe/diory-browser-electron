@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useStore } from '../../store'
+import { useSelector } from '../../store'
 
 import Fullscreen from '../../components/Fullscreen'
 import Navigation from '../navigation/Navigation'
@@ -10,9 +10,9 @@ import Buttons from '../buttons/Buttons'
 import Search from '../search/Search'
 
 const Browser = (props) => {
-  const [{ showSearchBar }] = useStore((state) => state.search)
-  const [{ loaded }] = useStore((state) => state.diograph)
-  const [{ storyId }] = useStore((state) => state.navigation)
+  const { showSearchBar } = useSelector((state) => state.search)
+  const { loaded } = useSelector((state) => state.diograph)
+  const { storyId } = useSelector((state) => state.navigation)
   return loaded && storyId ? (
     <Fullscreen {...props}>
       <Navigation />

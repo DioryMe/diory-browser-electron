@@ -1,9 +1,9 @@
-import { useDispatchActions, useStore } from '../../../store'
+import { useDispatchActions, useSelector } from '../../../store'
 
 import { selectLens } from '../../lenses/lensesActions'
 
 export const useLensButtons = () => {
-  const [{ selectedLensId, buttons }] = useStore((state) => state.lenses)
+  const { selectedLensId, buttons } = useSelector((state) => state.lenses)
   const { dispatch } = useDispatchActions()
   return {
     lensButtons: Object.values(buttons).map(({ id, ...diory }) => ({

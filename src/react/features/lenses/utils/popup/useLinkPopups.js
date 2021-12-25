@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
-import { useStore } from '../../../../store'
+import { useSelector } from '../../../../store'
 import { createDioryPopup } from './createDioryPopup'
 
 export const useLinkPopups = (markerRefs, memories) => {
-  const [{ dioryFolderLocation }] = useStore((state) => state.settings)
+  const { dioryFolderLocation } = useSelector((state) => state.settings)
 
   useEffect(() => {
     if (markerRefs.current) {

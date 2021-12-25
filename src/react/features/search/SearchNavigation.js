@@ -1,13 +1,13 @@
 import React from 'react'
 import { IconButton, Pane, SearchInput } from 'evergreen-ui'
 
-import { useStore, useDispatchActions } from '../../store'
+import { useSelector, useDispatchActions } from '../../store'
 import { setQuery, toggleSearchBar } from './searchActions'
 
 import Icon from '../../components/Icon'
 
 const useSearchNavigation = () => {
-  const [{ showSearchBar }] = useStore((state) => state.search)
+  const { showSearchBar } = useSelector((state) => state.search)
 
   const { dispatch, dispatchAction } = useDispatchActions()
   return {

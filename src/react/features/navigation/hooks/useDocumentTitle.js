@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
-import { useStore } from '../../../store'
+import { useSelector } from '../../../store'
 
 export const useDocumentTitle = () => {
-  const [{ diograph = {} }] = useStore((state) => state.diograph)
-  const [{ path }] = useStore((state) => state.navigation)
+  const { diograph = {} } = useSelector((state) => state.diograph)
+  const { path } = useSelector((state) => state.navigation)
   useEffect(() => {
     document.title = ['Home']
       .concat(
