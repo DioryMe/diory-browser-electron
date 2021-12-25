@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import { v4 as uuid } from 'uuid'
 
 import { Button } from 'evergreen-ui'
-import { useDispatch } from '../../../store'
+import { useDispatchActions } from '../../../store'
 import { createDiory } from '../../diograph/diographActions'
 
 import Icon from '../../../components/Icon'
 
 const CreateDioryButton = ({ text }) => {
-  const dispatch = useDispatch()
+  const { dispatch } = useDispatchActions()
   return (
     <Button
       appearance="primary"

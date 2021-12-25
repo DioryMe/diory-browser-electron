@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
-import { useDispatch } from '../../store'
+import { useDispatchActions } from '../../store'
 import { addButtons, removeButtons } from './buttonsActions'
 
 export const useButtons = (buttons = []) => {
-  const dispatch = useDispatch()
+  const { dispatch } = useDispatchActions()
   useEffect(() => {
     if (buttons.length) {
       dispatch(addButtons(buttons))

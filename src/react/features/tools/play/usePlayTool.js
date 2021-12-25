@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 
-import { useDispatchActions, useStore } from '../../../store'
+import { useDispatchActions, useSelector } from '../../../store'
 import { buttons, PLAY_BUTTON, PAUSE_BUTTON } from './buttons'
 
 import { addButtons, inactivateButton, removeButtons } from '../../buttons/buttonsActions'
@@ -18,7 +18,7 @@ const useShowButtons = (playElement) => {
 }
 
 const useTogglePlayAndPause = (playElement) => {
-  const [{ active }] = useStore((state) => state.buttons)
+  const { active } = useSelector((state) => state.buttons)
   const isPlaying = active === PLAY_BUTTON
   const isPause = active === PAUSE_BUTTON
 

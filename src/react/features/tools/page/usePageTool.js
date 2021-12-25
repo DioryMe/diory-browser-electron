@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 
-import { useDispatchActions, useStore } from '../../../store'
+import { useDispatchActions, useSelector } from '../../../store'
 import { buttons, NEXT_BUTTON, PREVIOUS_BUTTON } from './buttons'
 
 import { addButtons, inactivateButton, removeButtons } from '../../buttons/buttonsActions'
@@ -17,7 +17,7 @@ const useAddAndRemoveButtons = (pageRef) => {
 }
 
 const usePageNumber = () => {
-  const [{ active }] = useStore((state) => state.buttons)
+  const { active } = useSelector((state) => state.buttons)
   const [page, setPage] = useState(1)
 
   const next = active === NEXT_BUTTON

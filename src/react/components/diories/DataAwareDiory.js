@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { useStore } from '../../store'
+import { useSelector } from '../../store'
 
 import BackgroundDiory from './BackgroundDiory'
 import Video from '../content/Video'
@@ -12,7 +12,7 @@ import WebPage from '../content/WebPage'
 import { convertToFileUrl } from '../../utils'
 
 const DataAwareDiory = ({ playRef, page, diory }) => {
-  const [{ dioryFolderLocation }] = useStore((state) => state.settings)
+  const { dioryFolderLocation } = useSelector((state) => state.settings)
   const { data = [] } = diory
   const { contentUrl, encodingFormat, url } = (data && data[0]) || {}
   const absoluteContentUrl = convertToFileUrl(contentUrl, dioryFolderLocation)

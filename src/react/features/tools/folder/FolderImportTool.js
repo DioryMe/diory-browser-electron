@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { useDispatch, useStore } from '../../../store'
+import { useDispatchActions, useSelector } from '../../../store'
 
 import { inactivateButton } from '../../buttons/buttonsActions'
 import { addDiograph, createLink } from '../../diograph/diographActions'
@@ -11,10 +11,10 @@ import { channels } from '../../../../shared/constants'
 import { FOLDER_IMPORT } from './buttons'
 
 export const useImportFolder = () => {
-  const [{ dioryFolderLocation }] = useStore((state) => state.settings)
-  const [{ storyId }] = useStore((state) => state.navigation)
+  const { dioryFolderLocation } = useSelector((state) => state.settings)
+  const { storyId } = useSelector((state) => state.navigation)
 
-  const dispatch = useDispatch()
+  const { dispatch } = useDispatchActions()
   const importFolder = (importFolderPath) => {
     invokeChannel(channels.IMPORT_FOLDER, { importFolderPath, dioryFolderLocation }).then(
       ({ rootId, diograph }) => {
@@ -28,10 +28,10 @@ export const useImportFolder = () => {
 }
 
 export const useFolderImportTool = () => {
-  const [{ active }] = useStore((state) => state.buttons)
+  const { active } = useSelector((state) => state.buttons)
   const { importFolder } = useImportFolder()
 
-  const dispatch = useDispatch()
+  const { dispatch } = useDispatchActions()
   useEffect(() => {
     if (FOLDER_IMPORT === active) {
       dispatch(inactivateButton())

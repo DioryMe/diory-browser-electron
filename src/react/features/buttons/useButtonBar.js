@@ -1,17 +1,17 @@
-import { useDispatchActions, useStore } from '../../store'
+import { useDispatchActions, useSelector } from '../../store'
 
 import { openButtons, activateButton, inactivateButton } from './buttonsActions'
 
 const useButtonsArray = () => {
-  const [{ buttons }] = useStore((state) => state.buttons)
+  const { buttons } = useSelector((state) => state.buttons)
   return {
     buttons: Object.values(buttons),
   }
 }
 
 export const useButtonBar = () => {
-  const [{ open }] = useStore((state) => state.buttons)
-  const [{ active }] = useStore((state) => state.buttons)
+  const { open } = useSelector((state) => state.buttons)
+  const { active } = useSelector((state) => state.buttons)
 
   const { buttons } = useButtonsArray()
   const { dispatch } = useDispatchActions()

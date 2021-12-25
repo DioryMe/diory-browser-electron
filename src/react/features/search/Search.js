@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useDispatchActions, useStore } from '../../store'
+import { useDispatchActions, useSelector } from '../../store'
 import { useStoryTool } from '../tools/story'
 import { useUpdateTool } from '../tools/update'
 
@@ -27,8 +27,8 @@ const useToolActions = () => {
 }
 
 const useSearch = () => {
-  const [{ query, showSearchBar }] = useStore((state) => state.search)
-  const [{ diograph }] = useStore((state) => state.diograph)
+  const { query, showSearchBar } = useSelector((state) => state.search)
+  const { diograph } = useSelector((state) => state.diograph)
 
   const results =
     query && diograph

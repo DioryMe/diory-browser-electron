@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { useDispatchActions, useStore } from '../../store'
+import { useDispatchActions, useSelector } from '../../store'
 
 import { selectStory } from '../navigation/navigationActions'
 import { getDiograph } from './diographActions'
@@ -9,7 +9,7 @@ import { invokeChannel } from '../../client/client'
 import { channels } from '../../../shared/constants'
 
 export const useGetDiographEffect = () => {
-  const [{ dioryFolderLocation }] = useStore((state) => state.settings)
+  const { dioryFolderLocation } = useSelector((state) => state.settings)
   const { dispatch } = useDispatchActions()
   useEffect(() => {
     if (dioryFolderLocation) {

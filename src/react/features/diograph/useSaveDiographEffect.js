@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useStore, useDispatchActions } from '../../store'
+import { useSelector, useDispatchActions } from '../../store'
 
 import { saveDiograph } from './diographActions'
 
@@ -8,8 +8,8 @@ import { channels } from '../../../shared/constants'
 import { getUntrackedDiograph } from '../../utils'
 
 export const useSaveDiographEffect = () => {
-  const [{ rootId, diograph, updated }] = useStore((state) => state.diograph)
-  const [{ dioryFolderLocation }] = useStore((state) => state.settings)
+  const { rootId, diograph, updated } = useSelector((state) => state.diograph)
+  const { dioryFolderLocation } = useSelector((state) => state.settings)
 
   const { debounceDispatchPromiseAction } = useDispatchActions()
   useEffect(() => {

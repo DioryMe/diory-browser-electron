@@ -1,11 +1,11 @@
-import { useDispatch, useStore } from '../../../store'
+import { useDispatchActions, useSelector } from '../../../store'
 import { selectStory } from '../../navigation/navigationActions'
 import { addDioryToHand } from '../toolsActions'
 
 export const useStoryTool = () => {
-  const [{ active, activeButton }] = useStore((state) => state.buttons)
+  const { active, activeButton } = useSelector((state) => state.buttons)
 
-  const dispatch = useDispatch()
+  const { dispatch } = useDispatchActions()
   return (clickedDiory) => {
     if (!active || activeButton.data.enableDioryClick) {
       dispatch(addDioryToHand(clickedDiory.id))

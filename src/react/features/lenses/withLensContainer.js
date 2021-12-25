@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
 
-import { useDispatch, useStore } from '../../store'
+import { useDispatchActions, useSelector } from '../../store'
 import { addLensButton } from './lensesActions'
 
 const WithLensContainer = ({ id, button, children }) => {
-  const dispatch = useDispatch()
+  const { dispatch } = useDispatchActions()
   useEffect(() => {
     button && dispatch(addLensButton(button))
   }, [button, dispatch])
 
-  const [{ selectedLensId }] = useStore((state) => state.lenses)
+  const { selectedLensId } = useSelector((state) => state.lenses)
   return id === selectedLensId ? children : null
 }
 

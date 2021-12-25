@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useDispatchActions, useStore } from '../../../store'
+import { useDispatchActions, useSelector } from '../../../store'
 
 import { IMPORT_TOOLS } from './buttons'
 
@@ -21,7 +21,7 @@ const useImportTools = () => {
 }
 
 const ImportTools = () => {
-  const [{ active }] = useStore((state) => state.buttons)
+  const { active } = useSelector((state) => state.buttons)
   const { onClick, onDone, onCancel } = useImportTools()
 
   return IMPORT_TOOLS === active ? (

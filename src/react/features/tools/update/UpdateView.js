@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import { useDispatch } from '../../../store'
+import { useDispatchActions } from '../../../store'
 
 import { inactivateButton } from '../../buttons/buttonsActions'
 import { selectMemory } from '../../navigation/navigationActions'
@@ -15,7 +15,7 @@ const useUpdateView = (diory = {}) => {
   const [values, setValues] = useState({})
 
   const updatedDiory = { ...diory, ...values }
-  const dispatch = useDispatch()
+  const { dispatch } = useDispatchActions()
   return {
     fields: fields.map((field) => ({ ...field, value: updatedDiory[field.key] })),
     setValue: (key, value) => setValues({ ...values, [key]: value }),

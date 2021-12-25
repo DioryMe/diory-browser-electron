@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
-import { useStore } from '../../store'
+import { useSelector } from '../../store'
 
 import WelcomeView from './WelcomeView'
 import SetDioryFolderLocationButton from '../settings/SetDioryFolderLocationButton'
 
 const Welcome = () => {
-  const [{ initializing, dioryFolderLocation }] = useStore((state) => state.settings)
+  const { initializing, dioryFolderLocation } = useSelector((state) => state.settings)
   const [showInitially, setShowInitially] = useState(true)
 
   useEffect(() => {
