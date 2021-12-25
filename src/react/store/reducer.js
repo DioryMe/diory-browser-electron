@@ -2,8 +2,6 @@ import { combineReducers } from 'redux'
 
 import { RESET_STORE } from './actionsTypes'
 
-import { initialState } from './initialState'
-
 import buttons from '../features/buttons/buttonsReducer'
 import tools from '../features/tools/toolsReducer'
 import lenses from '../features/lenses/lensesReducer'
@@ -24,7 +22,7 @@ const appReducer = combineReducers({
 
 export const reducer = (state, action) => {
   if (action.type === RESET_STORE) {
-    return appReducer(initialState, action)
+    return appReducer({}, action)
   }
   return appReducer(state, action)
 }
