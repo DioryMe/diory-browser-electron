@@ -1,4 +1,4 @@
-const { statSync, mkdirSync, rmSync, existsSync } = require('fs')
+const { statSync, mkdirSync, rmdirSync, existsSync } = require('fs')
 const { join } = require('path').posix
 const { v4: uuid } = require('uuid')
 const { importFolder } = require('./import-folder')
@@ -25,7 +25,7 @@ describe('importFolder snapshot spec', () => {
   })
 
   afterEach(() => {
-    rmSync(dioryFolderLocation, { recursive: true, force: true })
+    rmdirSync(dioryFolderLocation, { recursive: true, force: true })
   })
 
   describe('folder without diograph.json', () => {
