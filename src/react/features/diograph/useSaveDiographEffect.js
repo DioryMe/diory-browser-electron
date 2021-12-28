@@ -5,7 +5,6 @@ import { saveDiograph } from './diographActions'
 
 import { invokeChannel } from '../../client/client'
 import { channels } from '../../../shared/constants'
-import { getUntrackedDiograph } from '../../utils'
 
 export const useSaveDiographEffect = () => {
   const { rootId, diograph, updated } = useSelector((state) => state.diograph)
@@ -19,7 +18,7 @@ export const useSaveDiographEffect = () => {
           invokeChannel(channels.SAVE_DIOGRAPH, {
             dioryFolderLocation,
             rootId,
-            diograph: getUntrackedDiograph(diograph),
+            diograph,
           }),
         saveDiograph
       )
