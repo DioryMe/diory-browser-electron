@@ -34,7 +34,6 @@
     "cypress-cucumber-preprocessor": "^4.3.1",
     "cypress-react-selector": "^2.3.13",
     "electron": "^16.0.5",
-    "electron-builder": "22.7.0",
     "electron-devtools-installer": "^3.2.0",
     "eslint": "^8.5.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -65,6 +64,9 @@
     "testcafe-browser-provider-electron": "^0.0.17",
     "ui-box": "^5.0.0",
     "wait-on": "^6.0.0"
+  },
+  "optionalDependencies": {
+    "electron-builder": "^22.14.5"
   },
   "homepage": "./",
   "scripts": {
