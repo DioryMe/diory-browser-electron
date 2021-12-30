@@ -45,7 +45,6 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "evergreen-ui": "6.6.4",
-    "file-url": "^4.0.0",
     "husky": "^7.0.4",
     "leaflet": "^1.6.0",
     "lint-staged": "^12.1.4",
