@@ -1,6 +1,8 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 const url = require('url')
+const { default: installExtension, REDUX_DEVTOOLS } = require('electron-devtools-installer');
+
 require('electron-reload')
 
 let mainWindow
@@ -48,6 +50,14 @@ app.on('activate', () => {
   }
 })
 
+app.whenReady().then(() => {
+  installExtension(REDUX_DEVTOOLS)
+    .then((name) => console.log(`Added Extension:  ${name}`))
+    .catch((err) => console.log('An error occurred: ', err));
+});
+
+
+
 const Store = require('electron-store')
 const { showOpenDialog } = require('./electron/lib/show-open-dialog')
 
@@ -56,3 +66,4 @@ ipcMain.handle('showOpenDialog', showOpenDialog)
 Store.initRenderer()
 
 console.log(`User data: ${app.getPath('userData')}/config.json`)
+
