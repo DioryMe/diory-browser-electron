@@ -4,6 +4,7 @@ import { debounce } from '../utils'
 
 export const createReducer =
   (initialState, handlers) =>
+  // eslint-disable-next-line default-param-last
   (state = initialState, action) => {
     if (!handlers.hasOwnProperty(action.type)) {
       return state
