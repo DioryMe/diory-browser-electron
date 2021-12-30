@@ -1,7 +1,7 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
+const { app, BrowserWindow, ipcMain, Menu } = require('electron')
 const path = require('path')
 const url = require('url')
-const { default: installExtension, REDUX_DEVTOOLS } = require('electron-devtools-installer');
+const { default: installExtension, REDUX_DEVTOOLS } = require('electron-devtools-installer')
 
 require('electron-reload')
 
@@ -53,17 +53,22 @@ app.on('activate', () => {
 app.whenReady().then(() => {
   installExtension(REDUX_DEVTOOLS)
     .then((name) => console.log(`Added Extension:  ${name}`))
-    .catch((err) => console.log('An error occurred: ', err));
-});
+    .catch((err) => console.log('An error occurred: ', err))
+})
 
+// Menu
+const template = [{ role: 'appMenu' }, { role: 'fileMenu' }]
+const menu = Menu.buildFromTemplate(template)
+Menu.setApplicationMenu(menu)
 
-
+// Store
+// eslint-disable-next-line import/newline-after-import
 const Store = require('electron-store')
-const { showOpenDialog } = require('./electron/lib/show-open-dialog')
-
-ipcMain.handle('showOpenDialog', showOpenDialog)
-
 Store.initRenderer()
 
-console.log(`User data: ${app.getPath('userData')}/config.json`)
+// Choose folder native dialog
+// eslint-disable-next-line import/newline-after-import
+const { showOpenDialog } = require('./electron/lib/show-open-dialog')
+ipcMain.handle('showOpenDialog', showOpenDialog)
 
+console.log(`User data: ${app.getPath('userData')}/config.json`)
