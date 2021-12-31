@@ -7,7 +7,7 @@ Given('I am at home', () => {
 })
 
 Given('I select {word} button', (toolName) => {
-  cy.get(`div[data-testid=${toolName}-button]`).click()
+  cy.get(`[data-testid=${toolName}-button]`).click()
 })
 
 Given('I select {string}', (testId) => {
@@ -32,10 +32,6 @@ When('I click element with id {string}', (id) => {
   cy.get(`#${id}`).click()
 })
 
-When('I type {string} in search bar', (searchString) => {
-  cy.get('input#NavigationSearch').type(searchString)
-})
-
 // THEN
 
 Then('I see {string} in view', (dioryName) => {
@@ -52,7 +48,7 @@ Then('I see {string}', (testId) => {
 })
 
 Then('I see {word} button', (buttonName) => {
-  cy.get(`div[data-testid=${buttonName}-button]`).should('have.length', 1)
+  cy.get(`[data-testid=${buttonName}-button]`).should('have.length', 1)
 })
 
 Then('I select {word} lens', (lensName) => {

@@ -7,7 +7,7 @@ import CreateDioryButton from '../tools/create/CreateDioryButton'
 import SearchResult from './SearchResult'
 
 const SearchView = ({ query, results, onClick, onDrop, ...props }) => (
-  <SearchBar {...props}>
+  <SearchBar data-testid="search-bar" {...props}>
     {query && <CreateDioryButton text={query} />}
     <Pane paddingX={8} overflow="auto">
       {results.map((diory) => (
