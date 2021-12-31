@@ -34,7 +34,7 @@ const SearchNavigation = (props) => {
             appearance="minimal"
             icon={<Icon icon="cross" />}
             onClick={onToggleSearch}
-            data-testid="search-close"
+            data-testid="search-close-button"
           />
         </>
       ) : (

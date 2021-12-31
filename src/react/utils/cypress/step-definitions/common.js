@@ -51,6 +51,10 @@ Then('I see {word} button', (buttonName) => {
   cy.get(`[data-testid=${buttonName}-button]`).should('have.length', 1)
 })
 
+Then("I don't see {word} button", (buttonName) => {
+  cy.get(`[data-testid=${buttonName}-button]`).should('have.length', 0)
+})
+
 Then('I select {word} lens', (lensName) => {
   cy.get(`span[data-testid=${lensName}-lens]`).click()
 })
