@@ -29,9 +29,24 @@ Feature: Search
     Then I see 'Mary' in view
     And I don't see search bar
 
-  # Scenario: Update tool works on search result
+  Scenario: Update tool works on search result
+    Given I take 'Generic content' in focus
+    And I type 'Mary' in search input
+    When I select tools button
+    And I select update button
+    And I take 'Mary' in focus
+    Then update tool is active
+    And I see 'Update diory' in view
 
+  # TODO: Delete tool doesn't work with search results, should it?
   # Scenario: Delete tool works on search result
+  #   Given I take 'Generic content' in focus
+  #   And I type 'Mary' in search input
+  #   When I select tools button
+  #   And I select delete button
+  #   And I take 'Mary' in focus
+  #   And I click Delete button
+  #   Then I do not see 'Mary' in view
 
   Scenario: Memory can be linked to search result
     Given I type 'Mary' in search input
