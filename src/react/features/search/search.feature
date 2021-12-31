@@ -28,3 +28,20 @@ Feature: Search
     # This next line passes although two rows above would be commented out
     Then I see 'Mary' in view
     And I don't see search bar
+
+  # Scenario: Update tool works on search result
+
+  # Scenario: Delete tool works on search result
+
+  Scenario: Memory can be linked to search result
+    Given I type 'Mary' in search input
+    When I drag 'generic-content' to 'search-e07c2f1d-5f5a-488a-a505-34f7b9f55105'
+    And I click element with id 'search-e07c2f1d-5f5a-488a-a505-34f7b9f55105'
+    Then I see 'Generic content' in view
+
+  Scenario: Search result can be linked to memory
+    Given I type 'Mary' in search input
+    When I drag 'search-e07c2f1d-5f5a-488a-a505-34f7b9f55105' to 'generic-content'
+    And I select search-close button
+    And I click element with id 'generic-content'
+    Then I see 'Mary' in view
