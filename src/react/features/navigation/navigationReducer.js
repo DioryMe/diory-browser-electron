@@ -9,7 +9,7 @@ import {
 
 import { createReducer } from '../../store'
 
-export const initialState = {
+const initialState = {
   storyId: undefined,
   memoryId: null,
   backward: [],
