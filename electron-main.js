@@ -57,7 +57,7 @@ app.whenReady().then(() => {
 })
 
 // Menu
-const template = [{ role: 'appMenu' }, { role: 'fileMenu' }]
+const template = [{ role: 'appMenu' }, { role: 'fileMenu' }, { role: 'editMenu' }]
 const menu = Menu.buildFromTemplate(template)
 Menu.setApplicationMenu(menu)
 
