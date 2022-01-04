@@ -3,7 +3,7 @@ import { createReducer } from '../../store'
 
 const DEFAULT_LENS = 'grid'
 
-export const initialState = {
+const initialState = {
   selectedLensId: DEFAULT_LENS,
   buttons: {},
 }

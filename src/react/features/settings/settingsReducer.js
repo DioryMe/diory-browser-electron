@@ -1,7 +1,7 @@
 import { SET_DIORY_LOCATION } from './settingsActionTypes'
 import { createReducer } from '../../store'
 
-export const initialState = {
+const initialState = {
   initializing: true,
   dioryFolderLocation: undefined,
 }

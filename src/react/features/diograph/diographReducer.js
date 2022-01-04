@@ -11,7 +11,7 @@ import {
 } from './diographActionTypes'
 import { promiseReducers, createReducer } from '../../store'
 
-export const initialState = {
+const initialState = {
   rootId: undefined,
   diograph: {},
   loaded: false,

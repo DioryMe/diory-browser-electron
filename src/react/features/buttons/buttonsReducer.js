@@ -7,7 +7,7 @@ import {
 } from './buttonsActionTypes'
 import { createReducer } from '../../store'
 
-export const initialState = {
+const initialState = {
   buttons: {},
   active: null,
   activeButton: {},

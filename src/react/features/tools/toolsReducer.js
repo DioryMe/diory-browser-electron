@@ -1,7 +1,7 @@
 import { ADD_DIORY_TO_HAND } from './toolsActionTypes'
 import { createReducer } from '../../store'
 
-export const initialState = {
+const initialState = {
   hand: [],
 }
 
