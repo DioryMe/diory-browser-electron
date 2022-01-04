@@ -1,3 +1,5 @@
+// Imported from https://github.com/sindresorhus/file-url/blob/main/index.js
+// - remove unnecessary use of 'path' (node core module)
 function fileUrl(filePath) {
   if (typeof filePath !== 'string') {
     throw new TypeError(`Expected a string, got ${typeof filePath}`)
