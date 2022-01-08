@@ -6,7 +6,7 @@ import TimelineLens from './timeline/TimelineLens'
 import MapLens from './map/MapLens'
 
 const Lenses = (props) => (
-  <Fullscreen {...props}>
+  <Fullscreen {...props} zIndex={0}>
     <GridLens />
     <TimelineLens />
     <MapLens />
