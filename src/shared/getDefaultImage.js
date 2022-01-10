@@ -14,8 +14,10 @@ const colors = [
   'mMUMgn7DwACmQGdtDFX8A', // #123456
 ]
 
-const colorCode = process.env.TESTCAFE_TEST ? colors[0] : getRandom(colors)
-const getDefaultImage = () => `data:image/png;base64,${prefix}${colorCode}${suffix}`
+const getDefaultImage = () => {
+  const colorCode = process.env.TESTCAFE_TEST ? colors[0] : getRandom(colors)
+  return `data:image/png;base64,${prefix}${colorCode}${suffix}`
+}
 
 module.exports = {
   getDefaultImage,
