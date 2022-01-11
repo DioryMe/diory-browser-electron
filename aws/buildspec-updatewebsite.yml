@@ -4,5 +4,6 @@ phases:
   build:
     commands:
       - aws s3 cp ./website/index.html s3://$WEBSITE_BUCKET --acl public-read
-      - aws s3 cp ./website/latest-mac.html s3://$WEBSITE_BUCKET --acl public-read --website-redirect "/$MAC_BINARY_FILENAME"
+      - aws s3 cp ./website/latest-mac.html s3://$WEBSITE_BUCKET --acl public-read --website-redirect "/$MAC_BINARY_FILENAME.dmg"
+      - aws s3 cp ./website/latest-mac-m1.html s3://$WEBSITE_BUCKET --acl public-read --website-redirect "/$MAC_BINARY_FILENAME-arm64.dmg"
       - aws s3 cp ./website/latest-win.html s3://$WEBSITE_BUCKET --acl public-read --website-redirect "/$WINDOWS_BINARY_FILENAME"
