@@ -1,28 +1,56 @@
+## 5.0.0 (Jan 11, 2022)
+
+### Added
+
+- Fullscreen navigation
+- Import folder (also with diograph.json)
+- Search sidebar
+- Redux store to replace react-tracked
+- Rework channels
+
+### Removed
+
+- Home
+- Rooms
+- Filters
+- Old concepts (room, home, focus, view...)
+
+### Other
+
+- Remove Electron default stuff
+- Update packages
+- Relative paths for Windows
+
 ## 4.1.0 (May 27, 2021)
 
 ### DDA-116: Start using ContextBridge + update packages
+
 - Electron 13.0.1, Node 14.17
 - Convert channels to use ContextBridge instead of ipcMain.handle
 - Keep Electron remote module because dialog.showOpenDialog seems to require it
 - All the others packages also to the latest versions by May 27
 
 ### DDA-144: Diograph format: latlng, data array and colors
+
 - diory.data as array
 - latlng attribute instead of latitude and longitude
 - Single color image/png;base64 as default image for diories
 - Remove random background-color from Diory component
 
 ### DDA-136: Don't interpolate anything
+
 - Show only diories with dates on timeline
 - Show only diories with locations on map
 - Don't show Filters-diory on timeline or map
 - Default bounds for timeline when there's only 0 or 1 diories with dates
 
 ### DDA-86: Relative paths
+
 - Relative paths in diograph: diory.image & diory.data.contentUrl
 - Prepared diory & diorys before passing them to Lenses
 
 ### Other
+
 - Initial validator and migrator for diograph format
 - Remove unused stuff
 - Disable Windows appveyor test as relative paths E2E test doesn't work
@@ -30,16 +58,19 @@
 ## 3.1.1 (May 6, 2021)
 
 ### DDA-135: Keyboard shortcuts
+
 - Browse diories with arrow keys in fullscreen lens
 - useKeyPress helper for future keyboard shortcuts
 
 ### DDA-130: Improve hand tool
+
 - Add diory to hand when Diory is set in focus or is created
 - Clicking diory in hand sets it in focus
 - Don't hide diories / scroll handbar before it is full
 - Feature tests for hand tool + checking store improved
 
 ### DDA-126: Render DataAwareDiory content based on MIME type
+
 - DataAwareDiory renders image, video, website, document & 'open in external application' based on MIME type
 - Fullscreen lens renders DataAwareDiory
 - DioryActions component for focus diory actions for update-delete-hand tools & reveal in finder (using hand and folder icons)
@@ -47,10 +78,12 @@
 - FocusDioryContainer & LinkDioryContainer
 
 ### DDA-122: Grid with large focus diory
+
 - Show focus diory almost fullscreen in grid
 - Use DataAwareDiory as focus diory
 
 ### DDA-118: Start using schemas in diograph
+
 - Add schemas to diory.data attribute when generating diograph
 - Resolve mime type instead of detecting file extensions
 - Use only absolute urls in diograph format
@@ -58,6 +91,7 @@
 - Improved development content
 
 ### DDA-103: Delete tool improvements
+
 - Removes also reverse links of the deleted diory
 - Confirmation dialog for delete tool
   - Lists all diories and links which are going to be deleted
@@ -66,29 +100,34 @@
 - DeleteView, storybook, feature tests, unit tests...
 
 ### Other
+
 - Feature tests can check store state
-- Rename buttons reducers with SET_ -prefix (openButtons, activateButtons, inactivateButtons)
+- Rename buttons reducers with SET\_ -prefix (openButtons, activateButtons, inactivateButtons)
 - Stricter linting rules
 - Remove jsdocs as they haven't been actively updated
 
 ## 2.5.7 (March 14, 2021)
 
 ### DDA-85: Update folder
+
 - Generate diories from newly added files and folder from diograph folder without removing already existing diograph.json
 - Always read existing diograph.json and the diograph folder folder structure. Compare them and add all the diories that didn't already exist in diograph.json
 - Update folder may duplicate diories if their links are added or removed
 - generateDiograph refactored with better naming and structure
 
 ### DDA-83: Filters
+
 - Set filter active and inactive individually
 - Filter diorys when filter is active
 - Change filtering criteria when filter is active
 
 ### DDA-60: Upgrade packages
+
 - React-scripts 4.0.3, Electron 11.2, Node 12.18.3, React 17.0.1
 - All the others packages also to the latest versions by January 23
 
 ### Other
+
 - Complete fileTypes / file extensions for file-reader (image, audio, video, text)
 - BUG: Ignore hidden files when generating diograph
 - BUG: Map saved locations as string
@@ -98,33 +137,36 @@
 - Strictened linting rules
 
 ### Tests
+
 - Testcafe E2E tests to CI pipeline (Appveyor)
 - E2E tests to test GENERATE_DIOGRAPH, SAVE_ROOM and SAVE_HOME channels
 - Snapshot tests for compareAndMergeDiographs (generateDiograph test pending for relative paths)
 - Expose diograph state from Store to Cypress
 - Improve feature tests for timeline, delete tool, update tool and create tool
 
-
 ## 2.3.5 (Feburary 4, 2021)
 
 ### DDA-60: Verify room connection
+
 - Refactor and test coverage for channels
 - Pass error from backend to frontend and invoke an alert
 - Alert if some room's path doesn't exist
 
 ### POC: Testcafe
+
 - Testcafe up & running with TESTCAFE_TEST env
 - First E2E test which selects diograph folder and verifies that it gets loaded
 - Take screenshots
 - Run as a part of ./package-mac-common.sh
 
 ### Other
-- Upgrade packages: Electron 11.2, Node 12.18, React 17, React-scripts 4
 
+- Upgrade packages: Electron 11.2, Node 12.18, React 17, React-scripts 4
 
 ## 2.3.0 (January 19, 2021)
 
 ### DDA-81 Hand tool for linking diorys in grid lens
+
 - Take linked diory to hand
 - View diorys in hand
 - Link diory from hand to focus diory
@@ -134,6 +176,7 @@
 ## 2.2.0 (January 8, 2021)
 
 ### DDA-67 Feature tests for all the existing features
+
 - Create diory to map and timeline
 - Move diory on map
 - Timeline lens
@@ -141,6 +184,7 @@
 - Delete diory
 
 ### UX
+
 - Autofocus to text field in update diory
 - Dialog done on enter key
 - Ignore outside dialog click
@@ -148,6 +192,7 @@
 ## 2.1.1 (November 19, 2020)
 
 ### DDA-65 Migrate from Cucumber to Cypress
+
 - `yarn cypress run` is run via Github Action (and `yarn cucumber` is removed)
 - New development content is now used also with tests + convert tests
 - cucumber-js and all the related stuff is removed
@@ -157,6 +202,7 @@
 - room.feature and navigation.feature as first tests
 
 ### DDA-67 Feature tests for all the existing features
+
 - Update and create tools
 - Search
 - Map lens
@@ -165,6 +211,7 @@
 ## 2.1.0 (November 19, 2020)
 
 ### DDA-69: Timeline and fullscreen lenses and tools for lenses
+
 - Create timeline lens
 - Create fullscreen lens
 - Create create, move, edit and move tools for timeline and map
@@ -172,14 +219,17 @@
 - Generate location data
 
 # 2.0.0 (October 6, 2020)
+
 - `yarn build` and `yarn test-electron` are run via Github Action
 
 ### DDA-39 App packaging and publishing automation
+
 - package-mac.sh script to build new .dmg and upload it to S3
 - AWS CodePipeline to create .exe and update the new versions to the website
 - Apple's notarization flow with certificates
 
 ### DDA-41: Video-reader and videos to test content
+
 - Initial video-reader to make diories from video files
 - Video player for video diories
 - Two videos to test content
@@ -188,6 +238,7 @@
 ## 1.2.0 (September 9, 2020)
 
 ### DDA-55 Refactor connectors for IPFS
+
 - Refactor connectors feature to support several connectors.
 - Refactor button structure for reusability
 
@@ -198,12 +249,14 @@
 ## 1.1.1 (July 18, 2020)
 
 ### DDA-46: Storybook
+
 - Set up storybook
 - Create Modal and TextInput components
 
 ## 1.1.0 (July 18, 2020)
 
 ### DDA-45: Fullscreen view
+
 - Create fullscreen button to navigation
 - Add fullscreen state to navigation
 - Create fullscreen view
@@ -213,27 +266,33 @@
 Release candidate for Release 1 milestone.
 
 ### Features
+
 ##### Navigation
+
 - focus
 - path
 - history
 - backward, forward, next, previous
 
 ##### Room
+
 - focus diory in fullscreen
 - linked diorys in grid
 
 ##### Map lens
+
 - focus diory in map
 - linked diorys in map
 
 ##### Folder connector
+
 - select folder
 - generate diograph from files and subfolders
 - save diograph to folder
 - load diograph from folder
 
 ##### Text filter
+
 - search query input
 - search diorys with query in text
 - results as linked diorys
@@ -241,11 +300,13 @@ Release candidate for Release 1 milestone.
 ## 0.3.8 (June 17, 2020)
 
 ### DDA-25: Store roomInFocus with electron-store
+
 - Read config.json from \~/Library/Application Support/Diory - Digital Memory Browser/
 - Fallback to welcome room if config.json file is not found
 - Saves roomInFocus every time a new diograph is generated
 
 ### Other
+
 - Ignore .DS_Store and diograph.json when generating the diograph
 - Update packages: Electron 9, Node 12.14, yarn 1.21 etc.
 - Initial build pipeline for app packages
@@ -255,6 +316,7 @@ Release candidate for Release 1 milestone.
 ## 0.3.7 (May 21, 2020)
 
 ### DDA-23: Clean code for release
+
 - Remove home
 - Remove multiple folders in room
 - Remove map tools
@@ -279,80 +341,83 @@ Release candidate for Release 1 milestone.
 
 ### DDA-17: Add room to home
 
-* Add room -tool for connector
-* Tool button refactoring
-* Use path to save room
+- Add room -tool for connector
+- Tool button refactoring
+- Use path to save room
 
 ## 0.3.3 (April 5, 2020)
 
 ### DDA-6: Generate diograph from folders and subfolders
 
-* Create recursive diograph generator
-    - [x] Create diorys from folders, subfolders, files and photos
-    - [x] Convert Jasmine tests to Jest tests => use Jest also for backend testing
-    - [ ] Resolve data from photos to folders
-        - [x] Folder image from first image
+- Create recursive diograph generator
+  - [x] Create diorys from folders, subfolders, files and photos
+  - [x] Convert Jasmine tests to Jest tests => use Jest also for backend testing
+  - [ ] Resolve data from photos to folders
+    - [x] Folder image from first image
 
 ## 0.3.2 (March 27, 2020)
 
 ### Add linter and github actions
 
-* Setup eslint rules and plugins
-    * Airbnb
-    * Prettier
-* Setup github actions
+- Setup eslint rules and plugins
+  - Airbnb
+  - Prettier
+- Setup github actions
 
 ## 0.3.1 (March 15, 2020)
 
 ### DDA-11: Create connector feature
 
-* Restructure hooks and add connector feature
+- Restructure hooks and add connector feature
 
 ## 0.3.0 (February 25, 2020)
 
 ### Folder reader
 
-* Read folder and generate diograph
+- Read folder and generate diograph
 
 ## 0.2.1 (January 3, 2020)
 
 ### Map lens
 
-* Add, move and remove locations on map
+- Add, move and remove locations on map
 
 ## 0.2.0 (December 30, 2019)
 
 ### Map lens
 
-* Create map lens with navigation
+- Create map lens with navigation
 
 ## 0.1.0 (December 18, 2019)
 
 ### Initialize project
 
-* Electron and create-react-app with channels
-* Store, reducer and actions with hooks
-* Feature based project structure
+- Electron and create-react-app with channels
+- Store, reducer and actions with hooks
+- Feature based project structure
 
 ### Home
 
-* Home with rooms
+- Home with rooms
 
 ### Room
 
-* Room with diograph
-* Diory to focus
+- Room with diograph
+- Diory to focus
 
 ### Navigation
 
-* Home, backward and forward navigation
-* Left and right navigation
+- Home, backward and forward navigation
+- Left and right navigation
 
 ### Focus
-* Show diory with linked diorys
+
+- Show diory with linked diorys
 
 ### Path
-* Show path from home
+
+- Show path from home
 
 ### Channels
+
 - Get data from node backend
