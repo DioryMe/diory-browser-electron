@@ -29,11 +29,12 @@ git clone git@github.com:DioryMe/diory-browser-electron.git
 cd diory-browser-electron
 git checkout $GIT_BRANCH
 
-# Run common stuff (Testcafe tests & BINARY_BUILD = 1)
-bash ./package-mac-common.sh
+# Run common stuff (build & add BINARY_BUILD=1 to electron-main.js)
+bash ./package-common.sh
 
-echo "Creating MacOS distribution package..."
-APPLEID=$apple_id APPLEIDPASS=$apple_id_pass yarn package-mac
+echo "Creating MacOS distribution packages..."
+APPLEID=$apple_id APPLEIDPASS=$apple_id_pass yarn package-mac --x64
+APPLEID=$apple_id APPLEIDPASS=$apple_id_pass yarn package-mac --arm64
 
 echo "Uploading the .dmg binary to AWS..."
 aws s3 cp dist/*.dmg s3://dda-downloads --acl public-read
