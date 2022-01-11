@@ -70,22 +70,16 @@
   "homepage": "./",
   "scripts": {
     "start": "BROWSER=none PORT=3300 ESLINT_NO_DEV_ERRORS=true react-scripts start",
-    "start-browser": "PORT=3301 react-scripts start",
     "start-electron": "export ELECTRON_START_URL=http://localhost:3300 && electron .",
     "start-electron-dev-tools": "DEV_TOOLS=true export ELECTRON_START_URL=http://localhost:3300 && cross-env nodemon --exec electron .",
-    "build-and-start-electron": "yarn build && yarn build-electron && electron .",
-    "start-win": "set BROWSER=none && react-scripts start",
-    "start-electron-win": "set ELECTRON_START_URL=http://localhost:3300 && electron .",
-    "clean": "rm -rf build dist",
-    "clean-win": "rmdir build /S /Q & rmdir dist/S /Q",
+    "build-and-start-electron": "yarn build && electron .",
     "build": "react-scripts build",
     "build-electron": "mkdir build/src && cp electron-main.js build && cp -r electron/. build/electron && cp -r src/shared/. build/src/shared",
-    "build-electron-win": "mkdir build/src && robocopy electron build/electron /S & robocopy src/shared build/src/shared /S",
-    "package-mac": "electron-builder build --mac -c.extraMetadata.main=build/electron-main.js --publish never --config electron-builder.json",
-    "package-mac-rc-x64": "electron-builder build --mac --x64 -c.extraMetadata.main=build/electron-main.js --publish never --config electron-builder-rc.json",
-    "package-mac-rc-arm64": "electron-builder build --mac --arm64 -c.extraMetadata.main=build/electron-main.js --publish never --config electron-builder-rc.json",
-    "package-linux": "electron-builder build --linux -c.extraMetadata.main=build/electron-main.js --publish never",
-    "package-win": "electron-builder build --win -c.extraMetadata.main=build/electron-main.js --publish never",
+    "package": "electron-builder build -c.extraMetadata.main=build/electron-main.js --publish never",
+    "package-mac": "yarn package --mac --config electron-builder.json",
+    "package-mac-rc": "yarn package --mac --config electron-builder-rc.json",
+    "package-linux": "yarn package --linux",
+    "package-win": "yarn package --win",
     "eslint": "eslint './*.{js, json}' './{src,electron,scripts}/**/*.{js,jsx,json,css,scss}' --fix",
     "prettier": "prettier --write '{electron,src}/**/*.{js,jsx,json,css,scss}'",
     "test": "yarn test-electron && yarn prettier && yarn eslint && yarn test-react",
@@ -135,7 +129,7 @@
   },
   "jest": {
     "transformIgnorePatterns": [
-      "node_modules/(?!(file-url|react-pdf/dist/esm/entry.webpack)/)"
+      "node_modules/(?!(react-pdf/dist/esm/entry.webpack)/)"
     ],
     "moduleNameMapper": {
       "react-pdf/dist/esm/entry.webpack": "react-pdf"
