@@ -12,7 +12,7 @@ Our website is basically just a place to download our app for MacOS and Windows.
 
 Currently there's only one real page, `./website/index.html`
 
-`latest-mac.html` and `latest-win.html` are intentionally empty files. They are used for redirecting to the latest version. Redirection is reset to the latest version every time we make a new release.
+`latest-mac.html`, `latest-mac-m1.html` and `latest-win.html` are intentionally empty files. They are used for redirecting to the latest version. Redirection is reset to the latest version every time we make a new release.
 
 ## Cloudformation deploy
 
