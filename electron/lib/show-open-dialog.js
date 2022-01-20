@@ -1,3 +1,4 @@
 const { dialog } = require('electron')
 
-exports.showOpenDialog = () => dialog.showOpenDialog({ properties: ['openDirectory'] })
+exports.showOpenDialog = () =>
+  dialog.showOpenDialog({ properties: ['openDirectory', 'createDirectory'] })
