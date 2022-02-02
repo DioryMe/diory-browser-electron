@@ -48,6 +48,7 @@
     "husky": "^7.0.4",
     "leaflet": "^1.6.0",
     "lint-staged": "^12.1.4",
+    "node-canvas": "^2.9.0",
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
     "prop-types": "^15.8.0",
