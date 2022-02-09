@@ -7,26 +7,29 @@ import { addButtons, inactivateButton, removeButtons } from '../../buttons/butto
 
 import { invokeChannel } from '../../../client/client'
 import { buttons, OPEN_TOOL_BUTTON } from './buttons'
+import { convertToFileUrl } from '../../../utils'
 
 export const useOpenTool = () => {
   const { story } = useDiograph()
   const { active } = useSelector((state) => state.buttons)
+  const { dioryFolderLocation } = useSelector((state) => state.settings)
 
-  const url = story && story.data && story.data[0].url
+  const contentUrl = story && story.data && story.data[0].contentUrl
   const { dispatch } = useDispatchActions()
   useEffect(() => {
-    if (url) {
+    if (contentUrl) {
       dispatch(addButtons(buttons))
     } else {
       dispatch(removeButtons(buttons))
     }
-  }, [dispatch, url])
+  }, [dispatch, contentUrl])
 
   const open = active === OPEN_TOOL_BUTTON
   useEffect(() => {
     if (open) {
-      invokeChannel('openWebsiteInBrowser', url)
+      const absoluteContentUrl = convertToFileUrl(contentUrl, dioryFolderLocation)
+      invokeChannel('showItemInFolder', absoluteContentUrl)
       dispatch(inactivateButton())
     }
-  }, [dispatch, url, open])
+  }, [dispatch, contentUrl, open, dioryFolderLocation])
 }
