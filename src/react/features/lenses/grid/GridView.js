@@ -10,6 +10,8 @@ import DataAwareDiory from '../../../components/diories/DataAwareDiory'
 import DragDropBackground from '../../../components/DragDropBackground'
 import FullscreenBackground from '../../../components/FullscreenBackground'
 
+import { invokeChannel } from '../../../client/client'
+
 const useScrollToTopOnStoryChange = (elementRef) => {
   const { story } = useDiograph()
   useEffect(() => {
@@ -20,6 +22,7 @@ const useScrollToTopOnStoryChange = (elementRef) => {
 const GridView = ({ playRef, story, memories, page, onDrop, onClick }) => {
   const storyRef = useRef()
   const memoryRef = useRef()
+  const url = story && story.data && story.data[0].url
 
   useScrollToTopOnStoryChange(storyRef)
 
@@ -28,7 +31,13 @@ const GridView = ({ playRef, story, memories, page, onDrop, onClick }) => {
       <FullscreenBackground>
         <DataAwareDiory page={page} playRef={playRef} diory={story} />
       </FullscreenBackground>
-      <ScrollBackground>
+      <ScrollBackground
+        onClick={() => {
+          if (url) {
+            invokeChannel('openWebsiteInBrowser', url)
+          }
+        }}
+      >
         <DragDropBackground
           ref={storyRef}
           position="relative"
