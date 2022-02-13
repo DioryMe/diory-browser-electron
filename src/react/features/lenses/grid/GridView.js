@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 
 import { useDiograph } from '../../diograph/useDiograph'
 
+import BackgroundDiory from '../../../components/diories/BackgroundDiory'
+import Content from '../../content/Content'
 import ScrollBackground from '../../../components/ScrollBackground'
+import DragDropBackground from '../../../components/DragDropBackground'
 import DiorysGrid from '../../../components/DiorysGrid'
 import ScrollVertically from '../../../components/ScrollVertically'
-import DataAwareDiory from '../../../components/diories/DataAwareDiory'
-import DragDropBackground from '../../../components/DragDropBackground'
-import FullscreenBackground from '../../../components/FullscreenBackground'
 
 const useScrollToTopOnStoryChange = (elementRef) => {
   const { story } = useDiograph()
@@ -17,7 +17,7 @@ const useScrollToTopOnStoryChange = (elementRef) => {
   }, [elementRef, story])
 }
 
-const GridView = ({ playRef, story, memories, page, onDrop, onClick }) => {
+const GridView = ({ story, memories, onDrop, onClick }) => {
   const storyRef = useRef()
   const memoryRef = useRef()
 
@@ -25,9 +25,8 @@ const GridView = ({ playRef, story, memories, page, onDrop, onClick }) => {
 
   return (
     <>
-      <FullscreenBackground>
-        <DataAwareDiory page={page} playRef={playRef} diory={story} />
-      </FullscreenBackground>
+      <BackgroundDiory diory={story} />
+      <Content diory={story} />
       <ScrollBackground>
         <DragDropBackground
           ref={storyRef}
@@ -60,11 +59,6 @@ GridView.defaultProps = {
 }
 
 GridView.propTypes = {
-  playRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.any })]),
-  page: PropTypes.shape({
-    ref: PropTypes.func.isRequired,
-    number: PropTypes.number.isRequired,
-  }).isRequired,
   story: PropTypes.object.isRequired,
   memories: PropTypes.array.isRequired,
   onClick: PropTypes.func,
