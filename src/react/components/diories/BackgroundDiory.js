@@ -1,9 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Image from './Image'
 import Diory from './Diory'
-import Fullscreen from '../Fullscreen'
 
 const blurStyle = {
   filter: 'blur(20px)',
@@ -14,19 +12,16 @@ const blurStyle = {
 const BackgroundDiory = ({ diory, children }) => {
   const style = {
     ...diory.style,
-    background: 'transparent',
+    zIndex: -1000,
     image: {
+      ...blurStyle,
       ...(diory.style && diory.style.image),
-      backgroundSize: 'contain',
     },
   }
 
   return (
     <>
-      <Image image={diory.image} style={blurStyle} />
-      <Fullscreen>
-        <Diory diory={{ ...diory, style }} />
-      </Fullscreen>
+      <Diory diory={{ ...diory, style }} />
       {children}
     </>
   )
