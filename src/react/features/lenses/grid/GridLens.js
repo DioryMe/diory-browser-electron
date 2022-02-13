@@ -5,9 +5,6 @@ import { useDiograph } from '../../diograph/useDiograph'
 import { useDeleteTool } from '../../tools/delete'
 import { useStoryTool } from '../../tools/story'
 import { useUpdateTool } from '../../tools/update'
-import { usePlayTool } from '../../tools/play/usePlayTool'
-import { useOpenTool } from '../../tools/open/useOpenTool'
-import { usePageTool } from '../../tools/page/usePageTool'
 import { useImportTools } from '../../tools/import/useImportTools'
 import { withLensContainer } from '../withLensContainer'
 
@@ -19,17 +16,12 @@ const useTools = () => {
   const selectStory = useStoryTool()
   const deleteDiory = useDeleteTool()
   const updateDiory = useUpdateTool()
-  const page = usePageTool()
 
-  useOpenTool()
   useImportTools()
 
-  const { playRef } = usePlayTool()
   const { dispatch } = useDispatchActions()
 
   return {
-    page,
-    playRef,
     onClick: ({ diory }) => {
       selectStory(diory)
       deleteDiory(diory)
