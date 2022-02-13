@@ -2,18 +2,9 @@ import { useDispatchActions, useSelector } from '../../store'
 
 import { openButtons, activateButton, inactivateButton } from './buttonsActions'
 
-const useButtonsArray = () => {
-  const { buttons } = useSelector((state) => state.buttons)
-  return {
-    buttons: Object.values(buttons),
-  }
-}
-
 export const useButtonBar = () => {
-  const { open } = useSelector((state) => state.buttons)
-  const { active } = useSelector((state) => state.buttons)
+  const { open, active, buttons } = useSelector((state) => state.buttons)
 
-  const { buttons } = useButtonsArray()
   const { dispatch } = useDispatchActions()
 
   const toggleButton = {
@@ -27,13 +18,25 @@ export const useButtonBar = () => {
     },
   }
 
-  const toolButtons = buttons.map((button) => ({
-    ...button,
-    active: button.id === active,
-    onClick: () => {
-      dispatch(button.id === active ? inactivateButton() : activateButton(button.id))
-    },
-  }))
+  const toolButtons = Object.values(buttons)
+    .filter(({ data: { type } }) => type !== 'content')
+    .map((button) => ({
+      ...button,
+      active: button.id === active,
+      onClick: () => {
+        dispatch(button.id === active ? inactivateButton() : activateButton(button.id))
+      },
+    }))
+
+  const contentButtons = Object.values(buttons)
+    .filter(({ data: { type } }) => type === 'content')
+    .sort(({ data: { order: order1 } }, { data: { order: order2 } }) => order1 - order2)
+    .map((button) => ({
+      ...button,
+      onClick: () => {
+        dispatch(activateButton(button.id))
+      },
+    }))
 
   if (toolButtons.length < 2) {
     return {
@@ -41,16 +44,13 @@ export const useButtonBar = () => {
     }
   }
 
-  const visibleButtons = toolButtons.filter(({ data: { visible } }) => visible)
-  const hiddenButtons = toolButtons.filter(({ data: { visible } }) => !visible)
-
   if (!open) {
     return {
-      buttons: [...visibleButtons, toggleButton],
+      buttons: [...contentButtons, toggleButton],
     }
   }
 
   return {
-    buttons: [...hiddenButtons, ...visibleButtons, toggleButton],
+    buttons: [...toolButtons, ...contentButtons, toggleButton],
   }
 }
