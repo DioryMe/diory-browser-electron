@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { convertToFileUrl } from '../../utils'
 
 export const getContentUrl = (diory, baseUrl) => {
