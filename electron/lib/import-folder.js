@@ -1,6 +1,12 @@
 const fs = require('fs')
 const path = require('path')
 const dayjs = require('dayjs')
+const {
+  generateThumbnail: imageThumbnailer,
+} = require('diograph-js/dist/generators/image/thumbnailer')
+const {
+  generateThumbnail: videoThumbnailer,
+} = require('diograph-js/dist/generators/video/thumbnailer')
 const { copyFolderRecursiveSync } = require('./utils')
 const { convertDiographUrlsRelative } = require('./convertDiographUrlsRelative')
 
@@ -39,6 +45,38 @@ exports.importFolder = async function importFolder({ importFolderPath, dioryFold
 
   // Generate diograph if no diograph.json
   const diograph = await generateDiograph(importedFolderPathInDioryFolder)
+
+  await Promise.all(
+    Object.values(diograph.diograph).map(async (diory) => {
+      const data = diory.data && diory.data[0]
+      if (data) {
+        const mime = data.encodingFormat && data.encodingFormat.split('/')[0]
+        if (mime === 'image') {
+          console.log('image')
+          const imageContent = await fs.promises.readFile(data.contentUrl)
+          const imageBuffer = await imageThumbnailer(imageContent)
+          const dioryThumbnailPath = path.join(importedFolderPathInDioryFolder, `${diory.id}.jpg`)
+          diograph.diograph[diory.id] = {
+            ...diograph.diograph[diory.id],
+            image: dioryThumbnailPath,
+          }
+          console.log('image return')
+          return fs.promises.writeFile(dioryThumbnailPath, imageBuffer)
+        }
+        if (mime === 'video') {
+          console.log('video')
+          const { thumbnailBuffer } = await videoThumbnailer(data.contentUrl, 3)
+          const dioryThumbnailPath = path.join(importedFolderPathInDioryFolder, `${diory.id}.jpg`)
+          diograph.diograph[diory.id] = {
+            ...diograph.diograph[diory.id],
+            image: dioryThumbnailPath,
+          }
+          console.log('video return')
+          return fs.promises.writeFile(dioryThumbnailPath, thumbnailBuffer)
+        }
+      }
+    })
+  )
 
   return {
     rootId: diograph.rootId,
