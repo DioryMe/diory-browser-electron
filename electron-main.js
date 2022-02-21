@@ -5,6 +5,11 @@ const { default: installExtension, REDUX_DEVTOOLS } = require('electron-devtools
 
 require('electron-reload')
 
+const ffmpegDir = path
+  .dirname(require.resolve('ffmpeg-static'))
+  .replace('app.asar', 'app.asar.unpacked')
+process.env.FFMPEG_PATH = process.env.FFMPEG_PATH || path.join(ffmpegDir, 'ffmpeg')
+
 let mainWindow
 
 function createWindow() {
