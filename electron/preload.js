@@ -8,6 +8,7 @@ const { getDiograph } = require('./lib/get-diograph')
 const { getDioryFolderLocation } = require('./lib/get-diory-folder-location')
 const { setDioryFolderLocation } = require('./lib/set-diory-folder-location')
 const { saveDiograph } = require('./lib/save-diograph')
+const { deleteDataobject } = require('./lib/delete-dataobject')
 
 function channelLogger(handler, params) {
   console.log(`BACK-REQ: ${handler.name} called with`, params)
@@ -26,6 +27,7 @@ contextBridge.exposeInMainWorld('channelsApi', {
   [channels.SAVE_DIOGRAPH]: (params) => channelLogger(saveDiograph, params),
   [channels.GET_DIORY_FOLDER_LOCATION]: (params) => channelLogger(getDioryFolderLocation, params),
   [channels.SET_DIORY_FOLDER_LOCATION]: (params) => channelLogger(setDioryFolderLocation, params),
+  [channels.DELETE_DATAOBJECT]: (params) => channelLogger(deleteDataobject, params),
   showItemInFolder: async (fileUrl) => shell.showItemInFolder(fileURLToPath(fileUrl)),
   openItemInDesktopManner: (fileUrl) => shell.openPath(fileURLToPath(fileUrl)),
   openWebsiteInBrowser: (url) => shell.openExternal(url),
