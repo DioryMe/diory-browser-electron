@@ -5,6 +5,11 @@ const { default: installExtension, REDUX_DEVTOOLS } = require('electron-devtools
 
 require('electron-reload')
 
+// Electron logging
+// eslint-disable-next-line import/newline-after-import
+const log = require('electron-log')
+console.log = log.info
+
 const ffmpegDir = path
   .dirname(require.resolve('ffmpeg-static'))
   .replace('app.asar', 'app.asar.unpacked')
