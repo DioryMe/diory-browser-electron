@@ -13,6 +13,7 @@
     "electron-store": "^8.0.1",
     "exifreader": "^4.1.0",
     "file-type": "^16.4.0",
+    "ffmpeg-static": "^4.4.1",
     "glob": "^7.2.0",
     "uuid": "^8.3.2"
   },
@@ -30,6 +31,7 @@
     "@storybook/preset-create-react-app": "^4.0.0",
     "@storybook/react": "^6.4.9",
     "@types/jest": "^27.0.3",
+    "@types/ffmpeg-static": "^3.0.1",
     "babel-loader": "^8.2.3",
     "cross-env": "^7.0.3",
     "cypress": "9.2.0",
