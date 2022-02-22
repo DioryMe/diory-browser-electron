@@ -31,8 +31,8 @@ const buttons = [
 
 export const useTogglePlayButtons = (contentElement, playInitially) => {
   const [play, pause] = useToggleButtons(buttons, !playInitially)
-  useEffect(() => {
-    play && contentElement.play()
-    pause && contentElement.pause()
+  useEffect(async () => {
+    play && await contentElement.play()
+    pause && await contentElement.pause()
   }, [contentElement, play, pause])
 }
