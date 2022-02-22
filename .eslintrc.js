@@ -53,6 +53,7 @@ module.exports = {
         enforceForRenamedProperties: false,
       },
     ],
+    'no-unused-expressions': ['warn', { allowShortCircuit: true, allowTernary: true }],
     // TODO:
     'no-param-reassign': ['warn'],
     'no-use-before-define': ['warn'],
@@ -63,7 +64,6 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': ['warn'],
     radix: ['warn'],
     'no-bitwise': ['warn'],
-    'no-unused-expressions': ['warn'],
     'no-prototype-builtins': ['warn'],
     // Prettier:
     'operator-linebreak': ['off'], // prettier
