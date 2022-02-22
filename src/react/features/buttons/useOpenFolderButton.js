@@ -14,7 +14,7 @@ const buttons = [
       order: 0,
       type: 'content',
       icon: 'folder-open',
-      testid: 'open',
+      testid: 'folder',
       visible: true,
     },
   },

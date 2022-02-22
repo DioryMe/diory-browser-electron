@@ -36,3 +36,12 @@ Then('{string} diory {word} in the hand', (dioryText, isOrNot) => {
         : expect(Object.values(tools.hand)).not.to.include(diory.id)
     })
 })
+
+Then('I see {string} file in folder', (fileName) => {
+  // TODO: Mock or spy ipc client
+  // cy.window()
+  //   .its('channelsApi.OPEN_FOLDER')
+  //   .should((channel) => {
+  //     expect(channel).to.be.calledWith(fileName)
+  //   })
+})

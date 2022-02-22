@@ -30,7 +30,7 @@ const AudioContent = ({ diory, baseUrl }) => {
 
   return (
     <Fullscreen>
-      <audio ref={refCallback} src={audioUrl} style={audioStyles} {...options} />
+      <audio ref={refCallback} src={audioUrl} style={audioStyles} data-testid="audio-content" {...options} />
     </Fullscreen>
   )
 }
