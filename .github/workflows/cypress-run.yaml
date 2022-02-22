@@ -13,10 +13,13 @@ jobs:
       CI: false
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
           node-version: 16.9.1
+      - run: (cd diograph-js && yarn install && yarn build)
       - run: yarn install
       - run: yarn start & yarn run wait-on http://localhost:3300
       - run: yarn cypress run
