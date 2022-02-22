@@ -26,7 +26,7 @@ contextBridge.exposeInMainWorld('channelsApi', {
   [channels.SAVE_DIOGRAPH]: (params) => channelLogger(saveDiograph, params),
   [channels.GET_DIORY_FOLDER_LOCATION]: (params) => channelLogger(getDioryFolderLocation, params),
   [channels.SET_DIORY_FOLDER_LOCATION]: (params) => channelLogger(setDioryFolderLocation, params),
-  showItemInFolder: async (fileUrl) => shell.showItemInFolder(fileURLToPath(fileUrl)),
+  [channels.OPEN_FOLDER]: async (fileUrl) => shell.showItemInFolder(fileURLToPath(fileUrl)),
   openItemInDesktopManner: (fileUrl) => shell.openPath(fileURLToPath(fileUrl)),
   openWebsiteInBrowser: (url) => shell.openExternal(url),
   showOpenDialog: () => ipcRenderer.invoke('showOpenDialog'),
