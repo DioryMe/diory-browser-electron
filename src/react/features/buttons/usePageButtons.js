@@ -49,9 +49,9 @@ export const usePageButton = (button, isLastPage, nextPage, setPageNumber) => {
       setPageNumber(() => nextPage)
       dispatch(inactivateButton())
     }
-  }, [dispatch, action, nextPage])
+  }, [dispatch, action, nextPage, setPageNumber])
 
-  useEffect(() => () => dispatch(removeButtons([button])), [button])
+  useEffect(() => () => dispatch(removeButtons([button])), [dispatch, button])
 }
 
 export const usePageNumber = ([nextButton, previousButton], numberOfPages) => {

@@ -32,7 +32,7 @@ const buttons = [
 export const useToggleMuteButtons = (contentElement, mutedInitially) => {
   const [unmute, mute] = useToggleButtons(buttons, mutedInitially)
   useEffect(() => {
-    mute && (contentElement.muted = true)
-    unmute && (contentElement.muted = false)
+    mute && (contentElement.muted = true) // eslint-disable-line no-param-reassign
+    unmute && (contentElement.muted = false) // eslint-disable-line no-param-reassign
   }, [contentElement, mute, unmute])
 }

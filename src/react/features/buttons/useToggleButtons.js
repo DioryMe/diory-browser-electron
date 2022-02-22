@@ -11,7 +11,7 @@ const useAddVisibleButton = (buttons, showFirst) => {
   useEffect(() => {
     dispatch(addButtons([visibleButton]))
     return () => dispatch(removeButtons(buttons))
-  }, [dispatch, visibleButton])
+  }, [dispatch, visibleButton, buttons])
 }
 
 const useSwitchButtons = (visibleButton, invisibleButton) => {
