@@ -21,7 +21,7 @@ const DocumentContent = ({ diory, baseUrl }) => {
 
   return (
     <Document file={documentUrl} onLoadSuccess={({ numPages }) => setNumberOfPages(numPages)}>
-      <Pane style={centerStyle}>
+      <Pane style={centerStyle} data-testid="document-content">
         <Page pageNumber={pageNumber} height={500} />
       </Pane>
     </Document>

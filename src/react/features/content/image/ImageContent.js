@@ -24,7 +24,7 @@ const ImageContent = ({ diory, baseUrl }) => {
 
   useOpenFolderButton(imageUrl)
 
-  return <Image image={imageUrl} style={defaultStyles} {...options} />
+  return <Image image={imageUrl} style={defaultStyles} data-testid="image-content" {...options} />
 }
 
 ImageContent.propTypes = {
