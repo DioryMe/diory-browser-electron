@@ -1,8 +1,10 @@
 import { useEffect } from 'react'
 import { useButtons } from './useButtons'
 import { useDispatchActions, useSelector } from '../../store'
-import { invokeChannel } from '../../client/client'
 import { inactivateButton } from './buttonsActions'
+
+import { invokeChannel } from '../../client/client'
+import { channels } from '../../../shared/constants'
 
 export const OPEN_BUTTON = 'OPEN_BUTTON'
 
@@ -29,7 +31,7 @@ export const useOpenFolderButton = (fileUrl) => {
   const { dispatch } = useDispatchActions()
   useEffect(() => {
     if (open) {
-      invokeChannel('showItemInFolder', fileUrl)
+      invokeChannel(channels.OPEN_FOLDER, fileUrl)
       dispatch(inactivateButton())
     }
   }, [dispatch, open, fileUrl])
