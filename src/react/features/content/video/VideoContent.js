@@ -32,7 +32,13 @@ const VideoContent = ({ diory, baseUrl }) => {
 
   return (
     <Fullscreen>
-      <video ref={refCallback} src={videoUrl} style={videoStyles} data-testid="video-content" {...options} />
+      <video
+        ref={refCallback}
+        src={videoUrl}
+        style={videoStyles}
+        data-testid="video-content"
+        {...options}
+      />
     </Fullscreen>
   )
 }

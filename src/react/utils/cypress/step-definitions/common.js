@@ -14,7 +14,6 @@ Given('I select {string}', (testId) => {
   cy.get(`div[data-testid=${testId}]`).click()
 })
 
-
 // WHEN
 When('I take {string} in focus', (dioryName) => {
   cy.get('div[draggable=true]').contains(dioryName).click()
@@ -39,7 +38,6 @@ When('I type {string} in search bar', (searchString) => {
 When('I select {word} lens', (lensName) => {
   cy.get(`span[data-testid=${lensName}-lens]`).click()
 })
-
 
 // THEN
 Then('I see {string} in view', (dioryName) => {
@@ -78,20 +76,22 @@ Then('{string} has {string} as {string}', (dioryId, cssValue, cssKey) => {
 
 Then('I see {word} playing', (content) => {
   cy.get(`[data-testid=${content}-content]`).should('have.prop', 'paused', false)
-});
+})
 
 Then('I do not see {word} playing', (content) => {
   cy.get(`[data-testid=${content}-content]`).should('have.prop', 'paused', true)
-});
+})
 
 Then('I hear {word} sound', (content) => {
   cy.get(`[data-testid=${content}-content]`).should('have.prop', 'muted', false)
-});
+})
 
 Then('I do not hear {word} sound', (content) => {
   cy.get(`[data-testid=${content}-content]`).should('have.prop', 'muted', true)
-});
+})
 
 Then('I see {word} page {word}', (content, pageNumber) => {
-  cy.get(`[data-testid=${content}-content]`).get(`[data-page-number=${pageNumber}]`).should('have.length', 1)
-});
+  cy.get(`[data-testid=${content}-content]`)
+    .get(`[data-page-number=${pageNumber}]`)
+    .should('have.length', 1)
+})
