@@ -54,6 +54,9 @@
         },
         "some-document.pdf": {
           "id": "some-document-pdf"
+        },
+        "some-image.jpeg": {
+          "id": "some-image"
         }
       },
       "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8GmnyHwAGEAJzBJT/2AAAAABJRU5ErkJggg=="
@@ -171,6 +174,21 @@
         }
       ],
       "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8c43hPwAHewLTbrmJlAAAAABJRU5ErkJggg=="
+    },
+    "some-image": {
+      "id": "some-image",
+      "text": "some-image",
+      "created": "2021-04-15T10:32:20.565Z",
+      "modified": "2021-04-15T10:32:20.565Z",
+      "data": [
+        {
+          "@context": "https://schema.org",
+          "@type": "ImageObject",
+          "contentUrl": "diory-demo-content/Generic content/some-image.jpeg",
+          "encodingFormat": "image/jpeg"
+        }
+      ],
+      "image": "diory-demo-content/Generic content/some-image.jpeg"
     },
     "map-content": {
       "id": "map-content",
