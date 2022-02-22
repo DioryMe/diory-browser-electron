@@ -7,26 +7,22 @@ Updgrading packages should be as easy as possible. We assume that our test suite
 1. Remove the resolutions
 
 1. Update Node and Yarn
-    * Node and Yarn are outside of `package.json` so they are not upgraded by `yarn upgrade --latest`.
-    * Node version should be updated every time Electron moves on using the next Node version.
-    * **NOTE:** After this kind of update everybody should set Node to the specific version on their local machine (e.g. `nvm use 12.13`) (and maybe also somehow update yarn?
-    *
-    1. Check the Node version of the Electron from [stable releases page](https://www.electronjs.org/releases/stable)
-    1. Change that version to `Dockerfile` and Github Actions (search & replace all e.g. 12.13 -> 14.17)
-    1. Update your local node: `nvm use 14.17`
-    1. Install yarn: `npm install -g yarn`
-      * Docker image's Dockerfile and YARN_VERSION from [Docker hub](https://github.com/nodejs/docker-node/tree/master/12/stretch) by browsing from commit history)
-      *
+   - Node and Yarn are outside of `package.json` so they are not upgraded by `yarn upgrade --latest`.
+   - Node version should be updated every time Electron moves on using the next Node version.
+   1. Check the Node version of the Electron from [stable releases page](https://www.electronjs.org/releases/stable)
+   2. Change that version to `Dockerfile` and `.nvmrc` file (Github Actions reads it there)
+   3. Update your local node: `nvm use 14.17` (or just `nvm use` as we are using `.nvmrc` file))
+   4. Install yarn: `npm install -g yarn`
 1. Upgrade all the packages to the latest
 
-    ```shell
-    $ yarn upgrade --latest
-    $ git commit package.json yarn.lock -m "Upgrade packages: yarn upgrade --latest"
-    ```
+   ```shell
+   $ yarn upgrade --latest
+   $ git commit package.json yarn.lock -m "Upgrade packages: yarn upgrade --latest"
+   ```
 
 Then just check that the tests pass. And that's it!
 
-**NOTE:** After this kind of update everybody should run `yarn install` on their local machine.
+**NOTE:** After this everybody should run `yarn install` and set their Node to the specific version (sections 3) & 4) above) on their local machines
 
 ## Security fixes
 
@@ -61,4 +57,3 @@ It's not only about being cool. There's also real reasons:
 ### Why it's not always trivial?
 
 Packages can change in a major way and our stuff can break. Then you have to also fix the problems while upgrading the packages. To make that as trivial as possible, we want to do it at least once every quarter.
-
