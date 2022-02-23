@@ -5,18 +5,13 @@ const { default: installExtension, REDUX_DEVTOOLS } = require('electron-devtools
 
 require('electron-reload')
 
+// REMOVE ME: After first proper use of diograph-js this should be removed
+require('./testing-diograph-js-integration')
+
 // Electron logging
 // eslint-disable-next-line import/newline-after-import
 const log = require('electron-log')
 console.log = log.info
-
-// Testing diograph-js integration
-// eslint-disable-next-line import/newline-after-import
-const { DiographJson } = require('diograph-js')
-const dio = new DiographJson({ baseUrl: './public/diory-demo-content' })
-dio.loadDiograph().then(() => {
-  console.log(dio.getDiory('generic-content'))
-})
 
 const ffmpegDir = path
   .dirname(require.resolve('ffmpeg-static'))
