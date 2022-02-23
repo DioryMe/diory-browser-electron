@@ -64,7 +64,6 @@ exports.importFolder = async function importFolder({ importFolderPath, dioryFold
         if (mime === 'video') {
           // HOW WE ARE GONNA TEST THIS?!!?!
           const { thumbnailBuffer, typeSpecificDiory } = await dioryVideoGenerator(
-            undefined,
             data.contentUrl,
             data.contentUrl
           )
