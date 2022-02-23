@@ -4,9 +4,7 @@ const dayjs = require('dayjs')
 const {
   generateThumbnail: imageThumbnailer,
 } = require('diograph-js/dist/generators/image/thumbnailer')
-const {
-  generateThumbnail: videoThumbnailer,
-} = require('diograph-js/dist/generators/video/thumbnailer')
+const { dioryVideoGenerator } = require('diograph-js/dist/generators/video')
 const { copyFolderRecursiveSync } = require('./utils')
 const { convertDiographUrlsRelative } = require('./convertDiographUrlsRelative')
 
@@ -64,14 +62,22 @@ exports.importFolder = async function importFolder({ importFolderPath, dioryFold
           return fs.promises.writeFile(dioryThumbnailPath, imageBuffer)
         }
         if (mime === 'video') {
-          console.log('video')
-          const { thumbnailBuffer } = await videoThumbnailer(data.contentUrl, 3)
+          // HOW WE ARE GONNA TEST THIS?!!?!
+          const { thumbnailBuffer, typeSpecificDiory } = await dioryVideoGenerator(
+            undefined,
+            data.contentUrl,
+            data.contentUrl
+          )
           const dioryThumbnailPath = path.join(importedFolderPathInDioryFolder, `${diory.id}.jpg`)
+          const { encodingFormat } = diograph.diograph[diory.id].data[0]
           diograph.diograph[diory.id] = {
             ...diograph.diograph[diory.id],
+            ...(typeSpecificDiory.date && { date: typeSpecificDiory.date }),
+            ...(typeSpecificDiory.latlng && { latlng: typeSpecificDiory.latlng }),
+            ...(typeSpecificDiory.data && { data: typeSpecificDiory.data }),
             image: dioryThumbnailPath,
           }
-          console.log('video return')
+          diograph.diograph[diory.id].data[0].encodingFormat = encodingFormat
           return fs.promises.writeFile(dioryThumbnailPath, thumbnailBuffer)
         }
       }
