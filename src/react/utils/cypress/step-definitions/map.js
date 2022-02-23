@@ -9,11 +9,7 @@ When('I drag marker on the map', () => {
   // FIXME: Should identify the marker to be clicked
   // => now requires to have only one marker
   cy.get('img[data-testid=linked-diory-marker]').should('have.length', 2)
-  cy.get('img[data-testid=linked-diory-marker]')
-    .first()
-    .trigger('mousedown', { which: 1, force: true })
-    .trigger('mousemove', 600, 600, { force: true })
-    .trigger('mouseup')
+  cy.get('img[data-testid=linked-diory-marker]').first().move({ deltaX: 200, deltaY: 200 })
 })
 
 When('I click {string} popup on map/timeline', (dioryName) => {
