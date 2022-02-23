@@ -104,4 +104,3 @@ Feature: Map lens
     And I take 'Diory 1' in focus
     When I select map lens
     Then I see 0 focus and 0 linked markers on map
-
