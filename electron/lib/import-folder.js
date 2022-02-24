@@ -44,31 +44,32 @@ exports.importFolder = async function importFolder({ importFolderPath, dioryFold
   // Generate diograph if no diograph.json
   const diograph = await generateDiograph(importedFolderPathInDioryFolder)
 
+  // Check that images folder exists before creating thumbnails
+  const imagesFolderPath = path.join(dioryFolderLocation, 'images')
+  if (!fs.existsSync(imagesFolderPath)) {
+    fs.mkdirSync(imagesFolderPath)
+  }
+
   await Promise.all(
     Object.values(diograph.diograph).map(async (diory) => {
       const data = diory.data && diory.data[0]
       if (data) {
         const mime = data.encodingFormat && data.encodingFormat.split('/')[0]
+        const dioryThumbnailPath = path.join(imagesFolderPath, `${diory.id}.jpg`)
         if (mime === 'image') {
-          console.log('image')
           const imageContent = await fs.promises.readFile(data.contentUrl)
           const imageBuffer = await imageThumbnailer(imageContent)
-          const dioryThumbnailPath = path.join(importedFolderPathInDioryFolder, `${diory.id}.jpg`)
           diograph.diograph[diory.id] = {
             ...diograph.diograph[diory.id],
             image: dioryThumbnailPath,
           }
-          console.log('image return')
           return fs.promises.writeFile(dioryThumbnailPath, imageBuffer)
         }
         if (mime === 'video') {
-          // HOW WE ARE GONNA TEST THIS?!!?!
           const { thumbnailBuffer, typeSpecificDiory } = await dioryVideoGenerator(
             data.contentUrl,
             data.contentUrl
           )
-          const dioryThumbnailPath = path.join(importedFolderPathInDioryFolder, `${diory.id}.jpg`)
-          const { encodingFormat } = diograph.diograph[diory.id].data[0]
           diograph.diograph[diory.id] = {
             ...diograph.diograph[diory.id],
             ...(typeSpecificDiory.date && { date: typeSpecificDiory.date }),
@@ -76,7 +77,7 @@ exports.importFolder = async function importFolder({ importFolderPath, dioryFold
             ...(typeSpecificDiory.data && { data: typeSpecificDiory.data }),
             image: dioryThumbnailPath,
           }
-          diograph.diograph[diory.id].data[0].encodingFormat = encodingFormat
+          diograph.diograph[diory.id].data[0].encodingFormat = data.encodingFormat
           return fs.promises.writeFile(dioryThumbnailPath, thumbnailBuffer)
         }
       }
