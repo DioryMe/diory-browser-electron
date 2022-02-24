@@ -1,8 +1,13 @@
 const { statSync, mkdirSync, rmdirSync, existsSync } = require('fs')
-const { join } = require('path').posix
+const { join, dirname } = require('path').posix
 const { v4: uuid } = require('uuid')
 const { importFolder } = require('./import-folder')
 const { getDefaultImage } = require('../../src/shared/getDefaultImage')
+
+// Set FFMPEG_PATH for test
+const ffmpegDir = dirname(require.resolve('ffmpeg-static'))
+process.env.FFMPEG_PATH = join(ffmpegDir, 'ffmpeg')
+console.log(process.env.FFMPEG_PATH)
 
 jest.mock('uuid')
 jest.mock('fs', () => ({
