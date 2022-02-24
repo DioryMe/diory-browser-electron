@@ -4,6 +4,9 @@ import { deleteDiory, deleteLinks } from '../../diograph/diographActions'
 import { useDiograph } from '../../diograph/useDiograph'
 import { inactivateButton } from '../../buttons/buttonsActions'
 
+import { invokeChannel } from '../../../client/client'
+import { channels } from '../../../../shared/constants'
+
 const linkedDiories = (focusDiory, diograph) =>
   Object.values(focusDiory.links || []).map(({ id }) => ({
     fromDiory: diograph[focusDiory.id],
@@ -61,6 +64,7 @@ export const useDeleteView = () => {
     dispatch(deleteLinks(deletedLinks))
 
     if (deletedDiory) {
+      invokeChannel(channels.DELETE_THUMBNAIL, deletedDiory.id)
       dispatch(deleteDiory(deletedDiory))
       dispatch(goBackward())
       dispatch(inactivateButton())
