@@ -6,6 +6,6 @@ export const useToggleContent = () => {
 
   const { dispatch } = useDispatchActions()
   return {
-    toggleContent: () => content && dispatch(toggleContent())
+    toggleContent: () => content && dispatch(toggleContent()),
   }
 }
