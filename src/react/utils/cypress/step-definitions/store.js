@@ -45,3 +45,12 @@ Then('I see {string} file in folder', (fileName) => {
   //     expect(channel).to.be.calledWith(fileName)
   //   })
 })
+
+Then('I see {string} in browser', (fileName) => {
+  // TODO: Mock or spy ipc client
+  // cy.window()
+  //   .its('channelsApi.OPEN_FOLDER')
+  //   .should((channel) => {
+  //     expect(channel).to.be.calledWith(fileName)
+  //   })
+})
