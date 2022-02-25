@@ -4,11 +4,11 @@ import { useButtons } from './useButtons'
 
 import { inactivateButton } from './buttonsActions'
 
-export const useActiveButton = (buttons, buttonId, callback) => {
+export const useActiveButton = (buttons, callback) => {
   useButtons(buttons)
 
   const { active } = useSelector((state) => state.buttons)
-  const buttonIsActive = active === buttonId
+  const buttonIsActive = active === buttons[0].id
 
   const { dispatch } = useDispatchActions()
   useEffect(() => {
