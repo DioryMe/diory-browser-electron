@@ -17,7 +17,7 @@ const useScrollToTopOnStoryChange = (elementRef) => {
   }, [elementRef, story])
 }
 
-const GridView = ({ story, memories, onDrop, onClick }) => {
+const GridView = ({ story, memories, onDrop, onStoryClick, onMemoryClick }) => {
   const storyRef = useRef()
   const memoryRef = useRef()
 
@@ -33,12 +33,12 @@ const GridView = ({ story, memories, onDrop, onClick }) => {
           position="relative"
           width="100%"
           height="80vh"
-          onClick={() => onClick({ diory: story })}
+          onClick={() => onStoryClick({ diory: story })}
           diory={story}
           onDrop={onDrop}
           data-testid="story"
         />
-        <DiorysGrid ref={memoryRef} diorys={memories} onDrop={onDrop} onClick={onClick} />
+        <DiorysGrid ref={memoryRef} diorys={memories} onDrop={onDrop} onClick={onMemoryClick} />
         {!!memories.length && (
           <ScrollVertically
             data-testid="navigate-down"
