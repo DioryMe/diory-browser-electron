@@ -1,8 +1,8 @@
 import { useActiveButton } from '../../buttons/useActiveButton'
+import { useActiveContent } from '../useActiveContent'
 
 import { invokeChannel } from '../../../client/client'
 import { channels } from '../../../../shared/constants'
-import { useActiveContent } from '../useActiveContent'
 
 export const BROWSER_BUTTON = 'BROWSER_BUTTON'
 
@@ -20,7 +20,7 @@ const buttons = [{
 
 const openInBrowser = (url) => () => invokeChannel(channels.OPEN_IN_BROWSER, url)
 
-export const useOpenInBrowser = (url) => {
+export const useWebContent = (url) => {
   useActiveButton(buttons, openInBrowser(url))
   useActiveContent(openInBrowser(url))
 }
