@@ -3,21 +3,23 @@ import { combineReducers } from 'redux'
 import { RESET_STORE } from './actionsTypes'
 
 import buttons from '../features/buttons/buttonsReducer'
-import tools from '../features/tools/toolsReducer'
+import content from '../features/content/contentReducer'
+import diograph from '../features/diograph/diographReducer'
 import lenses from '../features/lenses/lensesReducer'
 import navigation from '../features/navigation/navigationReducer'
-import diograph from '../features/diograph/diographReducer'
 import search from '../features/search/searchReducer'
 import settings from '../features/settings/settingsReducer'
+import tools from '../features/tools/toolsReducer'
 
 const appReducer = combineReducers({
   buttons,
-  tools,
+  content,
+  diograph,
   lenses,
   navigation,
-  diograph,
   search,
   settings,
+  tools,
 })
 
 export const reducer = (state, action) => {
