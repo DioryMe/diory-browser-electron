@@ -8,13 +8,17 @@ Feature: Content
 
   Scenario: Play and pause video
     When I take 'some-video.mov' in focus
-    Then I see pause button
+    Then I see video playing
+    And I see pause button
     But I do not see play button
     When I select pause button
     Then I do not see video playing
     And I see play button
     When I select play button
     Then I see video playing
+    When I navigated backward
+    Then I do not see play button
+    And I do not see pause button
 
   Scenario: Unmute and mute video
     When I take 'some-video.mov' in focus
@@ -39,7 +43,8 @@ Feature: Content
 
   Scenario: Play and pause audio
     When I take 'A beautiful sonate' in focus
-    Then I see play button
+    Then I do not see audio playing
+    And I see play button
     But I do not see pause button
     When I select play button
     Then I see audio playing
