@@ -97,3 +97,11 @@ Feature: Content
     Then I see 'some-document.pdf' file in folder
     When I navigated backward
     Then I do not see folder button
+
+    Scenario: Open web page in browser
+      When I take 'A good website' in focus
+      Then I see browser button
+      When I select browser button
+      Then I see 'A good website' in browser
+      When I navigated backward
+      Then I do not see browser button

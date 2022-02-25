@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
+import { useOpenInBrowser } from '../../buttons/useOpenInBrowser'
+
 import { getUrl } from '../contentUtils'
 
 const centerStyle = {
@@ -15,6 +17,7 @@ const centerStyle = {
 
 const WebContent = ({ diory }) => {
   const webUrl = getUrl(diory)
+  useOpenInBrowser(webUrl)
 
   return (
     <Pane style={centerStyle}>
