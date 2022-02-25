@@ -54,14 +54,16 @@ const GridView = ({ story, memories, onDrop, onStoryClick, onMemoryClick }) => {
 }
 
 GridView.defaultProps = {
-  onClick: () => {},
+  onStoryClick: () => {},
+  onMemoryClick: () => {},
   onDrop: () => {},
 }
 
 GridView.propTypes = {
   story: PropTypes.object.isRequired,
   memories: PropTypes.array.isRequired,
-  onClick: PropTypes.func,
+  onStoryClick: PropTypes.func,
+  onMemoryClick: PropTypes.func,
   onDrop: PropTypes.func,
 }
 

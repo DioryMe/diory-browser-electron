@@ -1,5 +1,5 @@
-import { useDispatchActions, useSelector } from '../../store'
 import { useEffect } from 'react'
+import { useDispatchActions, useSelector } from '../../store'
 import { addContent, inactivateContent, removeContent } from './contentActions'
 
 export const useActiveContent = (callback) => {
