@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
-import { useOpenInBrowser } from '../../buttons/useOpenInBrowser'
+import { useOpenInBrowser } from './useOpenInBrowser'
 
 import { getUrl } from '../contentUtils'
 
