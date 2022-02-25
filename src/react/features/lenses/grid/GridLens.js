@@ -2,10 +2,13 @@ import React from 'react'
 
 import { useDispatchActions } from '../../../store'
 import { useDiograph } from '../../diograph/useDiograph'
+import { useToggleContent } from '../../content/useToggleContent'
+
 import { useDeleteTool } from '../../tools/delete'
 import { useStoryTool } from '../../tools/story'
 import { useUpdateTool } from '../../tools/update'
 import { useImportTools } from '../../tools/import/useImportTools'
+
 import { withLensContainer } from '../withLensContainer'
 
 import { createLink } from '../../diograph/diographActions'
@@ -16,13 +19,19 @@ const useTools = () => {
   const selectStory = useStoryTool()
   const deleteDiory = useDeleteTool()
   const updateDiory = useUpdateTool()
+  const { toggleContent } = useToggleContent()
 
   useImportTools()
 
   const { dispatch } = useDispatchActions()
 
   return {
-    onClick: ({ diory }) => {
+    onStoryClick: ({ diory }) => {
+      toggleContent()
+      deleteDiory(diory)
+      updateDiory(diory)
+    },
+    onMemoryClick: ({ diory }) => {
       selectStory(diory)
       deleteDiory(diory)
       updateDiory(diory)
