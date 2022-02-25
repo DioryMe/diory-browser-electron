@@ -36,6 +36,6 @@ export const useTogglePlayButtons = (contentElement, playInitially) => {
       play && (await contentElement.play())
       pause && (await contentElement.pause())
     }
-    playOrPause()
+    playOrPause().catch()
   }, [contentElement, play, pause])
 }
