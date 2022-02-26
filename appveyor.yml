@@ -5,14 +5,14 @@ image:
 environment:
   CI: false
 install:
-  - export SUBMODULE_HASH=$(git submodule status | awk '{print $1;}' | sed 's/-//g') 
-  - echo $SUBMODULE_HASH
-  - rm -rf diograph-js
-  - git clone https://github.com/DioryMe/diograph-js.git
   - npm install -g yarn
   - yarn global add testcafe electron
+  - rm -rf diograph-js
+  - git clone https://github.com/DioryMe/diograph-js.git
+  - # export SUBMODULE_HASH=$(git submodule status | awk '{print $1;}' | sed 's/-//g') 
+  - # echo $SUBMODULE_HASH
   - cd diograph-js
-  - git reset --hard $SUBMODULE_HASH
+  - # git reset --hard $SUBMODULE_HASH
   - yarn && yarn build
   - cd ..
   - yarn && yarn build
