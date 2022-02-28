@@ -3,7 +3,8 @@ const { fileURLToPath } = require('url')
 
 const { channels } = require('../src/shared/constants')
 
-const { importFolder } = require('./lib/import-folder')
+// const { importFolder } = require('./lib/import-folder')
+const { shareDiograph } = require('./lib/share-diograph')
 const { getDiograph } = require('./lib/get-diograph')
 const { getDioryFolderLocation } = require('./lib/get-diory-folder-location')
 const { setDioryFolderLocation } = require('./lib/set-diory-folder-location')
@@ -21,7 +22,7 @@ function channelLogger(handler, params) {
 // NOTE: Currently channels using channelLogger can receive only one parameter!
 // NOTE2: All functions used as channels must return a Promise!
 contextBridge.exposeInMainWorld('channelsApi', {
-  [channels.IMPORT_FOLDER]: (params) => channelLogger(importFolder, params),
+  [channels.IMPORT_FOLDER]: (params) => channelLogger(shareDiograph, params),
   [channels.GET_DIOGRAPH]: (params) => channelLogger(getDiograph, params),
   [channels.SAVE_DIOGRAPH]: (params) => channelLogger(saveDiograph, params),
   [channels.GET_DIORY_FOLDER_LOCATION]: (params) => channelLogger(getDioryFolderLocation, params),

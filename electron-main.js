@@ -5,6 +5,10 @@ const { default: installExtension, REDUX_DEVTOOLS } = require('electron-devtools
 
 require('electron-reload')
 
+const log = require('electron-log')
+
+console.log = log.info
+
 let mainWindow
 
 function createWindow() {
