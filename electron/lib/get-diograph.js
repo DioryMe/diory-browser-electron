@@ -1,19 +1,9 @@
-const fs = require('fs')
-const path = require('path').posix
-const { readDiographJson } = require('./read-diograph-json')
+const superagent = require('superagent')
 
 exports.getDiograph = async function getDiograph(dioryFolderLocation) {
-  if (!fs.existsSync(dioryFolderLocation)) {
-    const errorMessage = `GET_DIOGRAPH: Provided dioryFolderLocation didn't exist anymore: ${dioryFolderLocation}`
-    throw new Error(errorMessage)
-  }
-
-  const diographJsonPath = path.join(dioryFolderLocation, 'diograph.json')
-
-  if (!fs.existsSync(diographJsonPath)) {
-    const errorMessage = `GET_DIOGRAPH: Provided dioryFolderLocation didn't contain diograph.json: ${dioryFolderLocation}`
-    throw new Error(errorMessage)
-  }
-
-  return readDiographJson({ diographJsonPath })
+  const diographJsonUrl = [dioryFolderLocation, 'diograph.json'].join('/')
+  return superagent.get(diographJsonUrl).then((res) => {
+    console.log(res.body)
+    return res.body
+  })
 }
