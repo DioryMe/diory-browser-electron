@@ -14,13 +14,13 @@ read apple_id
 echo "App-specific password for diory-browser-electron:"
 read -s apple_id_pass
 
-echo "Create a temp directory to ~/temp-package-mac..."
+echo "Creating a temp directory to ~/temp-package-mac..."
 # Remove directory if it exists
 [ ! -d "~/temp-package-mac" ] && rm -rf ~/temp-package-mac
 mkdir ~/temp-package-mac
 cd ~/temp-package-mac
 echo "Cloning clean code from Github to $(pwd)..."
-git clone git@github.com:DioryMe/diory-browser-electron.git
+git clone --recurse-submodules git@github.com:DioryMe/diory-browser-electron.git
 cd diory-browser-electron
 git checkout $GIT_BRANCH
 
