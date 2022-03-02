@@ -6,7 +6,7 @@ const { default: installExtension, REDUX_DEVTOOLS } = require('electron-devtools
 require('electron-reload')
 
 // REMOVE ME: After first proper use of diograph-js this should be removed
-require('./testing-diograph-js-integration')
+require('./electron/testing-diograph-js-integration')
 
 // Electron logging
 // eslint-disable-next-line import/newline-after-import
