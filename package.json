@@ -78,7 +78,7 @@
     "start-electron-dev-tools": "DEV_TOOLS=true export ELECTRON_START_URL=http://localhost:3300 && cross-env nodemon --exec electron .",
     "build-and-start-electron": "yarn build && electron .",
     "build": "react-scripts build",
-    "build-electron": "mkdir build/src && cp electron-main.js build && cp -r electron/. build/electron && cp -r src/shared/. build/src/shared",
+    "build-electron": "mkdir build/src && cp electron-main.js build && cp -r electron/. build/electron && cp -r src/shared/. build/src/shared && cp -r diograph-js/. build/diograph-js",
     "package": "electron-builder build -c.extraMetadata.main=build/electron-main.js --publish never",
     "package-mac": "yarn package --mac --config electron-builder.json",
     "package-mac-rc": "yarn package --mac --config electron-builder-rc.json",
