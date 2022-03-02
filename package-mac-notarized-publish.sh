@@ -20,9 +20,8 @@ echo "Creating a temp directory to ~/temp-package-mac..."
 mkdir ~/temp-package-mac
 cd ~/temp-package-mac
 echo "Cloning clean code from Github to $(pwd)..."
-git clone --recurse-submodules git@github.com:DioryMe/diory-browser-electron.git
+git clone -b $GIT_BRANCH --recurse-submodules git@github.com:DioryMe/diory-browser-electron.git
 cd diory-browser-electron
-git checkout $GIT_BRANCH
 
 # Run common stuff (build & add BINARY_BUILD=1 to electron-main.js)
 bash ./package-common.sh
