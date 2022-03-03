@@ -12,6 +12,7 @@ import constants from '../../../../shared/constants'
 
 window.channelsApi = {
   DELETE_THUMBNAIL: jest.fn(),
+  DELETE_DATAOBJECT: jest.fn(),
 }
 
 jest.mock('../../../store')
@@ -20,11 +21,14 @@ jest.mock('../../diograph/useDiograph')
 describe('useDeleteView', () => {
   let mockState
   let deleteThumbnailApiMock
+  let deleteDataobjectApiMock
   const mockDispatch = jest.fn()
   beforeEach(() => {
     mockState = {}
     deleteThumbnailApiMock =
       window.channelsApi[constants.channels.DELETE_THUMBNAIL].mockResolvedValue(true)
+    deleteDataobjectApiMock =
+      window.channelsApi[constants.channels.DELETE_DATAOBJECT].mockResolvedValue(true)
     useSelector.mockImplementation((selector) => selector(mockState))
     useDispatchActions.mockImplementation(() => ({
       dispatch: mockDispatch,
@@ -80,6 +84,9 @@ describe('useDeleteView', () => {
 
       expect(deleteThumbnailApiMock).toHaveBeenCalledTimes(1)
       expect(deleteThumbnailApiMock).toHaveBeenCalledWith(focusDiory.id)
+
+      expect(deleteDataobjectApiMock).toHaveBeenCalledTimes(1)
+      expect(deleteDataobjectApiMock).toHaveBeenCalledWith(focusDiory.data[0].contentUrl)
     })
 
     it('delete focusDiory without links', () => {
@@ -97,6 +104,9 @@ describe('useDeleteView', () => {
 
       expect(deleteThumbnailApiMock).toHaveBeenCalledTimes(1)
       expect(deleteThumbnailApiMock).toHaveBeenCalledWith(focusDiory.id)
+
+      expect(deleteDataobjectApiMock).toHaveBeenCalledTimes(1)
+      expect(deleteDataobjectApiMock).toHaveBeenCalledWith(focusDiory.data[0].contentUrl)
     })
   })
 })

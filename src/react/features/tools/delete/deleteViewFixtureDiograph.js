@@ -6,6 +6,11 @@ export default {
       linkedDioryId1: { id: 'linkedDioryId1' },
       bidirectionalLinkedDioryId3: { id: 'bidirectionalLinkedDioryId3' },
     },
+    data: [
+      {
+        contentUrl: 'some-path',
+      },
+    ],
   },
   linkedDioryId1: {
     id: 'linkedDioryId1',
@@ -28,5 +33,10 @@ export default {
   dioryWithoutLinks: {
     id: 'dioryWithoutLinks',
     text: 'dioryWithoutLinks name',
+    data: [
+      {
+        contentUrl: 'some-path',
+      },
+    ],
   },
 }
