@@ -9,6 +9,7 @@ const { getDioryFolderLocation } = require('./lib/get-diory-folder-location')
 const { setDioryFolderLocation } = require('./lib/set-diory-folder-location')
 const { saveDiograph } = require('./lib/save-diograph')
 const { deleteThumbnail } = require('./lib/delete-thumbnail')
+const { deleteDataobject } = require('./lib/delete-dataobject')
 
 function channelLogger(handler, params) {
   console.log(`BACK-REQ: ${handler.name} called with`, params)
@@ -29,6 +30,7 @@ contextBridge.exposeInMainWorld('channelsApi', {
   [channels.SET_DIORY_FOLDER_LOCATION]: (params) => channelLogger(setDioryFolderLocation, params),
   [channels.OPEN_FOLDER]: async (fileUrl) => shell.showItemInFolder(fileURLToPath(fileUrl)),
   [channels.DELETE_THUMBNAIL]: (params) => channelLogger(deleteThumbnail, params),
+  [channels.DELETE_DATAOBJECT]: (params) => channelLogger(deleteDataobject, params),
   openItemInDesktopManner: (fileUrl) => shell.openPath(fileURLToPath(fileUrl)),
   [channels.OPEN_IN_BROWSER]: (url) => shell.openExternal(url),
   showOpenDialog: () => ipcRenderer.invoke('showOpenDialog'),
