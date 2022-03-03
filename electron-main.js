@@ -5,18 +5,19 @@ const { default: installExtension, REDUX_DEVTOOLS } = require('electron-devtools
 
 require('electron-reload')
 
-// REMOVE ME: After first proper use of diograph-js this should be removed
-require('./electron/testing-diograph-js-integration')
-
 // Electron logging
 // eslint-disable-next-line import/newline-after-import
 const log = require('electron-log')
 console.log = log.info
 
+// REMOVE ME: After first proper use of diograph-js this should be removed
+require('./electron/testing-diograph-js-integration')
+
 const ffmpegDir = path
   .dirname(require.resolve('ffmpeg-static'))
   .replace('app.asar', 'app.asar.unpacked')
 process.env.FFMPEG_PATH = process.env.FFMPEG_PATH || path.join(ffmpegDir, 'ffmpeg')
+console.log('FFMPEG_PATH', process.env.FFMPEG_PATH)
 
 let mainWindow
 
