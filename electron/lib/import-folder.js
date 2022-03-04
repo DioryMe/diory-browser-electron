@@ -56,13 +56,13 @@ exports.importFolder = async function importFolder({ importFolderPath, dioryFold
           const imageContent = await fs.promises.readFile(data.contentUrl)
           const thumbnailBuffer = await imageThumbnailer(imageContent)
           const diographJson = new DiographJson({ baseUrl: dioryFolderLocation })
-          const thumbnailContentUrl = await diographJson.connector.addThumbnail(
-            thumbnailBuffer,
-            `${diory.id}.jpg`
-          )
+          let image
+          if (thumbnailBuffer) {
+            image = await diographJson.connector.addThumbnail(thumbnailBuffer, `${diory.id}.jpg`)
+          }
           diograph.diograph[diory.id] = {
             ...diograph.diograph[diory.id],
-            image: thumbnailContentUrl,
+            image,
           }
         }
         if (mime === 'video') {
@@ -70,17 +70,17 @@ exports.importFolder = async function importFolder({ importFolderPath, dioryFold
             data.contentUrl,
             data.contentUrl
           )
-          const diographJson = new DiographJson({ baseUrl: dioryFolderLocation })
-          const thumbnailContentUrl = await diographJson.connector.addThumbnail(
-            thumbnailBuffer,
-            `${diory.id}.jpg`
-          )
+          let image
+          if (thumbnailBuffer) {
+            const diographJson = new DiographJson({ baseUrl: dioryFolderLocation })
+            image = await diographJson.connector.addThumbnail(thumbnailBuffer, `${diory.id}.jpg`)
+          }
           diograph.diograph[diory.id] = {
             ...diograph.diograph[diory.id],
             ...(typeSpecificDiory.date && { date: typeSpecificDiory.date }),
             ...(typeSpecificDiory.latlng && { latlng: typeSpecificDiory.latlng }),
             ...(typeSpecificDiory.data && { data: typeSpecificDiory.data }),
-            image: thumbnailContentUrl,
+            image,
           }
           diograph.diograph[diory.id].data[0].encodingFormat = data.encodingFormat
         }
