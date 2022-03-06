@@ -1,6 +1,5 @@
 image:
-  - macos-mojave
-  # FIXME: Relative path E2E test fails on Windows
+  - macos-mojave # could be "macos" as well (=Catalina 10.15)
   - Visual Studio 2019 # could be 2022 as well
 environment:
   CI: false
@@ -9,10 +8,11 @@ install:
   - yarn global add testcafe electron
   - rm -rf diograph-js
   - git clone https://github.com/DioryMe/diograph-js.git
-  - # export SUBMODULE_HASH=$(git submodule status | awk '{print $1;}' | sed 's/-//g') 
-  - # echo $SUBMODULE_HASH
+  # TODO: Find universal way (=work also on Windows) to set environmental variable and parse commit hash
+  # - export SUBMODULE_HASH=$(git submodule status | awk '{print $1;}' | sed 's/-//g')
+  # - echo $SUBMODULE_HASH
   - cd diograph-js
-  - # git reset --hard $SUBMODULE_HASH
+  # - git reset --hard $SUBMODULE_HASH
   - yarn && yarn build
   - cd ..
   - yarn && yarn build
