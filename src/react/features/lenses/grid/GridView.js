@@ -14,7 +14,7 @@ const useScrollToTopOnStoryChange = (elementRef) => {
   const { story } = useDiograph()
   useEffect(() => {
     elementRef.current.scrollIntoView()
-  }, [elementRef, story])
+  }, [elementRef, story.id])
 }
 
 const GridView = ({ story, memories, onDrop, onStoryClick, onMemoryClick }) => {
