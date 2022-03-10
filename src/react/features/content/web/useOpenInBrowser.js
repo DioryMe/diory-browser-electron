@@ -1,8 +1,8 @@
 import { useActiveButton } from '../../buttons/useActiveButton'
+import { useActiveContent } from '../useActiveContent'
 
 import { invokeChannel } from '../../../client/client'
 import { channels } from '../../../../shared/constants'
-import { useActiveContent } from '../useActiveContent'
 
 export const BROWSER_BUTTON = 'BROWSER_BUTTON'
 
