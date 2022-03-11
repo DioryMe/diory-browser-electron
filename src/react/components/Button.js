@@ -13,7 +13,6 @@ const Button = ({ style = {}, data, active, onClick }) => (
   <div
     role="button"
     onClick={onClick}
-    onKeyDown={onClick}
     data-testid={`${data.testid}-button${active ? '--active' : ''}`}
     tabIndex={0}
   >
