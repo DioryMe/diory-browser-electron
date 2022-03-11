@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useDispatchActions } from '../../../store'
+import { useDispatchActions, useSelector } from '../../../store'
 import { useDiograph } from '../../diograph/useDiograph'
 import { useToggleContent } from '../../content/useToggleContent'
 
@@ -42,6 +42,9 @@ const useTools = () => {
   }
 }
 
-const GridLens = () => <GridView {...useDiograph()} {...useTools()} />
+const GridLens = () => {
+  const { forward = [] } = useSelector((state) => state.navigation)
+  return <GridView {...useDiograph()} {...useTools()} scrollIntoViewId={forward[0]} />
+}
 
 export default withLensContainer('grid')(GridLens)
