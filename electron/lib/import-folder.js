@@ -54,53 +54,59 @@ exports.importFolder = async function importFolder({ importFolderPath, dioryFold
   console.log('cpuCount', cpuCount)
   let processedDiories = 0
 
-  await asyncBatch(
-    Object.values(diograph.diograph), // List of parameters (=diories)
-    async (diory) => {
-      // Handler function which gets diory as a parameters
-      const data = diory.data && diory.data[0]
-      if (data) {
-        const mime = data.encodingFormat && data.encodingFormat.split('/')[0]
-        if (mime === 'image') {
-          const imageContent = await fs.promises.readFile(data.contentUrl)
-          const thumbnailBuffer = await imageThumbnailer(imageContent)
-          const diographJson = new DiographJson({ baseUrl: dioryFolderLocation })
-          let image
-          if (thumbnailBuffer) {
-            image = await diographJson.connector.addThumbnail(thumbnailBuffer, `${diory.id}.jpg`)
-          }
-          diograph.diograph[diory.id] = {
-            ...diograph.diograph[diory.id],
-            image,
-          }
-        }
-        if (mime === 'video') {
-          const { thumbnailBuffer, typeSpecificDiory } = await dioryVideoGenerator(
-            data.contentUrl,
-            data.contentUrl
-          )
-          let image
-          if (thumbnailBuffer) {
+  try {
+    await asyncBatch(
+      Object.values(diograph.diograph), // List of parameters (=diories)
+      async (diory) => {
+        // Handler function which gets diory as a parameters
+        const data = diory.data && diory.data[0]
+        console.log('START', data && data.contentUrl)
+        if (data) {
+          const mime = data.encodingFormat && data.encodingFormat.split('/')[0]
+          if (mime === 'image') {
+            const imageContent = await fs.promises.readFile(data.contentUrl)
+            const thumbnailBuffer = await imageThumbnailer(imageContent)
             const diographJson = new DiographJson({ baseUrl: dioryFolderLocation })
-            image = await diographJson.connector.addThumbnail(thumbnailBuffer, `${diory.id}.jpg`)
+            let image
+            if (thumbnailBuffer) {
+              image = await diographJson.connector.addThumbnail(thumbnailBuffer, `${diory.id}.jpg`)
+            }
+            diograph.diograph[diory.id] = {
+              ...diograph.diograph[diory.id],
+              image,
+            }
           }
-          diograph.diograph[diory.id] = {
-            ...diograph.diograph[diory.id],
-            ...(typeSpecificDiory.date && { date: typeSpecificDiory.date }),
-            ...(typeSpecificDiory.latlng && { latlng: typeSpecificDiory.latlng }),
-            ...(typeSpecificDiory.data && { data: typeSpecificDiory.data }),
-            image,
+          if (mime === 'video') {
+            const { thumbnailBuffer, typeSpecificDiory } = await dioryVideoGenerator(
+              data.contentUrl,
+              data.contentUrl
+            )
+            let image
+            if (thumbnailBuffer) {
+              const diographJson = new DiographJson({ baseUrl: dioryFolderLocation })
+              image = await diographJson.connector.addThumbnail(thumbnailBuffer, `${diory.id}.jpg`)
+            }
+            diograph.diograph[diory.id] = {
+              ...diograph.diograph[diory.id],
+              ...(typeSpecificDiory.date && { date: typeSpecificDiory.date }),
+              ...(typeSpecificDiory.latlng && { latlng: typeSpecificDiory.latlng }),
+              ...(typeSpecificDiory.data && { data: typeSpecificDiory.data }),
+              image,
+            }
+            diograph.diograph[diory.id].data[0].encodingFormat = data.encodingFormat
           }
-          diograph.diograph[diory.id].data[0].encodingFormat = data.encodingFormat
         }
-      }
-      processedDiories += 1
-      if (processedDiories % 10 === 0) {
-        console.log('Progress:', `${processedDiories}/${dioryCount}`)
-      }
-    },
-    cpuCount // Number of concurrent workers (=number of cpu cores)
-  )
+        processedDiories += 1
+        if (processedDiories % 10 === 0) {
+          console.log('Progress:', `${processedDiories}/${dioryCount}`)
+        }
+        console.log('DONE', data && data.contentUrl)
+      },
+      cpuCount // Number of concurrent workers (=number of cpu cores)
+    )
+  } catch (e) {
+    console.log(e)
+  }
 
   return {
     rootId: diograph.rootId,
