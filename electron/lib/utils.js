@@ -17,11 +17,15 @@ exports.settingsStore = function settingsStore() {
   })
 }
 
+let fileCount = 0
+let count = 0
+
 exports.copyFolderRecursiveSync = function copyFolderRecursiveSync(source, target) {
   if (!fs.lstatSync(source).isDirectory()) {
     throw new Error(`copyFolderRecursiveSync: source folder (${source}) is not a folder!`)
   }
 
+  fileCount += fs.readdirSync(source).length
   fs.readdirSync(source).forEach((itemName) => {
     const sourcePath = path.join(source, itemName)
     const targetPath = path.join(target, itemName)
@@ -31,6 +35,10 @@ exports.copyFolderRecursiveSync = function copyFolderRecursiveSync(source, targe
       exports.copyFolderRecursiveSync(sourcePath, targetPath)
     } else {
       fs.copyFileSync(sourcePath, targetPath)
+      count += 1
+      if (count % 10 === 0) {
+        console.log('Files', `${count}/${fileCount}`)
+      }
     }
   })
 }

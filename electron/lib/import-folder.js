@@ -49,6 +49,11 @@ exports.importFolder = async function importFolder({ importFolderPath, dioryFold
     fs.mkdirSync(imagesFolderPath)
   }
 
+  const dioryCount = Object.values(diograph.diograph).length
+  const cpuCount = os.cpus().length
+  console.log('cpuCount', cpuCount)
+  let processedDiories = 0
+
   await asyncBatch(
     Object.values(diograph.diograph), // List of parameters (=diories)
     async (diory) => {
@@ -89,8 +94,13 @@ exports.importFolder = async function importFolder({ importFolderPath, dioryFold
           diograph.diograph[diory.id].data[0].encodingFormat = data.encodingFormat
         }
       }
+      processedDiories += 1
+      if (processedDiories % 10 === 0) {
+        console.log('Progress:', `${processedDiories}/${dioryCount}`)
+        console.log('Current diory:', data && data.contentUrl)
+      }
     },
-    os.cpus().length // Number of concurrent workers (=number of cpu cores)
+    cpuCount // Number of concurrent workers (=number of cpu cores)
   )
 
   return {
