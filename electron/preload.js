@@ -1,6 +1,7 @@
 const { contextBridge, shell, ipcRenderer } = require('electron')
 const { fileURLToPath } = require('url')
 
+const log = require('electron-log')
 const { channels } = require('../src/shared/constants')
 
 const { importFolder } = require('./lib/import-folder')
@@ -10,6 +11,9 @@ const { setDioryFolderLocation } = require('./lib/set-diory-folder-location')
 const { saveDiograph } = require('./lib/save-diograph')
 const { deleteThumbnail } = require('./lib/delete-thumbnail')
 const { deleteDataobject } = require('./lib/delete-dataobject')
+
+// Log everything to main.log (with electron-logger)
+console.log = log.info
 
 function channelLogger(handler, params) {
   console.log(`BACK-REQ: ${handler.name} called with`, params)

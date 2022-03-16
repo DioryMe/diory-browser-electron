@@ -97,7 +97,6 @@ exports.importFolder = async function importFolder({ importFolderPath, dioryFold
       processedDiories += 1
       if (processedDiories % 10 === 0) {
         console.log('Progress:', `${processedDiories}/${dioryCount}`)
-        console.log('Current diory:', data && data.contentUrl)
       }
     },
     cpuCount // Number of concurrent workers (=number of cpu cores)
