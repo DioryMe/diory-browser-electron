@@ -1,3 +1,5 @@
+const os = require('os')
+const asyncBatch = require('async-batch').default
 const fs = require('fs')
 const path = require('path')
 const dayjs = require('dayjs')
@@ -47,8 +49,10 @@ exports.importFolder = async function importFolder({ importFolderPath, dioryFold
     fs.mkdirSync(imagesFolderPath)
   }
 
-  await Promise.all(
-    Object.values(diograph.diograph).map(async (diory) => {
+  await asyncBatch(
+    Object.values(diograph.diograph), // List of parameters (=diories)
+    async (diory) => {
+      // Handler function which gets diory as a parameters
       const data = diory.data && diory.data[0]
       if (data) {
         const mime = data.encodingFormat && data.encodingFormat.split('/')[0]
@@ -85,7 +89,8 @@ exports.importFolder = async function importFolder({ importFolderPath, dioryFold
           diograph.diograph[diory.id].data[0].encodingFormat = data.encodingFormat
         }
       }
-    })
+    },
+    os.cpus().length // Number of concurrent workers (=number of cpu cores)
   )
 
   return {
