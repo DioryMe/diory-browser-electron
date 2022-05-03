@@ -8,7 +8,6 @@ import { addDiograph, createLink } from '../../diograph/diographActions'
 import { invokeChannel } from '../../../client/client'
 
 import { channels } from '../../../../shared/constants'
-import { FOLDER_IMPORT } from './buttons'
 
 export const useImportFolder = () => {
   const { dioryFolderLocation } = useSelector((state) => state.settings)
@@ -28,27 +27,24 @@ export const useImportFolder = () => {
 }
 
 export const useFolderImportTool = () => {
-  const { active } = useSelector((state) => state.buttons)
   const { importFolder } = useImportFolder()
 
   const { dispatch } = useDispatchActions()
   useEffect(() => {
-    if (FOLDER_IMPORT === active) {
-      dispatch(inactivateButton())
-      if (window.processEnv.TESTCAFE_TEST === '1') {
-        const path = `${window.processEnv.PWD}/public/diory-demo-content`
+    dispatch(inactivateButton())
+    if (window.processEnv.TESTCAFE_TEST === '1') {
+      const path = `${window.processEnv.PWD}/public/diory-demo-content`
+      importFolder(path)
+    } else if (window.processEnv.TESTCAFE_TEST === '2') {
+      const path = `${window.processEnv.PWD}/electron/readers/example-folder`
+      importFolder(path)
+    } else {
+      window.channelsApi.showOpenDialog().then(({ filePaths }) => {
+        const path = filePaths[0]
         importFolder(path)
-      } else if (window.processEnv.TESTCAFE_TEST === '2') {
-        const path = `${window.processEnv.PWD}/electron/readers/example-folder`
-        importFolder(path)
-      } else {
-        window.channelsApi.showOpenDialog().then(({ filePaths }) => {
-          const path = filePaths[0]
-          importFolder(path)
-        })
-      }
+      })
     }
-  }, [importFolder, active, dispatch])
+  }, [importFolder, dispatch])
 }
 
 const FolderImportTool = () => {
