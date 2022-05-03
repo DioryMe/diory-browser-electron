@@ -1,44 +1,26 @@
 import React from 'react'
 
-import { useDispatchActions, useSelector } from '../../../store'
+import { useSelector } from '../../../store'
 
 import { IMPORT_TOOLS } from './buttons'
 
-import { buttons as createButtons } from '../create/buttons'
-import { buttons as folderButtons } from '../folder/buttons'
-
-import ImportView from './ImportView'
-import Diory from '../../../components/diories/Diory'
-import { activateButton, inactivateButton } from '../../buttons/buttonsActions'
-
-const useImportTools = () => {
-  const { dispatch } = useDispatchActions()
-  return {
-    onClick: ({ diory }) => dispatch(activateButton(diory.id)),
-    onDone: () => dispatch(inactivateButton()),
-    onCancel: () => dispatch(inactivateButton()),
-  }
-}
+import ImportToolButtons from './ImportToolButtons'
+import FolderImportTool from '../folder/FolderImportTool'
+import CreateTool from '../create/CreateTool'
 
 const ImportTools = () => {
   const { active } = useSelector((state) => state.buttons)
-  const { onClick, onDone, onCancel } = useImportTools()
+  const { selectedTool } = useSelector((state) => state.tools)
 
-  return IMPORT_TOOLS === active ? (
-    <ImportView onDone={onDone} onCancel={onCancel}>
-      {[...createButtons, ...folderButtons].map((button) => (
-        <Diory
-          key={button.id}
-          diory={button}
-          flex="1 0 360px"
-          height={240}
-          padding={24}
-          alignSelf="center"
-          onClick={onClick}
-        />
-      ))}
-    </ImportView>
-  ) : null
+  if (IMPORT_TOOLS !== active) {
+    return null
+  }
+
+  switch (selectedTool) {
+    case 'FOLDER_IMPORT': return <FolderImportTool />
+    case 'CREATE_TOOL': return <CreateTool />
+    default: return <ImportToolButtons />
+  }
 }
 
 export default ImportTools

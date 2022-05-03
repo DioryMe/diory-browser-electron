@@ -1,8 +1,8 @@
-export const CREATE_TOOL_BUTTON = 'CREATE_TOOL_BUTTON'
+export const CREATE_TOOL = 'CREATE_TOOL'
 
 export const buttons = [
   {
-    id: CREATE_TOOL_BUTTON,
+    id: CREATE_TOOL,
     text: 'Create diory',
     data: {
       icon: 'plus',

@@ -7,7 +7,7 @@ import { inactivateButton } from '../../buttons/buttonsActions'
 import { addDioryToHand } from '../toolsActions'
 import { createDiory, createLink } from '../../diograph/diographActions'
 
-import { CREATE_TOOL_BUTTON } from './buttons'
+import { CREATE_TOOL } from './buttons'
 
 export const useCreateDiory = () => {
   const { active } = useSelector((state) => state.buttons)
@@ -15,7 +15,7 @@ export const useCreateDiory = () => {
   const { dispatch } = useDispatchActions()
 
   return (newDiory) => {
-    if (CREATE_TOOL_BUTTON === active) {
+    if (CREATE_TOOL === active) {
       const id = uuid()
       dispatch(createDiory({ ...newDiory, id }))
       dispatch(createLink(story, { id }))
