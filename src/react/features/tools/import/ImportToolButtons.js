@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useDispatchActions } from '../../../store'
+import { useDispatchActions, useSelector } from '../../../store'
 
 import { selectTool } from '../toolsActions'
 import { inactivateButton } from '../../buttons/buttonsActions'
@@ -20,7 +20,8 @@ const useImportTools = () => {
   }
 }
 
-const ImportToolButtons = () => {
+const ImportTools = () => {
+  const { active } = useSelector((state) => state.buttons)
   const { onClick, onCancel, onDone } = useImportTools()
 
   return (
@@ -34,11 +35,10 @@ const ImportToolButtons = () => {
           padding={24}
           alignSelf="center"
           onClick={onClick}
-          data-testid={`${button.data.testid}-tool`}
         />
       ))}
     </ImportView>
   )
 }
 
-export default ImportToolButtons
+export default ImportTools
