@@ -10,6 +10,7 @@ import Modal from '../../../components/Modal'
 import TextInput from '../../../components/TextInput'
 
 import fields from './fields'
+import { deselectTool } from '../toolsActions'
 
 const useUpdateView = (diory = {}) => {
   const [values, setValues] = useState({})
@@ -22,6 +23,7 @@ const useUpdateView = (diory = {}) => {
     updatedDiory,
     resetView: () => {
       dispatch(inactivateButton())
+      dispatch(deselectTool())
       dispatch(selectMemory())
       setValues({})
     },

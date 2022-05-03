@@ -8,6 +8,7 @@ import { addDiograph, createLink } from '../../diograph/diographActions'
 import { invokeChannel } from '../../../client/client'
 
 import { channels } from '../../../../shared/constants'
+import { deselectTool } from '../toolsActions'
 
 export const useImportFolder = () => {
   const { dioryFolderLocation } = useSelector((state) => state.settings)
@@ -32,6 +33,8 @@ export const useFolderImportTool = () => {
   const { dispatch } = useDispatchActions()
   useEffect(() => {
     dispatch(inactivateButton())
+    dispatch(deselectTool())
+
     if (window.processEnv.TESTCAFE_TEST === '1') {
       const path = `${window.processEnv.PWD}/public/diory-demo-content`
       importFolder(path)
