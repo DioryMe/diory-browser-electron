@@ -7,7 +7,7 @@ Feature: Create tool
     And I take 'Diory 11' in focus
     And I select tools button
     And I select import button
-    And I click element with id 'CREATE_TOOL_BUTTON'
+    And I click create tool
 
   Scenario: Create tool shown
     # Then import tool is active # <-- should it be?

@@ -13,7 +13,7 @@ Feature: Creating content to Timeline lens
   Scenario: createTool created diory appears on timeline (on view)
     When I select tools button
     And I select import button
-    And I click element with id 'CREATE_TOOL_BUTTON'
+    And I click create tool
     And I add 'Timeline diory' to text field
     And I add '2020-11-23' to date field
     And I click Done button

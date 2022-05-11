@@ -6,8 +6,8 @@ Given('I am at home', () => {
   cy.visit('/')
 })
 
-Given('I select {word} button', (toolName) => {
-  cy.get(`div[data-testid=${toolName}-button]`).click()
+Given('I select {word} button', (buttonName) => {
+  cy.get(`div[data-testid=${buttonName}-button]`).click()
 })
 
 Given('I select {string}', (testId) => {
@@ -23,12 +23,16 @@ When('I click {word} button', (buttonName) => {
   cy.get('button').contains(buttonName).click()
 })
 
-When('I click {string} focus diory', (dioryName) => {
+When('I click {string} focus diory', () => {
   cy.get('[data-testid=background]').click()
 })
 
 When('I click element with id {string}', (id) => {
   cy.get(`#${id}`).click()
+})
+
+When('I click {word} tool', (toolName) => {
+  cy.get(`[data-testid=${toolName}-tool]`).click()
 })
 
 When('I type {string} in search bar', (searchString) => {

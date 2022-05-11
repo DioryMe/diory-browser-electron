@@ -15,7 +15,7 @@ Feature: Hand tool
 
   Scenario: Add diory to hand when it is created
     And I select import button
-    And I click element with id 'CREATE_TOOL_BUTTON'
+    And I click create tool
     And I add 'Some diory' to text field
     And I click Done button
     Then 'Some diory' diory is in the hand

@@ -17,9 +17,12 @@ const ImportTools = () => {
   }
 
   switch (selectedTool) {
-    case 'FOLDER_IMPORT': return <FolderImportTool />
-    case 'CREATE_TOOL': return <CreateTool />
-    default: return <ImportToolButtons />
+    case 'FOLDER_IMPORT':
+      return <FolderImportTool />
+    case 'CREATE_TOOL':
+      return <CreateTool />
+    default:
+      return <ImportToolButtons />
   }
 }
 
