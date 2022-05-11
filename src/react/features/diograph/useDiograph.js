@@ -1,13 +1,18 @@
 import { useMemo } from 'react'
 import { useSelector } from '../../store'
-import { useDiorys } from './useDiorys'
 
 import { resolveReverseDiograph } from './resolveReverseDiograph'
 
-const useLinkedDiorys = (id, diograph) => {
+const getDiorys = (ids = {}, diograph) => {
+  return Object.entries(ids)
+    .map(([key, { id }]) => ({ key, ...diograph[id] }))
+    .filter(({ id }) => id)
+}
+
+export const getLinkedDiorys = (id, diograph) => {
   const diory = diograph[id]
   const links = diory && diory.links
-  return useDiorys(links)
+  return getDiorys(links, diograph)
 }
 
 function idIs(dioryId) {
@@ -30,7 +35,7 @@ const useContexts = () => {
   const { diograph = {} } = useSelector((state) => state.diograph)
   const reverseDiograph = useMemo(() => resolveReverseDiograph(diograph), [diograph])
 
-  const contexts = useLinkedDiorys(storyId, reverseDiograph)
+  const contexts = getLinkedDiorys(storyId, reverseDiograph)
   return {
     context: useContext(contexts),
     contexts,
@@ -47,8 +52,8 @@ export const useDiograph = () => {
     context,
     contexts,
     story: diograph[storyId],
-    stories: useLinkedDiorys(contextId, diograph),
+    stories: getLinkedDiorys(contextId, diograph),
     memory: diograph[memoryId],
-    memories: useLinkedDiorys(storyId, diograph),
+    memories: getLinkedDiorys(storyId, diograph),
   }
 }
