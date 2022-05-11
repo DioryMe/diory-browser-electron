@@ -6,7 +6,7 @@ export const buttons = [
     text: 'Import folder',
     data: {
       icon: 'folder',
-      testid: 'import-folder',
+      testid: 'importFolder',
     },
   },
 ]

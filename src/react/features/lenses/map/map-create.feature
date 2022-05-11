@@ -12,7 +12,7 @@ Feature: Creating content to Map lens
   Scenario: createTool created diory appears on map (in view)
     When I select tools button
     And I select import button
-    And I click element with id 'CREATE_TOOL_BUTTON'
+    And I click create tool
     And I add 'Map diory' to text field
     And I add '62, 24' to latlng field
     And I click Done button
@@ -22,7 +22,7 @@ Feature: Creating content to Map lens
   Scenario: createTool created diory to map (in focus)
     When I select tools button
     And I select import button
-    And I click element with id 'CREATE_TOOL_BUTTON'
+    And I click create tool
     And I add 'Map diory' to text field
     And I add '62, 24' to latlng field
     And I click Done button

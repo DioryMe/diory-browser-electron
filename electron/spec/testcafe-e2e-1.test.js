@@ -21,7 +21,7 @@ test('Load default diograph and import diory-demo-content (with diograph.json)',
     .click('[data-testid="tools-button"]')
     .takeScreenshot('testcafe-e2e-1/home-with-tools.png')
     .click('[data-testid="import-button"]')
-    .click('#CREATE_TOOL_BUTTON')
+    .click('#CREATE_TOOL')
     .takeScreenshot('testcafe-e2e-1/create-tool.png')
     .typeText('input#text', 'New diory')
     .click(doneButton)
