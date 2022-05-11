@@ -7,12 +7,9 @@ import { Provider } from 'react-redux'
 
 import { reducer } from './reducer'
 
-const enhancers = compose(
-  applyMiddleware(thunk),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-)
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const store = createStore(reducer, {}, enhancers)
+const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)))
 
 const StoreProvider = ({ children }) => <Provider store={store}>{children}</Provider>
 
