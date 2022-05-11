@@ -1,10 +1,11 @@
-import { mockResponse } from './client.mock'
+import { mockResponses } from './client.mock'
 import { invokeAlertDialog } from './alertDialog'
 
 export const invokeChannel = (channel, params) => {
   // Development uses mock responses
-  if (process.env.NODE_ENV === 'development') {
-    return mockResponse(channel, params)
+  const mockResponse = mockResponses[channel]
+  if (mockResponse) {
+    return Promise.resolve(mockResponse)
   }
 
   // Called when backend successfully responds (response object or Error object)
