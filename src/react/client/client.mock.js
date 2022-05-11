@@ -2,16 +2,29 @@ import GET_DIORY_FOLDER_LOCATION from './mockResponses/GET_DIORY_FOLDER_LOCATION
 import GET_DIOGRAPH from './mockResponses/GET_DIOGRAPH.json'
 import { channels } from '../../shared/constants'
 
-export const mockResponse = (channel) => {
-  const data = {
+const showOpenDiolog = () => {
+  if (window.processEnv.TESTCAFE_TEST === '1') {
+    return `${window.processEnv.PWD}/public/diory-demo-content`
+  }
+
+  if (window.processEnv.TESTCAFE_TEST === '2') {
+    return `${window.processEnv.PWD}/electron/readers/example-folder`
+  }
+}
+
+const mockChannels = () => {
+  if (process.env.NODE_ENV !== 'development') {
+    return {}
+  }
+
+  return {
     ...channels,
     GET_DIOGRAPH,
     GET_DIORY_FOLDER_LOCATION,
-  }[channel]
-
-  if (!data) {
-    return Promise.reject()
   }
+}
 
-  return Promise.resolve(data)
+export const mockResponses = {
+  ...mockChannels(),
+  showOpenDiolog,
 }
