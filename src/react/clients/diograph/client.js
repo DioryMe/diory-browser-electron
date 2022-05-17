@@ -47,14 +47,14 @@ export function createLink(dioryId, linkId, diograph) {
   }
 }
 
-export function deleteLink(fromDiory, toDiory) {
-  const dioryLinks = fromDiory.links
-  const linkKey = Object.entries(dioryLinks).filter(([, { id }]) => id === toDiory.id)[0][0]
+export function deleteLink(dioryId, linkId, diograph) {
+  const diory = diograph[dioryId]
+  const linkKey = Object.entries(diory.links).filter(([, { id }]) => id === linkId)[0][0]
   // eslint-disable-next-line no-unused-vars
-  const { [linkKey]: omit, ...links } = dioryLinks
+  const { [linkKey]: omit, ...links } = diory.links
   return {
     diory: {
-      ...fromDiory,
+      ...diory,
       links,
     },
   }
