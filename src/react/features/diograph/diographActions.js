@@ -5,9 +5,6 @@ import {
   CREATE_DIORY,
   UPDATE_DIORY,
   DELETE_DIORY,
-  CREATE_LINK,
-  DELETE_LINK,
-  DELETE_LINKS,
 } from './diographActionTypes'
 
 export const getDiograph = (diograph, rootId) => ({
@@ -37,7 +34,7 @@ export const createDiory =
 export const updateDiory =
   (dioryData) =>
   (dispatch, getState, { client }) => {
-    const diograph = getState().diograph.diograph
+    const { diograph } = getState().diograph
     const { diory } = client.updateDiory(dioryData, diograph)
     dispatch({
       type: UPDATE_DIORY,
@@ -58,7 +55,7 @@ export const deleteDiory =
 export const createLink =
   (dioryData, linkData) =>
   (dispatch, getState, { client }) => {
-    const diograph = getState().diograph.diograph
+    const { diograph } = getState().diograph
     const { diory } = client.createLink(dioryData.id, linkData.id, diograph)
     dispatch({
       type: UPDATE_DIORY,
@@ -68,8 +65,9 @@ export const createLink =
 
 export const deleteLink =
   (from, to) =>
-  (dispatch, _, { client }) => {
-    const { diory } = client.deleteLink(from, to)
+  (dispatch, getState, { client }) => {
+    const { diograph } = getState().diograph
+    const { diory } = client.deleteLink(from.id, to.id, diograph)
     dispatch({
       type: UPDATE_DIORY,
       payload: { diory },
@@ -78,9 +76,10 @@ export const deleteLink =
 
 export const deleteLinks =
   (deletedLinks) =>
-  (dispatch, _, { client }) => {
+  (dispatch, getState, { client }) => {
+    const { diograph } = getState().diograph
     deletedLinks.forEach(({ fromDiory, toDiory }) => {
-      const { diory } = client.deleteLink(fromDiory, toDiory)
+      const { diory } = client.deleteLink(fromDiory.id, toDiory.id, diograph)
       dispatch({
         type: UPDATE_DIORY,
         payload: { diory },

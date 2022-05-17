@@ -3,10 +3,7 @@ import {
   SAVE_DIOGRAPH,
   ADD_DIOGRAPH,
   CREATE_DIORY,
-  CREATE_LINK,
   DELETE_DIORY,
-  DELETE_LINK,
-  DELETE_LINKS,
   UPDATE_DIORY,
 } from './diographActionTypes'
 import { promiseReducers, createReducer } from '../../store'
