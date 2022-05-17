@@ -9,7 +9,6 @@ import {
   DELETE_LINK,
   DELETE_LINKS,
 } from './diographActionTypes'
-import { getDefaultImage } from '../../../shared/getDefaultImage'
 
 export const getDiograph = (diograph, rootId) => ({
   type: GET_DIOGRAPH,
@@ -25,72 +24,64 @@ export const addDiograph = (diograph) => ({
   payload: { diograph },
 })
 
-export const createDiory = (diory) => ({
-  type: CREATE_DIORY,
-  payload: {
-    diory: {
-      ...diory,
-      image: diory.image || getDefaultImage(),
-      created: new Date().toISOString(),
-    },
-  },
-})
-
-export const updateDiory = (diory) => ({
-  type: UPDATE_DIORY,
-  payload: {
-    diory: {
-      ...diory,
-      updated: new Date().toISOString(),
-    },
-  },
-})
-
-export const deleteDiory = (diory) => {
-  const now = new Date().toISOString()
-  return {
-    type: DELETE_DIORY,
-    payload: {
-      diory: {
-        ...diory,
-        updated: now,
-        deleted: now,
-      },
-    },
+export const createDiory =
+  (dioryData) =>
+  (dispatch, _, { client }) => {
+    const { diory } = client.createDiory(dioryData)
+    dispatch({
+      type: CREATE_DIORY,
+      payload: { diory },
+    })
   }
-}
 
-export const createLink = (diory, link) => ({
-  type: CREATE_LINK,
-  payload: {
-    diory: {
-      ...diory,
-      modified: new Date().toISOString(),
-    },
-    link,
-  },
-})
+export const updateDiory =
+  (dioryData) =>
+  (dispatch, _, { client }) => {
+    const { diory } = client.updateDiory(dioryData)
+    dispatch({
+      type: UPDATE_DIORY,
+      payload: { diory },
+    })
+  }
 
-// Currently this is not used anywhere
-// - same as deleteLinks but takes {} as an argument instead of [{}]
-export const deleteLink = (fromDiory, toDiory) => ({
-  type: DELETE_LINK,
-  payload: {
-    fromDiory: {
-      ...fromDiory,
-      modified: new Date().toISOString(),
-    },
-    toDiory,
-  },
-})
+export const deleteDiory =
+  (dioryData) =>
+  (dispatch, _, { client }) => {
+    const { diory } = client.deleteDiory(dioryData)
+    dispatch({
+      type: DELETE_DIORY,
+      payload: { diory },
+    })
+  }
 
-export const deleteLinks = (deletedLinks) => ({
-  type: DELETE_LINKS,
-  payload: deletedLinks.map(({ fromDiory, toDiory }) => ({
-    fromDiory: {
-      ...fromDiory,
-      modified: new Date().toISOString(),
-    },
-    toDiory,
-  })),
-})
+export const createLink =
+  (dioryData, linkData) =>
+  (dispatch, _, { client }) => {
+    const { diory, link } = client.createLink(dioryData, linkData)
+    console.log(diory, link)
+    dispatch({
+      type: CREATE_LINK,
+      payload: { diory, link },
+    })
+  }
+
+export const deleteLink =
+  (from, to) =>
+  (dispatch, _, { client }) => {
+    const { fromDiory, toDiory } = client.deleteLink(from, to)
+    dispatch({
+      type: DELETE_LINK,
+      payload: { fromDiory, toDiory },
+    })
+  }
+
+export const deleteLinks =
+  (deletedLinks) =>
+  (dispatch, _, { client }) => {
+    const links = client.deleteLinks(deletedLinks)
+    console.log(links)
+    dispatch({
+      type: DELETE_LINKS,
+      payload: links,
+    })
+  }
