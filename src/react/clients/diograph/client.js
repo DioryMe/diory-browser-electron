@@ -32,32 +32,29 @@ export const deleteDiory = (diory) => {
   }
 }
 
-export function createLink(diory, link) {
-  console.log(diory, link)
+export function createLink(dioryId, linkId, diograph) {
+  const diory = diograph[dioryId]
   return {
     diory: {
       ...diory,
+      links: {
+        ...diory.links,
+        [linkId]: { id: linkId },
+      },
       modified: new Date().toISOString(),
     },
-    link,
   }
 }
 
-// Currently this is not used anywhere
-// - same as deleteLinks but takes {} as an argument instead of [{}]
-export const deleteLink = (fromDiory, toDiory) => ({
-  fromDiory: {
-    ...fromDiory,
-    modified: new Date().toISOString(),
-  },
-  toDiory,
-})
-
-export const deleteLinks = (deletedLinks) =>
-  deletedLinks.map(({ fromDiory, toDiory }) => ({
-    fromDiory: {
+export function deleteLink(fromDiory, toDiory) {
+  const dioryLinks = fromDiory.links
+  const linkKey = Object.entries(dioryLinks).filter(([, { id }]) => id === toDiory.id)[0][0]
+  // eslint-disable-next-line no-unused-vars
+  const { [linkKey]: omit, ...links } = dioryLinks
+  return {
+    diory: {
       ...fromDiory,
-      modified: new Date().toISOString(),
+      links,
     },
-    toDiory,
-  }))
+  }
+}
