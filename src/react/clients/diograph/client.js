@@ -12,9 +12,10 @@ export function createDiory(diory) {
   }
 }
 
-export const updateDiory = (diory) => ({
+export const updateDiory = (updatedDiory, diograph) => ({
   diory: {
-    ...diory,
+    ...diograph[updatedDiory.id],
+    ...updatedDiory,
     updated: new Date().toISOString(),
   },
 })
