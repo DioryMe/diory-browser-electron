@@ -36,8 +36,9 @@ export const createDiory =
 
 export const updateDiory =
   (dioryData) =>
-  (dispatch, _, { client }) => {
-    const { diory } = client.updateDiory(dioryData)
+  (dispatch, getState, { client }) => {
+    const diograph = getState().diograph.diograph
+    const { diory } = client.updateDiory(dioryData, diograph)
     dispatch({
       type: UPDATE_DIORY,
       payload: { diory },
@@ -60,7 +61,7 @@ export const createLink =
     const diograph = getState().diograph.diograph
     const { diory } = client.createLink(dioryData.id, linkData.id, diograph)
     dispatch({
-      type: CREATE_LINK,
+      type: UPDATE_DIORY,
       payload: { diory },
     })
   }
@@ -70,7 +71,7 @@ export const deleteLink =
   (dispatch, _, { client }) => {
     const { diory } = client.deleteLink(from, to)
     dispatch({
-      type: DELETE_LINK,
+      type: UPDATE_DIORY,
       payload: { diory },
     })
   }
@@ -81,7 +82,7 @@ export const deleteLinks =
     deletedLinks.forEach(({ fromDiory, toDiory }) => {
       const { diory } = client.deleteLink(fromDiory, toDiory)
       dispatch({
-        type: DELETE_LINK,
+        type: UPDATE_DIORY,
         payload: { diory },
       })
     })
