@@ -35,11 +35,11 @@ export const addDiograph = (state, { payload: { diograph } }) => ({
   updated: true,
 })
 
-export const createDiory = (state, { payload: { diory } }) => ({
+export const createDiory = (state, { payload }) => ({
   ...state,
   diograph: {
     ...state.diograph,
-    [diory.id]: diory,
+    [payload.diory.id]: payload.diory,
   },
   updated: true,
 })
@@ -58,43 +58,16 @@ const updateDiory = (state, { payload }) => ({
   ...state,
   diograph: {
     ...state.diograph,
-    [payload.diory.id]: {
-      ...state.diograph[payload.diory.id],
-      ...payload.diory,
-    },
+    [payload.diory.id]: payload.diory,
   },
   updated: true,
 })
 
-const createLink = (state, { payload }) => {
-  return {
-    ...state,
-    diograph: {
-      ...state.diograph,
-      [payload.diory.id]: payload.diory,
-    },
-    updated: true,
-  }
-}
-
-export const deleteLink = (state, { payload }) => {
-  return {
-    ...state,
-    diograph: {
-      ...state.diograph,
-      [payload.diory.id]: payload.diory,
-    },
-    updated: true,
-  }
-}
-
 export default createReducer(initialState, {
   [ADD_DIOGRAPH]: addDiograph,
+  [GET_DIOGRAPH]: getDiograph,
   [CREATE_DIORY]: createDiory,
   [DELETE_DIORY]: deleteDiory,
   [UPDATE_DIORY]: updateDiory,
-  [CREATE_LINK]: createLink,
-  [DELETE_LINK]: deleteLink,
-  [GET_DIOGRAPH]: getDiograph,
   ...promiseReducers(SAVE_DIOGRAPH, 'updated', 'saving', 'saved', 'error'),
 })
