@@ -48,10 +48,10 @@ export function createLink(dioryId, linkId, diograph) {
 }
 
 export function deleteLink(dioryId, linkId, diograph) {
-  const dioryLinks = diograph[dioryId].links
-  const linkKey = Object.entries(dioryLinks).filter(([, { id }]) => id === linkId)[0][0]
+  const diory = diograph[dioryId]
+  const linkKey = Object.entries(diory.links).filter(([, { id }]) => id === linkId)[0][0]
   // eslint-disable-next-line no-unused-vars
-  const { [linkKey]: omit, ...links } = dioryLinks
+  const { [linkKey]: omit, ...links } = diory.links
   return {
     diory: {
       ...diory,
