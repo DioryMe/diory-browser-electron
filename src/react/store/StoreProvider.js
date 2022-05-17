@@ -6,10 +6,14 @@ import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 
 import { reducer } from './reducer'
+import * as client from '../clients/diograph/client'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)))
+const store = createStore(
+  reducer,
+  composeEnhancers(applyMiddleware(thunk.withExtraArgument({ client })))
+)
 
 const StoreProvider = ({ children }) => <Provider store={store}>{children}</Provider>
 
