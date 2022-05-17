@@ -32,14 +32,17 @@ export const deleteDiory = (diory) => {
   }
 }
 
-export function createLink(diory, link) {
-  console.log(diory, link)
+export function createLink(dioryId, linkId, diograph) {
+  const diory = diograph[dioryId]
   return {
     diory: {
       ...diory,
+      links: {
+        ...diory.links,
+        [linkId]: { id: linkId },
+      },
       modified: new Date().toISOString(),
     },
-    link,
   }
 }
 
@@ -52,6 +55,6 @@ export function deleteLink(fromDiory, toDiory) {
     diory: {
       ...fromDiory,
       links,
-    }
+    },
   }
 }

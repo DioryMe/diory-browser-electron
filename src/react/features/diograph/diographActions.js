@@ -56,12 +56,12 @@ export const deleteDiory =
 
 export const createLink =
   (dioryData, linkData) =>
-  (dispatch, _, { client }) => {
-    const { diory, link } = client.createLink(dioryData, linkData)
-    console.log(diory, link)
+  (dispatch, getState, { client }) => {
+    const diograph = getState().diograph.diograph
+    const { diory } = client.createLink(dioryData.id, linkData.id, diograph)
     dispatch({
       type: CREATE_LINK,
-      payload: { diory, link },
+      payload: { diory },
     })
   }
 
