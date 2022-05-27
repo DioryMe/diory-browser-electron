@@ -2,7 +2,7 @@ import React from 'react'
 import { IconButton, Pane, SearchInput } from 'evergreen-ui'
 
 import { useSelector, useDispatchActions } from '../../store'
-import { setQuery, toggleSearchBar } from './searchActions'
+import { searchDiories, toggleSearchBar } from './searchActions'
 
 import Icon from '../../components/Icon'
 
@@ -12,7 +12,7 @@ const useSearchNavigation = () => {
   const { dispatch, dispatchAction } = useDispatchActions()
   return {
     showSearchBar,
-    onSearch: ({ target: { value } }) => dispatch(setQuery(value)),
+    onSearch: ({ target: { value } }) => dispatch(searchDiories(value)),
     onToggleSearch: dispatchAction(toggleSearchBar),
   }
 }

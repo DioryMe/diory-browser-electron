@@ -27,20 +27,12 @@ const useToolActions = () => {
 }
 
 const useSearch = () => {
-  const { query, showSearchBar } = useSelector((state) => state.search)
-  const { diograph } = useSelector((state) => state.diograph)
-
-  const results =
-    query && diograph
-      ? Object.values(diograph).filter(
-          ({ text }) => !!text && text.toLowerCase().includes(query.toLowerCase())
-        )
-      : []
+  const { query, resultsByQuery, showSearchBar } = useSelector((state) => state.search)
 
   return {
     showSearchBar,
     query,
-    results,
+    results: query ? resultsByQuery[query] : [],
   }
 }
 
