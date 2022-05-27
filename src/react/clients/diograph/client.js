@@ -59,3 +59,20 @@ export function deleteLink(dioryId, linkId, diograph) {
     },
   }
 }
+
+function allKeysExist(queryDiory) {
+  return (diory) => !Object.keys(queryDiory).some((key) => !diory[key])
+}
+
+function allMatchToQuery(queryDiory) {
+  return (diory) =>
+    !Object.entries(queryDiory).some(([key, query]) => {
+      console.log(diory[key], query, diory[key].toLowerCase().includes(query.toLowerCase()))
+      return !diory[key].toLowerCase().includes(query.toLowerCase())
+    })
+}
+export function searchDiories(queryDiory, diograph) {
+  return Object.values(diograph)
+    .filter(allKeysExist(queryDiory))
+    .filter(allMatchToQuery(queryDiory))
+}
