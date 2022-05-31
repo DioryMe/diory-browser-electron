@@ -1,6 +1,9 @@
 const { contextBridge, shell, ipcRenderer } = require('electron')
 const { fileURLToPath } = require('url')
 
+const { readFileSync, existsSync, mkdirSync, writeFileSync } = require('fs')
+const { dirname, join } = require('path')
+
 const { channels } = require('../src/shared/constants')
 
 const { importFolder } = require('./lib/import-folder')
@@ -30,6 +33,22 @@ contextBridge.exposeInMainWorld('channelsApi', {
   openItemInDesktopManner: (fileUrl) => shell.openPath(fileURLToPath(fileUrl)),
   [channels.OPEN_IN_BROWSER]: (url) => shell.openExternal(url),
   showOpenDialog: () => ipcRenderer.invoke('showOpenDialog'),
+
+  getPath: () =>
+    '/Users/Jouni/Code/electron-diograph-js/test-folder' || join(__dirname, 'test-folder'),
+  // Client read & write
+  writeItem: (url, fileContent) => {
+    if (fileContent instanceof ArrayBuffer) {
+      fileContent = Buffer.from(fileContent)
+    }
+    const dirPath = dirname(url)
+    if (!existsSync(dirPath)) {
+      mkdirSync(dirPath, { recursive: true })
+    }
+    return writeFileSync(url, fileContent)
+  },
+  readTextFile: (filePath) => readFileSync(filePath, { encoding: 'utf-8' }),
+  readItem: (url) => readFileSync(url),
 })
 
 contextBridge.exposeInMainWorld('processEnv', {
