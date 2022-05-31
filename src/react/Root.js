@@ -21,6 +21,7 @@ const Root = () => {
     // context,
     // contexts,
     story, // : diograph[storyId],
+    memories: [],
     // stories: useLinkedDiorys(contextId, diograph),
     // memory: diograph[memoryId],
     // memories: useLinkedDiorys(storyId, diograph),
