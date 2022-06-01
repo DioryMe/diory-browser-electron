@@ -507,7 +507,7 @@
         {
           "@context": "https://schema.org",
           "@type": "ImageObject",
-          "contentUrl": "demo-content-room/Adamstown Middle School/PIXNIO-54298-5970x3980.jpeg",
+          "contentUrl": "PIXNIO-54298-5970x3980.jpeg",
           "height": 3980,
           "width": 5970,
           "encodingFormat": "image/jpeg"
@@ -541,7 +541,7 @@
         {
           "@context": "https://schema.org",
           "@type": "ImageObject",
-          "contentUrl": "demo-content-room/Adamstown Middle School/PIXNIO-54360-6177x4118.jpeg",
+          "contentUrl": "PIXNIO-54360-6177x4118.jpeg",
           "height": 4118,
           "width": 6177,
           "encodingFormat": "image/jpeg"
@@ -574,7 +574,7 @@
         {
           "@context": "https://schema.org",
           "@type": "ImageObject",
-          "contentUrl": "demo-content-room/Jane/PIXNIO-12656-2816x2112.jpeg",
+          "contentUrl": "PIXNIO-12656-2816x2112.jpeg",
           "height": 2112,
           "width": 2816,
           "encodingFormat": "image/jpeg"
@@ -590,7 +590,7 @@
         {
           "@context": "https://schema.org",
           "@type": "ImageObject",
-          "contentUrl": "demo-content-room/Jane/PIXNIO-12662-2816x2112.jpeg",
+          "contentUrl": "PIXNIO-12662-2816x2112.jpeg",
           "height": 2112,
           "width": 2816,
           "encodingFormat": "image/jpeg"
@@ -606,7 +606,7 @@
         {
           "@context": "https://schema.org",
           "@type": "ImageObject",
-          "contentUrl": "demo-content-room/Jane/PIXNIO-12700-2816x2112.jpeg",
+          "contentUrl": "PIXNIO-12700-2816x2112.jpeg",
           "height": 2112,
           "width": 2816,
           "encodingFormat": "image/jpeg"

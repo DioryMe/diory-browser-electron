@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { useOpenFolderButton } from '../../buttons/useOpenFolderButton'
+// import { useOpenFolderButton } from '../../buttons/useOpenFolderButton'
 
 import Image from '../../../components/diories/Image'
 

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import BackgroundDiory from '../../../components/diories/BackgroundDiory'
-import Content from '../../content/Content'
+import ContentView from '../../content/ContentView'
 import ScrollBackground from '../../../components/ScrollBackground'
 // import DragDropBackground from '../../../components/DragDropBackground'
 import DiorysGrid from '../../../components/DiorysGrid'
@@ -15,7 +15,7 @@ const GridView = ({ story, memories, onMemoryClick, room }) => {
     story && (
       <>
         <BackgroundDiory diory={story} />
-        <Content diory={story} room={room} />
+        <ContentView diory={story} room={room} />
         <ScrollBackground>
           {/* <DragDropBackground
             position="relative"

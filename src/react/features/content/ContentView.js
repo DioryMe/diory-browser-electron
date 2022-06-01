@@ -10,7 +10,8 @@ import ImageContent from './image/ImageContent'
 
 const ContentView = ({ diory, room }) => {
   const { data = [] } = diory
-  const contentUrl = room && room.getContent(((data && data[0]) || {}).contentUrl)
+  const contentId = ((data && data[0]) || {}).contentUrl
+  const contentUrl = room && room.getContent(contentId)
   const { encodingFormat, url } = (data && data[0]) || {}
 
   switch (encodingFormat) {
