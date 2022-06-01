@@ -2,20 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import BackgroundDiory from '../../../components/diories/BackgroundDiory'
-// import Content from '../../content/Content'
+import Content from '../../content/Content'
 import ScrollBackground from '../../../components/ScrollBackground'
 // import DragDropBackground from '../../../components/DragDropBackground'
 import DiorysGrid from '../../../components/DiorysGrid'
 import ScrollVertically from '../../../components/ScrollVertically'
 
-const GridView = ({ story, memories, onMemoryClick }) => {
+const GridView = ({ story, memories, onMemoryClick, room }) => {
   const onDrop = () => {}
   // const onStoryClick = () => {}
   return (
     story && (
       <>
         <BackgroundDiory diory={story} />
-        {/* <Content diory={story} /> */}
+        <Content diory={story} room={room} />
         <ScrollBackground>
           {/* <DragDropBackground
             position="relative"
@@ -40,6 +40,7 @@ GridView.propTypes = {
   story: PropTypes.object.isRequired,
   memories: PropTypes.array.isRequired,
   onMemoryClick: PropTypes.func,
+  room: PropTypes.object,
 }
 
 export default GridView

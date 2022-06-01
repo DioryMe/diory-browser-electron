@@ -5,10 +5,15 @@ import GridView from './GridView'
 
 const getStory = (room, dioryId) => room.diograph.getDiory(dioryId)
 
-const getMemories = (room, story) =>
-  Object.entries(story.links)
+const getMemories = (room, story) => {
+  if (!story.links) {
+    return []
+  }
+
+  return Object.entries(story.links)
     .map(([key, { id }]) => ({ key, ...room.diograph.getDiory(id) }))
     .filter(({ id }) => id)
+}
 
 const GridLens = ({ room }) => {
   console.log('I rendered')
@@ -27,7 +32,7 @@ const GridLens = ({ room }) => {
     onMemoryClick,
   }
 
-  return <GridView {...gridProps} />
+  return <GridView {...gridProps} room={room} />
 }
 
 GridLens.propTypes = {

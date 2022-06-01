@@ -22,13 +22,12 @@ const options = {
   muted: true,
 }
 
-const VideoContent = ({ diory, baseUrl }) => {
+const VideoContent = ({ diory, videoUrl }) => {
   const { refCallback, contentElement } = useContentElement()
-  const videoUrl = getContentUrl(diory, baseUrl)
 
-  useOpenFolderButton(videoUrl)
-  useTogglePlayButtons(contentElement, options.autoPlay)
-  useToggleMuteButtons(contentElement, options.muted)
+  // useOpenFolderButton(videoUrl)
+  // useTogglePlayButtons(contentElement, options.autoPlay)
+  // useToggleMuteButtons(contentElement, options.muted)
 
   return (
     <Fullscreen>
@@ -45,7 +44,7 @@ const VideoContent = ({ diory, baseUrl }) => {
 
 VideoContent.propTypes = {
   diory: PropTypes.object,
-  baseUrl: PropTypes.string,
+  videoUrl: PropTypes.string,
 }
 
 export default VideoContent

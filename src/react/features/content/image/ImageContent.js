@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { useOpenFolderButton } from '../../buttons/useOpenFolderButton'
-import { convertToFileUrl } from '../../../utils'
 
 import Image from '../../../components/diories/Image'
 
@@ -17,19 +16,14 @@ const options = {
   muted: false,
 }
 
-const ImageContent = ({ diory, baseUrl }) => {
-  const { data = [] } = diory
-  const { contentUrl } = (data && data[0]) || {}
-  const imageUrl = convertToFileUrl(contentUrl, baseUrl)
+const ImageContent = ({ imageUrl }) => (
+  // useOpenFolderButton(imageUrl)
 
-  useOpenFolderButton(imageUrl)
-
-  return <Image image={imageUrl} style={defaultStyles} data-testid="image-content" {...options} />
-}
+  <Image image={imageUrl} style={defaultStyles} data-testid="image-content" {...options} />
+)
 
 ImageContent.propTypes = {
-  diory: PropTypes.object,
-  baseUrl: PropTypes.string,
+  imageUrl: PropTypes.string,
 }
 
 export default ImageContent
