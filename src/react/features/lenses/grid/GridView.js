@@ -8,12 +8,9 @@ import ScrollBackground from '../../../components/ScrollBackground'
 import DiorysGrid from '../../../components/DiorysGrid'
 import ScrollVertically from '../../../components/ScrollVertically'
 
-const GridView = ({ story, memories }) => {
+const GridView = ({ story, memories, onMemoryClick }) => {
   const onDrop = () => {}
   // const onStoryClick = () => {}
-  const onMemoryClick = () => {
-    alert('memory click!')
-  }
   return (
     story && (
       <>
@@ -42,6 +39,7 @@ const GridView = ({ story, memories }) => {
 GridView.propTypes = {
   story: PropTypes.object.isRequired,
   memories: PropTypes.array.isRequired,
+  onMemoryClick: PropTypes.func,
 }
 
 export default GridView

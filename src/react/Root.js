@@ -10,6 +10,9 @@ const Root = () => {
 
   const [story, setStory] = useState(null)
   const [memories, setMemories] = useState([])
+  const [onMemoryClick /* setOnMemoryClick */] = useState(() => {
+    console.log('default')
+  })
 
   useEffect(() => {
     console.log('effect')
@@ -21,17 +24,22 @@ const Root = () => {
           .map(([key, { id }]) => ({ key, ...room.diograph.getDiory(id) }))
           .filter(({ id }) => id)
       )
+      // setOnMemoryClick(({ diory }) => {
+      //   console.log('jeefefef')
+      //   setStory(room.diograph.getDiory(diory.id))
+      // })
     })
   }, [])
 
-  const useDiograph = {
+  const gridProps = {
     story,
     memories,
+    onMemoryClick,
   }
 
   return (
     <Fullscreen>
-      <GridView {...useDiograph} />
+      <GridView {...gridProps} />
     </Fullscreen>
   )
 }
