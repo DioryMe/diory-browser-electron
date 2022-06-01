@@ -22,7 +22,7 @@ const GridItem = ({ scrollIntoView, children, ...props }) => {
 }
 
 GridItem.propTypes = {
-  scrollIntoView: PropTypes.bool.isRequired,
+  scrollIntoView: PropTypes.bool,
   children: PropTypes.node.isRequired,
 }
 

@@ -1,50 +1,37 @@
-import React from 'react'
-
-import { useDispatchActions, useSelector } from '../../../store'
-import { useDiograph } from '../../diograph/useDiograph'
-import { useToggleContent } from '../../content/useToggleContent'
-
-import { useDeleteTool } from '../../tools/delete'
-import { useStoryTool } from '../../tools/story'
-import { useUpdateTool } from '../../tools/update'
-import { useImportTools } from '../../tools/import/useImportTools'
-
-import { withLensContainer } from '../withLensContainer'
-
-import { createLink } from '../../diograph/diographActions'
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
 import GridView from './GridView'
 
-const useTools = () => {
-  const selectStory = useStoryTool()
-  const deleteDiory = useDeleteTool()
-  const updateDiory = useUpdateTool()
-  const { toggleContent } = useToggleContent()
+const getStory = (room, dioryId) => room.diograph.getDiory(dioryId)
 
-  useImportTools()
+const getMemories = (room, story) =>
+  Object.entries(story.links)
+    .map(([key, { id }]) => ({ key, ...room.diograph.getDiory(id) }))
+    .filter(({ id }) => id)
 
-  const { dispatch } = useDispatchActions()
+const GridLens = ({ room }) => {
+  console.log('I rendered')
+  const [story, setStory] = useState(room.diograph.getDiory(room.diograph.rootId))
+  const [memories, setMemories] = useState(getMemories(room, story))
 
-  return {
-    onStoryClick: ({ diory }) => {
-      toggleContent()
-      deleteDiory(diory)
-      updateDiory(diory)
-    },
-    onMemoryClick: ({ diory }) => {
-      selectStory(diory)
-      deleteDiory(diory)
-      updateDiory(diory)
-    },
-    onDrop: ({ droppedId, draggedId }) => {
-      dispatch(createLink({ id: droppedId }, { id: draggedId }))
-    },
+  const onMemoryClick = ({ diory }) => {
+    const newStory = getStory(room, diory.id)
+    setStory(newStory)
+    setMemories(getMemories(room, newStory))
   }
+
+  const gridProps = {
+    story,
+    memories,
+    onMemoryClick,
+  }
+
+  return <GridView {...gridProps} />
 }
 
-const GridLens = () => {
-  const { forward = [] } = useSelector((state) => state.navigation)
-  return <GridView {...useDiograph()} {...useTools()} scrollIntoViewId={forward[0]} />
+GridLens.propTypes = {
+  room: PropTypes.object.isRequired,
 }
 
-export default withLensContainer('grid')(GridLens)
+export default GridLens
