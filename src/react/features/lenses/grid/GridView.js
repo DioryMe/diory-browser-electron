@@ -9,16 +9,11 @@ import DiorysGrid from '../../../components/DiorysGrid'
 import ScrollVertically from '../../../components/ScrollVertically'
 
 const GridView = ({ story, memories }) => {
-  // return (
-  //   <div>
-  //     <div>{story && story.id}</div>
-  //   </div>
-  // )
-
   const onDrop = () => {}
   // const onStoryClick = () => {}
-  const onMemoryClick = () => {}
-
+  const onMemoryClick = () => {
+    alert('memory click!')
+  }
   return (
     story && (
       <>

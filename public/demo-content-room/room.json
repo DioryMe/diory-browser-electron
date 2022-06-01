@@ -1,0 +1,394 @@
+{
+  "diographUrl": "diograph.json",
+  "connections": [
+    {
+      "id": "native-connection",
+      "address": "Diory Content",
+      "type": "local",
+      "contentUrls": {
+        "this-is-CID": {
+          "diory": {
+            "id": "987-def",
+            "text": "test-image.jpg",
+            "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8c43hPwAHewLTbrmJlAAAAABJRU5ErkJggg=="
+          },
+          "internalPath": "test-image.jpg"
+        },
+        "test-image-jpg-content-url": {
+          "diory": {
+            "id": "test-image-jpg-content-url",
+            "text": "test-image.jpg",
+            "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8c43hPwAHewLTbrmJlAAAAABJRU5ErkJggg=="
+          },
+          "internalPath": "test-image.jpg"
+        },
+        "Adamstown Middle School": {
+          "diory": {
+            "id": "Adamstown Middle School",
+            "text": "Adamstown Middle School",
+            "data": [
+              {
+                "contentUrl": "Adamstown Middle School"
+              }
+            ]
+          },
+          "internalPath": "Adamstown Middle School"
+        },
+        "Generic content": {
+          "diory": {
+            "id": "Generic content",
+            "text": "Generic content",
+            "data": [
+              {
+                "contentUrl": "Generic content"
+              }
+            ]
+          },
+          "internalPath": "Generic content"
+        },
+        "Jane": {
+          "diory": {
+            "id": "Jane",
+            "text": "Jane",
+            "data": [
+              {
+                "contentUrl": "Jane"
+              }
+            ]
+          },
+          "internalPath": "Jane"
+        },
+        "Mary": {
+          "diory": {
+            "id": "Mary",
+            "text": "Mary",
+            "data": [
+              {
+                "contentUrl": "Mary"
+              }
+            ]
+          },
+          "internalPath": "Mary"
+        },
+        "Potomac Kayaking Center": {
+          "diory": {
+            "id": "Potomac Kayaking Center",
+            "text": "Potomac Kayaking Center",
+            "data": [
+              {
+                "contentUrl": "Potomac Kayaking Center"
+              }
+            ]
+          },
+          "internalPath": "Potomac Kayaking Center"
+        },
+        "Riverfest 2014": {
+          "diory": {
+            "id": "Riverfest 2014",
+            "text": "Riverfest 2014",
+            "data": [
+              {
+                "contentUrl": "Riverfest 2014"
+              }
+            ]
+          },
+          "internalPath": "Riverfest 2014"
+        },
+        "Scouts BSA International": {
+          "diory": {
+            "id": "Scouts BSA International",
+            "text": "Scouts BSA International",
+            "data": [
+              {
+                "contentUrl": "Scouts BSA International"
+              }
+            ]
+          },
+          "internalPath": "Scouts BSA International"
+        },
+        "PIXNIO-12656-2816x2112.jpeg": {
+          "diory": {
+            "id": "PIXNIO-12656-2816x2112.jpeg",
+            "text": "PIXNIO-12656-2816x2112.jpeg",
+            "data": [
+              {
+                "contentUrl": "PIXNIO-12656-2816x2112.jpeg"
+              }
+            ]
+          },
+          "internalPath": "Jane/PIXNIO-12656-2816x2112.jpeg"
+        },
+        "PIXNIO-12662-2816x2112.jpeg": {
+          "diory": {
+            "id": "PIXNIO-12662-2816x2112.jpeg",
+            "text": "PIXNIO-12662-2816x2112.jpeg",
+            "data": [
+              {
+                "contentUrl": "PIXNIO-12662-2816x2112.jpeg"
+              }
+            ]
+          },
+          "internalPath": "Jane/PIXNIO-12662-2816x2112.jpeg"
+        },
+        "PIXNIO-12700-2816x2112.jpeg": {
+          "diory": {
+            "id": "PIXNIO-12700-2816x2112.jpeg",
+            "text": "PIXNIO-12700-2816x2112.jpeg",
+            "data": [
+              {
+                "contentUrl": "PIXNIO-12700-2816x2112.jpeg"
+              }
+            ]
+          },
+          "internalPath": "Jane/PIXNIO-12700-2816x2112.jpeg"
+        },
+        "PIXNIO-53747-4118x3088.jpeg": {
+          "diory": {
+            "id": "PIXNIO-53747-4118x3088.jpeg",
+            "text": "PIXNIO-53747-4118x3088.jpeg",
+            "data": [
+              {
+                "contentUrl": "PIXNIO-53747-4118x3088.jpeg"
+              }
+            ]
+          },
+          "internalPath": "Mary/PIXNIO-53747-4118x3088.jpeg"
+        },
+        "PIXNIO-53789-4118x6177.jpeg": {
+          "diory": {
+            "id": "PIXNIO-53789-4118x6177.jpeg",
+            "text": "PIXNIO-53789-4118x6177.jpeg",
+            "data": [
+              {
+                "contentUrl": "PIXNIO-53789-4118x6177.jpeg"
+              }
+            ]
+          },
+          "internalPath": "Mary/PIXNIO-53789-4118x6177.jpeg"
+        },
+        "PIXNIO-53799-6177x4118.jpeg": {
+          "diory": {
+            "id": "PIXNIO-53799-6177x4118.jpeg",
+            "text": "PIXNIO-53799-6177x4118.jpeg",
+            "data": [
+              {
+                "contentUrl": "PIXNIO-53799-6177x4118.jpeg"
+              }
+            ]
+          },
+          "internalPath": "Mary/PIXNIO-53799-6177x4118.jpeg"
+        },
+        "PIXNIO-54298-5970x3980.jpeg": {
+          "diory": {
+            "id": "PIXNIO-54298-5970x3980.jpeg",
+            "text": "PIXNIO-54298-5970x3980.jpeg",
+            "data": [
+              {
+                "contentUrl": "PIXNIO-54298-5970x3980.jpeg"
+              }
+            ]
+          },
+          "internalPath": "Adamstown Middle School/PIXNIO-54298-5970x3980.jpeg"
+        },
+        "PIXNIO-54360-6177x4118.jpeg": {
+          "diory": {
+            "id": "PIXNIO-54360-6177x4118.jpeg",
+            "text": "PIXNIO-54360-6177x4118.jpeg",
+            "data": [
+              {
+                "contentUrl": "PIXNIO-54360-6177x4118.jpeg"
+              }
+            ]
+          },
+          "internalPath": "Adamstown Middle School/PIXNIO-54360-6177x4118.jpeg"
+        },
+        "some-audio.m4a": {
+          "diory": {
+            "id": "some-audio.m4a",
+            "text": "some-audio.m4a",
+            "data": [
+              {
+                "contentUrl": "some-audio.m4a"
+              }
+            ]
+          },
+          "internalPath": "Generic content/some-audio.m4a"
+        },
+        "some-document.odt": {
+          "diory": {
+            "id": "some-document.odt",
+            "text": "some-document.odt",
+            "data": [
+              {
+                "contentUrl": "some-document.odt"
+              }
+            ]
+          },
+          "internalPath": "Generic content/some-document.odt"
+        },
+        "some-document.pdf": {
+          "diory": {
+            "id": "some-document.pdf",
+            "text": "some-document.pdf",
+            "data": [
+              {
+                "contentUrl": "some-document.pdf"
+              }
+            ]
+          },
+          "internalPath": "Generic content/some-document.pdf"
+        },
+        "some-image.jpeg": {
+          "diory": {
+            "id": "some-image.jpeg",
+            "text": "some-image.jpeg",
+            "data": [
+              {
+                "contentUrl": "some-image.jpeg"
+              }
+            ]
+          },
+          "internalPath": "Generic content/some-image.jpeg"
+        },
+        "some-video.mov": {
+          "diory": {
+            "id": "some-video.mov",
+            "text": "some-video.mov",
+            "data": [
+              {
+                "contentUrl": "some-video.mov"
+              }
+            ]
+          },
+          "internalPath": "Generic content/some-video.mov"
+        },
+        "PIXNIO-53541-1782x1188.jpeg": {
+          "diory": {
+            "id": "PIXNIO-53541-1782x1188.jpeg",
+            "text": "PIXNIO-53541-1782x1188.jpeg",
+            "data": [
+              {
+                "contentUrl": "PIXNIO-53541-1782x1188.jpeg"
+              }
+            ]
+          },
+          "internalPath": "Scouts BSA International/PIXNIO-53541-1782x1188.jpeg"
+        },
+        "PIXNIO-53543-1782x1188.jpeg": {
+          "diory": {
+            "id": "PIXNIO-53543-1782x1188.jpeg",
+            "text": "PIXNIO-53543-1782x1188.jpeg",
+            "data": [
+              {
+                "contentUrl": "PIXNIO-53543-1782x1188.jpeg"
+              }
+            ]
+          },
+          "internalPath": "Scouts BSA International/PIXNIO-53543-1782x1188.jpeg"
+        },
+        "PIXNIO-53549-1782x1188.jpeg": {
+          "diory": {
+            "id": "PIXNIO-53549-1782x1188.jpeg",
+            "text": "PIXNIO-53549-1782x1188.jpeg",
+            "data": [
+              {
+                "contentUrl": "PIXNIO-53549-1782x1188.jpeg"
+              }
+            ]
+          },
+          "internalPath": "Scouts BSA International/PIXNIO-53549-1782x1188.jpeg"
+        },
+        "PIXNIO-53551-1782x1188.jpeg": {
+          "diory": {
+            "id": "PIXNIO-53551-1782x1188.jpeg",
+            "text": "PIXNIO-53551-1782x1188.jpeg",
+            "data": [
+              {
+                "contentUrl": "PIXNIO-53551-1782x1188.jpeg"
+              }
+            ]
+          },
+          "internalPath": "Scouts BSA International/PIXNIO-53551-1782x1188.jpeg"
+        },
+        "PIXNIO-53553-1782x1188.jpeg": {
+          "diory": {
+            "id": "PIXNIO-53553-1782x1188.jpeg",
+            "text": "PIXNIO-53553-1782x1188.jpeg",
+            "data": [
+              {
+                "contentUrl": "PIXNIO-53553-1782x1188.jpeg"
+              }
+            ]
+          },
+          "internalPath": "Scouts BSA International/PIXNIO-53553-1782x1188.jpeg"
+        },
+        "PIXNIO-53555-1782x1188.jpeg": {
+          "diory": {
+            "id": "PIXNIO-53555-1782x1188.jpeg",
+            "text": "PIXNIO-53555-1782x1188.jpeg",
+            "data": [
+              {
+                "contentUrl": "PIXNIO-53555-1782x1188.jpeg"
+              }
+            ]
+          },
+          "internalPath": "Scouts BSA International/PIXNIO-53555-1782x1188.jpeg"
+        },
+        "PIXNIO-54454-6138x4092.jpeg": {
+          "diory": {
+            "id": "PIXNIO-54454-6138x4092.jpeg",
+            "text": "PIXNIO-54454-6138x4092.jpeg",
+            "data": [
+              {
+                "contentUrl": "PIXNIO-54454-6138x4092.jpeg"
+              }
+            ]
+          },
+          "internalPath": "Scouts BSA International/PIXNIO-54454-6138x4092.jpeg"
+        },
+        "pixnio-public-domain-test-content.txt": {
+          "diory": {
+            "id": "pixnio-public-domain-test-content.txt",
+            "text": "pixnio-public-domain-test-content.txt",
+            "data": [
+              {
+                "contentUrl": "pixnio-public-domain-test-content.txt"
+              }
+            ]
+          },
+          "internalPath": "Scouts BSA International/pixnio-public-domain-test-content.txt"
+        },
+        "PIXNIO-53350-6177x4118.jpeg": {
+          "diory": {
+            "id": "PIXNIO-53350-6177x4118.jpeg",
+            "text": "PIXNIO-53350-6177x4118.jpeg",
+            "data": [
+              {
+                "contentUrl": "PIXNIO-53350-6177x4118.jpeg"
+              }
+            ]
+          },
+          "internalPath": "Riverfest 2014/PIXNIO-53350-6177x4118.jpeg"
+        },
+        "PIXNIO-54348-6177x4118.jpeg": {
+          "diory": {
+            "id": "PIXNIO-54348-6177x4118.jpeg",
+            "text": "PIXNIO-54348-6177x4118.jpeg",
+            "data": [
+              {
+                "contentUrl": "PIXNIO-54348-6177x4118.jpeg"
+              }
+            ]
+          },
+          "internalPath": "Potomac Kayaking Center/PIXNIO-54348-6177x4118.jpeg"
+        }
+      }
+    },
+    {
+      "id": "source-connection",
+      "address": "source",
+      "type": "local",
+      "contentUrls": {}
+    }
+  ]
+}

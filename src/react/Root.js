@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Room, ElectronClient, ElectronClientMock, RoomClient } from 'diograph-js'
 import GridView from './features/lenses/grid/GridView'
+import Fullscreen from './components/Fullscreen'
 
 const Root = () => {
   const client = window.channelsApi ? new ElectronClient() : new ElectronClientMock()
@@ -8,26 +9,31 @@ const Root = () => {
   const room = new Room(roomClient)
 
   const [story, setStory] = useState(null)
+  const [memories, setMemories] = useState([])
 
   useEffect(() => {
     console.log('effect')
     room.loadRoom().then(() => {
-      const story = room.diograph.getDiory('uuid-1')
+      const story = room.diograph.getDiory('demo-content-room')
       setStory(story)
+      setMemories(
+        Object.entries(story.links)
+          .map(([key, { id }]) => ({ key, ...room.diograph.getDiory(id) }))
+          .filter(({ id }) => id)
+      )
     })
   }, [])
 
   const useDiograph = {
-    // context,
-    // contexts,
-    story, // : diograph[storyId],
-    memories: [],
-    // stories: useLinkedDiorys(contextId, diograph),
-    // memory: diograph[memoryId],
-    // memories: useLinkedDiorys(storyId, diograph),
+    story,
+    memories,
   }
 
-  return <GridView {...useDiograph} />
+  return (
+    <Fullscreen>
+      <GridView {...useDiograph} />
+    </Fullscreen>
+  )
 }
 
 export default Root

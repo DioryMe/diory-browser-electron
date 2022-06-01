@@ -35,7 +35,7 @@ contextBridge.exposeInMainWorld('channelsApi', {
   showOpenDialog: () => ipcRenderer.invoke('showOpenDialog'),
 
   getPath: () =>
-    '/Users/Jouni/Code/electron-diograph-js/test-folder' || join(__dirname, 'test-folder'),
+    '/Users/Jouni/Code/electron-diograph-js/demo-content-room' || join(__dirname, 'test-folder'),
   // Client read & write
   writeItem: (url, fileContent) => {
     if (fileContent instanceof ArrayBuffer) {
