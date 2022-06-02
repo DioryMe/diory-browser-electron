@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-// import { useOpenFolderButton } from '../../buttons/useOpenFolderButton'
+import { useOpenFolderButton } from '../../buttons/useOpenFolderButton'
 
 import Image from '../../../components/diories/Image'
 
@@ -16,11 +16,11 @@ const options = {
   muted: false,
 }
 
-const ImageContent = ({ imageUrl }) => (
-  // useOpenFolderButton(imageUrl)
+const ImageContent = ({ imageUrl }) => {
+  useOpenFolderButton(imageUrl)
 
-  <Image image={imageUrl} style={defaultStyles} data-testid="image-content" {...options} />
-)
+  return <Image image={imageUrl} style={defaultStyles} data-testid="image-content" {...options} />
+}
 
 ImageContent.propTypes = {
   imageUrl: PropTypes.string,

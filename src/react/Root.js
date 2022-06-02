@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Room, ElectronClient, ElectronClientMock, RoomClient } from 'diograph-js'
 
-import Fullscreen from './components/Fullscreen'
-import GridLens from './features/lenses/grid/GridLens'
+// import Fullscreen from './components/Fullscreen'
+// import GridLens from './features/lenses/grid/GridLens'
+// import Welcome from './features/welcome/Welcome'
+import Browser from './features/browser/Browser'
 
 const Root = () => {
   const client = window.channelsApi ? new ElectronClient() : new ElectronClientMock()
@@ -19,9 +21,10 @@ const Root = () => {
 
   return (
     loadedRoom && (
-      <Fullscreen>
-        <GridLens room={loadedRoom} />
-      </Fullscreen>
+      <>
+        <Browser room={loadedRoom} />
+        {/* <Welcome /> */}
+      </>
     )
   )
 }
