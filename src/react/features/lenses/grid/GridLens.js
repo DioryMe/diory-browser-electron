@@ -55,28 +55,19 @@ const getMemories = (room, story) => {
     .filter(({ id }) => id)
 }
 
-const GridLens = ({ room }) => {
+const GridLens = () => {
   console.log('I rendered')
-  const [story, setStory] = useState(room.diograph.getDiory(room.diograph.rootId))
-  const [memories, setMemories] = useState(getMemories(room, story))
-
-  const onMemoryClick = ({ diory }) => {
-    const newStory = getStory(room, diory.id)
-    setStory(newStory)
-    setMemories(getMemories(room, newStory))
-  }
+  const { storyId } = useSelector((state) => state.navigation)
+  const { room } = useSelector((state) => state.diograph)
+  const story = getStory(room, storyId)
+  const memories = getMemories(room, story)
 
   const gridProps = {
     story,
     memories,
-    onMemoryClick,
   }
 
   return <GridView {...useTools()} {...gridProps} room={room} />
-}
-
-GridLens.propTypes = {
-  room: PropTypes.object.isRequired,
 }
 
 export default GridLens

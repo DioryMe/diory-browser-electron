@@ -3,27 +3,28 @@ import { Room, ElectronClient, ElectronClientMock, RoomClient } from 'diograph-j
 
 // import Welcome from './features/welcome/Welcome'
 import Browser from './features/browser/Browser'
+import { setRoom } from './features/diograph/diographActions'
+import { useDispatchActions } from './store'
+import { selectStory } from './features/navigation/navigationActions'
 
 const Root = () => {
   const client = window.channelsApi ? new ElectronClient() : new ElectronClientMock()
   const roomClient = new RoomClient({}, undefined, client)
-
-  const [loadedRoom, setLoadedRoom] = useState(null)
+  const { dispatch } = useDispatchActions()
 
   useEffect(() => {
     const room = new Room(roomClient)
     room.loadRoom().then(() => {
-      setLoadedRoom(room)
+      dispatch(selectStory({ id: room.diograph.rootId }))
+      dispatch(setRoom(room))
     })
   }, [])
 
   return (
-    loadedRoom && (
-      <>
-        <Browser room={loadedRoom} />
-        {/* <Welcome /> */}
-      </>
-    )
+    <>
+      <Browser />
+      {/* <Welcome /> */}
+    </>
   )
 }
 

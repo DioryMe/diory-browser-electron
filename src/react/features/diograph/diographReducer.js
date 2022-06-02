@@ -26,6 +26,7 @@ const initialState = {
 export const setRoom = (state, { payload: { room } }) => ({
   ...state,
   room,
+  loaded: true,
 })
 
 export const setStory = (state, { payload: { storyId } }) => {
