@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { useTogglePlayButtons } from '../../buttons/useTogglePlayButtons'
 import { useToggleMuteButtons } from '../../buttons/useToggleMuteButtons'
-import { getContentUrl, useContentElement } from '../contentUtils'
+import { useContentElement } from '../contentUtils'
 
 import Fullscreen from '../../../components/Fullscreen'
 import { useOpenFolderButton } from '../../buttons/useOpenFolderButton'
@@ -25,9 +25,9 @@ const options = {
 const VideoContent = ({ diory, videoUrl }) => {
   const { refCallback, contentElement } = useContentElement()
 
-  // useOpenFolderButton(videoUrl)
-  // useTogglePlayButtons(contentElement, options.autoPlay)
-  // useToggleMuteButtons(contentElement, options.muted)
+  useOpenFolderButton(videoUrl)
+  useTogglePlayButtons(contentElement, options.autoPlay)
+  useToggleMuteButtons(contentElement, options.muted)
 
   return (
     <Fullscreen>
