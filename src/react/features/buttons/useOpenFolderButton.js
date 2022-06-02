@@ -26,12 +26,12 @@ export const useOpenFolderButton = (fileUrl) => {
   useButtons(buttons)
 
   const { active } = useSelector((state) => state.buttons)
-  console.log('joo', active)
   const open = active === OPEN_BUTTON
 
   const { dispatch } = useDispatchActions()
   useEffect(() => {
     if (open) {
+      console.log('fileUrl', fileUrl)
       invokeChannel(channels.OPEN_FOLDER, fileUrl)
       dispatch(inactivateButton())
     }

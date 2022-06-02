@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Room, ElectronClient, ElectronClientMock, RoomClient } from 'diograph-js'
 
-// import Fullscreen from './components/Fullscreen'
-// import GridLens from './features/lenses/grid/GridLens'
 // import Welcome from './features/welcome/Welcome'
 import Browser from './features/browser/Browser'
 
