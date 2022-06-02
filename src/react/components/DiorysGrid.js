@@ -41,9 +41,9 @@ const DiorysGrid = forwardRef(({ diorys, scrollIntoViewId, onDrop, onClick, ...p
 
 DiorysGrid.propTypes = {
   diorys: PropTypes.array.isRequired,
+  scrollIntoViewId: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,
-  scrollIntoViewId: PropTypes.string.isRequired,
 }
 
 export default DiorysGrid

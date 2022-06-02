@@ -24,35 +24,45 @@ const GridView = ({ story, memories, scrollIntoViewId, onDrop, onStoryClick, onM
   useScrollToTopOnStoryChange(storyRef)
 
   return (
-    story && (
-      <>
-        <BackgroundDiory diory={story} />
-        <Content diory={story} />
-        <ScrollBackground>
-          <DragDropBackground
-            ref={storyRef}
-            position="relative"
-            width="100%"
-            height="80vh"
-            onClick={() => onStoryClick({ diory: story })}
-            diory={story}
-            onDrop={onDrop}
-            data-testid="story"
+    <>
+      <BackgroundDiory diory={story} />
+      <Content diory={story} />
+      <ScrollBackground>
+        <DragDropBackground
+          ref={storyRef}
+          position="relative"
+          width="100%"
+          height="80vh"
+          onClick={() => onStoryClick({ diory: story })}
+          diory={story}
+          onDrop={onDrop}
+          data-testid="story"
+        />
+        <DiorysGrid
+          ref={memoryRef}
+          diorys={memories}
+          scrollIntoViewId={scrollIntoViewId}
+          onDrop={onDrop}
+          onClick={onMemoryClick}
+        />
+        {!!memories.length && (
+          <ScrollVertically
+            data-testid="navigate-down"
+            initialRef={storyRef}
+            scrolledRef={memoryRef}
+            initialDirection="up"
+            bottom={0}
           />
-          <DiorysGrid ref={memoryRef} diorys={memories} onDrop={onDrop} onClick={onMemoryClick} />
-          {!!memories.length && (
-            <ScrollVertically
-              data-testid="navigate-down"
-              initialRef={storyRef}
-              scrolledRef={memoryRef}
-              initialDirection="up"
-              bottom={0}
-            />
-          )}
-        </ScrollBackground>
-      </>
-    )
+        )}
+      </ScrollBackground>
+    </>
   )
+}
+
+GridView.defaultProps = {
+  onStoryClick: () => {},
+  onMemoryClick: () => {},
+  onDrop: () => {},
 }
 
 GridView.propTypes = {
