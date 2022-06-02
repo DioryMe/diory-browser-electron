@@ -6,7 +6,7 @@ import GridItem from './GridItem'
 import DragDrop from './DragDrop'
 import Diory from './diories/Diory'
 
-const DiorysGrid = forwardRef(({ diorys, onDrop, onClick, ...props }, ref) => (
+const DiorysGrid = forwardRef(({ diorys, scrollIntoViewId, onDrop, onClick, ...props }, ref) => (
   <Pane
     ref={ref}
     position="relative"
@@ -18,7 +18,14 @@ const DiorysGrid = forwardRef(({ diorys, onDrop, onClick, ...props }, ref) => (
     {...props}
   >
     {diorys.map((diory) => (
-      <GridItem key={diory.id} flex="1 0 360px" height={240} padding={24} alignSelf="center">
+      <GridItem
+        key={diory.id}
+        flex="1 0 360px"
+        height={240}
+        padding={24}
+        alignSelf="center"
+        scrollIntoView={diory.id === scrollIntoViewId}
+      >
         <DragDrop id={diory.id} onDrop={onDrop} onClick={onClick}>
           <Diory
             diory={diory}
@@ -36,6 +43,7 @@ DiorysGrid.propTypes = {
   diorys: PropTypes.array.isRequired,
   onClick: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,
+  scrollIntoViewId: PropTypes.string.isRequired,
 }
 
 export default DiorysGrid

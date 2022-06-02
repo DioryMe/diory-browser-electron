@@ -19,7 +19,7 @@ const initialState = {
   loaded: false,
   updated: false,
   room: null,
-  story: null,
+  story: {},
   memories: [],
 }
 

@@ -7,36 +7,61 @@ import ScrollBackground from '../../../components/ScrollBackground'
 import DragDropBackground from '../../../components/DragDropBackground'
 import DiorysGrid from '../../../components/DiorysGrid'
 import ScrollVertically from '../../../components/ScrollVertically'
+import { useSelector } from '../../../store'
 
-const GridView = ({ story, memories, onDrop, onStoryClick, onMemoryClick }) =>
-  story && (
-    <>
-      <BackgroundDiory diory={story} />
-      <Content diory={story} />
-      <ScrollBackground>
-        <DragDropBackground
-          position="relative"
-          width="100%"
-          height="80vh"
-          onClick={() => onStoryClick({ diory: story })}
-          diory={story}
-          onDrop={onDrop}
-          data-testid="story"
-        />
-        <DiorysGrid diorys={memories} onDrop={onDrop} onClick={onMemoryClick} />
-        {!!memories.length && (
-          <ScrollVertically data-testid="navigate-down" initialDirection="up" bottom={0} />
-        )}
-      </ScrollBackground>
-    </>
+const useScrollToTopOnStoryChange = (elementRef) => {
+  const { story } = useSelector((state) => state.diograph)
+  console.log('story', story)
+  useEffect(() => {
+    elementRef.current.scrollIntoView()
+  }, [elementRef, story.id])
+}
+
+const GridView = ({ story, memories, scrollIntoViewId, onDrop, onStoryClick, onMemoryClick }) => {
+  const storyRef = useRef()
+  const memoryRef = useRef()
+
+  useScrollToTopOnStoryChange(storyRef)
+
+  return (
+    story && (
+      <>
+        <BackgroundDiory diory={story} />
+        <Content diory={story} />
+        <ScrollBackground>
+          <DragDropBackground
+            ref={storyRef}
+            position="relative"
+            width="100%"
+            height="80vh"
+            onClick={() => onStoryClick({ diory: story })}
+            diory={story}
+            onDrop={onDrop}
+            data-testid="story"
+          />
+          <DiorysGrid ref={memoryRef} diorys={memories} onDrop={onDrop} onClick={onMemoryClick} />
+          {!!memories.length && (
+            <ScrollVertically
+              data-testid="navigate-down"
+              initialRef={storyRef}
+              scrolledRef={memoryRef}
+              initialDirection="up"
+              bottom={0}
+            />
+          )}
+        </ScrollBackground>
+      </>
+    )
   )
+}
 
 GridView.propTypes = {
   story: PropTypes.object.isRequired,
   memories: PropTypes.array.isRequired,
-  onStoryClick: () => {},
-  onMemoryClick: () => {},
-  onDrop: () => {},
+  scrollIntoViewId: PropTypes.string.isRequired,
+  onStoryClick: PropTypes.func,
+  onMemoryClick: PropTypes.func,
+  onDrop: PropTypes.func,
 }
 
 export default GridView
