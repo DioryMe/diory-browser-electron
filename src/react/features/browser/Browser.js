@@ -13,6 +13,8 @@ const Browser = () => {
   const { showSearchBar } = useSelector((state) => state.search)
   const { loaded } = useSelector((state) => state.diograph)
   const { storyId } = useSelector((state) => state.navigation)
+  console.log('I am above you')
+
   return (
     loaded &&
     storyId && (

@@ -8,11 +8,11 @@ import DragDropBackground from '../../../components/DragDropBackground'
 import DiorysGrid from '../../../components/DiorysGrid'
 import ScrollVertically from '../../../components/ScrollVertically'
 
-const GridView = ({ room, story, memories, onDrop, onStoryClick, onMemoryClick }) =>
+const GridView = ({ story, memories, onDrop, onStoryClick, onMemoryClick }) =>
   story && (
     <>
       <BackgroundDiory diory={story} />
-      <ContentView diory={story} room={room} />
+      <ContentView diory={story} />
       <ScrollBackground>
         <DragDropBackground
           position="relative"
@@ -32,7 +32,6 @@ const GridView = ({ room, story, memories, onDrop, onStoryClick, onMemoryClick }
   )
 
 GridView.propTypes = {
-  room: PropTypes.object,
   story: PropTypes.object.isRequired,
   memories: PropTypes.array.isRequired,
   onStoryClick: () => {},

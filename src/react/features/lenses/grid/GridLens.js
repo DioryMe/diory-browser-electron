@@ -1,8 +1,6 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 
 import { useDispatchActions, useSelector } from '../../../store'
-import { useDiograph } from '../../diograph/useDiograph'
 import { useToggleContent } from '../../content/useToggleContent'
 
 import { useDeleteTool } from '../../tools/delete'
@@ -67,7 +65,7 @@ const GridLens = () => {
     memories,
   }
 
-  return <GridView {...useTools()} {...gridProps} room={room} />
+  return <GridView {...useTools()} {...gridProps} />
 }
 
-export default GridLens
+export default withLensContainer('grid')(GridLens)

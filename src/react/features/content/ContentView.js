@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { useSelector } from 'react-redux'
 import VideoContent from './video/VideoContent'
 import AudioContent from './audio/AudioContent'
 import DocumentContent from './document/DocumentContent'
@@ -8,9 +9,10 @@ import WebContent from './web/WebContent'
 
 import ImageContent from './image/ImageContent'
 
-const ContentView = ({ diory, room }) => {
+const ContentView = ({ diory }) => {
   const { data = [] } = diory
   const contentId = ((data && data[0]) || {}).contentUrl
+  const { room } = useSelector((state) => state.diograph)
   const contentUrl = room && room.getContent(contentId)
   const { encodingFormat, url } = (data && data[0]) || {}
 
@@ -41,7 +43,6 @@ ContentView.propTypes = {
     style: PropTypes.object,
     data: PropTypes.array,
   }).isRequired,
-  room: PropTypes.object,
 }
 
 export default ContentView
