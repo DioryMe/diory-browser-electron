@@ -9,3 +9,6 @@ export const DELETE_DIORY = 'DELETE_DIORY'
 export const CREATE_LINK = 'CREATE_LINK'
 export const DELETE_LINK = 'DELETE_LINK'
 export const DELETE_LINKS = 'DELETE_LINKS'
+
+export const SET_ROOM = 'SET_ROOM'
+export const SET_STORY = 'SET_STORY'

@@ -1,4 +1,6 @@
 import {
+  SET_ROOM,
+  SET_STORY,
   GET_DIOGRAPH,
   SAVE_DIOGRAPH,
   ADD_DIOGRAPH,
@@ -10,6 +12,16 @@ import {
   DELETE_LINKS,
 } from './diographActionTypes'
 import { getDefaultImage } from '../../../shared/getDefaultImage'
+
+export const setRoom = (room) => ({
+  type: SET_ROOM,
+  payload: { room },
+})
+
+export const setStory = (storyId) => ({
+  type: SET_STORY,
+  payload: { storyId },
+})
 
 export const getDiograph = (diograph, rootId) => ({
   type: GET_DIOGRAPH,

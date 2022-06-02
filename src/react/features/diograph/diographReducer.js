@@ -1,4 +1,6 @@
 import {
+  SET_ROOM,
+  SET_STORY,
   GET_DIOGRAPH,
   SAVE_DIOGRAPH,
   ADD_DIOGRAPH,
@@ -16,6 +18,24 @@ const initialState = {
   diograph: {},
   loaded: false,
   updated: false,
+  room: null,
+  story: null,
+  memories: [],
+}
+
+export const setRoom = (state, { payload: { room } }) => ({
+  ...state,
+  room,
+})
+
+export const setStory = (state, { payload: { storyId } }) => {
+  const story = state.room.diograph.getDiory(storyId)
+  const memories = state.room.diograph.getDioryWithLinks()
+  return {
+    ...state,
+    story,
+    memories,
+  }
 }
 
 export const getDiograph = (state, { payload: { diograph, rootId } }) => ({
@@ -114,6 +134,8 @@ export const deleteLinks = (state, { payload: deletedLinks }) =>
   )
 
 export default createReducer(initialState, {
+  [SET_ROOM]: setRoom,
+  [SET_STORY]: setStory,
   [ADD_DIOGRAPH]: addDiograph,
   [CREATE_DIORY]: createDiory,
   [DELETE_DIORY]: deleteDiory,
