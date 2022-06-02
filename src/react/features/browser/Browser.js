@@ -15,18 +15,15 @@ const Browser = () => {
   const { storyId } = useSelector((state) => state.navigation)
   console.log('I am above you')
 
-  return (
-    loaded &&
-    storyId && (
-      <Fullscreen>
-        <Navigation />
-        <Lenses right={showSearchBar ? 300 : 0} marginTop={48} />
-        <Search width={300} marginTop={48} />
-        <Tools />
-        <Buttons />
-      </Fullscreen>
-    )
-  )
+  return loaded && storyId ? (
+    <Fullscreen>
+      <Navigation />
+      <Lenses right={showSearchBar ? 300 : 0} marginTop={48} />
+      <Search width={300} marginTop={48} />
+      <Tools />
+      <Buttons />
+    </Fullscreen>
+  ) : null
 }
 
 export default Browser

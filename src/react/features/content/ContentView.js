@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { useSelector } from 'react-redux'
+import { useSelector } from '../../store'
 import VideoContent from './video/VideoContent'
 import AudioContent from './audio/AudioContent'
 import DocumentContent from './document/DocumentContent'
