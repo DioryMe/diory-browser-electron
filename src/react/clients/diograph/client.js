@@ -1,5 +1,12 @@
 import { getDefaultImage } from '../../../shared/getDefaultImage'
 
+export function saveDiograph(params) {
+  console.log('diographClient/saveDiograph', params)
+
+  // TODO: Debounce
+  return window.channelsApi.SAVE_DIOGRAPH(params)
+}
+
 export function createDiory(diory) {
   console.log('diographClient/createDiory')
 

@@ -1,6 +1,8 @@
 import {
   GET_DIOGRAPH,
-  SAVE_DIOGRAPH,
+  SAVE_DIOGRAPH_BEGIN,
+  SAVE_DIOGRAPH_SUCCESS,
+  SAVE_DIOGRAPH_FAILURE,
   ADD_DIOGRAPH,
   CREATE_DIORY,
   UPDATE_DIORY,
@@ -12,8 +14,37 @@ export const getDiograph = (diograph, rootId) => ({
   payload: { diograph, rootId },
 })
 
-export const saveDiograph = () => ({
-  type: SAVE_DIOGRAPH,
+export const saveDiograph =
+  () =>
+  async (dispatch, getState, { client }) => {
+    const { saving } = getState().diograph
+    if (!saving) {
+      dispatch(saveDiographBegin())
+      try {
+        const { dioryFolderLocation } = getState().settings
+        const { rootId, diograph } = getState().diograph
+        await client.saveDiograph({
+          dioryFolderLocation,
+          rootId,
+          diograph,
+        })
+        dispatch(saveDiographSuccess())
+      } catch (error) {
+        dispatch(saveDiographFailure(error))
+      }
+    }
+  }
+
+export const saveDiographBegin = () => ({
+  type: SAVE_DIOGRAPH_BEGIN,
+})
+
+export const saveDiographSuccess = () => ({
+  type: SAVE_DIOGRAPH_SUCCESS,
+})
+
+export const saveDiographFailure = () => ({
+  type: SAVE_DIOGRAPH_FAILURE,
 })
 
 export const addDiograph = (diograph) => ({

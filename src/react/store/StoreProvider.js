@@ -6,7 +6,9 @@ import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 
 import { reducer } from './reducer'
-import * as client from '../clients/diograph/client'
+import { createClient } from '../clients'
+
+const client = createClient()
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
