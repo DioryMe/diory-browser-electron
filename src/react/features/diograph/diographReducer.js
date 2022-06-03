@@ -1,5 +1,5 @@
 import {
-  GET_DIOGRAPH,
+  GET_DIOGRAPH_SUCCESS,
   SAVE_DIOGRAPH,
   ADD_DIOGRAPH,
   CREATE_DIORY,
@@ -15,7 +15,7 @@ const initialState = {
   updated: false,
 }
 
-export const getDiograph = (state, { payload: { diograph, rootId } }) => ({
+export const getDiographSuccess = (state, { payload: { diograph, rootId } }) => ({
   ...state,
   rootId,
   diograph,
@@ -62,7 +62,7 @@ const updateDiory = (state, { payload }) => ({
 
 export default createReducer(initialState, {
   [ADD_DIOGRAPH]: addDiograph,
-  [GET_DIOGRAPH]: getDiograph,
+  [GET_DIOGRAPH_SUCCESS]: getDiographSuccess,
   [CREATE_DIORY]: createDiory,
   [DELETE_DIORY]: deleteDiory,
   [UPDATE_DIORY]: updateDiory,
