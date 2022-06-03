@@ -1,5 +1,11 @@
 import { getDefaultImage } from '../../../shared/getDefaultImage'
 
+export function getDiograph(params) {
+  console.log('diographClient/getDiograph', params)
+
+  return window.channelsApi.GET_DIOGRAPH(params)
+}
+
 export function saveDiograph(params) {
   console.log('diographClient/saveDiograph', params)
 

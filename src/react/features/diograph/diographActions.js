@@ -1,5 +1,7 @@
 import {
-  GET_DIOGRAPH,
+  GET_DIOGRAPH_BEGIN,
+  GET_DIOGRAPH_SUCCESS,
+  GET_DIOGRAPH_FAILURE,
   SAVE_DIOGRAPH_BEGIN,
   SAVE_DIOGRAPH_SUCCESS,
   SAVE_DIOGRAPH_FAILURE,
@@ -9,9 +11,37 @@ import {
   DELETE_DIORY,
 } from './diographActionTypes'
 
-export const getDiograph = (diograph, rootId) => ({
-  type: GET_DIOGRAPH,
+import { selectStory } from '../navigation/navigationActions'
+
+export const getDiograph =
+  () =>
+  async (dispatch, getState, { client }) => {
+    const { saving } = getState().diograph
+    if (!saving) {
+      dispatch(getDiographBegin())
+      try {
+        const { dioryFolderLocation } = getState().settings
+        const { diograph, rootId } = await client.getDiograph(dioryFolderLocation)
+        dispatch(getDiographSuccess(diograph, rootId))
+        dispatch(selectStory({ id: rootId }))
+      } catch (error) {
+        dispatch(getDiographFailure(error))
+      }
+    }
+  }
+
+export const getDiographBegin = () => ({
+  type: GET_DIOGRAPH_BEGIN,
+})
+
+export const getDiographSuccess = (diograph, rootId) => ({
+  type: GET_DIOGRAPH_SUCCESS,
   payload: { diograph, rootId },
+})
+
+export const getDiographFailure = (error) => ({
+  type: GET_DIOGRAPH_FAILURE,
+  payload: { error },
 })
 
 export const saveDiograph =
@@ -43,8 +73,9 @@ export const saveDiographSuccess = () => ({
   type: SAVE_DIOGRAPH_SUCCESS,
 })
 
-export const saveDiographFailure = () => ({
+export const saveDiographFailure = (error) => ({
   type: SAVE_DIOGRAPH_FAILURE,
+  payload: { error },
 })
 
 export const addDiograph = (diograph) => ({
