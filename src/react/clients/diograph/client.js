@@ -1,4 +1,5 @@
 import { getDefaultImage } from '../../../shared/getDefaultImage'
+import { getDiories as getDioriesFunc } from './getDiories'
 
 export function getDiograph(params) {
   console.log('diographClient/getDiograph', params)
@@ -11,6 +12,12 @@ export function saveDiograph(params) {
 
   // TODO: Debounce
   return window.channelsApi.SAVE_DIOGRAPH(params)
+}
+
+export function getDiories(dioryId, diograph) {
+  console.log('diographClient/getDiories', dioryId)
+
+  return getDioriesFunc(diograph, dioryId)
 }
 
 export function createDiory(diory) {

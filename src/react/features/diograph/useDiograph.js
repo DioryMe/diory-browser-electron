@@ -42,7 +42,8 @@ const useContexts = () => {
 }
 
 export const useDiograph = () => {
-  const { storyId, memoryId } = useSelector((state) => state.navigation)
+  const { story, memories } = useSelector((state) => state.diograph)
+  const { memoryId } = useSelector((state) => state.navigation)
   const { diograph = {} } = useSelector((state) => state.diograph)
 
   const { context, contexts } = useContexts()
@@ -50,9 +51,9 @@ export const useDiograph = () => {
   return {
     context,
     contexts,
-    story: diograph[storyId],
+    story,
     stories: getLinkedDiorys(contextId, diograph),
     memory: diograph[memoryId],
-    memories: getLinkedDiorys(storyId, diograph),
+    memories,
   }
 }

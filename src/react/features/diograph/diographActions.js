@@ -2,6 +2,9 @@ import {
   GET_DIOGRAPH_BEGIN,
   GET_DIOGRAPH_SUCCESS,
   GET_DIOGRAPH_FAILURE,
+  GET_STORY_BEGIN,
+  GET_STORY_SUCCESS,
+  GET_STORY_FAILURE,
   SAVE_DIOGRAPH_BEGIN,
   SAVE_DIOGRAPH_SUCCESS,
   SAVE_DIOGRAPH_FAILURE,
@@ -41,6 +44,33 @@ export const getDiographSuccess = (diograph, rootId) => ({
 
 export const getDiographFailure = (error) => ({
   type: GET_DIOGRAPH_FAILURE,
+  payload: { error },
+})
+
+export const getStory =
+  (storyId) =>
+  async (dispatch, getState, { client }) => {
+    const { diograph } = getState().diograph
+    dispatch(getDioryStoryBegin())
+    try {
+      const [story, ...memories] = await client.getDiories(storyId, diograph)
+      dispatch(getDioryStorySuccess({ story, memories }))
+    } catch (error) {
+      dispatch(getDioryStoryFailure(error))
+    }
+  }
+
+export const getDioryStoryBegin = () => ({
+  type: GET_STORY_BEGIN,
+})
+
+export const getDioryStorySuccess = ({ story, memories }) => ({
+  type: GET_STORY_SUCCESS,
+  payload: { story, memories },
+})
+
+export const getDioryStoryFailure = (error) => ({
+  type: GET_STORY_FAILURE,
   payload: { error },
 })
 

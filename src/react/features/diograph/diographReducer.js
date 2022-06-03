@@ -1,5 +1,6 @@
 import {
   GET_DIOGRAPH_SUCCESS,
+  GET_STORY_SUCCESS,
   SAVE_DIOGRAPH,
   ADD_DIOGRAPH,
   CREATE_DIORY,
@@ -11,6 +12,9 @@ import { promiseReducers, createReducer } from '../../store'
 const initialState = {
   rootId: undefined,
   diograph: {},
+  story: {},
+  memories: [],
+  contexts: [],
   loaded: false,
   updated: false,
 }
@@ -30,6 +34,13 @@ export const addDiograph = (state, { payload: { diograph } }) => ({
     ...diograph,
   },
   updated: true,
+})
+
+export const getStorySuccess = (state, { payload }) => ({
+  ...state,
+  story: payload.story,
+  memories: payload.memories,
+  contexts: payload.contexts,
 })
 
 export const createDiory = (state, { payload }) => ({
@@ -63,6 +74,7 @@ const updateDiory = (state, { payload }) => ({
 export default createReducer(initialState, {
   [ADD_DIOGRAPH]: addDiograph,
   [GET_DIOGRAPH_SUCCESS]: getDiographSuccess,
+  [GET_STORY_SUCCESS]: getStorySuccess,
   [CREATE_DIORY]: createDiory,
   [DELETE_DIORY]: deleteDiory,
   [UPDATE_DIORY]: updateDiory,
