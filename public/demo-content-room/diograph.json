@@ -250,20 +250,7 @@
     },
     "3e2ddc49-b3b6-4212-8a0a-80b9150a57ae": {
       "id": "3e2ddc49-b3b6-4212-8a0a-80b9150a57ae",
-      "links": {
-        "PIXNIO-12656-2816x2112.jpeg": {
-          "id": "6abcc50e-422e-4802-9b14-84fcdd08f591"
-        },
-        "PIXNIO-12662-2816x2112.jpeg": {
-          "id": "e488d7e0-773f-4218-b893-2d0d164cce18"
-        },
-        "PIXNIO-12700-2816x2112.jpeg": {
-          "id": "dd1a14b9-f564-4c2c-8330-df29cd78ac45"
-        },
-        "bea0b059-413d-42a8-a7ad-62d0f252b596": {
-          "id": "bea0b059-413d-42a8-a7ad-62d0f252b596"
-        }
-      },
+      "links": {},
       "text": "Jane (person)",
       "image": "../demo-content-room/Diory Content/Jane/PIXNIO-12656-2816x2112.jpeg",
       "created": "2020-05-17T16:03:52.473Z",

@@ -49,6 +49,7 @@ contextBridge.exposeInMainWorld('channelsApi', {
   },
   readTextFile: (filePath) => readFileSync(filePath, { encoding: 'utf-8' }),
   readItem: (url) => readFileSync(url),
+  listContentSource: (path) => console.log(path),
 })
 
 contextBridge.exposeInMainWorld('processEnv', {
