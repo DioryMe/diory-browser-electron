@@ -1,8 +1,7 @@
 const { contextBridge, shell, ipcRenderer } = require('electron')
 const { fileURLToPath } = require('url')
 
-const { readFileSync, existsSync, mkdirSync, writeFileSync } = require('fs')
-const { dirname, join } = require('path')
+const { ElectronServer } = require('diograph-js')
 
 const { channels } = require('../src/shared/constants')
 
@@ -34,22 +33,14 @@ contextBridge.exposeInMainWorld('channelsApi', {
   [channels.OPEN_IN_BROWSER]: (url) => shell.openExternal(url),
   showOpenDialog: () => ipcRenderer.invoke('showOpenDialog'),
 
-  getPath: () =>
-    '/Users/Jouni/Code/electron-diograph-js/demo-content-room' || join(__dirname, 'test-folder'),
-  // Client read & write
-  writeItem: (url, fileContent) => {
-    if (fileContent instanceof ArrayBuffer) {
-      fileContent = Buffer.from(fileContent)
-    }
-    const dirPath = dirname(url)
-    if (!existsSync(dirPath)) {
-      mkdirSync(dirPath, { recursive: true })
-    }
-    return writeFileSync(url, fileContent)
-  },
-  readTextFile: (filePath) => readFileSync(filePath, { encoding: 'utf-8' }),
-  readItem: (url) => readFileSync(url),
+  ...new ElectronServer().apiActions(),
+
   listContentSource: (path) => {
+    // TODO:
+    // 1. Generate these 3 diories from real files (using image generator)
+    // 2. Convert their thumbnails to dataUrls
+    // 3. Use dynamic path for all this (how to convert/reason path from diory?)
+    // 4. What is this listContentSource? Tool? Should it be part of diograph-js library?
     console.log(path)
     return {
       '6abcc50e-422e-4802-9b14-84fcdd08f591': {
