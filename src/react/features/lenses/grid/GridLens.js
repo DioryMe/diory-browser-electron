@@ -17,7 +17,14 @@ const getMemories = (diograph, story) => {
 }
 const retrieveContentSourceList = (diory) => {
   if (window.channelsApi) {
-    return window.channelsApi.listContentSource('tööö on ppolku')
+    const newDiograph = window.channelsApi.listContentSource('tööö on ppolku')
+    const links = {}
+    Object.values(newDiograph).forEach((newDiographDiory) => {
+      links[newDiographDiory.id] = { id: newDiographDiory.id }
+    })
+    newDiograph[diory.id] = { ...diory }
+    newDiograph[diory.id].links = links
+    return newDiograph
   }
   // Mock response
   const links = {
