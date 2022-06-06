@@ -6,7 +6,7 @@ import GridItem from './GridItem'
 // import DragDrop from './DragDrop'
 import Diory from './diories/Diory'
 
-const DiorysGrid = forwardRef(({ diorys, onDrop, onClick, ...props }, ref) => (
+const DiorysGrid = forwardRef(({ diorys, onClick, ...props }, ref) => (
   <Pane
     ref={ref}
     position="relative"
@@ -19,9 +19,7 @@ const DiorysGrid = forwardRef(({ diorys, onDrop, onClick, ...props }, ref) => (
   >
     {diorys.map((diory) => (
       <GridItem key={diory.id} flex="1 0 360px" height={240} padding={24} alignSelf="center">
-        {/* <DragDrop id={diory.id} onDrop={onDrop} onClick={onClick}> */}
         <Diory diory={diory} onClick={onClick} elevation={2} aria-controls={`panel-${diory.id}`} />
-        {/* </DragDrop> */}
       </GridItem>
     ))}
   </Pane>
@@ -30,7 +28,6 @@ const DiorysGrid = forwardRef(({ diorys, onDrop, onClick, ...props }, ref) => (
 DiorysGrid.propTypes = {
   diorys: PropTypes.array.isRequired,
   onClick: PropTypes.func.isRequired,
-  onDrop: PropTypes.func.isRequired,
 }
 
 export default DiorysGrid

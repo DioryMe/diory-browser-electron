@@ -21,10 +21,15 @@ const GridLens = ({ room }) => {
     setMemories(getMemories(room, newStory))
   }
 
+  const onPreviousClick = () => {
+    console.log('prevclick')
+  }
+
   const gridProps = {
     story,
     memories,
     onMemoryClick,
+    onPreviousClick,
   }
 
   return <GridView {...gridProps} />
