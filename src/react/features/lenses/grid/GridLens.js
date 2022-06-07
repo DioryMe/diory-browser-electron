@@ -5,16 +5,9 @@ import { Button } from 'evergreen-ui'
 import GridView from './GridView'
 import Content from '../../content/Content'
 
-const retrieveContent = (diory, room) => {
-  const contentId = ((diory.data && diory.data[0]) || {}).contentUrl
-  const dioryDup = { ...diory }
-  dioryDup.contentUrl = room.getContent(contentId)
-  return dioryDup
-}
-
 const getStory = (room, dioryId) => {
   const diory = room.diograph.getDiory(dioryId)
-  return retrieveContent(diory, room)
+  return room.retrieveContent(diory)
 }
 
 const getMemories = (room, storyLinks) => {
@@ -22,7 +15,7 @@ const getMemories = (room, storyLinks) => {
     return Object.entries(storyLinks)
       .map(([key, { id }]) => ({ key, ...room.diograph.getDiory(id) }))
       .filter(({ id }) => id)
-      .map((diory) => retrieveContent(diory, room))
+      .map((diory) => room.retrieveContent(diory))
   }
   return []
 }
@@ -121,6 +114,7 @@ const GridLens = ({ room }) => {
       console.log('RETRIEVE STARTED!')
       diograph.deleteDiory(diory.id)
       const contentSourceList = await retrieveContentSourceList(diory)
+      // These new diories need diory.contentUrl to be able to show <Content />
       diograph.mergeDiograph(contentSourceList)
     }
     // Save previous story & memories
