@@ -29,7 +29,7 @@ const getMemories = (room, storyLinks) => {
 
 const retrieveContentSourceList = (diory) => {
   if (window.channelsApi) {
-    const newDiograph = window.channelsApi.listContentSource('tööö on ppolku')
+    const newDiograph = window.channelsApi.listContentSource('tööö on ppolku') // await
     const links = {}
     Object.values(newDiograph).forEach((newDiographDiory) => {
       links[newDiographDiory.id] = { id: newDiographDiory.id }
@@ -123,7 +123,8 @@ const GridLens = ({ room }) => {
     if (!newStory.data && (!newStory.links || Object.keys(newStory.links).length === 0)) {
       console.log('RETRIEVE STARTED!')
       diograph.deleteDiory(diory.id)
-      diograph.mergeDiograph(retrieveContentSourceList(diory))
+      const contentSourceList = retrieveContentSourceList(diory) // await
+      diograph.mergeDiograph(contentSourceList)
     }
     setStory(getStory(room, diory.id))
     setMemories(getMemories(room, getStory(room, diory.id).links))

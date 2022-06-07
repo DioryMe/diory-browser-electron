@@ -2,6 +2,7 @@ const { contextBridge, shell, ipcRenderer } = require('electron')
 const { fileURLToPath } = require('url')
 
 const { ElectronServer } = require('diograph-js')
+const { Generator } = require('../file-generator')
 
 const { channels } = require('../src/shared/constants')
 
@@ -41,8 +42,15 @@ contextBridge.exposeInMainWorld('channelsApi', {
     // 2. Convert their thumbnails to dataUrls
     // 3. Use dynamic path for all this (how to convert/reason path from diory?)
     // 4. What is this listContentSource? Tool? Should it be part of diograph-js library?
-    console.log(path)
+    console.log('path', path)
+
+    // const generator = new Generator()
+    // const imageDiory = await generator.generateDioryFromFile(
+    //   '../demo-content-room/Diory Content/Jane/PIXNIO-12656-2816x2112.jpeg'
+    // )
+    // console.log('imageDiory', imageDiory)
     return {
+      // 'Jane/PIXNIO-12656-2816x2112.jpeg': imageDiory,
       '6abcc50e-422e-4802-9b14-84fcdd08f591': {
         id: '6abcc50e-422e-4802-9b14-84fcdd08f591',
         image: '../demo-content-room/Diory Content/Jane/PIXNIO-12656-2816x2112.jpeg',
