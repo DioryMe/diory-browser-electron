@@ -36,7 +36,7 @@ contextBridge.exposeInMainWorld('channelsApi', {
 
   ...new ElectronServer().apiActions(),
 
-  listContentSource: (path) => {
+  listContentSource: async (path) => {
     // TODO:
     // 1. Generate these 3 diories from real files (using image generator)
     // 2. Convert their thumbnails to dataUrls
@@ -44,29 +44,29 @@ contextBridge.exposeInMainWorld('channelsApi', {
     // 4. What is this listContentSource? Tool? Should it be part of diograph-js library?
     console.log('path', path)
 
-    // const generator = new Generator()
-    // const imageDiory = await generator.generateDioryFromFile(
-    //   '../demo-content-room/Diory Content/Jane/PIXNIO-12656-2816x2112.jpeg'
-    // )
-    // console.log('imageDiory', imageDiory)
+    const generator = new Generator()
+    const imageDiory = await generator.generateDioryFromFile(
+      '../demo-content-room/Diory Content/Jane/PIXNIO-12656-2816x2112.jpeg'
+    )
+    console.log('imageDiory', imageDiory)
     return {
-      // 'Jane/PIXNIO-12656-2816x2112.jpeg': imageDiory,
-      '6abcc50e-422e-4802-9b14-84fcdd08f591': {
-        id: '6abcc50e-422e-4802-9b14-84fcdd08f591',
-        image: '../demo-content-room/Diory Content/Jane/PIXNIO-12656-2816x2112.jpeg',
-        created: '2021-02-25T12:27:27.226Z',
-        modified: '2021-02-25T12:27:27.436Z',
-        data: [
-          {
-            '@context': 'https://schema.org',
-            '@type': 'ImageObject',
-            contentUrl: 'PIXNIO-12656-2816x2112.jpeg',
-            height: 2112,
-            width: 2816,
-            encodingFormat: 'image/jpeg',
-          },
-        ],
-      },
+      'Jane/PIXNIO-12656-2816x2112.jpeg': imageDiory,
+      // '6abcc50e-422e-4802-9b14-84fcdd08f591': {
+      //   id: '6abcc50e-422e-4802-9b14-84fcdd08f591',
+      //   image: '../demo-content-room/Diory Content/Jane/PIXNIO-12656-2816x2112.jpeg',
+      //   created: '2021-02-25T12:27:27.226Z',
+      //   modified: '2021-02-25T12:27:27.436Z',
+      //   data: [
+      //     {
+      //       '@context': 'https://schema.org',
+      //       '@type': 'ImageObject',
+      //       contentUrl: 'PIXNIO-12656-2816x2112.jpeg',
+      //       height: 2112,
+      //       width: 2816,
+      //       encodingFormat: 'image/jpeg',
+      //     },
+      //   ],
+      // },
       'e488d7e0-773f-4218-b893-2d0d164cce18': {
         id: 'e488d7e0-773f-4218-b893-2d0d164cce18',
         image: '../demo-content-room/Diory Content/Jane/PIXNIO-12662-2816x2112.jpeg',

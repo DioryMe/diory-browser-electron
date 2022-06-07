@@ -27,9 +27,9 @@ const getMemories = (room, storyLinks) => {
   return []
 }
 
-const retrieveContentSourceList = (diory) => {
+const retrieveContentSourceList = async (diory) => {
   if (window.channelsApi) {
-    const newDiograph = window.channelsApi.listContentSource('tööö on ppolku') // await
+    const newDiograph = await window.channelsApi.listContentSource('tööö on ppolku')
     const links = {}
     Object.values(newDiograph).forEach((newDiographDiory) => {
       links[newDiographDiory.id] = { id: newDiographDiory.id }
@@ -115,19 +115,25 @@ const GridLens = ({ room }) => {
   const [prevMemories, setPrevMemories] = useState([])
 
   const onMemoryClick = ({ diory }) => {
-    // Save previous story & memories
-    setPrevStory(prevStory.concat([story]))
-    setPrevMemories(prevMemories.concat([memories]))
     // Retrieve new story & memories by diory.id
     const newStory = getStory(room, diory.id)
     if (!newStory.data && (!newStory.links || Object.keys(newStory.links).length === 0)) {
       console.log('RETRIEVE STARTED!')
       diograph.deleteDiory(diory.id)
-      const contentSourceList = retrieveContentSourceList(diory) // await
-      diograph.mergeDiograph(contentSourceList)
+      retrieveContentSourceList(diory).then((contentSourceList) => {
+        diograph.mergeDiograph(contentSourceList)
+        setPrevStory(prevStory.concat([story]))
+        setPrevMemories(prevMemories.concat([memories]))
+        setStory(getStory(room, diory.id))
+        setMemories(getMemories(room, getStory(room, diory.id).links))
+      })
+    } else {
+      // Save previous story & memories
+      setPrevStory(prevStory.concat([story]))
+      setPrevMemories(prevMemories.concat([memories]))
+      setStory(getStory(room, diory.id))
+      setMemories(getMemories(room, getStory(room, diory.id).links))
     }
-    setStory(getStory(room, diory.id))
-    setMemories(getMemories(room, getStory(room, diory.id).links))
   }
 
   const onPreviousClick = () => {
