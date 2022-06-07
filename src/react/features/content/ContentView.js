@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { useSelector } from '../../store'
 import VideoContent from './video/VideoContent'
 import AudioContent from './audio/AudioContent'
 import DocumentContent from './document/DocumentContent'
@@ -11,9 +10,7 @@ import ImageContent from './image/ImageContent'
 
 const ContentView = ({ diory }) => {
   const { data = [] } = diory
-  const contentId = ((data && data[0]) || {}).contentUrl
-  const { room } = useSelector((state) => state.diograph)
-  const contentUrl = room && room.getContent(contentId)
+  const { contentUrl } = diory
   const { encodingFormat, url } = (data && data[0]) || {}
 
   switch (encodingFormat) {
@@ -41,6 +38,7 @@ ContentView.propTypes = {
   diory: PropTypes.shape({
     image: PropTypes.string,
     style: PropTypes.object,
+    contentUrl: PropTypes.string,
     data: PropTypes.array,
   }).isRequired,
 }

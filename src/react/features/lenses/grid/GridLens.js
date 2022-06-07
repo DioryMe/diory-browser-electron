@@ -5,16 +5,28 @@ import { Button } from 'evergreen-ui'
 import GridView from './GridView'
 import Content from '../../content/Content'
 
-const getStory = (diograph, dioryId) => diograph.getDiory(dioryId)
+const retrieveContent = (diory, room) => {
+  const contentId = ((diory.data && diory.data[0]) || {}).contentUrl
+  const dioryDup = { ...diory }
+  dioryDup.contentUrl = room.getContent(contentId)
+  return dioryDup
+}
 
-const getMemories = (diograph, story) => {
-  if (story.links) {
-    return Object.entries(story.links)
-      .map(([key, { id }]) => ({ key, ...diograph.getDiory(id) }))
+const getStory = (room, dioryId) => {
+  const diory = room.diograph.getDiory(dioryId)
+  return retrieveContent(diory, room)
+}
+
+const getMemories = (room, storyLinks) => {
+  if (storyLinks) {
+    return Object.entries(storyLinks)
+      .map(([key, { id }]) => ({ key, ...room.diograph.getDiory(id) }))
       .filter(({ id }) => id)
+      .map((diory) => retrieveContent(diory, room))
   }
   return []
 }
+
 const retrieveContentSourceList = (diory) => {
   if (window.channelsApi) {
     const newDiograph = window.channelsApi.listContentSource('tööö on ppolku')
@@ -97,9 +109,9 @@ const retrieveContentSourceList = (diory) => {
 const GridLens = ({ room }) => {
   console.log('I rendered')
   const { diograph } = room
-  const [story, setStory] = useState(diograph.getDiory(diograph.rootId))
+  const [story, setStory] = useState(getStory(room, diograph.rootId))
   const [prevStory, setPrevStory] = useState([])
-  const [memories, setMemories] = useState(getMemories(diograph, story))
+  const [memories, setMemories] = useState(getMemories(room, story.links))
   const [prevMemories, setPrevMemories] = useState([])
 
   const onMemoryClick = ({ diory }) => {
@@ -107,14 +119,14 @@ const GridLens = ({ room }) => {
     setPrevStory(prevStory.concat([story]))
     setPrevMemories(prevMemories.concat([memories]))
     // Retrieve new story & memories by diory.id
-    const newStory = getStory(diograph, diory.id)
+    const newStory = getStory(room, diory.id)
     if (!newStory.data && (!newStory.links || Object.keys(newStory.links).length === 0)) {
       console.log('RETRIEVE STARTED!')
       diograph.deleteDiory(diory.id)
       diograph.mergeDiograph(retrieveContentSourceList(diory))
     }
-    setStory(getStory(diograph, diory.id))
-    setMemories(getMemories(diograph, getStory(diograph, diory.id)))
+    setStory(getStory(room, diory.id))
+    setMemories(getMemories(room, getStory(room, diory.id).links))
   }
 
   const onPreviousClick = () => {
