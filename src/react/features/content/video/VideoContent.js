@@ -25,9 +25,9 @@ const options = {
 const VideoContent = ({ diory, videoUrl }) => {
   const { refCallback, contentElement } = useContentElement()
 
-  useOpenFolderButton(videoUrl)
-  useTogglePlayButtons(contentElement, options.autoPlay)
-  useToggleMuteButtons(contentElement, options.muted)
+  // useOpenFolderButton(videoUrl)
+  // useTogglePlayButtons(contentElement, options.autoPlay)
+  // useToggleMuteButtons(contentElement, options.muted)
 
   return (
     <Fullscreen>
