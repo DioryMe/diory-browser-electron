@@ -4,7 +4,7 @@ const { join } = require('path')
 const { readdirSync } = require('fs')
 
 const { ElectronServer } = require('diograph-js')
-const { Generator } = require('../file-generator')
+const { Generator, getDefaultImage } = require('../file-generator')
 
 const { channels } = require('../src/shared/constants')
 
@@ -39,17 +39,25 @@ contextBridge.exposeInMainWorld('channelsApi', {
   ...new ElectronServer().apiActions(),
 
   listContentSource: async (path) => {
-    const folderPath = '../demo-content-room/Diory Content/Jane/'
-    const folderList = readdirSync(folderPath)
+    const folderPath = '../demo-content-room/Diory Content/'
+    const folderList = readdirSync(folderPath, { withFileTypes: true })
 
     const generator = new Generator()
     const dioryArray = await Promise.all(
-      folderList.map(async (fileName) => {
+      folderList.map(async (dirent) => {
+        const fileName = dirent.name
         const filePath = join(folderPath, fileName)
-        const diory = await generator.generateDioryFromFile(filePath)
-        const dataUrl = `data:image/jpeg;base64,${diory.thumbnailBuffer.toString('base64')}`
-        diory.image = dataUrl
-        return { [fileName]: diory }
+        if (dirent.isFile()) {
+          const diory = await generator.generateDioryFromFile(filePath)
+          const dataUrl = diory.thumbnailBuffer
+            ? `data:image/jpeg;base64,${diory.thumbnailBuffer.toString('base64')}`
+            : getDefaultImage()
+          diory.image = dataUrl
+          return { [fileName]: diory }
+        }
+        if (dirent.isDirectory()) {
+          return { [fileName]: { id: fileName, image: getDefaultImage(), text: fileName } }
+        }
       })
     )
     return dioryArray.reduce((current, cum) => ({ ...current, ...cum }), {})
