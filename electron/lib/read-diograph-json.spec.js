@@ -4,7 +4,7 @@ const { readDiographJson } = require('./read-diograph-json')
 describe('readDiographJson', () => {
   describe('returns diograph object', () => {
     it('valid diograph.json path', async () => {
-      const diographJsonPath = './public/diory-demo-content/diograph.json'
+      const diographJsonPath = './public/demo-content-room/diograph.json'
 
       const response = await readDiographJson({ diographJsonPath })
 
@@ -27,7 +27,7 @@ describe('readDiographJson', () => {
     })
 
     it('folder path only (although diograph.json inside)', async () => {
-      diographJsonPath = './public/diory-demo-content'
+      diographJsonPath = './public/demo-content-room'
     })
 
     it('non-json text file', async () => {

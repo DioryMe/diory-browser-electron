@@ -17,7 +17,7 @@ describe('getDiograph', () => {
 
   describe('returns readDiographJson return value', () => {
     it('valid diory folder location', async () => {
-      const dioryFolderLocation = './public/diory-demo-content'
+      const dioryFolderLocation = './public/demo-content-room'
 
       const response = await getDiograph(dioryFolderLocation)
 
