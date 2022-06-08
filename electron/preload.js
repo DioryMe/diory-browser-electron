@@ -1,9 +1,9 @@
 const { contextBridge, shell, ipcRenderer } = require('electron')
 const { fileURLToPath } = require('url')
-
-const { ElectronServer } = require('diograph-js')
 const { join } = require('path')
 const { readdirSync } = require('fs')
+
+const { ElectronServer } = require('diograph-js')
 const { Generator } = require('../file-generator')
 
 const { channels } = require('../src/shared/constants')
@@ -39,94 +39,20 @@ contextBridge.exposeInMainWorld('channelsApi', {
   ...new ElectronServer().apiActions(),
 
   listContentSource: async (path) => {
-    // TODO:
-    // 1. Generate these 3 diories from real files (using image generator)
-    // 2. Convert their thumbnails to dataUrls
-    // 3. Use dynamic path for all this (how to convert/reason path from diory?)
-    // 4. What is this listContentSource? Tool? Should it be part of diograph-js library?
-    console.log('path', path)
+    const folderPath = '../demo-content-room/Diory Content/Jane/'
+    const folderList = readdirSync(folderPath)
 
     const generator = new Generator()
-
-    // TODO: Use readdir to list the files in folderPath
-    //        => then iterate and return dynamic diograph that way!
-    const folderPath = '../demo-content-room/Diory Content/Jane/'
-
-    const folderList = readdirSync(folderPath)
-    console.log(folderList)
     const dioryArray = await Promise.all(
-      folderList.map(async (filePat) => {
-        const absolutePath = join(folderPath, filePat)
-        console.log(absolutePath)
-        const diory = await generator.generateDioryFromFile(absolutePath)
+      folderList.map(async (fileName) => {
+        const filePath = join(folderPath, fileName)
+        const diory = await generator.generateDioryFromFile(filePath)
         const dataUrl = `data:image/jpeg;base64,${diory.thumbnailBuffer.toString('base64')}`
         diory.image = dataUrl
-        return { [filePat]: diory }
+        return { [fileName]: diory }
       })
     )
-    const diograph = dioryArray.reduce((current, cum) => ({ ...current, ...cum }), {})
-    console.log('diograph', diograph)
-    return diograph
-    /*
-    const imageDiory = await generator.generateDioryFromFile(
-      join(folderPath, 'PIXNIO-12656-2816x2112.jpeg')
-    )
-    console.log('imageDiory', imageDiory)
-    const dataUrl = `data:image/png;base64,${imageDiory.thumbnailBuffer.toString('base64')}`
-    console.log(dataUrl)
-    imageDiory.image = dataUrl
-    return {
-      'Jane/PIXNIO-12656-2816x2112.jpeg': imageDiory,
-      // '6abcc50e-422e-4802-9b14-84fcdd08f591': {
-      //   id: '6abcc50e-422e-4802-9b14-84fcdd08f591',
-      //   image: '../demo-content-room/Diory Content/Jane/PIXNIO-12656-2816x2112.jpeg',
-      //   created: '2021-02-25T12:27:27.226Z',
-      //   modified: '2021-02-25T12:27:27.436Z',
-      //   data: [
-      //     {
-      //       '@context': 'https://schema.org',
-      //       '@type': 'ImageObject',
-      //       contentUrl: 'PIXNIO-12656-2816x2112.jpeg',
-      //       height: 2112,
-      //       width: 2816,
-      //       encodingFormat: 'image/jpeg',
-      //     },
-      //   ],
-      // },
-      'e488d7e0-773f-4218-b893-2d0d164cce18': {
-        id: 'e488d7e0-773f-4218-b893-2d0d164cce18',
-        image: '../demo-content-room/Diory Content/Jane/PIXNIO-12662-2816x2112.jpeg',
-        created: '2021-02-25T12:27:27.441Z',
-        modified: '2021-02-25T12:27:27.467Z',
-        data: [
-          {
-            '@context': 'https://schema.org',
-            '@type': 'ImageObject',
-            contentUrl: 'PIXNIO-12662-2816x2112.jpeg',
-            height: 2112,
-            width: 2816,
-            encodingFormat: 'image/jpeg',
-          },
-        ],
-      },
-      'dd1a14b9-f564-4c2c-8330-df29cd78ac45': {
-        id: 'dd1a14b9-f564-4c2c-8330-df29cd78ac45',
-        image: '../demo-content-room/Diory Content/Jane/PIXNIO-12700-2816x2112.jpeg',
-        created: '2021-02-25T12:27:27.474Z',
-        modified: '2021-02-25T12:27:27.483Z',
-        data: [
-          {
-            '@context': 'https://schema.org',
-            '@type': 'ImageObject',
-            contentUrl: 'PIXNIO-12700-2816x2112.jpeg',
-            height: 2112,
-            width: 2816,
-            encodingFormat: 'image/jpeg',
-          },
-        ],
-      },
-    }
-    */
+    return dioryArray.reduce((current, cum) => ({ ...current, ...cum }), {})
   },
 })
 
