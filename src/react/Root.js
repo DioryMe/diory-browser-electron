@@ -9,10 +9,12 @@ const Root = () => {
   const roomClient = new RoomClient({}, undefined, client)
 
   const [loadedRoom, setLoadedRoom] = useState(null)
+  const [contentSourceAddress, setContentSourceAddress] = useState(null)
 
   useEffect(() => {
     const room = new Room(roomClient)
     room.initiateRoom().then(() => {
+      setContentSourceAddress('/Users/Jouni/Code/diory-browser-electron/demo-content-room')
       setLoadedRoom(room)
     })
   }, [])
@@ -20,7 +22,7 @@ const Root = () => {
   return (
     loadedRoom && (
       <Fullscreen>
-        <GridLens room={loadedRoom} />
+        <GridLens room={loadedRoom} contentSourceAddress={contentSourceAddress} />
       </Fullscreen>
     )
   )

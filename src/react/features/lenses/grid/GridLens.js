@@ -112,9 +112,8 @@ const retrieveMoreDiories = async (story, diograph, contentSourceAddress) => {
   }
 }
 
-const GridLens = ({ room }) => {
+const GridLens = ({ room, contentSourceAddress }) => {
   console.log('I rendered')
-  const contentSourceAddress = '/Users/Jouni/Code/diory-browser-electron/demo-content-room'
 
   const { diograph } = room
   // TODO: Combine component state to a single property
@@ -170,6 +169,7 @@ const GridLens = ({ room }) => {
 
 GridLens.propTypes = {
   room: PropTypes.object.isRequired,
+  contentSourceAddress: PropTypes.string.isRequired,
 }
 
 export default GridLens
