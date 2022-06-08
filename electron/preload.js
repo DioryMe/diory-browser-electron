@@ -2,6 +2,7 @@ const { contextBridge, shell, ipcRenderer } = require('electron')
 const { fileURLToPath } = require('url')
 
 const { ElectronServer } = require('diograph-js')
+const { join } = require('path')
 const { Generator } = require('../file-generator')
 
 const { channels } = require('../src/shared/constants')
@@ -45,8 +46,12 @@ contextBridge.exposeInMainWorld('channelsApi', {
     console.log('path', path)
 
     const generator = new Generator()
+
+    // TODO: Use readdir to list the files in folderPath
+    //        => then iterate and return dynamic diograph that way!
+    const folderPath = '../demo-content-room/Diory Content/Jane/'
     const imageDiory = await generator.generateDioryFromFile(
-      '../demo-content-room/Diory Content/Jane/PIXNIO-12656-2816x2112.jpeg'
+      join(folderPath, 'PIXNIO-12656-2816x2112.jpeg')
     )
     console.log('imageDiory', imageDiory)
     return {
