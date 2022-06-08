@@ -38,8 +38,9 @@ contextBridge.exposeInMainWorld('channelsApi', {
 
   ...new ElectronServer().apiActions(),
 
-  listContentSource: async (path) => {
-    const folderPath = '../demo-content-room/Diory Content/'
+  listContentSource: async (dioryId, contentSourceAddress) => {
+    dioryId = dioryId === 'some-diory-id' ? '/' : dioryId
+    const folderPath = join(contentSourceAddress, dioryId)
     const folderList = readdirSync(folderPath, { withFileTypes: true })
 
     const generator = new Generator()
@@ -53,10 +54,14 @@ contextBridge.exposeInMainWorld('channelsApi', {
             ? `data:image/jpeg;base64,${diory.thumbnailBuffer.toString('base64')}`
             : getDefaultImage()
           diory.image = dataUrl
-          return { [fileName]: diory }
+          diory.id = join(dioryId, fileName)
+          return { [diory.id]: diory }
         }
         if (dirent.isDirectory()) {
-          return { [fileName]: { id: fileName, image: getDefaultImage(), text: fileName } }
+          const folderDioryId = join(dioryId, fileName)
+          return {
+            [folderDioryId]: { id: folderDioryId, image: getDefaultImage(), text: fileName },
+          }
         }
       })
     )

@@ -20,10 +20,10 @@ const getMemories = (room, storyLinks) => {
   return []
 }
 
-const retrieveContentSourceList = async (diory) => {
+const retrieveContentSourceList = async (diory, contentSourceAddress) => {
   // TODO: How to derive path for listContentSource based on diory?!!?
   if (window.channelsApi) {
-    const newDiograph = await window.channelsApi.listContentSource('tööö on ppolku')
+    const newDiograph = await window.channelsApi.listContentSource(diory.id, contentSourceAddress)
     const links = {}
     Object.values(newDiograph).forEach((newDiographDiory) => {
       links[newDiographDiory.id] = { id: newDiographDiory.id }
@@ -100,12 +100,12 @@ const retrieveContentSourceList = async (diory) => {
   return newDiograph
 }
 
-const retrieveMoreDiories = async (story, diograph) => {
+const retrieveMoreDiories = async (story, diograph, contentSourceAddress) => {
   // Retrieve missing diories to diograph
   if (!story.data && (!story.links || Object.keys(story.links).length === 0)) {
     console.log('RETRIEVE STARTED!')
     diograph.deleteDiory(story.id)
-    const contentSourceList = await retrieveContentSourceList(story)
+    const contentSourceList = await retrieveContentSourceList(story, contentSourceAddress)
     // TODO: These new diories need story.contentUrl to be able to show <Content />
     // - requires also adding contentUrl to Connection => no Connections here yet!!g
     diograph.mergeDiograph(contentSourceList)
@@ -114,6 +114,8 @@ const retrieveMoreDiories = async (story, diograph) => {
 
 const GridLens = ({ room }) => {
   console.log('I rendered')
+  const contentSourceAddress = '/Users/Jouni/Code/diory-browser-electron/demo-content-room'
+
   const { diograph } = room
   // TODO: Combine component state to a single property
   // => no additional renders as they are updated always together...
@@ -124,7 +126,7 @@ const GridLens = ({ room }) => {
 
   useEffect(() => {
     const rootStory = getStory(room, diograph.rootId)
-    retrieveMoreDiories(rootStory, diograph).then(() => {
+    retrieveMoreDiories(rootStory, diograph, contentSourceAddress).then(() => {
       const updatedRootStory = getStory(room, rootStory.id)
       setStory(updatedRootStory)
       setMemories(getMemories(room, updatedRootStory.links))
@@ -132,7 +134,7 @@ const GridLens = ({ room }) => {
   }, [])
 
   const onMemoryClick = ({ diory }) => {
-    retrieveMoreDiories(diory, diograph).then(() => {
+    retrieveMoreDiories(diory, diograph, contentSourceAddress).then(() => {
       // Save previous story & memories
       setPrevStory(prevStory.concat([story]))
       setPrevMemories(prevMemories.concat([memories]))
