@@ -4,6 +4,13 @@ import { Room, ElectronClient, ElectronClientMock, RoomClient } from 'diograph-j
 import Fullscreen from './components/Fullscreen'
 import GridLens from './features/lenses/grid/GridLens'
 
+const selectContentSourceAddress = async () => {
+  if (!window.channelsApi) {
+    return '/Users/Jouni/Code/diory-browser-electron/demo-content-room'
+  }
+  return window.channelsApi.showOpenDialog().then(({ filePaths }) => filePaths[0])
+}
+
 const Root = () => {
   const client = window.channelsApi ? new ElectronClient() : new ElectronClientMock()
   const roomClient = new RoomClient({}, undefined, client)
@@ -13,9 +20,11 @@ const Root = () => {
 
   useEffect(() => {
     const room = new Room(roomClient)
-    room.initiateRoom().then(() => {
-      setContentSourceAddress('/Users/Jouni/Code/diory-browser-electron/demo-content-room')
-      setLoadedRoom(room)
+    selectContentSourceAddress().then((contentSourceAddress) => {
+      room.initiateRoom().then(() => {
+        setContentSourceAddress(contentSourceAddress)
+        setLoadedRoom(room)
+      })
     })
   }, [])
 
