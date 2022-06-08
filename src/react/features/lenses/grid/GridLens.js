@@ -161,7 +161,9 @@ const GridLens = ({ room, contentSourceAddress }) => {
     memories && (
       <>
         {story.data ? <Content diory={story} /> : <GridView {...gridProps} />}
-        <Button onClick={onPreviousClick}>---- GO BACK ----</Button>
+        <Button disabled={story.id === 'some-diory-id'} onClick={onPreviousClick}>
+          ---- GO BACK ----
+        </Button>
       </>
     )
   )
