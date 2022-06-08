@@ -54,6 +54,9 @@ contextBridge.exposeInMainWorld('channelsApi', {
       join(folderPath, 'PIXNIO-12656-2816x2112.jpeg')
     )
     console.log('imageDiory', imageDiory)
+    const dataUrl = `data:image/png;base64,${imageDiory.thumbnailBuffer.toString('base64')}`
+    console.log(dataUrl)
+    imageDiory.image = dataUrl
     return {
       'Jane/PIXNIO-12656-2816x2112.jpeg': imageDiory,
       // '6abcc50e-422e-4802-9b14-84fcdd08f591': {
