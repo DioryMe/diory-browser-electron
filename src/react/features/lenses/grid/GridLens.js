@@ -114,7 +114,8 @@ const GridLens = ({ room }) => {
       console.log('RETRIEVE STARTED!')
       diograph.deleteDiory(diory.id)
       const contentSourceList = await retrieveContentSourceList(diory)
-      // These new diories need diory.contentUrl to be able to show <Content />
+      // TODO: These new diories need diory.contentUrl to be able to show <Content />
+      // - requires also adding contentUrl to Connection => no Connections here yet!!g
       diograph.mergeDiograph(contentSourceList)
     }
     // Save previous story & memories
