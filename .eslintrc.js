@@ -42,7 +42,7 @@ module.exports = {
     'consistent-return': ['off'], // Personal opinion
     'no-underscore-dangle': ['off'],
     'import/no-extraneous-dependencies': ['warn', { devDependencies: true }],
-    'arrow-body-style': ['error', 'as-needed'],
+    // 'arrow-body-style': ['error', 'as-needed'],
     'prefer-destructuring': [
       'error',
       {
