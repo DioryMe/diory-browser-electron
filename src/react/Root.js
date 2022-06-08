@@ -5,10 +5,10 @@ import Fullscreen from './components/Fullscreen'
 import GridLens from './features/lenses/grid/GridLens'
 
 const selectContentSourceAddress = async () => {
-  if (!window.channelsApi) {
-    return '/Users/Jouni/Code/diory-browser-electron/demo-content-room'
-  }
-  return window.channelsApi.showOpenDialog().then(({ filePaths }) => filePaths[0])
+  // if (!window.channelsApi) {
+  return '/Users/Jouni/Code/diory-browser-electron/demo-content-room'
+  // }
+  // return window.channelsApi.showOpenDialog().then(({ filePaths }) => filePaths[0])
 }
 
 const Root = () => {
@@ -21,7 +21,8 @@ const Root = () => {
   useEffect(() => {
     const room = new Room(roomClient)
     selectContentSourceAddress().then((contentSourceAddress) => {
-      room.initiateRoom().then(() => {
+      // room.initiateRoom().then(() => {
+      room.loadRoom().then(() => {
         setContentSourceAddress(contentSourceAddress)
         setLoadedRoom(room)
       })
