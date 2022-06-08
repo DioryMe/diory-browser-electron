@@ -116,52 +116,58 @@ const GridLens = ({ room, contentSourceAddress }) => {
   console.log('I rendered')
 
   const { diograph } = room
-  // TODO: Combine component state to a single property
-  // => no additional renders as they are updated always together...
-  const [story, setStory] = useState(null)
-  const [prevStory, setPrevStory] = useState([])
-  const [memories, setMemories] = useState(null)
-  const [prevMemories, setPrevMemories] = useState([])
+  const [storyState, setStoryState] = useState({
+    story: null,
+    memories: [],
+    prevStory: [],
+    prevMemories: [],
+  })
 
   useEffect(() => {
     const rootStory = getStory(room, diograph.rootId)
     retrieveMoreDiories(rootStory, diograph, contentSourceAddress).then(() => {
       const updatedRootStory = getStory(room, rootStory.id)
-      setStory(updatedRootStory)
-      setMemories(getMemories(room, updatedRootStory.links))
+      setStoryState({
+        ...storyState,
+        story: updatedRootStory,
+        memories: getMemories(room, updatedRootStory.links),
+      })
     })
   }, [])
 
   const onMemoryClick = ({ diory }) => {
     retrieveMoreDiories(diory, diograph, contentSourceAddress).then(() => {
-      // Save previous story & memories
-      setPrevStory(prevStory.concat([story]))
-      setPrevMemories(prevMemories.concat([memories]))
-      // Set previous story & memories
-      setStory(getStory(room, diory.id))
-      setMemories(getMemories(room, getStory(room, diory.id).links))
+      setStoryState({
+        ...storyState,
+        story: getStory(room, diory.id),
+        memories: getMemories(room, getStory(room, diory.id).links),
+        prevStory: storyState.prevStory.concat([storyState.story]),
+        prevMemories: storyState.prevMemories.concat([storyState.memories]),
+      })
     })
   }
 
   const onPreviousClick = () => {
-    setStory(prevStory[prevStory.length - 1])
-    setMemories(prevMemories[prevMemories.length - 1])
-    setPrevStory(prevStory.slice(0, prevStory.length - 1))
-    setPrevMemories(prevMemories.slice(0, prevMemories.length - 1))
+    setStoryState({
+      ...storyState,
+      story: storyState.prevStory[storyState.prevStory.length - 1],
+      memories: storyState.prevMemories[storyState.prevMemories.length - 1],
+      prevStory: storyState.prevStory.slice(0, storyState.prevStory.length - 1),
+      prevMemories: storyState.prevMemories.slice(0, storyState.prevMemories.length - 1),
+    })
   }
 
   const gridProps = {
-    story,
-    memories,
+    story: storyState.story,
+    memories: storyState.memories,
     onMemoryClick,
   }
 
   return (
-    story &&
-    memories && (
+    gridProps.story && (
       <>
-        {story.data ? <Content diory={story} /> : <GridView {...gridProps} />}
-        <Button disabled={story.id === 'some-diory-id'} onClick={onPreviousClick}>
+        {gridProps.story.data ? <Content diory={gridProps.story} /> : <GridView {...gridProps} />}
+        <Button disabled={gridProps.story.id === 'some-diory-id'} onClick={onPreviousClick}>
           ---- GO BACK ----
         </Button>
       </>
