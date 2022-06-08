@@ -3,6 +3,7 @@ const { fileURLToPath } = require('url')
 
 const { ElectronServer } = require('diograph-js')
 const { join } = require('path')
+const { readdirSync } = require('fs')
 const { Generator } = require('../file-generator')
 
 const { channels } = require('../src/shared/constants')
@@ -50,6 +51,23 @@ contextBridge.exposeInMainWorld('channelsApi', {
     // TODO: Use readdir to list the files in folderPath
     //        => then iterate and return dynamic diograph that way!
     const folderPath = '../demo-content-room/Diory Content/Jane/'
+
+    const folderList = readdirSync(folderPath)
+    console.log(folderList)
+    const dioryArray = await Promise.all(
+      folderList.map(async (filePat) => {
+        const absolutePath = join(folderPath, filePat)
+        console.log(absolutePath)
+        const diory = await generator.generateDioryFromFile(absolutePath)
+        const dataUrl = `data:image/jpeg;base64,${diory.thumbnailBuffer.toString('base64')}`
+        diory.image = dataUrl
+        return { [filePat]: diory }
+      })
+    )
+    const diograph = dioryArray.reduce((current, cum) => ({ ...current, ...cum }), {})
+    console.log('diograph', diograph)
+    return diograph
+    /*
     const imageDiory = await generator.generateDioryFromFile(
       join(folderPath, 'PIXNIO-12656-2816x2112.jpeg')
     )
@@ -108,6 +126,7 @@ contextBridge.exposeInMainWorld('channelsApi', {
         ],
       },
     }
+    */
   },
 })
 
