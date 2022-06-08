@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { Button } from 'evergreen-ui'
@@ -6,8 +6,8 @@ import GridView from './GridView'
 import Content from '../../content/Content'
 
 const getStory = (room, dioryId) => {
-  const diory = room.diograph.getDiory(dioryId)
-  return room.retrieveContent(diory)
+  const story = room.diograph.getDiory(dioryId)
+  return room.retrieveContent(story)
 }
 
 const getMemories = (room, storyLinks) => {
@@ -21,6 +21,7 @@ const getMemories = (room, storyLinks) => {
 }
 
 const retrieveContentSourceList = async (diory) => {
+  // TODO: How to derive path for listContentSource based on diory?!!?
   if (window.channelsApi) {
     const newDiograph = await window.channelsApi.listContentSource('tööö on ppolku')
     const links = {}
@@ -99,30 +100,46 @@ const retrieveContentSourceList = async (diory) => {
   return newDiograph
 }
 
+const retrieveMoreDiories = async (story, diograph) => {
+  // Retrieve missing diories to diograph
+  if (!story.data && (!story.links || Object.keys(story.links).length === 0)) {
+    console.log('RETRIEVE STARTED!')
+    diograph.deleteDiory(story.id)
+    const contentSourceList = await retrieveContentSourceList(story)
+    // TODO: These new diories need story.contentUrl to be able to show <Content />
+    // - requires also adding contentUrl to Connection => no Connections here yet!!g
+    diograph.mergeDiograph(contentSourceList)
+  }
+}
+
 const GridLens = ({ room }) => {
   console.log('I rendered')
   const { diograph } = room
-  const [story, setStory] = useState(getStory(room, diograph.rootId))
+  // TODO: Combine component state to a single property
+  // => no additional renders as they are updated always together...
+  const [story, setStory] = useState(null)
   const [prevStory, setPrevStory] = useState([])
-  const [memories, setMemories] = useState(getMemories(room, story.links))
+  const [memories, setMemories] = useState(null)
   const [prevMemories, setPrevMemories] = useState([])
 
-  const onMemoryClick = async ({ diory }) => {
-    // Retrieve new story & memories by diory.id
-    const newStory = getStory(room, diory.id)
-    if (!newStory.data && (!newStory.links || Object.keys(newStory.links).length === 0)) {
-      console.log('RETRIEVE STARTED!')
-      diograph.deleteDiory(diory.id)
-      const contentSourceList = await retrieveContentSourceList(diory)
-      // TODO: These new diories need diory.contentUrl to be able to show <Content />
-      // - requires also adding contentUrl to Connection => no Connections here yet!!g
-      diograph.mergeDiograph(contentSourceList)
-    }
-    // Save previous story & memories
-    setPrevStory(prevStory.concat([story]))
-    setPrevMemories(prevMemories.concat([memories]))
-    setStory(getStory(room, diory.id))
-    setMemories(getMemories(room, getStory(room, diory.id).links))
+  useEffect(() => {
+    const rootStory = getStory(room, diograph.rootId)
+    retrieveMoreDiories(rootStory, diograph).then(() => {
+      const updatedRootStory = getStory(room, rootStory.id)
+      setStory(updatedRootStory)
+      setMemories(getMemories(room, updatedRootStory.links))
+    })
+  }, [])
+
+  const onMemoryClick = ({ diory }) => {
+    retrieveMoreDiories(diory, diograph).then(() => {
+      // Save previous story & memories
+      setPrevStory(prevStory.concat([story]))
+      setPrevMemories(prevMemories.concat([memories]))
+      // Set previous story & memories
+      setStory(getStory(room, diory.id))
+      setMemories(getMemories(room, getStory(room, diory.id).links))
+    })
   }
 
   const onPreviousClick = () => {
@@ -139,10 +156,13 @@ const GridLens = ({ room }) => {
   }
 
   return (
-    <>
-      {story.data ? <Content diory={story} /> : <GridView {...gridProps} />}
-      <Button onClick={onPreviousClick}>---- GO BACK ----</Button>
-    </>
+    story &&
+    memories && (
+      <>
+        {story.data ? <Content diory={story} /> : <GridView {...gridProps} />}
+        <Button onClick={onPreviousClick}>---- GO BACK ----</Button>
+      </>
+    )
   )
 }
 

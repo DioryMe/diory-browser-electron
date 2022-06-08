@@ -12,7 +12,7 @@ const Root = () => {
 
   useEffect(() => {
     const room = new Room(roomClient)
-    room.loadRoom().then(() => {
+    room.initiateRoom().then(() => {
       setLoadedRoom(room)
     })
   }, [])
