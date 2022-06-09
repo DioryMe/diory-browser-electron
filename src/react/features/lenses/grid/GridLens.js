@@ -58,8 +58,9 @@ const retrieveMoreDiories = async (story, diograph, contentSourceAddress) => {
 const GridLens = ({ connection }) => {
   console.log('I rendered')
 
-  const contentSourceAddress = connection.connections[0].address
-  const { diograph } = connection
+  const contentSourceAddress = connection.connections[connection.connections.length - 1].address
+  // const { diograph } = connection
+  const diograph = connection.connections[connection.connections.length - 1].toDiograph()
   const [storyState, setStoryState] = useState({
     story: null,
     memories: [],
@@ -68,7 +69,7 @@ const GridLens = ({ connection }) => {
   })
 
   useEffect(() => {
-    const rootStory = getStory(connection, diograph.rootId)
+    const rootStory = getStory(connection, '/') // TODO: Replace '/' with some dynamic rootId
     retrieveMoreDiories(rootStory, diograph, contentSourceAddress).then(() => {
       const updatedRootStory = getStory(connection, rootStory.id)
       setStoryState({

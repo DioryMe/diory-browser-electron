@@ -28,11 +28,14 @@ const Root = () => {
           id: 'content-source',
           address: contentSourceAddress,
           type: 'local',
-          contentUrls: [],
+          contentUrls: [
+            {
+              diory: { id: '/', text: 'Root' },
+              internalPath: '/',
+            },
+          ],
         })
         room.addConnection(contentSourceConnection)
-        console.log(room)
-        console.log(room.connections[0])
         setLoadedRoom(room)
       })
     })
