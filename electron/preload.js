@@ -43,7 +43,6 @@ contextBridge.exposeInMainWorld('channelsApi', {
   ...new ElectronServer().apiActions(),
 
   listContentSource: async (dioryId, contentSourceAddress) => {
-    dioryId = dioryId === 'some-diory-id' ? '/' : dioryId
     const folderPath = join(contentSourceAddress, dioryId)
     const folderList = readdirSync(folderPath, { withFileTypes: true })
 
@@ -59,7 +58,7 @@ contextBridge.exposeInMainWorld('channelsApi', {
             : getDefaultImage()
           diory.image = dataUrl
           diory.id = join(dioryId, fileName)
-          return { [diory.id]: diory }
+          return { [diory.id]: diory.toDioryObject() }
         }
         if (dirent.isDirectory()) {
           const folderDioryId = join(dioryId, fileName)
@@ -74,7 +73,7 @@ contextBridge.exposeInMainWorld('channelsApi', {
       })
     )
 
-    return dioryArray.reduce((current, cum) => ({ ...current, ...cum }), {})
+    return dioryArray.reduce((cum, current) => ({ ...current, ...cum }), {})
   },
 })
 

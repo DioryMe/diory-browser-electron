@@ -24,16 +24,21 @@ const retrieveContentSourceList = async (diory, contentSourceAddress) => {
   // TODO: How to derive path for listContentSource based on diory?!!?
   if (window.channelsApi) {
     const newDiograph = await window.channelsApi.listContentSource(diory.id, contentSourceAddress)
+    console.log('newDiograph', newDiograph)
     const links = {}
     Object.values(newDiograph).forEach((newDiographDiory) => {
       links[newDiographDiory.id] = { id: newDiographDiory.id }
     })
-    newDiograph[diory.id] = { ...diory }
+    newDiograph[diory.id] = { ...diory.toDioryObject() }
     newDiograph[diory.id].links = links
+    console.log('finalNewDiograph', newDiograph)
     return newDiograph
   }
   // Mock response
-  const { links, newDiograph } = require('./mock-response-listContentSource.json')
+  const { links, newDiograph } =
+    diory.id === '/'
+      ? require('./mock-response-listContentSource-root.json')
+      : require('./mock-response-listContentSource-jane.json')
   // Add links to root
   newDiograph[diory.id] = { ...diory }
   newDiograph[diory.id].links = links
@@ -107,7 +112,7 @@ const GridLens = ({ room, contentSourceAddress }) => {
     gridProps.story && (
       <>
         {gridProps.story.data ? <Content diory={gridProps.story} /> : <GridView {...gridProps} />}
-        <Button disabled={gridProps.story.id === 'some-diory-id'} onClick={onPreviousClick}>
+        <Button disabled={gridProps.story.id === '/'} onClick={onPreviousClick}>
           ---- GO BACK ----
         </Button>
       </>
