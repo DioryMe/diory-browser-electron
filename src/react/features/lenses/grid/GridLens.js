@@ -24,14 +24,12 @@ const retrieveContentSourceList = async (diory, contentSourceAddress) => {
   // TODO: How to derive path for listContentSource based on diory?!!?
   if (window.channelsApi) {
     const newDiograph = await window.channelsApi.listContentSource(diory.id, contentSourceAddress)
-    console.log('newDiograph', newDiograph)
     const links = {}
     Object.values(newDiograph).forEach((newDiographDiory) => {
       links[newDiographDiory.id] = { id: newDiographDiory.id }
     })
     newDiograph[diory.id] = { ...diory.toDioryObject() }
     newDiograph[diory.id].links = links
-    console.log('finalNewDiograph', newDiograph)
     return newDiograph
   }
   // Mock response
@@ -57,9 +55,10 @@ const retrieveMoreDiories = async (story, diograph, contentSourceAddress) => {
   }
 }
 
-const GridLens = ({ connection, contentSourceAddress }) => {
+const GridLens = ({ connection }) => {
   console.log('I rendered')
 
+  const contentSourceAddress = connection.connections[0].address
   const { diograph } = connection
   const [storyState, setStoryState] = useState({
     story: null,
@@ -122,7 +121,6 @@ const GridLens = ({ connection, contentSourceAddress }) => {
 
 GridLens.propTypes = {
   connection: PropTypes.object.isRequired,
-  contentSourceAddress: PropTypes.string.isRequired,
 }
 
 export default GridLens

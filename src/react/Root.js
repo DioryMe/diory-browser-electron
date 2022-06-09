@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Room, ElectronClient, ElectronClientMock, RoomClient } from 'diograph-js'
+import { Room, ElectronClient, ElectronClientMock, RoomClient, Connection } from 'diograph-js'
 
 import Fullscreen from './components/Fullscreen'
 import GridLens from './features/lenses/grid/GridLens'
@@ -24,6 +24,15 @@ const Root = () => {
       // room.initiateRoom().then(() => {
       room.loadRoom().then(() => {
         setContentSourceAddress(contentSourceAddress)
+        const contentSourceConnection = new Connection({
+          id: 'content-source',
+          address: contentSourceAddress,
+          type: 'local',
+          contentUrls: [],
+        })
+        room.addConnection(contentSourceConnection)
+        console.log(room)
+        console.log(room.connections[0])
         setLoadedRoom(room)
       })
     })
@@ -32,7 +41,7 @@ const Root = () => {
   return (
     loadedRoom && (
       <Fullscreen>
-        <GridLens connection={loadedRoom} contentSourceAddress={contentSourceAddress} />
+        <GridLens connection={loadedRoom} />
       </Fullscreen>
     )
   )
