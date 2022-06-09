@@ -9,6 +9,7 @@ import WebContent from './web/WebContent'
 import ImageContent from './image/ImageContent'
 
 const ContentView = ({ diory }) => {
+  console.log('fönderreedd', diory)
   const { data = [] } = diory
   const { contentUrl } = diory
   const { encodingFormat, url } = (data && data[0]) || {}

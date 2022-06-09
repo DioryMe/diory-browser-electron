@@ -32,7 +32,7 @@ const Root = () => {
   return (
     loadedRoom && (
       <Fullscreen>
-        <GridLens room={loadedRoom} contentSourceAddress={contentSourceAddress} />
+        <GridLens connection={loadedRoom} contentSourceAddress={contentSourceAddress} />
       </Fullscreen>
     )
   )

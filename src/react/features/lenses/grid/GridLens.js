@@ -5,17 +5,17 @@ import { Button } from 'evergreen-ui'
 import GridView from './GridView'
 import Content from '../../content/Content'
 
-const getStory = (room, dioryId) => {
-  const story = room.diograph.getDiory(dioryId)
-  return room.retrieveContent(story)
+const getStory = (connection, dioryId) => {
+  const story = connection.diograph.getDiory(dioryId)
+  return connection.retrieveContent(story)
 }
 
-const getMemories = (room, storyLinks) => {
+const getMemories = (connection, storyLinks) => {
   if (storyLinks) {
     return Object.entries(storyLinks)
-      .map(([key, { id }]) => ({ key, ...room.diograph.getDiory(id) }))
+      .map(([key, { id }]) => ({ key, ...connection.diograph.getDiory(id) }))
       .filter(({ id }) => id)
-      .map((diory) => room.retrieveContent(diory))
+      .map((diory) => connection.retrieveContent(diory))
   }
   return []
 }
@@ -57,10 +57,10 @@ const retrieveMoreDiories = async (story, diograph, contentSourceAddress) => {
   }
 }
 
-const GridLens = ({ room, contentSourceAddress }) => {
+const GridLens = ({ connection, contentSourceAddress }) => {
   console.log('I rendered')
 
-  const { diograph } = room
+  const { diograph } = connection
   const [storyState, setStoryState] = useState({
     story: null,
     memories: [],
@@ -69,13 +69,13 @@ const GridLens = ({ room, contentSourceAddress }) => {
   })
 
   useEffect(() => {
-    const rootStory = getStory(room, diograph.rootId)
+    const rootStory = getStory(connection, diograph.rootId)
     retrieveMoreDiories(rootStory, diograph, contentSourceAddress).then(() => {
-      const updatedRootStory = getStory(room, rootStory.id)
+      const updatedRootStory = getStory(connection, rootStory.id)
       setStoryState({
         ...storyState,
         story: updatedRootStory,
-        memories: getMemories(room, updatedRootStory.links),
+        memories: getMemories(connection, updatedRootStory.links),
       })
     })
   }, [])
@@ -84,8 +84,8 @@ const GridLens = ({ room, contentSourceAddress }) => {
     retrieveMoreDiories(diory, diograph, contentSourceAddress).then(() => {
       setStoryState({
         ...storyState,
-        story: getStory(room, diory.id),
-        memories: getMemories(room, getStory(room, diory.id).links),
+        story: getStory(connection, diory.id),
+        memories: getMemories(connection, getStory(connection, diory.id).links),
         prevStory: storyState.prevStory.concat([storyState.story]),
         prevMemories: storyState.prevMemories.concat([storyState.memories]),
       })
@@ -121,7 +121,7 @@ const GridLens = ({ room, contentSourceAddress }) => {
 }
 
 GridLens.propTypes = {
-  room: PropTypes.object.isRequired,
+  connection: PropTypes.object.isRequired,
   contentSourceAddress: PropTypes.string.isRequired,
 }
 
