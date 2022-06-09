@@ -7,14 +7,11 @@ import { useDiograph } from '../../diograph/useDiograph'
 import { selectStory } from '../navigationActions'
 
 const useNavigationContexts = () => {
-  const { context, contexts } = useDiograph()
+  const { contexts } = useDiograph()
   const { dispatch } = useDispatchActions()
-  const otherContexts = contexts
-    .filter(({ id }) => id !== context.id)
-    .map((diory) => ({ label: diory.text, value: diory.id }))
 
   return {
-    contexts: otherContexts,
+    contexts: contexts.map((diory) => ({ label: diory.text, value: diory.id })),
     onContextLick: ({ value }) => dispatch(selectStory({ id: value })),
   }
 }

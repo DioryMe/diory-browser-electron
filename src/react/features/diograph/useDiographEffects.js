@@ -1,9 +1,9 @@
 import { useGetDiographEffect } from './useGetDiographEffect'
 import { useSaveDiographEffect } from './useSaveDiographEffect'
-import { useSelectedStoryEffect } from './useSelectedStoryEffect'
+import { useNavigationEffect } from './useNavigationEffect'
 
 export const useDiographEffects = () => {
   useGetDiographEffect()
   useSaveDiographEffect()
-  useSelectedStoryEffect()
+  useNavigationEffect()
 }

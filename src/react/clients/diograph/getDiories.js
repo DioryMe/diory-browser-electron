@@ -3,9 +3,13 @@ function getDiory(diograph = {}, dioryId) {
 }
 
 function getLinkedDiories(diograph = {}, dioryId) {
-  const { links } = diograph[dioryId] || {}
-  return Object.entries(links)
-    .map(([key, { id }]) => ({ key, ...diograph[id] }))
+  const diory = diograph[dioryId] || {}
+  if (!diory.links) {
+    return []
+  }
+
+  return Object.values(diory.links)
+    .map(({ id }) => ({ ...diograph[id] }))
     .filter(({ id }) => id)
 }
 

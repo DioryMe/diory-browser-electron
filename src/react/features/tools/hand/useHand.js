@@ -3,12 +3,12 @@ import { addDioryToHand } from '../toolsActions'
 import { selectStory } from '../../navigation/navigationActions'
 
 export const useHand = () => {
+  // TODO: Not updated on diograph update
   const { hand } = useSelector((state) => state.tools)
-  const { diograph } = useSelector((state) => state.diograph)
 
   const { dispatch } = useDispatchActions()
   return {
-    diorys: diograph && hand.map((id) => diograph[id]).filter(Boolean),
+    diorys: hand,
     onDrop: ({ id }) => dispatch(addDioryToHand(id)),
     onClick: ({ diory: { id } }) => dispatch(selectStory({ id })),
   }

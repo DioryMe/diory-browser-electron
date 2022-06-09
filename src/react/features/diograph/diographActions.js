@@ -5,6 +5,9 @@ import {
   GET_STORY_BEGIN,
   GET_STORY_SUCCESS,
   GET_STORY_FAILURE,
+  GET_CONTEXT_BEGIN,
+  GET_CONTEXT_SUCCESS,
+  GET_CONTEXT_FAILURE,
   SAVE_DIOGRAPH_BEGIN,
   SAVE_DIOGRAPH_SUCCESS,
   SAVE_DIOGRAPH_FAILURE,
@@ -51,26 +54,54 @@ export const getStory =
   (storyId) =>
   async (dispatch, getState, { client }) => {
     const { diograph } = getState().diograph
-    dispatch(getDioryStoryBegin())
+    dispatch(getStoryBegin())
     try {
-      const [story, ...memories] = await client.getDiories(storyId, diograph)
-      dispatch(getDioryStorySuccess({ story, memories }))
+      const [story, ...memories] = await client.getDiories(storyId, false, diograph)
+      const [omit, ...contexts] = await client.getDiories(storyId, true, diograph)
+      dispatch(getStorySuccess({ story, memories, contexts }))
     } catch (error) {
-      dispatch(getDioryStoryFailure(error))
+      dispatch(getStoryFailure(error))
     }
   }
 
-export const getDioryStoryBegin = () => ({
+export const getStoryBegin = () => ({
   type: GET_STORY_BEGIN,
 })
 
-export const getDioryStorySuccess = ({ story, memories }) => ({
+export const getStorySuccess = (diories) => ({
   type: GET_STORY_SUCCESS,
-  payload: { story, memories },
+  payload: diories,
 })
 
-export const getDioryStoryFailure = (error) => ({
+export const getStoryFailure = (error) => ({
   type: GET_STORY_FAILURE,
+  payload: { error },
+})
+
+export const getContext =
+  (contextId) =>
+  async (dispatch, getState, { client }) => {
+    const { diograph } = getState().diograph
+    dispatch(getContextBegin())
+    try {
+      const [context, ...stories] = await client.getDiories(contextId, false, diograph)
+      dispatch(getContextSuccess({ context, stories }))
+    } catch (error) {
+      dispatch(getContextFailure(error))
+    }
+  }
+
+export const getContextBegin = () => ({
+  type: GET_CONTEXT_BEGIN,
+})
+
+export const getContextSuccess = (diories) => ({
+  type: GET_CONTEXT_SUCCESS,
+  payload: diories,
+})
+
+export const getContextFailure = (error) => ({
+  type: GET_CONTEXT_FAILURE,
   payload: { error },
 })
 

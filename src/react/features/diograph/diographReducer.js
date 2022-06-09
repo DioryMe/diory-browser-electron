@@ -1,6 +1,7 @@
 import {
   GET_DIOGRAPH_SUCCESS,
   GET_STORY_SUCCESS,
+  GET_CONTEXT_SUCCESS,
   SAVE_DIOGRAPH,
   ADD_DIOGRAPH,
   CREATE_DIORY,
@@ -43,6 +44,12 @@ export const getStorySuccess = (state, { payload }) => ({
   contexts: payload.contexts,
 })
 
+export const getContextSuccess = (state, { payload }) => ({
+  ...state,
+  context: payload.context,
+  stories: payload.stories,
+})
+
 export const createDiory = (state, { payload }) => ({
   ...state,
   diograph: {
@@ -75,6 +82,7 @@ export default createReducer(initialState, {
   [ADD_DIOGRAPH]: addDiograph,
   [GET_DIOGRAPH_SUCCESS]: getDiographSuccess,
   [GET_STORY_SUCCESS]: getStorySuccess,
+  [GET_CONTEXT_SUCCESS]: getContextSuccess,
   [CREATE_DIORY]: createDiory,
   [DELETE_DIORY]: deleteDiory,
   [UPDATE_DIORY]: updateDiory,

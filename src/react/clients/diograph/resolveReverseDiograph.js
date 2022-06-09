@@ -1,9 +1,16 @@
-export function resolveReverseDiograph(diograph) {
-  if (!diograph) {
-    return
-  }
+function removeLinks(diograph) {
+  return Object.entries(diograph).reduce(
+    (diographWithoutLinks, [dioryId, { links, ...diory }]) => ({
+      ...diographWithoutLinks,
+      [dioryId]: diory,
+    }),
+    {}
+  )
+}
 
-  const reverseDiograph = {}
+export function resolveReverseDiograph(diograph) {
+  const reverseDiograph = removeLinks(diograph)
+
   Object.entries(diograph).forEach(([dioryId, diory]) => {
     if (!diory.links) {
       return
@@ -13,12 +20,6 @@ export function resolveReverseDiograph(diograph) {
       .map(({ id }) => id)
       .filter((linkId) => diograph[linkId])
       .forEach((linkId) => {
-        if (!reverseDiograph[linkId]) {
-          reverseDiograph[linkId] = {
-            id: linkId,
-          }
-        }
-
         reverseDiograph[linkId].links = {
           ...reverseDiograph[linkId].links,
           [dioryId]: {

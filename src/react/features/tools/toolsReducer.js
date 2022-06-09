@@ -1,5 +1,5 @@
 import {
-  ADD_DIORY_TO_HAND,
+  ADD_DIORY_TO_HAND_SUCCESS,
   SELECT_TOOL,
   DESELECT_TOOL,
   SET_IMPORT_FOLDER_PATH,
@@ -16,9 +16,9 @@ const initialState = {
   hand: [],
 }
 
-const addDioryToHand = (state, { payload }) => ({
+const addDioryToHandSuccess = (state, { payload }) => ({
   ...state,
-  hand: [payload.dioryId, ...state.hand.filter((dioryId) => dioryId !== payload.dioryId)],
+  hand: [payload.diory, ...state.hand.filter(({ id }) => id !== payload.diory.id)],
 })
 
 const selectTool = (state, { payload }) => ({
@@ -47,7 +47,7 @@ const selectStoryId = (state, { payload }) => ({
 })
 
 export default createReducer(initialState, {
-  [ADD_DIORY_TO_HAND]: addDioryToHand,
+  [ADD_DIORY_TO_HAND_SUCCESS]: addDioryToHandSuccess,
   [SELECT_TOOL]: selectTool,
   [DESELECT_TOOL]: deselectTool,
   [SET_IMPORT_FOLDER_PATH]: setImportFolderPath,

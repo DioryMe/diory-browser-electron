@@ -1,5 +1,5 @@
 import {
-  ADD_DIORY_TO_HAND,
+  ADD_DIORY_TO_HAND_SUCCESS,
   SELECT_TOOL,
   DESELECT_TOOL,
   SET_IMPORT_FOLDER_PATH,
@@ -9,9 +9,17 @@ import {
 import { invokeChannel } from '../../client/client'
 import { channels } from '../../../shared/constants'
 
-export const addDioryToHand = (dioryId) => ({
-  type: ADD_DIORY_TO_HAND,
-  payload: { dioryId },
+export const addDioryToHand =
+  (dioryId) =>
+  async (dispatch, getState, { client }) => {
+    const { diograph } = getState().diograph
+    const [diory] = await client.getDiories(dioryId, false, diograph)
+    dispatch(addDioryToHandSuccess({ diory }))
+  }
+
+export const addDioryToHandSuccess = (payload) => ({
+  type: ADD_DIORY_TO_HAND_SUCCESS,
+  payload,
 })
 
 export const selectTool = (toolId) => ({

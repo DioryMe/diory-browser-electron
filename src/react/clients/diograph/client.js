@@ -1,5 +1,6 @@
 import { getDefaultImage } from '../../../shared/getDefaultImage'
 import { getDiories as getDioriesFunc } from './getDiories'
+import { resolveReverseDiograph } from './resolveReverseDiograph'
 
 export function getDiograph(params) {
   console.log('diographClient/getDiograph', params)
@@ -14,8 +15,13 @@ export function saveDiograph(params) {
   return window.channelsApi.SAVE_DIOGRAPH(params)
 }
 
-export function getDiories(dioryId, diograph) {
-  console.log('diographClient/getDiories', dioryId)
+export function getDiories(dioryId, reverse, diograph) {
+  console.log('diographClient/getDiories', dioryId, reverse)
+
+  if (reverse) {
+    const reverseDiograph = resolveReverseDiograph(diograph)
+    return getDioriesFunc(reverseDiograph, dioryId)
+  }
 
   return getDioriesFunc(diograph, dioryId)
 }
