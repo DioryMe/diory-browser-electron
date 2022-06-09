@@ -18,7 +18,14 @@ const DiorysGrid = forwardRef(({ diorys, onClick, ...props }, ref) => (
     {...props}
   >
     {diorys.map((diory) => (
-      <GridItem key={diory.id} flex="1 0 360px" height={240} padding={24} alignSelf="center">
+      <GridItem
+        data-testid="grid-item"
+        key={diory.id}
+        flex="1 0 360px"
+        height={240}
+        padding={24}
+        alignSelf="center"
+      >
         <Diory diory={diory} onClick={onClick} elevation={2} aria-controls={`panel-${diory.id}`} />
       </GridItem>
     ))}

@@ -16,7 +16,7 @@ Given('I select {string}', (testId) => {
 
 // WHEN
 When('I take {string} in focus', (dioryName) => {
-  cy.get('div[draggable=true]').contains(dioryName).click()
+  cy.get('div[data-testid=grid-item]').contains(dioryName).click()
 })
 
 When('I click {word} button', (buttonName) => {
@@ -46,6 +46,10 @@ Then('I see {string} in view', (dioryName) => {
 
 Then('I do not see {string} in view', (dioryName) => {
   cy.contains(dioryName).should('have.length', 0)
+})
+
+Then('I see {int} memories in view', (memoryCount) => {
+  cy.get(`[data-testid=grid-item]`).should('have.length', memoryCount)
 })
 
 // FIXME: Used only by hand tool, many other data-testid steps exists, should we use only this?
