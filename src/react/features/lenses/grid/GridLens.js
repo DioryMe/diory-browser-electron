@@ -5,17 +5,15 @@ import { Button } from 'evergreen-ui'
 import GridView from './GridView'
 import Content from '../../content/Content'
 
-const getStory = (connection, dioryId) => {
-  const story = connection.diograph.getDiory(dioryId)
-  return connection.retrieveContent(story)
+const getStory = (diograph, dioryId) => {
+  return diograph.getDiory(dioryId)
 }
 
-const getMemories = (connection, storyLinks) => {
+const getMemories = (diograph, storyLinks) => {
   if (storyLinks) {
     return Object.entries(storyLinks)
-      .map(([key, { id }]) => ({ key, ...connection.diograph.getDiory(id) }))
+      .map(([key, { id }]) => ({ key, ...diograph.getDiory(id) }))
       .filter(({ id }) => id)
-      .map((diory) => connection.retrieveContent(diory))
   }
   return []
 }
@@ -28,6 +26,7 @@ const retrieveContentSourceList = async (diory, contentSourceAddress) => {
     Object.values(newDiograph).forEach((newDiographDiory) => {
       links[newDiographDiory.id] = { id: newDiographDiory.id }
     })
+    // TODO: Add these links also to connection!!!
     newDiograph[diory.id] = { ...diory.toDioryObject() }
     newDiograph[diory.id].links = links
     return newDiograph
@@ -43,7 +42,7 @@ const retrieveContentSourceList = async (diory, contentSourceAddress) => {
   return newDiograph
 }
 
-const retrieveMoreDiories = async (story, diograph, contentSourceAddress) => {
+const retrieveMoreDiories = async (story, diograph, contentSourceAddress, connection) => {
   // Retrieve missing diories to diograph
   if (!story.data && (!story.links || Object.keys(story.links).length === 0)) {
     console.log('RETRIEVE STARTED!')
@@ -52,15 +51,28 @@ const retrieveMoreDiories = async (story, diograph, contentSourceAddress) => {
     // TODO: These new diories need story.contentUrl to be able to show <Content />
     // - requires also adding contentUrl to Connection => no Connections here yet!!g
     diograph.mergeDiograph(contentSourceList)
+    // => HOW TO DO THIS SAME TO connection.contentUrl DIOGRAPH??! (otherwise it won't persist...)
+
+    diograph.diories.forEach((diory) => {
+      // TODO: Folder diories don't have any contentUrl...
+      if (diory.data && diory.data[0].contentUrl) {
+        connection.addContentUrl(diory.data[0].contentUrl, diory.contentUrl, diory)
+      }
+    })
+    console.log('diogr', diograph)
+    console.log('conn', connection)
+
+    // addContentUrl = (contentUrl: string, internalPath: string, diory: Diory) => {
   }
 }
 
 const GridLens = ({ connection }) => {
   console.log('I rendered')
 
-  const contentSourceAddress = connection.connections[connection.connections.length - 1].address
+  const contentSourceAddress = connection.address
   // const { diograph } = connection
-  const diograph = connection.connections[connection.connections.length - 1].toDiograph()
+  const diograph = connection.toDiograph()
+  console.log('org-diogr', diograph)
   const [storyState, setStoryState] = useState({
     story: null,
     memories: [],
@@ -69,23 +81,23 @@ const GridLens = ({ connection }) => {
   })
 
   useEffect(() => {
-    const rootStory = getStory(connection, '/') // TODO: Replace '/' with some dynamic rootId
-    retrieveMoreDiories(rootStory, diograph, contentSourceAddress).then(() => {
-      const updatedRootStory = getStory(connection, rootStory.id)
+    const rootStory = getStory(diograph, diograph.rootId) // TODO: Replace '/' with some dynamic rootId
+    retrieveMoreDiories(rootStory, diograph, contentSourceAddress, connection).then(() => {
+      const updatedRootStory = getStory(diograph, rootStory.id)
       setStoryState({
         ...storyState,
         story: updatedRootStory,
-        memories: getMemories(connection, updatedRootStory.links),
+        memories: getMemories(diograph, updatedRootStory.links),
       })
     })
   }, [])
 
   const onMemoryClick = ({ diory }) => {
-    retrieveMoreDiories(diory, diograph, contentSourceAddress).then(() => {
+    retrieveMoreDiories(diory, diograph, contentSourceAddress, connection).then(() => {
       setStoryState({
         ...storyState,
-        story: getStory(connection, diory.id),
-        memories: getMemories(connection, getStory(connection, diory.id).links),
+        story: getStory(diograph, diory.id),
+        memories: getMemories(diograph, getStory(diograph, diory.id).links),
         prevStory: storyState.prevStory.concat([storyState.story]),
         prevMemories: storyState.prevMemories.concat([storyState.memories]),
       })

@@ -28,12 +28,12 @@ const Root = () => {
           id: 'content-source',
           address: contentSourceAddress,
           type: 'local',
-          contentUrls: [
-            {
+          contentUrls: {
+            rootDiorysContentUrl: {
               diory: { id: '/', text: 'Root' },
               internalPath: '/',
             },
-          ],
+          },
         })
         room.addConnection(contentSourceConnection)
         setLoadedRoom(room)
@@ -44,7 +44,7 @@ const Root = () => {
   return (
     loadedRoom && (
       <Fullscreen>
-        <GridLens connection={loadedRoom} />
+        <GridLens connection={loadedRoom.connections[loadedRoom.connections.length - 1]} />
       </Fullscreen>
     )
   )

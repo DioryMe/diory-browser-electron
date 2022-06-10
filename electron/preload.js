@@ -57,16 +57,23 @@ contextBridge.exposeInMainWorld('channelsApi', {
             ? `data:image/jpeg;base64,${diory.thumbnailBuffer.toString('base64')}`
             : getDefaultImage()
           diory.image = dataUrl
+          diory.contentUrl = filePath
           diory.id = join(dioryId, fileName)
           return { [diory.id]: diory.toDioryObject() }
         }
         if (dirent.isDirectory()) {
           const folderDioryId = join(dioryId, fileName)
+          // TODO: Move this to diograph-js
+          // => generator.generateDioryFromFolder(filePath)
+          const contentId = Date.now() * Math.random()
           return {
             [folderDioryId]: {
               id: folderDioryId,
               image: folderDefaultImage(),
               text: fileName,
+              // QUESTION: Folder doesn't have contentId
+              // but is required to be included to connection.contentUrls
+              data: [{ contentUrl: contentId, contentId }],
             },
           }
         }
