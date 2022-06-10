@@ -1,13 +1,17 @@
-import * as mockClient from './diograph/diographClient.mock'
-import * as client from './diograph/client'
+import * as mockApi from '../apis/electronApi.mock'
+import * as api from '../apis/electronApi'
+
+import * as client from './diographClient'
+
+export const roomClient = (api) => {
+  return {
+    ...client,
+    getDiograph: client.getDiograph(api),
+    saveDiograph: client.saveDiograph(api),
+  }
+}
 
 export function createClient() {
-  if (process.env.NODE_ENV === 'development') {
-    return {
-      ...client,
-      ...mockClient,
-    }
-  }
-
-  return client
+  const _api = process.env.NODE_ENV === 'development'? mockApi : api
+  return roomClient(_api)
 }
