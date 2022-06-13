@@ -8,11 +8,10 @@ import WebContent from './web/WebContent'
 
 import ImageContent from './image/ImageContent'
 
-const ContentView = ({ diory }) => {
+const ContentView = ({ diory, contentUrl }) => {
   console.log('Content view rendered')
 
   const { data = [] } = diory
-  const { contentUrl } = diory
   const { encodingFormat, url } = (data && data[0]) || {}
 
   switch (encodingFormat) {
@@ -43,6 +42,7 @@ ContentView.propTypes = {
     contentUrl: PropTypes.string,
     data: PropTypes.array,
   }).isRequired,
+  contentUrl: PropTypes.string,
 }
 
 export default ContentView

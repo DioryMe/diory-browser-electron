@@ -3,7 +3,7 @@ const { fileURLToPath } = require('url')
 const { join } = require('path')
 const { readdirSync } = require('fs')
 
-const { ElectronServer, Diory } = require('diograph-js')
+const { ElectronServer } = require('diograph-js')
 const { Generator, getDefaultImage } = require('../file-generator')
 
 const { channels } = require('../src/shared/constants')
@@ -56,11 +56,9 @@ contextBridge.exposeInMainWorld('channelsApi', {
           const dataUrl = thumbnailBuffer
             ? `data:image/jpeg;base64,${thumbnailBuffer.toString('base64')}`
             : getDefaultImage()
-          const diory = new Diory(dioryObject)
-          diory.image = dataUrl
-          diory.contentUrl = filePath
-          diory.id = join(dioryId, fileName)
-          return { [diory.id]: diory.toDioryObject() }
+          dioryObject.image = dataUrl
+          dioryObject.id = join(dioryId, fileName)
+          return { [dioryObject.id]: dioryObject }
         }
         if (dirent.isDirectory()) {
           const folderDioryId = join(dioryId, fileName, '/')

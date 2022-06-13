@@ -60,9 +60,8 @@ const retrieveMoreDiories = async (
     // => HOW TO DO THIS SAME TO connection.contentUrl DIOGRAPH??! (otherwise it won't persist...)
 
     diograph.diories.forEach((diory) => {
-      // TODO: Folder diories don't have any contentUrl...
       if (diory.data && diory.data[0].contentUrl) {
-        connection.addContentUrl(diory.data[0].contentUrl, diory.contentUrl, diory)
+        connection.addContentUrl(diory.data[0].contentUrl, diory.id)
       }
     })
     onDiographChange()
@@ -102,12 +101,15 @@ const GridLens = ({ connection, onDiographChange }) => {
   const onMemoryClick = ({ diory }) => {
     retrieveMoreDiories(diory, diograph, contentSourceAddress, connection, onDiographChange).then(
       () => {
+        const story = getStory(diograph, diory.id)
         setStoryState({
           ...storyState,
-          story: getStory(diograph, diory.id),
-          memories: getMemories(diograph, getStory(diograph, diory.id).links),
+          story,
+          memories: getMemories(diograph, story.links),
           prevStory: storyState.prevStory.concat([storyState.story]),
           prevMemories: storyState.prevMemories.concat([storyState.memories]),
+          contentUrl:
+            story.data && story.data[0] && connection.getContent(story.data[0].contentUrl),
         })
       }
     )
@@ -132,7 +134,11 @@ const GridLens = ({ connection, onDiographChange }) => {
   return (
     gridProps.story && (
       <>
-        {!gridProps.story.links ? <Content diory={gridProps.story} /> : <GridView {...gridProps} />}
+        {!gridProps.story.links ? (
+          <Content diory={gridProps.story} contentUrl={storyState.contentUrl} />
+        ) : (
+          <GridView {...gridProps} />
+        )}
         <Button disabled={gridProps.story.id === '/'} onClick={onPreviousClick}>
           ---- GO BACK ----
         </Button>
