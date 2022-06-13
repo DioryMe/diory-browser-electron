@@ -42,7 +42,13 @@ const retrieveContentSourceList = async (diory, contentSourceAddress) => {
   return newDiograph
 }
 
-const retrieveMoreDiories = async (story, diograph, contentSourceAddress, connection) => {
+const retrieveMoreDiories = async (
+  story,
+  diograph,
+  contentSourceAddress,
+  connection,
+  onDiographChange
+) => {
   // Retrieve missing diories to diograph
   if (!story.data && (!story.links || Object.keys(story.links).length === 0)) {
     console.log('RETRIEVE STARTED!')
@@ -61,12 +67,13 @@ const retrieveMoreDiories = async (story, diograph, contentSourceAddress, connec
     })
     console.log('diogr', diograph)
     console.log('conn', connection)
+    onDiographChange(diograph)
 
     // addContentUrl = (contentUrl: string, internalPath: string, diory: Diory) => {
   }
 }
 
-const GridLens = ({ connection }) => {
+const GridLens = ({ connection, onDiographChange }) => {
   console.log('I rendered')
 
   const contentSourceAddress = connection.address
@@ -81,7 +88,13 @@ const GridLens = ({ connection }) => {
 
   useEffect(() => {
     const rootStory = getStory(diograph, diograph.rootId) // TODO: Replace '/' with some dynamic rootId
-    retrieveMoreDiories(rootStory, diograph, contentSourceAddress, connection).then(() => {
+    retrieveMoreDiories(
+      rootStory,
+      diograph,
+      contentSourceAddress,
+      connection,
+      onDiographChange
+    ).then(() => {
       const updatedRootStory = getStory(diograph, rootStory.id)
       setStoryState({
         ...storyState,
@@ -92,15 +105,17 @@ const GridLens = ({ connection }) => {
   }, [])
 
   const onMemoryClick = ({ diory }) => {
-    retrieveMoreDiories(diory, diograph, contentSourceAddress, connection).then(() => {
-      setStoryState({
-        ...storyState,
-        story: getStory(diograph, diory.id),
-        memories: getMemories(diograph, getStory(diograph, diory.id).links),
-        prevStory: storyState.prevStory.concat([storyState.story]),
-        prevMemories: storyState.prevMemories.concat([storyState.memories]),
-      })
-    })
+    retrieveMoreDiories(diory, diograph, contentSourceAddress, connection, onDiographChange).then(
+      () => {
+        setStoryState({
+          ...storyState,
+          story: getStory(diograph, diory.id),
+          memories: getMemories(diograph, getStory(diograph, diory.id).links),
+          prevStory: storyState.prevStory.concat([storyState.story]),
+          prevMemories: storyState.prevMemories.concat([storyState.memories]),
+        })
+      }
+    )
   }
 
   const onPreviousClick = () => {
@@ -133,6 +148,7 @@ const GridLens = ({ connection }) => {
 
 GridLens.propTypes = {
   connection: PropTypes.object.isRequired,
+  onDiographChange: PropTypes.func,
 }
 
 export default GridLens

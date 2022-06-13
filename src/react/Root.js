@@ -18,6 +18,11 @@ const Root = () => {
   const [room, setRoom] = useState(null)
   const [connection, setConnection] = useState(null)
 
+  const onDiographChange = (diograph) => {
+    console.log('Room saved!')
+    room.saveRoom()
+  }
+
   useEffect(() => {
     const room = new Room(roomClient)
     room.initiateRoom().then(() => {
@@ -44,7 +49,7 @@ const Root = () => {
   return (
     connection && (
       <Fullscreen>
-        <GridLens connection={connection} />
+        <GridLens connection={connection} onDiographChange={onDiographChange} />
       </Fullscreen>
     )
   )
