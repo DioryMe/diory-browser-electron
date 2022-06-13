@@ -2,10 +2,6 @@ import React from 'react'
 import Box from 'ui-box'
 import PropTypes from 'prop-types'
 
-// import { useSelector } from '../../store'
-
-// import { convertToFileUrl } from '../../utils'
-
 const defaultStyle = {
   position: 'absolute',
   top: 0,
@@ -17,18 +13,17 @@ const defaultStyle = {
   backgroundRepeat: 'no-repeat',
 }
 
-const getBackgroundImage = (absoluteImageFileUrl, gradient, gradientRgba = '255, 255, 255, 0.5') =>
+const getBackgroundImage = (image, gradient, gradientRgba = '255, 255, 255, 0.5') =>
   gradient
-    ? `linear-gradient(rgba(${gradientRgba}),rgba(${gradientRgba})), url("${absoluteImageFileUrl}")`
-    : `url("${absoluteImageFileUrl}")`
+    ? `linear-gradient(rgba(${gradientRgba}),rgba(${gradientRgba})), url("${image}")`
+    : `url("${image}")`
 
 const Image = ({ image, gradient, gradientRgba, children, ...props }) => {
   // const { dioryFolderLocation } = useSelector((state) => state.settings)
-  const absoluteImageFileUrl = image // convertToFileUrl(image, dioryFolderLocation)
   return (
     <Box
       {...defaultStyle}
-      backgroundImage={getBackgroundImage(absoluteImageFileUrl, gradient, gradientRgba)}
+      backgroundImage={getBackgroundImage(image, gradient, gradientRgba)}
       {...props}
     >
       {children}

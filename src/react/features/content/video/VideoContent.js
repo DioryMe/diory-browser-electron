@@ -22,7 +22,7 @@ const options = {
   muted: true,
 }
 
-const VideoContent = ({ diory, videoUrl }) => {
+const VideoContent = ({ videoUrl }) => {
   const { refCallback, contentElement } = useContentElement()
 
   // useOpenFolderButton(videoUrl)
@@ -43,7 +43,6 @@ const VideoContent = ({ diory, videoUrl }) => {
 }
 
 VideoContent.propTypes = {
-  diory: PropTypes.object,
   videoUrl: PropTypes.string,
 }
 

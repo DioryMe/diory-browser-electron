@@ -21,12 +21,11 @@ const options = {
   muted: false,
 }
 
-const AudioContent = ({ diory, baseUrl }) => {
+const AudioContent = ({ audioUrl }) => {
   const { refCallback, contentElement } = useContentElement()
-  const audioUrl = getContentUrl(diory, baseUrl)
 
-  useTogglePlayButtons(contentElement, options.autoPlay)
-  useOpenFolderButton(audioUrl)
+  // useTogglePlayButtons(contentElement, options.autoPlay)
+  // useOpenFolderButton(audioUrl)
 
   return (
     <Fullscreen>
@@ -42,8 +41,7 @@ const AudioContent = ({ diory, baseUrl }) => {
 }
 
 AudioContent.propTypes = {
-  diory: PropTypes.object,
-  baseUrl: PropTypes.string,
+  audioUrl: PropTypes.string,
 }
 
 export default AudioContent
