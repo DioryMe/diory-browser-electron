@@ -16,20 +16,20 @@ Feature: Create tool
   # Done & cancel
   Scenario: Done saves changes and closes the dialog
     When I add 'Some diory' to text field
-    And I click Done button
+    And I click 'Done' button
     Then I do not see 'Create diory' in view
     And I see 'Some diory' in view
 
   Scenario: Cancel cancels changes and closes the dialog
     When I add 'Some diory' to text field
-    And I click Cancel button
+    And I click 'Cancel' button
     Then I do not see 'Create diory' in view
     And I do not see 'Some diory' in view
 
   # Text
   Scenario: Create text
     When I add 'Some diory' to text field
-    And I click Done button
+    And I click 'Done' button
     And I select tools button
     And I select update button
     And I take 'Some diory' in focus
@@ -39,7 +39,7 @@ Feature: Create tool
   Scenario: Create image
     When I add 'public/diory-demo-content//test-image.png' to image field
     And I add 'Some diory' to text field
-    And I click Done button
+    And I click 'Done' button
     And I select tools button
     And I select update button
     And I take 'Some diory' in focus
@@ -49,14 +49,14 @@ Feature: Create tool
   #       and as we don't know the created diory dioryId this is not possible
   # Scenario: Create image changes background image
   #   When I add '/test-image.png' to image field
-  #   And I click Done button
+  #   And I click 'Done' button
   #   Then 'diory11' has 'url("http://localhost:3300/test-image.png")' as  'background-image'
 
   # Style
   Scenario: Create style
     When I add '{"some":"object"}' to style field
     And I add 'Some diory' to text field
-    And I click Done button
+    And I click 'Done' button
     And I select tools button
     And I select update button
     And I take 'Some diory' in focus
@@ -70,7 +70,7 @@ Feature: Create tool
   Scenario: Create latlng
     When I add '12, 123' to latlng field
     And I add 'Some diory' to text field
-    And I click Done button
+    And I click 'Done' button
     And I select tools button
     And I select update button
     And I take 'Some diory' in focus
@@ -108,7 +108,7 @@ Feature: Create tool
   Scenario: Create date
     When I add '2020-11-01' to date field
     And I add 'Some diory' to text field
-    And I click Done button
+    And I click 'Done' button
     And I select tools button
     And I select update button
     And I take 'Some diory' in focus
@@ -118,7 +118,7 @@ Feature: Create tool
   Scenario: Create data
     When I add '[{"some":"object"}]' to data field
     And I add 'Some diory' to text field
-    And I click Done button
+    And I click 'Done' button
     And I select tools button
     And I select update button
     And I take 'Some diory' in focus

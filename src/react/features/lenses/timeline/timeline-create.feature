@@ -16,7 +16,7 @@ Feature: Creating content to Timeline lens
     And I click element with id 'CREATE_TOOL_BUTTON'
     And I add 'Timeline diory' to text field
     And I add '2020-11-23' to date field
-    And I click Done button
+    And I click 'Done' button
     And I select timeline lens
     Then I see 0 focus and 1 linked marker on timeline
 
@@ -26,7 +26,7 @@ Feature: Creating content to Timeline lens
 #   And I select create button
 #   And I add 'Timeline diory' to text field
 #   And I add '2020-11-23' to date field
-#   And I click Done button
+#   And I click 'Done' button
 #   And I take 'Timeline diory' in focus
 #   And I select timeline lens
 #   Then I see 1 focus and 0 linked markers on timeline

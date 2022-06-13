@@ -13,25 +13,25 @@ Feature: Update tool
     And I see 'Update diory' in view
 
   Scenario: Update tool opens for diory in focus
-    Then I click Cancel button
+    Then I click 'Cancel' button
     And I select tools button
     And I select update button
     And I click 'Diory 1' focus diory
     And I add ' focus diory' to text field
-    And I click Done button
+    And I click 'Done' button
     Then I do not see 'Update diory' in view
     And I see 'Diory 1 focus diory' in view
 
   # Done & cancel
   Scenario: Done saves changes and closes the dialog
     When I add ' some text' to text field
-    And I click Done button
+    And I click 'Done' button
     Then I do not see 'Update diory' in view
     And I see 'Diory 11 some text' in view
 
   Scenario: Cancel cancels changes and closes the dialog
     When I add ' some text' to text field
-    And I click Cancel button
+    And I click 'Cancel' button
     Then I do not see 'Update diory' in view
     And I do not see 'Diory 11 some text' in view
     And I see 'Diory 11' in view
@@ -40,7 +40,7 @@ Feature: Update tool
   Scenario: Update text
     # FIXME: Don't know how to select all & replace the text
     When I add ' some text' to text field
-    And I click Done button
+    And I click 'Done' button
     And I select tools button
     And I select update button
     And I take 'Diory 11' in focus
@@ -49,7 +49,7 @@ Feature: Update tool
   # Image
   Scenario: Update image
     When I add 'http://localhost:3300/test-image.png' to image field
-    And I click Done button
+    And I click 'Done' button
     And I select tools button
     And I select update button
     And I take 'Diory 11' in focus
@@ -57,13 +57,13 @@ Feature: Update tool
 
   Scenario: Update image changes background image
     When I add 'http://localhost:3300/test-image.png' to image field
-    And I click Done button
+    And I click 'Done' button
     Then 'diory11' has 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("http://localhost:3300/test-image.png")' as 'background-image'
 
   # Style
   Scenario: Update style
     When I add '{"some":"object"}' to style field
-    And I click Done button
+    And I click 'Done' button
     And I select tools button
     And I select update button
     And I take 'Diory 11' in focus
@@ -76,7 +76,7 @@ Feature: Update tool
   # Latlng
   Scenario: Update latlng
     When I add '12, 12' to latlng field
-    And I click Done button
+    And I click 'Done' button
     And I select tools button
     And I select update button
     And I take 'Diory 11' in focus
@@ -85,7 +85,7 @@ Feature: Update tool
   # Date
   Scenario: Update date
     When I add '2020-11-01' to date field
-    And I click Done button
+    And I click 'Done' button
     And I select tools button
     And I select update button
     And I take 'Diory 11' in focus
@@ -98,7 +98,7 @@ Feature: Update tool
   # Data
   Scenario: Update data
     When I add '[{"some":"object"}]' to data field
-    And I click Done button
+    And I click 'Done' button
     And I select tools button
     And I select update button
     And I take 'Diory 11' in focus

@@ -19,7 +19,7 @@ When('I take {string} in focus', (dioryName) => {
   cy.get('div[data-testid=grid-item]').contains(dioryName).click()
 })
 
-When('I click {word} button', (buttonName) => {
+When('I click {string} button', (buttonName) => {
   cy.get('button').contains(buttonName).click()
 })
 

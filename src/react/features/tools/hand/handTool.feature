@@ -17,7 +17,7 @@ Feature: Hand tool
     And I select import button
     And I click element with id 'CREATE_TOOL_BUTTON'
     And I add 'Some diory' to text field
-    And I click Done button
+    And I click 'Done' button
     Then 'Some diory' diory is in the hand
 
   Scenario: Clicking diory in hand sets it in focus
