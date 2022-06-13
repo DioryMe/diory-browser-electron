@@ -66,7 +66,6 @@ const retrieveMoreDiories = async (
       }
     })
     onDiographChange()
-    // addContentUrl = (contentUrl: string, internalPath: string, diory: Diory) => {
   }
 }
 
