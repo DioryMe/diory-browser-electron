@@ -70,8 +70,7 @@ const GridLens = ({ connection }) => {
   console.log('I rendered')
 
   const contentSourceAddress = connection.address
-  // const { diograph } = connection
-  const diograph = connection.toDiograph()
+  const { diograph } = connection
   console.log('org-diogr', diograph)
   const [storyState, setStoryState] = useState({
     story: null,

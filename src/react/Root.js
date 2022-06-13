@@ -5,10 +5,10 @@ import Fullscreen from './components/Fullscreen'
 import GridLens from './features/lenses/grid/GridLens'
 
 const selectContentSourceAddress = async () => {
-  // if (!window.channelsApi) {
-  return '/Users/Jouni/Code/diory-browser-electron/demo-content-room'
-  // }
-  // return window.channelsApi.showOpenDialog().then(({ filePaths }) => filePaths[0])
+  if (!window.channelsApi) {
+    return '/Users/Jouni/Code/diory-browser-electron/demo-content-room'
+  }
+  return window.channelsApi.showOpenDialog().then(({ filePaths }) => filePaths[0])
 }
 
 const Root = () => {
@@ -16,22 +16,20 @@ const Root = () => {
   const roomClient = new RoomClient({}, undefined, client)
 
   const [loadedRoom, setLoadedRoom] = useState(null)
-  const [contentSourceAddress, setContentSourceAddress] = useState(null)
 
   useEffect(() => {
     const room = new Room(roomClient)
-    selectContentSourceAddress().then((contentSourceAddress) => {
-      // room.initiateRoom().then(() => {
-      room.loadRoom().then(() => {
-        setContentSourceAddress(contentSourceAddress)
+    room.initiateRoom().then(() => {
+      selectContentSourceAddress().then((contentSourceAddress) => {
         const contentSourceConnection = new Connection({
           id: 'content-source',
           address: contentSourceAddress,
-          type: 'local',
-          contentUrls: {
-            rootDiorysContentUrl: {
-              diory: { id: '/', text: 'Root' },
-              internalPath: '/',
+          contentClient: 'local',
+          contentUrls: {},
+          diograph: {
+            '/': {
+              id: '/',
+              text: 'Root',
             },
           },
         })
