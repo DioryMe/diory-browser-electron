@@ -52,9 +52,7 @@ contextBridge.exposeInMainWorld('channelsApi', {
         const fileName = dirent.name
         const filePath = join(folderPath, fileName)
         if (dirent.isFile()) {
-          const jaahas = await generator.generateDioryFromFile(filePath)
-          console.log(jaahas)
-          const { dioryObject, thumbnailBuffer } = jaahas // await generator.generateDioryFromFile(filePath)
+          const { dioryObject, thumbnailBuffer } = await generator.generateDioryFromFile(filePath)
           const dataUrl = thumbnailBuffer
             ? `data:image/jpeg;base64,${thumbnailBuffer.toString('base64')}`
             : getDefaultImage()
@@ -68,15 +66,11 @@ contextBridge.exposeInMainWorld('channelsApi', {
           const folderDioryId = join(dioryId, fileName, '/')
           // TODO: Move this to diograph-js
           // => generator.generateDioryFromFolder(filePath)
-          const contentId = Date.now() * Math.random()
           return {
             [folderDioryId]: {
               id: folderDioryId,
               image: folderDefaultImage(),
               text: fileName,
-              // QUESTION: Folder doesn't have contentId
-              // but is required to be included to connection.contentUrls
-              data: [{ contentUrl: contentId, contentId }],
             },
           }
         }
