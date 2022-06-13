@@ -15,7 +15,8 @@ const Root = () => {
   const client = window.channelsApi ? new ElectronClient() : new ElectronClientMock()
   const roomClient = new RoomClient({}, undefined, client)
 
-  const [loadedRoom, setLoadedRoom] = useState(null)
+  const [room, setRoom] = useState(null)
+  const [connection, setConnection] = useState(null)
 
   useEffect(() => {
     const room = new Room(roomClient)
@@ -34,15 +35,16 @@ const Root = () => {
           },
         })
         room.addConnection(contentSourceConnection)
-        setLoadedRoom(room)
+        setRoom(room)
+        setConnection(contentSourceConnection)
       })
     })
   }, [])
 
   return (
-    loadedRoom && (
+    connection && (
       <Fullscreen>
-        <GridLens connection={loadedRoom.connections[loadedRoom.connections.length - 1]} />
+        <GridLens connection={connection} />
       </Fullscreen>
     )
   )
