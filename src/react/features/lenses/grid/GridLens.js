@@ -50,12 +50,12 @@ const retrieveMoreDiories = async (
   onDiographChange
 ) => {
   // Retrieve missing diories to diograph
-  if (!story.data && (!story.links || Object.keys(story.links).length === 0)) {
+  if (story.id.slice(-1) === '/' && (!story.links || Object.keys(story.links).length === 0)) {
     console.log('RETRIEVE STARTED!')
     diograph.deleteDiory(story.id)
     const contentSourceList = await retrieveContentSourceList(story, contentSourceAddress)
     // TODO: These new diories need story.contentUrl to be able to show <Content />
-    // - requires also adding contentUrl to Connection => no Connections here yet!!g
+    // - requires also adding contentUrl to Connection => no Connections here yet!!
     diograph.mergeDiograph(contentSourceList)
     // => HOW TO DO THIS SAME TO connection.contentUrl DIOGRAPH??! (otherwise it won't persist...)
 
@@ -133,7 +133,7 @@ const GridLens = ({ connection, onDiographChange }) => {
   return (
     gridProps.story && (
       <>
-        {gridProps.story.data ? <Content diory={gridProps.story} /> : <GridView {...gridProps} />}
+        {!gridProps.story.links ? <Content diory={gridProps.story} /> : <GridView {...gridProps} />}
         <Button disabled={gridProps.story.id === '/'} onClick={onPreviousClick}>
           ---- GO BACK ----
         </Button>

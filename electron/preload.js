@@ -62,7 +62,7 @@ contextBridge.exposeInMainWorld('channelsApi', {
           return { [diory.id]: diory.toDioryObject() }
         }
         if (dirent.isDirectory()) {
-          const folderDioryId = join(dioryId, fileName)
+          const folderDioryId = join(dioryId, fileName, '/')
           // TODO: Move this to diograph-js
           // => generator.generateDioryFromFolder(filePath)
           const contentId = Date.now() * Math.random()
