@@ -65,20 +65,16 @@ const retrieveMoreDiories = async (
         connection.addContentUrl(diory.data[0].contentUrl, diory.contentUrl, diory)
       }
     })
-    console.log('diogr', diograph)
-    console.log('conn', connection)
-    onDiographChange(diograph)
-
+    onDiographChange()
     // addContentUrl = (contentUrl: string, internalPath: string, diory: Diory) => {
   }
 }
 
 const GridLens = ({ connection, onDiographChange }) => {
-  console.log('I rendered')
+  console.log('GridLens rendered')
 
   const contentSourceAddress = connection.address
   const { diograph } = connection
-  console.log('org-diogr', diograph)
   const [storyState, setStoryState] = useState({
     story: null,
     memories: [],

@@ -12,14 +12,16 @@ const selectContentSourceAddress = async () => {
 }
 
 const Root = () => {
+  console.log('Root rendered')
+
   const client = window.channelsApi ? new ElectronClient() : new ElectronClientMock()
   const roomClient = new RoomClient({}, undefined, client)
 
   const [room, setRoom] = useState(null)
   const [connection, setConnection] = useState(null)
 
-  const onDiographChange = (diograph) => {
-    console.log('Room saved!')
+  const onDiographChange = () => {
+    console.log('Room saved!', room.address)
     room.saveRoom()
   }
 
