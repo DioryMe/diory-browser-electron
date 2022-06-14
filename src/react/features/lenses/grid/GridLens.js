@@ -19,14 +19,12 @@ const getMemories = (diograph, storyLinks) => {
 }
 
 const retrieveContentSourceList = async (diory, contentSourceAddress) => {
-  // TODO: How to derive path for listContentSource based on diory?!!?
   if (window.channelsApi) {
     const newDiograph = await window.channelsApi.listContentSource(diory.id, contentSourceAddress)
     const links = {}
     Object.values(newDiograph).forEach((newDiographDiory) => {
       links[newDiographDiory.id] = { id: newDiographDiory.id }
     })
-    // TODO: Add these links also to connection!!!
     newDiograph[diory.id] = { ...diory.toDioryObject() }
     newDiograph[diory.id].links = links
     return newDiograph
@@ -54,11 +52,7 @@ const retrieveMoreDiories = async (
     console.log('RETRIEVE STARTED!')
     diograph.deleteDiory(story.id)
     const contentSourceList = await retrieveContentSourceList(story, contentSourceAddress)
-    // TODO: These new diories need story.contentUrl to be able to show <Content />
-    // - requires also adding contentUrl to Connection => no Connections here yet!!
     diograph.mergeDiograph(contentSourceList)
-    // => HOW TO DO THIS SAME TO connection.contentUrl DIOGRAPH??! (otherwise it won't persist...)
-
     diograph.diories.forEach((diory) => {
       if (diory.data && diory.data[0].contentUrl) {
         connection.addContentUrl(diory.data[0].contentUrl, diory.id)
@@ -81,7 +75,7 @@ const GridLens = ({ connection, onDiographChange }) => {
   })
 
   useEffect(() => {
-    const rootStory = getStory(diograph, diograph.rootId) // TODO: Replace '/' with some dynamic rootId
+    const rootStory = getStory(diograph, diograph.rootId)
     retrieveMoreDiories(
       rootStory,
       diograph,
@@ -98,7 +92,8 @@ const GridLens = ({ connection, onDiographChange }) => {
     })
   }, [])
 
-  const onMemoryClick = ({ diory }) => {
+  const onMemoryClick = ({ diory: { id } }) => {
+    const diory = getStory(diograph, id)
     retrieveMoreDiories(diory, diograph, contentSourceAddress, connection, onDiographChange).then(
       () => {
         const story = getStory(diograph, diory.id)
