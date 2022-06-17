@@ -15,7 +15,7 @@ const Root = () => {
   console.log('Root rendered')
 
   const client = window.channelsApi ? new ElectronClient() : new ElectronClientMock()
-  const roomClient = new RoomClient({}, undefined, client)
+  const roomClient = new RoomClient(client)
 
   const [room, setRoom] = useState(null)
   const [connection, setConnection] = useState(null)

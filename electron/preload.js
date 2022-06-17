@@ -42,6 +42,10 @@ contextBridge.exposeInMainWorld('channelsApi', {
 
   ...new ElectronServer().apiActions(),
 
+  // TODO: This is still NOT OFFICIAL way but uses prohibited shortcuts & assumptions to do things
+  // - Should use connection to define which client to use and initiate that client
+  // - Should use client to do readdirSync
+  // - Should copy stuff from contentSource to appTempFolder before (being able to) generateDioryFromFile
   listContentSource: async (dioryId, contentSourceAddress) => {
     const folderPath = join(contentSourceAddress, dioryId)
     const folderList = readdirSync(folderPath, { withFileTypes: true })
