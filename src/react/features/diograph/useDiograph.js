@@ -3,11 +3,10 @@ import { useSelector } from '../../store'
 
 import { resolveReverseDiograph } from './resolveReverseDiograph'
 
-const getDiorys = (ids = {}, diograph) => {
-  return Object.entries(ids)
+const getDiorys = (ids = {}, diograph = {}) =>
+  Object.entries(ids)
     .map(([key, { id }]) => ({ key, ...diograph[id] }))
     .filter(({ id }) => id)
-}
 
 export const getLinkedDiorys = (id, diograph) => {
   const diory = diograph[id]
