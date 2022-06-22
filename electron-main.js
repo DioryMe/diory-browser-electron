@@ -10,9 +10,6 @@ require('electron-reload')
 const log = require('electron-log')
 console.log = log.info
 
-// REMOVE ME: After first proper use of diograph-js this should be removed
-// require('./electron/testing-diograph-js-integration')
-
 const ffmpegDir = path
   .dirname(require.resolve('ffmpeg-static'))
   .replace('app.asar', 'app.asar.unpacked')
