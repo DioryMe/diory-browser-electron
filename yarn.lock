@@ -6889,6 +6889,13 @@ diffie-hellman@^5.0.0:
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
 
+diograph-js@0.0.3:
+  version "0.0.3-next.1"
+  resolved "https://registry.yarnpkg.com/diograph-js/-/diograph-js-0.0.3-next.1.tgz#406c5311fc59cb5ecb2e9ae18a3e171057b40c7a"
+  integrity sha512-2untA+lDJqm+r0wFv5jBjkWZ//bMnx7JyeiOIS5HYAep6B3apDZa09s6hsneD1n5ZenYmNFFjiAT8DzCPv7ktg==
+  dependencies:
+    uuid "^8.3.2"
+
 dir-compare@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/dir-compare/-/dir-compare-2.4.0.tgz#785c41dc5f645b34343a4eafc50b79bac7f11631"

@@ -25,7 +25,7 @@ const retrieveContentSourceList = async (diory, contentSourceAddress) => {
     Object.values(newDiograph).forEach((newDiographDiory) => {
       links[newDiographDiory.id] = { id: newDiographDiory.id }
     })
-    newDiograph[diory.id] = { ...diory.toDioryObject() }
+    newDiograph[diory.id] = { ...diory.toObject() }
     newDiograph[diory.id].links = links
     return newDiograph
   }

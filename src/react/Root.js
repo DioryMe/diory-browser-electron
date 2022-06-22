@@ -27,7 +27,7 @@ const Root = () => {
 
   useEffect(() => {
     const room = new Room(roomClient)
-    room.initiateRoom().then(() => {
+    room.loadRoom().then(() => {
       selectContentSourceAddress().then((contentSourceAddress) => {
         const contentSourceConnection = new Connection({
           id: 'content-source',
