@@ -4,7 +4,7 @@ const { join } = require('path')
 const { readdirSync } = require('fs')
 
 const { ElectronServer } = require('diograph-js')
-const { Generator, getDefaultImage } = require('../file-generator')
+const { Generator, getDefaultImage } = require('@diograph/file-generator')
 
 const { channels } = require('../src/shared/constants')
 
