@@ -34,7 +34,7 @@ module.exports = {
     'react/jsx-filename-extension': ['off'], // ok?
     'comma-dangle': ['off'], // maybe
     'import/prefer-default-export': ['off'], // maybe
-    'no-unused-vars': ['error', { args: 'none' }], // maybe?
+    'no-unused-vars': ['warn', { args: 'none' }], // maybe?
     'react/require-default-props': ['off'],
     'react/forbid-prop-types': ['off'],
     'react/jsx-props-no-spreading': ['off'], // personal opinion
@@ -42,7 +42,7 @@ module.exports = {
     'consistent-return': ['off'], // Personal opinion
     'no-underscore-dangle': ['off'],
     'import/no-extraneous-dependencies': ['warn', { devDependencies: true }],
-    'arrow-body-style': ['error', 'as-needed'],
+    // 'arrow-body-style': ['error', 'as-needed'],
     'prefer-destructuring': [
       'error',
       {
