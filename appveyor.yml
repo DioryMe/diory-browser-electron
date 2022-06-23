@@ -1,6 +1,6 @@
 image:
-  - macos-mojave # could be "macos" as well (=Catalina 10.15)
-  - Visual Studio 2019 # could be 2022 as well
+  - macos
+  - Visual Studio 2022
 environment:
   CI: false
 install:
