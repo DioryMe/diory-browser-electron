@@ -1,9 +1,11 @@
 image:
-  - macos
+  - macos-catalina
   - Visual Studio 2022
 environment:
   CI: false
+  nodejs_version: '16'
 install:
+  - nvm use 16
   - npm install -g yarn
   - yarn global add testcafe electron
   - rm -rf diograph-js
