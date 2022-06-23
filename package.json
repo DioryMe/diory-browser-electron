@@ -14,7 +14,7 @@
     "electron-store": "^8.0.2",
     "exifreader": "^4.5.0",
     "ffmpeg-static": "^5.0.0",
-    "file-type": "^17.1.2",
+    "file-type": "^16.4.0",
     "glob": "^8.0.3",
     "redux-thunk": "^2.4.1",
     "uuid": "^8.3.2"
