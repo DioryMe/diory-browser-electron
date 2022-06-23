@@ -16,6 +16,7 @@ Feature: Timeline lens
     Then I see 0 focus and 7 linked markers on timeline
 
   # FIXME: Should identify the marker to be clicked => now takes to Kayaking at Potomac just because it's the first diory in the view...
+  @pending
   Scenario: Shows popup when clicking marker and clicking popup takes diory in focus
     When I navigate backward
     And I see 0 focus and 4 linked markers on timeline
