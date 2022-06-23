@@ -75,6 +75,7 @@ Feature: Map lens
     Then I see 5 diorys on map
     And diory is saved to diograph
 
+  @pending
   Scenario: Moving diory on map
     Given I navigate backward
     When I select tools button
