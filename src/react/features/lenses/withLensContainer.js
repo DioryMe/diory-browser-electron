@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
 
 import { useDispatchActions, useSelector } from '../../store'
 import { addLensButton } from './lensesActions'
@@ -20,3 +21,9 @@ export const withLensContainer = (id, button) => (Component) => () =>
       <Component />
     </WithLensContainer>
   )
+
+WithLensContainer.propTypes = {
+  id: PropTypes.string,
+  button: PropTypes.string,
+  children: PropTypes.node,
+}
