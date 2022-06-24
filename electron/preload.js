@@ -3,8 +3,8 @@ const { fileURLToPath } = require('url')
 const { join } = require('path')
 const { readdirSync } = require('fs')
 
-const { ElectronServer } = require('diograph-js')
 const { Generator, getDefaultImage } = require('@diograph/file-generator')
+const { ElectronServer } = require('../diograph-js/dist/clients/electronServer')
 
 const { channels } = require('../src/shared/constants')
 
