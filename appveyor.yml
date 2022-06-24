@@ -1,11 +1,9 @@
 image:
-  - macos-catalina
-  - Visual Studio 2022
+  - macos-mojave # could be "macos" as well (=Catalina 10.15)
+  - Visual Studio 2019 # could be 2022 as well
 environment:
   CI: false
-  nodejs_version: '16'
 install:
-  - nvm use 16
   - npm install -g yarn
   - yarn global add testcafe electron
   - rm -rf diograph-js
