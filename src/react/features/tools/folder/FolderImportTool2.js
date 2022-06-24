@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { Room, ElectronClient, ElectronClientMock, RoomClient, Connection } from 'diograph-js'
+import { Connection } from 'diograph-js'
 import { useDispatchActions, useSelector } from '../../../store'
 
 import { inactivateButton } from '../../buttons/buttonsActions'
@@ -43,37 +43,27 @@ export const useAddSelectedDiorys = () => {
 }
 
 const FolderImportTool2 = () => {
-  const client = window.channelsApi ? new ElectronClient() : new ElectronClientMock()
-  const roomClient = new RoomClient(client)
-
-  const [room, setRoom] = useState(null)
   const [connection, setConnection] = useState(null)
 
   const onDiographChange = () => {
-    console.log('Room saved!', room.address)
-    room.saveRoom()
+    console.log('Connection diograph changed')
   }
 
   useEffect(() => {
-    const room = new Room(roomClient)
-    room.loadRoom().then(() => {
-      selectContentSourceAddress().then((contentSourceAddress) => {
-        const contentSourceConnection = new Connection({
-          id: 'content-source',
-          address: contentSourceAddress,
-          contentClient: 'local',
-          contentUrls: {},
-          diograph: {
-            '/': {
-              id: '/',
-              text: 'Root',
-            },
+    selectContentSourceAddress().then((contentSourceAddress) => {
+      const contentSourceConnection = new Connection({
+        id: 'content-source',
+        address: contentSourceAddress,
+        contentClient: 'local',
+        contentUrls: {},
+        diograph: {
+          '/': {
+            id: '/',
+            text: 'Root',
           },
-        })
-        room.addConnection(contentSourceConnection)
-        setRoom(room)
-        setConnection(contentSourceConnection)
+        },
       })
+      setConnection(contentSourceConnection)
     })
   }, [])
 
