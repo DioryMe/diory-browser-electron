@@ -11,9 +11,6 @@ import ImportView from '../import/ImportView'
 import GridLens2 from '../../lenses/grid/GridLens2'
 
 const selectContentSourceAddress = async () => {
-  if (!window.channelsApi) {
-    return '/Users/Jouni/Code/diory-browser-electron/demo-content-room'
-  }
   return window.channelsApi.showOpenDialog().then(({ filePaths }) => filePaths[0])
 }
 

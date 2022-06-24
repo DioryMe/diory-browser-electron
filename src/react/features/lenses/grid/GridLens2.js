@@ -85,6 +85,10 @@ const GridLens2 = ({ connection, onDiographChange }) => {
 
   const onMemoryClick = ({ diory: { id } }) => {
     const diory = getStory(diograph, id)
+    if (diory.id.slice(-1) !== '/') {
+      // Only folder diories have clicks
+      return
+    }
     retrieveMoreDiories(diory, diograph, contentSourceAddress, connection, onDiographChange).then(
       () => {
         const story = getStory(diograph, diory.id)
