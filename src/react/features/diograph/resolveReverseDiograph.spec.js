@@ -27,6 +27,9 @@ describe('resolveReverseDiograph', () => {
 
       it('adds linked diory with link to some diory to reverse diograph', () => {
         expect(resolveReverseDiograph(diograph)).toStrictEqual({
+          'some-diory-id': {
+            id: 'some-diory-id',
+          },
           'some-link-id': {
             id: 'some-link-id',
             links: {
@@ -74,7 +77,7 @@ describe('resolveReverseDiograph', () => {
     })
   })
 
-  describe('given two diorys with some link', () => {
+  describe('given two diorys with same link', () => {
     beforeEach(() => {
       diograph['some-diory-id'] = {
         id: 'some-diory-id',
@@ -94,18 +97,21 @@ describe('resolveReverseDiograph', () => {
       }
     })
 
-    describe('given both linked diorys in diograph', () => {
+    describe('given linked diory in diograph', () => {
       beforeEach(() => {
         diograph['some-link-id'] = {
           id: 'some-link-id',
-        }
-        diograph['other-link-id'] = {
-          id: 'other-link-id',
         }
       })
 
       it('adds linked diory with link to two diorys', () => {
         expect(resolveReverseDiograph(diograph)).toStrictEqual({
+          'some-diory-id': {
+            id: 'some-diory-id',
+          },
+          'other-diory-id': {
+            id: 'other-diory-id',
+          },
           'some-link-id': {
             id: 'some-link-id',
             links: {
@@ -149,6 +155,9 @@ describe('resolveReverseDiograph', () => {
 
       it('adds both linked diorys ', () => {
         expect(resolveReverseDiograph(diograph)).toStrictEqual({
+          'some-diory-id': {
+            id: 'some-diory-id',
+          },
           'some-link-id': {
             id: 'some-link-id',
             links: {
@@ -208,6 +217,12 @@ describe('resolveReverseDiograph', () => {
 
       it('adds both linked diorys with links to two diorys', () => {
         expect(resolveReverseDiograph(diograph)).toStrictEqual({
+          'some-diory-id': {
+            id: 'some-diory-id',
+          },
+          'other-diory-id': {
+            id: 'other-diory-id',
+          },
           'some-link-id': {
             id: 'some-link-id',
             links: {

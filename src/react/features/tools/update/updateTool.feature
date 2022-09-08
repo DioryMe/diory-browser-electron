@@ -61,13 +61,13 @@ Feature: Update tool
     Then 'diory11' has 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("http://localhost:3300/test-image.png")' as 'background-image'
 
   # Style
-  Scenario: Update style
-    When I add '{"some":"object"}' to style field
-    And I click Done button
-    And I select tools button
-    And I select update button
-    And I take 'Diory 11' in focus
-    Then I see '{"some":"object"}' in style field
+#  Scenario: Update style
+#    When I add '{"some":"object"}' to style field
+#    And I click Done button
+#    And I select tools button
+#    And I select update button
+#    And I take 'Diory 11' in focus
+#    Then I see '{"some":"object"}' in style field
 
   Scenario: Invalid style
     When I add 'not an object' to style field

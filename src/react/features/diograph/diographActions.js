@@ -78,42 +78,43 @@ export const updateDiograph = (diograph) => ({
 export const addDiograph =
   (diographData) =>
   (dispatch, _, { client }) => {
-    const diograph = client.addDiograph(diographData)
+    const { diograph } = client.addDiograph(diographData)
     dispatch(updateDiograph(diograph))
   }
 
 export const createDiory =
   (dioryData) =>
   (dispatch, _, { client }) => {
-    const diograph = client.createDiory(dioryData)
+    const { diory, diograph } = client.createDiory(dioryData)
     dispatch(updateDiograph(diograph))
+    return { diory }
   }
 
 export const updateDiory =
   (dioryData) =>
   (dispatch, getState, { client }) => {
-    const diograph = client.updateDiory(dioryData)
+    const { diograph } = client.updateDiory(dioryData)
     dispatch(updateDiograph(diograph))
   }
 
 export const deleteDiory =
   (dioryData) =>
   (dispatch, _, { client }) => {
-    const diograph = client.deleteDiory(dioryData)
+    const { diograph } = client.deleteDiory(dioryData)
     dispatch(updateDiograph(diograph))
   }
 
 export const createLink =
-  (dioryData, linkData) =>
+  (dioryObject, linkedDioryObject) =>
   (dispatch, getState, { client }) => {
-    const diograph = client.createLink(dioryData.id, linkData.id)
+    const { diograph } = client.createLink(dioryObject, linkedDioryObject)
     dispatch(updateDiograph(diograph))
   }
 
 export const deleteLink =
-  (from, to) =>
+  (dioryObject, linkedDioryObject) =>
   (dispatch, getState, { client }) => {
-    const diograph = client.deleteLink(from.id, to.id)
+    const { diograph } = client.deleteLink(dioryObject, linkedDioryObject)
     dispatch(updateDiograph(diograph))
   }
 
@@ -121,7 +122,7 @@ export const deleteLinks =
   (deletedLinks) =>
   (dispatch, getState, { client }) => {
     deletedLinks.forEach(({ fromDiory, toDiory }) => {
-      const diograph = client.deleteLink(fromDiory.id, toDiory.id)
+      const { diograph } = client.deleteLink(fromDiory, toDiory)
       dispatch(updateDiograph(diograph))
     })
   }
