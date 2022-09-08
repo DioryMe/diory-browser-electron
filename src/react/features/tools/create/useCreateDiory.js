@@ -1,4 +1,4 @@
-import { v4 as uuid } from 'uuid'
+import { getDefaultImage } from '../../../../shared/getDefaultImage'
 
 import { useDispatchActions } from '../../../store'
 import { useDiograph } from '../../diograph/useDiograph'
@@ -14,13 +14,11 @@ export const useCreateDiory = () => {
   const { dispatch } = useDispatchActions()
 
   return (newDiory) => {
-    if (CREATE_TOOL === active) {
-      const id = uuid()
-      dispatch(createDiory({ ...newDiory, id }))
-      dispatch(createLink(story, { id }))
-      dispatch(inactivateButton())
-      dispatch(deselectTool())
-      dispatch(addDioryToHand(id))
-    }
+    const image = getDefaultImage()
+    const { diory } = dispatch(createDiory({ image, ...newDiory }))
+    dispatch(createLink(story, diory))
+    dispatch(addDioryToHand(diory.id))
+    dispatch(inactivateButton())
+    dispatch(deselectTool())
   }
 }

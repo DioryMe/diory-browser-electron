@@ -1,18 +1,20 @@
-import { getDefaultImage } from '../../shared/getDefaultImage'
+import { Diograph } from 'diograph-js'
 
-let diograph
 let rootId
+
+const diographInstance = new Diograph()
 
 export function getDiograph(api) {
   return async ({ dioryFolderLocation }) => {
     console.log('diographClient/getDiograph', { dioryFolderLocation })
-    const { diograph: _diograph, rootId: _rootId } = await api.getDiograph({ dioryFolderLocation })
+    const { diograph, rootId: _rootId } = await api.getDiograph({ dioryFolderLocation })
 
-    diograph = _diograph
     rootId = _rootId
 
+    diographInstance.addDiograph(diograph)
+
     return {
-      diograph,
+      diograph: diographInstance.toObject(),
       rootId,
     }
   }
@@ -20,97 +22,80 @@ export function getDiograph(api) {
 
 export function saveDiograph(api) {
   return async ({ dioryFolderLocation }) => {
-    console.log('diographClient/saveDiograph', params)
+    console.log('diographClient/saveDiograph', dioryFolderLocation)
 
     // TODO: Debounce
-    return api.saveDiograph({ dioryFolderLocation, rootId, diograph })
+    return api.saveDiograph({
+      dioryFolderLocation,
+      rootId,
+      diograph: diographInstance.toObject(),
+    })
   }
 }
 
-export function addDiograph(_diograph) {
-  console.log('diographClient/addDiograph')
+export function addDiograph(diograph) {
+  console.log('diographClient/addDiograph', diograph)
 
-  diograph = {
-    ...diograph,
-    _diograph,
+  diographInstance.addDiograph(diograph)
+  return {
+    diograph: diographInstance.toObject(),
   }
-
-  return diograph
 }
 
-export function createDiory(_diory) {
-  console.log('diographClient/createDiory', _diory)
-  console.log(diograph)
+export function createDiory(dioryData) {
+  console.log('diographClient/createDiory', dioryData)
 
-  diograph[_diory.id] = {
-    ..._diory,
-    image: _diory.image || getDefaultImage(),
-    created: new Date().toISOString(),
+  const createdDiory = diographInstance.createDiory(dioryData)
+  return {
+    diory: createdDiory.toObject(),
+    diograph: diographInstance.toObject(),
   }
-
-  return diograph
 }
 
-export const updateDiory = (updatedDiory) => {
-  console.log('diographClient/updateDiory')
+export const updateDiory = (diory) => {
+  console.log('diographClient/updateDiory', diory)
 
-  diograph[updatedDiory.id] = {
-    ...diograph[updatedDiory.id],
-    ...updatedDiory,
-    updated: new Date().toISOString(),
+  const updatedDiory = diographInstance.updateDiory(diory)
+  return {
+    diory: updatedDiory.toObject(),
+    diograph: diographInstance.toObject(),
   }
-
-  return diograph
 }
 
 export const deleteDiory = (diory) => {
-  console.log('diographClient/deleteDiory')
+  console.log('diographClient/deleteDiory', diory)
 
-  // eslint-disable-next-line no-unused-vars
-  const { [diory.id]: omit, ..._diograph } = diograph
-
-  diograph = _diograph
-  return diograph
-}
-
-export function createLink(dioryId, linkId) {
-  const _diory = diograph[dioryId]
-
-  diograph[dioryId] = {
-    ..._diory,
-    links: {
-      ..._diory.links,
-      [linkId]: { id: linkId },
-    },
-    modified: new Date().toISOString(),
+  diographInstance.deleteDiory(diory)
+  return {
+    diograph: diographInstance.toObject(),
   }
-
-  return diograph
 }
 
-export function deleteLink(dioryId, linkId) {
-  const _diory = diograph[dioryId]
-  const linkKey = Object.entries(_diory.links).filter(([, { id }]) => id === linkId)[0][0]
-  // eslint-disable-next-line no-unused-vars
-  const { [linkKey]: omit, ...links } = _diory.links
+export function createLink(dioryObject, linkedDioryObject) {
+  console.log('diographClient/createLink', dioryObject, linkedDioryObject)
 
-  diograph[dioryId] = { ..._diory, links }
-  return diograph
+  const diory = diographInstance.createLink(dioryObject, linkedDioryObject)
+  return {
+    diory: diory.toObject(),
+    diograph: diographInstance.toObject(),
+  }
 }
 
-function allKeysExist(queryDiory) {
-  return (diory) => !Object.keys(queryDiory).some((key) => !diory[key])
+export function deleteLink(dioryObject, linkedDioryObject) {
+  console.log('diographClient/deleteLink', dioryObject, linkedDioryObject)
+
+  const diory = diographInstance.deleteLink(dioryObject, linkedDioryObject)
+  return {
+    diory: diory.toObject(),
+    diograph: diographInstance.toObject(),
+  }
 }
 
-function allMatchToQuery(queryDiory) {
-  return (diory) =>
-    !Object.entries(queryDiory).some(([key, query]) => {
-      console.log(diory[key], query, diory[key].toLowerCase().includes(query.toLowerCase()))
-      return !diory[key].toLowerCase().includes(query.toLowerCase())
-    })
-}
 export function searchDiories(queryDiory) {
-  return Object.values(diograph)
-    .filter(allKeysExist(queryDiory))
-    .filter(allMatchToQuery(queryDiory))
+  console.log('diographClient/searchDiories')
+
+  const resultDiograph = diographInstance.queryDiograph(queryDiory)
+  return {
+    diograph: Object.values(resultDiograph),
+  }
 }

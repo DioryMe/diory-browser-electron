@@ -1,5 +1,3 @@
-import { v4 as uuid } from 'uuid'
-
 import { useDispatchActions, useSelector } from '../../../store'
 import { useButtons } from '../../buttons/useButtons'
 import { inactivateButton } from '../../buttons/buttonsActions'
@@ -18,9 +16,8 @@ export const useCreateTool = () => {
 
   return (newDiory) => {
     if (CREATE_LOCATION_TOOL_BUTTON === active) {
-      const id = uuid()
-      dispatch(createDiory({ ...newDiory, id }))
-      dispatch(createLink(story, { id }))
+      const { diory } = dispatch(createDiory(newDiory))
+      dispatch(createLink(story, diory))
       dispatch(inactivateButton())
     }
   }

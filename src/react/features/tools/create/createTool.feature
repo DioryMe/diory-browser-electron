@@ -53,14 +53,14 @@ Feature: Create tool
   #   Then 'diory11' has 'url("http://localhost:3300/test-image.png")' as  'background-image'
 
   # Style
-  Scenario: Create style
-    When I add '{"some":"object"}' to style field
-    And I add 'Some diory' to text field
-    And I click Done button
-    And I select tools button
-    And I select update button
-    And I take 'Some diory' in focus
-    Then I see '{"some":"object"}' in style field
+#  Scenario: Create style
+#    When I add '{"some":"object"}' to style field
+#    And I add 'Some diory' to text field
+#    And I click Done button
+#    And I select tools button
+#    And I select update button
+#    And I take 'Some diory' in focus
+#    Then I see '{"some":"object"}' in style field
 
   Scenario: Invalid style
     When I add 'not an object' to style field
