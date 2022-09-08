@@ -11,6 +11,7 @@ import { useDeleteView } from './useDeleteView'
 
 jest.mock('../../../store')
 jest.mock('../../diograph/useDiograph')
+jest.mock('../../diograph/diographActions')
 
 describe('useDeleteView', () => {
   let mockState
@@ -42,9 +43,7 @@ describe('useDeleteView', () => {
 
       useDeleteView().onDone()
 
-      expect(mockDispatch).toHaveBeenCalledWith(
-        deleteLinks([{ fromDiory: focusDiory, toDiory: linkDiory }])
-      )
+      expect(deleteLinks).toHaveBeenCalledWith([{ fromDiory: focusDiory, toDiory: linkDiory }])
       expect(mockDispatch).toHaveBeenCalledWith(selectMemory())
       expect(mockDispatch).toHaveBeenCalledTimes(2)
     })
@@ -63,8 +62,8 @@ describe('useDeleteView', () => {
         { fromDiory: reverseLinkedDioryId2, toDiory: focusDiory },
         { fromDiory: bidirectionalLinkedDioryId3, toDiory: focusDiory },
       ]
-      expect(mockDispatch).toHaveBeenCalledWith(deleteDiory(focusDiory))
-      expect(mockDispatch).toHaveBeenCalledWith(deleteLinks(expectedDeleteLinksArguments))
+      expect(deleteDiory).toHaveBeenCalledWith(focusDiory)
+      expect(deleteLinks).toHaveBeenCalledWith(expectedDeleteLinksArguments)
       expect(mockDispatch).toHaveBeenCalledWith(goBackward())
       expect(mockDispatch).toHaveBeenCalledWith(selectMemory())
       expect(mockDispatch).toHaveBeenCalledWith(inactivateButton())
@@ -77,8 +76,8 @@ describe('useDeleteView', () => {
 
       useDeleteView().onDone()
 
-      expect(mockDispatch).toHaveBeenCalledWith(deleteDiory(focusDiory))
-      expect(mockDispatch).toHaveBeenCalledWith(deleteLinks([]))
+      expect(deleteDiory).toHaveBeenCalledWith(focusDiory)
+      expect(deleteLinks).toHaveBeenCalledWith([])
       expect(mockDispatch).toHaveBeenCalledWith(goBackward())
       expect(mockDispatch).toHaveBeenCalledWith(selectMemory())
       expect(mockDispatch).toHaveBeenCalledWith(inactivateButton())
