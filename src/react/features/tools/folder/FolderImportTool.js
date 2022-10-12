@@ -8,8 +8,8 @@ import { deselectTool, selectFolderPath, generateDiograph } from '../toolsAction
 
 import { getLinkedDiorys } from '../../diograph/useDiograph'
 
-import { channels } from '../../../../shared/constants'
-import { deselectTool } from '../toolsActions'
+import ImportView from '../import/ImportView'
+import DiorysGrid from '../../../components/DiorysGrid'
 
 const useSelectFolderPath = () => {
   const { dispatch } = useDispatchActions()
@@ -18,27 +18,39 @@ const useSelectFolderPath = () => {
   }, [dispatch])
 }
 
-export const useFolderImportTool = () => {
-  const { importFolder } = useImportFolder()
-
+const useImportFolderPath = () => {
+  const { importFolderPath } = useSelector((state) => state.tools)
   const { dispatch } = useDispatchActions()
   useEffect(() => {
-    dispatch(inactivateButton())
-    dispatch(deselectTool())
-
-    if (window.processEnv.TESTCAFE_TEST === '1') {
-      const path = `${window.processEnv.PWD}/public/diory-demo-content`
-      importFolder(path)
-    } else if (window.processEnv.TESTCAFE_TEST === '2') {
-      const path = `${window.processEnv.PWD}/electron/readers/example-folder`
-      importFolder(path)
-    } else {
-      window.channelsApi.showOpenDialog().then(({ filePaths }) => {
-        const path = filePaths[0]
-        importFolder(path)
-      })
+    if (importFolderPath) {
+      dispatch(generateDiograph(importFolderPath))
     }
-  }, [importFolder, dispatch])
+  }, [dispatch, importFolderPath])
+}
+
+const useResetView = () => {
+  const { dispatch } = useDispatchActions()
+  return {
+    resetView: () => {
+      dispatch(inactivateButton())
+      dispatch(deselectTool())
+    },
+  }
+}
+
+export const useAddSelectedDiorys = () => {
+  const { storyId } = useSelector((state) => state.navigation)
+  const { selectedStoryId, diograph } = useSelector((state) => state.tools)
+  const { resetView } = useResetView()
+
+  const { dispatch } = useDispatchActions()
+  return {
+    addSelectedDiorys: () => {
+      dispatch(addDiograph(diograph))
+      dispatch(createLink({ id: storyId }, { id: selectedStoryId }))
+      resetView()
+    },
+  }
 }
 
 const FolderImportTool = () => {

@@ -7,8 +7,6 @@ import { inactivateButton } from '../../buttons/buttonsActions'
 import { addDioryToHand, deselectTool } from '../toolsActions'
 import { createDiory, createLink } from '../../diograph/diographActions'
 
-import { CREATE_TOOL } from './buttons'
-
 export const useCreateDiory = () => {
   const { story } = useDiograph()
   const { dispatch } = useDispatchActions()
