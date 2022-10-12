@@ -23,6 +23,11 @@ export const deselectTool = () => ({
   type: DESELECT_TOOL,
 })
 
+export const setImportFolderPath = (path) => ({
+  type: SET_IMPORT_FOLDER_PATH,
+  payload: { path },
+})
+
 export function selectFolderPath() {
   return async (dispatch) => {
     const { filePaths } = await invokeChannel('showOpenDialog')
@@ -30,9 +35,14 @@ export function selectFolderPath() {
   }
 }
 
-export const setImportFolderPath = (path) => ({
-  type: SET_IMPORT_FOLDER_PATH,
-  payload: { path },
+export const addDiograph = (diograph) => ({
+  type: TOOLS_ADD_DIOGRAPH,
+  payload: { diograph },
+})
+
+export const selectStory = (id) => ({
+  type: TOOLS_SELECT_STORY,
+  payload: { id },
 })
 
 export function generateDiograph(importFolderPath) {
@@ -46,13 +56,3 @@ export function generateDiograph(importFolderPath) {
     dispatch(selectStory(rootId))
   }
 }
-
-export const addDiograph = (diograph) => ({
-  type: TOOLS_ADD_DIOGRAPH,
-  payload: { diograph },
-})
-
-export const selectStory = (id) => ({
-  type: TOOLS_SELECT_STORY,
-  payload: { id },
-})
