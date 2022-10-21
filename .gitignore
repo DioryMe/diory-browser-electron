@@ -9,6 +9,7 @@
 /coverage
 /data
 /tmp
+/cypress
 
 # production
 /build
