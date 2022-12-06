@@ -49,36 +49,43 @@ const defaultReducer = (state, { payload }) => ({
 
 export const promiseReducers = (
   actionType,
-  triggerKey,
   progressKey,
   successKey,
   errorKey,
   reducer = defaultReducer
 ) => ({
-  [`${actionType}_BEGIN`]: (state, { payload }) =>
-    reducer(state, {
-      payload: {
-        ...payload,
-        [triggerKey]: false,
+  [`${actionType}_BEGIN`]: (state, { payload = {} }) =>
+    reducer(
+      {
+        ...state,
         [progressKey]: true,
       },
-    }),
-  [`${actionType}_SUCCESS`]: (state, { payload }) =>
-    reducer(state, {
-      payload: {
-        ...payload,
+      {
+        payload,
+      }
+    ),
+  [`${actionType}_SUCCESS`]: (state, { payload = {} }) =>
+    reducer(
+      {
+        ...state,
         [progressKey]: false,
         [successKey]: true,
         [errorKey]: false,
       },
-    }),
-  [`${actionType}_FAILURE`]: (state, { payload }) =>
-    reducer(state, {
-      payload: {
-        ...payload,
+      {
+        payload,
+      }
+    ),
+  [`${actionType}_FAILURE`]: (state, { payload = {} }) =>
+    reducer(
+      {
+        ...state,
         [progressKey]: false,
         [successKey]: false,
         [errorKey]: payload.error,
       },
-    }),
+      {
+        payload,
+      }
+    ),
 })

@@ -21,7 +21,9 @@ const Browser = (props) => {
       <Tools />
       <Buttons />
     </Fullscreen>
-  ) : null
+  ) : (
+    <div>loading...</div>
+  )
 }
 
 export default Browser
