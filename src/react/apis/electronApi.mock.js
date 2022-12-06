@@ -1,4 +1,4 @@
-import GET_DIOGRAPH from '../client/mockResponses/GET_DIOGRAPH.json'
+import GET_DIOGRAPH from './mockResponses/GET_DIOGRAPH.json'
 
 export function getDiograph() {
   const mockResponse = GET_DIOGRAPH

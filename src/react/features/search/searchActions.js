@@ -16,9 +16,8 @@ export const toggleSearchBar = () => ({
 
 export const searchDiories =
   (query) =>
-  (dispatch, getState, { client }) => {
-    const { diograph } = getState().diograph
-    const diories = client.searchDiories({ text: query }, diograph)
-    dispatch(setSearchResults(query, diories))
+  (dispatch, getState, { diographStore }) => {
+    const { diograph } = diographStore.queryDiograph({ text: query })
+    dispatch(setSearchResults(query, diograph.values()))
     dispatch(setSearchQuery(query))
   }

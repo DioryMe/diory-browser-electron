@@ -1,29 +1,28 @@
-import { GET_DIOGRAPH_SUCCESS, SAVE_DIOGRAPH, UPDATE_DIOGRAPH } from './diographActionTypes'
+import { GET_DIOGRAPH, SAVE_DIOGRAPH, UPDATE_DIOGRAPH } from './diographActionTypes'
 import { promiseReducers, createReducer } from '../../store'
 
 const initialState = {
   rootId: undefined,
   diograph: {},
+  loading: false,
   loaded: false,
-  updated: false,
+  saving: false,
+  saved: false,
 }
 
-export const getDiographSuccess = (state, { payload: { diograph, rootId } }) => ({
+export const getDiograph = (state, { payload: { diograph, rootId } }) => ({
   ...state,
   rootId,
   diograph,
-  loaded: true,
-  updated: false,
 })
 
 export const updateDiograph = (state, { payload: { diograph } }) => ({
   ...state,
   diograph,
-  updated: true,
 })
 
 export default createReducer(initialState, {
   [UPDATE_DIOGRAPH]: updateDiograph,
-  [GET_DIOGRAPH_SUCCESS]: getDiographSuccess,
-  ...promiseReducers(SAVE_DIOGRAPH, 'updated', 'saving', 'saved', 'error'),
+  ...promiseReducers(GET_DIOGRAPH, 'loading', 'loaded', 'error', getDiograph),
+  ...promiseReducers(SAVE_DIOGRAPH, 'saving', 'saved', 'error'),
 })
