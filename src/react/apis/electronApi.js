@@ -1,7 +1,7 @@
-export function getDiograph({ dioryFolderLocation }) {
-  console.log('electronApi/getDiograph', dioryFolderLocation)
+export function getDiograph(address) {
+  console.log('electronApi/getDiograph', address)
 
-  return window.channelsApi.GET_DIOGRAPH(dioryFolderLocation)
+  return window.channelsApi.GET_DIOGRAPH(address)
 }
 
 export function saveDiograph(params) {

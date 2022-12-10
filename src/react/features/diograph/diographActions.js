@@ -32,7 +32,7 @@ export const saveDiograph =
       try {
         const { dioryFolderLocation } = getState().settings
         const diograph = diographStore.toObject()
-        const rootId = diographStore.rootId
+        const { rootId } = diographStore
         await client.saveDiograph({ diograph, dioryFolderLocation, rootId })
         dispatch(saveDiographSuccess())
       } catch (error) {
@@ -127,7 +127,7 @@ export const getDiograph =
       dispatch(getDiographBegin())
       try {
         const { dioryFolderLocation } = getState().settings
-        const { diograph, rootId } = await client.getDiograph({ dioryFolderLocation })
+        const { diograph, rootId } = await client.getDiograph(dioryFolderLocation)
 
         diographStore.addDiograph(diograph, rootId)
         dispatch(getDiographSuccess(diographStore.toObject(), rootId))
