@@ -1,6 +1,6 @@
 const path = require('path').posix
-const { getDiograph } = require('./get-diograph')
-const { readDiographJson } = require('./read-diograph-json')
+const { getDiograph } = require('./getDiograph')
+const { readDiographJson } = require('./readDiographJson')
 
 const someDiograph = {
   diograph: {
@@ -8,7 +8,7 @@ const someDiograph = {
   },
   rootId: 'some-diory',
 }
-jest.mock('./read-diograph-json')
+jest.mock('./readDiographJson')
 
 describe('getDiograph', () => {
   beforeEach(() => {

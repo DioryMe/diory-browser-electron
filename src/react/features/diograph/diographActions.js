@@ -25,7 +25,7 @@ export const saveDiographFailure = (error) => ({
 
 export const saveDiograph =
   () =>
-  async (dispatch, getState, { client, diographStore }) => {
+  async (dispatch, getState, { diographStore, connectors }) => {
     const { saving } = getState().diograph
     if (!saving) {
       dispatch(saveDiographBegin())
@@ -33,7 +33,7 @@ export const saveDiograph =
         const { dioryFolderLocation } = getState().settings
         const diograph = diographStore.toObject()
         const { rootId } = diographStore
-        await client.saveDiograph({ diograph, dioryFolderLocation, rootId })
+        await connectors.folder.saveDiograph({ diograph, dioryFolderLocation, rootId })
         dispatch(saveDiographSuccess())
       } catch (error) {
         dispatch(saveDiographFailure(error))
@@ -121,14 +121,13 @@ export const getDiographFailure = (error) => ({
 
 export const getDiograph =
   () =>
-  async (dispatch, getState, { diographStore, client }) => {
+  async (dispatch, getState, { diographStore, connectors }) => {
     const { loading } = getState().diograph
     if (!loading) {
       dispatch(getDiographBegin())
       try {
         const { dioryFolderLocation } = getState().settings
-        const { diograph, rootId } = await client.getDiograph(dioryFolderLocation)
-
+        const { diograph, rootId } = await connectors.folder.getDiograph(dioryFolderLocation)
         diographStore.addDiograph(diograph, rootId)
         dispatch(getDiographSuccess(diographStore.toObject(), rootId))
 

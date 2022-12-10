@@ -4,10 +4,10 @@ const { fileURLToPath } = require('url')
 const { channels } = require('../src/shared/constants')
 
 const { importFolder } = require('./lib/import-folder')
-const { getDiograph } = require('./lib/get-diograph')
 const { getDioryFolderLocation } = require('./lib/get-diory-folder-location')
 const { setDioryFolderLocation } = require('./lib/set-diory-folder-location')
-const { saveDiograph } = require('./lib/save-diograph')
+
+require('./folder-connector')
 
 function channelLogger(handler, params) {
   console.log(`BACK-REQ: ${handler.name} called with`, params)
@@ -22,8 +22,6 @@ function channelLogger(handler, params) {
 // NOTE2: All functions used as channels must return a Promise!
 contextBridge.exposeInMainWorld('channelsApi', {
   [channels.IMPORT_FOLDER]: (params) => channelLogger(importFolder, params),
-  [channels.GET_DIOGRAPH]: (params) => channelLogger(getDiograph, params),
-  [channels.SAVE_DIOGRAPH]: (params) => channelLogger(saveDiograph, params),
   [channels.GET_DIORY_FOLDER_LOCATION]: (params) => channelLogger(getDioryFolderLocation, params),
   [channels.SET_DIORY_FOLDER_LOCATION]: (params) => channelLogger(setDioryFolderLocation, params),
   [channels.OPEN_FOLDER]: async (fileUrl) => shell.showItemInFolder(fileURLToPath(fileUrl)),

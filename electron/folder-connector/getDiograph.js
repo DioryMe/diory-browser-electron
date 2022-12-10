@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path').posix
-const { readDiographJson } = require('./read-diograph-json')
+const { readDiographJson } = require('./readDiographJson')
 
 exports.getDiograph = async function getDiograph(dioryFolderLocation) {
   if (!fs.existsSync(dioryFolderLocation)) {

@@ -2,22 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
-
 import { Provider } from 'react-redux'
 
 import { Diograph } from 'diograph-js'
+
+import { createConnectors } from '../connectors'
+
 import { reducer } from './reducer'
-import { createClient } from '../clients'
 
-const client = createClient()
-
+const connectors = createConnectors()
 const diographStore = new Diograph()
-
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-
 const store = createStore(
   reducer,
-  composeEnhancers(applyMiddleware(thunk.withExtraArgument({ diographStore, client })))
+  composeEnhancers(applyMiddleware(thunk.withExtraArgument({ diographStore, connectors })))
 )
 
 const StoreProvider = ({ children }) => <Provider store={store}>{children}</Provider>
