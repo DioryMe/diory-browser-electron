@@ -1,15 +1,15 @@
 import GET_DIOGRAPH from './mockResponses/GET_DIOGRAPH.json'
 
-export function getDiograph() {
+export function getDiograph(params) {
   const mockResponse = GET_DIOGRAPH
-  console.log('mock: getDiograph', mockResponse)
+  console.log('mock: getDiograph', params, mockResponse)
 
   return mockResponse
 }
 
-export function saveDiograph() {
+export function saveDiograph(params) {
   const mockResponse = true
-  console.log('mock: saveDiograph', mockResponse)
+  console.log('mock: saveDiograph', params, mockResponse)
 
   return mockResponse
 }
