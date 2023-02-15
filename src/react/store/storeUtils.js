@@ -1,6 +1,4 @@
-import { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
-import { debounce } from '../utils'
 
 export const createReducer =
   (initialState, handlers) =>
@@ -12,15 +10,21 @@ export const createReducer =
     return handlers[action.type](state, action)
   }
 
-const promiseActions = (dispatch) => (promise, action) => {
-  const { type, payload } = action({})
-  dispatch({ type: `${type}_BEGIN`, payload })
-  return promise()
-    .then((data) => {
-      dispatch({ type: `${type}_SUCCESS`, payload: { ...payload, ...data } })
-      return data
-    })
-    .catch((error) => dispatch({ type: `${type}_FAILURE`, payload: { error } }))
+export function createActions(actionType) {
+  return {
+    begin: (payload) => ({
+      type: `${actionType}_BEGIN`,
+      payload,
+    }),
+    success: (payload) => ({
+      type: `${actionType}_SUCCESS`,
+      payload,
+    }),
+    failure: (error) => ({
+      type: `${actionType}_FAILURE`,
+      payload: { error },
+    }),
+  }
 }
 
 export const useDispatchActions = () => {
@@ -33,12 +37,6 @@ export const useDispatchActions = () => {
         dispatch(action(...params))
         return params
       },
-    dispatchPromiseAction: promiseActions(dispatch),
-    debounceDispatchPromiseAction: useCallback(
-      // Use the same debounce function
-      debounce(promiseActions(dispatch), 1000),
-      []
-    ),
   }
 }
 
