@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from '../../store'
 
 import WelcomeView from './WelcomeView'
-import SetDioryFolderLocationButton from '../settings/SetDioryFolderLocationButton'
+import SetHomeRoomButton from '../room/SetHomeRoomButton'
 
 const Welcome = () => {
-  const { initializing, dioryFolderLocation } = useSelector((state) => state.settings)
+  const { initializing, address } = useSelector((state) => state.room)
   const [showInitially, setShowInitially] = useState(true)
 
   useEffect(() => {
@@ -18,10 +18,8 @@ const Welcome = () => {
     )
   }, [])
 
-  return !dioryFolderLocation || showInitially ? (
-    <WelcomeView>
-      {!dioryFolderLocation && !initializing ? <SetDioryFolderLocationButton /> : null}
-    </WelcomeView>
+  return !address || showInitially ? (
+    <WelcomeView>{!address && !initializing ? <SetHomeRoomButton /> : null}</WelcomeView>
   ) : null
 }
 

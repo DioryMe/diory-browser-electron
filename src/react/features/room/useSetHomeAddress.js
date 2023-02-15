@@ -1,7 +1,7 @@
 import { useDispatchActions } from '../../store'
 
 import { resetStore } from '../../store/actions'
-import { setDioryFolderLocation } from './settingsActions'
+import { setRoomAddress } from './roomActions'
 
 import { invokeChannel } from '../../client/client'
 import { channels } from '../../../shared/constants'
@@ -10,16 +10,14 @@ const useChooseDioryFolderLocation = () => {
   const { dispatch } = useDispatchActions()
   return (result) => {
     const dioryFolderPath = result.filePaths[0]
-    invokeChannel(channels.SET_DIORY_FOLDER_LOCATION, dioryFolderPath).then(
-      ({ dioryFolderLocation }) => {
-        dispatch(resetStore())
-        dispatch(setDioryFolderLocation(dioryFolderLocation))
-      }
-    )
+    invokeChannel(channels.SET_DIORY_FOLDER_LOCATION, dioryFolderPath).then(({ address }) => {
+      dispatch(resetStore())
+      dispatch(setRoomAddress(address))
+    })
   }
 }
 
-export const useSetDioryFolderLocation = () => {
+export const useSetHomeAddress = () => {
   const chooseDioryFolderLocation = useChooseDioryFolderLocation()
 
   return {

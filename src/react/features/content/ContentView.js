@@ -11,23 +11,23 @@ import WebContent from './web/WebContent'
 import ImageContent from './image/ImageContent'
 
 const ContentView = ({ diory }) => {
-  const { dioryFolderLocation } = useSelector((state) => state.settings)
+  const { address } = useSelector((state) => state.room)
   const { data = [] } = diory
   const { encodingFormat, url } = (data && data[0]) || {}
 
   switch (encodingFormat) {
     case 'image/jpeg':
-      return <ImageContent diory={diory} baseUrl={dioryFolderLocation} />
+      return <ImageContent diory={diory} baseUrl={address} />
     case 'video/mp4':
     case 'video/x-m4v':
     case 'video/quicktime':
-      return <VideoContent diory={diory} baseUrl={dioryFolderLocation} />
+      return <VideoContent diory={diory} baseUrl={address} />
     case 'audio/mpeg':
     case 'audio/x-m4a':
     case 'audio/opus':
-      return <AudioContent diory={diory} baseUrl={dioryFolderLocation} />
+      return <AudioContent diory={diory} baseUrl={address} />
     case 'application/pdf':
-      return <DocumentContent diory={diory} baseUrl={dioryFolderLocation} />
+      return <DocumentContent diory={diory} baseUrl={address} />
     default:
       if (url && /^http(s)?:\/\//.exec(url)) {
         return <WebContent diory={diory} />

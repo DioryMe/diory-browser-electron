@@ -8,7 +8,7 @@ import diograph from '../features/diograph/diographReducer'
 import lenses from '../features/lenses/lensesReducer'
 import navigation from '../features/navigation/navigationReducer'
 import search from '../features/search/searchReducer'
-import settings from '../features/settings/settingsReducer'
+import room from '../features/room/roomReducer'
 import tools from '../features/tools/toolsReducer'
 
 const appReducer = combineReducers({
@@ -18,7 +18,7 @@ const appReducer = combineReducers({
   lenses,
   navigation,
   search,
-  settings,
+  room,
   tools,
 })
 
