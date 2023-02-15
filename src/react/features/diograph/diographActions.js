@@ -14,8 +14,7 @@ export const saveDiograph =
       try {
         const { address } = getState().room
         const diograph = diographStore.toObject()
-        const { rootId } = diographStore
-        await connectors.folder.saveDiograph({ diograph, address, rootId })
+        await connectors.folder.saveDiograph({ diograph, address })
         dispatch(saveDiographActions.success())
       } catch (error) {
         dispatch(saveDiographActions.failure(error))
@@ -97,8 +96,9 @@ export const getDiograph =
       dispatch(getDiographActions.begin())
       try {
         const { address } = getState().room
-        const { diograph, rootId } = await connectors.folder.getDiograph(address)
-        diographStore.addDiograph(diograph, rootId)
+        const { diograph } = await connectors.folder.getDiograph(address)
+        diographStore.addDiograph(diograph)
+        const rootId = Object.values(diographStore.toObject()).find(({ path }) => path === '/').id
         dispatch(getDiographActions.success({ diograph: diographStore.toObject(), rootId }))
 
         dispatch(selectStory({ id: rootId }))
