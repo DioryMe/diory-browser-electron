@@ -1,8 +1,8 @@
 {
-  "rootId": "welcome-root-diory",
   "diograph": {
     "welcome-root-diory": {
       "id": "welcome-root-diory",
+      "path": "/",
       "image": "",
       "links": {
         "welcome-diory": {
