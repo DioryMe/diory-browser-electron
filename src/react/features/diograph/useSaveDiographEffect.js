@@ -5,12 +5,12 @@ import { saveDiograph } from './diographActions'
 
 export const useSaveDiographEffect = () => {
   const { updated } = useSelector((state) => state.diograph)
-  const { dioryFolderLocation } = useSelector((state) => state.settings)
+  const { address } = useSelector((state) => state.room)
 
   const { dispatch } = useDispatchActions()
   useEffect(() => {
-    if (updated && dioryFolderLocation) {
+    if (updated && address) {
       dispatch(saveDiograph())
     }
-  }, [dispatch, updated, dioryFolderLocation])
+  }, [dispatch, updated, address])
 }

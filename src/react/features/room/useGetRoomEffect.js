@@ -2,14 +2,14 @@ import { useEffect } from 'react'
 
 import { useDispatchActions, useSelector } from '../../store'
 
-import { getDiograph } from './diographActions'
+import { getRoom } from './roomActions'
 
-export const useGetDiographEffect = () => {
+export const useGetRoomEffect = () => {
   const { address } = useSelector((state) => state.room)
   const { dispatch } = useDispatchActions()
   useEffect(() => {
     if (address) {
-      dispatch(getDiograph())
+      dispatch(getRoom())
     }
   }, [dispatch, address])
 }

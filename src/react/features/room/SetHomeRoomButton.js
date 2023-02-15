@@ -1,9 +1,9 @@
 import React from 'react'
 import { Pane } from 'evergreen-ui'
-import { useSetDioryFolderLocation } from './useSetDioryFolderLocation'
+import { useSetHomeAddress } from './useSetHomeAddress'
 
-const SetDioryFolderLocationButton = () => {
-  const { onClick } = useSetDioryFolderLocation()
+const SetHomeRoomButton = () => {
+  const { onClick } = useSetHomeAddress()
   return (
     <Pane
       cursor="pointer"
@@ -21,4 +21,4 @@ const SetDioryFolderLocationButton = () => {
   )
 }
 
-export default SetDioryFolderLocationButton
+export default SetHomeRoomButton

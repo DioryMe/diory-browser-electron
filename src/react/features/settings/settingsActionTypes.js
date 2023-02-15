@@ -1,1 +1,0 @@
-export const SET_DIORY_LOCATION = 'SET_DIORY_LOCATION'
