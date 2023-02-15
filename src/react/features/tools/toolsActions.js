@@ -47,10 +47,10 @@ export const selectStory = (id) => ({
 
 export function generateDiograph(importFolderPath) {
   return async (dispatch, getState) => {
-    const { dioryFolderLocation } = getState().settings
+    const { address } = getState().room
     const { rootId, diograph = {} } = await invokeChannel(channels.IMPORT_FOLDER, {
       importFolderPath,
-      dioryFolderLocation,
+      address,
     })
     dispatch(addDiograph(diograph))
     dispatch(selectStory(rootId))

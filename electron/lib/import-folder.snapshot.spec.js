@@ -58,7 +58,7 @@ describe('importFolder snapshot spec', () => {
     it('returns imported folder diograph', async () => {
       importFolderPath = join(__dirname, '../../public/diory-demo-content')
       const importedFolderDiograph = await importFolder({ importFolderPath, dioryFolderLocation })
-      expect(Object.keys(importedFolderDiograph)).toEqual(['rootId', 'diograph'])
+      expect(Object.keys(importedFolderDiograph)).toEqual(['diograph'])
       expect(importedFolderDiograph).toMatchSnapshot()
     })
   })
