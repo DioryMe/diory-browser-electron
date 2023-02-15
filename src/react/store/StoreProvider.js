@@ -4,13 +4,16 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 
-import { Diograph } from 'diograph-js'
+import { Diograph } from '@diograph/diograph'
 
-import { createConnectors } from '../connectors'
+import { createFolderConnector } from '../connectors/folderConnector'
 
 import { reducer } from './reducer'
 
-const connectors = createConnectors()
+const connectors = {
+  folder: createFolderConnector(),
+}
+
 const diographStore = new Diograph()
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
