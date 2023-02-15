@@ -1,42 +1,24 @@
-import {
-  GET_DIOGRAPH_BEGIN,
-  GET_DIOGRAPH_SUCCESS,
-  GET_DIOGRAPH_FAILURE,
-  SAVE_DIOGRAPH_BEGIN,
-  SAVE_DIOGRAPH_SUCCESS,
-  SAVE_DIOGRAPH_FAILURE,
-  UPDATE_DIOGRAPH,
-} from './diographActionTypes'
+import { UPDATE_DIOGRAPH, GET_DIOGRAPH, SAVE_DIOGRAPH } from './diographActionTypes'
 
 import { selectStory } from '../navigation/navigationActions'
+import { createActions } from '../../store/storeUtils'
 
-export const saveDiographBegin = () => ({
-  type: SAVE_DIOGRAPH_BEGIN,
-})
-
-export const saveDiographSuccess = () => ({
-  type: SAVE_DIOGRAPH_SUCCESS,
-})
-
-export const saveDiographFailure = (error) => ({
-  type: SAVE_DIOGRAPH_FAILURE,
-  payload: { error },
-})
+const saveDiographActions = createActions(SAVE_DIOGRAPH)
 
 export const saveDiograph =
   () =>
   async (dispatch, getState, { diographStore, connectors }) => {
     const { saving } = getState().diograph
     if (!saving) {
-      dispatch(saveDiographBegin())
+      dispatch(saveDiographActions.begin())
       try {
-        const { dioryFolderLocation } = getState().settings
+        const { address } = getState().room
         const diograph = diographStore.toObject()
         const { rootId } = diographStore
-        await connectors.folder.saveDiograph({ diograph, dioryFolderLocation, rootId })
-        dispatch(saveDiographSuccess())
+        await connectors.folder.saveDiograph({ diograph, address, rootId })
+        dispatch(saveDiographActions.success())
       } catch (error) {
-        dispatch(saveDiographFailure(error))
+        dispatch(saveDiographActions.failure(error))
       }
     }
   }
@@ -82,7 +64,7 @@ export const deleteDiory =
 export const createLink =
   (dioryObject, linkedDioryObject) =>
   (dispatch, getState, { diographStore }) => {
-    diographStore.createLink(dioryObject, linkedDioryObject)
+    diographStore.addDioryLink(dioryObject, linkedDioryObject)
     dispatch(updateDiograph(diographStore.toObject()))
     dispatch(saveDiograph())
   }
@@ -90,7 +72,7 @@ export const createLink =
 export const deleteLink =
   (dioryObject, linkedDioryObject) =>
   (dispatch, getState, { diographStore }) => {
-    diographStore.deleteLink(dioryObject, linkedDioryObject)
+    diographStore.removeDioryLink(dioryObject, linkedDioryObject)
     dispatch(updateDiograph(diographStore.toObject()))
     dispatch(saveDiograph())
   }
@@ -99,41 +81,29 @@ export const deleteLinks =
   (deletedLinks) =>
   (dispatch, getState, { diographStore }) => {
     deletedLinks.forEach(({ fromDiory, toDiory }) => {
-      diographStore.deleteLink(fromDiory, toDiory)
+      diographStore.removeDioryLink(fromDiory, toDiory)
     })
     dispatch(updateDiograph(diographStore.toObject()))
     dispatch(saveDiograph())
   }
 
-export const getDiographBegin = () => ({
-  type: GET_DIOGRAPH_BEGIN,
-})
-
-export const getDiographSuccess = (diograph, rootId) => ({
-  type: GET_DIOGRAPH_SUCCESS,
-  payload: { diograph, rootId },
-})
-
-export const getDiographFailure = (error) => ({
-  type: GET_DIOGRAPH_FAILURE,
-  payload: { error },
-})
+const getDiographActions = createActions(GET_DIOGRAPH)
 
 export const getDiograph =
   () =>
   async (dispatch, getState, { diographStore, connectors }) => {
     const { loading } = getState().diograph
     if (!loading) {
-      dispatch(getDiographBegin())
+      dispatch(getDiographActions.begin())
       try {
-        const { dioryFolderLocation } = getState().settings
-        const { diograph, rootId } = await connectors.folder.getDiograph(dioryFolderLocation)
+        const { address } = getState().room
+        const { diograph, rootId } = await connectors.folder.getDiograph(address)
         diographStore.addDiograph(diograph, rootId)
-        dispatch(getDiographSuccess(diographStore.toObject(), rootId))
+        dispatch(getDiographActions.success({ diograph: diographStore.toObject(), rootId }))
 
         dispatch(selectStory({ id: rootId }))
       } catch (error) {
-        dispatch(getDiographFailure(error))
+        dispatch(getDiographActions.failure(error))
       }
     }
   }
