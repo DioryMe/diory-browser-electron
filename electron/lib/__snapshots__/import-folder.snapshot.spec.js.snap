@@ -375,6 +375,7 @@ Object {
         },
       },
       "modified": "2020-01-03T14:03:04.751Z",
+      "path": "/",
       "text": "Diory demo content",
     },
     "diory1": Object {
@@ -667,7 +668,6 @@ Object {
       "text": "Tampere",
     },
   },
-  "rootId": "diory-demo-content",
 }
 `;
 

@@ -3,6 +3,7 @@
   "diograph": {
     "diory-demo-content": {
       "id": "diory-demo-content",
+      "path": "/",
       "text": "Diory demo content",
       "image": "diory-demo-content/demo-content.png",
       "links": {
