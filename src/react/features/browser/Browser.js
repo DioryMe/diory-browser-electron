@@ -1,4 +1,6 @@
 import React from 'react'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 import { useSelector } from '../../store'
 
@@ -14,13 +16,15 @@ const Browser = (props) => {
   const { loaded } = useSelector((state) => state.diograph)
   const { storyId } = useSelector((state) => state.navigation)
   return loaded && storyId ? (
-    <Fullscreen {...props}>
-      <Navigation />
-      <Lenses right={showSearchBar ? 300 : 0} marginTop={48} />
-      <Search width={300} marginTop={48} />
-      <Tools />
-      <Buttons />
-    </Fullscreen>
+    <DndProvider backend={HTML5Backend}>
+      <Fullscreen {...props}>
+        <Navigation />
+        <Lenses right={showSearchBar ? 300 : 0} marginTop={48} />
+        <Search width={300} marginTop={48} />
+        <Tools />
+        <Buttons />
+      </Fullscreen>
+    </DndProvider>
   ) : (
     <div>loading...</div>
   )
