@@ -11,10 +11,6 @@ install:
   # TODO: Find universal way (=work also on Windows) to set environmental variable and parse commit hash
   # - export SUBMODULE_HASH=$(git submodule status | awk '{print $1;}' | sed 's/-//g')
   # - echo $SUBMODULE_HASH
-  - cd diograph-js
-  # - git reset --hard $SUBMODULE_HASH
-  - yarn && yarn build
-  - cd ..
   - yarn && yarn build
 before_build:
   - mkdir tmp
