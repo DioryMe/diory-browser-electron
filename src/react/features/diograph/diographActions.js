@@ -38,10 +38,10 @@ export const addDiograph =
 export const createDiory =
   (dioryData) =>
   (dispatch, _, { diographStore }) => {
-    const diory = diographStore.createDiory(dioryData)
+    const diory = diographStore.addDiory(dioryData)
     dispatch(updateDiograph(diographStore.toObject()))
     dispatch(saveDiograph())
-    return { diory }
+    return { diory: diory.toObject() }
   }
 
 export const updateDiory =
@@ -63,6 +63,7 @@ export const deleteDiory =
 export const createLink =
   (dioryObject, linkedDioryObject) =>
   (dispatch, getState, { diographStore }) => {
+    console.log(linkedDioryObject)
     diographStore.addDioryLink(dioryObject, linkedDioryObject)
     dispatch(updateDiograph(diographStore.toObject()))
     dispatch(saveDiograph())
