@@ -17,6 +17,5 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version-file: '.nvmrc'
-      - run: (cd diograph-js && yarn install && yarn build)
       - run: yarn install
       - run: yarn test

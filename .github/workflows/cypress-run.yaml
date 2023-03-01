@@ -19,7 +19,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version-file: '.nvmrc'
-      - run: (cd diograph-js && yarn install && yarn build)
       - run: yarn install
       - run: yarn start & yarn run wait-on http://localhost:3300
       - run: yarn cypress run

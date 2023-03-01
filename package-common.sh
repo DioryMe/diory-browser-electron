@@ -1,9 +1,4 @@
-# !/bin/bash
-
-echo "Preparing diograph-js submodule..."
-cd diograph-js
-yarn && yarn build
-cd ..
+#!/bin/bash
 
 echo "Installing dependencies and building the app..."
 yarn
