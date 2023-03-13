@@ -16,7 +16,6 @@
     "ffmpeg-static": "^5.0.0",
     "file-type": "^16.4.0",
     "glob": "^8.0.3",
-    "redux-thunk": "^2.4.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -49,7 +48,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "evergreen-ui": "6.10.1",
+    "evergreen-ui": "^7.1.4",
     "husky": "^8.0.1",
     "leaflet": "^1.8.0",
     "lint-staged": "^13.0.2",
@@ -60,12 +59,16 @@
     "react-dnd": "^15",
     "react-dnd-html5-backend": "^15",
     "react-dom": "^17",
+    "react-force-graph-3d": "^1.22.0",
     "react-pdf": "^5.7.2",
     "react-redux": "^8.0.2",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
+    "redux-thunk": "^2.4.1",
     "testcafe": "^1.19.0",
     "testcafe-browser-provider-electron": "^0.0.18",
+    "three": "^0.150.1",
+    "three-spritetext": "^1.8.0",
     "ui-box": "^5.1.0",
     "wait-on": "^6.0.1"
   },
