@@ -5,20 +5,25 @@ import { useStoryTool } from '../tools/story'
 import { useUpdateTool } from '../tools/update'
 
 import { createLink } from '../diograph/diographActions'
-import { toggleSearchBar } from './searchActions'
+import { toggleSideBar } from '../sideBar/sideBarActions'
+import { searchDiories } from './searchActions'
 
 import SearchView from './SearchView'
 
-const useToolActions = () => {
+const useSearch = () => {
+  const { query, resultsByQuery } = useSelector((state) => state.search)
   const selectStory = useStoryTool()
   const updateDiory = useUpdateTool()
 
-  const { dispatch } = useDispatchActions()
+  const { dispatch, dispatchAction } = useDispatchActions()
   return {
+    query,
+    results: query ? resultsByQuery[query] : [],
+    onSearch: ({ target: { value } }) => dispatch(searchDiories(value)),
     onClick: ({ diory }) => {
       selectStory(diory)
       updateDiory(diory)
-      dispatch(toggleSearchBar())
+      dispatchAction(toggleSideBar)
     },
     onDrop: ({ droppedId, draggedId }) => {
       dispatch(createLink({ id: droppedId }, { id: draggedId }))
@@ -26,22 +31,6 @@ const useToolActions = () => {
   }
 }
 
-const useSearch = () => {
-  const { query, resultsByQuery, showSearchBar } = useSelector((state) => state.search)
-
-  return {
-    showSearchBar,
-    query,
-    results: query ? resultsByQuery[query] : [],
-  }
-}
-
-const Search = (props) => {
-  const { showSearchBar, query, results } = useSearch()
-  const actions = useToolActions()
-  return showSearchBar ? (
-    <SearchView query={query} results={results} {...actions} {...props} />
-  ) : null
-}
+const Search = () => <SearchView {...useSearch()} />
 
 export default Search

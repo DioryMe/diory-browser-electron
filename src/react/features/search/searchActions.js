@@ -1,4 +1,4 @@
-import { SET_SEARCH_QUERY, SET_SEARCH_RESULTS, TOGGLE_SEARCH_BAR } from './searchActionTypes'
+import { SET_SEARCH_QUERY, SET_SEARCH_RESULTS } from './searchActionTypes'
 
 export const setSearchQuery = (query) => ({
   type: SET_SEARCH_QUERY,
@@ -8,10 +8,6 @@ export const setSearchQuery = (query) => ({
 export const setSearchResults = (query, results) => ({
   type: SET_SEARCH_RESULTS,
   payload: { query, results },
-})
-
-export const toggleSearchBar = () => ({
-  type: TOGGLE_SEARCH_BAR,
 })
 
 export const searchDiories =

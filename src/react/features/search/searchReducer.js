@@ -1,10 +1,9 @@
-import { SET_SEARCH_QUERY, SET_SEARCH_RESULTS, TOGGLE_SEARCH_BAR } from './searchActionTypes'
+import { SET_SEARCH_QUERY, SET_SEARCH_RESULTS } from './searchActionTypes'
 import { createReducer } from '../../store'
 
 const initialState = {
   query: '',
   resultsByQuery: {},
-  showSearchBar: false,
 }
 
 export const setSearchQuery = (state, { payload }) => ({
@@ -20,14 +19,7 @@ export const setSearchResults = (state, { payload }) => ({
   },
 })
 
-export const toggleSearchBar = (state) => ({
-  ...state,
-  query: '',
-  showSearchBar: !state.showSearchBar,
-})
-
 export default createReducer(initialState, {
   [SET_SEARCH_QUERY]: setSearchQuery,
   [SET_SEARCH_RESULTS]: setSearchResults,
-  [TOGGLE_SEARCH_BAR]: toggleSearchBar,
 })

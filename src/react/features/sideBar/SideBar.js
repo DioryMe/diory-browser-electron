@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
-const SearchBar = ({ children, ...props }) => (
+const SideBar = ({ children, ...props }) => (
   <Pane
     background="tint2"
     position="absolute"
@@ -17,8 +17,8 @@ const SearchBar = ({ children, ...props }) => (
   </Pane>
 )
 
-SearchBar.propTypes = {
+SideBar.propTypes = {
   children: PropTypes.node,
 }
 
-export default SearchBar
+export default SideBar
