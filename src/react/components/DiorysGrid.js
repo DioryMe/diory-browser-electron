@@ -13,7 +13,7 @@ const DiorysGrid = forwardRef(({ diorys, scrollIntoViewId, onDrop, onClick, ...p
     width="100%"
     display="flex"
     flexWrap="wrap"
-    padding={24}
+    paddingX={24}
     alignContent="flex-start"
     {...props}
   >
@@ -41,7 +41,7 @@ const DiorysGrid = forwardRef(({ diorys, scrollIntoViewId, onDrop, onClick, ...p
 
 DiorysGrid.propTypes = {
   diorys: PropTypes.array.isRequired,
-  scrollIntoViewId: PropTypes.string.isRequired,
+  scrollIntoViewId: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,
 }

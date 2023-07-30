@@ -18,7 +18,7 @@ const Draggable = ({ id, type, children }) => {
     <div
       ref={drag}
       style={{
-        height: '100%',
+        height: 'inherit',
       }}
     >
       {children}

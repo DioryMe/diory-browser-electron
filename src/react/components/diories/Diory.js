@@ -26,7 +26,7 @@ const Diory = ({ diory, onClick, children, ...props }) => {
     image: styleImage,
     text: styleText,
     width: flexBasis,
-    background = '#fa7921',
+    background = '#414141',
     ...style
   } = dioryStyle
 
