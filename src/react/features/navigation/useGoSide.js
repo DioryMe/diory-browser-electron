@@ -1,7 +1,7 @@
-import { useDispatchActions, useSelector } from '../../../store'
-import { useDiograph } from '../../diograph/useDiograph'
+import { useDispatchActions, useSelector } from '../../store'
+import { useDiograph } from '../diograph/useDiograph'
 
-import { goSide } from '../navigationActions'
+import { goSide } from './navigationActions'
 
 export const useGoSide = () => {
   const { storyId } = useSelector((state) => state.navigation)

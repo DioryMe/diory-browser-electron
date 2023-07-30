@@ -1,20 +1,33 @@
 import {
+  SELECT_CONTEXT,
   SELECT_STORY,
   SELECT_MEMORY,
   GO_BACKWARD,
   GO_FORWARD,
-  GO_SIDE,
   GO_HOME,
+  GO_SIDE,
 } from './navigationActionTypes'
 
 import { createReducer } from '../../store'
 
 const initialState = {
+  contextId: undefined,
   storyId: undefined,
   memoryId: null,
   backward: [],
   forward: [],
   path: [],
+}
+
+export const selectContext = (state, { payload }) => {
+  if (payload.id === state.contextId) {
+    return state
+  }
+
+  return {
+    ...state,
+    contextId: payload.id,
+  }
 }
 
 export const selectStory = (state, { payload }) => {
@@ -24,6 +37,7 @@ export const selectStory = (state, { payload }) => {
 
   return {
     ...state,
+    contextId: state.storyId,
     storyId: payload.id,
     backward: state.storyId ? [state.storyId, ...state.backward] : state.backward,
     forward: [],
@@ -76,6 +90,7 @@ export const goHome = (state) => ({
 })
 
 export default createReducer(initialState, {
+  [SELECT_CONTEXT]: selectContext,
   [SELECT_STORY]: selectStory,
   [SELECT_MEMORY]: selectMemory,
   [GO_BACKWARD]: goBackward,
