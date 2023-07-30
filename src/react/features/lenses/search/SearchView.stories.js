@@ -2,12 +2,12 @@ import React from 'react'
 import { action } from '@storybook/addon-actions'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import StoreProvider from '../../store/StoreProvider'
+import StoreProvider from '../../../store/StoreProvider'
 
 import SearchView from './SearchView'
 
 export default {
-  title: 'Search view',
+  title: 'Search',
   component: SearchView,
   decorators: [
     (Story) => (

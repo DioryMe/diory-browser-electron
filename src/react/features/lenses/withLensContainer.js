@@ -24,6 +24,6 @@ export const withLensContainer = (id, button) => (Component) => () =>
 
 WithLensContainer.propTypes = {
   id: PropTypes.string,
-  button: PropTypes.string,
+  button: PropTypes.object,
   children: PropTypes.node,
 }
