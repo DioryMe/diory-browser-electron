@@ -1,6 +1,7 @@
+export const SELECT_CONTEXT = 'SELECT_CONTEXT'
 export const SELECT_STORY = 'SELECT_STORY'
+export const SELECT_MEMORY = 'SELECT_MEMORY'
 export const GO_BACKWARD = 'GO_BACKWARD'
 export const GO_FORWARD = 'GO_FORWARD'
 export const GO_HOME = 'GO_HOME'
 export const GO_SIDE = 'GO_SIDE'
-export const SELECT_MEMORY = 'SELECT_MEMORY'

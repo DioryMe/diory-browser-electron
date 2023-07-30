@@ -1,6 +1,6 @@
-import { useDispatchActions, useSelector } from '../../../store'
+import { useDispatchActions, useSelector } from '../../store'
 
-import { selectLens } from '../../lenses/lensesActions'
+import { selectLens } from '../lenses/lensesActions'
 
 export const useLensButtons = () => {
   const { selectedLensId, buttons } = useSelector((state) => state.lenses)
@@ -10,7 +10,7 @@ export const useLensButtons = () => {
       id,
       key: id,
       diory,
-      onSelect: () => dispatch(selectLens(id !== selectedLensId ? id : undefined)),
+      onClick: () => dispatch(selectLens(id !== selectedLensId ? id : undefined)),
       isSelected: id === selectedLensId,
     })),
   }

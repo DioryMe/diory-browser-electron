@@ -14,21 +14,6 @@ export const getLinkedDiorys = (id, diograph) => {
   return getDiorys(links, diograph)
 }
 
-function idIs(dioryId) {
-  return ({ id }) => id === dioryId
-}
-
-const useContext = (contexts) => {
-  const { backward } = useSelector((state) => state.navigation)
-
-  if (!contexts.length) {
-    return undefined
-  }
-
-  const previousStoryId = backward.length && backward[0]
-  return contexts.find(idIs(previousStoryId)) || contexts[0]
-}
-
 const useContexts = () => {
   const { storyId } = useSelector((state) => state.navigation)
   const { diograph = {} } = useSelector((state) => state.diograph)
@@ -36,19 +21,17 @@ const useContexts = () => {
 
   const contexts = getLinkedDiorys(storyId, reverseDiograph)
   return {
-    context: useContext(contexts),
     contexts,
   }
 }
 
 export const useDiograph = () => {
-  const { storyId, memoryId } = useSelector((state) => state.navigation)
+  const { contextId, storyId, memoryId } = useSelector((state) => state.navigation)
   const { diograph = {} } = useSelector((state) => state.diograph)
 
-  const { context, contexts } = useContexts()
-  const contextId = context && context.id
+  const { contexts } = useContexts()
   return {
-    context,
+    context: diograph[contextId],
     contexts,
     story: diograph[storyId],
     stories: getLinkedDiorys(contextId, diograph),

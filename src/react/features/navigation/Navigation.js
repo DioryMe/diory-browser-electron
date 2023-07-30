@@ -1,15 +1,21 @@
 import React from 'react'
 
-import NavigationBar from './components/NavigationBar'
-import NavigationToLeft from './components/NavigationToLeft'
-import NavigationToRight from './components/NavigationToRight'
+import NavigationTopBar from '../../components/NavigationTopBar'
+import NavigationButtons from './NavigationButtons'
+import NavigationToSide from '../../components/NavigationToSide'
+import { useGoSide } from './useGoSide'
 
-const Navigation = () => (
-  <>
-    <NavigationBar />
-    <NavigationToLeft />
-    <NavigationToRight />
-  </>
-)
+const Navigation = () => {
+  const { goLeft, goRight } = useGoSide()
+  return (
+    <>
+      <NavigationTopBar>
+        <NavigationButtons display="flex" alignSelf="center" />
+      </NavigationTopBar>
+      <NavigationToSide left onClick={goLeft} />
+      <NavigationToSide right onClick={goRight} />
+    </>
+  )
+}
 
 export default Navigation

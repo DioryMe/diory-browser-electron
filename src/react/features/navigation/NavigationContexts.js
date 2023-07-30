@@ -1,10 +1,10 @@
 import React from 'react'
 import { Pane, Pill, SelectMenu } from 'evergreen-ui'
 
-import { useDispatchActions } from '../../../store'
-import { useDiograph } from '../../diograph/useDiograph'
+import { useDispatchActions } from '../../store'
+import { useDiograph } from '../diograph/useDiograph'
 
-import { selectStory } from '../navigationActions'
+import { selectContext } from './navigationActions'
 
 const useNavigationContexts = () => {
   const { context, contexts } = useDiograph()
@@ -15,16 +15,16 @@ const useNavigationContexts = () => {
 
   return {
     contexts: otherContexts,
-    onContextLick: ({ value }) => dispatch(selectStory({ id: value })),
+    onContextLick: ({ value }) => dispatch(selectContext({ id: value })),
   }
 }
 
-const NavigationContextsPill = () => {
+const NavigationContexts = () => {
   const { contexts, onContextLick } = useNavigationContexts()
   return contexts.length ? (
     <Pane alignSelf="center">
       <SelectMenu
-        title="Select story:"
+        title="Select context:"
         options={contexts}
         hasFilter={false}
         maxWidth={200}
@@ -38,4 +38,4 @@ const NavigationContextsPill = () => {
   ) : null
 }
 
-export default NavigationContextsPill
+export default NavigationContexts

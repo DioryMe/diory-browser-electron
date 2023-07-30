@@ -1,17 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Icon from '../../../components/Icon'
-import useKeyPress from '../../../utils/useKeyPress'
-import { useSelector } from '../../../store'
+import Icon from './Icon'
 
-const NavigationSideways = ({ left, right, onClick }) => {
-  const { selectedLensId } = useSelector((state) => state.lenses)
-  useKeyPress(
-    left ? 'ArrowLeft' : 'ArrowRight',
-    selectedLensId === 'fullscreen' ? onClick : () => {}
-  )
-
-  return (
+const NavigationToSide = ({ left, right, onClick }) =>
+  !onClick ? null : (
     <div
       data-testid={`navigate-${left ? 'left' : 'right'}`}
       onClick={onClick}
@@ -25,23 +17,22 @@ const NavigationSideways = ({ left, right, onClick }) => {
         cursor: 'pointer',
         left: left && 0,
         right: right && 0,
+        opacity: '0.7',
       }}
     >
       <Icon icon={`chevron-${left ? 'left' : 'right'}`} color="disabled" size={48} />
     </div>
   )
-}
 
-NavigationSideways.defaultProps = {
+NavigationToSide.defaultProps = {
   left: false,
   right: false,
-  onClick: () => {},
 }
 
-NavigationSideways.propTypes = {
+NavigationToSide.propTypes = {
   left: PropTypes.bool,
   right: PropTypes.bool,
   onClick: PropTypes.func,
 }
 
-export default NavigationSideways
+export default NavigationToSide
