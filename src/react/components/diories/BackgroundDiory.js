@@ -9,7 +9,7 @@ const blurStyle = {
   backgroundColor: '#9bc53d',
 }
 
-const BackgroundDiory = ({ diory, children }) => {
+const BackgroundDiory = ({ diory, children, ...styleProps }) => {
   const style = {
     ...diory.style,
     zIndex: -1000,
@@ -17,6 +17,10 @@ const BackgroundDiory = ({ diory, children }) => {
       ...blurStyle,
       ...(diory.style && diory.style.image),
     },
+    text: {
+      display: 'none',
+    },
+    ...styleProps,
   }
 
   return (

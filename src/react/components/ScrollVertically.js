@@ -27,17 +27,18 @@ const ScrollVertically = ({ initialRef, scrolledRef, initialDirection, ...props 
       data-testid={`navigate-${direction}`}
       onClick={onClick}
       style={{
-        position: 'fixed',
+        position: 'absolute',
         zIndex: 15,
         left: '50%',
         transform: 'translate(-50%, 0)',
         height: 50,
         width: 50,
         cursor: 'pointer',
+        opacity: '0.7',
       }}
       {...props}
     >
-      <Icon icon={`chevron-${direction}`} color="disabled" size={48} />
+      <Icon icon={`chevron-${direction}`} color="white" size={48} />
     </Box>
   )
 }

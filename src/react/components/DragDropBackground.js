@@ -5,10 +5,10 @@ import Draggable, { types } from './Draggable'
 import Droppable from './Droppable'
 
 const DragDropBackground = forwardRef(({ diory, onDrop, children, ...props }, ref) => (
-  <Box ref={ref} height="100%" {...props}>
+  <Box ref={ref} height="inherit" {...props}>
     <Droppable
       type={types.DIORY}
-      style={{ height: '100%' }}
+      style={{ height: 'inherit' }}
       isOverStyle={{ backgroundColor: 'white', opacity: 0.5 }}
       onDrop={({ id }) => onDrop({ droppedId: diory.id, draggedId: id })}
     >
