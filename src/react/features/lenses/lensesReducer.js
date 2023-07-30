@@ -1,7 +1,7 @@
 import { ADD_LENS_BUTTON, SELECT_LENS } from './lensesActionTypes'
 import { createReducer } from '../../store'
 
-const DEFAULT_LENS = 'grid'
+const DEFAULT_LENS = 'search'
 
 const initialState = {
   selectedLensId: DEFAULT_LENS,
@@ -10,7 +10,7 @@ const initialState = {
 
 const selectLens = (state, { payload }) => ({
   ...state,
-  selectedLensId: payload.id || DEFAULT_LENS,
+  selectedLensId: payload.id,
 })
 
 const addLensButton = (state, { payload }) => ({

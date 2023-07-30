@@ -1,5 +1,5 @@
 import { SET_SEARCH_QUERY, SET_SEARCH_RESULTS } from './searchActionTypes'
-import { createReducer } from '../../store'
+import { createReducer } from '../../../store'
 
 const initialState = {
   query: '',

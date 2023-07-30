@@ -1,16 +1,17 @@
 import React from 'react'
 
-import Fullscreen from '../../components/Fullscreen'
-import GridLens from './grid/GridLens'
-import TimelineLens from './timeline/TimelineLens'
+import GraphLens from './graph/GraphLens'
 import MapLens from './map/MapLens'
+import TimelineLens from './timeline/TimelineLens'
+import Search from './search/Search'
 
-const Lenses = (props) => (
-  <Fullscreen {...props} zIndex={0}>
-    <GridLens />
-    <TimelineLens />
+const Lenses = () => (
+  <>
+    <GraphLens />
     <MapLens />
-  </Fullscreen>
+    <TimelineLens />
+    <Search />
+  </>
 )
 
 export default Lenses

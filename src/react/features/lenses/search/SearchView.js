@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane, SearchInput } from 'evergreen-ui'
 
-import CreateDioryButton from '../tools/create/CreateDioryButton'
+import CreateDioryButton from '../../tools/create/CreateDioryButton'
 import SearchResult from './SearchResult'
 
 const SearchView = ({ query, results, onClick, onDrop, onSearch }) => (

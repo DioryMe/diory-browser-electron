@@ -1,16 +1,12 @@
-import React from 'react'
+import { useDispatchActions, useSelector } from '../../../store'
+import { useStoryTool } from '../../tools/story'
+import { useUpdateTool } from '../../tools/update'
 
-import { useDispatchActions, useSelector } from '../../store'
-import { useStoryTool } from '../tools/story'
-import { useUpdateTool } from '../tools/update'
-
-import { createLink } from '../diograph/diographActions'
-import { toggleSideBar } from '../sideBar/sideBarActions'
+import { createLink } from '../../diograph/diographActions'
+import { toggleSideBar } from '../../sideBar/sideBarActions'
 import { searchDiories } from './searchActions'
 
-import SearchView from './SearchView'
-
-const useSearch = () => {
+export const useSearch = () => {
   const { query, resultsByQuery } = useSelector((state) => state.search)
   const selectStory = useStoryTool()
   const updateDiory = useUpdateTool()
@@ -30,7 +26,3 @@ const useSearch = () => {
     },
   }
 }
-
-const Search = () => <SearchView {...useSearch()} />
-
-export default Search

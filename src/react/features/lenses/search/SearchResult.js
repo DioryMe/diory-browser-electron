@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Diory from '../../components/diories/Diory'
-import Draggable, { types } from '../../components/Draggable'
-import Droppable from '../../components/Droppable'
+import Diory from '../../../components/diories/Diory'
+import Draggable, { types } from '../../../components/Draggable'
+import Droppable from '../../../components/Droppable'
 
 const itemStyle = {
   height: '56px',

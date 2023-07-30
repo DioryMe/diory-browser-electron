@@ -1,20 +1,18 @@
 import React from 'react'
-import { Pane, Tablist } from 'evergreen-ui'
+import { Tablist } from 'evergreen-ui'
 
-import { useLensButtons } from '../navigation/hooks/useLensButtons'
+import { useLensButtons } from '../navigation/useLensButtons'
 
-import LensButton from '../../components/LensButton'
+import NavigationIcon from '../../components/NavigationIcon'
 
 const LensesNavigation = () => {
   const { lensButtons } = useLensButtons()
   return (
-    <Pane display="flex">
-      <Tablist alignSelf="center">
-        {lensButtons.map((lensButton) => (
-          <LensButton {...lensButton} />
-        ))}
-      </Tablist>
-    </Pane>
+    <Tablist alignSelf="center">
+      {lensButtons.map((lensButton) => (
+        <NavigationIcon {...lensButton} {...lensButton.diory} />
+      ))}
+    </Tablist>
   )
 }
 
