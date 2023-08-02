@@ -50,10 +50,10 @@ export const promiseReducers = (
   progressKey,
   successKey,
   errorKey,
-  reducer = defaultReducer
+  successReducer = defaultReducer
 ) => ({
   [`${actionType}_BEGIN`]: (state, { payload = {} }) =>
-    reducer(
+    defaultReducer(
       {
         ...state,
         [progressKey]: true,
@@ -63,7 +63,7 @@ export const promiseReducers = (
       }
     ),
   [`${actionType}_SUCCESS`]: (state, { payload = {} }) =>
-    reducer(
+    successReducer(
       {
         ...state,
         [progressKey]: false,
@@ -75,7 +75,7 @@ export const promiseReducers = (
       }
     ),
   [`${actionType}_FAILURE`]: (state, { payload = {} }) =>
-    reducer(
+    defaultReducer(
       {
         ...state,
         [progressKey]: false,

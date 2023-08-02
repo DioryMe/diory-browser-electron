@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { useGetDiographEffect } from '../diograph/useGetDiographEffect'
 import { useSelector } from '../../store'
 import { useBrowser } from './useBrowser'
 
@@ -7,6 +8,8 @@ import Fullscreen from '../../components/Fullscreen'
 import BrowserView from './BrowserView'
 
 const Browser = (props) => {
+  useGetDiographEffect()
+
   const { storyId } = useSelector((state) => state.navigation)
   const browser = useBrowser()
   return storyId ? (

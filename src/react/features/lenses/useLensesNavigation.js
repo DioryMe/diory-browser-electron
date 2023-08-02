@@ -1,8 +1,8 @@
 import { useDispatchActions, useSelector } from '../../store'
 
-import { selectLens } from '../lenses/lensesActions'
+import { selectLens } from './lensesActions'
 
-export const useLensButtons = () => {
+export const useLensesNavigation = () => {
   const { selectedLensId, buttons } = useSelector((state) => state.lenses)
   const { dispatch } = useDispatchActions()
   return {

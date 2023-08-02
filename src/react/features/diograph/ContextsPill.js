@@ -2,11 +2,11 @@ import React from 'react'
 import { Pane, Pill, SelectMenu } from 'evergreen-ui'
 
 import { useDispatchActions } from '../../store'
-import { useDiograph } from '../diograph/useDiograph'
+import { useDiograph } from './useDiograph'
 
-import { selectContext } from './navigationActions'
+import { selectContext } from '../navigation/navigationActions'
 
-const useNavigationContexts = () => {
+const useContextsPill = () => {
   const { context, contexts } = useDiograph()
   const { dispatch } = useDispatchActions()
   const otherContexts = contexts
@@ -19,8 +19,8 @@ const useNavigationContexts = () => {
   }
 }
 
-const NavigationContexts = () => {
-  const { contexts, onContextLick } = useNavigationContexts()
+const ContextsPill = () => {
+  const { contexts, onContextLick } = useContextsPill()
   return contexts.length ? (
     <Pane alignSelf="center">
       <SelectMenu
@@ -38,4 +38,4 @@ const NavigationContexts = () => {
   ) : null
 }
 
-export default NavigationContexts
+export default ContextsPill
