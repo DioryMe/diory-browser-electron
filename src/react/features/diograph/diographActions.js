@@ -90,21 +90,26 @@ export const deleteLinks =
 const getDiographActions = createActions(GET_DIOGRAPH)
 
 export const getDiograph =
-  () =>
+  (connections) =>
   async (dispatch, getState, { diographStore, connectors }) => {
     const { loading } = getState().diograph
     if (!loading) {
       dispatch(getDiographActions.begin())
       try {
-        const { address } = getState().room
+        const { address } = connections[0]
         const { diograph } = await connectors.folder.getDiograph(address)
         diographStore.addDiograph(diograph)
         const rootId = Object.values(diographStore.toObject()).find(({ path }) => path === '/').id
         dispatch(getDiographActions.success({ diograph: diographStore.toObject(), rootId }))
-
         dispatch(selectStory({ id: rootId }))
       } catch (error) {
         dispatch(getDiographActions.failure(error))
       }
     }
+  }
+
+export const resetDiograph =
+  () =>
+  async (dispatch, getState, { diographStore }) => {
+    diographStore.resetDiograph()
   }

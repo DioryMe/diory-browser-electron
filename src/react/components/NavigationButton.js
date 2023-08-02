@@ -3,6 +3,13 @@ import PropTypes from 'prop-types'
 import { Tab } from 'evergreen-ui'
 import Icon from './Icon'
 
+const navigationTextStyle = {
+  color: 'white',
+  lineHeight: '28px',
+  fontSize: '12px',
+  borderRadius: '16px',
+}
+
 const NavigationButton = ({ id, text, image, isSelected, onClick, children, disabled, ...props }) =>
   disabled ? null : (
     <Tab
@@ -19,6 +26,7 @@ const NavigationButton = ({ id, text, image, isSelected, onClick, children, disa
       cursor="pointer"
       aria-controls={`panel-${id}`}
       data-testid={`${id}-lens`}
+      {...navigationTextStyle}
       {...props}
     >
       {image && <Icon icon={image} marginRight={8} size={16} />}

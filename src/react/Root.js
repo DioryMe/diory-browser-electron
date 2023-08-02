@@ -2,13 +2,10 @@ import React from 'react'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 
-import { useSelector } from './store'
-import { useGetHomeAddressEffect } from './features/room/useGetHomeAddressEffect'
-import { useGetDiographEffect } from './features/diograph/useGetDiographEffect'
-import { useGetRoomEffect } from './features/room/useGetRoomEffect'
 import { useSideBar } from './features/sideBar/useSideBar'
 
 import Welcome from './features/welcome/Welcome'
+import { Home } from './features/home/Home'
 import Navigation from './features/navigation/Navigation'
 import Tools from './features/tools/Tools'
 import Buttons from './features/buttons/Buttons'
@@ -20,16 +17,11 @@ import SideBarToggle from './features/sideBar/SideBarToggle'
 import SideBarNavigation from './features/sideBar/SideBarNavigation'
 
 const Root = () => {
-  useGetHomeAddressEffect()
-  useGetDiographEffect()
-  useGetRoomEffect()
-
   const { showSideBar } = useSideBar()
-  const { address } = useSelector((state) => state.room)
-
   return (
     <>
-      {!address && <Welcome />}
+      <Welcome />
+      <Home />
       <DndProvider backend={HTML5Backend}>
         <Fullscreen right={showSideBar ? 500 : 0}>
           <Navigation />
