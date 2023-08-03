@@ -4,12 +4,12 @@ import { useDispatchActions, useSelector } from '../../store'
 import { saveRoom } from './roomActions'
 
 export const useSaveRoomEffect = () => {
-  const { updated, address } = useSelector((state) => state.room)
+  const { updated, connections } = useSelector((state) => state.room)
 
   const { dispatch } = useDispatchActions()
   useEffect(() => {
-    if (updated && address) {
-      dispatch(saveRoom())
+    if (updated && connections.length) {
+      dispatch(saveRoom(connections))
     }
-  }, [dispatch, updated, address])
+  }, [dispatch, updated, connections])
 }

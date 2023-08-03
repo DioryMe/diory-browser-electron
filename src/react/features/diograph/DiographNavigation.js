@@ -4,10 +4,10 @@ import { Pane } from 'evergreen-ui'
 import { useDispatchActions } from '../../store'
 import { useDiograph } from './useDiograph'
 
-import { selectStory } from '../navigation/navigationActions'
+import { selectContext, selectStory } from '../navigation/navigationActions'
 
 import NavigationButton from '../../components/NavigationButton'
-import ContextsPill from './ContextsPill'
+import PillSelectMenu from '../../components/PillSelectMenu'
 
 const navigationTextStyle = {
   color: 'white',
@@ -27,13 +27,28 @@ const useNavigationButton = () => {
   )
 }
 
+const useContextsPill = () => {
+  const { context, contexts } = useDiograph()
+  const { dispatch } = useDispatchActions()
+  const otherContexts = contexts
+    .filter(({ id }) => id !== context.id)
+    .map((diory) => ({ label: diory.text, value: diory.id }))
+
+  return {
+    options: otherContexts,
+    onClick: ({ value }) => dispatch(selectContext({ id: value })),
+  }
+}
+
 const DiographNavigation = () => {
   const button = useNavigationButton()
+  const contextsPill = useContextsPill()
+
   return button ? (
     <>
       <Pane {...navigationTextStyle}>/</Pane>
       <NavigationButton {...button} />
-      <ContextsPill />
+      <PillSelectMenu {...contextsPill} />
     </>
   ) : null
 }

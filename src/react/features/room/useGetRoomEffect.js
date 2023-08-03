@@ -5,11 +5,11 @@ import { useDispatchActions, useSelector } from '../../store'
 import { getRoom } from './roomActions'
 
 export const useGetRoomEffect = () => {
-  const { address } = useSelector((state) => state.room)
+  const { connections } = useSelector((state) => state.room)
   const { dispatch } = useDispatchActions()
   useEffect(() => {
-    if (address) {
-      dispatch(getRoom())
+    if (connections.length) {
+      dispatch(getRoom(connections))
     }
-  }, [dispatch, address])
+  }, [dispatch, connections])
 }
