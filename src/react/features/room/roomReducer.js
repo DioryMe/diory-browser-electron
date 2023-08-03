@@ -1,26 +1,32 @@
-import { SET_ROOM_ADDRESS, GET_ROOM, SAVE_ROOM } from './roomActionTypes'
+import { SET_ROOM_CONNECTIONS, GET_ROOM, SAVE_ROOM } from './roomActionTypes'
 import { createReducer, promiseReducers } from '../../store'
 
 const initialState = {
-  initializing: true,
-  address: undefined,
+  id: undefined,
   connections: [],
-  history: [],
+  doors: [],
+  updated: false,
+  loading: false,
+  loaded: false,
+  saving: false,
+  saved: false,
+  error: null,
 }
 
-export const setRoomAddress = (state, { payload }) => ({
-  ...state,
-  initializing: false,
-  address: payload.address,
-})
-
-export const getRoom = (state, { payload }) => ({
+export const setRoomConnections = (state, { payload }) => ({
   ...state,
   connections: payload.connections,
 })
 
+export const getRoom = (state, { payload }) => ({
+  ...state,
+  id: payload.id,
+  doors: payload.doors,
+  connections: payload.connections,
+})
+
 export default createReducer(initialState, {
-  [SET_ROOM_ADDRESS]: setRoomAddress,
+  [SET_ROOM_CONNECTIONS]: setRoomConnections,
   ...promiseReducers(GET_ROOM, 'loading', 'loaded', 'error', getRoom),
   ...promiseReducers(SAVE_ROOM, 'saving', 'saved', 'error'),
 })
