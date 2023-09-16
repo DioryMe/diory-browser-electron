@@ -10,18 +10,26 @@ import WebContent from './web/WebContent'
 
 import ImageContent from './image/ImageContent'
 
-const ContentView = ({ diory }) => {
+const ContentView = ({ diory, style }) => {
   const { address } = useSelector((state) => state.room)
   const { data = [] } = diory
   const { encodingFormat, url } = (data && data[0]) || {}
 
   switch (encodingFormat) {
     case 'image/jpeg':
-      return <ImageContent diory={diory} baseUrl={address} />
+      return (
+        <div style={style}>
+          <ImageContent diory={diory} baseUrl={address} />
+        </div>
+      )
     case 'video/mp4':
     case 'video/x-m4v':
     case 'video/quicktime':
-      return <VideoContent diory={diory} baseUrl={address} />
+      return (
+        <div style={style}>
+          <VideoContent diory={diory} baseUrl={address} />
+        </div>
+      )
     case 'audio/mpeg':
     case 'audio/x-m4a':
     case 'audio/opus':
@@ -42,6 +50,7 @@ ContentView.propTypes = {
     style: PropTypes.object,
     data: PropTypes.array,
   }).isRequired,
+  style: PropTypes.object,
 }
 
 export default ContentView

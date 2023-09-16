@@ -8,16 +8,7 @@ import BackgroundDiory from '../../components/diories/BackgroundDiory'
 import ScrollBackground from '../../components/ScrollBackground'
 import DragDropBackground from '../../components/DragDropBackground'
 import DiorysGrid from '../../components/DiorysGrid'
-import ScrollVertically from '../../components/ScrollVertically'
 import Content from '../content/Content'
-
-const textStyle = {
-  color: 'rgba(255,255,255,0.7)',
-  fontSize: '24px',
-  fontWeight: 'bold',
-  paddingY: '24px',
-  paddingX: '48px',
-}
 
 const contentStyle = {
   position: 'relative',
@@ -43,7 +34,6 @@ const BrowserView = ({
   onStoryClick,
   onMemoryClick,
 }) => {
-  const contextRef = useRef()
   const storyRef = useRef()
   const memoryRef = useRef()
 
@@ -52,17 +42,7 @@ const BrowserView = ({
   return (
     <>
       <BackgroundDiory diory={story} />
-      {!!contexts.length && (
-        <ScrollVertically
-          data-testid="navigate-up"
-          initialRef={storyRef}
-          scrolledRef={contextRef}
-          initialDirection="up"
-          top={0}
-        />
-      )}
       <ScrollBackground>
-        <DiorysGrid ref={contextRef} diorys={contexts} onDrop={onDrop} onClick={onMemoryClick} />
         <DragDropBackground
           ref={storyRef}
           position="relative"
@@ -72,9 +52,7 @@ const BrowserView = ({
           diory={story}
           onDrop={onDrop}
           data-testid="story"
-        >
-          <Box {...textStyle}>{story.text || story.date}</Box>
-        </DragDropBackground>
+        />
         <Content diory={story} style={contentStyle} />
         <DiorysGrid
           ref={memoryRef}
@@ -85,15 +63,6 @@ const BrowserView = ({
         />
         <Box height="90%" position="relative" width="100%" />
       </ScrollBackground>
-      {!!memories.length && (
-        <ScrollVertically
-          data-testid="navigate-down"
-          initialRef={storyRef}
-          scrolledRef={memoryRef}
-          initialDirection="down"
-          bottom={0}
-        />
-      )}
     </>
   )
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import ContentView from './ContentView'
 
-const Content = ({ diory }) => <ContentView diory={diory} />
+const Content = ({ diory, style }) => <ContentView diory={diory} style={style} />
 
 Content.propTypes = {
   diory: PropTypes.shape({
@@ -11,6 +11,7 @@ Content.propTypes = {
     style: PropTypes.object,
     data: PropTypes.array,
   }).isRequired,
+  style: PropTypes.object,
 }
 
 export default Content
