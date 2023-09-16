@@ -1,7 +1,7 @@
 import { ADD_LENS_BUTTON, SELECT_LENS } from './lensesActionTypes'
 import { createReducer } from '../../store'
 
-const DEFAULT_LENS = 'search'
+const DEFAULT_LENS = 'graph'
 
 const initialState = {
   selectedLensId: DEFAULT_LENS,

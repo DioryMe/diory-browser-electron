@@ -3,7 +3,6 @@ import { useStoryTool } from '../../tools/story'
 import { useUpdateTool } from '../../tools/update'
 
 import { createLink } from '../../diograph/diographActions'
-import { toggleSideBar } from '../../sideBar/sideBarActions'
 import { searchDiories } from './searchActions'
 
 export const useSearch = () => {
@@ -11,7 +10,7 @@ export const useSearch = () => {
   const selectStory = useStoryTool()
   const updateDiory = useUpdateTool()
 
-  const { dispatch, dispatchAction } = useDispatchActions()
+  const { dispatch } = useDispatchActions()
   return {
     query,
     results: query ? resultsByQuery[query] : [],
@@ -19,7 +18,6 @@ export const useSearch = () => {
     onClick: ({ diory }) => {
       selectStory(diory)
       updateDiory(diory)
-      dispatchAction(toggleSideBar)
     },
     onDrop: ({ droppedId, draggedId }) => {
       dispatch(createLink({ id: droppedId }, { id: draggedId }))
