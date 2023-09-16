@@ -2,12 +2,18 @@ import { TOGGLE_SIDE_BAR } from './sideBarActionTypes'
 import { createReducer } from '../../store'
 
 const initialState = {
-  showSideBar: false,
+  showSideBar: {
+    left: false,
+    right: false,
+  },
 }
 
-export const toggleSideBar = (state) => ({
+export const toggleSideBar = (state, { payload }) => ({
   ...state,
-  showSideBar: !state.showSideBar,
+  showSideBar: {
+    ...state.showSideBar,
+    [payload.id]: !state.showSideBar[payload.id],
+  },
 })
 
 export default createReducer(initialState, {
