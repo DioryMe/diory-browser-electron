@@ -1,25 +1,20 @@
 import React from 'react'
 
-import { useDispatchActions, useSelector } from '../../store'
-
-import { setRoomConnections } from '../room/roomActions'
+import { useSideBar } from '../sideBar/useSideBar'
 
 import NavigationButton from '../../components/NavigationButton'
 
-const useNavigationButton = () => {
-  const { connections } = useSelector((state) => state.home)
-  const { dispatch } = useDispatchActions()
+const useHomeButton = () => {
+  const { toggleSideBar } = useSideBar('left')
   return {
     text: 'DIORY',
-    onClick: () => {
-      dispatch(setRoomConnections(connections))
-    },
+    onClick: toggleSideBar,
     fontWeight: 'bold',
   }
 }
 
 const HomeNavigation = () => {
-  const button = useNavigationButton()
+  const button = useHomeButton()
   return <NavigationButton {...button} />
 }
 export default HomeNavigation
