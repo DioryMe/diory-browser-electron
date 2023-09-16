@@ -1,12 +1,12 @@
 import { useSelector, useDispatchActions } from '../../store'
 import { toggleSideBar } from './sideBarActions'
 
-export const useSideBar = () => {
+export const useSideBar = (id) => {
   const { showSideBar } = useSelector((state) => state.sideBar)
 
-  const { dispatchAction } = useDispatchActions()
+  const { dispatch } = useDispatchActions()
   return {
-    showSideBar,
-    toggleSideBar: dispatchAction(toggleSideBar),
+    showSideBar: showSideBar[id],
+    toggleSideBar: () => dispatch(toggleSideBar(id)),
   }
 }
