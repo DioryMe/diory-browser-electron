@@ -2,8 +2,7 @@ import { GET_HOME, SAVE_HOME } from './homeActionTypes'
 import { createReducer, promiseReducers } from '../../store'
 
 const initialState = {
-  id: undefined,
-  connections: [],
+  homeId: undefined,
   initializing: true,
   loading: false,
   loaded: false,
@@ -13,8 +12,7 @@ const initialState = {
 
 export const getHome = (state, { payload }) => ({
   ...state,
-  id: payload.id,
-  connections: payload.connections,
+  homeId: payload.id,
   initializing: false,
 })
 

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { Heading, Pane } from 'evergreen-ui'
 import Fullscreen from '../../components/Fullscreen'
 
-const WelcomeView = ({ children }) => (
+const HomeView = ({ children }) => (
   <Fullscreen
-    background="#fcd600"
+    background="src/react/features/welcome#fcd600"
     display="flex"
     alignItems="center"
     justifyContent="center"
@@ -27,12 +27,12 @@ const WelcomeView = ({ children }) => (
   </Fullscreen>
 )
 
-WelcomeView.defaultProps = {
+HomeView.defaultProps = {
   children: null,
 }
 
-WelcomeView.propTypes = {
+HomeView.propTypes = {
   children: PropTypes.node,
 }
 
-export default WelcomeView
+export default HomeView
