@@ -1,4 +1,5 @@
 import {
+  SELECT_ROOM,
   SELECT_CONTEXT,
   SELECT_STORY,
   SELECT_MEMORY,
@@ -11,12 +12,24 @@ import {
 import { createReducer } from '../../store'
 
 const initialState = {
+  roomId: undefined,
   contextId: undefined,
   storyId: undefined,
   memoryId: null,
   backward: [],
   forward: [],
   path: [],
+}
+
+export const selectRoom = (state, { payload }) => {
+  if (payload.id === state.roomId) {
+    return state
+  }
+
+  return {
+    ...state,
+    roomId: payload.id,
+  }
 }
 
 export const selectContext = (state, { payload }) => {
@@ -90,6 +103,7 @@ export const goHome = (state) => ({
 })
 
 export default createReducer(initialState, {
+  [SELECT_ROOM]: selectRoom,
   [SELECT_CONTEXT]: selectContext,
   [SELECT_STORY]: selectStory,
   [SELECT_MEMORY]: selectMemory,

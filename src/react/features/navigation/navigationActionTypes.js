@@ -1,3 +1,4 @@
+export const SELECT_ROOM = 'SELECT_ROOM'
 export const SELECT_CONTEXT = 'SELECT_CONTEXT'
 export const SELECT_STORY = 'SELECT_STORY'
 export const SELECT_MEMORY = 'SELECT_MEMORY'

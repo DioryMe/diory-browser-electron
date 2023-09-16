@@ -1,4 +1,5 @@
 import {
+  SELECT_ROOM,
   SELECT_CONTEXT,
   SELECT_STORY,
   SELECT_MEMORY,
@@ -7,6 +8,11 @@ import {
   GO_HOME,
   GO_SIDE,
 } from './navigationActionTypes'
+
+export const selectRoom = (id) => ({
+  type: SELECT_ROOM,
+  payload: { id },
+})
 
 export const selectContext = ({ id }) => ({
   type: SELECT_CONTEXT,
