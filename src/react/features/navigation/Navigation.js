@@ -7,7 +7,7 @@ import NavigationTopBar from '../../components/NavigationTopBar'
 import NavigationToSide from '../../components/NavigationToSide'
 import LensesNavigation from '../lenses/LensesNavigation'
 import SideBarNavigation from '../sideBar/SideBarNavigation'
-import RoomNavigation from '../room/RoomNavigation'
+import DiosphereNavigation from '../diosphere/DiosphereNavigation'
 import DiographNavigation from '../diograph/DiographNavigation'
 
 const Navigation = () => {
@@ -17,7 +17,7 @@ const Navigation = () => {
       <NavigationTopBar>
         <Tablist display="flex" alignSelf="center">
           <SideBarNavigation side="left" />
-          <RoomNavigation />
+          <DiosphereNavigation />
           <DiographNavigation />
         </Tablist>
         <LensesNavigation />
