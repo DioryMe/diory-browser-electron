@@ -1,5 +1,5 @@
-import * as mockConnector from './mockConnector'
+import * as mockConnector from './mock/mockConnector'
 
 export function createFolderConnector() {
-  return process.env.NODE_ENV === 'development' ? mockConnector : window.folderConnector
+  return process.env.NODE_ENV === 'test' ? mockConnector : window.folderConnector
 }
