@@ -1,14 +1,16 @@
 import { useEffect } from 'react'
 
-import { useDispatchActions, useSelector } from '../../store'
+import { useDispatchActions } from '../../store'
 
+import { useDiosphere } from '../diosphere/useDiosphere'
 import { getDiograph } from './diographActions'
 
 export const useGetDiographEffect = () => {
-  const { connections } = useSelector((state) => state.room)
+  const { room = {} } = useDiosphere()
+  const { connections } = room
   const { dispatch } = useDispatchActions()
   useEffect(() => {
-    if (connections.length) {
+    if (connections) {
       dispatch(getDiograph(connections))
     }
   }, [dispatch, connections])

@@ -2,15 +2,17 @@ import { useEffect } from 'react'
 import { useDispatchActions, useSelector } from '../../store'
 
 import { saveDiograph } from './diographActions'
+import { useDiosphere } from '../diosphere/useDiosphere'
 
 export const useSaveDiographEffect = () => {
-  const { updated } = useSelector((state) => state.diograph)
-  const { address } = useSelector((state) => state.room)
+  const { room = {} } = useDiosphere()
+  const { connections } = room
+  const { updated } = useSelector((state) => state.diosphere)
 
   const { dispatch } = useDispatchActions()
   useEffect(() => {
-    if (updated && address) {
-      dispatch(saveDiograph())
+    if (updated && connections) {
+      dispatch(saveDiograph(connections))
     }
-  }, [dispatch, updated, address])
+  }, [dispatch, updated, connections])
 }

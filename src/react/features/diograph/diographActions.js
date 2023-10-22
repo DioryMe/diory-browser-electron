@@ -6,13 +6,13 @@ import { createActions } from '../../store/storeUtils'
 const saveDiographActions = createActions(SAVE_DIOGRAPH)
 
 export const saveDiograph =
-  () =>
+  (connections) =>
   async (dispatch, getState, { diographStore, connectors }) => {
     const { saving } = getState().diograph
     if (!saving) {
       dispatch(saveDiographActions.begin())
       try {
-        const { address } = getState().room
+        const { address } = connections[0]
         const diograph = diographStore.toObject()
         await connectors.folder.saveDiograph({ diograph, address })
         dispatch(saveDiographActions.success())
@@ -96,14 +96,16 @@ export const getDiograph =
     if (!loading) {
       dispatch(getDiographActions.begin())
       try {
-        const { address } = connections[0]
-        const { diograph } = await connectors.folder.getDiograph(address)
+        const { connector, address } = connections[0]
+        const { diograph } = await connectors[connector].getDiograph(address)
+        diographStore.resetDiograph()
         diographStore.addDiograph(diograph)
         const rootId = Object.values(diographStore.toObject()).find(({ path }) => path === '/').id
         dispatch(getDiographActions.success({ diograph: diographStore.toObject(), rootId }))
         dispatch(selectStory({ id: rootId }))
       } catch (error) {
-        dispatch(getDiographActions.failure(error))
+        console.log(error)
+        dispatch(getDiographActions.failure(error.message))
       }
     }
   }

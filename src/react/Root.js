@@ -15,11 +15,15 @@ import Lenses from './features/lenses/Lenses'
 import Browser from './features/browser/Browser'
 
 import { useGetDiosphereEffect } from './features/diosphere/useGetDiosphereEffect'
+import { useSaveDiosphereEffect } from './features/diosphere/useSaveDiosphereEffect'
 import { useGetDiographEffect } from './features/diograph/useGetDiographEffect'
+import { useSaveDiographEffect } from './features/diograph/useSaveDiographEffect'
 
 const Root = () => {
   useGetDiosphereEffect()
+  useSaveDiosphereEffect()
   useGetDiographEffect()
+  useSaveDiographEffect()
 
   const { showSideBar: showRightSideBar } = useSideBar('right')
   const { showSideBar: showLeftSideBar } = useSideBar('left')
