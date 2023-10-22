@@ -19,10 +19,16 @@ export const getDiograph = (state, { payload: { diograph, rootId } }) => ({
 export const updateDiograph = (state, { payload: { diograph } }) => ({
   ...state,
   diograph,
+  updated: true,
+})
+
+export const saveDiograph = (state, { payload: { diograph, rootId } }) => ({
+  ...state,
+  updated: false,
 })
 
 export default createReducer(initialState, {
   [UPDATE_DIOGRAPH]: updateDiograph,
   ...promiseReducers(GET_DIOGRAPH, 'loading', 'loaded', 'error', getDiograph),
-  ...promiseReducers(SAVE_DIOGRAPH, 'saving', 'saved', 'error'),
+  ...promiseReducers(SAVE_DIOGRAPH, 'saving', 'saved', 'error', saveDiograph),
 })
