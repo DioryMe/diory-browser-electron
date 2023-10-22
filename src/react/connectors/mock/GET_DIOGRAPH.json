@@ -1,10 +1,9 @@
 {
-  "rootId": "diory-demo-content",
   "diograph": {
     "diory-demo-content": {
       "id": "diory-demo-content",
       "path": "/",
-      "text": "Diory demo content",
+      "text": "Diory demo content mock",
       "image": "diory-demo-content/demo-content.png",
       "links": {
         "Adamstown Middle School": {
