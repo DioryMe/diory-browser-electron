@@ -1,17 +1,23 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
+import { useDiograph } from '../diograph/useDiograph'
+import { useDiosphere } from '../diosphere/useDiosphere'
 
 import ContentView from './ContentView'
 
-const Content = ({ diory, style }) => <ContentView diory={diory} style={style} />
+const contentStyle = {
+  position: 'relative',
+  width: '100%',
+  height: '100%',
+  margin: '0 48px',
+  backgroundPosition: 'top',
+}
 
-Content.propTypes = {
-  diory: PropTypes.shape({
-    image: PropTypes.string,
-    style: PropTypes.object,
-    data: PropTypes.array,
-  }).isRequired,
-  style: PropTypes.object,
+const Content = () => {
+  const { story } = useDiograph()
+  const { room } = useDiosphere()
+  const baseUrl = room.connections[0].address
+  return <ContentView diory={story} style={contentStyle} baseUrl={baseUrl} />
 }
 
 export default Content

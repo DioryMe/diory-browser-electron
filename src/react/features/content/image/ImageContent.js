@@ -21,7 +21,6 @@ const ImageContent = ({ diory, baseUrl }) => {
   const { data = [] } = diory
   const { contentUrl } = (data && data[0]) || {}
   const imageUrl = convertToFileUrl(contentUrl, baseUrl)
-
   useOpenFolderButton(imageUrl)
 
   return <Image image={imageUrl} style={defaultStyles} data-testid="image-content" {...options} />

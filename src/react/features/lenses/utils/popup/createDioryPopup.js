@@ -1,19 +1,18 @@
 import L from 'leaflet'
-import { convertToFileUrl } from '../../../../utils'
 
-const getPopupStyle = ({ image }, folderLocation) =>
+const getPopupStyle = ({ image }) =>
   [
     'overflow: hidden',
     'min-width: 400px',
     'min-height: 200px',
     `background-color: #fa7921`,
-    `background-image: url('${convertToFileUrl(image, folderLocation)}')`,
+    `background-image: url('${image}')`,
     'background-size: cover',
     'background-position: center',
     'background-repeat: no-repeat',
   ].join(';')
 
-export const createDioryPopup = ({ diory = {} }, folderLocation) => {
+export const createDioryPopup = ({ diory = {} }) => {
   const elements = [
     diory.text &&
       `<div style="margin: 16px; font-size: 16px; font-weight: bold; color: white">${diory.text}</div>`,
@@ -21,7 +20,7 @@ export const createDioryPopup = ({ diory = {} }, folderLocation) => {
     .filter(Boolean)
     .join('')
 
-  const content = `<div style="${getPopupStyle(diory, folderLocation)}">${elements}</div>`
+  const content = `<div style="${getPopupStyle(diory)}">${elements}</div>`
   const popup = L.popup({
     closeButton: false,
   }).setContent(content)
