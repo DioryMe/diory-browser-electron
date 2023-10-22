@@ -1,6 +1,6 @@
 const path = require('path').posix
-const { getDiograph } = require('./getDiograph')
-const { readDiographJson } = require('./readDiographJson')
+const { getDiograph } = require('./index')
+const { readJson } = require('./readJson')
 
 const someDiograph = {
   diograph: {
@@ -8,22 +8,22 @@ const someDiograph = {
   },
   rootId: 'some-diory',
 }
-jest.mock('./readDiographJson')
+jest.mock('./readJson')
 
 describe('getDiograph', () => {
   beforeEach(() => {
-    readDiographJson.mockImplementation(() => someDiograph)
+    readJson.mockImplementation(() => someDiograph)
   })
 
-  describe('returns readDiographJson return value', () => {
+  describe('returns readJson return value', () => {
     it('valid diory folder location', async () => {
       const dioryFolderLocation = './public/diory-demo-content'
 
       const response = await getDiograph(dioryFolderLocation)
 
       const diographJsonPath = path.join(dioryFolderLocation, 'diograph.json')
-      expect(readDiographJson).toHaveBeenCalledTimes(1)
-      expect(readDiographJson).toHaveBeenCalledWith({ diographJsonPath })
+      expect(readJson).toHaveBeenCalledTimes(1)
+      expect(readJson).toHaveBeenCalledWith({ diographJsonPath })
       expect(response).toEqual(someDiograph)
     })
   })
