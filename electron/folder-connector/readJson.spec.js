@@ -1,5 +1,5 @@
 const fs = require('fs')
-const { readDiographJson } = require('./readDiographJson')
+const { readDiographJson } = require('./readJson')
 
 describe('readDiographJson', () => {
   describe('returns diograph object', () => {

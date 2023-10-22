@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path').posix
-const { saveDiograph } = require('./saveDiograph')
+const { saveDiograph } = require('./saveJson')
 
 const someDiograph = {
   rootId: 'some-diory',

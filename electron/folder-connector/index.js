@@ -1,9 +1,10 @@
 const { contextBridge } = require('electron')
-
-const { getDiograph } = require('./getDiograph')
-const { saveDiograph } = require('./saveDiograph')
+const { readJson } = require('./readJson')
+const { saveJson } = require('./saveJson')
 
 contextBridge.exposeInMainWorld('folderConnector', {
-  getDiograph,
-  saveDiograph,
+  getDiograph: readJson('diograph.json'),
+  saveDiograph: saveJson('diograph.json'),
+  getDiosphere: readJson('diosphere.json'),
+  saveDiosphere: saveJson('diosphere.json'),
 })
