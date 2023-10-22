@@ -15,12 +15,31 @@ export const getLinkedDiorys = (id, diograph) => {
 }
 
 const useContexts = () => {
-  const { storyId } = useSelector((state) => state.navigation)
+  const { contextId, storyId, backward } = useSelector((state) => state.navigation)
   const { diograph = {} } = useSelector((state) => state.diograph)
   const reverseDiograph = useMemo(() => resolveReverseDiograph(diograph), [diograph])
-
   const contexts = getLinkedDiorys(storyId, reverseDiograph)
+  if (!contexts.length) {
+    return {
+      contexts: [],
+    }
+  }
+  const contextIds = contexts.map(({ id }) => id)
+  if (contextIds.includes(contextId)) {
+    return {
+      context: diograph[contextId],
+      contexts,
+    }
+  }
+  const backwardContextId = backward.find((id) => contextIds.includes(id))
+  if (backwardContextId) {
+    return {
+      context: diograph[backwardContextId],
+      contexts,
+    }
+  }
   return {
+    context: contexts[0],
     contexts,
   }
 }
@@ -29,9 +48,9 @@ export const useDiograph = () => {
   const { contextId, storyId, memoryId } = useSelector((state) => state.navigation)
   const { diograph = {} } = useSelector((state) => state.diograph)
 
-  const { contexts } = useContexts()
+  const { context, contexts } = useContexts()
   return {
-    context: diograph[contextId],
+    context,
     contexts,
     story: diograph[storyId],
     stories: getLinkedDiorys(contextId, diograph),

@@ -2,8 +2,8 @@ import React from 'react'
 import { Pane, Pill, SelectMenu } from 'evergreen-ui'
 import PropTypes from 'prop-types'
 
-const PillSelectMenu = ({ options, onClick }) =>
-  options.length ? (
+const PillSelectMenu = ({ isShown, options, onClick }) =>
+  isShown ? (
     <Pane alignSelf="center">
       <SelectMenu
         title="Select context:"
@@ -20,6 +20,7 @@ const PillSelectMenu = ({ options, onClick }) =>
   ) : null
 
 PillSelectMenu.propTypes = {
+  isShown: PropTypes.bool.isRequired,
   options: PropTypes.array.isRequired,
   onClick: PropTypes.func.isRequired,
 }

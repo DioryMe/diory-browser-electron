@@ -16,41 +16,62 @@ const navigationTextStyle = {
   borderRadius: '16px',
 }
 
-const useNavigationButton = () => {
+const useContextButton = () => {
   const { context } = useDiograph()
   const { dispatch } = useDispatchActions()
   return (
     context && {
-      onClick: () => dispatch(selectStory(context)), // TODO Context dropdown
+      onClick: () => dispatch(selectStory(context)),
       text: context.text || context.date,
     }
   )
 }
 
 const useContextsPill = () => {
-  const { context, contexts } = useDiograph()
+  const { contexts = [] } = useDiograph()
   const { dispatch } = useDispatchActions()
-  const otherContexts = contexts
-    .filter(({ id }) => id !== context.id)
-    .map((diory) => ({ label: diory.text, value: diory.id }))
+  const otherContexts = contexts.map((diory) => ({ label: diory.text, value: diory.id }))
 
   return {
+    isShown: otherContexts.length > 1,
     options: otherContexts,
     onClick: ({ value }) => dispatch(selectContext({ id: value })),
   }
 }
 
-const DiographNavigation = () => {
-  const button = useNavigationButton()
-  const contextsPill = useContextsPill()
+const useStoryButton = () => {
+  const { story } = useDiograph()
+  const { dispatch } = useDispatchActions()
+  return (
+    story && {
+      onClick: () => dispatch(selectStory(story)), // TODO Story dropdown
+      text: story.text || story.date,
+    }
+  )
+}
 
-  return button ? (
+const DiographNavigation = () => {
+  const contextButton = useContextButton()
+  const contextsPill = useContextsPill()
+  const storyButton = useStoryButton()
+
+  return (
     <>
-      <Pane {...navigationTextStyle}>/</Pane>
-      <NavigationButton {...button} />
-      <PillSelectMenu {...contextsPill} />
+      {contextButton && (
+        <>
+          <Pane {...navigationTextStyle}>/</Pane>
+          <NavigationButton {...contextButton} />
+          <PillSelectMenu {...contextsPill} />
+        </>
+      )}
+      {storyButton && (
+        <>
+          <Pane {...navigationTextStyle}>/</Pane>
+          <NavigationButton {...storyButton} />
+        </>
+      )}
     </>
-  ) : null
+  )
 }
 
 export default DiographNavigation
