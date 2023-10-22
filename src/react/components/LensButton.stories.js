@@ -1,11 +1,11 @@
 import React from 'react'
 import { action } from '@storybook/addon-actions'
 
-import LensButton from './LensButton'
+import NavigationButton from './NavigationButton'
 
 export default {
   title: 'Lens button',
-  component: LensButton,
+  component: NavigationButton,
 }
 
 const diory = {
@@ -19,10 +19,12 @@ const actions = {
 
 const lens = { diory, ...actions }
 
-export const initially = () => <LensButton {...lens} />
+export const initially = () => <NavigationButton {...lens} />
 
-export const withSelectedLens = () => <LensButton {...lens} isSelected />
+export const withSelectedLens = () => <NavigationButton {...lens} isSelected />
 
-export const withFilteredLens = () => <LensButton {...lens} isFiltered />
+export const withFilteredLens = () => <NavigationButton {...lens} isFiltered />
 
-export const withFilteredAndSelectedLens = () => <LensButton {...lens} isFiltered isSelected />
+export const withFilteredAndSelectedLens = () => (
+  <NavigationButton {...lens} isFiltered isSelected />
+)

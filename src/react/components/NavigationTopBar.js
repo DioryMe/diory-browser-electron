@@ -7,7 +7,7 @@ const NavigationTopBar = ({ children }) => (
     display="flex"
     justifyContent="space-between"
     padding={8}
-    background="#414141"
+    background="#222"
     zIndex={15}
     position="absolute"
     width="100%"
