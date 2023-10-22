@@ -1,0 +1,2 @@
+export const GET_DIOSPHERE = 'GET_DIOSPHERE'
+export const SAVE_DIOSPHERE = 'SAVE_DIOSPHERE'

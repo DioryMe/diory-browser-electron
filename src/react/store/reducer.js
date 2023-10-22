@@ -10,22 +10,20 @@ import lenses from '../features/lenses/lensesReducer'
 import navigation from '../features/navigation/navigationReducer'
 import search from '../features/lenses/search/searchReducer'
 import sideBar from '../features/sideBar/sideBarReducer'
-import room from '../features/room/roomReducer'
+import diosphere from '../features/diosphere/diosphereReducer'
 import tools from '../features/tools/toolsReducer'
-import doors from '../features/doors/doorsReducer'
 
 const appReducer = combineReducers({
   home,
   buttons,
   content,
   diograph,
+  diosphere,
   lenses,
   navigation,
   search,
   sideBar,
-  room,
   tools,
-  doors,
 })
 
 export const reducer = (state, action) => {
