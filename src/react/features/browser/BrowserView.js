@@ -10,14 +10,6 @@ import DragDropBackground from '../../components/DragDropBackground'
 import DiorysGrid from '../../components/DiorysGrid'
 import Content from '../content/Content'
 
-const contentStyle = {
-  position: 'relative',
-  width: '100%',
-  height: '100%',
-  margin: '0 48px',
-  backgroundPosition: 'top',
-}
-
 const useScrollToTopOnStoryChange = (elementRef) => {
   const { story } = useDiograph()
   useEffect(() => {
@@ -53,7 +45,7 @@ const BrowserView = ({
           onDrop={onDrop}
           data-testid="story"
         />
-        <Content diory={story} style={contentStyle} />
+        <Content />
         <DiorysGrid
           ref={memoryRef}
           diorys={memories}
