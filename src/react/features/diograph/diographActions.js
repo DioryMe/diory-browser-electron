@@ -14,9 +14,11 @@ export const saveDiograph =
       try {
         const { address } = connections[0]
         const diograph = diographStore.toObject()
-        await connectors.folder.saveDiograph({ diograph, address })
+        console.log(diograph)
+        await connectors.folder.saveDiograph(address, { diograph })
         dispatch(saveDiographActions.success())
       } catch (error) {
+        console.error(error)
         dispatch(saveDiographActions.failure(error))
       }
     }
@@ -32,7 +34,6 @@ export const addDiograph =
   (dispatch, _, { diographStore }) => {
     diographStore.addDiograph(diographData)
     dispatch(updateDiograph(diographStore.toObject()))
-    dispatch(saveDiograph())
   }
 
 export const createDiory =
@@ -40,7 +41,6 @@ export const createDiory =
   (dispatch, _, { diographStore }) => {
     const diory = diographStore.addDiory(dioryData)
     dispatch(updateDiograph(diographStore.toObject()))
-    dispatch(saveDiograph())
     return { diory: diory.toObject() }
   }
 
@@ -49,7 +49,6 @@ export const updateDiory =
   (dispatch, getState, { diographStore }) => {
     diographStore.updateDiory(dioryData)
     dispatch(updateDiograph(diographStore.toObject()))
-    dispatch(saveDiograph())
   }
 
 export const deleteDiory =
@@ -57,7 +56,6 @@ export const deleteDiory =
   (dispatch, _, { diographStore }) => {
     diographStore.deleteDiory(dioryData)
     dispatch(updateDiograph(diographStore.toObject()))
-    dispatch(saveDiograph())
   }
 
 export const createLink =
@@ -66,7 +64,6 @@ export const createLink =
     console.log(linkedDioryObject)
     diographStore.addDioryLink(dioryObject, linkedDioryObject)
     dispatch(updateDiograph(diographStore.toObject()))
-    dispatch(saveDiograph())
   }
 
 export const deleteLink =
@@ -74,7 +71,6 @@ export const deleteLink =
   (dispatch, getState, { diographStore }) => {
     diographStore.removeDioryLink(dioryObject, linkedDioryObject)
     dispatch(updateDiograph(diographStore.toObject()))
-    dispatch(saveDiograph())
   }
 
 export const deleteLinks =
@@ -84,7 +80,6 @@ export const deleteLinks =
       diographStore.removeDioryLink(fromDiory, toDiory)
     })
     dispatch(updateDiograph(diographStore.toObject()))
-    dispatch(saveDiograph())
   }
 
 const getDiographActions = createActions(GET_DIOGRAPH)

@@ -7,8 +7,7 @@ import { useDiosphere } from '../diosphere/useDiosphere'
 export const useSaveDiographEffect = () => {
   const { room = {} } = useDiosphere()
   const { connections } = room
-  const { updated } = useSelector((state) => state.diosphere)
-
+  const { updated } = useSelector((state) => state.diograph)
   const { dispatch } = useDispatchActions()
   useEffect(() => {
     if (updated && connections) {
