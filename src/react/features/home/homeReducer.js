@@ -2,7 +2,7 @@ import { GET_HOME, SAVE_HOME } from './homeActionTypes'
 import { createReducer, promiseReducers } from '../../store'
 
 const initialState = {
-  homeId: undefined,
+  address: undefined,
   initializing: true,
   loading: false,
   loaded: false,
@@ -10,13 +10,13 @@ const initialState = {
   saved: false,
 }
 
-export const getHome = (state, { payload }) => ({
+export const setHome = (state, { payload }) => ({
   ...state,
-  homeId: payload.id,
+  address: payload.address,
   initializing: false,
 })
 
 export default createReducer(initialState, {
-  ...promiseReducers(GET_HOME, 'loading', 'loaded', 'error', getHome),
-  ...promiseReducers(SAVE_HOME, 'saving', 'saved', 'error', getHome),
+  ...promiseReducers(GET_HOME, 'loading', 'loaded', 'error', setHome),
+  ...promiseReducers(SAVE_HOME, 'saving', 'saved', 'error', setHome),
 })

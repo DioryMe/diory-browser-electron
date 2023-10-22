@@ -7,6 +7,6 @@ import SetHomeRoomButton from './HomeRoomButton'
 export const Home = () => {
   useGetHomeEffect()
 
-  const { initializing, homeId } = useSelector((state) => state.home)
-  return !homeId ? <HomeView>{!initializing ? <SetHomeRoomButton /> : null}</HomeView> : null
+  const { initializing, address } = useSelector((state) => state.home)
+  return !address ? <HomeView>{!initializing ? <SetHomeRoomButton /> : null}</HomeView> : null
 }

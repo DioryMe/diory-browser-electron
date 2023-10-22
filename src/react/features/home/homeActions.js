@@ -4,8 +4,6 @@ import { createActions } from '../../store/storeUtils'
 import { invokeChannel } from '../../client/client'
 import { channels } from '../../../shared/constants'
 import { resetStore } from '../../store/actions'
-import { setRoom } from '../room/roomActions'
-import { selectRoom } from '../navigation/navigationActions'
 
 const getHomeActions = createActions(GET_HOME)
 export const getHome = () => async (dispatch, getState) => {
@@ -14,12 +12,7 @@ export const getHome = () => async (dispatch, getState) => {
     dispatch(getHomeActions.begin())
     try {
       const { dioryFolderLocation } = await invokeChannel(channels.GET_DIORY_FOLDER_LOCATION) // TODO refactor
-      const connections = [{ address: dioryFolderLocation }]
-      const room = { id: 'home-room', connections }
-      dispatch(getHomeActions.success(room)) // TODO what is stored to app?
-      dispatch(setRoom(room))
-      console.log(room)
-      dispatch(selectRoom(room.id))
+      dispatch(getHomeActions.success({ address: dioryFolderLocation }))
     } catch (error) {
       dispatch(getHomeActions.failure(error))
     }
@@ -27,15 +20,14 @@ export const getHome = () => async (dispatch, getState) => {
 }
 
 const saveHomeActions = createActions(SAVE_HOME) // createPromiseActions, createPromiseReducers
-export const saveHome = (connections) => async (dispatch, getState) => {
+export const saveHome = (address) => async (dispatch, getState) => {
   const { saving } = getState().home
   if (!saving) {
     dispatch(saveHomeActions.begin())
     try {
-      const { address } = connections[0]
-      await invokeChannel(channels.SET_DIORY_FOLDER_LOCATION, address)
+      await invokeChannel(channels.SET_DIORY_FOLDER_LOCATION, { address })
       dispatch(resetStore())
-      dispatch(saveHomeActions.success({ connections }))
+      dispatch(saveHomeActions.success({ address }))
     } catch (error) {
       dispatch(saveHomeActions.failure(error))
     }

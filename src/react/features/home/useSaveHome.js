@@ -16,7 +16,7 @@ export const useSaveHome = () => {
   return {
     onClick: async () => {
       const address = await getHomeAddress()
-      dispatch(saveHome([{ address }]))
+      dispatch(saveHome(address))
     },
   }
 }
