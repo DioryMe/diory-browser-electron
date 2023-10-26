@@ -1,8 +1,9 @@
 {
-  "diograph": {
+    "/": {
+      "id": "diory-demo-content"
+    },
     "diory-demo-content": {
       "id": "diory-demo-content",
-      "path": "/",
       "text": "Diory demo content",
       "image": "diory-demo-content/demo-content.png",
       "links": {
@@ -687,4 +688,3 @@
       "modified": "2021-02-25T12:27:27.561Z"
     }
   }
-}

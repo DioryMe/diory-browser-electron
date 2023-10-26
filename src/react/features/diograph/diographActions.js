@@ -92,12 +92,13 @@ export const getDiograph =
       dispatch(getDiographActions.begin())
       try {
         const { connector, address } = connections[0]
-        const { diograph } = await connectors[connector].getDiograph(address)
-        diographStore.resetDiograph()
-        diographStore.addDiograph(diograph)
-        const rootId = Object.values(diographStore.toObject()).find(({ path }) => path === '/').id
-        dispatch(getDiographActions.success({ diograph: diographStore.toObject(), rootId }))
-        dispatch(selectStory({ id: rootId }))
+        const diograph = await connectors[connector].getDiograph(address)
+        diographStore.resetDiograph().addDiograph(diograph)
+        const rootDiory = diographStore.getDiory({ id: '/' })
+        dispatch(
+          getDiographActions.success({ diograph: diographStore.toObject(), rootId: rootDiory.id })
+        )
+        dispatch(selectStory({ id: rootDiory.id }))
       } catch (error) {
         console.log(error)
         dispatch(getDiographActions.failure(error.message))

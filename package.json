@@ -5,7 +5,7 @@
   "main": "electron-main.js",
   "private": true,
   "dependencies": {
-    "@diograph/diograph": "0.0.2-rc9",
+    "@diograph/diograph": "0.0.2-rc11",
     "dayjs": "^1.11.3",
     "electron-devtools-installer": "^3.2.0",
     "electron-log": "^4.4.7",
@@ -141,7 +141,8 @@
       "node_modules/(?!(react-pdf/dist/esm/entry.webpack)/)"
     ],
     "moduleNameMapper": {
-      "react-pdf/dist/esm/entry.webpack": "react-pdf"
+      "react-pdf/dist/esm/entry.webpack": "react-pdf",
+      "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js"
     }
   },
   "prettier": {
