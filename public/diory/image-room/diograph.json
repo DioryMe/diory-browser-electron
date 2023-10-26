@@ -1,9 +1,16 @@
 {
-  "diograph": {
-    "e07c2f1d-5f5a-488a-a505-34f7b9f55105": {
-      "id": "folder-app",
-      "text": "Image room",
-      "path": "/"
-    }
+  "/":{
+    "id": "image-room"
+  },
+  "image-room": {
+    "id": "image-room",
+    "text": "Image room",
+    "links": [{
+      "id": "image"
+    }]
+  },
+  "image": {
+    "id": "image",
+    "text": "Image"
   }
 }

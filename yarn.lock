@@ -1380,10 +1380,10 @@
   dependencies:
     stackframe "^1.1.1"
 
-"@diograph/diograph@0.0.2-rc9":
-  version "0.0.2-rc9"
-  resolved "https://registry.yarnpkg.com/@diograph/diograph/-/diograph-0.0.2-rc9.tgz#ae5bb7d2786ec7ab78a2edcb929048f7be626ea3"
-  integrity sha512-Hg1efogpv+L82WCnYRbXuPpZkh8X+CPOq5k1A+hFrzK2DK6psG/2KEhMV4iSn5qU9cexKdC1XElLcOjbWA0jAg==
+"@diograph/diograph@0.0.2-rc11":
+  version "0.0.2-rc11"
+  resolved "https://registry.yarnpkg.com/@diograph/diograph/-/diograph-0.0.2-rc11.tgz#2879fbd9248919778d83fbe53a5c7fab25964e3a"
+  integrity sha512-r+y50vsFRalXb44360IzEqf2G9+RKrz3pqbyUW3bgpemWHK+2rgDYzlma75MNSkadNrjeQEQA95tCpPLtxfG+w==
   dependencies:
     uuid "^8.3.2"
 
