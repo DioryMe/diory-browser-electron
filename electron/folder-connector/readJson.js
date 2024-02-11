@@ -21,6 +21,7 @@ exports.readJson = function readJson(fileName) {
 
     let json
     try {
+      console.log(raw)
       json = JSON.parse(raw)
     } catch (error) {
       console.error(error)
