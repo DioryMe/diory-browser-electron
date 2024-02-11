@@ -375,8 +375,7 @@ Object {
         },
       },
       "modified": "2020-01-03T14:03:04.751Z",
-      "path": "/",
-      "text": "Diory demo content",
+      "text": "Diory demo content electron",
     },
     "diory1": Object {
       "id": "diory1",
@@ -549,9 +548,6 @@ Object {
         "some-document.pdf": Object {
           "id": "some-document-pdf",
         },
-        "some-image.jpeg": Object {
-          "id": "some-image",
-        },
         "some-video.mov": Object {
           "id": "5456c2c3-4a69-4d80-bd2f-caa9945cff71",
         },
@@ -624,21 +620,6 @@ Object {
       "modified": "2021-04-15T10:32:20.565Z",
       "text": "some-document.pdf",
     },
-    "some-image": Object {
-      "created": "2021-04-15T10:32:20.565Z",
-      "data": Array [
-        Object {
-          "@context": "https://schema.org",
-          "@type": "ImageObject",
-          "contentUrl": "diory-demo-content/Generic content/some-image.jpeg",
-          "encodingFormat": "image/jpeg",
-        },
-      ],
-      "id": "some-image",
-      "image": "diory-demo-content/Generic content/some-image.jpeg",
-      "modified": "2021-04-15T10:32:20.565Z",
-      "text": "some-image",
-    },
     "some-website": Object {
       "data": Array [
         Object {
@@ -668,6 +649,7 @@ Object {
       "text": "Tampere",
     },
   },
+  "rootId": "diory-demo-content",
 }
 `;
 
