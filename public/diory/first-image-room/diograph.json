@@ -4,7 +4,7 @@
   },
   "image-room": {
     "id": "image-room",
-    "text": "Image room",
+    "text": "First image room",
     "links": [{
       "id": "image"
     }]
