@@ -1,9 +1,0 @@
-[submodule "diograph-js"]
-	path = diograph-js
-	url = git@github.com:DioryMe/diograph-js.git
-[submodule "@diograph/file-generator"]
-	path = @diograph/file-generator
-	url = git@github.com:DioryMe/file-generator.git
-[submodule "@diograph/folder-generator"]
-	path = @diograph/folder-generator
-	url = https://github.com/DioryMe/folder-generator.git
