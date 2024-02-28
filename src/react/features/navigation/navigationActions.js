@@ -9,7 +9,7 @@ import {
   GO_SIDE,
 } from './navigationActionTypes'
 
-export const selectRoom = (id) => ({
+export const selectRoom = ({ id }) => ({
   type: SELECT_ROOM,
   payload: { id },
 })

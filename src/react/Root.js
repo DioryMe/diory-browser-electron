@@ -18,12 +18,14 @@ import { useGetDiosphereEffect } from './features/diosphere/useGetDiosphereEffec
 import { useSaveDiosphereEffect } from './features/diosphere/useSaveDiosphereEffect'
 import { useGetDiographEffect } from './features/diograph/useGetDiographEffect'
 import { useSaveDiographEffect } from './features/diograph/useSaveDiographEffect'
+import { useInitialNavigationEffect } from './features/navigation/useInitialNavigationEffect'
 
 const Root = () => {
   useGetDiosphereEffect()
   useSaveDiosphereEffect()
   useGetDiographEffect()
   useSaveDiographEffect()
+  useInitialNavigationEffect()
 
   const { showSideBar: showRightSideBar } = useSideBar('right')
   const { showSideBar: showLeftSideBar } = useSideBar('left')
@@ -32,17 +34,17 @@ const Root = () => {
       <Home />
       <Navigation />
       <DndProvider backend={HTML5Backend}>
-        <Fullscreen right={showRightSideBar ? 500 : 0} top={44}>
+        <Fullscreen right={showRightSideBar ? 500 : 0} top={48}>
           <Browser />
         </Fullscreen>
         {showRightSideBar && (
-          <SideBar id="right" right={0} top={44} width={500}>
+          <SideBar id="right" right={0} top={48} width={500}>
             <Lenses />
           </SideBar>
         )}
       </DndProvider>
       {showLeftSideBar && (
-        <SideBar id="left" left={0} top={44} width={300} backgroundColor="#222">
+        <SideBar id="left" left={0} top={48} width={300} backgroundColor="#222">
           <Diosphere />
         </SideBar>
       )}

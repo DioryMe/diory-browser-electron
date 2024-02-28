@@ -1,6 +1,5 @@
 import { UPDATE_DIOGRAPH, GET_DIOGRAPH, SAVE_DIOGRAPH } from './diographActionTypes'
 
-import { selectStory } from '../navigation/navigationActions'
 import { createActions } from '../../store/storeUtils'
 
 const saveDiographActions = createActions(SAVE_DIOGRAPH)
@@ -94,11 +93,7 @@ export const getDiograph =
         const { connector, address } = connections[0]
         const diograph = await connectors[connector].getDiograph(address)
         diographStore.resetDiograph().addDiograph(diograph)
-        const rootDiory = diographStore.getDiory({ id: '/' })
-        dispatch(
-          getDiographActions.success({ diograph: diographStore.toObject(), rootId: rootDiory.id })
-        )
-        dispatch(selectStory({ id: rootDiory.id }))
+        dispatch(getDiographActions.success({ diograph: diographStore.toObject() }))
       } catch (error) {
         console.log(error)
         dispatch(getDiographActions.failure(error.message))

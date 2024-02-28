@@ -2,7 +2,6 @@ import { GET_DIOGRAPH, SAVE_DIOGRAPH, UPDATE_DIOGRAPH } from './diographActionTy
 import { promiseReducers, createReducer } from '../../store'
 
 const initialState = {
-  rootId: undefined,
   diograph: {},
   loading: false,
   loaded: false,
@@ -10,9 +9,8 @@ const initialState = {
   saved: false,
 }
 
-export const getDiograph = (state, { payload: { diograph, rootId } }) => ({
+export const getDiograph = (state, { payload: { diograph } }) => ({
   ...state,
-  rootId,
   diograph,
 })
 
@@ -22,7 +20,7 @@ export const updateDiograph = (state, { payload: { diograph } }) => ({
   updated: true,
 })
 
-export const saveDiograph = (state, { payload: { diograph, rootId } }) => ({
+export const saveDiograph = (state) => ({
   ...state,
   updated: false,
 })

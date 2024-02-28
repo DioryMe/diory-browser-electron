@@ -2,7 +2,6 @@ import { GET_DIOSPHERE, SAVE_DIOSPHERE } from './diosphereActionTypes'
 import { createReducer, promiseReducers } from '../../store'
 
 const initialState = {
-  homeRoomId: undefined,
   rooms: {},
   updated: false,
   loading: false,
@@ -14,7 +13,6 @@ const initialState = {
 
 export const getDiosphere = (state, { payload }) => ({
   ...state,
-  homeRoomId: payload.homeRoomId,
   rooms: payload.rooms,
 })
 
