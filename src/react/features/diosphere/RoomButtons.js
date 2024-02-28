@@ -34,7 +34,7 @@ RoomButton.propTypes = {
   onClick: PropTypes.func.isRequired,
 }
 
-const RoomNavigation = ({ room, isOpen, isInRoom, level, onToggle, onEnterRoom, onNewRoom }) => (
+const RoomButtons = ({ room, isOpen, isInRoom, level, onToggle, onEnterRoom, onNewRoom }) => (
   <Pane
     display="flex"
     color="white"
@@ -52,7 +52,7 @@ const RoomNavigation = ({ room, isOpen, isInRoom, level, onToggle, onEnterRoom, 
   </Pane>
 )
 
-RoomNavigation.propTypes = {
+RoomButtons.propTypes = {
   room: PropTypes.object.isRequired,
   isInRoom: PropTypes.bool.isRequired,
   isOpen: PropTypes.bool.isRequired,
@@ -62,4 +62,4 @@ RoomNavigation.propTypes = {
   onNewRoom: PropTypes.func.isRequired,
 }
 
-export { RoomNavigation }
+export { RoomButtons }

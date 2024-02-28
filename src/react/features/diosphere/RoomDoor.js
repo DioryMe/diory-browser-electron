@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import { RoomNavigation } from './RoomNavigation'
+import { RoomButtons } from './RoomButtons'
 
 const RoomDoor = ({ roomId, level = 0, state, actions }) => {
   const room = state.rooms[roomId]
@@ -14,7 +14,7 @@ const RoomDoor = ({ roomId, level = 0, state, actions }) => {
   const { doors = [] } = room
   return (
     <>
-      <RoomNavigation
+      <RoomButtons
         room={room}
         isOpen={isOpen}
         isInRoom={state.roomId === room.id}

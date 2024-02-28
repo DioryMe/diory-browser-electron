@@ -15,7 +15,7 @@ const UpdateTool = () => {
 
   const { dispatchAction } = useDispatchActions()
   return UPDATE_TOOL_BUTTON === active && !!memoryId ? (
-    <UpdateView diory={memory} title="Update diory" isShown onDone={dispatchAction(updateDiory)} />
+    <UpdateView diory={memory} title="Update diory" onDone={dispatchAction(updateDiory)} />
   ) : null
 }
 

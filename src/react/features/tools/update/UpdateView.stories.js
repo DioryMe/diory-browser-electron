@@ -22,12 +22,10 @@ const actions = {
 
 export const initially = () => <UpdateView />
 
-export const isShown = () => <UpdateView {...actions} isShown />
-
-export const isShownWithTitle = () => <UpdateView {...actions} isShown title="Diory id" />
+export const isShownWithTitle = () => <UpdateView {...actions} title="Diory id" />
 
 const diory = {
   text: 'some-text',
 }
 
-export const isShownWithDiory = () => <UpdateView {...actions} isShown diory={diory} />
+export const isShownWithDiory = () => <UpdateView {...actions} diory={diory} />

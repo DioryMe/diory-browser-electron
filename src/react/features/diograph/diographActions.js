@@ -12,9 +12,7 @@ export const saveDiograph =
       dispatch(saveDiographActions.begin())
       try {
         const { address } = connections[0]
-        const diograph = diographStore.toObject()
-        console.log(diograph)
-        await connectors.folder.saveDiograph(address, { diograph })
+        await connectors.folder.saveDiograph(address, diographStore.toObject())
         dispatch(saveDiographActions.success())
       } catch (error) {
         console.error(error)
