@@ -11,9 +11,9 @@ const initialState = {
   error: null,
 }
 
-export const getDiosphere = (state, { payload }) => ({
+export const getDiosphere = (state, { payload: { rooms } }) => ({
   ...state,
-  rooms: payload.rooms,
+  rooms,
 })
 
 export default createReducer(initialState, {

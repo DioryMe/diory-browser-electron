@@ -1387,6 +1387,14 @@
   dependencies:
     uuid "^8.3.2"
 
+"@diory/diosphere-js@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@diory/diosphere-js/-/diosphere-js-0.1.0.tgz#6c7878e9e1ecd3c1db229c4931fcd984f85f73b3"
+  integrity sha512-omu3CUDagTqWX6Ropb6YHDi+uULtsFfiSm/kl/0vdjFY8QpFQS1ifkrGTsRCL4eGXDrmIMyRgWhGUA1+ir8Ojg==
+  dependencies:
+    "@types/uuid" "8.3.2"
+    uuid "8.3.2"
+
 "@discoveryjs/json-ext@^0.5.3":
   version "0.5.7"
   resolved "https://registry.npmjs.org/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz"
@@ -3232,6 +3240,11 @@
   version "0.0.3"
   resolved "https://registry.npmjs.org/@types/use-sync-external-store/-/use-sync-external-store-0.0.3.tgz"
   integrity sha512-EwmlvuaxPNej9+T4v5AuBPJa2x2UOJVdjCtDHgcDqitUeOtjnJKJ+apYjVcAoBEMjKW1VVFGZLUb5+qqa09XFA==
+
+"@types/uuid@8.3.2":
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.2.tgz#b7077bdfc866dbb39939029774806f24e95be791"
+  integrity sha512-u40ViizKDmdl5FhOXn9WQbulpigYCaiD5hD4KqR3xyQww6l3+0ND+A9TeFla8tFpqvR+UAkJdYb/8jdaQG4/nw==
 
 "@types/verror@^1.10.3":
   version "1.10.5"
@@ -14363,11 +14376,6 @@ react-app-polyfill@^3.0.0:
     regenerator-runtime "^0.13.9"
     whatwg-fetch "^3.6.2"
 
-react-complex-tree@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/react-complex-tree/-/react-complex-tree-2.2.2.tgz#aec2c0e9ff5e82f53dbb61806ca5fdcf82861607"
-  integrity sha512-KZb4KStosqAH5MEdgsVZvQSr8DS85W19OhZMeuYkNwJOYgNhKXrIf+b7FELN85iXdCNYZhLCORfLe1wxNx057Q==
-
 react-dev-utils@^12.0.1:
   version "12.0.1"
   resolved "https://registry.npmjs.org/react-dev-utils/-/react-dev-utils-12.0.1.tgz"
@@ -17626,15 +17634,15 @@ uuid@3.3.3:
   resolved "https://registry.npmjs.org/uuid/-/uuid-3.3.3.tgz"
   integrity sha512-pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==
 
+uuid@8.3.2, uuid@^8.3.2:
+  version "8.3.2"
+  resolved "https://registry.npmjs.org/uuid/-/uuid-8.3.2.tgz"
+  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+
 uuid@^3.3.2:
   version "3.4.0"
   resolved "https://registry.npmjs.org/uuid/-/uuid-3.4.0.tgz"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
-
-uuid@^8.3.2:
-  version "8.3.2"
-  resolved "https://registry.npmjs.org/uuid/-/uuid-8.3.2.tgz"
-  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
 v8-compile-cache@^2.0.3:
   version "2.3.0"
