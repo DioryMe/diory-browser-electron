@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import Modal from './Modal'
 import TextInput from './TextInput'
+import { Modal } from '../features/modal/Modal'
 
 const useUpdatedValues = (oldValues = {}) => {
   const [newValues, setNewValues] = useState({})

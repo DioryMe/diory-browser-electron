@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Modal from '../../../components/Modal'
+import { Modal } from '../../modal/Modal'
 
 const DeleteView = ({ diory, links, onDone, onCancel }) => (
   <Modal
