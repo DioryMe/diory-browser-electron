@@ -92,6 +92,9 @@ const TextInput = ({ format, value, onChange, ...props }) => {
       onChange={({ target: { value } }) => validate(value, onChange)}
       isInvalid={isInvalid}
       validationMessage={isInvalid && `Invalid ${format}`}
+      flex="1 1 auto"
+      padding={8}
+      marginBottom={0}
       {...props}
     />
   )
@@ -118,6 +121,7 @@ TextInput.propTypes = {
   validationMessage: PropTypes.string,
   format: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.number]),
+  disabled: PropTypes.bool,
   onChange: PropTypes.func,
 }
 

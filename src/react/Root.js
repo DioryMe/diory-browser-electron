@@ -28,7 +28,6 @@ const Root = () => {
   useInitialNavigationEffect()
 
   const { showSideBar: showRightSideBar } = useSideBar('right')
-  const { showSideBar: showLeftSideBar } = useSideBar('left')
   return (
     <>
       <Home />
@@ -43,11 +42,7 @@ const Root = () => {
           </SideBar>
         )}
       </DndProvider>
-      {showLeftSideBar && (
-        <SideBar id="left" left={0} top={48} width={300} backgroundColor="#222">
-          <Diosphere />
-        </SideBar>
-      )}
+      <Diosphere />
       <Tools />
       <Buttons />
     </>

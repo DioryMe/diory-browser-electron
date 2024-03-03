@@ -2,9 +2,9 @@ import { UPDATE_DIOSPHERE, GET_DIOSPHERE, SAVE_DIOSPHERE } from './diosphereActi
 
 import { createActions } from '../../store/storeUtils'
 
-const updateDiosphere = (diosphere) => ({
+const updateDiosphere = (rooms) => ({
   type: UPDATE_DIOSPHERE,
-  payload: { diosphere },
+  payload: { rooms },
 })
 
 export const addDiosphere =
@@ -14,7 +14,7 @@ export const addDiosphere =
     dispatch(updateDiosphere(diosphereStore.toObject()))
   }
 
-export const createRoom =
+export const addRoom =
   (roomData) =>
   (dispatch, _, { diosphereStore }) => {
     const room = diosphereStore.addRoom(roomData)
@@ -36,25 +36,25 @@ export const deleteRoom =
     dispatch(updateDiosphere(diosphereStore.toObject()))
   }
 
-export const createLink =
+export const addDoor =
   (roomObject, linkedRoomObject) =>
   (dispatch, getState, { diosphereStore }) => {
-    diosphereStore.addRoomLink(roomObject, linkedRoomObject)
+    diosphereStore.addRoomDoor(roomObject, linkedRoomObject)
     dispatch(updateDiosphere(diosphereStore.toObject()))
   }
 
-export const deleteLink =
+export const removeDoor =
   (roomObject, linkedRoomObject) =>
   (dispatch, getState, { diosphereStore }) => {
-    diosphereStore.removeRoomLink(roomObject, linkedRoomObject)
+    diosphereStore.removeRoomDoor(roomObject, linkedRoomObject)
     dispatch(updateDiosphere(diosphereStore.toObject()))
   }
 
-export const deleteLinks =
-  (deletedLinks) =>
+export const removeDoors =
+  (deletedDoors) =>
   (dispatch, getState, { diosphereStore }) => {
-    deletedLinks.forEach(({ fromRoom, toRoom }) => {
-      diosphereStore.removeRoomLink(fromRoom, toRoom)
+    deletedDoors.forEach(({ fromRoom, toRoom }) => {
+      diosphereStore.removeRoomDoor(fromRoom, toRoom)
     })
     dispatch(updateDiosphere(diosphereStore.toObject()))
   }
