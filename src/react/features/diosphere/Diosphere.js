@@ -1,4 +1,13 @@
 import React from 'react'
-import { DiosphereView } from './DiosphereView'
 
-export const Diosphere = () => <DiosphereView />
+import { RoomsSideBar } from './sidebar/RoomsSideBar'
+import { UpdateRoom } from './actions/updateRoom/UpdateRoom'
+import { AddRoom } from './actions/addRoom/AddRoom'
+
+export const Diosphere = () => (
+  <>
+    <RoomsSideBar />
+    <UpdateRoom />
+    <AddRoom />
+  </>
+)

@@ -20,8 +20,9 @@ const useOnDioryClick = () => {
 }
 
 const GraphLens = () => {
-  const { rootId, diograph = {} } = useSelector((state) => state.diograph)
+  const { diograph = {} } = useSelector((state) => state.diograph)
   const onDioryClick = useOnDioryClick()
+  const { id: rootId } = diograph['/']
   const rootDiory = diograph[rootId]
   return (
     <Fullscreen background="white">

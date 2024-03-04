@@ -1,30 +1,8 @@
 import { UPDATE_DIOGRAPH, GET_DIOGRAPH, SAVE_DIOGRAPH } from './diographActionTypes'
 
-import { selectStory } from '../navigation/navigationActions'
 import { createActions } from '../../store/storeUtils'
 
-const saveDiographActions = createActions(SAVE_DIOGRAPH)
-
-export const saveDiograph =
-  (connections) =>
-  async (dispatch, getState, { diographStore, connectors }) => {
-    const { saving } = getState().diograph
-    if (!saving) {
-      dispatch(saveDiographActions.begin())
-      try {
-        const { address } = connections[0]
-        const diograph = diographStore.toObject()
-        console.log(diograph)
-        await connectors.folder.saveDiograph(address, { diograph })
-        dispatch(saveDiographActions.success())
-      } catch (error) {
-        console.error(error)
-        dispatch(saveDiographActions.failure(error))
-      }
-    }
-  }
-
-export const updateDiograph = (diograph) => ({
+const updateDiograph = (diograph) => ({
   type: UPDATE_DIOGRAPH,
   payload: { diograph },
 })
@@ -54,14 +32,13 @@ export const updateDiory =
 export const deleteDiory =
   (dioryData) =>
   (dispatch, _, { diographStore }) => {
-    diographStore.deleteDiory(dioryData)
+    diographStore.removeDiory(dioryData)
     dispatch(updateDiograph(diographStore.toObject()))
   }
 
 export const createLink =
   (dioryObject, linkedDioryObject) =>
   (dispatch, getState, { diographStore }) => {
-    console.log(linkedDioryObject)
     diographStore.addDioryLink(dioryObject, linkedDioryObject)
     dispatch(updateDiograph(diographStore.toObject()))
   }
@@ -83,7 +60,6 @@ export const deleteLinks =
   }
 
 const getDiographActions = createActions(GET_DIOGRAPH)
-
 export const getDiograph =
   (connections) =>
   async (dispatch, getState, { diographStore, connectors }) => {
@@ -94,14 +70,29 @@ export const getDiograph =
         const { connector, address } = connections[0]
         const diograph = await connectors[connector].getDiograph(address)
         diographStore.resetDiograph().addDiograph(diograph)
-        const rootDiory = diographStore.getDiory({ id: '/' })
-        dispatch(
-          getDiographActions.success({ diograph: diographStore.toObject(), rootId: rootDiory.id })
-        )
-        dispatch(selectStory({ id: rootDiory.id }))
+        dispatch(getDiographActions.success({ diograph: diographStore.toObject() }))
       } catch (error) {
         console.log(error)
         dispatch(getDiographActions.failure(error.message))
+      }
+    }
+  }
+
+const saveDiographActions = createActions(SAVE_DIOGRAPH)
+
+export const saveDiograph =
+  (connections) =>
+  async (dispatch, getState, { diographStore, connectors }) => {
+    const { saving } = getState().diograph
+    if (!saving) {
+      dispatch(saveDiographActions.begin())
+      try {
+        const { address } = connections[0]
+        await connectors.folder.saveDiograph(address, diographStore.toObject())
+        dispatch(saveDiographActions.success())
+      } catch (error) {
+        console.error(error)
+        dispatch(saveDiographActions.failure(error))
       }
     }
   }

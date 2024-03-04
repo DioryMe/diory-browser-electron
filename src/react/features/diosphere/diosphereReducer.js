@@ -1,8 +1,7 @@
-import { GET_DIOSPHERE, SAVE_DIOSPHERE } from './diosphereActionTypes'
+import { GET_DIOSPHERE, SAVE_DIOSPHERE, UPDATE_DIOSPHERE } from './diosphereActionTypes'
 import { createReducer, promiseReducers } from '../../store'
 
 const initialState = {
-  homeRoomId: undefined,
   rooms: {},
   updated: false,
   loading: false,
@@ -12,13 +11,13 @@ const initialState = {
   error: null,
 }
 
-export const getDiosphere = (state, { payload }) => ({
+export const updateDiosphere = (state, { payload: { rooms } }) => ({
   ...state,
-  homeRoomId: payload.homeRoomId,
-  rooms: payload.rooms,
+  rooms,
 })
 
 export default createReducer(initialState, {
-  ...promiseReducers(GET_DIOSPHERE, 'loading', 'loaded', 'error', getDiosphere),
+  [UPDATE_DIOSPHERE]: updateDiosphere,
+  ...promiseReducers(GET_DIOSPHERE, 'loading', 'loaded', 'error', updateDiosphere),
   ...promiseReducers(SAVE_DIOSPHERE, 'saving', 'saved', 'error'),
 })

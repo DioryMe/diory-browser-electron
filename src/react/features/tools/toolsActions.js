@@ -53,6 +53,6 @@ export function generateDiograph(importFolderPath) {
       address,
     })
     dispatch(addDiograph(diograph))
-    dispatch(selectStory(rootId))
+    dispatch(selectStory({ id: rootId }))
   }
 }

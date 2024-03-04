@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import { useDispatchActions } from '../../../store'
@@ -6,69 +6,37 @@ import { useDispatchActions } from '../../../store'
 import { inactivateButton } from '../../buttons/buttonsActions'
 import { selectMemory } from '../../navigation/navigationActions'
 
-import Modal from '../../../components/Modal'
-import TextInput from '../../../components/TextInput'
-
-import fields from './fields'
 import { deselectTool } from '../toolsActions'
 
-const useUpdateView = (diory = {}) => {
-  const [values, setValues] = useState({})
+import { FormModal } from '../../../components/FormModal'
+import fields from './fields'
 
-  const updatedDiory = { ...diory, ...values }
+const UpdateView = ({ diory, title, onDone }) => {
   const { dispatch } = useDispatchActions()
-  return {
-    fields: fields.map((field) => ({ ...field, value: updatedDiory[field.key] })),
-    setValue: (key, value) => setValues({ ...values, [key]: value }),
-    updatedDiory,
-    resetView: () => {
-      dispatch(inactivateButton())
-      dispatch(deselectTool())
-      dispatch(selectMemory())
-      setValues({})
-    },
-  }
-}
 
-const UpdateView = ({ diory, title, isShown, onDone }) => {
-  const { fields, setValue, updatedDiory, resetView } = useUpdateView(diory)
+  const resetView = () => {
+    dispatch(inactivateButton())
+    dispatch(deselectTool())
+    dispatch(selectMemory())
+  }
 
   return (
-    <Modal
+    <FormModal
       title={title}
-      isShown={isShown}
-      onDone={() => {
+      values={diory}
+      fields={fields}
+      onDone={(updatedDiory) => {
         onDone(updatedDiory)
         resetView()
       }}
       onCancel={resetView}
-    >
-      {fields.map(({ key, label, format, value, autoFocus }) => (
-        <TextInput
-          id={key}
-          key={key}
-          label={label}
-          format={format}
-          value={value}
-          onChange={(value) => setValue(key, value)}
-          autoFocus={autoFocus}
-          onKeyPress={(event) => {
-            if (event.key === 'Enter') {
-              onDone(updatedDiory)
-              resetView()
-              event.preventDefault()
-            }
-          }}
-        />
-      ))}
-    </Modal>
+    />
   )
 }
 
 UpdateView.defaultProps = {
   title: '',
   diory: {},
-  isShown: false,
   onDone: () => {},
 }
 
@@ -79,7 +47,6 @@ UpdateView.propTypes = {
     image: PropTypes.string,
     style: PropTypes.object,
   }),
-  isShown: PropTypes.bool,
   onDone: PropTypes.func,
 }
 
