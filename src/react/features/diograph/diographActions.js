@@ -19,9 +19,9 @@ export const addDiograph =
   }
 
 export const createDiory =
-  (dioryData) =>
+  (dioryData, alias) =>
   (dispatch, _, { dioryClient }) => {
-    const diory = dioryClient.diograph.addDiory(dioryData)
+    const diory = dioryClient.diograph.addDiory(dioryData, alias)
     dispatch(updateDiograph())
     return { diory: diory.toObject() }
   }

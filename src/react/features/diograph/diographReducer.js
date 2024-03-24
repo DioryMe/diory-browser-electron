@@ -7,7 +7,7 @@ const initialState = {
 
 export const updateDiograph = (state, { payload: { diograph } }) => ({
   ...state,
-  diograph: diograph.diories,
+  diograph,
 })
 
 export default createReducer(initialState, {

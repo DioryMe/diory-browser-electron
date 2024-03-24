@@ -1,6 +1,8 @@
 {
-  "rootId": "diory-demo-content",
-  "diograph": {
+  "diories": {
+    "/": {
+      "id": "diory-demo-content"
+    },
     "diory-demo-content": {
       "id": "diory-demo-content",
       "text": "Diory demo content electron",
