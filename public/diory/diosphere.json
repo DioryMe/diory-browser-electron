@@ -8,7 +8,7 @@
       "text": "Home room",
       "connections": [
         {
-          "connector": "folder",
+          "client": "LocalClient",
           "address": "public/diory"
         }
       ],
@@ -26,7 +26,7 @@
       "text": "Image room",
       "connections": [
         {
-          "connector": "folder",
+          "client": "LocalClient",
           "address": "public/diory/image-room",
           "key": "image-room-key"
         }
@@ -46,7 +46,7 @@
       "connections": [
         {
           "id": "s3-room-local",
-          "connector": "folder",
+          "client": "LocalClient",
           "address": "public/diory/s3-bucket-room",
           "key": "s3-room-key"
         }
@@ -56,7 +56,7 @@
       "id": "first-image-room-id",
       "connections": [
         {
-          "connector": "folder",
+          "client": "LocalClient",
           "address": "public/diory/first-image-room",
           "key": "image-room-key"
         }
@@ -66,7 +66,7 @@
       "id": "second-image-room-id",
       "connections": [
         {
-          "connector": "folder",
+          "client": "LocalClient",
           "address": "public/diory/second-image-room",
           "key": "s3-room-key"
         },

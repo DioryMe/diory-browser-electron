@@ -1,16 +1,20 @@
 {
-  "/":{
-    "id": "s3-room"
-  },
-  "s3-room": {
-    "id": "s3-room",
-    "text": "S3 bucket room",
-    "links": [{
-      "id": "image"
-    }]
-  },
-  "image": {
-    "id": "image",
-    "text": "S3 image"
+  "diories": {
+    "/": {
+      "id": "s3-room"
+    },
+    "s3-room": {
+      "id": "s3-room",
+      "text": "S3 bucket room",
+      "links": [
+        {
+          "id": "image"
+        }
+      ]
+    },
+    "image": {
+      "id": "image",
+      "text": "S3 image"
+    }
   }
 }

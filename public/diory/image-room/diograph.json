@@ -1,17 +1,21 @@
 {
-  "/":{
-    "id": "image-room"
-  },
-  "image-room": {
-    "id": "image-room",
-    "text": "Image room",
-    "links": [{
-      "id": "image"
-    }]
-  },
-  "image": {
-    "id": "image",
-    "text": "Image",
-    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8GmnyHwAGEAJzBJT/2AAAAABJRU5ErkJggg=="
+  "diories": {
+    "/": {
+      "id": "image-room"
+    },
+    "image-room": {
+      "id": "image-room",
+      "text": "Image room",
+      "links": [
+        {
+          "id": "image"
+        }
+      ]
+    },
+    "image": {
+      "id": "image",
+      "text": "Image",
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8GmnyHwAGEAJzBJT/2AAAAABJRU5ErkJggg=="
+    }
   }
 }
