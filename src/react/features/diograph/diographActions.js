@@ -1,104 +1,71 @@
-import { UPDATE_DIOGRAPH, GET_DIOGRAPH, SAVE_DIOGRAPH } from './diographActionTypes'
+import { UPDATE_DIOGRAPH } from './diographActionTypes'
 
-import { createActions } from '../../store/storeUtils'
-
-const updateDiograph = (diograph) => ({
+const updateDiographAction = (diograph) => ({
   type: UPDATE_DIOGRAPH,
   payload: { diograph },
 })
 
+export const updateDiograph =
+  () =>
+  (dispatch, _, { dioryClient }) => {
+    dispatch(updateDiographAction(dioryClient.diograph.toObject()))
+  }
+
 export const addDiograph =
   (diographData) =>
-  (dispatch, _, { diographStore }) => {
-    diographStore.addDiograph(diographData)
-    dispatch(updateDiograph(diographStore.toObject()))
+  (dispatch, _, { dioryClient }) => {
+    dioryClient.diograph.initialise(diographData)
+    dispatch(updateDiograph())
   }
 
 export const createDiory =
   (dioryData) =>
-  (dispatch, _, { diographStore }) => {
-    const diory = diographStore.addDiory(dioryData)
-    dispatch(updateDiograph(diographStore.toObject()))
+  (dispatch, _, { dioryClient }) => {
+    const diory = dioryClient.diograph.addDiory(dioryData)
+    dispatch(updateDiograph())
     return { diory: diory.toObject() }
   }
 
 export const updateDiory =
   (dioryData) =>
-  (dispatch, getState, { diographStore }) => {
-    diographStore.updateDiory(dioryData)
-    dispatch(updateDiograph(diographStore.toObject()))
+  (dispatch, getState, { dioryClient }) => {
+    dioryClient.diograph.updateDiory(dioryData)
+    dispatch(updateDiograph())
   }
 
 export const deleteDiory =
   (dioryData) =>
-  (dispatch, _, { diographStore }) => {
-    diographStore.removeDiory(dioryData)
-    dispatch(updateDiograph(diographStore.toObject()))
+  (dispatch, _, { dioryClient }) => {
+    dioryClient.diograph.removeDiory(dioryData)
+    dispatch(updateDiograph())
   }
 
 export const createLink =
   (dioryObject, linkedDioryObject) =>
-  (dispatch, getState, { diographStore }) => {
-    diographStore.addDioryLink(dioryObject, linkedDioryObject)
-    dispatch(updateDiograph(diographStore.toObject()))
+  (dispatch, getState, { dioryClient }) => {
+    dioryClient.diograph.addDioryLink(dioryObject, linkedDioryObject)
+    dispatch(updateDiograph())
   }
 
 export const deleteLink =
   (dioryObject, linkedDioryObject) =>
-  (dispatch, getState, { diographStore }) => {
-    diographStore.removeDioryLink(dioryObject, linkedDioryObject)
-    dispatch(updateDiograph(diographStore.toObject()))
+  (dispatch, getState, { dioryClient }) => {
+    dioryClient.diograph.removeDioryLink(dioryObject, linkedDioryObject)
+    dispatch(updateDiograph())
   }
 
 export const deleteLinks =
   (deletedLinks) =>
-  (dispatch, getState, { diographStore }) => {
+  (dispatch, getState, { dioryClient }) => {
     deletedLinks.forEach(({ fromDiory, toDiory }) => {
-      diographStore.removeDioryLink(fromDiory, toDiory)
+      dioryClient.diograph.removeDioryLink(fromDiory, toDiory)
     })
-    dispatch(updateDiograph(diographStore.toObject()))
-  }
-
-const getDiographActions = createActions(GET_DIOGRAPH)
-export const getDiograph =
-  (connections) =>
-  async (dispatch, getState, { diographStore, connectors }) => {
-    const { loading } = getState().diograph
-    if (!loading) {
-      dispatch(getDiographActions.begin())
-      try {
-        const { connector, address } = connections[0]
-        const diograph = await connectors[connector].getDiograph(address)
-        diographStore.resetDiograph().addDiograph(diograph)
-        dispatch(getDiographActions.success({ diograph: diographStore.toObject() }))
-      } catch (error) {
-        console.log(error)
-        dispatch(getDiographActions.failure(error.message))
-      }
-    }
-  }
-
-const saveDiographActions = createActions(SAVE_DIOGRAPH)
-
-export const saveDiograph =
-  (connections) =>
-  async (dispatch, getState, { diographStore, connectors }) => {
-    const { saving } = getState().diograph
-    if (!saving) {
-      dispatch(saveDiographActions.begin())
-      try {
-        const { address } = connections[0]
-        await connectors.folder.saveDiograph(address, diographStore.toObject())
-        dispatch(saveDiographActions.success())
-      } catch (error) {
-        console.error(error)
-        dispatch(saveDiographActions.failure(error))
-      }
-    }
+    dispatch(updateDiograph())
   }
 
 export const resetDiograph =
   () =>
-  async (dispatch, getState, { diographStore }) => {
-    diographStore.resetDiograph()
+  async (dispatch, getState, { dioryClient }) => {
+    dioryClient.diograph.resetDiograph()
+    dispatch(updateDiograph())
   }

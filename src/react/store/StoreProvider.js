@@ -4,25 +4,15 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 
-import { Diosphere } from '@diory/diosphere-js'
-import { Diograph } from '@diograph/diograph'
-
-import { createFolderConnector } from '../connectors/folderConnector'
+import { DioryClient } from '@diory/client-js'
 
 import { reducer } from './reducer'
 
-const connectors = {
-  folder: createFolderConnector(),
-}
-
-const diosphereStore = new Diosphere()
-const diographStore = new Diograph()
+const dioryClient = new DioryClient([window.localClient])
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   reducer,
-  composeEnhancers(
-    applyMiddleware(thunk.withExtraArgument({ diographStore, diosphereStore, connectors }))
-  )
+  composeEnhancers(applyMiddleware(thunk.withExtraArgument({ dioryClient })))
 )
 
 const StoreProvider = ({ children }) => <Provider store={store}>{children}</Provider>

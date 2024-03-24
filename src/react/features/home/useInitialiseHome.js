@@ -2,11 +2,11 @@ import { useEffect } from 'react'
 
 import { useDispatchActions } from '../../store'
 
-import { getHome } from './homeActions'
+import { initialiseHome } from './homeActions'
 
-export const useGetHomeEffect = () => {
+export const useInitialiseHome = () => {
   const { dispatch } = useDispatchActions()
   useEffect(() => {
-    dispatch(getHome())
+    dispatch(initialiseHome())
   }, [dispatch])
 }

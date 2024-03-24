@@ -1,3 +1,1 @@
-export const GET_DIOGRAPH = 'GET_DIOGRAPH'
-export const SAVE_DIOGRAPH = 'SAVE_DIOGRAPH'
 export const UPDATE_DIOGRAPH = 'UPDATE_DIOGRAPH'

@@ -1,5 +1,6 @@
 const { contextBridge, shell, ipcRenderer } = require('electron')
 const { fileURLToPath } = require('url')
+const { LocalClient } = require('@diograph/local-client')
 
 const { channels } = require('../src/shared/constants')
 
@@ -7,7 +8,7 @@ const { importFolder } = require('./lib/import-folder')
 const { getDioryFolderLocation } = require('./lib/get-diory-folder-location')
 const { setDioryFolderLocation } = require('./lib/set-diory-folder-location')
 
-require('./folder-connector')
+contextBridge.exposeInMainWorld('localClient', new LocalClient())
 
 function channelLogger(handler, params) {
   console.log(`BACK-REQ: ${handler.name} called with`, params)

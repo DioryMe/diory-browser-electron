@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-const useKeyPress = function (targetKey, handler) {
+const useKeyPress = (targetKey, handler) => {
   const keyPressHandler = ({ key }) => {
     if (key === targetKey) {
       handler()

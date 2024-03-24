@@ -14,18 +14,12 @@ import SideBar from './features/sideBar/SideBar'
 import Lenses from './features/lenses/Lenses'
 import Browser from './features/browser/Browser'
 
-import { useGetDiosphereEffect } from './features/diosphere/useGetDiosphereEffect'
-import { useSaveDiosphereEffect } from './features/diosphere/useSaveDiosphereEffect'
-import { useGetDiographEffect } from './features/diograph/useGetDiographEffect'
-import { useSaveDiographEffect } from './features/diograph/useSaveDiographEffect'
-import { useInitialNavigationEffect } from './features/navigation/useInitialNavigationEffect'
+import { useInitialiseHome } from './features/home/useInitialiseHome'
+import { useEnterRoomEffect } from './features/home/useEnterRoomEffect'
 
 const Root = () => {
-  useGetDiosphereEffect()
-  useSaveDiosphereEffect()
-  useGetDiographEffect()
-  useSaveDiographEffect()
-  useInitialNavigationEffect()
+  useInitialiseHome()
+  useEnterRoomEffect()
 
   const { showSideBar: showRightSideBar } = useSideBar('right')
   return (

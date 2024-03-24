@@ -1,101 +1,64 @@
-import { UPDATE_DIOSPHERE, GET_DIOSPHERE, SAVE_DIOSPHERE } from './diosphereActionTypes'
+import { UPDATE_DIOSPHERE } from './diosphereActionTypes'
 
-import { createActions } from '../../store/storeUtils'
-
-const updateDiosphere = (rooms) => ({
+const updateDiosphereAction = (diosphere) => ({
   type: UPDATE_DIOSPHERE,
-  payload: { rooms },
+  payload: { diosphere },
 })
 
-export const addDiosphere =
-  (diosphereData) =>
-  (dispatch, _, { diosphereStore }) => {
-    diosphereStore.addDiosphere(diosphereData)
-    dispatch(updateDiosphere(diosphereStore.toObject()))
+export const updateDiosphere =
+  () =>
+  (dispatch, _, { dioryClient }) => {
+    dispatch(updateDiosphereAction(dioryClient.diosphere.toObject()))
   }
 
 export const addRoom =
   (roomData) =>
-  (dispatch, _, { diosphereStore }) => {
-    const room = diosphereStore.addRoom(roomData)
-    dispatch(updateDiosphere(diosphereStore.toObject()))
+  (dispatch, _, { dioryClient }) => {
+    const room = dioryClient.diosphere.addRoom(roomData)
+    dispatch(updateDiosphere())
     return { room: room.toObject() }
   }
 
 export const updateRoom =
   (roomData) =>
-  (dispatch, getState, { diosphereStore }) => {
-    diosphereStore.updateRoom(roomData)
-    dispatch(updateDiosphere(diosphereStore.toObject()))
+  (dispatch, getState, { dioryClient }) => {
+    dioryClient.diosphere.updateRoom(roomData)
+    dispatch(updateDiosphere())
   }
 
 export const deleteRoom =
   (roomData) =>
-  (dispatch, _, { diosphereStore }) => {
-    diosphereStore.removeRoom(roomData)
-    dispatch(updateDiosphere(diosphereStore.toObject()))
+  (dispatch, _, { dioryClient }) => {
+    dioryClient.diosphere.removeRoom(roomData)
+    dispatch(updateDiosphere())
   }
 
 export const addDoor =
   (roomObject, linkedRoomObject) =>
-  (dispatch, getState, { diosphereStore }) => {
-    diosphereStore.addRoomDoor(roomObject, linkedRoomObject)
-    dispatch(updateDiosphere(diosphereStore.toObject()))
+  (dispatch, getState, { dioryClient }) => {
+    dioryClient.diosphere.addRoomDoor(roomObject, linkedRoomObject)
+    dispatch(updateDiosphere())
   }
 
 export const removeDoor =
   (roomObject, linkedRoomObject) =>
-  (dispatch, getState, { diosphereStore }) => {
-    diosphereStore.removeRoomDoor(roomObject, linkedRoomObject)
-    dispatch(updateDiosphere(diosphereStore.toObject()))
+  (dispatch, getState, { dioryClient }) => {
+    dioryClient.diosphere.removeRoomDoor(roomObject, linkedRoomObject)
+    dispatch(updateDiosphere())
   }
 
 export const removeDoors =
   (deletedDoors) =>
-  (dispatch, getState, { diosphereStore }) => {
+  (dispatch, getState, { dioryClient }) => {
     deletedDoors.forEach(({ fromRoom, toRoom }) => {
-      diosphereStore.removeRoomDoor(fromRoom, toRoom)
+      dioryClient.diosphere.removeRoomDoor(fromRoom, toRoom)
     })
-    dispatch(updateDiosphere(diosphereStore.toObject()))
-  }
-
-const getDiosphereActions = createActions(GET_DIOSPHERE)
-export const getDiosphere =
-  (address) =>
-  async (dispatch, getState, { diosphereStore, connectors }) => {
-    const { loading } = getState().diosphere
-    if (!loading) {
-      dispatch(getDiosphereActions.begin())
-      try {
-        const { rooms } = await connectors.folder.getDiosphere(address)
-        diosphereStore.resetDiosphere().addDiosphere(rooms)
-        dispatch(getDiosphereActions.success({ rooms: diosphereStore.toObject() }))
-      } catch (error) {
-        console.log(error)
-        dispatch(getDiosphereActions.failure(error.message))
-      }
-    }
-  }
-
-const saveDiosphereActions = createActions(SAVE_DIOSPHERE)
-export const saveDiosphere =
-  (address) =>
-  async (dispatch, getState, { diosphereStore, connectors }) => {
-    const { saving } = getState().diosphere
-    if (!saving) {
-      dispatch(saveDiosphereActions.begin())
-      try {
-        await connectors.folder.saveDiosphere(address, diosphereStore.toObject())
-        dispatch(saveDiosphereActions.success())
-      } catch (error) {
-        console.error(error)
-        dispatch(saveDiosphereActions.failure(error))
-      }
-    }
+    dispatch(updateDiosphere())
   }
 
 export const resetDiosphere =
   () =>
-  async (dispatch, getState, { diosphereStore }) => {
-    diosphereStore.resetDiosphere()
+  async (dispatch, getState, { dioryClient }) => {
+    dioryClient.diosphere.resetRooms()
+    dispatch(updateDiosphere())
   }

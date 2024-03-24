@@ -2,7 +2,7 @@ import React from 'react'
 import { Pane } from 'evergreen-ui'
 import { useSaveHome } from './useSaveHome'
 
-const SetHomeHomeButton = () => {
+const SetHomeButton = () => {
   const { onClick } = useSaveHome()
   return (
     <Pane
@@ -21,4 +21,4 @@ const SetHomeHomeButton = () => {
   )
 }
 
-export default SetHomeHomeButton
+export default SetHomeButton

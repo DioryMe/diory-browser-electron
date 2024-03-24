@@ -1380,6 +1380,13 @@
   dependencies:
     stackframe "^1.1.1"
 
+"@diograph/diograph@0.1.2-rc3":
+  version "0.1.2-rc3"
+  resolved "https://registry.yarnpkg.com/@diograph/diograph/-/diograph-0.1.2-rc3.tgz#2389bd10e295d7bfe8eec8f028bf70ee1cf66d04"
+  integrity sha512-6LXOMoh47rgL8TcvP2wOmNO6bUbHNu2toSDTZ4CMz6U2riiQY3MRDo3sbrwWGKmnIM4UFtIgBqRZH5Zp/4LKdA==
+  dependencies:
+    uuid "^8.3.2"
+
 "@diograph/diograph@^0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@diograph/diograph/-/diograph-0.1.1.tgz#2ee1a4970e9fbc9b2148623e27a05b91fef3e80d"
@@ -1387,12 +1394,58 @@
   dependencies:
     uuid "^8.3.2"
 
-"@diory/diosphere-js@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@diory/diosphere-js/-/diosphere-js-0.1.0.tgz#6c7878e9e1ecd3c1db229c4931fcd984f85f73b3"
-  integrity sha512-omu3CUDagTqWX6Ropb6YHDi+uULtsFfiSm/kl/0vdjFY8QpFQS1ifkrGTsRCL4eGXDrmIMyRgWhGUA1+ir8Ojg==
+"@diograph/diograph@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@diograph/diograph/-/diograph-0.1.2.tgz#b9436a95a322270594f2e225947ce2ddb8541a1d"
+  integrity sha512-Y8WJ10LI1y5DRSx4J8WstPTfJK+++hrBay9ONazdAfFWl1ZqD7NLoJrjXAs5f8701H6/VnQ0n7R4n6EXtuAlZg==
   dependencies:
+    uuid "^8.3.2"
+
+"@diograph/diograph@^0.2.0-rc4":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@diograph/diograph/-/diograph-0.2.0.tgz#4d03a765d9f374e005e12aeef7208e4d9c418928"
+  integrity sha512-h/7qAx4zMT2DzJSaxQDcfWAHxWlXfYjlGpl352KHkYUxEaMWB4D6VxR1ThWrgpTiVvxvChMj8twZ/Twke3L8sQ==
+  dependencies:
+    "@types/path-browserify" "^1.0.0"
     "@types/uuid" "8.3.2"
+    path-browserify "^1.0.1"
+    uuid "8.3.2"
+
+"@diograph/local-client@0.3.0-rc1":
+  version "0.3.0-rc1"
+  resolved "https://registry.yarnpkg.com/@diograph/local-client/-/local-client-0.3.0-rc1.tgz#57407aefb6408feefe8b980b4afb855db6850df4"
+  integrity sha512-ykkQ2VRBUPgLZJaWnhWpBzZMZn/PgbNLJeJOfkbL+9uE5oLHLDMg3asagEwlvbnAprFNVrmpAzMj12hqxKGHCA==
+  dependencies:
+    "@diograph/diograph" "^0.2.0-rc4"
+
+"@diory/client-js@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@diory/client-js/-/client-js-0.1.2.tgz#b0650f0255150115f0205407734ccd218345b9aa"
+  integrity sha512-wHHtglnlgWyz5EAfdidFmXTzgxPhJ/HyFmVWQhvE5V3RZ7wbyeKuHq5cKVP5qRGzKc/M/46do5FZb/4ptjYhxQ==
+  dependencies:
+    "@diograph/diograph" "^0.1.2"
+    "@diory/diosphere-js" "^0.2.5"
+    path "^0.12.7"
+    path-browserify "^1.0.1"
+    uuid "8.3.2"
+
+"@diory/diosphere-js@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@diory/diosphere-js/-/diosphere-js-0.2.3.tgz#e244c4fbd44a9dd010fc0891a81284f0a75e7f59"
+  integrity sha512-HH63c+vnTyFtTe6/VhA9fU46tuq1vqMCVRrOn+wWChwQ/W0qYSRViEsptrvdxnkEBlFt9Cx+4Vm1iXVbs0MVqQ==
+  dependencies:
+    "@diograph/diograph" "0.1.2-rc3"
+    path "^0.12.7"
+    path-browserify "^1.0.1"
+    uuid "8.3.2"
+
+"@diory/diosphere-js@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@diory/diosphere-js/-/diosphere-js-0.2.5.tgz#fcb9dce5e2c52543441d949a3c3ac5689aef65c9"
+  integrity sha512-seMVel9V3mO2/W8Q8kJLPpVMdoDi37VI6ngmTXJmrdvUj2OnlBFuH4pY+gtmwT//5GQqSsSk4NQc8awQtWoZxA==
+  dependencies:
+    "@diograph/diograph" "0.1.2-rc3"
+    path-browserify "^1.0.1"
     uuid "8.3.2"
 
 "@discoveryjs/json-ext@^0.5.3":
@@ -3093,6 +3146,11 @@
   version "5.0.3"
   resolved "https://registry.npmjs.org/@types/parse5/-/parse5-5.0.3.tgz"
   integrity sha512-kUNnecmtkunAoQ3CnjmMkzNU/gtxG8guhi+Fk2U/kOpIKjIMKnXGp4IJCgQJrXSgMsWYimYG4TGjz/UzbGEBTw==
+
+"@types/path-browserify@^1.0.0":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@types/path-browserify/-/path-browserify-1.0.2.tgz#14b62d4371316016f254b9cca5c10e60ef33dcc0"
+  integrity sha512-ZkC5IUqqIFPXx3ASTTybTzmQdwHwe2C0u3eL75ldQ6T9E9IWFJodn6hIfbZGab73DfyiHN4Xw15gNxUq2FbvBA==
 
 "@types/plist@^3.0.1":
   version "3.0.2"
@@ -13134,7 +13192,7 @@ path-browserify@0.0.1, path-browserify@~0.0.0:
   resolved "https://registry.npmjs.org/path-browserify/-/path-browserify-0.0.1.tgz"
   integrity sha512-BapA40NHICOS+USX9SN4tyhq+A2RrN/Ws5F0Z5aMHDp98Fl86lX8Oti8B7uN93L4Ifv4fHOEA+pQw87gmMO/lQ==
 
-path-browserify@^1.0.0:
+path-browserify@^1.0.0, path-browserify@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/path-browserify/-/path-browserify-1.0.1.tgz"
   integrity sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==
@@ -13216,6 +13274,14 @@ path-type@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/path-type/-/path-type-4.0.0.tgz"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
+
+path@^0.12.7:
+  version "0.12.7"
+  resolved "https://registry.yarnpkg.com/path/-/path-0.12.7.tgz#d4dc2a506c4ce2197eb481ebfcd5b36c0140b10f"
+  integrity sha512-aXXC6s+1w7otVF9UletFkFcDsJeO7lSZBPUQhtb5O0xJe8LtYhj/GxldoL09bBj9+ZmE2hNoHqQSFMN5fikh4Q==
+  dependencies:
+    process "^0.11.1"
+    util "^0.10.3"
 
 pathval@^1.1.1:
   version "1.1.1"
@@ -14075,7 +14141,7 @@ process-nextick-args@~2.0.0:
   resolved "https://registry.npmjs.org/process-nextick-args/-/process-nextick-args-2.0.1.tgz"
   integrity sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
 
-process@^0.11.10, process@~0.11.0:
+process@^0.11.1, process@^0.11.10, process@~0.11.0:
   version "0.11.10"
   resolved "https://registry.npmjs.org/process/-/process-0.11.10.tgz"
   integrity sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==
@@ -17588,17 +17654,17 @@ util@0.10.3:
   dependencies:
     inherits "2.0.1"
 
+util@^0.10.3, util@~0.10.1:
+  version "0.10.4"
+  resolved "https://registry.npmjs.org/util/-/util-0.10.4.tgz"
+  integrity sha512-0Pm9hTQ3se5ll1XihRic3FDIku70C+iHUdT/W926rSgHV5QgXsYbKZN8MSC3tJtSkhuROzvsQjAaFENRXr+19A==
+  dependencies:
+    inherits "2.0.3"
+
 util@^0.11.0:
   version "0.11.1"
   resolved "https://registry.npmjs.org/util/-/util-0.11.1.tgz"
   integrity sha512-HShAsny+zS2TZfaXxD9tYj4HQGlBezXZMZuM/S5PKLLoZkShZiGk9o5CzukI1LVHZvjdvZ2Sj1aW/Ndn2NB/HQ==
-  dependencies:
-    inherits "2.0.3"
-
-util@~0.10.1:
-  version "0.10.4"
-  resolved "https://registry.npmjs.org/util/-/util-0.10.4.tgz"
-  integrity sha512-0Pm9hTQ3se5ll1XihRic3FDIku70C+iHUdT/W926rSgHV5QgXsYbKZN8MSC3tJtSkhuROzvsQjAaFENRXr+19A==
   dependencies:
     inherits "2.0.3"
 
