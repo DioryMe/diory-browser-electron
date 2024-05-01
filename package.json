@@ -6,6 +6,8 @@
   "private": true,
   "dependencies": {
     "@diograph/local-client": "0.3.0-rc1",
+    "@diograph/s3-client": "^0.2.0",
+    "@diograph/utils": "^0.0.3",
     "@diory/client-js": "^0.1.4",
     "dayjs": "^1.11.3",
     "electron-devtools-installer": "^3.2.0",
