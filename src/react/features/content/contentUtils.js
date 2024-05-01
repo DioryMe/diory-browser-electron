@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react'
-import { convertToFileUrl } from '../../utils'
+import { getContentUrlFromCID } from '../../utils'
 
 export const getContentUrl = (diory, baseUrl) => {
   const { data = [] } = diory
-  const { contentUrl } = (data && data[0]) || {}
-  return convertToFileUrl(contentUrl, baseUrl)
+  const { contentUrl, encodingFormat } = (data && data[0]) || {}
+  return getContentUrlFromCID(contentUrl, encodingFormat)
 }
 
 export const getUrl = (diory) => {
