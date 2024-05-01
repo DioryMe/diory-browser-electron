@@ -27,16 +27,16 @@ class StoreAdapter {
 
     // --------
 
-    const room = await window.room
+    // const room = await window.room
 
-    room.diograph.initialise = () => {}
-    this.dioryClient.diograph = room.diograph
-    this.diograph = room.diograph
+    // room.diograph.initialise = () => {}
+    // this.dioryClient.diograph = room.diograph
+    // this.diograph = room.diograph
 
-    // Validate
-    validateDiograph(this.dioryClient.diograph.toObject())
+    // // Validate
+    // validateDiograph(this.dioryClient.diograph.toObject())
 
-    console.log('bau', this.dioryClient.diograph.toObject())
+    // console.log('bau', this.dioryClient.diograph.toObject())
   }
 
   enterRoom = async (param) => {
