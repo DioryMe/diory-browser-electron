@@ -54,6 +54,7 @@ export const enterRoom =
       try {
         await dioryClient.enterRoom(room)
         dispatch(updateDiograph())
+        console.log('duu', dioryClient)
         dispatch(selectStory(dioryClient.diory.toObject()))
         dispatch(enterRoomActions.success())
       } catch (error) {

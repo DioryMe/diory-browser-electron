@@ -27,34 +27,24 @@ class StoreAdapter {
 
     // --------
 
-    // const roomClientType = 'S3Client'
-    // const address = 's3://jvalanen-diory-test3/room/'
-    // const credentials = {
-    //   region: 'eu-west-1',
-    //   credentials: {
-    //     accessKeyId: '',
-    //     secretAccessKey: '',
-    //   },
-    // }
-    // const room = await constructAndLoadRoom(address, roomClientType, {
-    //   S3Client: {
-    //     clientConstructor: S3Client,
-    //     credentials,
-    //   },
-    // })
+    const room = await window.room
 
-    // room.diograph.initialise = () => {}
-    // this.dioryClient.diograph = room.diograph
-    // this.diograph = room.diograph
+    room.diograph.initialise = () => {}
+    this.dioryClient.diograph = room.diograph
+    this.diograph = room.diograph
 
-    // // Validate
-    // validateDiograph(this.dioryClient.diograph.toObject())
+    // Validate
+    validateDiograph(this.dioryClient.diograph.toObject())
 
-    // console.log('bau', this.dioryClient.diograph.toObject())
+    console.log('bau', this.dioryClient.diograph.toObject())
   }
 
   enterRoom = async (param) => {
-    await this.dioryClient.enterRoom(param)
+    try {
+      await this.dioryClient.enterRoom(param)
+    } catch (e) {
+      console.log('booo', e)
+    }
     this.connections = this.dioryClient.connections
     this.dataClients = this.dioryClient.dataClients
     this.diosphere = this.dioryClient.diosphere
