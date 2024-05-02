@@ -13,14 +13,17 @@ class StoreAdapter {
     this.diory = this.dioryClient.diory
   }
 
-  initialise = async (param) => {
-    await this.dioryClient.initialise(param)
+  initialise = async (connections) => {
+    // dioryClient used
+    this.dioryClient.connections = connections
+    this.dioryClient.diosphere.resetRooms()
+    await this.dioryClient.getDiosphere()
+    this.diosphere = this.dioryClient.diosphere
+    // sync
     this.connections = this.dioryClient.connections
     this.dataClients = this.dioryClient.dataClients
-    this.diosphere = this.dioryClient.diosphere
-    this.diograph = this.dioryClient.diograph
-    this.room = this.dioryClient.room
-    this.diory = this.dioryClient.diory
+
+    await this.enterRoom({ id: '/' })
 
     // Validate
     validateDiograph(this.dioryClient.diograph.toObject())
@@ -39,14 +42,16 @@ class StoreAdapter {
     // console.log('bau', this.dioryClient.diograph.toObject())
   }
 
-  enterRoom = async (param) => {
-    await this.dioryClient.enterRoom(param)
-    this.connections = this.dioryClient.connections
-    this.dataClients = this.dioryClient.dataClients
-    this.diosphere = this.dioryClient.diosphere
+  enterRoom = async (roomObject) => {
+    // dioryClient used
+    this.dioryClient.room = this.diosphere.getRoom(roomObject)
+    this.dioryClient.diograph.resetDiograph()
+    await this.dioryClient.getDiograph()
+    // sync
     this.diograph = this.dioryClient.diograph
     this.room = this.dioryClient.room
-    this.diory = this.dioryClient.diory
+
+    this.diory = this.diograph.getDiory({ id: '/' })
   }
 
   getDiosphere = () => {
@@ -62,7 +67,7 @@ class StoreAdapter {
   }
 
   getDioryInFocus = () => {
-    return this.dioryClient.diory.toObject()
+    return this.diory.toObject()
   }
 }
 
