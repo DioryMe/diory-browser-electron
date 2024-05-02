@@ -40,17 +40,29 @@ class StoreAdapter {
   }
 
   enterRoom = async (param) => {
-    try {
-      await this.dioryClient.enterRoom(param)
-    } catch (e) {
-      console.log('booo', e)
-    }
+    await this.dioryClient.enterRoom(param)
     this.connections = this.dioryClient.connections
     this.dataClients = this.dioryClient.dataClients
     this.diosphere = this.dioryClient.diosphere
     this.diograph = this.dioryClient.diograph
     this.room = this.dioryClient.room
     this.diory = this.dioryClient.diory
+  }
+
+  getDiosphere = () => {
+    return this.dioryClient.diosphere.toObject()
+  }
+
+  getDiograph = () => {
+    return this.dioryClient.diograph.toObject()
+  }
+
+  getRoomInFocus = () => {
+    return this.dioryClient.room.toObject()
+  }
+
+  getDioryInFocus = () => {
+    return this.dioryClient.diory.toObject()
   }
 }
 

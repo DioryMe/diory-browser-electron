@@ -20,7 +20,7 @@ export const initialiseHome =
         const { dioryFolderLocation } = await invokeChannel(channels.GET_DIORY_FOLDER_LOCATION) // TODO refactor
         await dioryClient.initialise([{ address: dioryFolderLocation, client: 'LocalClient' }])
         dispatch(updateDiosphere())
-        dispatch(selectRoom(dioryClient.room.toObject()))
+        dispatch(selectRoom(dioryClient.getRoomInFocus()))
         dispatch(getHomeActions.success({ address: dioryFolderLocation }))
       } catch (error) {
         console.error(error)
@@ -54,8 +54,7 @@ export const enterRoom =
       try {
         await dioryClient.enterRoom(room)
         dispatch(updateDiograph())
-        console.log('duu', dioryClient)
-        dispatch(selectStory(dioryClient.diory.toObject()))
+        dispatch(selectStory(dioryClient.getDioryInFocus()))
         dispatch(enterRoomActions.success())
       } catch (error) {
         console.error(error)

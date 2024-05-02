@@ -8,7 +8,8 @@ const updateDiosphereAction = (diosphere) => ({
 export const updateDiosphere =
   () =>
   (dispatch, _, { dioryClient }) => {
-    dispatch(updateDiosphereAction(dioryClient.diosphere.toObject()))
+    // Update also room in focus
+    dispatch(updateDiosphereAction(dioryClient.getDiosphere()))
   }
 
 export const addRoom =
