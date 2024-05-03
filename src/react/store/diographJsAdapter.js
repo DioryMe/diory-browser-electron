@@ -10,6 +10,14 @@ class DiographJsAdapter {
   }
 
   enterRoom = async (roomObject) => {
+    if (roomObject.id === '/') {
+      roomObject.id = 'home-room'
+    }
+    const id = roomObject.id
+    const address = this.getDiosphereObject().rooms[roomObject.id].connections[0].address
+    const clientType = this.getDiosphereObject().rooms[roomObject.id].connections[0].client
+    console.log('THIS IS THE PLACE TO CHANGE THE ROOM', id, address, clientType)
+
     this.room = this.getDiosphereObject().rooms['home-room']
     validateDiograph(this.diograph.toObject())
     this.diory = this.diograph.getDiory({ id: '/' })
@@ -37,6 +45,9 @@ class DiographJsAdapter {
             {
               id: 'the-diory',
             },
+            {
+              id: 'photo-room',
+            },
           ],
           connections: [
             {
@@ -61,13 +72,26 @@ class DiographJsAdapter {
           modified: '2024-03-24T15:02:47.539Z',
         },
         'the-diory': {
-          text: 'The Diory',
           id: 'the-diory',
+          text: 'The Diory',
           doors: [],
           connections: [
             {
               client: 'LocalClient',
               address: '/Users/Jouni/My Diories/TheDiory/My Diory',
+            },
+          ],
+          created: '2024-03-24T14:56:21.243Z',
+          modified: '2024-03-24T15:02:47.539Z',
+        },
+        'photo-room': {
+          id: 'photo-room',
+          text: 'Photo room',
+          doors: [],
+          connections: [
+            {
+              client: 'LocalClient',
+              address: '/Users/Jouni/PhotoRoom/room',
             },
           ],
           created: '2024-03-24T14:56:21.243Z',
