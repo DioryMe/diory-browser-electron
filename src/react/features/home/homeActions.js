@@ -12,17 +12,17 @@ import { updateDiograph } from '../diograph/diographActions'
 const getHomeActions = createActions(GET_HOME)
 export const initialiseHome =
   () =>
-  async (dispatch, getState, { dioryClient }) => {
+  async (dispatch, getState, { dioryClient: adapter }) => {
     const { loading } = getState().home
     if (!loading) {
       dispatch(getHomeActions.begin())
       try {
         const { dioryFolderLocation } = await invokeChannel(channels.GET_DIORY_FOLDER_LOCATION) // TODO refactor
-        await dioryClient.initialise([
+        await adapter.initialise([
           { address: '/Users/Jouni/Code/demo-content-room', client: 'LocalClient' },
         ])
         dispatch(updateDiosphere())
-        dispatch(selectRoom(dioryClient.getRoomInFocus()))
+        dispatch(selectRoom(adapter.getRoomInFocus()))
         dispatch(getHomeActions.success({ address: dioryFolderLocation }))
       } catch (error) {
         console.error(error)
@@ -49,14 +49,14 @@ export const saveHome = (address) => async (dispatch, getState) => {
 const enterRoomActions = createActions(ENTER_ROOM)
 export const enterRoom =
   (room) =>
-  async (dispatch, getState, { dioryClient }) => {
+  async (dispatch, getState, { dioryClient: adapter }) => {
     const { loading } = getState().diosphere
     if (!loading) {
       dispatch(enterRoomActions.begin())
       try {
-        await dioryClient.enterRoom(room)
+        await adapter.enterRoom(room)
         dispatch(updateDiograph())
-        dispatch(selectStory(dioryClient.getDioryInFocus()))
+        dispatch(selectStory(adapter.getDioryInFocus()))
         dispatch(enterRoomActions.success())
       } catch (error) {
         console.error(error)

@@ -7,59 +7,59 @@ const updateDiosphereAction = (diosphere) => ({
 
 export const updateDiosphere =
   () =>
-  (dispatch, _, { dioryClient }) => {
+  (dispatch, _, { dioryClient: adapter }) => {
     // Update also room in focus
-    dispatch(updateDiosphereAction(dioryClient.getDiosphereObject()))
+    dispatch(updateDiosphereAction(adapter.getDiosphereObject()))
   }
 
 export const addRoom =
   (roomData) =>
-  (dispatch, _, { dioryClient }) => {
-    const room = dioryClient.diosphere.addRoom(roomData)
+  (dispatch, _, { dioryClient: adapter }) => {
+    const room = adapter.diosphere.addRoom(roomData)
     dispatch(updateDiosphere())
     return { room: room.toObject() }
   }
 
 export const updateRoom =
   (roomData) =>
-  (dispatch, getState, { dioryClient }) => {
-    dioryClient.diosphere.updateRoom(roomData)
+  (dispatch, getState, { dioryClient: adapter }) => {
+    adapter.diosphere.updateRoom(roomData)
     dispatch(updateDiosphere())
   }
 
 export const deleteRoom =
   (roomData) =>
-  (dispatch, _, { dioryClient }) => {
-    dioryClient.diosphere.removeRoom(roomData)
+  (dispatch, _, { dioryClient: adapter }) => {
+    adapter.diosphere.removeRoom(roomData)
     dispatch(updateDiosphere())
   }
 
 export const addDoor =
   (roomObject, linkedRoomObject) =>
-  (dispatch, getState, { dioryClient }) => {
-    dioryClient.diosphere.addRoomDoor(roomObject, linkedRoomObject)
+  (dispatch, getState, { dioryClient: adapter }) => {
+    adapter.diosphere.addRoomDoor(roomObject, linkedRoomObject)
     dispatch(updateDiosphere())
   }
 
 export const removeDoor =
   (roomObject, linkedRoomObject) =>
-  (dispatch, getState, { dioryClient }) => {
-    dioryClient.diosphere.removeRoomDoor(roomObject, linkedRoomObject)
+  (dispatch, getState, { dioryClient: adapter }) => {
+    adapter.diosphere.removeRoomDoor(roomObject, linkedRoomObject)
     dispatch(updateDiosphere())
   }
 
 export const removeDoors =
   (deletedDoors) =>
-  (dispatch, getState, { dioryClient }) => {
+  (dispatch, getState, { dioryClient: adapter }) => {
     deletedDoors.forEach(({ fromRoom, toRoom }) => {
-      dioryClient.diosphere.removeRoomDoor(fromRoom, toRoom)
+      adapter.diosphere.removeRoomDoor(fromRoom, toRoom)
     })
     dispatch(updateDiosphere())
   }
 
 export const resetDiosphere =
   () =>
-  async (dispatch, getState, { dioryClient }) => {
-    dioryClient.diosphere.resetRooms()
+  async (dispatch, getState, { dioryClient: adapter }) => {
+    adapter.diosphere.resetRooms()
     dispatch(updateDiosphere())
   }
