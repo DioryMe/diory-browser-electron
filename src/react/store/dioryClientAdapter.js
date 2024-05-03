@@ -12,92 +12,35 @@ class DioryClientAdapter {
   }
 
   initialise = async (connections) => {
+    // dioryClient used
+    this.dioryClient.connections = connections
+    this.dioryClient.diosphere.resetRooms()
+    await this.dioryClient.getDiosphere()
+    // sync
+    this.diosphere = this.dioryClient.diosphere
+    this.connections = this.dioryClient.connections
+    this.dataClients = this.dioryClient.dataClients
+
     await this.enterRoom({ id: '/' })
+
+    // Validate
+    validateDiograph(this.dioryClient.diograph.toObject())
   }
 
   enterRoom = async (roomObject) => {
-    this.room = this.getDiosphereObject().rooms['home-room']
-    validateDiograph(window.room.diograph.toObject())
-    this.diograph = window.room.diograph
-    this.diory = this.diograph.getDiory({ id: '/' })
+    // dioryClient used
+    this.dioryClient.room = this.diosphere.getRoom(roomObject)
+    this.dioryClient.diograph.resetDiograph()
+    await this.dioryClient.getDiograph()
+    // sync
+    this.diograph = this.dioryClient.diograph
+    this.room = this.dioryClient.room
 
-    console.log('room', this.room)
-    console.log('diograph', this.diograph)
-    console.log('diory', this.diory)
+    this.diory = this.diograph.getDiory({ id: '/' })
   }
 
   getDiosphereObject = () => {
-    return {
-      rooms: {
-        '/': {
-          id: 'home-room',
-          created: '2024-03-24T14:56:21.243Z',
-          modified: '2024-03-24T14:56:21.243Z',
-        },
-        'home-room': {
-          id: 'home-room',
-          text: 'Home room',
-          doors: [
-            {
-              id: 'image-room-id',
-              connections: [
-                {
-                  client: 'LocalClient',
-                  address: '/Users/Jouni/Code/demo-content-room',
-                  key: 'image-room-key',
-                },
-              ],
-            },
-            {
-              id: 'the-diory',
-              connections: [
-                {
-                  client: 'LocalClient',
-                  address: '/Users/Jouni/My Diories/TheDiory/My Diory',
-                  key: 'the-diory',
-                },
-              ],
-            },
-          ],
-          connections: [
-            {
-              client: 'LocalClient',
-              address: '/tmp',
-            },
-          ],
-          created: '2024-03-24T14:56:21.243Z',
-          modified: '2024-03-24T14:56:21.243Z',
-        },
-        'image-room-id': {
-          id: 'image-room-id',
-          text: 'Image rooms',
-          doors: [],
-          connections: [
-            {
-              client: 'LocalClient',
-              address: '/Users/Jouni/Code/demo-content-room',
-              key: 'image-room-key',
-            },
-          ],
-          created: '2024-03-24T14:56:21.243Z',
-          modified: '2024-03-24T15:02:47.539Z',
-        },
-        'the-diory': {
-          text: 'The Diory',
-          id: 'the-diory',
-          doors: [],
-          connections: [
-            {
-              client: 'LocalClient',
-              address: '/Users/Jouni/My Diories/TheDiory/My Diory',
-              key: 'the-diory',
-            },
-          ],
-          created: '2024-03-24T14:56:21.243Z',
-          modified: '2024-03-24T15:02:47.539Z',
-        },
-      },
-    }
+    return this.diosphere.toObject()
   }
 
   getDiograph = () => {
@@ -105,7 +48,7 @@ class DioryClientAdapter {
   }
 
   getRoomInFocus = () => {
-    return this.room
+    return this.dioryClient.room.toObject()
   }
 
   getDioryInFocus = () => {

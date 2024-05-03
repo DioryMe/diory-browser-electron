@@ -8,8 +8,9 @@ import { DioryClient } from '@diory/client-js'
 
 import { reducer } from './reducer'
 import { DioryClientAdapter } from './dioryClientAdapter'
+import { DiographJsAdapter } from './diographJsAdapter'
 
-const dioryClient = new DioryClientAdapter(new DioryClient([window.localClient]))
+const dioryClient = new DiographJsAdapter(new DioryClient([window.localClient]))
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   reducer,
