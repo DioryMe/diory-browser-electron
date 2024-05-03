@@ -18,7 +18,9 @@ export const initialiseHome =
       dispatch(getHomeActions.begin())
       try {
         const { dioryFolderLocation } = await invokeChannel(channels.GET_DIORY_FOLDER_LOCATION) // TODO refactor
-        await dioryClient.initialise([{ address: dioryFolderLocation, client: 'LocalClient' }])
+        await dioryClient.initialise([
+          { address: '/Users/Jouni/Code/demo-content-room', client: 'LocalClient' },
+        ])
         dispatch(updateDiosphere())
         dispatch(selectRoom(dioryClient.getRoomInFocus()))
         dispatch(getHomeActions.success({ address: dioryFolderLocation }))

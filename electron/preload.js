@@ -14,7 +14,7 @@ const { setDioryFolderLocation } = require('./lib/set-diory-folder-location')
 contextBridge.exposeInMainWorld('localClient', new LocalClient())
 
 const roomClientType = 'LocalClient'
-const address = '/tmp'
+const address = '/Users/Jouni/Code/demo-content-room'
 
 const room = constructAndLoadRoom(address, roomClientType, {
   LocalClient: {
