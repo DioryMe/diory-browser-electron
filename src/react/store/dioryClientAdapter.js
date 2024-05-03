@@ -1,6 +1,6 @@
 import { validateDiograph } from './validateDiograph'
 
-class StoreAdapter {
+class DioryClientAdapter {
   constructor(client) {
     this.dioryClient = client
     this.connections = this.dioryClient.connections
@@ -56,4 +56,4 @@ class StoreAdapter {
   }
 }
 
-export { StoreAdapter }
+export { DioryClientAdapter }
