@@ -10,16 +10,31 @@ const { importFolder } = require('./lib/import-folder')
 const { getDioryFolderLocation } = require('./lib/get-diory-folder-location')
 const { setDioryFolderLocation } = require('./lib/set-diory-folder-location')
 
-const roomClientType = 'LocalClient'
-const address = '/tmp'
+// STATIC ROOM
 
-constructAndLoadRoom(address, roomClientType, {
-  LocalClient: {
-    clientConstructor: LocalClient2,
-  },
-}).then((room) => {
-  contextBridge.exposeInMainWorld('room', room)
-})
+// const roomClientType = 'LocalClient'
+// // const address = '/tmp'
+// const address = '/Users/Jouni/Code/demo-content-room'
+// constructAndLoadRoom(address, roomClientType, {
+//   LocalClient: {
+//     clientConstructor: LocalClient2,
+//   },
+// }).then((room) => {
+//   contextBridge.exposeInMainWorld('room', room)
+// })
+
+// DYNAMIC ROOM
+
+async function getRoom(address, clientType) {
+  return constructAndLoadRoom(address, clientType, {
+    LocalClient: {
+      clientConstructor: LocalClient2,
+    },
+  })
+}
+
+contextBridge.exposeInMainWorld('getRoom', getRoom)
+
 /// -----
 
 contextBridge.exposeInMainWorld('localClient', new LocalClient())
