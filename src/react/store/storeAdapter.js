@@ -1,5 +1,3 @@
-import { S3Client } from '@diograph/s3-client'
-import { constructAndLoadRoom } from '@diograph/utils'
 import { validateDiograph } from './validateDiograph'
 
 class StoreAdapter {
@@ -18,8 +16,8 @@ class StoreAdapter {
     this.dioryClient.connections = connections
     this.dioryClient.diosphere.resetRooms()
     await this.dioryClient.getDiosphere()
-    this.diosphere = this.dioryClient.diosphere
     // sync
+    this.diosphere = this.dioryClient.diosphere
     this.connections = this.dioryClient.connections
     this.dataClients = this.dioryClient.dataClients
 
@@ -27,19 +25,6 @@ class StoreAdapter {
 
     // Validate
     validateDiograph(this.dioryClient.diograph.toObject())
-
-    // --------
-
-    // const room = await window.room
-
-    // room.diograph.initialise = () => {}
-    // this.dioryClient.diograph = room.diograph
-    // this.diograph = room.diograph
-
-    // // Validate
-    // validateDiograph(this.dioryClient.diograph.toObject())
-
-    // console.log('bau', this.dioryClient.diograph.toObject())
   }
 
   enterRoom = async (roomObject) => {
@@ -54,48 +39,8 @@ class StoreAdapter {
     this.diory = this.diograph.getDiory({ id: '/' })
   }
 
-  getDiosphere = () => {
-    // return this.dioryClient.diosphere.toObject()
-    return {
-      rooms: {
-        '/': {
-          id: 'home-room',
-          created: '2024-03-24T14:56:21.243Z',
-          modified: '2024-03-24T14:56:21.243Z',
-        },
-        'home-room': {
-          id: 'home-room',
-          text: 'Home room',
-          doors: [
-            {
-              id: 'image-room-id',
-            },
-          ],
-          connections: [
-            {
-              client: 'LocalClient',
-              address: '/tmp',
-            },
-          ],
-          created: '2024-03-24T14:56:21.243Z',
-          modified: '2024-03-24T14:56:21.243Z',
-        },
-        'image-room-id': {
-          id: 'image-room-id',
-          text: 'Image rooms',
-          doors: [],
-          connections: [
-            {
-              client: 'LocalClient',
-              address: '/Users/Jouni/Code/demo-content-room',
-              key: 'image-room-key',
-            },
-          ],
-          created: '2024-03-24T14:56:21.243Z',
-          modified: '2024-03-24T15:02:47.539Z',
-        },
-      },
-    }
+  getDiosphereObject = () => {
+    return this.diosphere.toObject()
   }
 
   getDiograph = () => {

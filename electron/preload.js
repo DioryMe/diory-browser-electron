@@ -1,9 +1,6 @@
-const { constructAndLoadRoom } = require('@diograph/utils')
-
 const { contextBridge, shell, ipcRenderer } = require('electron')
 const { fileURLToPath } = require('url')
 const { LocalClient } = require('@diograph/local-client')
-const { LocalClient: LocalClient2 } = require('@diograph/local-client2')
 
 const { channels } = require('../src/shared/constants')
 
@@ -12,17 +9,6 @@ const { getDioryFolderLocation } = require('./lib/get-diory-folder-location')
 const { setDioryFolderLocation } = require('./lib/set-diory-folder-location')
 
 contextBridge.exposeInMainWorld('localClient', new LocalClient())
-
-const roomClientType = 'LocalClient'
-const address = '/Users/Jouni/Code/demo-content-room'
-
-const room = constructAndLoadRoom(address, roomClientType, {
-  LocalClient: {
-    clientConstructor: LocalClient2,
-  },
-})
-
-contextBridge.exposeInMainWorld('room', room)
 
 function channelLogger(handler, params) {
   console.log(`BACK-REQ: ${handler.name} called with`, params)
