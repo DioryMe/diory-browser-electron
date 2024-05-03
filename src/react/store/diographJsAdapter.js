@@ -33,23 +33,9 @@ class DiographJsAdapter {
           doors: [
             {
               id: 'image-room-id',
-              connections: [
-                {
-                  client: 'LocalClient',
-                  address: '/Users/Jouni/Code/demo-content-room',
-                  key: 'image-room-key',
-                },
-              ],
             },
             {
               id: 'the-diory',
-              connections: [
-                {
-                  client: 'LocalClient',
-                  address: '/Users/Jouni/My Diories/TheDiory/My Diory',
-                  key: 'the-diory',
-                },
-              ],
             },
           ],
           connections: [
@@ -69,7 +55,6 @@ class DiographJsAdapter {
             {
               client: 'LocalClient',
               address: '/Users/Jouni/Code/demo-content-room',
-              key: 'image-room-key',
             },
           ],
           created: '2024-03-24T14:56:21.243Z',
@@ -83,7 +68,6 @@ class DiographJsAdapter {
             {
               client: 'LocalClient',
               address: '/Users/Jouni/My Diories/TheDiory/My Diory',
-              key: 'the-diory',
             },
           ],
           created: '2024-03-24T14:56:21.243Z',
