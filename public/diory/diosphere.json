@@ -1,0 +1,137 @@
+{
+  "rooms": {
+    "/": {
+      "id": "home-room",
+      "created": "2024-03-24T14:56:21.243Z",
+      "modified": "2024-03-24T14:56:21.243Z"
+    },
+    "home-room": {
+      "id": "home-room",
+      "text": "Home room",
+      "doors": [
+        {
+          "id": "image-room-id",
+          "connections": [
+            {
+              "client": "LocalClient",
+              "address": "public/diory/image-room",
+              "key": "image-room-key"
+            }
+          ]
+        },
+        {
+          "id": "s3-room-id"
+        }
+      ],
+      "connections": [
+        {
+          "client": "LocalClient",
+          "address": "public/diory"
+        }
+      ],
+      "created": "2024-03-24T14:56:21.243Z",
+      "modified": "2024-03-24T14:56:21.243Z"
+    },
+    "image-room-id": {
+      "id": "image-room-id",
+      "text": "Image rooms",
+      "doors": [
+        {
+          "id": "first-image-room-id",
+          "connection": [
+            {
+              "client": "LocalClient",
+              "address": "public/diory/first-image-room"
+            }
+          ]
+        },
+        {
+          "id": "second-image-room-id"
+        },
+        {
+          "key": "079d70b5-387e-4e15-b2db-0f6cb3f073f4",
+          "id": "s3-room-id"
+        }
+      ],
+      "connections": [
+        {
+          "client": "LocalClient",
+          "address": "public/diory/image-room",
+          "key": "image-room-key"
+        }
+      ],
+      "created": "2024-03-24T14:56:21.243Z",
+      "modified": "2024-03-24T15:02:47.539Z"
+    },
+    "s3-room-id": {
+      "id": "s3-room-id",
+      "text": "S3 room",
+      "doors": [],
+      "connections": [
+        {
+          "id": "s3-room-local",
+          "client": "LocalClient",
+          "address": "public/diory/s3-bucket-room",
+          "key": "s3-room-key"
+        }
+      ],
+      "created": "2024-03-24T14:56:21.243Z",
+      "modified": "2024-04-26T17:52:39.854Z"
+    },
+    "first-image-room-id": {
+      "id": "first-image-room-id",
+      "connections": [
+        {
+          "client": "LocalClient",
+          "address": "public/diory/first-image-room",
+          "key": "image-room-key"
+        }
+      ],
+      "created": "2024-03-24T14:56:21.243Z",
+      "modified": "2024-03-24T14:56:21.243Z"
+    },
+    "second-image-room-id": {
+      "id": "second-image-room-id",
+      "connections": [
+        {
+          "client": "LocalClient",
+          "address": "public/diory/second-image-room",
+          "key": "s3-room-key"
+        },
+        {
+          "connector": "@diograph/connector/s3",
+          "address": "s3://s3-bucket/s3-folder",
+          "key": "s3-room-key"
+        }
+      ],
+      "created": "2024-03-24T14:56:21.243Z",
+      "modified": "2024-03-24T14:56:21.243Z"
+    },
+    "0d408481-3de9-42c9-ada8-8c1178414968": {
+      "id": "0d408481-3de9-42c9-ada8-8c1178414968",
+      "text": "haa-uusi-huone",
+      "connections": [
+        {
+          "key": "0338e79e-ef1d-4520-9153-e4279440f49e",
+          "connector": "LocalClient",
+          "address": "public/diory/uusi"
+        }
+      ],
+      "created": "2024-03-24T22:03:16.669Z",
+      "modified": "2024-03-24T22:03:16.669Z"
+    },
+    "967bb5b7-8aa3-415c-8dd7-4f6385593dc3": {
+      "id": "967bb5b7-8aa3-415c-8dd7-4f6385593dc3",
+      "text": "huu",
+      "connections": [
+        {
+          "key": "ae8ceff0-0836-4436-b4f1-423e7decf518",
+          "connector": "LocalClient",
+          "address": "public/diory/uusi"
+        }
+      ],
+      "created": "2024-03-24T22:08:06.727Z",
+      "modified": "2024-03-24T22:08:06.727Z"
+    }
+  }
+}
