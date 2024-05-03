@@ -1542,6 +1542,11 @@
   dependencies:
     "@diograph/diograph" "^0.2.0-rc4"
 
+"@diograph/utils@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@diograph/utils/-/utils-0.0.3.tgz#0ccf4d723fe7127e5f45d48c554718e7caa4e914"
+  integrity sha512-FzYbrmhPzkXFGnwdRTTLiEeerncycGc8KWa3SXHAhMdkuAIVwm4A4zzN3DloNAOwANDw27Bk/K/sJNddW8z+2Q==
+
 "@diory/client-js@^0.1.4":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@diory/client-js/-/client-js-0.1.4.tgz#8c74ba59846159647a6a852cd50798d73ae12d87"

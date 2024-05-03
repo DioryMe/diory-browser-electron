@@ -12,34 +12,18 @@ class DioryClientAdapter {
   }
 
   initialise = async (connections) => {
-    // dioryClient used
-    this.dioryClient.connections = connections
-    this.dioryClient.diosphere.resetRooms()
-    await this.dioryClient.getDiosphere()
-    // sync
-    this.diosphere = this.getDiosphereObject()
-    // this.diosphere = this.dioryClient.diosphere
-    this.connections = this.dioryClient.connections
-    this.dataClients = this.dioryClient.dataClients
-
     await this.enterRoom({ id: '/' })
-
-    // Validate
-    validateDiograph(this.dioryClient.diograph.toObject())
   }
 
   enterRoom = async (roomObject) => {
-    // dioryClient used
-    // this.dioryClient.room = this.diosphere.getRoom(roomObject)
     this.room = this.getDiosphereObject().rooms['home-room']
-    this.dioryClient.room = this.room
-    this.dioryClient.diograph.resetDiograph()
-    await this.dioryClient.getDiograph()
-    // sync
-    this.diograph = this.dioryClient.diograph
-    // this.room = this.dioryClient.room
-
+    validateDiograph(window.room.diograph.toObject())
+    this.diograph = window.room.diograph
     this.diory = this.diograph.getDiory({ id: '/' })
+
+    console.log('room', this.room)
+    console.log('diograph', this.diograph)
+    console.log('diory', this.diory)
   }
 
   getDiosphereObject = () => {
@@ -122,7 +106,6 @@ class DioryClientAdapter {
 
   getRoomInFocus = () => {
     return this.room
-    // return this.dioryClient.room.toObject()
   }
 
   getDioryInFocus = () => {

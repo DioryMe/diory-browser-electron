@@ -2,11 +2,25 @@ const { contextBridge, shell, ipcRenderer } = require('electron')
 const { fileURLToPath } = require('url')
 const { LocalClient } = require('@diograph/local-client')
 
+const { constructAndLoadRoom } = require('@diograph/utils')
+const { LocalClient: LocalClient2 } = require('@diograph/local-client2')
 const { channels } = require('../src/shared/constants')
 
 const { importFolder } = require('./lib/import-folder')
 const { getDioryFolderLocation } = require('./lib/get-diory-folder-location')
 const { setDioryFolderLocation } = require('./lib/set-diory-folder-location')
+
+const roomClientType = 'LocalClient'
+const address = '/tmp'
+
+constructAndLoadRoom(address, roomClientType, {
+  LocalClient: {
+    clientConstructor: LocalClient2,
+  },
+}).then((room) => {
+  contextBridge.exposeInMainWorld('room', room)
+})
+/// -----
 
 contextBridge.exposeInMainWorld('localClient', new LocalClient())
 
