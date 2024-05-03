@@ -1,24 +1,17 @@
 import { validateDiograph } from './validateDiograph'
 
 class DiographJsAdapter {
-  constructor(client) {
-    this.dioryClient = client
-    this.connections = this.dioryClient.connections
-    this.dataClients = this.dioryClient.dataClients
-    this.diosphere = this.dioryClient.diosphere
-    this.diograph = this.dioryClient.diograph
-    this.room = this.dioryClient.room
-    this.diory = this.dioryClient.diory
+  constructor(room) {
+    this.diograph = room.diograph
   }
 
-  initialise = async (connections) => {
+  initialise = async () => {
     await this.enterRoom({ id: '/' })
   }
 
   enterRoom = async (roomObject) => {
     this.room = this.getDiosphereObject().rooms['home-room']
-    validateDiograph(window.room.diograph.toObject())
-    this.diograph = window.room.diograph
+    validateDiograph(this.diograph.toObject())
     this.diory = this.diograph.getDiory({ id: '/' })
 
     console.log('room', this.room)
@@ -101,7 +94,7 @@ class DiographJsAdapter {
   }
 
   getDiograph = () => {
-    return this.dioryClient.diograph.toObject()
+    return this.diograph.toObject()
   }
 
   getRoomInFocus = () => {
