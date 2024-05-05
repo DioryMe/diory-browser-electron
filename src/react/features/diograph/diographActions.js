@@ -45,10 +45,7 @@ export const deleteDiory =
 export const createLink =
   (dioryObject, linkedDioryObject) =>
   (dispatch, getState, { dioryClient: adapter }) => {
-    console.log('link diory', dioryObject)
-    console.log('link linked objct', linkedDioryObject)
     adapter.getDiograph().addDioryLink({ id: dioryObject.id }, { id: linkedDioryObject.id })
-    console.log('after creatLINK', adapter.getDiograph())
     dispatch(updateDiograph())
   }
 

@@ -1,9 +1,6 @@
 const { contextBridge, shell, ipcRenderer } = require('electron')
 const { fileURLToPath } = require('url')
 const { LocalClient } = require('@diograph/local-client')
-
-// const { constructAndLoadRoom } = require('@diograph/utils')
-// const { LocalClient: LocalClient2 } = require('@diograph/local-client2')
 const { channels } = require('../src/shared/constants')
 
 const { importFolder } = require('./lib/import-folder')
@@ -11,20 +8,7 @@ const { getDioryFolderLocation } = require('./lib/get-diory-folder-location')
 const { setDioryFolderLocation } = require('./lib/set-diory-folder-location')
 const { DiographJsAdapter } = require('./diographJsAdapter')
 
-// STATIC ROOM
-
-// const roomClientType = 'LocalClient'
-// // const address = '/tmp'
-// const address = '/Users/Jouni/Code/demo-content-room'
-// constructAndLoadRoom(address, roomClientType, {
-//   LocalClient: {
-//     clientConstructor: LocalClient2,
-//   },
-// }).then((room) => {
-//   contextBridge.exposeInMainWorld('room', room)
-// })
-
-// DYNAMIC ROOM
+// LOAD ROOM ONLY
 
 // async function getRoom(address, clientType) {
 //   return constructAndLoadRoom(address, clientType, {
@@ -33,8 +17,11 @@ const { DiographJsAdapter } = require('./diographJsAdapter')
 //     },
 //   })
 // }
+//
+// contextBridge.exposeInMainWorld('getRoom', getRoom)
+//
 
-// ADAPTER IN BACKEND
+// WHOLE ADAPTER IN BACKEND
 
 const diographJsAdapter = new DiographJsAdapter()
 

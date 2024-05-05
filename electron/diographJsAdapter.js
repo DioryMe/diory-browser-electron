@@ -21,10 +21,6 @@ class DiographJsAdapter {
     const clientType = this.getDiosphereObject().rooms[roomObject.id].connections[0].client
     console.log('THIS IS THE PLACE TO CHANGE THE ROOM', id, address, clientType)
 
-    // STATIC LOADING
-    // this.diograph = window.room.diograph
-
-    // DYNAMIC LOADING
     this.loadedRoom = await this.getRoom(address, clientType)
     this.diograph = this.loadedRoom.diograph
 
