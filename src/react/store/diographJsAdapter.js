@@ -1,7 +1,9 @@
 import { validateDiograph } from './validateDiograph'
 
 class DiographJsAdapter {
-  constructor() {}
+  constructor() {
+    this.loadedRoom = null
+  }
 
   initialise = async () => {
     await this.enterRoom({ id: '/' })
@@ -20,8 +22,8 @@ class DiographJsAdapter {
     // this.diograph = window.room.diograph
 
     // DYNAMIC LOADING
-    const loadedRoom = await window.getRoom(address, clientType)
-    this.diograph = loadedRoom.diograph
+    this.loadedRoom = await window.getRoom(address, clientType)
+    this.diograph = this.loadedRoom.diograph
     console.log(this.diograph)
 
     this.room = this.getDiosphereObject().rooms['home-room']
@@ -31,6 +33,13 @@ class DiographJsAdapter {
     console.log('room', this.room)
     console.log('diograph', this.diograph)
     console.log('diory', this.diory)
+  }
+
+  saveRoom = async () => {
+    if (this.loadedRoom) {
+      await this.loadedRoom.saveRoom()
+      console.log('room saved', this.loadedRoom)
+    }
   }
 
   getDiosphereObject = () => {

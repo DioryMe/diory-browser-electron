@@ -8,8 +8,9 @@ const updateDiographAction = (diograph) => ({
 export const updateDiograph =
   () =>
   (dispatch, _, { dioryClient: adapter }) => {
-    // Update also diory in focus
-    dispatch(updateDiographAction(adapter.getDiograph()))
+    adapter.saveRoom().then(() => {
+      dispatch(updateDiographAction(adapter.getDiograph()))
+    })
   }
 
 export const addDiograph =
