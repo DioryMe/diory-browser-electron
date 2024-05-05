@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-unresolved, no-unused-vars
 // import { validateDiograph } from '@diograph/diograph/validator'
 
-import Ajv from 'ajv'
+const Ajv = require('ajv')
 
 const ajv = new Ajv({ allErrors: true })
 
@@ -73,6 +73,8 @@ const diographSchema = {
   required: ['/'],
 }
 
-export const validateDiograph = (diographObject) => {
+const validateDiograph = (diographObject) => {
   validate(diographSchema, diographObject)
 }
+
+module.exports = { validateDiograph }

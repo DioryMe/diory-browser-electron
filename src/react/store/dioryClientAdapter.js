@@ -1,4 +1,4 @@
-import { validateDiograph } from './validateDiograph'
+import { validateDiograph } from '../../../electron/validateDiograph'
 
 class DioryClientAdapter {
   constructor(client) {

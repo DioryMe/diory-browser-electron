@@ -1,8 +1,11 @@
-import { validateDiograph } from './validateDiograph'
+const { validateDiograph } = require('./validateDiograph')
+const { constructAndLoadRoom } = require('@diograph/utils')
+const { LocalClient: LocalClient2 } = require('@diograph/local-client2')
 
 class DiographJsAdapter {
   constructor() {
     this.loadedRoom = null
+    this.diograph = null
   }
 
   initialise = async () => {
@@ -22,17 +25,12 @@ class DiographJsAdapter {
     // this.diograph = window.room.diograph
 
     // DYNAMIC LOADING
-    this.loadedRoom = await window.getRoom(address, clientType)
+    this.loadedRoom = await this.getRoom(address, clientType)
     this.diograph = this.loadedRoom.diograph
-    console.log(this.diograph)
 
     this.room = this.getDiosphereObject().rooms['home-room']
     validateDiograph(this.diograph.toObject())
     this.diory = this.diograph.getDiory({ id: '/' })
-
-    console.log('room', this.room)
-    console.log('diograph', this.diograph)
-    console.log('diory', this.diory)
   }
 
   saveRoom = async () => {
@@ -40,6 +38,14 @@ class DiographJsAdapter {
       await this.loadedRoom.saveRoom()
       console.log('room saved', this.loadedRoom)
     }
+  }
+
+  getRoom = async (address, clientType) => {
+    return constructAndLoadRoom(address, clientType, {
+      LocalClient: {
+        clientConstructor: LocalClient2,
+      },
+    })
   }
 
   getDiosphereObject = () => {
@@ -117,7 +123,8 @@ class DiographJsAdapter {
   }
 
   getDiograph = () => {
-    return this.diograph.toObject()
+    console.log('diograph', this.diograph)
+    return this.diograph
   }
 
   getRoomInFocus = () => {
@@ -129,4 +136,4 @@ class DiographJsAdapter {
   }
 }
 
-export { DiographJsAdapter }
+module.exports = { DiographJsAdapter }

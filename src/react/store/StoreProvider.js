@@ -3,14 +3,15 @@ import PropTypes from 'prop-types'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import { DioryClient } from '@diory/client-js'
+// import { DioryClient } from '@diory/client-js'
 import { reducer } from './reducer'
 
-import { DioryClientAdapter } from './dioryClientAdapter'
-import { DiographJsAdapter } from './diographJsAdapter'
+// import { DioryClientAdapter } from './dioryClientAdapter'
+// import { DiographJsAdapter } from '../../../electron/diographJsAdapter'
 
 // const dioryClient = new DioryClientAdapter(new DioryClient([window.localClient]))
-const dioryClient = new DiographJsAdapter(window.room)
+// const dioryClient = new DiographJsAdapter(window.room)
+const dioryClient = window.diographJsAdapter
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   reducer,
