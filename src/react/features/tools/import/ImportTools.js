@@ -5,7 +5,6 @@ import { useSelector } from '../../../store'
 import { IMPORT_TOOLS } from './buttons'
 
 import ImportToolButtons from './ImportToolButtons'
-import FolderImportTool from '../folder/FolderImportTool'
 import CreateTool from '../create/CreateTool'
 
 const ImportTools = () => {
@@ -17,8 +16,6 @@ const ImportTools = () => {
   }
 
   switch (selectedTool) {
-    case 'FOLDER_IMPORT':
-      return <FolderImportTool />
     case 'CREATE_TOOL':
       return <CreateTool />
     default:

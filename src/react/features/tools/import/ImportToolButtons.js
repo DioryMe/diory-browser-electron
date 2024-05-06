@@ -9,7 +9,6 @@ import ImportView from './ImportView'
 import Diory from '../../../components/diories/Diory'
 
 import { buttons as createButtons } from '../create/buttons'
-import { buttons as folderButtons } from '../folder/buttons'
 
 const useImportTools = () => {
   const { dispatch } = useDispatchActions()
@@ -25,7 +24,7 @@ const ImportToolButtons = () => {
 
   return (
     <ImportView onDone={onDone} onCancel={onCancel}>
-      {[...createButtons, ...folderButtons].map((button) => (
+      {createButtons.map((button) => (
         <Diory
           key={button.id}
           diory={button}
