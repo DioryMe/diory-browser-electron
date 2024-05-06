@@ -1,10 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
+import Box from 'ui-box'
 import { useOpenFolderButton } from '../../buttons/useOpenFolderButton'
-import { getContentUrlFromCID } from '../../../utils'
-
-import Image from '../../../components/diories/Image'
+import { getContentUrlFromCID, revokeContentUrl } from '../../../utils'
 
 const defaultStyles = {
   backgroundSize: 'contain',
@@ -18,12 +17,26 @@ const options = {
 }
 
 const ImageContent = ({ diory, baseUrl }) => {
-  const { data = [] } = diory
-  const { contentUrl, encodingFormat } = (data && data[0]) || {}
-  const imageUrl = getContentUrlFromCID(contentUrl, encodingFormat)
+  const [imageUrl, setImageUrl] = useState(null)
+
+  useEffect(() => {
+    const { data = [] } = diory
+    const { contentUrl, encodingFormat } = (data && data[0]) || {}
+    getContentUrlFromCID(contentUrl, encodingFormat).then((url) => setImageUrl(url))
+  }, [])
+
+  const handleOnLoad = () => {
+    revokeContentUrl(imageUrl)
+  }
+
+  // TODO: This needs the absolute file path
   useOpenFolderButton(imageUrl)
 
-  return <Image image={imageUrl} style={defaultStyles} data-testid="image-content" {...options} />
+  return (
+    <Box style={defaultStyles}>
+      <img width="100%" src={imageUrl} onLoad={handleOnLoad} alt="" />
+    </Box>
+  )
 }
 
 ImageContent.propTypes = {

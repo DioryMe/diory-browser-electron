@@ -130,6 +130,15 @@ class DiographJsAdapter {
   getDioryInFocus = () => {
     return this.diory.toObject()
   }
+
+  getContent = async (cid) => {
+    const content = await this.loadedRoom.getContent(cid)
+    return content
+  }
+
+  getLoadedRoom = () => {
+    return this.loadedRoom
+  }
 }
 
 module.exports = { DiographJsAdapter }
