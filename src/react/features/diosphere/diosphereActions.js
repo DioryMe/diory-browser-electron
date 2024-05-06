@@ -1,4 +1,7 @@
-import { UPDATE_DIOSPHERE } from './diosphereActionTypes'
+import { UPDATE_DIOSPHERE, ENTER_ROOM } from './diosphereActionTypes'
+import { createActions } from '../../store/storeUtils'
+import { updateDiograph } from '../diograph/diographActions'
+import { selectStory } from '../navigation/navigationActions'
 
 const updateDiosphereAction = (diosphere) => ({
   type: UPDATE_DIOSPHERE,
@@ -61,4 +64,23 @@ export const resetDiosphere =
   async (dispatch, getState, { dioryClient }) => {
     dioryClient.diosphere.resetRooms()
     dispatch(updateDiosphere())
+  }
+
+const enterRoomActions = createActions(ENTER_ROOM)
+export const enterRoom =
+  (room) =>
+  async (dispatch, getState, { dioryClient }) => {
+    const { loading } = getState().diosphere
+    if (!loading) {
+      dispatch(enterRoomActions.begin())
+      try {
+        await dioryClient.enterRoom(room)
+        dispatch(updateDiograph())
+        dispatch(selectStory(dioryClient.diory.toObject()))
+        dispatch(enterRoomActions.success())
+      } catch (error) {
+        console.error(error)
+        dispatch(enterRoomActions.failure(error))
+      }
+    }
   }

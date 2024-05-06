@@ -1,5 +1,5 @@
-import { UPDATE_DIOSPHERE } from './diosphereActionTypes'
-import { createReducer } from '../../store'
+import { UPDATE_DIOSPHERE, ENTER_ROOM } from './diosphereActionTypes'
+import { createReducer, promiseReducers } from '../../store'
 
 const initialState = {
   rooms: {},
@@ -14,4 +14,5 @@ export const updateDiosphere = (state, { payload: { diosphere } }) => ({
 
 export default createReducer(initialState, {
   [UPDATE_DIOSPHERE]: updateDiosphere,
+  ...promiseReducers(ENTER_ROOM, 'loading', 'loaded', 'error'),
 })

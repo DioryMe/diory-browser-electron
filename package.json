@@ -5,8 +5,8 @@
   "main": "electron-main.js",
   "private": true,
   "dependencies": {
-    "@diograph/local-client": "0.3.0-rc1",
-    "@diory/client-js": "^0.1.4",
+    "@diograph/local-client": "^0.3.0-rc6",
+    "@diory/client-js": "^0.2.0-rc10",
     "dayjs": "^1.11.3",
     "electron-devtools-installer": "^3.2.0",
     "electron-log": "^4.4.7",

@@ -69,3 +69,10 @@ export const resetDiograph =
     dioryClient.diograph.resetDiograph()
     dispatch(updateDiograph())
   }
+
+export const generateDiograph =
+  () =>
+  async (dispatch, getState, { dioryClient }) => {
+    dioryClient.generateDiograph()
+    dispatch(updateDiograph())
+  }

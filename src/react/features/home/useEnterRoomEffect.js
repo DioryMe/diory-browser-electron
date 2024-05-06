@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
 
 import { useDispatchActions, useSelector } from '../../store'
-
-import { enterRoom } from './homeActions'
+import { enterRoom } from '../diosphere/diosphereActions'
 
 export const useEnterRoomEffect = () => {
   const { roomId } = useSelector((state) => state.navigation)

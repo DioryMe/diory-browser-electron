@@ -6,6 +6,7 @@ import { useDeleteTool } from '../tools/delete'
 import { useStoryTool } from '../tools/story'
 import { useUpdateTool } from '../tools/update'
 import { useImportTools } from '../tools/import/useImportTools'
+import { useGenerateTool } from '../tools/generate'
 
 import { createLink } from '../diograph/diographActions'
 
@@ -13,6 +14,8 @@ export const useBrowser = () => {
   const selectStory = useStoryTool()
   const deleteDiory = useDeleteTool()
   const updateDiory = useUpdateTool()
+  useGenerateTool()
+
   const { toggleContent } = useToggleContent()
 
   useImportTools()
