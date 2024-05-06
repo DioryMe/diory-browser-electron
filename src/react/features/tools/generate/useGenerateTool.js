@@ -15,5 +15,5 @@ export const useGenerateTool = () => {
     if (BUTTON === active) {
       dispatch(generateDiograph())
     }
-  }, [active])
+  }, [dispatch, active])
 }
