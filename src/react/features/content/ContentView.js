@@ -13,6 +13,7 @@ const ContentView = ({ diory, style, baseUrl }) => {
   const { encodingFormat, url } = (data && data[0]) || {}
 
   switch (encodingFormat) {
+    case 'image/png':
     case 'image/jpeg':
       return (
         <div style={style}>

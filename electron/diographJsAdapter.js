@@ -65,6 +65,9 @@ class DiographJsAdapter {
             {
               id: 'photo-room',
             },
+            {
+              id: 'demo-content-room-source',
+            },
           ],
           connections: [
             {
@@ -113,6 +116,17 @@ class DiographJsAdapter {
           ],
           created: '2024-03-24T14:56:21.243Z',
           modified: '2024-03-24T15:02:47.539Z',
+        },
+        'demo-content-room-source': {
+          id: 'demo-content-room-source',
+          text: 'Demo content room source',
+          doors: [],
+          connections: [
+            {
+              client: 'LocalClient',
+              address: '/Users/Jouni/Code/test-folder-generator/tmp',
+            },
+          ],
         },
       },
     }

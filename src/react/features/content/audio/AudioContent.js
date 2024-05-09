@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { useTogglePlayButtons } from '../../buttons/useTogglePlayButtons'
@@ -6,6 +6,7 @@ import { getContentUrl, useContentElement } from '../contentUtils'
 
 import Fullscreen from '../../../components/Fullscreen'
 import { useOpenFolderButton } from '../../buttons/useOpenFolderButton'
+import { getContentUrlFromCID } from '../../../utils'
 
 const audioStyles = {
   display: 'block',
@@ -23,7 +24,18 @@ const options = {
 
 const AudioContent = ({ diory, baseUrl }) => {
   const { refCallback, contentElement } = useContentElement()
-  const audioUrl = getContentUrl(diory, baseUrl)
+
+  const [audioUrl, setAudioUrl] = useState(null)
+
+  useEffect(() => {
+    const { data = [] } = diory
+    const { contentUrl, encodingFormat } = (data && data[0]) || {}
+    getContentUrlFromCID(contentUrl, encodingFormat).then((url) => setAudioUrl(url))
+  }, [])
+
+  // const handleOnLoad = () => {
+  //   revokeContentUrl(imageUrl)
+  // }
 
   useTogglePlayButtons(contentElement, options.autoPlay)
   useOpenFolderButton(audioUrl)
