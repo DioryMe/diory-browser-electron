@@ -1,7 +1,7 @@
 export const roomFields = [
   {
     key: 'id',
-    label: 'Id',
+    label: 'Room id',
     format: 'string',
     disabled: true,
   },
@@ -17,8 +17,14 @@ export const roomFields = [
     format: 'array',
     fields: [
       {
-        key: 'connector',
-        label: 'Connector',
+        key: 'id',
+        label: 'Connection id',
+        format: 'string',
+        disabled: true,
+      },
+      {
+        key: 'client',
+        label: 'Client',
         format: 'string',
       },
       {

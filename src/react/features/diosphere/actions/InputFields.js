@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Button, Heading, Pane } from 'evergreen-ui'
-import { v4 as uuid } from 'uuid'
 
 import TextInput from '../../../components/TextInput'
 
@@ -13,7 +12,7 @@ const useInputFields = (fields, values = {}, onChange = () => {}) => ({
   })),
 })
 
-const InputFieldsArray = ({ value, label, onChange, ...inputField }) => {
+const InputFieldsArray = ({ value, label, onChange, onAdd, ...inputField }) => {
   const valuesArray = value || []
   return (
     <>
@@ -21,8 +20,9 @@ const InputFieldsArray = ({ value, label, onChange, ...inputField }) => {
         <Heading flex={1}>{label}</Heading>
         <Button
           appearance="minimal"
-          onClick={() => {
-            onChange([...valuesArray, { key: uuid() }])
+          onClick={async () => {
+            const newValues = await onAdd()
+            onChange([...valuesArray, newValues])
           }}
         >
           Add new
@@ -30,7 +30,7 @@ const InputFieldsArray = ({ value, label, onChange, ...inputField }) => {
       </Pane>
       <Pane background="tint2" padding={8}>
         {valuesArray.map((oldValues, index) => (
-          <Pane key={oldValues.key} display="flex" alignItems="flex-end">
+          <Pane key={oldValues.id} display="flex" alignItems="flex-end">
             <Pane paddingBottom={16}>{index + 1}:</Pane>
             <InputFields
               {...inputField}
@@ -39,6 +39,7 @@ const InputFieldsArray = ({ value, label, onChange, ...inputField }) => {
                 valuesArray.splice(index, 1, newValues)
                 onChange(valuesArray)
               }}
+              onAdd={onAdd}
             />
             <Button
               margin={8}
@@ -60,16 +61,17 @@ InputFieldsArray.propTypes = {
   label: PropTypes.string.isRequired,
   value: PropTypes.array,
   onChange: PropTypes.func.isRequired,
+  onAdd: PropTypes.func.isRequired,
 }
 
-const InputFields = ({ fields, values, onChange }) => {
+const InputFields = ({ fields, values, onChange, onAdd }) => {
   const { inputFields } = useInputFields(fields, values, onChange)
 
   return (
     <>
       {inputFields.map((inputField) => {
         if (inputField.format === 'array') {
-          return <InputFieldsArray key={inputField.key} {...inputField} />
+          return <InputFieldsArray key={inputField.key} onAdd={onAdd} {...inputField} />
         }
         return <TextInput key={inputField.key} {...inputField} />
       })}
@@ -85,6 +87,7 @@ InputFields.propTypes = {
   fields: PropTypes.array.isRequired,
   values: PropTypes.object,
   onChange: PropTypes.func.isRequired,
+  onAdd: PropTypes.func.isRequired,
 }
 
 export { InputFields }

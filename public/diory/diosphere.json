@@ -57,11 +57,21 @@
         {
           "client": "LocalClient",
           "address": "public/diory/image-room",
-          "key": "image-room-key"
+          "id": "image-room-key"
+        },
+        {
+          "id": "d4f8ee27-49c4-4b9d-b44a-8714ab6bade5",
+          "address": "/Users/op/2023/2023-04-07 Pyhä-Häkki",
+          "client": "LocalClient"
+        },
+        {
+          "id": "a059cdd8-7dce-4f4f-91b9-37cb7ea42064",
+          "address": "/Users/op/2023/2023-01-06 Ylläs",
+          "client": "LocalClient"
         }
       ],
       "created": "2024-03-24T14:56:21.243Z",
-      "modified": "2024-03-24T15:02:47.539Z"
+      "modified": "2024-05-07T21:12:36.583Z"
     },
     "s3-room-id": {
       "id": "s3-room-id",
@@ -84,7 +94,7 @@
         {
           "client": "LocalClient",
           "address": "public/diory/first-image-room",
-          "key": "image-room-key"
+          "id": "image-room-key"
         }
       ],
       "created": "2024-03-24T14:56:21.243Z",
@@ -96,12 +106,12 @@
         {
           "client": "LocalClient",
           "address": "public/diory/second-image-room",
-          "key": "s3-room-key"
+          "id": "local-room-key"
         },
         {
           "connector": "@diograph/connector/s3",
           "address": "s3://s3-bucket/s3-folder",
-          "key": "s3-room-key"
+          "id": "s3-room-key"
         }
       ],
       "created": "2024-03-24T14:56:21.243Z",
@@ -112,7 +122,7 @@
       "text": "haa-uusi-huone",
       "connections": [
         {
-          "key": "0338e79e-ef1d-4520-9153-e4279440f49e",
+          "id": "0338e79e-ef1d-4520-9153-e4279440f49e",
           "connector": "LocalClient",
           "address": "public/diory/uusi"
         }
@@ -125,7 +135,7 @@
       "text": "huu",
       "connections": [
         {
-          "key": "ae8ceff0-0836-4436-b4f1-423e7decf518",
+          "id": "ae8ceff0-0836-4436-b4f1-423e7decf518",
           "connector": "LocalClient",
           "address": "public/diory/uusi"
         }
