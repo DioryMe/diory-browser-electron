@@ -18,7 +18,6 @@ const useScrollToTopOnStoryChange = (elementRef) => {
 }
 
 const BrowserView = ({
-  contexts,
   story,
   memories,
   scrollIntoViewId,
@@ -37,9 +36,9 @@ const BrowserView = ({
       <ScrollBackground>
         <DragDropBackground
           ref={storyRef}
-          position="relative"
+          position="absolute"
           width="100%"
-          height="unset"
+          height="100%"
           onClick={() => onStoryClick({ diory: story })}
           diory={story}
           onDrop={onDrop}
@@ -67,7 +66,6 @@ BrowserView.defaultProps = {
 
 BrowserView.propTypes = {
   story: PropTypes.object.isRequired,
-  contexts: PropTypes.array.isRequired,
   memories: PropTypes.array.isRequired,
   scrollIntoViewId: PropTypes.string,
   onStoryClick: PropTypes.func,

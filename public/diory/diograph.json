@@ -135,8 +135,13 @@
         "encodingFormat": "video/mp4"
       }
     ],
+    "links": [
+      {
+        "id": "some-document-odt"
+      }
+    ],
     "created": "2020-07-05T09:39:40.000Z",
-    "modified": "2020-07-05T09:39:40.000Z"
+    "modified": "2024-05-10T19:50:51.781Z"
   },
   "32df7219-a33c-4bc9-bdc0-f24470292871": {
     "id": "32df7219-a33c-4bc9-bdc0-f24470292871",
@@ -703,7 +708,12 @@
     "id": "66fe23a7-1e8c-4d93-ba0e-b4bc24117474",
     "text": "jee",
     "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8c43hPwAHewLTbrmJlAAAAABJRU5ErkJggg==",
+    "links": [
+      {
+        "id": "66fe23a7-1e8c-4d93-ba0e-b4bc24117474"
+      }
+    ],
     "created": "2024-05-06T20:52:15.488Z",
-    "modified": "2024-05-06T20:52:15.488Z"
+    "modified": "2024-05-10T19:48:47.639Z"
   }
 }

@@ -12,8 +12,8 @@ export const setSearchResults = (query, results) => ({
 
 export const searchDiories =
   (query) =>
-  (dispatch, getState, { diographStore }) => {
-    const { diograph } = diographStore.queryDiograph({ text: query })
-    dispatch(setSearchResults(query, Object.values(diograph)))
+  (dispatch, getState, { dioryClient }) => {
+    const diograph = dioryClient.diograph.queryDiograph({ text: query })
+    dispatch(setSearchResults(query, Object.values(diograph.toObject())))
     dispatch(setSearchQuery(query))
   }

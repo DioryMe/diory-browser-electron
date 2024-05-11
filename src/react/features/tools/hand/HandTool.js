@@ -7,9 +7,8 @@ import HandView from './HandView'
 
 const HandTool = () => {
   const { open } = useSelector((state) => state.buttons)
-  const { selectedLensId } = useSelector((state) => state.lenses)
-  const props = useHand()
-  return open && selectedLensId === 'grid' ? <HandView {...props} /> : null
+  const hand = useHand()
+  return open ? <HandView {...hand} /> : null
 }
 
 export default HandTool

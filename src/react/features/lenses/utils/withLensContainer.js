@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-import { useDispatchActions, useSelector } from '../../store'
-import { addLensButton } from './lensesActions'
+import { useDispatchActions, useSelector } from '../../../store'
+import { addLensButton } from '../lensesActions'
 
 const WithLensContainer = ({ id, button, children }) => {
   const { dispatch } = useDispatchActions()

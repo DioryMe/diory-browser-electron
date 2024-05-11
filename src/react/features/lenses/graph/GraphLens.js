@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useDispatchActions, useSelector } from '../../../store'
 
-import { withLensContainer } from '../withLensContainer'
+import { withLensContainer } from '../utils/withLensContainer'
 
 import GraphView from './GraphView'
 

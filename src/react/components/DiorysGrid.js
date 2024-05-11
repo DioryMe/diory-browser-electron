@@ -20,13 +20,13 @@ const DiorysGrid = forwardRef(({ diorys, scrollIntoViewId, onDrop, onClick, ...p
     {diorys.map((diory) => (
       <GridItem
         key={diory.id}
-        flex="1 0 360px"
+        flex="1 1 360px"
         height={240}
         padding={24}
         alignSelf="center"
         scrollIntoView={diory.id === scrollIntoViewId}
       >
-        <DragDrop id={diory.id} onDrop={onDrop} onClick={onClick}>
+        <DragDrop id={diory.id} onDrop={onDrop}>
           <Diory
             diory={diory}
             onClick={onClick}

@@ -1,18 +1,19 @@
 import React from 'react'
 
-import Fullscreen from '../../components/Fullscreen'
 import GraphLens from './graph/GraphLens'
 import MapLens from './map/MapLens'
 import TimelineLens from './timeline/TimelineLens'
-import Search from './search/Search'
+import SearchLens from './search/SearchLens'
 
-const Lenses = (props) => (
-  <Fullscreen {...props}>
+export const DEFAULT_LENS = 'search'
+
+const Lenses = () => (
+  <>
     <GraphLens />
     <MapLens />
     <TimelineLens />
-    <Search />
-  </Fullscreen>
+    <SearchLens />
+  </>
 )
 
 export default Lenses

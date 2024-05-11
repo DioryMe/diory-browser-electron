@@ -1,9 +1,12 @@
+import React from 'react'
+
 import { useDispatchActions, useSelector } from '../../../store'
 import { useStoryTool } from '../../tools/story'
 import { useUpdateTool } from '../../tools/update'
-
 import { createLink } from '../../diograph/diographActions'
-import { searchDiories } from './searchActions'
+
+import SearchView from './SearchView'
+import { withLensContainer } from '../utils/withLensContainer'
 
 export const useSearch = () => {
   const { query, resultsByQuery } = useSelector((state) => state.search)
@@ -14,7 +17,6 @@ export const useSearch = () => {
   return {
     query,
     results: query ? resultsByQuery[query] : [],
-    onSearch: ({ target: { value } }) => dispatch(searchDiories(value)),
     onClick: ({ diory }) => {
       selectStory(diory)
       updateDiory(diory)
@@ -24,3 +26,7 @@ export const useSearch = () => {
     },
   }
 }
+
+const SearchLens = () => <SearchView {...useSearch()} />
+
+export default withLensContainer('search')(SearchLens)

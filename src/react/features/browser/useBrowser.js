@@ -20,12 +20,11 @@ export const useBrowser = () => {
 
   useImportTools()
 
-  const { contexts, story, memories } = useDiograph()
+  const { story, memories } = useDiograph()
   const { forward = [] } = useSelector((state) => state.navigation)
 
   const { dispatch } = useDispatchActions()
   return {
-    contexts,
     story,
     memories,
     scrollIntoViewId: forward[0],

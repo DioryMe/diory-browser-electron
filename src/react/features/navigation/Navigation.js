@@ -9,6 +9,7 @@ import LensesNavigation from '../lenses/LensesNavigation'
 import SideBarNavigation from '../sideBar/SideBarNavigation'
 import DiosphereNavigation from '../diosphere/DiosphereNavigation'
 import DiographNavigation from '../diograph/DiographNavigation'
+import { SearchDiories } from '../lenses/search/SearchDiories'
 
 const Navigation = () => {
   const { goLeft, goRight } = useGoSide()
@@ -21,7 +22,7 @@ const Navigation = () => {
           <DiographNavigation />
         </Tablist>
         <LensesNavigation />
-        <SideBarNavigation side="right" />
+        <SearchDiories />
       </NavigationTopBar>
       <NavigationToSide left onClick={goLeft} />
       <NavigationToSide right onClick={goRight} />

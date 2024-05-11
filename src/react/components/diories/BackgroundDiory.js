@@ -9,10 +9,16 @@ const blurStyle = {
   backgroundColor: '#9bc53d',
 }
 
+const backgroundStyle = {
+  position: 'absolute',
+  width: '100%',
+  height: '100%',
+  zIndex: -1000,
+}
+
 const BackgroundDiory = ({ diory, children, ...styleProps }) => {
   const style = {
     ...diory.style,
-    zIndex: -1000,
     image: {
       ...blurStyle,
       ...(diory.style && diory.style.image),
@@ -24,10 +30,10 @@ const BackgroundDiory = ({ diory, children, ...styleProps }) => {
   }
 
   return (
-    <>
+    <div style={backgroundStyle}>
       <Diory diory={{ ...diory, style }} />
       {children}
-    </>
+    </div>
   )
 }
 
