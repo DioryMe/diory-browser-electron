@@ -1,8 +1,8 @@
 import { ADD_DIORY_TO_HAND, SELECT_TOOL, DESELECT_TOOL } from './toolsActionTypes'
 
-export const addDioryToHand = (dioryId) => ({
+export const addDioryToHand = (diory) => ({
   type: ADD_DIORY_TO_HAND,
-  payload: { dioryId },
+  payload: { diory },
 })
 
 export const selectTool = (toolId) => ({

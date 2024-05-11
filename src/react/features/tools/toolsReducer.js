@@ -8,7 +8,7 @@ const initialState = {
 
 const addDioryToHand = (state, { payload }) => ({
   ...state,
-  hand: [payload.dioryId, ...state.hand.filter((dioryId) => dioryId !== payload.dioryId)],
+  hand: [payload.diory, ...state.hand.filter((diory) => diory !== payload.diory)],
 })
 
 const selectTool = (state, { payload }) => ({

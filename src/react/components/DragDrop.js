@@ -3,21 +3,21 @@ import PropTypes from 'prop-types'
 import Draggable, { types } from './Draggable'
 import Droppable from './Droppable'
 
-const DragDrop = ({ id, onDrop, children }) => (
+const DragDrop = ({ diory, onDrop, children }) => (
   <Droppable
     type={types.DIORY}
     style={{ height: '100%' }}
-    isOverStyle={{ opacity: 0.5 }}
-    onDrop={({ id: draggedId }) => onDrop({ droppedId: id, draggedId })}
+    isOverStyle={{ backgroundColor: 'white', opacity: 0.5 }}
+    onDrop={({ draggedDiory }) => onDrop({ diory, draggedDiory })}
   >
-    <Draggable id={id} type={types.DIORY}>
+    <Draggable draggedDiory={diory} type={types.DIORY}>
       {children}
     </Draggable>
   </Droppable>
 )
 
 DragDrop.propTypes = {
-  id: PropTypes.string.isRequired,
+  diory: PropTypes.object.isRequired,
   onDrop: PropTypes.func,
   children: PropTypes.node,
 }

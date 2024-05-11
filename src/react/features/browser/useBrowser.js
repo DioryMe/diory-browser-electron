@@ -38,8 +38,8 @@ export const useBrowser = () => {
       deleteDiory(diory)
       updateDiory(diory)
     },
-    onDrop: ({ droppedId, draggedId }) => {
-      dispatch(createLink({ id: droppedId }, { id: draggedId }))
+    onDrop: ({ diory, draggedDiory }) => {
+      dispatch(createLink(diory, draggedDiory))
     },
   }
 }

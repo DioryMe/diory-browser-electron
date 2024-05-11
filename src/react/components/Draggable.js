@@ -6,11 +6,11 @@ export const types = {
   DIORY: 'DIORY',
 }
 
-const Draggable = ({ id, type, children }) => {
+const Draggable = ({ draggedDiory, type, children }) => {
   const [, drag] = useDrag({
     type: types[type],
     item: {
-      id,
+      draggedDiory,
     },
   })
 
@@ -27,7 +27,7 @@ const Draggable = ({ id, type, children }) => {
 }
 
 Draggable.propTypes = {
-  id: PropTypes.string.isRequired,
+  draggedDiory: PropTypes.object.isRequired,
   type: PropTypes.string.isRequired,
   children: PropTypes.node,
 }

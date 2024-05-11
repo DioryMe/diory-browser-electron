@@ -6,7 +6,6 @@ import { useDiograph } from '../diograph/useDiograph'
 
 import BackgroundDiory from '../../components/diories/BackgroundDiory'
 import ScrollBackground from '../../components/ScrollBackground'
-import DragDropBackground from '../../components/DragDropBackground'
 import DiorysGrid from '../../components/DiorysGrid'
 import Content from '../content/Content'
 
@@ -17,16 +16,8 @@ const useScrollToTopOnStoryChange = (elementRef) => {
   }, [elementRef, story.id])
 }
 
-const BrowserView = ({
-  story,
-  memories,
-  scrollIntoViewId,
-  onDrop,
-  onStoryClick,
-  onMemoryClick,
-}) => {
+const BrowserView = ({ story, memories, scrollIntoViewId, onDrop, onMemoryClick }) => {
   const storyRef = useRef()
-  const memoryRef = useRef()
 
   useScrollToTopOnStoryChange(storyRef)
 
@@ -34,23 +25,15 @@ const BrowserView = ({
     <>
       <BackgroundDiory diory={story} />
       <ScrollBackground>
-        <DragDropBackground
-          ref={storyRef}
-          position="absolute"
-          width="100%"
-          height="100%"
-          onClick={() => onStoryClick({ diory: story })}
-          diory={story}
-          onDrop={onDrop}
-          data-testid="story"
-        />
         <Content />
         <DiorysGrid
-          ref={memoryRef}
+          ref={storyRef}
+          background={story}
           diorys={memories}
           scrollIntoViewId={scrollIntoViewId}
-          onDrop={onDrop}
           onClick={onMemoryClick}
+          onDrop={onDrop}
+          onBackgroundDrop={onDrop}
         />
         <Box height="90%" position="relative" width="100%" />
       </ScrollBackground>
@@ -59,7 +42,6 @@ const BrowserView = ({
 }
 
 BrowserView.defaultProps = {
-  onStoryClick: () => {},
   onMemoryClick: () => {},
   onDrop: () => {},
 }
@@ -68,7 +50,6 @@ BrowserView.propTypes = {
   story: PropTypes.object.isRequired,
   memories: PropTypes.array.isRequired,
   scrollIntoViewId: PropTypes.string,
-  onStoryClick: PropTypes.func,
   onMemoryClick: PropTypes.func,
   onDrop: PropTypes.func,
 }

@@ -2,14 +2,12 @@ import { useDispatchActions, useSelector } from '../../../store'
 import { addDioryToHand } from '../toolsActions'
 import { selectStory } from '../../navigation/navigationActions'
 
-export const useHand = () => {
+export const useHandTool = () => {
   const { hand } = useSelector((state) => state.tools)
-  const { diograph } = useSelector((state) => state.diograph)
-
   const { dispatch } = useDispatchActions()
   return {
-    diorys: diograph && hand.map((id) => diograph[id]).filter(Boolean),
-    onDrop: ({ id }) => dispatch(addDioryToHand(id)),
+    diorys: hand,
+    onDrop: ({ draggedDiory }) => dispatch(addDioryToHand(draggedDiory)),
     onClick: ({ diory: { id } }) => dispatch(selectStory({ id })),
   }
 }

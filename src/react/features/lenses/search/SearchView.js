@@ -12,17 +12,19 @@ const scaleContainer = {
   height: '200%',
 }
 
-const SearchView = ({ query, results, scrollIntoViewId, onClick, onDrop }) => {
+const SearchView = ({ query, diorys, scrollIntoViewId, onClick, onDrop, onBackgroundDrop }) => {
   const searchRef = useRef()
   return (
     <Pane background="#222" height="100%">
       {query && <CreateDioryButton text={query} />}
       <DiorysGrid
         ref={searchRef}
-        diorys={results}
+        background={{ id: 'hand' }}
+        diorys={diorys}
         scrollIntoViewId={scrollIntoViewId}
-        onDrop={onDrop}
         onClick={onClick}
+        onDrop={onDrop}
+        onBackgroundDrop={onBackgroundDrop}
         {...scaleContainer}
       />
     </Pane>
@@ -31,10 +33,11 @@ const SearchView = ({ query, results, scrollIntoViewId, onClick, onDrop }) => {
 
 SearchView.propTypes = {
   query: PropTypes.string.isRequired,
-  results: PropTypes.array.isRequired,
+  diorys: PropTypes.array.isRequired,
   scrollIntoViewId: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,
+  onBackgroundDrop: PropTypes.func.isRequired,
 }
 
 export default SearchView

@@ -3,6 +3,9 @@ import React from 'react'
 import { useDispatchActions, useSelector } from '../../../store'
 import { useStoryTool } from '../../tools/story'
 import { useUpdateTool } from '../../tools/update'
+import { useHandTool } from '../../tools/hand/useHandTool'
+import { useDeleteTool } from '../../tools/delete'
+
 import { createLink } from '../../diograph/diographActions'
 
 import SearchView from './SearchView'
@@ -12,18 +15,21 @@ export const useSearch = () => {
   const { query, resultsByQuery } = useSelector((state) => state.search)
   const selectStory = useStoryTool()
   const updateDiory = useUpdateTool()
-
+  const deleteDiory = useDeleteTool()
+  const hand = useHandTool()
   const { dispatch } = useDispatchActions()
   return {
     query,
-    results: query ? resultsByQuery[query] : [],
+    diorys: query ? resultsByQuery[query] : hand.diorys,
     onClick: ({ diory }) => {
       selectStory(diory)
       updateDiory(diory)
+      deleteDiory(diory)
     },
-    onDrop: ({ droppedId, draggedId }) => {
-      dispatch(createLink({ id: droppedId }, { id: draggedId }))
+    onDrop: ({ diory, draggedDiory }) => {
+      dispatch(createLink(diory, draggedDiory))
     },
+    onBackgroundDrop: hand.onDrop,
   }
 }
 
