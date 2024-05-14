@@ -1,12 +1,11 @@
 import React from 'react'
-import { Tablist } from 'evergreen-ui'
+import { Strong, Tablist } from 'evergreen-ui'
 
 import { useGoSide } from './useGoSide'
 
 import NavigationTopBar from '../../components/NavigationTopBar'
 import NavigationToSide from '../../components/NavigationToSide'
 import LensesNavigation from '../lenses/LensesNavigation'
-import SideBarNavigation from '../sideBar/SideBarNavigation'
 import DiosphereNavigation from '../diosphere/DiosphereNavigation'
 import DiographNavigation from '../diograph/DiographNavigation'
 import { SearchDiories } from '../lenses/search/SearchDiories'
@@ -17,7 +16,9 @@ const Navigation = () => {
     <>
       <NavigationTopBar>
         <Tablist display="flex" alignSelf="center">
-          <SideBarNavigation side="left" />
+          <Strong size={600} padding={4} color="greenyellow">
+            D
+          </Strong>
           <DiosphereNavigation />
           <DiographNavigation />
         </Tablist>

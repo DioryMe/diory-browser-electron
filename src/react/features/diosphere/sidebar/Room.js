@@ -12,7 +12,7 @@ const resolveIcon = ({ doors = [] }, open) => {
   return open ? <ChevronDownIcon /> : <ChevronRightIcon />
 }
 
-const RoomButtons = ({ room, isOpen, isInRoom, level, onToggle, onEnterRoom }) => (
+const Room = ({ room, isOpen, isInRoom, level, onToggle, onEnterRoom }) => (
   <Pane
     display="flex"
     color="white"
@@ -30,7 +30,7 @@ const RoomButtons = ({ room, isOpen, isInRoom, level, onToggle, onEnterRoom }) =
   </Pane>
 )
 
-RoomButtons.propTypes = {
+Room.propTypes = {
   room: PropTypes.object.isRequired,
   isInRoom: PropTypes.bool.isRequired,
   isOpen: PropTypes.bool.isRequired,
@@ -39,4 +39,4 @@ RoomButtons.propTypes = {
   onEnterRoom: PropTypes.func.isRequired,
 }
 
-export { RoomButtons }
+export { Room }

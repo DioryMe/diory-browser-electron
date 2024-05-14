@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import { RoomButtons } from './RoomButtons'
+import { Room } from './Room'
 
-const RoomDoor = ({ roomId, level = 0, state, actions }) => {
-  const room = state.rooms[roomId]
+const DiosphereTree = ({ roomId, level = 0, diosphereState, actions }) => {
+  const room = diosphereState.rooms[roomId]
 
-  const [isOpen, toggleOpen] = useState(state.openRooms.includes(roomId))
+  const [isOpen, toggleOpen] = useState(diosphereState.openRooms.includes(roomId))
   if (!room) {
     return null
   }
@@ -14,10 +14,10 @@ const RoomDoor = ({ roomId, level = 0, state, actions }) => {
   const { doors = [] } = room
   return (
     <>
-      <RoomButtons
+      <Room
         room={room}
         isOpen={isOpen}
-        isInRoom={state.roomId === room.id}
+        isInRoom={diosphereState.roomId === room.id}
         level={level}
         onToggle={() => toggleOpen((prev) => !prev)}
         {...actions}
@@ -25,12 +25,12 @@ const RoomDoor = ({ roomId, level = 0, state, actions }) => {
 
       {isOpen &&
         doors.map(({ id }) => (
-          <RoomDoor
+          <DiosphereTree
             key={id}
             roomId={id}
             level={level + 1}
             actions={actions}
-            state={state}
+            diosphereState={diosphereState}
             onToggle={toggleOpen}
           />
         ))}
@@ -38,11 +38,11 @@ const RoomDoor = ({ roomId, level = 0, state, actions }) => {
   )
 }
 
-RoomDoor.propTypes = {
+DiosphereTree.propTypes = {
   level: PropTypes.number,
   roomId: PropTypes.string.isRequired,
-  state: PropTypes.object.isRequired,
+  diosphereState: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
 }
 
-export { RoomDoor }
+export { DiosphereTree }

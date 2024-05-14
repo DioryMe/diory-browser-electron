@@ -29,11 +29,11 @@ const Root = () => {
         {loaded && (
           <Fullscreen top={48}>
             <PanelGroup direction="horizontal">
-              <Panel defaultSize={80} minSize={20} style={{ position: 'relative' }}>
+              <Panel defaultSize={80} minSize={10} style={{ position: 'relative' }}>
                 <Browser />
               </Panel>
               <PanelResizeHandle />
-              <Panel defaultSize={20} minSize={20} style={{ position: 'relative' }}>
+              <Panel defaultSize={20} minSize={1} style={{ position: 'relative' }}>
                 <Lenses />
               </Panel>
             </PanelGroup>
