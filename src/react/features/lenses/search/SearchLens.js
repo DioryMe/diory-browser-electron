@@ -16,20 +16,21 @@ export const useSearch = () => {
   const selectStory = useStoryTool()
   const updateDiory = useUpdateTool()
   const deleteDiory = useDeleteTool()
-  const hand = useHandTool()
+  const { diorys, onDrop, onClear } = useHandTool()
   const { dispatch } = useDispatchActions()
   return {
     query,
-    diorys: query ? resultsByQuery[query] : hand.diorys,
+    diorys: query ? resultsByQuery[query] : diorys,
     onClick: ({ diory }) => {
       selectStory(diory)
       updateDiory(diory)
       deleteDiory(diory)
     },
+    onClear: !query && onClear,
     onDrop: ({ diory, draggedDiory }) => {
       dispatch(createLink(diory, draggedDiory))
     },
-    onBackgroundDrop: hand.onDrop,
+    onBackgroundDrop: onDrop,
   }
 }
 

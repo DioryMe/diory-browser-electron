@@ -1,5 +1,5 @@
 import { useDispatchActions, useSelector } from '../../../store'
-import { addDioryToHand } from '../toolsActions'
+import { addDioryToHand, clearHand } from '../toolsActions'
 import { selectStory } from '../../navigation/navigationActions'
 
 export const useHandTool = () => {
@@ -9,5 +9,6 @@ export const useHandTool = () => {
     diorys: hand,
     onDrop: ({ draggedDiory }) => dispatch(addDioryToHand(draggedDiory)),
     onClick: ({ diory: { id } }) => dispatch(selectStory({ id })),
+    onClear: () => dispatch(clearHand()),
   }
 }

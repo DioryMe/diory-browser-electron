@@ -4,15 +4,15 @@ import { SearchInput } from 'evergreen-ui'
 import { searchDiories } from './searchActions'
 import { useDispatchActions } from '../../../store'
 
-const useSearchInput = () => {
+const useSearchBar = () => {
   const { dispatch } = useDispatchActions()
   return {
     onSearch: ({ target: { value } }) => dispatch(searchDiories(value)),
   }
 }
 
-export const SearchDiories = () => {
-  const { onSearch } = useSearchInput()
+export const SearchBar = () => {
+  const { onSearch } = useSearchBar()
   return (
     <SearchInput
       autoFocus

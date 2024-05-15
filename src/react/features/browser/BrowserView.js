@@ -5,9 +5,9 @@ import Box from 'ui-box'
 import { useDiograph } from '../diograph/useDiograph'
 
 import BackgroundDiory from '../../components/diories/BackgroundDiory'
-import ScrollBackground from '../../components/ScrollBackground'
 import DiorysGrid from '../../components/DiorysGrid'
 import Content from '../content/Content'
+import Fullscreen from '../../components/Fullscreen'
 
 const useScrollToTopOnStoryChange = (elementRef) => {
   const { story } = useDiograph()
@@ -24,7 +24,7 @@ const BrowserView = ({ story, memories, scrollIntoViewId, onDrop, onMemoryClick 
   return (
     <>
       <BackgroundDiory diory={story} />
-      <ScrollBackground>
+      <Fullscreen>
         <Content />
         <DiorysGrid
           ref={storyRef}
@@ -35,8 +35,8 @@ const BrowserView = ({ story, memories, scrollIntoViewId, onDrop, onMemoryClick 
           onDrop={onDrop}
           onBackgroundDrop={onDrop}
         />
-        <Box height="90%" position="relative" width="100%" />
-      </ScrollBackground>
+        <Box position="relative" height="90%" width="100%" />
+      </Fullscreen>
     </>
   )
 }

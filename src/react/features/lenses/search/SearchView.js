@@ -4,6 +4,7 @@ import { Pane } from 'evergreen-ui'
 
 import CreateDioryButton from '../../tools/create/CreateDioryButton'
 import DiorysGrid from '../../../components/DiorysGrid'
+import NavigationButton from '../../../components/NavigationButton'
 
 const scaleContainer = {
   transformOrigin: 'top left',
@@ -12,11 +13,20 @@ const scaleContainer = {
   height: '200%',
 }
 
-const SearchView = ({ query, diorys, scrollIntoViewId, onClick, onDrop, onBackgroundDrop }) => {
+const SearchView = ({
+  query,
+  diorys,
+  scrollIntoViewId,
+  onClick,
+  onClear,
+  onDrop,
+  onBackgroundDrop,
+}) => {
   const searchRef = useRef()
   return (
     <Pane background="#222" height="100%">
       {query && <CreateDioryButton text={query} />}
+      {!query && diorys.length && <NavigationButton text="Clear" onClick={onClear} float="right" />}
       <DiorysGrid
         ref={searchRef}
         background={{ id: 'hand' }}
@@ -36,6 +46,7 @@ SearchView.propTypes = {
   diorys: PropTypes.array.isRequired,
   scrollIntoViewId: PropTypes.string,
   onClick: PropTypes.func.isRequired,
+  onClear: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,
   onBackgroundDrop: PropTypes.func.isRequired,
 }

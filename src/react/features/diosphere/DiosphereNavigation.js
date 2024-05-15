@@ -5,7 +5,7 @@ import { useSideBar } from '../sideBar/useSideBar'
 
 import NavigationButton from '../../components/NavigationButton'
 
-const useRoomButton = () => {
+const useDiosphereButton = () => {
   const { room } = useDiosphere()
   const { toggleSideBar } = useSideBar('left')
   return (
@@ -17,7 +17,7 @@ const useRoomButton = () => {
 }
 
 const DiosphereNavigation = () => {
-  const roomButton = useRoomButton()
-  return <NavigationButton {...roomButton} />
+  const diosphereButton = useDiosphereButton()
+  return <NavigationButton {...diosphereButton} />
 }
 export default DiosphereNavigation
