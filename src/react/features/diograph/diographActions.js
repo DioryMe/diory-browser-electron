@@ -43,14 +43,14 @@ export const deleteDiory =
 export const createLink =
   (dioryObject, linkedDioryObject) =>
   (dispatch, getState, { dioryClient }) => {
-    dioryClient.diograph.addDioryLink(dioryObject, linkedDioryObject)
+    dioryClient.diograph.addDioryLink(dioryObject, { id: linkedDioryObject.id })
     dispatch(updateDiograph())
   }
 
 export const deleteLink =
   (dioryObject, linkedDioryObject) =>
   (dispatch, getState, { dioryClient }) => {
-    dioryClient.diograph.removeDioryLink(dioryObject, linkedDioryObject)
+    dioryClient.diograph.removeDioryLink(dioryObject, { id: linkedDioryObject.id })
     dispatch(updateDiograph())
   }
 
@@ -58,7 +58,7 @@ export const deleteLinks =
   (deletedLinks) =>
   (dispatch, getState, { dioryClient }) => {
     deletedLinks.forEach(({ fromDiory, toDiory }) => {
-      dioryClient.diograph.removeDioryLink(fromDiory, toDiory)
+      dioryClient.diograph.removeDioryLink(fromDiory, { id: toDiory.id })
     })
     dispatch(updateDiograph())
   }

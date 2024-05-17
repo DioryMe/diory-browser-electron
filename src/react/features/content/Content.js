@@ -7,10 +7,8 @@ import ContentView from './ContentView'
 
 const contentStyle = {
   position: 'relative',
-  width: '100%',
   height: '100%',
-  margin: '0 48px',
-  backgroundPosition: 'top',
+  margin: '48px',
 }
 
 const Content = () => {

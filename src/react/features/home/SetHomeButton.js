@@ -16,7 +16,7 @@ const SetHomeButton = () => {
       margin={32}
       onClick={onClick}
     >
-      + Choose where your Diory is located on this Computer
+      + Choose where your Diory Home is located on this Computer
     </Pane>
   )
 }

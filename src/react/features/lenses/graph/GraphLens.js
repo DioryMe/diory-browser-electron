@@ -7,8 +7,6 @@ import { withLensContainer } from '../utils/withLensContainer'
 import GraphView from './GraphView'
 
 import { selectStory } from '../../navigation/navigationActions'
-import Fullscreen from '../../../components/Fullscreen'
-import BackgroundDiory from '../../../components/diories/BackgroundDiory'
 
 import button from './diory'
 
@@ -22,14 +20,7 @@ const useOnDioryClick = () => {
 const GraphLens = () => {
   const { diograph = {} } = useSelector((state) => state.diograph)
   const onDioryClick = useOnDioryClick()
-  const { id: rootId } = diograph['/']
-  const rootDiory = diograph[rootId]
-  return (
-    <Fullscreen background="white">
-      <BackgroundDiory diory={rootDiory} opacity={0.6} />
-      <GraphView diograph={diograph} onDioryClick={onDioryClick} />
-    </Fullscreen>
-  )
+  return <GraphView diograph={diograph} onDioryClick={onDioryClick} />
 }
 
 export default withLensContainer('graph', button)(GraphLens)

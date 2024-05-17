@@ -7,19 +7,12 @@
   "dependencies": {
     "@diograph/local-client": "^0.3.0-rc6",
     "@diory/client-js": "^0.2.0-rc10",
-    "dayjs": "^1.11.3",
     "electron-devtools-installer": "^3.2.0",
     "electron-log": "^4.4.7",
     "electron-notarize": "^1.2.1",
-    "electron-reload": "^2.0.0-alpha.1",
     "electron-store": "^8.0.2",
-    "exifreader": "^4.5.0",
     "ffmpeg-static": "^5.0.0",
-    "file-type": "^16.4.0",
-    "glob": "^8.0.3",
-    "react-detect-click-outside": "^1.1.7",
-    "react-resizable-panels": "^2.0.19",
-    "uuid": "^8.3.2"
+    "glob": "^8.0.3"
   },
   "devDependencies": {
     "@4tw/cypress-drag-drop": "^2.2.0",
@@ -59,11 +52,13 @@
     "prettier": "^2.7.1",
     "prop-types": "^15.8.1",
     "react": "^17",
+    "react-detect-click-outside": "^1.1.7",
     "react-dnd": "^15",
     "react-dnd-html5-backend": "^15",
     "react-dom": "^17",
     "react-force-graph-3d": "^1.22.0",
     "react-pdf": "^5.7.2",
+    "react-resizable-panels": "^2.0.19",
     "react-redux": "^8.0.2",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
@@ -73,6 +68,7 @@
     "three": "^0.150.1",
     "three-spritetext": "^1.8.0",
     "ui-box": "^5.1.0",
+    "uuid": "^8.3.2",
     "wait-on": "^6.0.1"
   },
   "optionalDependencies": {

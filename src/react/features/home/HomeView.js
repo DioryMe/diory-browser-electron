@@ -1,11 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Heading, Pane } from 'evergreen-ui'
-import Fullscreen from '../../components/Fullscreen'
 
-const HomeView = ({ children }) => (
+import Fullscreen from '../../components/Fullscreen'
+import SetHomeRoomButton from './SetHomeButton'
+
+const HomeView = ({ initializing }) => (
   <Fullscreen
-    background="src/react/features/welcome#fcd600"
+    background="#fcd600"
     display="flex"
     alignItems="center"
     justifyContent="center"
@@ -22,17 +24,13 @@ const HomeView = ({ children }) => (
       <Heading size={900} width="100%">
         Welcome to Diory!
       </Heading>
-      {children}
+      {!initializing && <SetHomeRoomButton />}
     </Pane>
   </Fullscreen>
 )
 
-HomeView.defaultProps = {
-  children: null,
-}
-
 HomeView.propTypes = {
-  children: PropTypes.node,
+  initializing: PropTypes.bool,
 }
 
 export default HomeView

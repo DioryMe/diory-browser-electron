@@ -6,6 +6,7 @@ import { useDispatchActions, useSelector } from '../../store'
 import { selectLens } from './lensesActions'
 
 import NavigationIcon from '../../components/NavigationIcon'
+import { DEFAULT_LENS } from './Lenses'
 
 export const useLensesNavigation = () => {
   const { selectedLensId, buttons } = useSelector((state) => state.lenses)
@@ -15,7 +16,8 @@ export const useLensesNavigation = () => {
       key: id,
       id,
       diory,
-      onClick: () => dispatch(selectLens(id)),
+      onClick: () =>
+        id === selectedLensId ? dispatch(selectLens(DEFAULT_LENS)) : dispatch(selectLens(id)),
       isSelected: id === selectedLensId,
     })),
   }

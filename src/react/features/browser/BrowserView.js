@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
-import Box from 'ui-box'
 
 import { useDiograph } from '../diograph/useDiograph'
 
@@ -16,7 +15,14 @@ const useScrollToTopOnStoryChange = (elementRef) => {
   }, [elementRef, story.id])
 }
 
-const BrowserView = ({ story, memories, scrollIntoViewId, onDrop, onMemoryClick }) => {
+const BrowserView = ({
+  story,
+  memories,
+  scrollIntoViewId,
+  onDrop,
+  onStoryClick,
+  onMemoryClick,
+}) => {
   const storyRef = useRef()
 
   useScrollToTopOnStoryChange(storyRef)
@@ -25,17 +31,17 @@ const BrowserView = ({ story, memories, scrollIntoViewId, onDrop, onMemoryClick 
     <>
       <BackgroundDiory diory={story} />
       <Fullscreen>
+        <div ref={storyRef} />
         <Content />
         <DiorysGrid
-          ref={storyRef}
           background={story}
           diorys={memories}
           scrollIntoViewId={scrollIntoViewId}
           onClick={onMemoryClick}
           onDrop={onDrop}
+          onBackgroundClick={onStoryClick}
           onBackgroundDrop={onDrop}
         />
-        <Box position="relative" height="90%" width="100%" />
       </Fullscreen>
     </>
   )
@@ -50,6 +56,7 @@ BrowserView.propTypes = {
   story: PropTypes.object.isRequired,
   memories: PropTypes.array.isRequired,
   scrollIntoViewId: PropTypes.string,
+  onStoryClick: PropTypes.func,
   onMemoryClick: PropTypes.func,
   onDrop: PropTypes.func,
 }

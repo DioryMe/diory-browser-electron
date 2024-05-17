@@ -3,8 +3,6 @@ const path = require('path')
 const url = require('url')
 const { default: installExtension, REDUX_DEVTOOLS } = require('electron-devtools-installer')
 
-require('electron-reload')
-
 // Electron logging
 // eslint-disable-next-line import/newline-after-import
 const log = require('electron-log')

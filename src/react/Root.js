@@ -15,10 +15,14 @@ import Browser from './features/browser/Browser'
 
 import { useInitialiseHome } from './features/home/useInitialiseHome'
 import { useEnterRoomEffect } from './features/home/useEnterRoomEffect'
+import NavigationToSide from './components/NavigationToSide'
+import { useGoSide } from './features/navigation/useGoSide'
 
 const Root = () => {
   useInitialiseHome()
   useEnterRoomEffect()
+
+  const { goLeft, goRight } = useGoSide()
 
   const { loaded } = useSelector((store) => store.diosphere)
   return (
@@ -30,7 +34,9 @@ const Root = () => {
           <Fullscreen top={48}>
             <PanelGroup direction="horizontal">
               <Panel defaultSize={80} minSize={10} style={{ position: 'relative' }}>
+                <NavigationToSide left onClick={goLeft} />
                 <Browser />
+                <NavigationToSide right onClick={goRight} />
               </Panel>
               <PanelResizeHandle />
               <Panel defaultSize={20} minSize={1} style={{ position: 'relative' }}>

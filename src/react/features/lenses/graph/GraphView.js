@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import ForceGraph3D from 'react-force-graph-3d'
 import * as THREE from 'three'
@@ -9,14 +9,16 @@ const mapDiographToData = (diograph) => {
   const links = []
   Object.values(diograph).forEach((diory) => {
     if (diory.links) {
-      Object.values(diory.links).forEach((link) => {
-        links.push({
-          source: diory.id,
-          target: link.id,
-          color: 'rgba(0,0,0,1)',
-          arrowColor: 'rgba(0,0,0,1)',
+      diory.links
+        .filter(({ id }) => !!diograph[id])
+        .forEach((link) => {
+          links.push({
+            source: diory.id,
+            target: link.id,
+            color: 'rgba(255,255,255,1)',
+            arrowColor: 'rgba(255,255,255,1)',
+          })
         })
-      })
     }
   })
 
@@ -45,7 +47,7 @@ const getNodeThreeObject = (node) => {
 }
 
 const getLinkThreeObject = () => {
-  const material = new THREE.LineBasicMaterial({ color: 0x000000 })
+  const material = new THREE.LineBasicMaterial({ color: 0xffffff })
   const geometry = new THREE.BufferGeometry()
   return new THREE.Line(geometry, material)
 }
@@ -84,40 +86,42 @@ const useDisplay = () => {
 // - larger link distance
 // - focus camera
 
-const GraphView = ({ diograph, onDioryClick }) => {
-  const fgRef = useRef()
-  useLinkDistance(fgRef)
+const GraphView = memo(
+  ({ diograph, onDioryClick }) => {
+    const fgRef = useRef()
+    useLinkDistance(fgRef)
 
-  const { displayHeight } = useDisplay()
-  const data = mapDiographToData(diograph)
-
-  return (
-    <Fullscreen>
-      <ForceGraph3D
-        ref={fgRef}
-        width={500}
-        height={displayHeight}
-        showNavInfo={false}
-        backgroundColor="rgba(0,0,0,0)"
-        graphData={data}
-        nodeLabel="text"
-        nodeThreeObject={getNodeThreeObject}
-        linkThreeObject={getLinkThreeObject}
-        linkOpacity={1}
-        linkWidth={0.5}
-        linkColor="color"
-        linkDirectionalArrowLength={3}
-        linkDirectionalArrowColor="arrowColor"
-        onNodeClick={onDioryClick}
-        onNodeDragEnd={(node) => {
-          node.fx = node.x // eslint-disable-line no-param-reassign
-          node.fy = node.y // eslint-disable-line no-param-reassign
-          node.fz = node.z // eslint-disable-line no-param-reassign
-        }}
-      />
-    </Fullscreen>
-  )
-}
+    const { displayHeight } = useDisplay()
+    const data = mapDiographToData(diograph)
+    return (
+      <Fullscreen background="#222">
+        <ForceGraph3D
+          ref={fgRef}
+          width={500}
+          height={displayHeight}
+          showNavInfo={false}
+          backgroundColor="rgba(0,0,0,0)"
+          graphData={data}
+          nodeLabel="text"
+          nodeThreeObject={getNodeThreeObject}
+          linkThreeObject={getLinkThreeObject}
+          linkOpacity={1}
+          linkWidth={1}
+          linkColor="color"
+          linkDirectionalArrowLength={2}
+          linkDirectionalArrowColor="arrowColor"
+          onNodeClick={onDioryClick}
+          onNodeDragEnd={(node) => {
+            node.fx = node.x // eslint-disable-line no-param-reassign
+            node.fy = node.y // eslint-disable-line no-param-reassign
+            node.fz = node.z // eslint-disable-line no-param-reassign
+          }}
+        />
+      </Fullscreen>
+    )
+  },
+  () => true
+)
 
 GraphView.propTypes = {
   diograph: PropTypes.object.isRequired,
