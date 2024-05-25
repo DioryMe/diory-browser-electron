@@ -1,9 +1,9 @@
 import React from 'react'
 import { Pane } from 'evergreen-ui'
-import { useSaveHome } from './useSaveHome'
+import { useSaveHomeConnection } from './useSaveHomeConnection'
 
 const SetHomeButton = () => {
-  const { onClick } = useSaveHome()
+  const { onClick } = useSaveHomeConnection()
   return (
     <Pane
       cursor="pointer"

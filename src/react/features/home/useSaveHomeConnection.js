@@ -1,22 +1,22 @@
 import { useDispatchActions } from '../../store'
 
-import { saveHome } from './homeActions'
+import { saveHomeConnection } from './homeActions'
 
-const getHomeAddress = async () => {
+const getHomeConnection = async () => {
   if (window.processEnv.TESTCAFE_TEST) {
     return `${window.processEnv.PWD}/tmp`
   }
 
   const { filePaths } = await window.channelsApi.showOpenDialog()
-  return filePaths[0]
+  return { address: filePaths[0], client: 'LocalClient' }
 }
 
-export const useSaveHome = () => {
+export const useSaveHomeConnection = () => {
   const { dispatch } = useDispatchActions()
   return {
     onClick: async () => {
-      const address = await getHomeAddress()
-      dispatch(saveHome(address))
+      const connection = await getHomeConnection()
+      dispatch(saveHomeConnection(connection))
     },
   }
 }

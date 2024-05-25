@@ -1,0 +1,6 @@
+{
+  "connection": {
+    "address": "public/test",
+    "client": "LocalClient"
+  }
+}

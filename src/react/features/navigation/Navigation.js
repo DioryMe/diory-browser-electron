@@ -1,22 +1,17 @@
 import React from 'react'
-import { Strong, Tablist } from 'evergreen-ui'
+import { Tablist } from 'evergreen-ui'
 
 import NavigationTopBar from '../../components/NavigationTopBar'
-import LensesNavigation from '../lenses/LensesNavigation'
+import HomeNavigation from '../home/HomeNavigation'
 import DiosphereNavigation from '../diosphere/DiosphereNavigation'
 import DiographNavigation from '../diograph/DiographNavigation'
+import LensesNavigation from '../lenses/LensesNavigation'
 import { SearchBar } from '../lenses/search/SearchBar'
-
-const DioryIcon = () => (
-  <Strong size={600} padding={4} color="white">
-    DIORY
-  </Strong>
-)
 
 const Navigation = () => (
   <NavigationTopBar>
     <Tablist display="flex" alignSelf="center">
-      <DioryIcon />
+      <HomeNavigation />
       <DiosphereNavigation />
       <DiographNavigation />
     </Tablist>
