@@ -1404,6 +1404,14 @@
     ajv "^8.12.0"
     uuid "^8.3.2"
 
+"@diograph/diograph@0.3.0-rc16":
+  version "0.3.0-rc16"
+  resolved "https://registry.yarnpkg.com/@diograph/diograph/-/diograph-0.3.0-rc16.tgz#a37200e28e74cabd4d38ecf540f6b27981274148"
+  integrity sha512-XPT8Fexp+uoEvqFiuV7+JpCo9IoKoEBOd/bKkEmhR8E0VpeGtrdP6mIrmK5zS8WWwpoICqeALzmXckSWKW5uMQ==
+  dependencies:
+    ajv "^8.12.0"
+    uuid "^8.3.2"
+
 "@diograph/file-generator@^0.1.2-rc10":
   version "0.1.2-rc10"
   resolved "https://registry.yarnpkg.com/@diograph/file-generator/-/file-generator-0.1.2-rc10.tgz#ffd821702f0f4b4e936baaf1b0618e88c0913386"
@@ -1491,14 +1499,14 @@
     path-browserify "^1.0.1"
     sharp "0.31.2"
 
-"@diory/client-js@^0.2.0-rc10":
-  version "0.2.0-rc10"
-  resolved "https://registry.yarnpkg.com/@diory/client-js/-/client-js-0.2.0-rc10.tgz#ea30bee5b6006377b94f1723644a1c1418bcbe24"
-  integrity sha512-2sxaiTL5zG4o5oCSFWXtDi8s9/MA2ZlE4f+Zy4XaL+cNCFAXvgAP3zrEcgox2imn5ipsbsl3qLJIRf0OArzSiA==
+"@diory/client-js@0.2.0-rc14":
+  version "0.2.0-rc14"
+  resolved "https://registry.yarnpkg.com/@diory/client-js/-/client-js-0.2.0-rc14.tgz#88b75da97f5748eae67b67ce8d701f47c2f848ef"
+  integrity sha512-636l9Iafu+T9iC+JVVDi6H9jayswhXWBO1+z6SGDmDk5jeADF9C1ZLjrIFFl3NZANaM/9ib4NeT4hbJZOESNRA==
   dependencies:
-    "@diograph/diograph" "0.3.0-rc14"
+    "@diograph/diograph" "0.3.0-rc16"
     "@diograph/folder-generator" "^0.3.0-rc3"
-    "@diory/diosphere-js" "0.2.6-rc2"
+    "@diory/diosphere-js" "0.2.6-rc4"
     path-browserify "^1.0.1"
     uuid "8.3.2"
 
@@ -1528,6 +1536,13 @@
   version "0.2.6-rc2"
   resolved "https://registry.yarnpkg.com/@diory/diosphere-js/-/diosphere-js-0.2.6-rc2.tgz#dfe334927d231795dfdbd87f8a538b0ed50c03b5"
   integrity sha512-NN7/TFkQcgF0UANcAkWjUtI9swX8LPwYVm6g4oDZ6Rib9dNCSBvAyjq8GJ/VMYPLyMaS3WZBgQZ5+EoLF9Xnjg==
+  dependencies:
+    uuid "8.3.2"
+
+"@diory/diosphere-js@0.2.6-rc4":
+  version "0.2.6-rc4"
+  resolved "https://registry.yarnpkg.com/@diory/diosphere-js/-/diosphere-js-0.2.6-rc4.tgz#bb66d783ab8f97fd697ba50703c6f5dc0f5c78f0"
+  integrity sha512-W3NKiqIGOWvp3yoBg4b3p+XetgH6ebaf9uiPXc3g3qa7TBRMEYI4xdLLsdr9rzy8soepcTTnZaXdZMVoY8D8xA==
   dependencies:
     uuid "8.3.2"
 
@@ -3803,11 +3818,6 @@
     "@webassemblyjs/ast" "1.9.0"
     "@webassemblyjs/wast-parser" "1.9.0"
     "@xtuc/long" "4.2.2"
-
-"@xmldom/xmldom@^0.7.5":
-  version "0.7.5"
-  resolved "https://registry.npmjs.org/@xmldom/xmldom/-/xmldom-0.7.5.tgz"
-  integrity sha512-V3BIhmY36fXZ1OtVcI9W+FxQqxVLsPKcNjWigIaa81dLC9IolJl5Mt4Cvhmr0flUnjSpTdrbMTSbXqYqV5dT6A==
 
 "@xmldom/xmldom@^0.8.10":
   version "0.8.10"
@@ -6860,7 +6870,7 @@ data-urls@^2.0.0:
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
 
-dayjs@^1.10.4, dayjs@^1.11.3:
+dayjs@^1.10.4:
   version "1.11.3"
   resolved "https://registry.npmjs.org/dayjs/-/dayjs-1.11.3.tgz"
   integrity sha512-xxwlswWOlGhzgQ4TKzASQkUhqERI3egRNqgV4ScR8wlANA/A9tZ7miXa44vTTKEq5l7vWoL5G57bG3zA+Kow0A==
@@ -7565,13 +7575,6 @@ electron-publish@23.0.9:
     fs-extra "^10.0.0"
     lazy-val "^1.0.5"
     mime "^2.5.2"
-
-electron-reload@^2.0.0-alpha.1:
-  version "2.0.0-alpha.1"
-  resolved "https://registry.npmjs.org/electron-reload/-/electron-reload-2.0.0-alpha.1.tgz"
-  integrity sha512-hTde7gv0TEqxbxlB3pj2CwoyCQ9sdiQrcP8GkpzhosxyVeYM3mZbMEVKCZK3L0fED7Mz5A9IWmK7zEvi4H3P1g==
-  dependencies:
-    chokidar "^3.5.2"
 
 electron-store@^8.0.2:
   version "8.0.2"
@@ -8340,13 +8343,6 @@ executable@^4.1.1:
   integrity sha512-8iA79xD3uAch729dUG8xaaBBFGaEa0wdD2VkYLFHwlqosEj/jT66AzcreRDSgV7ehnNLBW2WR5jIXwGKjVdTLg==
   dependencies:
     pify "^2.2.0"
-
-exifreader@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.npmjs.org/exifreader/-/exifreader-4.5.0.tgz"
-  integrity sha512-CUkDKjA+hNV6+bx5skPPdjeyPV28LZtqrd/7Sli1j2Y/QTZC7PQc+h2j5TeIo5zYbYhwzEN6chgeTdWLY33cUg==
-  optionalDependencies:
-    "@xmldom/xmldom" "^0.7.5"
 
 exifreader@^4.8.1:
   version "4.22.1"

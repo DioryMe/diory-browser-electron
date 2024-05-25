@@ -4,6 +4,11 @@ import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels'
 
+import { useGetHomeConnection } from './features/home/useGetHomeConnection'
+import { useGetDiosphereEffect } from './features/diosphere/useGetDiosphereEffect'
+import { useGetDiographEffect } from './features/diograph/useGetDiographEffect'
+import { useGoSide } from './features/navigation/useGoSide'
+
 import { Home } from './features/home/Home'
 import { Diosphere } from './features/diosphere/Diosphere'
 import Navigation from './features/navigation/Navigation'
@@ -13,14 +18,12 @@ import Fullscreen from './components/Fullscreen'
 import Lenses from './features/lenses/Lenses'
 import Browser from './features/browser/Browser'
 
-import { useInitialiseHome } from './features/home/useInitialiseHome'
-import { useEnterRoomEffect } from './features/home/useEnterRoomEffect'
 import NavigationToSide from './components/NavigationToSide'
-import { useGoSide } from './features/navigation/useGoSide'
 
 const Root = () => {
-  useInitialiseHome()
-  useEnterRoomEffect()
+  useGetHomeConnection()
+  useGetDiosphereEffect()
+  useGetDiographEffect()
 
   const { goLeft, goRight } = useGoSide()
 

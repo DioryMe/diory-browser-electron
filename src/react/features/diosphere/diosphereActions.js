@@ -1,7 +1,6 @@
-import { UPDATE_DIOSPHERE, ENTER_ROOM } from './diosphereActionTypes'
+import { UPDATE_DIOSPHERE, GET_DIOSPHERE } from './diosphereActionTypes'
 import { createActions } from '../../store/storeUtils'
-import { updateDiograph } from '../diograph/diographActions'
-import { selectStory } from '../navigation/navigationActions'
+import { selectRoom } from '../navigation/navigationActions'
 
 const updateDiosphereAction = (diosphere) => ({
   type: UPDATE_DIOSPHERE,
@@ -66,21 +65,21 @@ export const resetDiosphere =
     dispatch(updateDiosphere())
   }
 
-const enterRoomActions = createActions(ENTER_ROOM)
-export const enterRoom =
-  (room) =>
+const getDiosphereActions = createActions(GET_DIOSPHERE)
+export const getDiosphere =
+  (connections) =>
   async (dispatch, getState, { dioryClient }) => {
     const { loading } = getState().diosphere
     if (!loading) {
-      dispatch(enterRoomActions.begin())
+      dispatch(getDiosphereActions.begin())
       try {
-        await dioryClient.enterRoom(room)
-        dispatch(updateDiograph())
-        dispatch(selectStory(dioryClient.diory.toObject()))
-        dispatch(enterRoomActions.success())
+        await dioryClient.initialiseDiosphere(connections)
+        dispatch(updateDiosphere())
+        dispatch(selectRoom(dioryClient.room.toObject()))
+        dispatch(getDiosphereActions.success())
       } catch (error) {
         console.error(error)
-        dispatch(enterRoomActions.failure(error))
+        dispatch(getDiosphereActions.failure(error))
       }
     }
   }

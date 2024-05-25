@@ -1,4 +1,6 @@
-import { UPDATE_DIOGRAPH } from './diographActionTypes'
+import { UPDATE_DIOGRAPH, GET_DIOGRAPH } from './diographActionTypes'
+import { createActions } from '../../store/storeUtils'
+import { selectStory } from '../navigation/navigationActions'
 
 const updateDiographAction = (diograph) => ({
   type: UPDATE_DIOGRAPH,
@@ -75,4 +77,23 @@ export const generateDiograph =
   async (dispatch, getState, { dioryClient }) => {
     dioryClient.generateDiograph()
     dispatch(updateDiograph())
+  }
+
+const getDiographActions = createActions(GET_DIOGRAPH)
+export const getDiograph =
+  (roomObject) =>
+  async (dispatch, getState, { dioryClient }) => {
+    const { loading } = getState().diograph
+    if (!loading) {
+      dispatch(getDiographActions.begin())
+      try {
+        await dioryClient.initialiseDiograph(roomObject)
+        dispatch(updateDiograph())
+        dispatch(selectStory(dioryClient.diory.toObject()))
+        dispatch(getDiographActions.success())
+      } catch (error) {
+        console.error(error)
+        dispatch(getDiographActions.failure(error))
+      }
+    }
   }

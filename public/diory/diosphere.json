@@ -58,16 +58,6 @@
           "client": "LocalClient",
           "address": "public/diory/image-room",
           "id": "image-room-key"
-        },
-        {
-          "id": "d4f8ee27-49c4-4b9d-b44a-8714ab6bade5",
-          "address": "/Users/op/2023/2023-04-07 Pyhä-Häkki",
-          "client": "LocalClient"
-        },
-        {
-          "id": "a059cdd8-7dce-4f4f-91b9-37cb7ea42064",
-          "address": "/Users/op/2023/2023-01-06 Ylläs",
-          "client": "LocalClient"
         }
       ],
       "created": "2024-03-24T14:56:21.243Z",
@@ -116,32 +106,6 @@
       ],
       "created": "2024-03-24T14:56:21.243Z",
       "modified": "2024-03-24T14:56:21.243Z"
-    },
-    "0d408481-3de9-42c9-ada8-8c1178414968": {
-      "id": "0d408481-3de9-42c9-ada8-8c1178414968",
-      "text": "haa-uusi-huone",
-      "connections": [
-        {
-          "id": "0338e79e-ef1d-4520-9153-e4279440f49e",
-          "connector": "LocalClient",
-          "address": "public/diory/uusi"
-        }
-      ],
-      "created": "2024-03-24T22:03:16.669Z",
-      "modified": "2024-03-24T22:03:16.669Z"
-    },
-    "967bb5b7-8aa3-415c-8dd7-4f6385593dc3": {
-      "id": "967bb5b7-8aa3-415c-8dd7-4f6385593dc3",
-      "text": "huu",
-      "connections": [
-        {
-          "id": "ae8ceff0-0836-4436-b4f1-423e7decf518",
-          "connector": "LocalClient",
-          "address": "public/diory/uusi"
-        }
-      ],
-      "created": "2024-03-24T22:08:06.727Z",
-      "modified": "2024-03-24T22:08:06.727Z"
     }
   }
 }

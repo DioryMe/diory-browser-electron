@@ -1,2 +1,2 @@
+export const GET_DIOSPHERE = 'GET_DIOSPHERE'
 export const UPDATE_DIOSPHERE = 'UPDATE_DIOSPHERE'
-export const ENTER_ROOM = 'ENTER_ROOM'
