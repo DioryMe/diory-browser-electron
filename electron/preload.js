@@ -4,8 +4,8 @@ const { LocalClient } = require('@diograph/local-client')
 
 const { channels } = require('../src/shared/constants')
 
-const { getDioryHomeConnection } = require('./lib/getDioryHomeConnection')
-const { saveDioryHomeConnection } = require('./lib/saveDioryHomeConnection')
+const { getHomeConnection } = require('./lib/getHomeConnection')
+const { saveHomeConnection } = require('./lib/saveHomeConnection')
 
 contextBridge.exposeInMainWorld('localClient', new LocalClient())
 
@@ -21,8 +21,8 @@ function channelLogger(handler, params) {
 // NOTE: Currently channels using channelLogger can receive only one parameter!
 // NOTE2: All functions used as channels must return a Promise!
 contextBridge.exposeInMainWorld('channelsApi', {
-  [channels.GET_DIORY_HOME_CONNECTION]: (params) => channelLogger(getDioryHomeConnection, params),
-  [channels.SAVE_DIORY_HOME_CONNECTION]: (params) => channelLogger(saveDioryHomeConnection, params),
+  [channels.GET_DIORY_HOME_CONNECTION]: (params) => channelLogger(getHomeConnection, params),
+  [channels.SAVE_DIORY_HOME_CONNECTION]: (params) => channelLogger(saveHomeConnection, params),
   [channels.OPEN_FOLDER]: async (fileUrl) => shell.showItemInFolder(fileURLToPath(fileUrl)),
   openItemInDesktopManner: (fileUrl) => shell.openPath(fileURLToPath(fileUrl)),
   [channels.OPEN_IN_BROWSER]: (url) => shell.openExternal(url),

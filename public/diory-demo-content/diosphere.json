@@ -1,0 +1,21 @@
+{
+  "rooms": {
+    "/": {
+      "id": "home-room",
+      "created": "2024-03-24T14:56:21.243Z",
+      "modified": "2024-03-24T14:56:21.243Z"
+    },
+    "home-room": {
+      "id": "home-room",
+      "text": "Home room",
+      "connections": [
+        {
+          "client": "LocalClient",
+          "address": "public/diory-demo-content"
+        }
+      ],
+      "created": "2024-03-24T14:56:21.243Z",
+      "modified": "2024-03-24T14:56:21.243Z"
+    }
+  }
+}

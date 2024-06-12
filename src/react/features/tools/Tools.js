@@ -1,19 +1,17 @@
 import React from 'react'
 
-import { useGenerateTool } from './generate'
-import { useImportTools } from './import/useImportTools'
+import { useImportTool } from './import'
 
-import ImportTools from './import/ImportTools'
+import CreateTool from './create/CreateTool'
 import UpdateTool from './update/UpdateTool'
 import DeleteTool from './delete/DeleteTool'
 
 const Tools = () => {
-  useGenerateTool()
-  useImportTools()
+  useImportTool()
 
   return (
     <>
-      <ImportTools />
+      <CreateTool />
       <UpdateTool />
       <DeleteTool />
     </>

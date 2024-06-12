@@ -1,4 +1,5 @@
 import React, { memo, useEffect, useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import ForceGraph3D from 'react-force-graph-3d'
 import * as THREE from 'three'
@@ -9,7 +10,7 @@ const mapDiographToData = (diograph) => {
   const links = []
   Object.values(diograph).forEach((diory) => {
     if (diory.links) {
-      diory.links
+      Object.values(diory.links)
         .filter(({ id }) => !!diograph[id])
         .forEach((link) => {
           links.push({
@@ -67,12 +68,20 @@ const useLinkDistance = (ref) => {
 }
 
 const useDisplay = () => {
-  const [displayWidth, setDisplayWidth] = useState(window.innerWidth)
-  const [displayHeight, setDisplayHeight] = useState(window.innerHeight)
+  const { sideBarWidth } = useSelector((state) => state.sideBar)
+  const width = (sideBarWidth.right * window.innerWidth) / 100
+  const height = window.innerHeight
+
+  const [displayWidth, setDisplayWidth] = useState(width)
+  const [displayHeight, setDisplayHeight] = useState(height)
+
+  useEffect(() => {
+    setDisplayWidth(width)
+  }, [width, height])
 
   window.addEventListener('resize', () => {
-    setDisplayWidth(window.innerWidth)
-    setDisplayHeight(window.innerHeight)
+    setDisplayWidth(width)
+    setDisplayHeight(height)
   })
 
   return {
@@ -91,13 +100,13 @@ const GraphView = memo(
     const fgRef = useRef()
     useLinkDistance(fgRef)
 
-    const { displayHeight } = useDisplay()
+    const { displayHeight, displayWidth } = useDisplay()
     const data = mapDiographToData(diograph)
     return (
-      <Fullscreen background="#222">
+      <Fullscreen id="graph-view" background="#222">
         <ForceGraph3D
           ref={fgRef}
-          width={500}
+          width={displayWidth}
           height={displayHeight}
           showNavInfo={false}
           backgroundColor="rgba(0,0,0,0)"

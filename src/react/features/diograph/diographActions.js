@@ -72,10 +72,12 @@ export const resetDiograph =
     dispatch(updateDiograph())
   }
 
-export const generateDiograph =
-  () =>
+export const importDiograph =
+  (connection) =>
   async (dispatch, getState, { dioryClient }) => {
-    dioryClient.generateDiograph()
+    const { storyId } = getState().navigation
+    dioryClient.focusDiory({ id: storyId })
+    await dioryClient.importDiograph([connection])
     dispatch(updateDiograph())
   }
 

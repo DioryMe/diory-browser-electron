@@ -1,5 +1,4 @@
 {
-  "diories": {
     "/": {
       "id": "diory-demo-content"
     },
@@ -648,5 +647,4 @@
         }
       ]
     }
-  }
 }

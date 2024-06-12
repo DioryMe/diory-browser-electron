@@ -1,6 +1,6 @@
 {
   "connection": {
-    "address": "public/test",
+    "address": "public/diory-demo-content",
     "client": "LocalClient"
   }
 }

@@ -1,11 +1,11 @@
-export const CREATE_TOOL = 'CREATE_TOOL'
+export const BUTTON = 'CREATE_TOOL'
 
 export const buttons = [
   {
-    id: CREATE_TOOL,
+    id: BUTTON,
     text: 'Create diory',
     data: {
-      icon: 'plus',
+      icon: 'new-text-box',
       testid: 'create',
     },
   },

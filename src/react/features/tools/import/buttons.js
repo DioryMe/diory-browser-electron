@@ -1,12 +1,12 @@
-export const IMPORT_TOOLS = 'IMPORT_TOOLS'
+export const BUTTON = 'IMPORT_TOOL_BUTTON'
 
 export const buttons = [
   {
-    id: IMPORT_TOOLS,
-    text: 'Import',
+    id: BUTTON,
+    text: 'Import diograph',
     data: {
-      icon: 'plus',
-      testid: 'import',
+      icon: 'folder-new',
+      testid: 'generate',
     },
   },
 ]

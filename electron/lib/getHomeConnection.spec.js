@@ -1,5 +1,5 @@
 const { existsSync } = require('fs')
-const { getDioryHomeConnection } = require('./getDioryHomeConnection')
+const { getDioryHomeConnection } = require('./getHomeConnection')
 const { settingsStore } = require('./utils')
 
 const someDioryHomeConnection = {

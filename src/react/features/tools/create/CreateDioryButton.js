@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
 import { Button } from 'evergreen-ui'
-import { useDispatchActions } from '../../../store'
-import { createDiory } from '../../diograph/diographActions'
+
+import { useCreateDiory } from './useCreateDiory'
 
 import Icon from '../../../components/Icon'
 
@@ -16,13 +15,13 @@ const buttonStyles = {
 }
 
 const CreateDioryButton = ({ text }) => {
-  const { dispatch } = useDispatchActions()
+  const createDiory = useCreateDiory()
   return (
     <Button
       appearance="primary"
       intent="success"
       iconBefore={<Icon icon="plus" />}
-      onClick={() => dispatch(createDiory({ text }))}
+      onClick={() => createDiory({ text })}
       data-testid="add-button"
       {...buttonStyles}
     >

@@ -6,7 +6,7 @@
   "private": true,
   "dependencies": {
     "@diograph/local-client": "^0.3.0-rc6",
-    "@diory/client-js": "0.2.0-rc14",
+    "@diory/client-js": "^0.2.0",
     "electron-devtools-installer": "^3.2.0",
     "electron-log": "^4.4.7",
     "electron-notarize": "^1.2.1",
@@ -78,7 +78,7 @@
   "scripts": {
     "start": "BROWSER=none PORT=3300 ESLINT_NO_DEV_ERRORS=true react-scripts start",
     "start-electron": "export ELECTRON_START_URL=http://localhost:3300 && electron .",
-    "start-electron-dev-tools": "DEV_TOOLS=true export ELECTRON_START_URL=http://localhost:3300 && cross-env nodemon --exec electron .",
+    "start-electron-dev-tools": "DEV_TOOLS=true export ELECTRON_START_URL=http://localhost:3300 && cross-env electron .",
     "build-and-start-electron": "yarn build && electron .",
     "build-and-start-electron-dev-tools": "yarn build && DEV_TOOLS=true electron .",
     "build": "react-scripts build",

@@ -4,10 +4,13 @@ import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels'
 
+import { useDispatchActions } from './store'
 import { useGetHomeConnection } from './features/home/useGetHomeConnection'
 import { useGetDiosphereEffect } from './features/diosphere/useGetDiosphereEffect'
 import { useGetDiographEffect } from './features/diograph/useGetDiographEffect'
 import { useGoSide } from './features/navigation/useGoSide'
+
+import { setSideBarWidth } from './features/sideBar/sideBarActions'
 
 import { Home } from './features/home/Home'
 import { Diosphere } from './features/diosphere/Diosphere'
@@ -19,14 +22,19 @@ import Lenses from './features/lenses/Lenses'
 import Browser from './features/browser/Browser'
 
 import NavigationToSide from './components/NavigationToSide'
+import { debounce } from './utils'
 
 const Root = () => {
   useGetHomeConnection()
   useGetDiosphereEffect()
   useGetDiographEffect()
 
-  const { goLeft, goRight } = useGoSide()
+  const { dispatch } = useDispatchActions()
+  const onLayout = (widths) => {
+    dispatch(setSideBarWidth('right', widths[1]))
+  }
 
+  const { goLeft, goRight } = useGoSide()
   const { loaded } = useSelector((store) => store.diosphere)
   return (
     <>
@@ -35,7 +43,7 @@ const Root = () => {
       <DndProvider backend={HTML5Backend}>
         {loaded && (
           <Fullscreen top={48}>
-            <PanelGroup direction="horizontal">
+            <PanelGroup direction="horizontal" onLayout={debounce(onLayout, 100)}>
               <Panel defaultSize={80} minSize={10} style={{ position: 'relative' }}>
                 <NavigationToSide left onClick={goLeft} />
                 <Browser />

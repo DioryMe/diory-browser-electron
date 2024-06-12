@@ -1,12 +1,12 @@
 import React from 'react'
 
 import { useAddRoom } from './useAddRoom'
-import { AddRoomModal } from './AddRoomModal'
+import { UpdateRoomModal } from '../updateRoom/UpdateRoomModal'
 
 const AddRoom = () => {
   const { showModal, addRoom, toggleModal } = useAddRoom()
   return showModal ? (
-    <AddRoomModal title="Add room" onDone={addRoom} onCancel={toggleModal} />
+    <UpdateRoomModal title="Add room" onDone={addRoom} onCancel={toggleModal} />
   ) : null
 }
 
