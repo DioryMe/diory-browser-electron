@@ -4,13 +4,20 @@ import {
   ACTIVATE_CONTENT,
   INACTIVATE_CONTENT,
   TOGGLE_CONTENT,
+  SET_CONTENT_URL,
 } from './contentActionTypes'
 import { createReducer } from '../../store'
 
 const initialState = {
+  contentUrl: undefined,
   active: false,
   content: null,
 }
+
+const setContentUrl = (state, { payload }) => ({
+  ...state,
+  contentUrl: payload.contentUrl,
+})
 
 const addContent = (state, { payload }) => ({
   ...state,
@@ -38,6 +45,7 @@ const toggleContent = (state) => ({
 })
 
 export default createReducer(initialState, {
+  [SET_CONTENT_URL]: setContentUrl,
   [ADD_CONTENT]: addContent,
   [REMOVE_CONTENT]: removeContent,
   [ACTIVATE_CONTENT]: activateContent,

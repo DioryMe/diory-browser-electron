@@ -4,6 +4,7 @@ import {
   ACTIVATE_CONTENT,
   INACTIVATE_CONTENT,
   TOGGLE_CONTENT,
+  SET_CONTENT_URL,
 } from './contentActionTypes'
 
 export const addContent = () => ({
@@ -24,4 +25,9 @@ export const inactivateContent = () => ({
 
 export const toggleContent = () => ({
   type: TOGGLE_CONTENT,
+})
+
+export const setContentUrl = (contentUrl) => ({
+  type: SET_CONTENT_URL,
+  payload: { contentUrl },
 })

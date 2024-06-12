@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { useTogglePlayButtons } from '../../buttons/useTogglePlayButtons'
-import { getContentUrl, useContentElement } from '../contentUtils'
+import { useContentElement } from '../contentUtils'
 
 import Fullscreen from '../../../components/Fullscreen'
 import { useOpenFolderButton } from '../../buttons/useOpenFolderButton'
@@ -21,18 +21,17 @@ const options = {
   muted: false,
 }
 
-const AudioContent = ({ diory, baseUrl }) => {
+const AudioContent = ({ url }) => {
   const { refCallback, contentElement } = useContentElement()
-  const audioUrl = getContentUrl(diory, baseUrl)
 
   useTogglePlayButtons(contentElement, options.autoPlay)
-  useOpenFolderButton(audioUrl)
+  useOpenFolderButton(url)
 
   return (
     <Fullscreen>
       <audio
         ref={refCallback}
-        src={audioUrl}
+        src={url}
         style={audioStyles}
         data-testid="audio-content"
         {...options}
@@ -42,8 +41,7 @@ const AudioContent = ({ diory, baseUrl }) => {
 }
 
 AudioContent.propTypes = {
-  diory: PropTypes.object,
-  baseUrl: PropTypes.string,
+  url: PropTypes.string,
 }
 
 export default AudioContent

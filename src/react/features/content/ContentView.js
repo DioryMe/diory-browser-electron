@@ -8,15 +8,12 @@ import WebContent from './web/WebContent'
 
 import ImageContent from './image/ImageContent'
 
-const ContentView = ({ diory, style, baseUrl }) => {
-  const { data = [] } = diory
-  const { encodingFormat, url } = (data && data[0]) || {}
-
-  switch (encodingFormat) {
+const ContentView = ({ url, type, style }) => {
+  switch (type) {
     case 'image/jpeg':
       return (
         <div style={style}>
-          <ImageContent diory={diory} baseUrl={baseUrl} />
+          <ImageContent url={url} />
         </div>
       )
     case 'video/mp4':
@@ -24,31 +21,27 @@ const ContentView = ({ diory, style, baseUrl }) => {
     case 'video/quicktime':
       return (
         <div style={style}>
-          <VideoContent diory={diory} baseUrl={baseUrl} />
+          <VideoContent url={url} />
         </div>
       )
     case 'audio/mpeg':
     case 'audio/x-m4a':
     case 'audio/opus':
-      return <AudioContent diory={diory} baseUrl={baseUrl} />
+      return <AudioContent url={url} />
     case 'application/pdf':
-      return <DocumentContent diory={diory} baseUrl={baseUrl} />
+      return <DocumentContent url={url} />
     default:
       if (url && /^http(s)?:\/\//.exec(url)) {
-        return <WebContent diory={diory} />
+        return <WebContent url={url} />
       }
       return null
   }
 }
 
 ContentView.propTypes = {
-  diory: PropTypes.shape({
-    image: PropTypes.string,
-    style: PropTypes.object,
-    data: PropTypes.array,
-  }).isRequired,
   style: PropTypes.object,
-  baseUrl: PropTypes.string,
+  url: PropTypes.string,
+  type: PropTypes.string,
 }
 
 export default ContentView

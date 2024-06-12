@@ -1,9 +1,10 @@
 import React from 'react'
 
-import { useDiograph } from '../diograph/useDiograph'
-import { useDiosphere } from '../diosphere/useDiosphere'
+import { useSelector } from 'react-redux'
 
 import ContentView from './ContentView'
+import { useDiograph } from '../diograph/useDiograph'
+import { useContentUrl } from './useContentUrl'
 
 const contentStyle = {
   position: 'relative',
@@ -12,10 +13,13 @@ const contentStyle = {
 }
 
 const Content = () => {
+  useContentUrl()
+
+  const { contentUrl } = useSelector((state) => state.content)
   const { story } = useDiograph()
-  const { room } = useDiosphere()
-  const baseUrl = room.connections[0].address
-  return <ContentView diory={story} style={contentStyle} baseUrl={baseUrl} />
+  const { data = [] } = story
+  const { encodingFormat } = (data && data[0]) || {}
+  return <ContentView url={contentUrl} type={encodingFormat} style={contentStyle} />
 }
 
 export default Content

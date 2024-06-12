@@ -4,7 +4,6 @@ import { Pane } from 'evergreen-ui'
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack'
 
 import { usePageButtons } from '../../buttons/usePageButtons'
-import { getContentUrl } from '../contentUtils'
 import { useOpenFolderButton } from '../../buttons/useOpenFolderButton'
 
 const centerStyle = {
@@ -14,13 +13,12 @@ const centerStyle = {
   transform: 'translate(-50%, -50%)',
 }
 
-const DocumentContent = ({ diory, baseUrl }) => {
-  const documentUrl = getContentUrl(diory, baseUrl)
-  useOpenFolderButton(documentUrl)
+const DocumentContent = ({ url }) => {
+  useOpenFolderButton(url)
   const { pageNumber, setNumberOfPages } = usePageButtons()
 
   return (
-    <Document file={documentUrl} onLoadSuccess={({ numPages }) => setNumberOfPages(numPages)}>
+    <Document file={url} onLoadSuccess={({ numPages }) => setNumberOfPages(numPages)}>
       <Pane style={centerStyle} data-testid="document-content">
         <Page pageNumber={pageNumber} height={500} />
       </Pane>
@@ -29,8 +27,7 @@ const DocumentContent = ({ diory, baseUrl }) => {
 }
 
 DocumentContent.propTypes = {
-  diory: PropTypes.object,
-  baseUrl: PropTypes.string,
+  url: PropTypes.string,
 }
 
 export default DocumentContent

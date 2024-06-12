@@ -4,8 +4,6 @@ import { Pane } from 'evergreen-ui'
 
 import { useOpenInBrowser } from './useOpenInBrowser'
 
-import { getUrl } from '../contentUtils'
-
 const centerStyle = {
   position: 'absolute',
   top: '50%',
@@ -15,19 +13,18 @@ const centerStyle = {
   height: '150%',
 }
 
-const WebContent = ({ diory }) => {
-  const webUrl = getUrl(diory)
-  useOpenInBrowser(webUrl)
+const WebContent = ({ url }) => {
+  useOpenInBrowser(url)
 
   return (
     <Pane style={centerStyle}>
-      <iframe title="web-browser" src={webUrl} height="100%" width="100%" />
+      <iframe title="web-browser" src={url} height="100%" width="100%" />
     </Pane>
   )
 }
 
 WebContent.propTypes = {
-  diory: PropTypes.object,
+  url: PropTypes.string,
 }
 
 export default WebContent
