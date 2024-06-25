@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { useTogglePlayButtons } from '../../buttons/useTogglePlayButtons'
 import { useToggleMuteButtons } from '../../buttons/useToggleMuteButtons'
-import { getContentUrl, useContentElement } from '../contentUtils'
+import { useContentElement } from '../contentUtils'
 
 import Fullscreen from '../../../components/Fullscreen'
 import { useOpenFolderButton } from '../../buttons/useOpenFolderButton'
+import { getContentUrlFromCID } from '../../../utils'
 
 const videoStyles = {
   display: 'block',
@@ -24,7 +25,17 @@ const options = {
 
 const VideoContent = ({ diory, baseUrl }) => {
   const { refCallback, contentElement } = useContentElement()
-  const videoUrl = getContentUrl(diory, baseUrl)
+  const [videoUrl, setVideoUrl] = useState(null)
+
+  useEffect(() => {
+    const { data = [] } = diory
+    const { contentUrl, encodingFormat } = (data && data[0]) || {}
+    getContentUrlFromCID(contentUrl, encodingFormat).then((url) => setVideoUrl(url))
+  }, [])
+
+  // const handleOnLoad = () => {
+  //   revokeContentUrl(imageUrl)
+  // }
 
   useOpenFolderButton(videoUrl)
   useTogglePlayButtons(contentElement, options.autoPlay)

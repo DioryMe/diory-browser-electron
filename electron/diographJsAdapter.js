@@ -119,7 +119,7 @@ class DiographJsAdapter {
         },
         'demo-content-room-source': {
           id: 'demo-content-room-source',
-          text: 'Demo content room source',
+          text: 'Test folder generator',
           doors: [],
           connections: [
             {

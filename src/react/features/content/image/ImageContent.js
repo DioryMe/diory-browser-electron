@@ -9,12 +9,12 @@ const defaultStyles = {
   backgroundSize: 'contain',
 }
 
-const options = {
-  controls: false,
-  loop: false,
-  autoPlay: false,
-  muted: false,
-}
+// const options = {
+//   controls: false,
+//   loop: false,
+//   autoPlay: false,
+//   muted: false,
+// }
 
 const ImageContent = ({ diory, baseUrl }) => {
   const [imageUrl, setImageUrl] = useState(null)
@@ -23,7 +23,7 @@ const ImageContent = ({ diory, baseUrl }) => {
     const { data = [] } = diory
     const { contentUrl, encodingFormat } = (data && data[0]) || {}
     getContentUrlFromCID(contentUrl, encodingFormat).then((url) => setImageUrl(url))
-  }, [])
+  }, [diory])
 
   const handleOnLoad = () => {
     revokeContentUrl(imageUrl)

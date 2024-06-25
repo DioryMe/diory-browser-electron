@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { useTogglePlayButtons } from '../../buttons/useTogglePlayButtons'
-import { getContentUrl, useContentElement } from '../contentUtils'
+import { useContentElement } from '../contentUtils'
 
 import Fullscreen from '../../../components/Fullscreen'
 import { useOpenFolderButton } from '../../buttons/useOpenFolderButton'
@@ -31,7 +31,7 @@ const AudioContent = ({ diory, baseUrl }) => {
     const { data = [] } = diory
     const { contentUrl, encodingFormat } = (data && data[0]) || {}
     getContentUrlFromCID(contentUrl, encodingFormat).then((url) => setAudioUrl(url))
-  }, [])
+  }, [diory])
 
   // const handleOnLoad = () => {
   //   revokeContentUrl(imageUrl)
