@@ -54,16 +54,13 @@ class DiographJsAdapter {
         },
         'home-room': {
           id: 'home-room',
-          text: 'Home room',
+          text: 'Home room (/tmp)',
           doors: [
             {
               id: 'image-room-id',
             },
             {
               id: 'the-diory',
-            },
-            {
-              id: 'photo-room',
             },
             {
               id: 'demo-content-room-source',
@@ -80,7 +77,7 @@ class DiographJsAdapter {
         },
         'image-room-id': {
           id: 'image-room-id',
-          text: 'Image rooms',
+          text: 'Demo content room',
           doors: [],
           connections: [
             {
@@ -90,43 +87,6 @@ class DiographJsAdapter {
           ],
           created: '2024-03-24T14:56:21.243Z',
           modified: '2024-03-24T15:02:47.539Z',
-        },
-        'the-diory': {
-          id: 'the-diory',
-          text: 'The Diory',
-          doors: [],
-          connections: [
-            {
-              client: 'LocalClient',
-              address: '/Users/Jouni/My Diories/TheDiory/My Diory',
-            },
-          ],
-          created: '2024-03-24T14:56:21.243Z',
-          modified: '2024-03-24T15:02:47.539Z',
-        },
-        'photo-room': {
-          id: 'photo-room',
-          text: 'Photo room',
-          doors: [],
-          connections: [
-            {
-              client: 'LocalClient',
-              address: '/Users/Jouni/PhotoRoom/room',
-            },
-          ],
-          created: '2024-03-24T14:56:21.243Z',
-          modified: '2024-03-24T15:02:47.539Z',
-        },
-        'demo-content-room-source': {
-          id: 'demo-content-room-source',
-          text: 'Test folder generator',
-          doors: [],
-          connections: [
-            {
-              client: 'LocalClient',
-              address: '/Users/Jouni/Code/test-folder-generator/tmp',
-            },
-          ],
         },
       },
     }
