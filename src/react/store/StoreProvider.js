@@ -8,6 +8,13 @@ import { DioryClient } from '@diory/client-js'
 
 import { reducer } from './reducer'
 
+console.log('HELLO! I would like to be a feature flag :)')
+if (window.featureIsEnabled('DIOGRAPH_JS_ADAPTER')) {
+  console.log('Diograph-js-adapter is in use!')
+} else {
+  console.log('DioryClient is in use!')
+}
+
 const dioryClient = new DioryClient([window.localClient])
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(

@@ -6,6 +6,11 @@ const { channels } = require('../src/shared/constants')
 
 const { getHomeConnection } = require('./lib/getHomeConnection')
 const { saveHomeConnection } = require('./lib/saveHomeConnection')
+const { featureIsEnabled } = require('./lib/utils')
+
+// Feature flags
+process.env.FEATURE_DIOGRAPH_JS_ADAPTER = '1'
+contextBridge.exposeInMainWorld('featureIsEnabled', featureIsEnabled)
 
 contextBridge.exposeInMainWorld('localClient', new LocalClient())
 
