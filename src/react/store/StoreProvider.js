@@ -7,8 +7,12 @@ import { Provider } from 'react-redux'
 import { DioryClient } from '@diory/client-js'
 
 import { reducer } from './reducer'
+import { DioryClientAdapter } from './dioryClientAdapter'
 
-const dioryClient = new DioryClient([window.localClient])
+const dioryClient = window.featureIsEnabled('DCLI_ADAPTER')
+  ? window.dcliAdapter
+  : new DioryClientAdapter(new DioryClient([window.localClient]))
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   reducer,

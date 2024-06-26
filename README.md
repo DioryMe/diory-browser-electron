@@ -26,6 +26,7 @@
 - Add room
 - Delete room (TODO)
 - Drag border to resize
+- Change room
 
 ### Diory browser
 - Contexts (in header)
@@ -33,6 +34,11 @@
 - Story
 - Memories
   - Select to show story
+- Content shows/plays
+  - Image
+  - Audio
+  - Video
+  - PDF
 
 #### Add memories to stories 
 - Drag and drop diories
@@ -40,6 +46,7 @@
   - hand to memory
   - hand to story
   - story to hand
+  - on top of each other (both on grid and on hand)
 
 ### Lenses
 1. Graph

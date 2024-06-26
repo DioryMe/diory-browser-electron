@@ -25,7 +25,7 @@ const SearchView = ({ query, diorys, scrollIntoViewId, onClick, onDrop }) => {
           <CreateDioryButton text={query} />
         </Pane>
       )}
-      {diorys.length && (
+      {diorys.length ? (
         <DiorysGrid
           ref={searchRef}
           background={{ id: 'hand' }}
@@ -35,7 +35,7 @@ const SearchView = ({ query, diorys, scrollIntoViewId, onClick, onDrop }) => {
           onDrop={onDrop}
           {...scaleContainer}
         />
-      )}
+      ) : null}
     </Pane>
   )
 }

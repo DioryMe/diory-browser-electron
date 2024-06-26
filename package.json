@@ -5,14 +5,18 @@
   "main": "electron-main.js",
   "private": true,
   "dependencies": {
+    "@diograph/diograph": "0.2.5-rc1",
     "@diograph/local-client": "^0.3.0-rc6",
+    "@diograph/local-client2": "npm:@diograph/local-client@0.2.0-rc2",
+    "@diograph/s3-client": "^0.2.0",
     "@diory/client-js": "0.2.2",
     "electron-devtools-installer": "^3.2.0",
     "electron-log": "^4.4.7",
     "electron-notarize": "^1.2.1",
     "electron-store": "^8.0.2",
     "ffmpeg-static": "^5.0.0",
-    "glob": "^8.0.3"
+    "glob": "^8.0.3",
+    "ini": "^4.1.3"
   },
   "devDependencies": {
     "@4tw/cypress-drag-drop": "^2.2.0",
@@ -78,7 +82,7 @@
   "scripts": {
     "start": "BROWSER=none PORT=3300 ESLINT_NO_DEV_ERRORS=true react-scripts start",
     "start-electron": "export ELECTRON_START_URL=http://localhost:3300 && electron .",
-    "start-electron-dev-tools": "DEV_TOOLS=true export ELECTRON_START_URL=http://localhost:3300 && cross-env electron .",
+    "start-electron-dev-tools": "DEV_TOOLS=true export ELECTRON_START_URL=http://localhost:3300 && cross-env nodemon --exec electron .",
     "build-and-start-electron": "yarn build && electron .",
     "build-and-start-electron-dev-tools": "yarn build && DEV_TOOLS=true electron .",
     "build": "react-scripts build",

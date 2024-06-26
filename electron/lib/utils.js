@@ -1,6 +1,10 @@
 const fs = require('fs')
 const SettingsStore = process.env.NODE_ENV === 'test' ? {} : require('electron-store')
 
+exports.featureIsEnabled = function featureIsEnabled(featureName) {
+  return process.env[`FEATURE_${featureName}`] === '1'
+}
+
 exports.directoryExists = function directoryExists(folderPath) {
   return fs.existsSync(folderPath) && fs.lstatSync(folderPath).isDirectory()
 }
