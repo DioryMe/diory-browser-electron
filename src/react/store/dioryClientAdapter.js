@@ -1,5 +1,4 @@
 // TODO: Use from @diograph/diograph
-// eslint-disable-next-line import/no-unresolved, no-unused-vars
 import { validateDiograph } from './validateDiograph'
 
 function DioryClientAdapter(client) {
@@ -36,6 +35,54 @@ Object.assign(DioryClientAdapter.prototype, {
     this.room = this.dioryClient.room
     this.diograph = this.dioryClient.diograph
     this.diory = this.dioryClient.diory
+  },
+
+  focusDiory(dioryObject) {
+    this.client.focusDiory(dioryObject)
+  },
+
+  async importDiograph(connection) {
+    await this.client.importDiograph([connection])
+  },
+
+  diograph: {
+    initialise(diographData) {
+      this.diograph.initialise(diographData)
+    },
+
+    addDiory(dioryData, alias) {
+      this.diograph.addDiory(dioryData, alias)
+    },
+
+    updateDiory(dioryData) {
+      this.diograph.updateDiory(dioryData)
+    },
+
+    removeDiory(dioryData) {
+      this.diograph.removeDiory(dioryData)
+    },
+
+    addDioryLink(dioryObject, linkedDioryObject) {
+      this.diograph.addDioryLink(dioryObject, linkedDioryObject)
+    },
+
+    removeDioryLink(dioryObject, linkedDioryObject) {
+      this.diograph.removeDioryLink(dioryObject, linkedDioryObject)
+    },
+
+    resetDiograph() {
+      this.diograph.resetDiograph()
+    },
+
+    toObject() {
+      return this.diograph.toObject()
+    },
+  },
+
+  diory: {
+    toObject() {
+      return this.diory.toObject()
+    },
   },
 
   // async initialise(connections) {
