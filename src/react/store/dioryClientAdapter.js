@@ -16,8 +16,7 @@ Object.assign(DioryClientAdapter.prototype, {
   async initialiseDiosphere(connections) {
     await this.dioryClient.initialiseDiosphere(connections)
 
-    // TODO: Enable diosphere validation (+ generate schema)
-    // validateDiograph(this.dioryClient.diograph.toObject())
+    // TODO: Diosphere validation (+ generate schema)
 
     // sync
     this.room = this.dioryClient.room
@@ -28,8 +27,10 @@ Object.assign(DioryClientAdapter.prototype, {
   async initialiseDiograph(roomObject) {
     await this.dioryClient.initialiseDiograph(roomObject)
 
-    // TODO: Enable diograph validation
-    // validateDiograph(this.dioryClient.diograph.toObject())
+    // TODO: Use validateDiograph from @diograph/diograph
+    if (Object.keys(this.dioryClient.diograph.toObject()).length > 0) {
+      validateDiograph(this.dioryClient.diograph.toObject())
+    }
 
     // sync
     this.room = this.dioryClient.room
