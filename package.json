@@ -79,7 +79,7 @@
   "scripts": {
     "start": "BROWSER=none PORT=3300 ESLINT_NO_DEV_ERRORS=true react-scripts start",
     "start-electron": "export ELECTRON_START_URL=http://localhost:3300 && electron .",
-    "start-electron-dev-tools": "DEV_TOOLS=true export ELECTRON_START_URL=http://localhost:3300 && cross-env electron .",
+    "start-electron-dev-tools": "DEV_TOOLS=true export ELECTRON_START_URL=http://localhost:3300 && cross-env nodemon --exec electron .",
     "build-and-start-electron": "yarn build && electron .",
     "build-and-start-electron-dev-tools": "yarn build && DEV_TOOLS=true electron .",
     "build": "react-scripts build",

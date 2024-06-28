@@ -5,150 +5,162 @@ const { LocalClient: LocalClient2 } = require('@diograph/local-client2')
 
 function DiographJsAdapter() {
   this.loadedRoom = null
-  this.diograph = null
-}
+  this.loadedDiograph = null
+  this.diosphere = diosphereClass
+  this.diory = {}
+  this.room = {}
+  this.diograph = {}
+  this.roomInFocus = null
+  this.dioryInFocus = null
 
-Object.assign(DiographJsAdapter.prototype, {
-  async initialiseDiosphere(connections) {
-    this.selectRoom({ id: '/' })
-  },
+  this.initialiseDiograph = async (roomObject) => {
+    await this.selectRoom(roomObject)
 
-  async selectRoom(roomObject) {
+    this.focusDiory({ id: '/' })
+
+    return this.diograph
+  }
+
+  this.initialiseDiosphere = async (connections) => {
+    await this.selectRoom({ id: '/' })
+  }
+
+  this.selectRoom = async (roomObject) => {
     const roomId = roomObject.id === '/' ? 'home-room' : roomObject.id
-    const roomConfig = this.getDiosphereObject().rooms[roomId]
-    const { address } = roomConfig.connections[0]
-    const clientType = roomConfig.connections[0].client
+    this.roomConfig = this.diosphere.toObject().rooms[roomId]
+    const { address } = this.roomConfig.connections[0]
+    const clientType = this.roomConfig.connections[0].client
 
     this.loadedRoom = await this.getRoom(address, clientType)
-    this.diograph = this.loadedRoom.diograph
-    this.room = roomConfig
+    this.loadedDiograph = this.loadedRoom.diograph
 
-    validateDiograph(this.diograph.toObject())
-    this.diory = this.diograph.getDiory({ id: '/' })
-  },
+    validateDiograph(this.loadedDiograph.toObject())
+    this.dioryInFocus = this.loadedDiograph.getDiory({ id: '/' })
+  }
 
-  async getRoom(address, clientType) {
-    return constructAndLoadRoom(address, clientType, {
+  this.getRoom = async (address, clientType) =>
+    constructAndLoadRoom(address, clientType, {
       LocalClient: {
         clientConstructor: LocalClient2,
       },
     })
+
+  this.getDiograph = async () => this.loadedDiograph.toObject()
+
+  this.focusDiory = (dioryObject) => this.loadedDiograph.getDiory(dioryObject)
+
+  this.room.toObject = () => this.roomConfig
+
+  this.diograph.initialise = (diographData) => {
+    this.loadedDiograph.initialise(diographData)
+  }
+
+  this.diograph.getDiory = (dioryData) => {
+    this.loadedDiograph.getDiory(dioryData)
+  }
+
+  this.diograph.addDiory = (dioryData, alias) => {
+    this.loadedDiograph.addDiory(dioryData, alias)
+  }
+
+  this.diograph.updateDiory = (dioryData) => {
+    this.loadedDiograph.updateDiory(dioryData)
+  }
+
+  this.diograph.removeDiory = (dioryData) => {
+    this.loadedDiograph.removeDiory(dioryData)
+  }
+
+  this.diograph.addDioryLink = (dioryObject, linkedDioryObject) => {
+    this.loadedDiograph.addDioryLink(dioryObject, linkedDioryObject)
+  }
+
+  this.diograph.removeDioryLink = (dioryObject, linkedDioryObject) => {
+    this.loadedDiograph.removeDioryLink(dioryObject, linkedDioryObject)
+  }
+
+  this.diograph.resetDiograph = () => {
+    this.loadedDiograph.resetDiograph()
+  }
+
+  this.diograph.toObject = () => this.loadedDiograph.toObject()
+
+  this.diory.toObject = () => this.dioryInFocus.toObject()
+}
+
+const diosphereClass = {
+  addRoom() {
+    throw new Error('Not implemented')
   },
 
-  diograph: {
-    initialise(diographData) {
-      this.diograph.initialise(diographData)
-    },
-
-    addDiory(dioryData, alias) {
-      this.diograph.addDiory(dioryData, alias)
-    },
-
-    updateDiory(dioryData) {
-      this.diograph.updateDiory(dioryData)
-    },
-
-    removeDiory(dioryData) {
-      this.diograph.removeDiory(dioryData)
-    },
-
-    addDioryLink(dioryObject, linkedDioryObject) {
-      this.diograph.addDioryLink(dioryObject, linkedDioryObject)
-    },
-
-    removeDioryLink(dioryObject, linkedDioryObject) {
-      this.diograph.removeDioryLink(dioryObject, linkedDioryObject)
-    },
-
-    resetDiograph() {
-      this.diograph.resetDiograph()
-    },
-
-    toObject() {
-      return this.diograph.toObject()
-    },
+  updateRoom() {
+    throw new Error('Not implemented')
   },
 
-  diory: {
-    toObject() {
-      return this.diory.toObject()
-    },
+  removeRoom() {
+    throw new Error('Not implemented')
   },
 
-  diosphere: {
-    addRoom() {
-      throw new Error('Not implemented')
-    },
+  addRoomDoor() {
+    throw new Error('Not implemented')
+  },
 
-    updateRoom() {
-      throw new Error('Not implemented')
-    },
+  removeRoomDoor() {
+    throw new Error('Not implemented')
+  },
 
-    removeRoom() {
-      throw new Error('Not implemented')
-    },
+  resetRooms() {
+    throw new Error('Not implemented')
+  },
 
-    addRoomDoor() {
-      throw new Error('Not implemented')
-    },
-
-    removeRoomDoor() {
-      throw new Error('Not implemented')
-    },
-
-    resetRooms() {
-      throw new Error('Not implemented')
-    },
-
-    toObject() {
-      return {
-        rooms: {
-          '/': {
-            id: 'home-room',
-            created: '2024-03-24T14:56:21.243Z',
-            modified: '2024-03-24T14:56:21.243Z',
-          },
-          'home-room': {
-            id: 'home-room',
-            text: 'Home room (/tmp)',
-            doors: [
-              {
-                id: 'image-room-id',
-              },
-              {
-                id: 'the-diory',
-              },
-              {
-                id: 'demo-content-room-source',
-              },
-            ],
-            connections: [
-              {
-                client: 'LocalClient',
-                address: '/tmp',
-              },
-            ],
-            created: '2024-03-24T14:56:21.243Z',
-            modified: '2024-03-24T14:56:21.243Z',
-          },
-          'image-room-id': {
-            id: 'image-room-id',
-            text: 'Demo content room',
-            doors: [],
-            connections: [
-              {
-                client: 'LocalClient',
-                address: '/Users/Jouni/Code/demo-content-room',
-              },
-            ],
-            created: '2024-03-24T14:56:21.243Z',
-            modified: '2024-03-24T15:02:47.539Z',
-          },
+  toObject() {
+    return {
+      rooms: {
+        '/': {
+          id: 'home-room',
+          created: '2024-03-24T14:56:21.243Z',
+          modified: '2024-03-24T14:56:21.243Z',
         },
-      }
-    },
+        'home-room': {
+          id: 'home-room',
+          text: 'Home room (/tmp)',
+          doors: [
+            {
+              id: 'image-room-id',
+            },
+            {
+              id: 'the-diory',
+            },
+            {
+              id: 'demo-content-room-source',
+            },
+          ],
+          connections: [
+            {
+              client: 'LocalClient',
+              address: '/tmp',
+            },
+          ],
+          created: '2024-03-24T14:56:21.243Z',
+          modified: '2024-03-24T14:56:21.243Z',
+        },
+        'image-room-id': {
+          id: 'image-room-id',
+          text: 'Demo content room',
+          doors: [],
+          connections: [
+            {
+              client: 'LocalClient',
+              address: '/Users/Jouni/Code/demo-content-room',
+            },
+          ],
+          created: '2024-03-24T14:56:21.243Z',
+          modified: '2024-03-24T15:02:47.539Z',
+        },
+      },
+    }
   },
-})
+}
 
 /* async */ function getContentUrlFromCID(contentUrl) {
   const contentUrls = {
