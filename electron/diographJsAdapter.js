@@ -10,7 +10,6 @@ function DiographJsAdapter() {
   this.diory = {}
   this.room = {}
   this.diograph = {}
-  this.roomInFocus = null
   this.dioryInFocus = null
 
   this.initialiseDiograph = async (roomObject) => {
@@ -45,18 +44,18 @@ function DiographJsAdapter() {
       },
     })
 
-  this.getDiograph = async () => this.loadedDiograph.toObject()
-
   this.focusDiory = (dioryObject) => this.loadedDiograph.getDiory(dioryObject)
+
+  // async importDiograph(connection) {
+  //   await this.client.importDiograph([connection])
+  // },
 
   this.room.toObject = () => this.roomConfig
 
+  // Because of Electron object serialization all the methods needs to be on the same level
+  // - that's why this.loadedDiograph is used instead of this.diograph
   this.diograph.initialise = (diographData) => {
     this.loadedDiograph.initialise(diographData)
-  }
-
-  this.diograph.getDiory = (dioryData) => {
-    this.loadedDiograph.getDiory(dioryData)
   }
 
   this.diograph.addDiory = (dioryData, alias) => {
@@ -88,6 +87,7 @@ function DiographJsAdapter() {
   this.diory.toObject = () => this.dioryInFocus.toObject()
 }
 
+// Diosphere class doesn't do anything dynamic so it can be defined like this
 const diosphereClass = {
   addRoom() {
     throw new Error('Not implemented')
