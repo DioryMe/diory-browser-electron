@@ -26,7 +26,7 @@ function DiographJsAdapter() {
   }
 
   this.selectRoom = async (roomObject) => {
-    const roomId = roomObject.id === '/' ? 'home-room' : roomObject.id
+    const roomId = roomObject.id === '/' ? 'diograph-cli-room' : roomObject.id
     this.roomConfig = this.diosphere.toObject().rooms[roomId]
     const { address } = this.roomConfig.connections[0]
     const clientType = this.roomConfig.connections[0].client
@@ -114,51 +114,8 @@ const diosphereClass = {
   },
 
   toObject() {
-    return {
-      rooms: {
-        '/': {
-          id: 'home-room',
-          created: '2024-03-24T14:56:21.243Z',
-          modified: '2024-03-24T14:56:21.243Z',
-        },
-        'home-room': {
-          id: 'home-room',
-          text: 'Home room (/tmp)',
-          doors: [
-            {
-              id: 'image-room-id',
-            },
-            {
-              id: 'the-diory',
-            },
-            {
-              id: 'demo-content-room-source',
-            },
-          ],
-          connections: [
-            {
-              client: 'LocalClient',
-              address: '/tmp',
-            },
-          ],
-          created: '2024-03-24T14:56:21.243Z',
-          modified: '2024-03-24T14:56:21.243Z',
-        },
-        'image-room-id': {
-          id: 'image-room-id',
-          text: 'Demo content room',
-          doors: [],
-          connections: [
-            {
-              client: 'LocalClient',
-              address: '/Users/Jouni/Code/demo-content-room',
-            },
-          ],
-          created: '2024-03-24T14:56:21.243Z',
-          modified: '2024-03-24T15:02:47.539Z',
-        },
-      },
-    }
+    const diosphereObject = require('../public/diory-demo-content/diosphere.json')
+    return diosphereObject
   },
 }
 
