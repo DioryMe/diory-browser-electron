@@ -1,5 +1,5 @@
-// TODO: Use from @diograph/diograph
-import { validateDiograph } from './validateDiograph'
+// eslint-disable-next-line import/no-unresolved
+const { validateDiograph } = require('@diograph/diograph/validator')
 
 function DioryClientAdapter(client) {
   this.dioryClient = client

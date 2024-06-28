@@ -1380,6 +1380,17 @@
   dependencies:
     stackframe "^1.1.1"
 
+"@diograph/diograph@0.2.5-rc1":
+  version "0.2.5-rc1"
+  resolved "https://registry.yarnpkg.com/@diograph/diograph/-/diograph-0.2.5-rc1.tgz#a6f7231a3a0b3590284f899b1c0f20a8f11a09ed"
+  integrity sha512-ox4rblvy7aIhsYgU3Ig+B3W9Y7Ms7DhU/YMI6HrRK+mQjfka1XSuoQPdGTmhEU3CCZxuuqI/fqMTK/umljLlFA==
+  dependencies:
+    "@types/path-browserify" "^1.0.0"
+    "@types/uuid" "8.3.2"
+    ajv "^8.12.0"
+    path-browserify "^1.0.1"
+    uuid "8.3.2"
+
 "@diograph/diograph@0.3.0-rc11":
   version "0.3.0-rc11"
   resolved "https://registry.yarnpkg.com/@diograph/diograph/-/diograph-0.3.0-rc11.tgz#5785f9423371cfada2f101374b52fca8721dd7e2"
@@ -3262,7 +3273,7 @@
   resolved "https://registry.npmjs.org/@types/parse5/-/parse5-5.0.3.tgz"
   integrity sha512-kUNnecmtkunAoQ3CnjmMkzNU/gtxG8guhi+Fk2U/kOpIKjIMKnXGp4IJCgQJrXSgMsWYimYG4TGjz/UzbGEBTw==
 
-"@types/path-browserify@^1.0.2":
+"@types/path-browserify@^1.0.0", "@types/path-browserify@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@types/path-browserify/-/path-browserify-1.0.2.tgz#14b62d4371316016f254b9cca5c10e60ef33dcc0"
   integrity sha512-ZkC5IUqqIFPXx3ASTTybTzmQdwHwe2C0u3eL75ldQ6T9E9IWFJodn6hIfbZGab73DfyiHN4Xw15gNxUq2FbvBA==
@@ -3413,6 +3424,11 @@
   version "0.0.3"
   resolved "https://registry.npmjs.org/@types/use-sync-external-store/-/use-sync-external-store-0.0.3.tgz"
   integrity sha512-EwmlvuaxPNej9+T4v5AuBPJa2x2UOJVdjCtDHgcDqitUeOtjnJKJ+apYjVcAoBEMjKW1VVFGZLUb5+qqa09XFA==
+
+"@types/uuid@8.3.2":
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.2.tgz#b7077bdfc866dbb39939029774806f24e95be791"
+  integrity sha512-u40ViizKDmdl5FhOXn9WQbulpigYCaiD5hD4KqR3xyQww6l3+0ND+A9TeFla8tFpqvR+UAkJdYb/8jdaQG4/nw==
 
 "@types/verror@^1.10.3":
   version "1.10.5"
