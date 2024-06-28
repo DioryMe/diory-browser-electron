@@ -9,13 +9,6 @@ import { DioryClient } from '@diory/client-js'
 import { reducer } from './reducer'
 import { DioryClientAdapter } from './dioryClientAdapter'
 
-console.log('HELLO! I would like to be a feature flag :)')
-if (window.featureIsEnabled('DIOGRAPH_JS_ADAPTER')) {
-  console.log('Diograph-js-adapter is in use!')
-} else {
-  console.log('DioryClient is in use!')
-}
-
 const dioryClient = window.featureIsEnabled('DIOGRAPH_JS_ADAPTER')
   ? window.diographJsAdapter
   : new DioryClientAdapter(new DioryClient([window.localClient]))
