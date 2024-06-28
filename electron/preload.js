@@ -1,16 +1,20 @@
 const { contextBridge, shell, ipcRenderer } = require('electron')
 const { fileURLToPath } = require('url')
-const { LocalClient } = require('@diograph/local-client')
 
+const { LocalClient } = require('@diograph/local-client')
 const { channels } = require('../src/shared/constants')
 
 const { getHomeConnection } = require('./lib/getHomeConnection')
 const { saveHomeConnection } = require('./lib/saveHomeConnection')
 const { featureIsEnabled } = require('./lib/utils')
+// const { DiographJsAdapter } = require('./diographJsAdapter')
 
 // Feature flags
-process.env.FEATURE_DIOGRAPH_JS_ADAPTER = '1'
+process.env.FEATURE_DIOGRAPH_JS_ADAPTER = '0'
 contextBridge.exposeInMainWorld('featureIsEnabled', featureIsEnabled)
+
+// const diographJsAdapter = new DiographJsAdapter()
+// contextBridge.exposeInMainWorld('diographJsAdapter', diographJsAdapter)
 
 contextBridge.exposeInMainWorld('localClient', new LocalClient())
 

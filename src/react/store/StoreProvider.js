@@ -16,6 +16,10 @@ if (window.featureIsEnabled('DIOGRAPH_JS_ADAPTER')) {
   console.log('DioryClient is in use!')
 }
 
+// const dioryClient = window.featureIsEnabled('DIOGRAPH_JS_ADAPTER')
+//   ? window.diographJsAdapter
+//   : new DioryClientAdapter(new DioryClient([window.localClient]))
+
 const dioryClient = new DioryClientAdapter(new DioryClient([window.localClient]))
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
