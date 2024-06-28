@@ -202,4 +202,4 @@ Object.assign(DiographJsAdapter.prototype, {
   return contentUrl
 }
 
-export { DiographJsAdapter, getContentUrlFromCID }
+module.exports = { DiographJsAdapter, getContentUrlFromCID }
