@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { useOpenFolderButton } from '../../buttons/useOpenFolderButton'
 
 import Image from '../../../components/diories/Image'
-import { getContentUrlFromCID } from '../../../store/dioryClientAdapter'
+import { getContentUrlFromCID } from '../../../utils'
 
 const defaultStyles = {
   backgroundSize: 'contain',

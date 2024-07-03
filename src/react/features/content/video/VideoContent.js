@@ -7,7 +7,7 @@ import { useContentElement } from '../contentUtils'
 
 import Fullscreen from '../../../components/Fullscreen'
 import { useOpenFolderButton } from '../../buttons/useOpenFolderButton'
-import { getContentUrlFromCID } from '../../../store/dioryClientAdapter'
+import { getContentUrlFromCID } from '../../../utils'
 
 const videoStyles = {
   display: 'block',

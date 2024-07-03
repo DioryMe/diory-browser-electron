@@ -8,7 +8,7 @@ const { saveHomeConnection } = require('./lib/saveHomeConnection')
 const { featureIsEnabled } = require('./lib/utils')
 
 // Feature flags
-process.env.FEATURE_DIOGRAPH_JS_ADAPTER = '1'
+process.env.FEATURE_DIOGRAPH_JS_ADAPTER = '0'
 contextBridge.exposeInMainWorld('featureIsEnabled', featureIsEnabled)
 
 if (featureIsEnabled('DIOGRAPH_JS_ADAPTER')) {
