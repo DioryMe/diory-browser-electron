@@ -1,5 +1,4 @@
 export { debounce } from './debounce'
-export { convertToFileUrl } from './convertToFileUrl'
 
 export const getContentUrlFromCID = async (cid, encodingFormat) => {
   if (window.featureIsEnabled('DIOGRAPH_JS_ADAPTER')) {
