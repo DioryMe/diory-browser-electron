@@ -7,7 +7,6 @@ import { useContentElement } from '../contentUtils'
 
 import Fullscreen from '../../../components/Fullscreen'
 import { useOpenFolderButton } from '../../buttons/useOpenFolderButton'
-import { getContentUrlFromCID } from '../../../utils'
 
 const videoStyles = {
   display: 'block',
@@ -24,12 +23,9 @@ const options = {
 }
 
 const VideoContent = ({ url }) => {
-  // TODO: Currently this is not async, but with DiographJsAdapter it should be
-  const convertedUrl = getContentUrlFromCID(url)
-
   const { refCallback, contentElement } = useContentElement()
 
-  useOpenFolderButton(convertedUrl)
+  useOpenFolderButton(url)
   useTogglePlayButtons(contentElement, options.autoPlay)
   useToggleMuteButtons(contentElement, options.muted)
 
@@ -37,7 +33,7 @@ const VideoContent = ({ url }) => {
     <Fullscreen>
       <video
         ref={refCallback}
-        src={convertedUrl}
+        src={url}
         style={videoStyles}
         data-testid="video-content"
         {...options}

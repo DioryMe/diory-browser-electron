@@ -6,7 +6,6 @@ import { useContentElement } from '../contentUtils'
 
 import Fullscreen from '../../../components/Fullscreen'
 import { useOpenFolderButton } from '../../buttons/useOpenFolderButton'
-import { getContentUrlFromCID } from '../../../utils'
 
 const audioStyles = {
   display: 'block',
@@ -23,19 +22,16 @@ const options = {
 }
 
 const AudioContent = ({ url }) => {
-  // TODO: Currently this is not async, but with DiographJsAdapter it should be
-  const convertedUrl = getContentUrlFromCID(url)
-
   const { refCallback, contentElement } = useContentElement()
 
   useTogglePlayButtons(contentElement, options.autoPlay)
-  useOpenFolderButton(convertedUrl)
+  useOpenFolderButton(url)
 
   return (
     <Fullscreen>
       <audio
         ref={refCallback}
-        src={convertedUrl}
+        src={url}
         style={audioStyles}
         data-testid="audio-content"
         {...options}

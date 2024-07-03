@@ -15,7 +15,7 @@ Object.assign(DioryClientAdapter.prototype, {
   async initialiseDiosphere(connections) {
     await this.dioryClient.initialiseDiosphere(connections)
 
-    // TODO: Validate diosphere (generate schema first for it...)
+    // TODO: Diosphere validation (+ generate schema)
 
     // sync
     this.room = this.dioryClient.room

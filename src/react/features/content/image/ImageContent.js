@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { useOpenFolderButton } from '../../buttons/useOpenFolderButton'
 
 import Image from '../../../components/diories/Image'
-import { getContentUrlFromCID } from '../../../utils'
 
 const defaultStyles = {
   backgroundSize: 'contain',
@@ -18,15 +17,10 @@ const options = {
 }
 
 const ImageContent = ({ url }) => {
-  // TODO: Currently this is not async, but with DiographJsAdapter it should be
-  const convertedUrl = getContentUrlFromCID(url)
+  console.log(url)
+  useOpenFolderButton(url)
 
-  console.log(convertedUrl)
-  useOpenFolderButton(convertedUrl)
-
-  return (
-    <Image image={convertedUrl} style={defaultStyles} data-testid="image-content" {...options} />
-  )
+  return <Image image={url} style={defaultStyles} data-testid="image-content" {...options} />
 }
 
 ImageContent.propTypes = {
