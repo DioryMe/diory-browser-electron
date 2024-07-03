@@ -8,13 +8,13 @@ const { saveHomeConnection } = require('./lib/saveHomeConnection')
 const { featureIsEnabled } = require('./lib/utils')
 
 // Feature flags
-process.env.FEATURE_DIOGRAPH_JS_ADAPTER = '1'
+process.env.FEATURE_DCLI_ADAPTER = '1'
 contextBridge.exposeInMainWorld('featureIsEnabled', featureIsEnabled)
 
-if (featureIsEnabled('DIOGRAPH_JS_ADAPTER')) {
-  const { DiographJsAdapter } = require('./diographJsAdapter')
-  const diographJsAdapter = new DiographJsAdapter()
-  contextBridge.exposeInMainWorld('diographJsAdapter', diographJsAdapter)
+if (featureIsEnabled('DCLI_ADAPTER')) {
+  const { DcliAdapter } = require('./dcliAdapter')
+  const dcliAdapter = new DcliAdapter()
+  contextBridge.exposeInMainWorld('dcliAdapter', dcliAdapter)
 } else {
   const { LocalClient } = require('@diograph/local-client')
   contextBridge.exposeInMainWorld('localClient', new LocalClient())

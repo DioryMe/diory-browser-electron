@@ -1,8 +1,8 @@
 export { debounce } from './debounce'
 
 export const getContentUrlFromCID = async (cid, encodingFormat) => {
-  if (window.featureIsEnabled('DIOGRAPH_JS_ADAPTER')) {
-    const loadedRoom = await window.diographJsAdapter.getLoadedRoom()
+  if (window.featureIsEnabled('DCLI_ADAPTER')) {
+    const loadedRoom = await window.dcliAdapter.getLoadedRoom()
     const content = await loadedRoom.readContent(cid)
     const url = URL.createObjectURL(new Blob([content], { type: encodingFormat }))
     console.log('Created URL: ', url)
@@ -64,8 +64,8 @@ export const getContentUrlFromCID = async (cid, encodingFormat) => {
 // FIXME: revokeContentUrl is not currently triggered anywhere
 // - should be done after loading the content
 export const revokeContentUrl = (url) => {
-  if (window.featureIsEnabled('DIOGRAPH_JS_ADAPTER')) {
-    window.diographJsAdapter.revokeContentUrl(url)
+  if (window.featureIsEnabled('DCLI_ADAPTER')) {
+    window.dcliAdapter.revokeContentUrl(url)
     console.log('Revoked URL: ', url)
     return
   }

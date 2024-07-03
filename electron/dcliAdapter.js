@@ -6,7 +6,7 @@ const fs = require('fs')
 const ini = require('ini')
 const { validateDiosphere } = require('../src/shared/validateDiosphere')
 
-function DiographJsAdapter() {
+function DcliAdapter() {
   this.loadedRoom = null
   this.loadedDiograph = null
   this.diosphere = diosphereClass
@@ -175,4 +175,4 @@ function convertDotDcliToDiosphere(dotDcliObject) {
   return { rooms }
 }
 
-module.exports = { DiographJsAdapter }
+module.exports = { DcliAdapter }
