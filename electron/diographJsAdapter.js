@@ -2,6 +2,9 @@
 const { validateDiograph } = require('@diograph/diograph/validator')
 const { constructAndLoadRoom } = require('@diograph/diograph')
 const { LocalClient: LocalClient2 } = require('@diograph/local-client2')
+const fs = require('fs')
+const ini = require('ini')
+const { validateDiosphere } = require('./validateDiosphere')
 
 function DiographJsAdapter() {
   this.loadedRoom = null
@@ -25,7 +28,7 @@ function DiographJsAdapter() {
   }
 
   this.selectRoom = async (roomObject) => {
-    const roomId = roomObject.id === '/' ? 'diograph-cli-room' : roomObject.id
+    const roomId = roomObject.id === '/' ? 'room-1' : roomObject.id
     this.roomConfig = this.diosphere.toObject().rooms[roomId]
     const { address } = this.roomConfig.connections[0]
     const clientType = this.roomConfig.connections[0].client
@@ -116,9 +119,60 @@ const diosphereClass = {
   },
 
   toObject() {
-    const diosphereObject = require('../public/diory-demo-content/diosphere.json')
+    // const diosphereObject = require('../public/diory-demo-content/diosphere.json')
+    const dotDcliContent = fs.readFileSync('/Users/Jouni/.dcli', 'utf-8')
+    const parsedDotDcli = ini.parse(dotDcliContent)
+    const diosphereObject = convertDotDcliToDiosphere(parsedDotDcli)
+    validateDiosphere(diosphereObject)
+    // console.log('diosphereObject', JSON.stringify(diosphereObject))
+    // console.log('diosphereObject', diosphereObject)
     return diosphereObject
   },
+}
+
+function convertDotDcliToDiosphere(dotDcliObject) {
+  const rooms = Object.keys(dotDcliObject.rooms).reduce((acc, key) => {
+    const room = {
+      id: key,
+      created: new Date().toISOString(),
+      modified: new Date().toISOString(),
+      text: key,
+      doors: [],
+      connections: [
+        {
+          address: dotDcliObject.rooms[key].address,
+          client: dotDcliObject.rooms[key].clientType,
+        },
+      ],
+    }
+    acc[key] = room
+    return acc
+  }, {})
+
+  rooms['home-room'] = {
+    id: 'home-room',
+    text: 'Home room',
+    connections: [
+      {
+        client: 'LocalClient',
+        address: '/Users/Jouni/Code/Oopee-diory/diory-browser-electron/public/diory-demo-content',
+      },
+    ],
+    created: '2024-03-24T14:56:21.243Z',
+    modified: '2024-03-24T14:56:21.243Z',
+  }
+
+  rooms['home-room'].doors = Object.keys(rooms)
+    .filter((key) => key !== 'home-room')
+    .map((key) => ({ id: key }))
+
+  rooms['/'] = {
+    id: 'home-room',
+    created: '2024-03-24T14:56:21.243Z',
+    modified: '2024-03-24T14:56:21.243Z',
+  }
+
+  return { rooms }
 }
 
 module.exports = { DiographJsAdapter }
