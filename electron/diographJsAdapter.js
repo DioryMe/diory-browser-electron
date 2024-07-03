@@ -4,7 +4,7 @@ const { constructAndLoadRoom } = require('@diograph/diograph')
 const { LocalClient: LocalClient2 } = require('@diograph/local-client2')
 const fs = require('fs')
 const ini = require('ini')
-const { validateDiosphere } = require('./validateDiosphere')
+const { validateDiosphere } = require('../src/shared/validateDiosphere')
 
 function DiographJsAdapter() {
   this.loadedRoom = null
