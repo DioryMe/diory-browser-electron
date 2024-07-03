@@ -27,11 +27,10 @@ const DiorysGrid = forwardRef(
       display="flex"
       flexWrap="wrap"
       alignContent="flex-start"
-      padding={24}
       paddingBottom={264}
       {...props}
     >
-      <Pane position="absolute" width="100%" height="100%" margin={-24} marginBottom={-264}>
+      <Pane position="absolute" width="100%" height="100%" margin={0} marginBottom={-264}>
         <DragDrop diory={background} onDrop={onBackgroundDrop} onClick={onBackgroundClick} />
       </Pane>
       {diorys.map((diory) => (

@@ -7,8 +7,6 @@ import { useCreateDiory } from './useCreateDiory'
 import Icon from '../../../components/Icon'
 
 const buttonStyles = {
-  marginX: 24,
-  marginY: 12,
   borderRadius: 0,
   whiteSpace: 'normal',
   lineHeight: 1.2,

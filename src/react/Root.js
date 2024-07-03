@@ -19,6 +19,7 @@ import Tools from './features/tools/Tools'
 import Buttons from './features/buttons/Buttons'
 import Fullscreen from './components/Fullscreen'
 import Lenses from './features/lenses/Lenses'
+import { Hand } from './features/hand/Hand'
 import Browser from './features/browser/Browser'
 
 import NavigationToSide from './components/NavigationToSide'
@@ -42,23 +43,27 @@ const Root = () => {
       <Navigation />
       <DndProvider backend={HTML5Backend}>
         {loaded && (
-          <Fullscreen top={48}>
+          <Fullscreen top={44}>
             <PanelGroup direction="horizontal" onLayout={debounce(onLayout, 100)}>
+              <Panel defaultSize={10} minSize={1} style={{ position: 'relative' }}>
+                <Diosphere />
+              </Panel>
+              <PanelResizeHandle />
               <Panel defaultSize={80} minSize={10} style={{ position: 'relative' }}>
                 <NavigationToSide left onClick={goLeft} />
                 <Browser />
                 <NavigationToSide right onClick={goRight} />
               </Panel>
               <PanelResizeHandle />
-              <Panel defaultSize={20} minSize={1} style={{ position: 'relative' }}>
+              <Panel defaultSize={10} minSize={1} style={{ position: 'relative' }}>
                 <Lenses />
+                <Hand />
               </Panel>
             </PanelGroup>
           </Fullscreen>
         )}
         <Tools />
       </DndProvider>
-      <Diosphere />
       <Buttons />
     </>
   )

@@ -11,7 +11,7 @@ const useSearchBar = () => {
   const { selectedLensId } = useSelector((state) => state.lenses)
   const { dispatch } = useDispatchActions()
   return {
-    disabled: !!room,
+    disabled: !room,
     onSearch: ({ target: { value } }) => {
       dispatch(searchDiories(value))
       if (selectedLensId !== 'search') {
@@ -28,7 +28,7 @@ export const SearchBar = () => {
       autoFocus
       autoComplete="off"
       onChange={onSearch}
-      width={160}
+      width="100%"
       data-testid="search-input"
     />
   )

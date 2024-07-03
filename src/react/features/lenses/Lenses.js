@@ -5,7 +5,7 @@ import MapLens from './map/MapLens'
 // import TimelineLens from './timeline/TimelineLens'
 import SearchLens from './search/SearchLens'
 
-export const DEFAULT_LENS = 'search'
+export const DEFAULT_LENS = null
 
 const Lenses = () => (
   <>

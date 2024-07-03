@@ -1,5 +1,4 @@
 import React from 'react'
-import { Tablist } from 'evergreen-ui'
 
 import { useDispatchActions, useSelector } from '../../store'
 
@@ -25,13 +24,7 @@ export const useLensesNavigation = () => {
 
 const LensesNavigation = () => {
   const { lensButtons } = useLensesNavigation()
-  return (
-    <Tablist alignSelf="center" marginLeft="auto" marginRight={8}>
-      {lensButtons.map((lensButton) => (
-        <NavigationIcon {...lensButton} {...lensButton.diory} />
-      ))}
-    </Tablist>
-  )
+  return lensButtons.map((lensButton) => <NavigationIcon {...lensButton} {...lensButton.diory} />)
 }
 
 export default LensesNavigation

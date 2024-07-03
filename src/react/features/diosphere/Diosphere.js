@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu } from 'evergreen-ui'
+import { Menu, Pane } from 'evergreen-ui'
 
 import { useDispatchActions, useSelector } from '../../store'
 import { useSideBar } from '../sideBar/useSideBar'
@@ -10,7 +10,6 @@ import { getParentIds } from './utils/getParentIds'
 
 import { UpdateRoom } from './actions/updateRoom/UpdateRoom'
 import { AddRoom } from './actions/addRoom/AddRoom'
-import SideBar from '../sideBar/SideBar'
 import { DiosphereTree } from './sidebar/DiosphereTree'
 
 const useActions = () => {
@@ -42,11 +41,11 @@ export const Diosphere = () => {
   const roomId = diosphereState.rootId
   return roomId ? (
     <>
-      <SideBar id="left" left={0} top={48} width={300} backgroundColor="#222">
+      <Pane id="left" left={0} top={0} height="100%" backgroundColor="#222">
         <Menu appearance="minimal">
           <DiosphereTree roomId={roomId} diosphereState={diosphereState} actions={actions} />
         </Menu>
-      </SideBar>
+      </Pane>
       <UpdateRoom />
       <AddRoom />
     </>

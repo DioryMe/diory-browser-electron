@@ -4,8 +4,9 @@ import { useDispatchActions } from '../../../store'
 import { useDiograph } from '../../diograph/useDiograph'
 
 import { inactivateButton } from '../../buttons/buttonsActions'
-import { addDioryToHand, deselectTool } from '../toolsActions'
+import { deselectTool } from '../toolsActions'
 import { createDiory, createLink } from '../../diograph/diographActions'
+import { addDioryToHand } from '../../hand/handActions'
 
 export const useCreateDiory = () => {
   const { story } = useDiograph()
@@ -15,7 +16,7 @@ export const useCreateDiory = () => {
     const image = getDefaultImage()
     const { diory } = dispatch(createDiory({ image, ...newDiory }))
     dispatch(createLink(story, diory))
-    dispatch(addDioryToHand(diory.id))
+    dispatch(addDioryToHand(diory))
     dispatch(inactivateButton())
     dispatch(deselectTool())
   }

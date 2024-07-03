@@ -4,7 +4,7 @@ import { Pane } from 'evergreen-ui'
 
 import CreateDioryButton from '../../tools/create/CreateDioryButton'
 import DiorysGrid from '../../../components/DiorysGrid'
-import NavigationButton from '../../../components/NavigationButton'
+import { SearchBar } from './SearchBar'
 
 const scaleContainer = {
   transformOrigin: 'top left',
@@ -13,30 +13,29 @@ const scaleContainer = {
   height: '200%',
 }
 
-const SearchView = ({
-  query,
-  diorys,
-  scrollIntoViewId,
-  onClick,
-  onClear,
-  onDrop,
-  onBackgroundDrop,
-}) => {
+const SearchView = ({ query, diorys, scrollIntoViewId, onClick, onDrop }) => {
   const searchRef = useRef()
   return (
-    <Pane background="#222" height="100%">
-      {query && <CreateDioryButton text={query} />}
-      {!query && diorys.length && <NavigationButton text="Clear" onClick={onClear} float="right" />}
-      <DiorysGrid
-        ref={searchRef}
-        background={{ id: 'hand' }}
-        diorys={diorys}
-        scrollIntoViewId={scrollIntoViewId}
-        onClick={onClick}
-        onDrop={onDrop}
-        onBackgroundDrop={onBackgroundDrop}
-        {...scaleContainer}
-      />
+    <Pane background="#222" height="100%" padding={12}>
+      <Pane padding={12}>
+        <SearchBar width="100%" />
+      </Pane>
+      {query && (
+        <Pane padding={12}>
+          <CreateDioryButton text={query} />
+        </Pane>
+      )}
+      {diorys.length && (
+        <DiorysGrid
+          ref={searchRef}
+          background={{ id: 'hand' }}
+          diorys={diorys}
+          scrollIntoViewId={scrollIntoViewId}
+          onClick={onClick}
+          onDrop={onDrop}
+          {...scaleContainer}
+        />
+      )}
     </Pane>
   )
 }
@@ -46,9 +45,7 @@ SearchView.propTypes = {
   diorys: PropTypes.array.isRequired,
   scrollIntoViewId: PropTypes.string,
   onClick: PropTypes.func.isRequired,
-  onClear: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,
-  onBackgroundDrop: PropTypes.func.isRequired,
 }
 
 export default SearchView

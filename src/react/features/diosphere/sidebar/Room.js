@@ -13,12 +13,7 @@ const resolveIcon = ({ doors = [] }, open) => {
 }
 
 const Room = ({ room, isOpen, isInRoom, level, onToggle, onEnterRoom }) => (
-  <Pane
-    display="flex"
-    color="white"
-    paddingLeft={(level + 1) * 8}
-    background={isInRoom ? 'grey' : ''}
-  >
+  <Pane display="flex" paddingLeft={(level + 1) * 8} color={isInRoom ? 'white' : 'grey'}>
     <Pane flex={1} display="flex" alignItems="center" cursor="pointer">
       <Icon icon={resolveIcon(room, isOpen)} marginRight={8} onClick={onToggle} />
       <Pane onClick={() => onEnterRoom(room.id)}>{room.text || room.id}</Pane>

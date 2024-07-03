@@ -9,7 +9,6 @@ const RoomButton = ({ icon, onClick, ...props }) => (
     icon={<Icon icon={icon} />}
     onClick={onClick}
     appearance="minimal"
-    intent="success"
     alignSelf="right"
   />
 )

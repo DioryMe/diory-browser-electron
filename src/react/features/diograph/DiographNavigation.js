@@ -59,17 +59,12 @@ const DiographNavigation = () => {
     <>
       {contextButton && (
         <>
-          <Pane {...navigationTextStyle}>/</Pane>
           <NavigationButton {...contextButton} />
           <PillSelectMenu {...contextsPill} />
-        </>
-      )}
-      {storyButton && (
-        <>
           <Pane {...navigationTextStyle}>/</Pane>
-          <NavigationButton {...storyButton} />
         </>
       )}
+      {storyButton && <NavigationButton {...storyButton} />}
     </>
   )
 }

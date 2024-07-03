@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { Room } from './Room'
 
-const DiosphereTree = ({ roomId, level = 0, diosphereState, actions }) => {
+const DiosphereTree = ({ roomId, level = -1, diosphereState, actions }) => {
   const room = diosphereState.rooms[roomId]
 
   const [isOpen, toggleOpen] = useState(diosphereState.openRooms.includes(roomId))
