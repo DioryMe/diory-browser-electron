@@ -8,48 +8,15 @@
     "home-room": {
       "id": "home-room",
       "text": "Home room",
-      "doors": [
-        {
-          "id": "diograph-cli-room"
-        },
-        {
-          "id": "demo-content-room"
-        }
-      ],
       "connections": [
         {
           "id": "diory-demo-content",
           "client": "LocalClient",
-          "address": "/Users/Jouni/Code/Oopee-diory/diory-browser-electron/public/diory-demo-content"
+          "address": "public/diory-demo-content"
         }
       ],
       "created": "2024-03-24T14:56:21.243Z",
       "modified": "2024-03-24T14:56:21.243Z"
-    },
-    "diograph-cli-room": {
-      "id": "diograph-cli-room",
-      "text": "Diograph CLI room",
-      "connections": [
-        {
-          "client": "LocalClient",
-          "address": "/tmp"
-        }
-      ],
-      "created": "2024-03-24T14:56:21.243Z",
-      "modified": "2024-03-24T14:56:21.243Z"
-    },
-    "demo-content-room": {
-      "id": "demo-content-room",
-      "text": "Demo content room",
-      "doors": [],
-      "connections": [
-        {
-          "client": "LocalClient",
-          "address": "/Users/Jouni/Code/demo-content-room"
-        }
-      ],
-      "created": "2024-03-24T14:56:21.243Z",
-      "modified": "2024-03-24T15:02:47.539Z"
     }
   }
 }
