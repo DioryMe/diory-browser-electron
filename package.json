@@ -8,6 +8,7 @@
     "@diograph/diograph": "0.2.5-rc1",
     "@diograph/local-client": "^0.3.0-rc6",
     "@diory/client-js": "0.2.2",
+    "@diograph/local-client2": "npm:@diograph/local-client@0.2.0-rc2",
     "electron-devtools-installer": "^3.2.0",
     "electron-log": "^4.4.7",
     "electron-notarize": "^1.2.1",
