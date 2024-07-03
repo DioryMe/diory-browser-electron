@@ -3,15 +3,16 @@ import { useDispatchActions } from '../../store'
 import { useDiograph } from '../diograph/useDiograph'
 
 import { setContentUrl } from './contentActions'
-import { convertToFileUrl } from '../../utils'
+import { getContentUrlFromCID } from '../../utils'
 
 export const useContentUrl = () => {
   const { story } = useDiograph()
   const { data = [] } = story
-  const { contentUrl } = (data && data[0]) || {}
-  const url = convertToFileUrl(contentUrl)
+  const { contentUrl, encodingFormat } = (data && data[0]) || {}
   const { dispatch } = useDispatchActions()
   useEffect(() => {
-    dispatch(setContentUrl(url))
-  }, [dispatch, url])
+    getContentUrlFromCID(contentUrl, encodingFormat).then((url) => {
+      dispatch(setContentUrl(url))
+    })
+  }, [dispatch, contentUrl, encodingFormat])
 }

@@ -1,14 +1,14 @@
 export { debounce } from './debounce'
 export { convertToFileUrl } from './convertToFileUrl'
 
-export const getContentUrlFromCID = /* async */ (cid, encodingFormat) => {
-  // if (window.featureIsEnabled('DIOGRAPH_JS_ADAPTER')) {
-  //   const loadedRoom = await window.diographJsAdapter.getLoadedRoom()
-  //   const content = await loadedRoom.readContent(cid)
-  //   const url = URL.createObjectURL(new Blob([content], { type: encodingFormat }))
-  //   console.log('Created URL: ', url)
-  //   return url
-  // }
+export const getContentUrlFromCID = async (cid, encodingFormat) => {
+  if (window.featureIsEnabled('DIOGRAPH_JS_ADAPTER')) {
+    const loadedRoom = await window.diographJsAdapter.getLoadedRoom()
+    const content = await loadedRoom.readContent(cid)
+    const url = URL.createObjectURL(new Blob([content], { type: encodingFormat }))
+    console.log('Created URL: ', url)
+    return url
+  }
 
   const contentUrls = {
     'pixnio-public-domain-test-content.txt':
