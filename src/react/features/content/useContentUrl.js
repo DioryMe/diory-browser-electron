@@ -11,8 +11,14 @@ export const useContentUrl = () => {
   const { contentUrl, encodingFormat } = (data && data[0]) || {}
   const { dispatch } = useDispatchActions()
   useEffect(() => {
-    getContentUrlFromCID(contentUrl, encodingFormat).then((url) => {
-      dispatch(setContentUrl(url))
-    })
+    if (contentUrl) {
+      getContentUrlFromCID(contentUrl, encodingFormat)
+        .then((url) => {
+          dispatch(setContentUrl(url))
+        })
+        .catch((error) => {
+          console.error('useContentUrl error:', contentUrl, encodingFormat, error)
+        })
+    }
   }, [dispatch, contentUrl, encodingFormat])
 }

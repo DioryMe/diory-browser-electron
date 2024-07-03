@@ -62,9 +62,12 @@ export const getContentUrlFromCID = async (cid, encodingFormat) => {
   return cid
 }
 
+// FIXME: revokeContentUrl is not currently triggered anywhere
+// - should be done after loading the content
 export const revokeContentUrl = (url) => {
   if (window.featureIsEnabled('DIOGRAPH_JS_ADAPTER')) {
     window.diographJsAdapter.revokeContentUrl(url)
+    console.log('Revoked URL: ', url)
     return
   }
   throw new Error('Not implemented')
