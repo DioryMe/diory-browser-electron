@@ -63,22 +63,27 @@ function DcliAdapter() {
 
   this.diograph.addDiory = (dioryData, alias) => {
     this.loadedDiograph.addDiory(dioryData, alias)
+    this.loadedRoom.saveRoom()
   }
 
   this.diograph.updateDiory = (dioryData) => {
     this.loadedDiograph.updateDiory(dioryData)
+    this.loadedRoom.saveRoom()
   }
 
   this.diograph.removeDiory = (dioryData) => {
     this.loadedDiograph.removeDiory(dioryData)
+    this.loadedRoom.saveRoom()
   }
 
   this.diograph.addDioryLink = (dioryObject, linkedDioryObject) => {
     this.loadedDiograph.addDioryLink(dioryObject, linkedDioryObject)
+    this.loadedRoom.saveRoom()
   }
 
   this.diograph.removeDioryLink = (dioryObject, linkedDioryObject) => {
     this.loadedDiograph.removeDioryLink(dioryObject, linkedDioryObject)
+    this.loadedRoom.saveRoom()
   }
 
   this.diograph.resetDiograph = () => {
