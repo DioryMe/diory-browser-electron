@@ -10,7 +10,7 @@ const ButtonBar = ({ buttons }) => (
       zIndex: 15,
       bottom: 0,
       cursor: 'pointer',
-      left: 0,
+      right: 0,
       padding: 8,
     }}
   >

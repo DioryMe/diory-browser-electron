@@ -10,6 +10,7 @@
       "text": "Home room",
       "connections": [
         {
+          "id": "diory-demo-content",
           "client": "LocalClient",
           "address": "public/diory-demo-content"
         }

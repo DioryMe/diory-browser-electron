@@ -6,10 +6,11 @@ import { useSideBar } from '../sideBar/useSideBar'
 
 import { selectRoom } from '../navigation/navigationActions'
 import { getHomeRoomId } from './utils/getHomeRoomId'
-import { getParentIds } from './utils/getParentIds'
 
 import { UpdateRoom } from './actions/updateRoom/UpdateRoom'
 import { AddRoom } from './actions/addRoom/AddRoom'
+
+import NavigationButton from '../../components/NavigationButton'
 import { DiosphereTree } from './sidebar/DiosphereTree'
 
 const useActions = () => {
@@ -23,27 +24,21 @@ const useActions = () => {
   }
 }
 
-const useDiosphereState = () => {
-  const { roomId } = useSelector((state) => state.navigation)
-  const { rooms } = useSelector((state) => state.diosphere)
-  const rootId = getHomeRoomId(rooms)
-  return {
-    rootId,
-    roomId,
-    rooms,
-    openRooms: getParentIds(rootId, roomId, rooms),
-  }
-}
-
 export const Diosphere = () => {
   const actions = useActions()
-  const diosphereState = useDiosphereState()
-  const roomId = diosphereState.rootId
+  const { roomId } = useSelector((state) => state.navigation)
+  const { rooms } = useSelector((state) => state.diosphere)
   return roomId ? (
     <>
       <Pane id="left" left={0} top={0} height="100%" backgroundColor="#222">
+        <NavigationButton text="ROOMS" />
         <Menu appearance="minimal">
-          <DiosphereTree roomId={roomId} diosphereState={diosphereState} actions={actions} />
+          <DiosphereTree
+            roomId={getHomeRoomId(rooms)}
+            selectedRoomId={roomId}
+            rooms={rooms}
+            actions={actions}
+          />
         </Menu>
       </Pane>
       <UpdateRoom />

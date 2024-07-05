@@ -1,15 +1,15 @@
-export const getParentIds = (rootId, roomId, rooms) => {
+export const getParentIds = (roomId, rooms) => {
   if (!roomId || !Object.keys(rooms).length) {
     return []
   }
 
-  if (roomId === rootId) {
-    return [rootId]
+  const parentIds = Object.entries(rooms).find(([, { doors = [] }]) =>
+    doors.some(({ id }) => id === roomId)
+  )
+
+  if (!parentIds) {
+    return [roomId]
   }
 
-  const parentId = Object.entries(rooms).find(([, { doors = [] }]) =>
-    doors.some(({ id }) => id === roomId)
-  )[0]
-
-  return [roomId].concat(getParentIds(rootId, parentId, rooms))
+  return [roomId].concat(getParentIds(parentIds[0], rooms))
 }

@@ -37,6 +37,7 @@ const Root = () => {
 
   const { goLeft, goRight } = useGoSide()
   const { loaded } = useSelector((store) => store.diosphere)
+  const { selectedLensId } = useSelector((store) => store.lenses)
   return (
     <>
       <Home />
@@ -57,7 +58,7 @@ const Root = () => {
               <PanelResizeHandle />
               <Panel defaultSize={10} minSize={1} style={{ position: 'relative' }}>
                 <Lenses />
-                <Hand />
+                {!selectedLensId && <Hand />}
               </Panel>
             </PanelGroup>
           </Fullscreen>
