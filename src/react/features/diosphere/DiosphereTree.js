@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { Room } from './Room'
-import { getParentIds } from '../utils/getParentIds'
+import { getParentIds } from './utils/getParentIds'
 
 const DiosphereTree = ({ roomId, level = -1, selectedRoomId, rooms, actions }) => {
   const parentIds = getParentIds(selectedRoomId, rooms)

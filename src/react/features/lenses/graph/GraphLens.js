@@ -1,25 +1,33 @@
 import React from 'react'
 
-import { useDispatchActions, useSelector } from '../../../store'
+import { useSelector } from '../../../store'
 
 import { withLensContainer } from '../utils/withLensContainer'
 
 import GraphView from './GraphView'
 
-import { selectStory } from '../../navigation/navigationActions'
-
 import button from './diory'
+import { useStoryTool } from '../../tools/story'
+import { useUpdateTool } from '../../tools/update'
+import { useDeleteTool } from '../../tools/delete'
 
-const useOnDioryClick = () => {
-  const { dispatch } = useDispatchActions()
-  return (node) => {
-    dispatch(selectStory(node))
+export const useGraph = () => {
+  const selectStory = useStoryTool('graph')
+  const updateDiory = useUpdateTool()
+  const deleteDiory = useDeleteTool()
+
+  return {
+    onDioryClick: ({ diory }) => {
+      selectStory(diory)
+      deleteDiory(diory)
+      updateDiory(diory)
+    },
   }
 }
 
 const GraphLens = () => {
   const { diograph = {} } = useSelector((state) => state.diograph)
-  const onDioryClick = useOnDioryClick()
+  const { onDioryClick } = useGraph()
   return <GraphView diograph={diograph} onDioryClick={onDioryClick} />
 }
 

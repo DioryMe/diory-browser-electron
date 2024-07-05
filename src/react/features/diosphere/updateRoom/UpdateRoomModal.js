@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { v4 as uuid } from 'uuid'
 
-import { InputFields } from '../InputFields'
-import { Modal } from '../../../modal/Modal'
+import { InputFields } from './InputFields'
+import { Modal } from '../../modal/Modal'
 
-import { roomFields } from '../roomFields'
-import { invokeChannel } from '../../../../client/client'
+import { roomFields } from './roomFields'
+import { invokeChannel } from '../../../client/client'
 
 const addConnection = async () => {
   const { filePaths } = await invokeChannel('showOpenDialog')
@@ -39,7 +39,7 @@ const UpdateRoomModal = ({ title, room, onDone, onCancel }) => {
 
 UpdateRoomModal.propTypes = {
   title: PropTypes.string.isRequired,
-  room: PropTypes.object.isRequired,
+  room: PropTypes.object,
   onDone: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
 }

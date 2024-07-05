@@ -1,45 +1,49 @@
 import React from 'react'
 import { Menu, Pane } from 'evergreen-ui'
 
-import { useDispatchActions, useSelector } from '../../store'
+import { useDispatchActions } from '../../store'
 import { useSideBar } from '../sideBar/useSideBar'
+import { useDiosphere } from './useDiosphere'
+import { useAddRoom } from './addRoom/useAddRoom'
+import { useUpdateRoom } from './updateRoom/useUpdateRoom'
 
 import { selectRoom } from '../navigation/navigationActions'
-import { getHomeRoomId } from './utils/getHomeRoomId'
 
-import { UpdateRoom } from './actions/updateRoom/UpdateRoom'
-import { AddRoom } from './actions/addRoom/AddRoom'
+import { UpdateRoom } from './updateRoom/UpdateRoom'
+import { AddRoom } from './addRoom/AddRoom'
 
+import { Room } from './Room'
 import NavigationButton from '../../components/NavigationButton'
-import { DiosphereTree } from './sidebar/DiosphereTree'
 
 const useActions = () => {
   const { dispatch } = useDispatchActions()
   const { toggleSideBar } = useSideBar('left')
+  const { openAddRoomModal } = useAddRoom()
+  const { openUpdateRoomModal } = useUpdateRoom()
   return {
     onEnterRoom: (id) => {
       dispatch(selectRoom({ id }))
       toggleSideBar()
     },
+    openAddRoomModal,
+    openUpdateRoomModal,
   }
 }
 
 export const Diosphere = () => {
+  const { room, rooms } = useDiosphere()
   const actions = useActions()
-  const { roomId } = useSelector((state) => state.navigation)
-  const { rooms } = useSelector((state) => state.diosphere)
-  return roomId ? (
+
+  const selectedRoomId = room.id
+  return selectedRoomId ? (
     <>
-      <Pane id="left" left={0} top={0} height="100%" backgroundColor="#222">
-        <NavigationButton text="ROOMS" />
+      <Pane id="left" height="100%" backgroundColor="#222" paddingLeft={24}>
         <Menu appearance="minimal">
-          <DiosphereTree
-            roomId={getHomeRoomId(rooms)}
-            selectedRoomId={roomId}
-            rooms={rooms}
-            actions={actions}
-          />
+          {Object.values(rooms).map((room) => (
+            <Room key={room.id} room={room} isInRoom={selectedRoomId === room.id} {...actions} />
+          ))}
         </Menu>
+        <NavigationButton text="Add room" image="plus" onClick={actions.openAddRoomModal} />
       </Pane>
       <UpdateRoom />
       <AddRoom />

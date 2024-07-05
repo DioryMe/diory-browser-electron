@@ -32,7 +32,7 @@ const Root = () => {
 
   const { dispatch } = useDispatchActions()
   const onLayout = (widths) => {
-    dispatch(setSideBarWidth('right', widths[1]))
+    dispatch(setSideBarWidth('right', widths[widths.length - 1]))
   }
 
   const { goLeft, goRight } = useGoSide()
@@ -46,17 +46,17 @@ const Root = () => {
         {loaded && (
           <Fullscreen top={44}>
             <PanelGroup direction="horizontal" onLayout={debounce(onLayout, 100)}>
-              <Panel defaultSize={10} minSize={1} style={{ position: 'relative' }}>
+              <Panel defaultSize={15} minSize={1} style={{ position: 'relative' }}>
                 <Diosphere />
               </Panel>
               <PanelResizeHandle />
-              <Panel defaultSize={80} minSize={10} style={{ position: 'relative' }}>
+              <Panel defaultSize={70} minSize={10} style={{ position: 'relative' }}>
                 <NavigationToSide left onClick={goLeft} />
                 <Browser />
                 <NavigationToSide right onClick={goRight} />
               </Panel>
               <PanelResizeHandle />
-              <Panel defaultSize={10} minSize={1} style={{ position: 'relative' }}>
+              <Panel defaultSize={15} minSize={1} style={{ position: 'relative' }}>
                 <Lenses />
                 {!selectedLensId && <Hand />}
               </Panel>

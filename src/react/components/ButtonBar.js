@@ -7,7 +7,7 @@ const ButtonBar = ({ buttons }) => (
   <div
     style={{
       position: 'absolute',
-      zIndex: 15,
+      zIndex: 1000,
       bottom: 0,
       cursor: 'pointer',
       right: 0,

@@ -34,16 +34,4 @@ export const roomFields = [
       },
     ],
   },
-  {
-    key: 'doors',
-    label: 'Doors',
-    format: 'array',
-    fields: [
-      {
-        key: 'id',
-        label: 'Room id',
-        format: 'string',
-      },
-    ],
-  },
 ]

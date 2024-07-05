@@ -1,5 +1,6 @@
 {
   "connection": {
+    "id": "home-connection",
     "address": "public/diory-demo-content",
     "client": "LocalClient"
   }

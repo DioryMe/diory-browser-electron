@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import ForceGraph3D from 'react-force-graph-3d'
@@ -95,42 +95,39 @@ const useDisplay = () => {
 // - larger link distance
 // - focus camera
 
-const GraphView = memo(
-  ({ diograph, onDioryClick }) => {
-    const fgRef = useRef()
-    useLinkDistance(fgRef)
+const GraphView = ({ diograph, onDioryClick }) => {
+  const fgRef = useRef()
+  useLinkDistance(fgRef)
 
-    const { displayHeight, displayWidth } = useDisplay()
-    const data = mapDiographToData(diograph)
-    return (
-      <Fullscreen id="graph-view" background="#222">
-        <ForceGraph3D
-          ref={fgRef}
-          width={displayWidth}
-          height={displayHeight}
-          showNavInfo={false}
-          backgroundColor="rgba(0,0,0,0)"
-          graphData={data}
-          nodeLabel="text"
-          nodeThreeObject={getNodeThreeObject}
-          linkThreeObject={getLinkThreeObject}
-          linkOpacity={1}
-          linkWidth={1}
-          linkColor="color"
-          linkDirectionalArrowLength={2}
-          linkDirectionalArrowColor="arrowColor"
-          onNodeClick={onDioryClick}
-          onNodeDragEnd={(node) => {
-            node.fx = node.x // eslint-disable-line no-param-reassign
-            node.fy = node.y // eslint-disable-line no-param-reassign
-            node.fz = node.z // eslint-disable-line no-param-reassign
-          }}
-        />
-      </Fullscreen>
-    )
-  },
-  () => true
-)
+  const { displayHeight, displayWidth } = useDisplay()
+  const data = useMemo(() => mapDiographToData(diograph), [diograph])
+  return (
+    <Fullscreen id="graph-view" background="#222">
+      <ForceGraph3D
+        ref={fgRef}
+        width={displayWidth}
+        height={displayHeight}
+        showNavInfo={false}
+        backgroundColor="rgba(0,0,0,0)"
+        graphData={data}
+        nodeLabel="text"
+        nodeThreeObject={getNodeThreeObject}
+        linkThreeObject={getLinkThreeObject}
+        linkOpacity={1}
+        linkWidth={1}
+        linkColor="color"
+        linkDirectionalArrowLength={2}
+        linkDirectionalArrowColor="arrowColor"
+        onNodeClick={(diory) => onDioryClick({ diory })}
+        onNodeDragEnd={(node) => {
+          node.fx = node.x // eslint-disable-line no-param-reassign
+          node.fy = node.y // eslint-disable-line no-param-reassign
+          node.fz = node.z // eslint-disable-line no-param-reassign
+        }}
+      />
+    </Fullscreen>
+  )
+}
 
 GraphView.propTypes = {
   diograph: PropTypes.object.isRequired,

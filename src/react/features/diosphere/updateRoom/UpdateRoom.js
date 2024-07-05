@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useUpdateRoom } from './useUpdateRoom'
-import { useDiosphere } from '../../useDiosphere'
+import { useDiosphere } from '../useDiosphere'
 
 import { UpdateRoomModal } from './UpdateRoomModal'
 

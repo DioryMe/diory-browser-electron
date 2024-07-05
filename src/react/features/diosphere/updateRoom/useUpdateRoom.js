@@ -1,8 +1,8 @@
-import { useDispatchActions } from '../../../../store'
-import { useModal } from '../../../modal/useModal'
+import { useDispatchActions } from '../../../store'
+import { useModal } from '../../modal/useModal'
 
-import { updateRoom } from '../../diosphereActions'
-import { selectRoom } from '../../../navigation/navigationActions'
+import { updateRoom } from '../diosphereActions'
+import { selectRoom } from '../../navigation/navigationActions'
 
 export const useUpdateRoom = () => {
   const { dispatch } = useDispatchActions()

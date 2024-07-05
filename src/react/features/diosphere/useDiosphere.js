@@ -6,6 +6,10 @@ export const useDiosphere = () => {
   const homeRoom = rooms['/'] || {}
   const room = rooms[roomId] || rooms[homeRoom.id] || {}
   return {
+    homeRoomId: homeRoom.id,
     room,
+    rooms: Object.entries(rooms)
+      .filter(([key]) => key !== '/')
+      .map(([, room]) => room),
   }
 }
