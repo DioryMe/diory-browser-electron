@@ -2,6 +2,7 @@
 const { validateDiograph } = require('@diograph/diograph/validator')
 const { constructAndLoadRoom } = require('@diograph/diograph')
 const { LocalClient: LocalClient2 } = require('@diograph/local-client2')
+const { S3Client } = require('@diograph/s3-client')
 const fs = require('fs')
 const ini = require('ini')
 const { validateDiosphere } = require('../src/shared/validateDiosphere')
@@ -40,12 +41,21 @@ function DcliAdapter() {
     this.dioryInFocus = this.loadedDiograph.getDiory({ id: '/' })
   }
 
-  this.getRoom = async (address, clientType) =>
-    constructAndLoadRoom(address, clientType, {
+  this.getRoom = async (address, clientType) => {
+    const credentials = {
+      region: 'eu-west-1',
+      credentials: {
+        accessKeyId: process.env.BUCKET_ACCESS_KEY,
+        secretAccessKey: process.env.BUCKET_SECRET_KEY,
+      },
+    }
+    return constructAndLoadRoom(address, clientType, {
       LocalClient: {
         clientConstructor: LocalClient2,
       },
+      S3Client: { clientConstructor: S3Client, credentials },
     })
+  }
 
   this.focusDiory = (dioryObject) => this.loadedDiograph.getDiory(dioryObject)
 
