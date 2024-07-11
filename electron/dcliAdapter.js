@@ -67,38 +67,39 @@ function DcliAdapter() {
 
   // Because of Electron object serialization all the methods needs to be on the same level
   // - that's why this.loadedDiograph is used instead of this.diograph
-  this.diograph.initialise = (diographData) => {
-    this.loadedDiograph.initialise(diographData)
-  }
+  this.diograph.initialise = (diographData) => this.loadedDiograph.initialise(diographData)
 
   this.diograph.addDiory = (dioryData, alias) => {
-    this.loadedDiograph.addDiory(dioryData, alias)
+    const diory = this.loadedDiograph.addDiory(dioryData, alias)
     this.loadedRoom.saveRoom()
+    return diory
   }
 
   this.diograph.updateDiory = (dioryData) => {
-    this.loadedDiograph.updateDiory(dioryData)
+    const diory = this.loadedDiograph.updateDiory(dioryData)
     this.loadedRoom.saveRoom()
+    return diory
   }
 
   this.diograph.removeDiory = (dioryData) => {
-    this.loadedDiograph.removeDiory(dioryData)
+    const diory = this.loadedDiograph.removeDiory(dioryData)
     this.loadedRoom.saveRoom()
+    return diory
   }
 
   this.diograph.addDioryLink = (dioryObject, linkedDioryObject) => {
-    this.loadedDiograph.addDioryLink(dioryObject, linkedDioryObject)
+    const diory = this.loadedDiograph.addDioryLink(dioryObject, linkedDioryObject)
     this.loadedRoom.saveRoom()
+    return diory
   }
 
   this.diograph.removeDioryLink = (dioryObject, linkedDioryObject) => {
-    this.loadedDiograph.removeDioryLink(dioryObject, linkedDioryObject)
+    const diory = this.loadedDiograph.removeDioryLink(dioryObject, linkedDioryObject)
     this.loadedRoom.saveRoom()
+    return diory
   }
 
-  this.diograph.resetDiograph = () => {
-    this.loadedDiograph.resetDiograph()
-  }
+  this.diograph.resetDiograph = () => this.loadedDiograph.resetDiograph()
 
   this.diograph.toObject = () => this.loadedDiograph.toObject()
 
