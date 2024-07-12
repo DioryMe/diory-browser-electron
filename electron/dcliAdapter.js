@@ -45,8 +45,8 @@ function DcliAdapter() {
     const credentials = {
       region: 'eu-west-1',
       credentials: {
-        accessKeyId: process.env.BUCKET_ACCESS_KEY,
-        secretAccessKey: process.env.BUCKET_SECRET_KEY,
+        accessKeyId: process.env.BUCKET_ACCESS_KEY || '',
+        secretAccessKey: process.env.BUCKET_SECRET_KEY || '',
       },
     }
     return constructAndLoadRoom(address, clientType, {
