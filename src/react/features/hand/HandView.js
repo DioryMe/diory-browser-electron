@@ -17,7 +17,7 @@ const HandView = ({ diorys, scrollIntoViewId, onClick, onClear, onDrop, onBackgr
   return (
     <Pane background="#222" height="100%" padding={12}>
       <NavigationButton text="HAND" />
-      {diorys.length && <NavigationButton text="Clear" onClick={onClear} float="right" />}
+      {diorys.length ? <NavigationButton text="Clear" onClick={onClear} float="right" /> : null}
       <DiorysGrid
         ref={handRef}
         background={{ id: 'hand' }}
