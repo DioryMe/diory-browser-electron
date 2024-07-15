@@ -35,6 +35,7 @@ const schema = {
               type: 'object',
               required: ['address', 'client'],
               properties: {
+                id: { type: 'string' },
                 address: { type: 'string' },
                 client: { type: 'string' },
               },

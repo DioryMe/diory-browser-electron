@@ -8,13 +8,19 @@ const ini = require('ini')
 const { validateDiosphere } = require('../src/shared/validateDiosphere')
 
 function DcliAdapter() {
-  this.loadedRoom = null
-  this.loadedDiograph = null
   this.diosphere = diosphereClass
-  this.diory = {}
   this.room = {}
   this.diograph = {}
+  this.diory = {}
+
+  // DcliAdapter specific
   this.dioryInFocus = null
+  this.loadedRoom = null
+  this.loadedDiograph = null
+
+  this.initialiseDiosphere = async (connections) => {
+    await this.selectRoom({ id: '/' })
+  }
 
   this.initialiseDiograph = async (roomObject) => {
     await this.selectRoom(roomObject)
@@ -24,44 +30,7 @@ function DcliAdapter() {
     return this.diograph
   }
 
-  this.initialiseDiosphere = async (connections) => {
-    await this.selectRoom({ id: '/' })
-  }
-
-  this.selectRoom = async (roomObject) => {
-    const roomId = roomObject.id === '/' ? 'room-1' : roomObject.id
-    this.roomConfig = this.diosphere.toObject().rooms[roomId]
-    const { address } = this.roomConfig.connections[0]
-    const clientType = this.roomConfig.connections[0].client
-
-    this.loadedRoom = await this.getRoom(address, clientType)
-    this.loadedDiograph = this.loadedRoom.diograph
-
-    validateDiograph(this.loadedDiograph.toObject())
-    this.dioryInFocus = this.loadedDiograph.getDiory({ id: '/' })
-  }
-
-  this.getRoom = async (address, clientType) => {
-    const credentials = {
-      region: 'eu-west-1',
-      credentials: {
-        accessKeyId: process.env.BUCKET_ACCESS_KEY || '',
-        secretAccessKey: process.env.BUCKET_SECRET_KEY || '',
-      },
-    }
-    return constructAndLoadRoom(address, clientType, {
-      LocalClient: {
-        clientConstructor: LocalClient2,
-      },
-      S3Client: { clientConstructor: S3Client, credentials },
-    })
-  }
-
   this.focusDiory = (dioryObject) => this.loadedDiograph.getDiory(dioryObject)
-
-  // async importDiograph(connection) {
-  //   await this.client.importDiograph([connection])
-  // },
 
   this.room.toObject = () => this.roomConfig
 
@@ -105,6 +74,36 @@ function DcliAdapter() {
 
   this.diory.toObject = () => this.dioryInFocus.toObject()
 
+  // DcliAdapter specific
+  this.selectRoom = async (roomObject) => {
+    const roomId = roomObject.id === '/' ? 'room-1' : roomObject.id
+    this.roomConfig = this.diosphere.toObject().rooms[roomId]
+    const { address } = this.roomConfig.connections[0]
+    const clientType = this.roomConfig.connections[0].client
+
+    this.loadedRoom = await this.getRoom(address, clientType)
+    this.loadedDiograph = this.loadedRoom.diograph
+
+    validateDiograph(this.loadedDiograph.toObject())
+    this.dioryInFocus = this.loadedDiograph.getDiory({ id: '/' })
+  }
+
+  this.getRoom = async (address, clientType) => {
+    const credentials = {
+      region: 'eu-west-1',
+      credentials: {
+        accessKeyId: process.env.BUCKET_ACCESS_KEY || '',
+        secretAccessKey: process.env.BUCKET_SECRET_KEY || '',
+      },
+    }
+    return constructAndLoadRoom(address, clientType, {
+      LocalClient: {
+        clientConstructor: LocalClient2,
+      },
+      S3Client: { clientConstructor: S3Client, credentials },
+    })
+  }
+
   this.getLoadedRoom = () => this.loadedRoom
 }
 
@@ -140,8 +139,6 @@ const diosphereClass = {
     const parsedDotDcli = ini.parse(dotDcliContent)
     const diosphereObject = convertDotDcliToDiosphere(parsedDotDcli)
     validateDiosphere(diosphereObject)
-    // console.log('diosphereObject', JSON.stringify(diosphereObject))
-    // console.log('diosphereObject', diosphereObject)
     return diosphereObject
   },
 }

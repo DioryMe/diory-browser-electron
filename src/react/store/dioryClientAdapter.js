@@ -1,10 +1,10 @@
+import { validateDiosphere } from '../../shared/validateDiosphere'
+
 // eslint-disable-next-line import/no-unresolved
 const { validateDiograph } = require('@diograph/diograph/validator')
 
 function DioryClientAdapter(client) {
   this.dioryClient = client
-  this.dataClients = this.dioryClient.dataClients
-  this.connections = this.dioryClient.connections
   this.diosphere = this.dioryClient.diosphere
   this.room = this.dioryClient.room
   this.diograph = this.dioryClient.diograph
@@ -15,23 +15,21 @@ Object.assign(DioryClientAdapter.prototype, {
   async initialiseDiosphere(connections) {
     await this.dioryClient.initialiseDiosphere(connections)
 
-    // TODO: Diosphere validation (+ generate schema)
+    validateDiosphere(this.dioryClient.diosphere.toObject())
 
-    // sync
+    // sync internal changes from dioryClient after initialiseDiosphere
     this.room = this.dioryClient.room
-    this.connections = this.dioryClient.connections
     this.diosphere = this.dioryClient.diosphere
   },
 
   async initialiseDiograph(roomObject) {
     await this.dioryClient.initialiseDiograph(roomObject)
 
-    // TODO: Use validateDiograph from @diograph/diograph
     if (Object.keys(this.dioryClient.diograph.toObject()).length > 0) {
       validateDiograph(this.dioryClient.diograph.toObject())
     }
 
-    // sync
+    // sync internal changes from dioryClient after initialiseDiograph
     this.room = this.dioryClient.room
     this.diograph = this.dioryClient.diograph
     this.diory = this.dioryClient.diory
@@ -39,14 +37,6 @@ Object.assign(DioryClientAdapter.prototype, {
 
   focusDiory(dioryObject) {
     this.client.focusDiory(dioryObject)
-  },
-
-  // async importDiograph(connection) {
-  //   await this.client.importDiograph([connection])
-  // },
-
-  getLoadedRoom() {
-    throw new Error('Not implemented')
   },
 
   diograph: {
