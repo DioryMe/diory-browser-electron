@@ -1,18 +1,23 @@
 import React from 'react'
 
-import GraphLens from './graph/GraphLens'
-import MapLens from './map/MapLens'
+import { useDiograph } from '../home/useDiograph'
+
+import GraphLens from './GraphLens'
+import MapLens from './MapLens'
 // import TimelineLens from './timeline/TimelineLens'
-import SearchLens from './search/SearchLens'
+import SearchLens from './SearchLens'
 
 export const DEFAULT_LENS = null
 
-const Lenses = () => (
-  <>
-    <GraphLens />
-    <MapLens />
-    <SearchLens />
-  </>
-)
+const Lenses = () => {
+  const diograph = useDiograph()
+  return (
+    <>
+      <GraphLens {...diograph} />
+      <MapLens {...diograph} />
+      <SearchLens {...diograph} />
+    </>
+  )
+}
 
 export default Lenses

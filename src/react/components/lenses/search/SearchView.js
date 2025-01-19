@@ -2,9 +2,8 @@ import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
-import CreateDioryButton from '../../tools/create/CreateDioryButton'
-import DiorysGrid from '../../../components/DiorysGrid'
-import { SearchBar } from './SearchBar'
+import CreateDioryButton from '../../diories/CreateDioryButton'
+import DiorysGrid from '../../DiorysGrid'
 
 const scaleContainer = {
   transformOrigin: 'top left',
@@ -13,16 +12,22 @@ const scaleContainer = {
   height: '200%',
 }
 
-const SearchView = ({ query, diorys, scrollIntoViewId, onClick, onDrop }) => {
+const SearchView = ({
+  query,
+  diorys,
+  scrollIntoViewId,
+  onClick,
+  onDrop,
+  onCreateDiory,
+  children,
+}) => {
   const searchRef = useRef()
   return (
-    <Pane background="#222" height="100%" padding={12}>
-      <Pane padding={12}>
-        <SearchBar width="100%" />
-      </Pane>
+    <Pane background="src/react/components/lenses/search#222" height="100%" padding={12}>
+      <Pane padding={12}>{children}</Pane>
       {query && (
         <Pane padding={12}>
-          <CreateDioryButton text={query} />
+          <CreateDioryButton text={query} onClick={onCreateDiory} />
         </Pane>
       )}
       {diorys.length ? (
@@ -46,6 +51,8 @@ SearchView.propTypes = {
   scrollIntoViewId: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,
+  onCreateDiory: PropTypes.func.isRequired,
+  children: PropTypes.node,
 }
 
 export default SearchView

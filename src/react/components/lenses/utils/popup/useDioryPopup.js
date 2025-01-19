@@ -3,7 +3,7 @@ import { useSelector } from '../../../../store'
 import { createDioryPopup } from './createDioryPopup'
 
 export const useDioryPopup = (markerRef, diory) => {
-  const { address } = useSelector((state) => state.diosphere)
+  const { address } = useSelector((state) => state.home)
 
   useEffect(() => {
     if (markerRef && markerRef.current) {

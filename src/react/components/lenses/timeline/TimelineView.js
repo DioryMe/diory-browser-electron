@@ -16,8 +16,8 @@ import { useTimelineClick } from './hooks/useTimelineClick'
 
 import { getIsoDate, getTimelineData } from './hooks/getTimelineData'
 
-import BackgroundDiory from '../../../components/diories/BackgroundDiory'
-import Fullscreen from '../../../components/Fullscreen'
+import BackgroundDiory from '../../diories/BackgroundDiory'
+import Fullscreen from '../../Fullscreen'
 
 const TimelineView = ({ story, memories, onMapClick, onPopupClick, enableDragging, onDragEnd }) => {
   const timelineId = 'timelineId'
