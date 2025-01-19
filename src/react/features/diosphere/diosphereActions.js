@@ -1,85 +1,86 @@
-import { UPDATE_DIOSPHERE, GET_DIOSPHERE } from './diosphereActionTypes'
+import {
+  GET_DIOSPHERE_DIOGRAPH,
+  GENERATE_DIOSPHERE_DIOGRAPH,
+  UPDATE_DIOSPHERE_DIOGRAPH,
+  SELECT_DIOSPHERE_CONTEXT,
+  SELECT_DIOSPHERE_STORY,
+  SELECT_DIOSPHERE_MEMORY,
+  GO_DIOSPHERE_FORWARD,
+  GO_DIOSPHERE_BACKWARD,
+  GO_DIOSPHERE_HOME,
+  GO_DIOSPHERE_SIDE,
+} from './diosphereActionTypes'
 import { createActions } from '../../store/storeUtils'
-import { selectRoom } from '../navigation/navigationActions'
 
-const updateDiosphereAction = (diosphere) => ({
-  type: UPDATE_DIOSPHERE,
-  payload: { diosphere },
+const updateDiographAction = (diograph) => ({
+  type: UPDATE_DIOSPHERE_DIOGRAPH,
+  payload: { diograph },
 })
 
-export const updateDiosphere =
+export const updateDiograph =
   () =>
-  (dispatch, _, { dioryClient }) => {
-    dispatch(updateDiosphereAction(dioryClient.diosphere.toObject()))
+  (dispatch, _, { diosphereClient }) => {
+    dispatch(updateDiographAction(diosphereClient.diograph.toObject()))
   }
 
-export const addRoom =
-  (roomData) =>
-  (dispatch, _, { dioryClient }) => {
-    const room = dioryClient.diosphere.addRoom(roomData)
-    dispatch(updateDiosphere())
-    return { room: room.toObject() }
-  }
+export const selectContext = ({ id }) => ({
+  type: SELECT_DIOSPHERE_CONTEXT,
+  payload: { id },
+})
 
-export const updateRoom =
-  (roomData) =>
-  (dispatch, getState, { dioryClient }) => {
-    dioryClient.diosphere.updateRoom(roomData)
-    dispatch(updateDiosphere())
-  }
+export const selectStory = ({ id }) => ({
+  type: SELECT_DIOSPHERE_STORY,
+  payload: { id },
+})
 
-export const deleteRoom =
-  (roomData) =>
-  (dispatch, _, { dioryClient }) => {
-    dioryClient.diosphere.removeRoom(roomData)
-    dispatch(updateDiosphere())
-  }
+export const selectMemory = ({ id } = {}) => ({
+  type: SELECT_DIOSPHERE_MEMORY,
+  payload: { id },
+})
 
-export const addDoor =
-  (roomObject, linkedRoomObject) =>
-  (dispatch, getState, { dioryClient }) => {
-    dioryClient.diosphere.addRoomDoor(roomObject, linkedRoomObject)
-    dispatch(updateDiosphere())
-  }
+export const goBackward = () => ({ type: GO_DIOSPHERE_BACKWARD })
+export const goForward = () => ({ type: GO_DIOSPHERE_FORWARD })
 
-export const removeDoor =
-  (roomObject, linkedRoomObject) =>
-  (dispatch, getState, { dioryClient }) => {
-    dioryClient.diosphere.removeRoomDoor(roomObject, linkedRoomObject)
-    dispatch(updateDiosphere())
-  }
+export const goSide = ({ storyId }) => ({
+  type: GO_DIOSPHERE_SIDE,
+  payload: { storyId },
+})
 
-export const removeDoors =
-  (deletedDoors) =>
-  (dispatch, getState, { dioryClient }) => {
-    deletedDoors.forEach(({ fromRoom, toRoom }) => {
-      dioryClient.diosphere.removeRoomDoor(fromRoom, toRoom)
-    })
-    dispatch(updateDiosphere())
-  }
+export const goHome = () => ({ type: GO_DIOSPHERE_HOME })
 
-export const resetDiosphere =
-  () =>
-  async (dispatch, getState, { dioryClient }) => {
-    dioryClient.diosphere.resetRooms()
-    dispatch(updateDiosphere())
-  }
-
-const getDiosphereActions = createActions(GET_DIOSPHERE)
-export const getDiosphere =
-  (connections) =>
-  async (dispatch, getState, { dioryClient }) => {
+const getDiographActions = createActions(GET_DIOSPHERE_DIOGRAPH)
+export const getDiograph =
+  (connection) =>
+  async (dispatch, getState, { diosphereClient }) => {
     const { loading } = getState().diosphere
     if (!loading) {
-      dispatch(getDiosphereActions.begin())
+      dispatch(getDiographActions.begin())
       try {
-        await dioryClient.initialiseDiosphere(connections)
-        dispatch(updateDiosphere())
-        dispatch(selectRoom(dioryClient.room.toObject()))
-        dispatch(getDiosphereActions.success())
+        await diosphereClient.getDiograph([connection])
+        dispatch(updateDiograph())
+        dispatch(selectStory(diosphereClient.diograph.getDiory({ id: '/' }).toObject()))
+        dispatch(getDiographActions.success())
       } catch (error) {
         console.error(error)
-        dispatch(getDiosphereActions.failure(error))
+        dispatch(getDiographActions.failure(error))
+      }
+    }
+  }
+
+const generateDiosphereActions = createActions(GENERATE_DIOSPHERE_DIOGRAPH)
+export const generateDiograph =
+  (connection) =>
+  async (dispatch, getState, { diosphereClient }) => {
+    const { loading } = getState().diosphere
+    if (!loading) {
+      dispatch(generateDiosphereActions.begin())
+      try {
+        await diosphereClient.generateDiograph([connection])
+        dispatch(updateDiograph())
+        dispatch(generateDiosphereActions.success())
+      } catch (error) {
+        console.error(error)
+        dispatch(generateDiosphereActions.failure(error))
       }
     }
   }

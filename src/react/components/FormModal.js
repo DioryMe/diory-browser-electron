@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 
 import TextInput from './TextInput'
 import { Modal } from '../features/modal/Modal'
+import Button from './Button'
+import { invokeChannel } from '../client/client'
 
 const useUpdatedValues = (oldValues = {}) => {
   const [newValues, setNewValues] = useState({})
@@ -15,9 +17,14 @@ const useUpdatedValues = (oldValues = {}) => {
   }
 }
 
+const useOpenDialog = () => async () => {
+  const { filePaths } = await invokeChannel('showOpenDialog')
+  return filePaths[0]
+}
+
 const FormModal = ({ title, values, fields, onDone, onCancel }) => {
   const { setValue, updatedValues, resetView } = useUpdatedValues(values)
-
+  const openDialog = useOpenDialog()
   return (
     <Modal
       title={title}
@@ -30,23 +37,31 @@ const FormModal = ({ title, values, fields, onDone, onCancel }) => {
         resetView()
       }}
     >
-      {fields.map(({ key, label, format, autoFocus }) => (
-        <TextInput
-          id={key}
-          key={key}
-          label={label}
-          format={format}
-          value={updatedValues[key]}
-          onChange={(value) => setValue(key, value)}
-          autoFocus={autoFocus}
-          onKeyPress={(event) => {
-            if (event.key === 'Enter') {
-              onDone(updatedValues)
-              resetView()
-              event.preventDefault()
-            }
-          }}
-        />
+      {fields.map(({ key, ...field }) => (
+        <>
+          <TextInput
+            key={key}
+            {...field}
+            onChange={(value) => setValue(key, value)}
+            value={updatedValues[key]}
+            onKeyPress={(event) => {
+              if (event.key === 'Enter') {
+                onDone(updatedValues)
+                resetView()
+                event.preventDefault()
+              }
+            }}
+          />
+          {field.format === 'dialog' && (
+            <Button
+              icon="plus"
+              onClick={async () => {
+                const filePath = await openDialog()
+                setValue(key, filePath)
+              }}
+            />
+          )}
+        </>
       ))}
     </Modal>
   )

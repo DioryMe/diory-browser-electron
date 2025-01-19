@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
-const NavigationTopBar = ({ children }) => (
+const NavigationBar = ({ children, ...props }) => (
   <Pane
     display="flex"
     justifyContent="space-between"
@@ -11,13 +11,14 @@ const NavigationTopBar = ({ children }) => (
     zIndex={15}
     position="absolute"
     width="100%"
+    {...props}
   >
     {children}
   </Pane>
 )
 
-NavigationTopBar.propTypes = {
+NavigationBar.propTypes = {
   children: PropTypes.node,
 }
 
-export default NavigationTopBar
+export default NavigationBar

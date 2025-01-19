@@ -1,15 +1,7 @@
 import { useSelector } from '../../store'
+import { useDiographData } from '../../components/diograph/useDiographData'
 
 export const useDiosphere = () => {
-  const { roomId } = useSelector((state) => state.navigation)
-  const { rooms = {} } = useSelector((state) => state.diosphere)
-  const homeRoom = rooms['/'] || {}
-  const room = rooms[roomId] || rooms[homeRoom.id] || {}
-  return {
-    homeRoomId: homeRoom.id,
-    room,
-    rooms: Object.entries(rooms)
-      .filter(([key]) => key !== '/')
-      .map(([, room]) => room),
-  }
+  const diosphereState = useSelector((state) => state.diosphere)
+  return useDiographData(diosphereState)
 }

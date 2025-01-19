@@ -1,4 +1,4 @@
-Feature: Room
+Feature: Connector
 
   Background:
     Given I am at home

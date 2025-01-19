@@ -1,52 +1,36 @@
 import React from 'react'
-import { Menu, Pane } from 'evergreen-ui'
 
-import { useDispatchActions } from '../../store'
-import { useSideBar } from '../sideBar/useSideBar'
+import { useDispatchActions, useSelector } from '../../store'
+import { useDiographGoSide } from '../../components/diograph/useDiographGoSide'
 import { useDiosphere } from './useDiosphere'
-import { useAddRoom } from './addRoom/useAddRoom'
-import { useUpdateRoom } from './updateRoom/useUpdateRoom'
 
-import { selectRoom } from '../navigation/navigationActions'
+import { goSide, selectStory } from './diosphereActions'
 
-import { UpdateRoom } from './updateRoom/UpdateRoom'
-import { AddRoom } from './addRoom/AddRoom'
+import DiographView from '../../components/diograph/DiographView'
+import NavigationToSide from '../../components/NavigationToSide'
 
-import { Room } from './Room'
-import NavigationButton from '../../components/NavigationButton'
+export const useDiographTools = () => {
+  const { forward = [] } = useSelector((state) => state.diosphere)
 
-const useActions = () => {
   const { dispatch } = useDispatchActions()
-  const { toggleSideBar } = useSideBar('left')
-  const { openAddRoomModal } = useAddRoom()
-  const { openUpdateRoomModal } = useUpdateRoom()
   return {
-    onEnterRoom: (id) => {
-      dispatch(selectRoom({ id }))
-      toggleSideBar()
+    scrollIntoViewId: forward[0],
+    onMemoryClick: ({ diory }) => {
+      dispatch(selectStory(diory))
     },
-    openAddRoomModal,
-    openUpdateRoomModal,
   }
 }
 
-export const Diosphere = () => {
-  const { room, rooms } = useDiosphere()
-  const actions = useActions()
-
-  const selectedRoomId = room.id
-  return selectedRoomId ? (
+const Diosphere = () => {
+  const diosphere = useDiosphere()
+  const { goLeft, goRight } = useDiographGoSide(diosphere, goSide)
+  return (
     <>
-      <Pane id="left" height="100%" backgroundColor="#222" paddingLeft={24}>
-        <Menu appearance="minimal">
-          {Object.values(rooms).map((room) => (
-            <Room key={room.id} room={room} isInRoom={selectedRoomId === room.id} {...actions} />
-          ))}
-        </Menu>
-        <NavigationButton text="Add room" image="plus" onClick={actions.openAddRoomModal} />
-      </Pane>
-      <UpdateRoom />
-      <AddRoom />
+      <NavigationToSide left onClick={goLeft} />
+      <DiographView {...diosphere} {...useDiographTools()} />
+      <NavigationToSide right onClick={goRight} />
     </>
-  ) : null
+  )
 }
+
+export default Diosphere
