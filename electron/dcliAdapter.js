@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
-const { validateDiograph } = require('@diograph/diograph/validator')
+const { validateDiograph } = require('@diograph/diograph')
 const { constructAndLoadRoom } = require('@diograph/diograph')
 const { LocalClient: LocalClient2 } = require('@diograph/local-client2')
 const { S3Client } = require('@diograph/s3-client')
@@ -134,7 +134,7 @@ const diosphereClass = {
   },
 
   toObject() {
-    // const diosphereObject = require('../public/diory-demo-content/diosphere.json')
+    // const diosphereObject = require('../public/diory-demo-content/diory.json')
     const dotDcliContent = fs.readFileSync('/Users/Jouni/.dcli', 'utf-8')
     const parsedDotDcli = ini.parse(dotDcliContent)
     const diosphereObject = convertDotDcliToDiosphere(parsedDotDcli)

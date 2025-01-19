@@ -5,11 +5,13 @@
   "main": "electron-main.js",
   "private": true,
   "dependencies": {
-    "@diograph/diograph": "0.2.5-rc1",
-    "@diograph/local-client": "^0.3.0-rc6",
+    "@diograph/diograph": "0.4.3-rc5",
+    "@diograph/folder-generator": "^0.4.0-rc2",
+    "@diograph/local-client": "^0.4.1",
     "@diograph/local-client2": "npm:@diograph/local-client@0.2.0-rc2",
     "@diograph/s3-client": "^0.2.0",
-    "@diory/client-js": "0.2.2",
+    "@diory/client-js": "^0.4.1",
+    "@diory/diosphere-js": "0.4.2-rc12",
     "electron-devtools-installer": "^3.2.0",
     "electron-log": "^4.4.7",
     "electron-notarize": "^1.2.1",
@@ -30,7 +32,7 @@
     "@storybook/addon-links": "^6.5.9",
     "@storybook/addons": "^6.5.9",
     "@storybook/preset-create-react-app": "^4.1.2",
-    "@storybook/react": "^6.5.9",
+    "@storybook/react": "^6.5.16",
     "@types/ffmpeg-static": "^3.0.1",
     "@types/jest": "^28.1.3",
     "babel-loader": "^8.2.5",
@@ -171,5 +173,6 @@
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": false,
     "stepDefinitions": "./src/react/utils/cypress/step-definitions"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
