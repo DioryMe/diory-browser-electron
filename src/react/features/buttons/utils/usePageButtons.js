@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useDispatchActions, useSelector } from '../../store'
-import { addButtons, inactivateButton, removeButtons } from './buttonsActions'
+import { useDispatchActions, useSelector } from '../../../store'
+import { addButtons, inactivateButton, removeButtons } from '../buttonsActions'
 
 export const NEXT_BUTTON = 'NEXT_BUTTON'
 export const PREVIOUS_BUTTON = 'PREVIOUS_BUTTON'

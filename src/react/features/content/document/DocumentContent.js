@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack'
 
-import { usePageButtons } from '../../buttons/usePageButtons'
-import { useOpenFolderButton } from '../../buttons/useOpenFolderButton'
+import { usePageButtons } from '../../buttons/utils/usePageButtons'
+import { useOpenFolderButton } from '../../buttons/utils/useOpenFolderButton'
 
 const centerStyle = {
   position: 'absolute',

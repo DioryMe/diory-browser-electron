@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
-import { useDispatchActions, useSelector } from '../../store'
-import { useButtons } from './useButtons'
+import { useDispatchActions, useSelector } from '../../../store'
+import { useButtons } from '../useButtons'
 
-import { inactivateButton } from './buttonsActions'
+import { inactivateButton } from '../buttonsActions'
 
 export const useActiveButton = (buttons, callback) => {
   useButtons(buttons)

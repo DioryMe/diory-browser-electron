@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
-import { useButtons } from './useButtons'
-import { useDispatchActions, useSelector } from '../../store'
-import { inactivateButton } from './buttonsActions'
+import { useButtons } from '../useButtons'
+import { useDispatchActions, useSelector } from '../../../store'
+import { inactivateButton } from '../buttonsActions'
 
-import { invokeChannel } from '../../client/client'
-import { channels } from '../../../shared/constants'
+import { invokeChannel } from '../../../client/client'
+import { channels } from '../../../../shared/constants'
 
 export const OPEN_BUTTON = 'OPEN_BUTTON'
 

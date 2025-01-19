@@ -1,4 +1,4 @@
-import { useActiveButton } from '../../buttons/useActiveButton'
+import { useActiveButton } from '../../buttons/utils/useActiveButton'
 import { useActiveContent } from '../useActiveContent'
 
 import { invokeChannel } from '../../../client/client'

@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { useTogglePlayButtons } from '../../buttons/useTogglePlayButtons'
-import { useToggleMuteButtons } from '../../buttons/useToggleMuteButtons'
+import { useTogglePlayButtons } from '../../buttons/utils/useTogglePlayButtons'
+import { useToggleMuteButtons } from '../../buttons/utils/useToggleMuteButtons'
 import { useContentElement } from '../contentUtils'
 
 import Fullscreen from '../../../components/Fullscreen'
-import { useOpenFolderButton } from '../../buttons/useOpenFolderButton'
+import { useOpenFolderButton } from '../../buttons/utils/useOpenFolderButton'
 
 const videoStyles = {
   display: 'block',

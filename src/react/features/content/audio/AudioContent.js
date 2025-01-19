@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { useTogglePlayButtons } from '../../buttons/useTogglePlayButtons'
+import { useTogglePlayButtons } from '../../buttons/utils/useTogglePlayButtons'
 import { useContentElement } from '../contentUtils'
 
 import Fullscreen from '../../../components/Fullscreen'
-import { useOpenFolderButton } from '../../buttons/useOpenFolderButton'
+import { useOpenFolderButton } from '../../buttons/utils/useOpenFolderButton'
 
 const audioStyles = {
   display: 'block',

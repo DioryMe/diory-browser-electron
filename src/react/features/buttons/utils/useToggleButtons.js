@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 
-import { useDispatchActions, useSelector } from '../../store'
+import { useDispatchActions, useSelector } from '../../../store'
 
-import { addButtons, inactivateButton, removeButtons } from './buttonsActions'
+import { addButtons, inactivateButton, removeButtons } from '../buttonsActions'
 
 const useAddVisibleButton = (buttons, showFirst) => {
   const visibleButton = showFirst ? buttons[0] : buttons[1]
