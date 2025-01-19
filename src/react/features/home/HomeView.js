@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Heading, Pane } from 'evergreen-ui'
 
 import Fullscreen from '../../components/Fullscreen'
-import SetHomeRoomButton from './SetHomeButton'
+import SetHomeRoomButton from './HomeButton'
 
 const HomeView = ({ initializing }) => (
   <Fullscreen

@@ -2,7 +2,7 @@ import React from 'react'
 import { Pane } from 'evergreen-ui'
 import { useSaveHomeConnection } from './useSaveHomeConnection'
 
-const SetHomeButton = () => {
+const HomeButton = () => {
   const { onClick } = useSaveHomeConnection()
   return (
     <Pane
@@ -16,9 +16,9 @@ const SetHomeButton = () => {
       margin={32}
       onClick={onClick}
     >
-      + Choose where your Diory Home is located on this Computer
+      + Choose where your Diory is located on this computer
     </Pane>
   )
 }
 
-export default SetHomeButton
+export default HomeButton

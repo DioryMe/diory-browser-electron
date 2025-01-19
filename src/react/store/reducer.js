@@ -5,29 +5,25 @@ import { RESET_STORE } from './actionsTypes'
 import home from '../features/home/homeReducer'
 import buttons from '../features/buttons/buttonsReducer'
 import content from '../features/content/contentReducer'
-import diograph from '../features/diograph/diographReducer'
+import diory from '../features/diory/diographReducer'
+import diosphere from '../features/diosphere/diosphereReducer'
 import hand from '../features/hand/handReducer'
 import lenses from '../features/lenses/lensesReducer'
 import modal from '../features/modal/modalReducer'
-import navigation from '../features/navigation/navigationReducer'
-import search from '../features/lenses/search/searchReducer'
+import navigation from '../features/diory/navigationReducer'
 import sideBar from '../features/sideBar/sideBarReducer'
-import diosphere from '../features/diosphere/diosphereReducer'
-import tools from '../features/tools/toolsReducer'
 
 const appReducer = combineReducers({
   home,
   buttons,
   content,
-  diograph,
+  diory,
   diosphere,
   hand,
   lenses,
   modal,
   navigation,
-  search,
   sideBar,
-  tools,
 })
 
 export const reducer = (state, action) => {

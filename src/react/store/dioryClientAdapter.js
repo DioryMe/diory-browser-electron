@@ -1,7 +1,6 @@
 import { validateDiosphere } from '../../shared/validateDiosphere'
 
-// eslint-disable-next-line import/no-unresolved
-const { validateDiograph } = require('@diograph/diograph/validator')
+const { validateDiograph } = require('@diograph/diograph')
 
 function DioryClientAdapter(client) {
   this.dioryClient = client

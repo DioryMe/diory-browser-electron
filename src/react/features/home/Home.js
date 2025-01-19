@@ -3,6 +3,7 @@ import { useSelector } from '../../store'
 import HomeView from './HomeView'
 
 export const Home = () => {
-  const { initializing, connection } = useSelector((state) => state.home)
-  return connection ? null : <HomeView initializing={initializing} />
+  const { initializing } = useSelector((state) => state.home)
+  const { loaded } = useSelector((state) => state.diory)
+  return loaded ? null : <HomeView initializing={initializing} />
 }

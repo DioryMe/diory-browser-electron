@@ -6,9 +6,7 @@ import Root from './Root'
 
 const App = () => (
   <StoreProvider>
-    <div className="App">
-      <Root />
-    </div>
+    <Root />
   </StoreProvider>
 )
 

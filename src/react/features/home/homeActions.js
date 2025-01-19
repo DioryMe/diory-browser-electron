@@ -1,4 +1,4 @@
-import { GET_HOME_CONNECTION, SAVE_HOME_CONNECTION } from './homeActionTypes'
+import { SET_STORE, GET_HOME_CONNECTION, SAVE_HOME_CONNECTION } from './homeActionTypes'
 import { createActions } from '../../store/storeUtils'
 
 import { invokeChannel } from '../../client/client'
@@ -11,7 +11,7 @@ export const getHomeConnection = () => async (dispatch, getState) => {
     dispatch(getHomeConnectionActions.begin())
     try {
       const { connection } = await invokeChannel(channels.GET_DIORY_HOME_CONNECTION) // TODO refactor
-      dispatch(getHomeConnectionActions.success({ connection }))
+      dispatch(getHomeConnectionActions.success(connection))
     } catch (error) {
       console.error(error)
       dispatch(getHomeConnectionActions.failure(error))
@@ -19,7 +19,7 @@ export const getHomeConnection = () => async (dispatch, getState) => {
   }
 }
 
-const saveHomeConnectionActions = createActions(SAVE_HOME_CONNECTION) // createPromiseActions, createPromiseReducers
+const saveHomeConnectionActions = createActions(SAVE_HOME_CONNECTION)
 export const saveHomeConnection = (connection) => async (dispatch, getState) => {
   const { saving } = getState().home
   if (!saving) {
@@ -32,3 +32,8 @@ export const saveHomeConnection = (connection) => async (dispatch, getState) => 
     }
   }
 }
+
+export const setStore = (store) => ({
+  type: SET_STORE,
+  payload: { store },
+})

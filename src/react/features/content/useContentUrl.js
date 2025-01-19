@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatchActions } from '../../store'
-import { useDiograph } from '../diograph/useDiograph'
+import { useDiograph } from '../home/useDiograph'
 
 import { setContentUrl } from './contentActions'
 

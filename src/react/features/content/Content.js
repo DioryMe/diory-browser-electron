@@ -3,8 +3,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 import ContentView from './ContentView'
-import { useDiograph } from '../diograph/useDiograph'
 import { useContentUrl } from './useContentUrl'
+import { useDiograph } from '../home/useDiograph'
 
 const contentStyle = {
   position: 'relative',
@@ -14,9 +14,9 @@ const contentStyle = {
 
 const Content = () => {
   useContentUrl()
-
   const { contentUrl } = useSelector((state) => state.content)
-  const { story } = useDiograph()
+
+  const { story = {} } = useDiograph()
   const { data = [] } = story
   const { encodingFormat } = (data && data[0]) || {}
   return <ContentView url={contentUrl} type={encodingFormat} style={contentStyle} />

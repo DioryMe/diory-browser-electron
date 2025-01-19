@@ -4,19 +4,17 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 
-import { DioryClient } from '@diory/client-js'
+import { DiographClient } from '@diograph/diograph'
 
 import { reducer } from './reducer'
-import { DioryClientAdapter } from './dioryClientAdapter'
 
-const dioryClient = window.featureIsEnabled('DCLI_ADAPTER')
-  ? window.dcliAdapter
-  : new DioryClientAdapter(new DioryClient([window.localClient]))
+const dioryClient = new DiographClient([window.localClient])
+const diosphereClient = new DiographClient([window.localClient])
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   reducer,
-  composeEnhancers(applyMiddleware(thunk.withExtraArgument({ dioryClient })))
+  composeEnhancers(applyMiddleware(thunk.withExtraArgument({ dioryClient, diosphereClient })))
 )
 
 const StoreProvider = ({ children }) => <Provider store={store}>{children}</Provider>
@@ -28,6 +26,6 @@ StoreProvider.propTypes = {
 export default StoreProvider
 
 // expose store when run in Cypress
-if (window.Cypress) {
+if (window.Cypress || process.env.NODE_ENV === 'development') {
   window.store = store
 }
