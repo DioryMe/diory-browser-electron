@@ -1,2 +1,0 @@
-export const SELECT_TOOL = 'SELECT_TOOL'
-export const DESELECT_TOOL = 'DESELECT_TOOL'
