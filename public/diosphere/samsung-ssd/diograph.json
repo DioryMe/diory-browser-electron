@@ -1,0 +1,23 @@
+{
+  "/": {
+    "id": "459575e2-2fad-4531-88cd-1a19d6b9dd70",
+    "text": "samsung-ssd",
+    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMUMgn7DwACmQGdtDFX8AAAAABJRU5ErkJggg==",
+    "date": "2024-06-12T21:43:37.912Z",
+    "links": [
+      {
+        "id": "bafkreih4dn6ew43dps5kgdkss4q53rvl275zuakeyuk5wbpbgrygztt2bu"
+      }
+    ],
+    "created": "2024-02-11T09:51:04.729Z",
+    "modified": "2024-06-12T21:43:37.912Z"
+  },
+  "/diograph.json": {
+    "text": "diograph.json",
+    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMUMgn7DwACmQGdtDFX8AAAAABJRU5ErkJggg==",
+    "date": "2024-06-12T21:43:37.912Z",
+    "created": "2024-06-12T21:43:37.912Z",
+    "modified": "2024-06-12T21:43:37.912Z",
+    "id": "bafkreih4dn6ew43dps5kgdkss4q53rvl275zuakeyuk5wbpbgrygztt2bu"
+  }
+}
