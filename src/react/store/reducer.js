@@ -10,7 +10,7 @@ import diosphere from '../features/diosphere/diosphereReducer'
 import hand from '../features/hand/handReducer'
 import lenses from '../features/lenses/lensesReducer'
 import modal from '../features/modal/modalReducer'
-import navigation from '../features/diory/navigationReducer'
+import navigation from '../features/navigation/navigationReducer'
 import sideBar from '../features/sideBar/sideBarReducer'
 
 const appReducer = combineReducers({

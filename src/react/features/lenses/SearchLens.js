@@ -6,7 +6,7 @@ import { useUpdateTool } from '../diory/tools/update'
 import { useDeleteTool } from '../diory/tools/delete'
 import { useCreateDiory } from '../diory/tools/create/useCreateDiory'
 
-import { withLensContainer } from '../diory/withLensContainer'
+import { withLensContainer } from './withLensContainer'
 
 import { createLink } from '../diory/diographActions'
 import { selectLens, searchDiories } from './lensesActions'

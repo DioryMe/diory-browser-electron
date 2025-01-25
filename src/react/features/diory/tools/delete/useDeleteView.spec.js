@@ -1,8 +1,8 @@
 import { useSelector, useDispatchActions } from '../../../../store'
 
 import { deleteDiory, deleteLinks } from '../../diographActions'
-import { goBackward, selectMemory } from '../../navigationActions'
-import { useDiograph } from '../../useDiograph'
+import { goBackward, selectMemory } from '../../../navigation/navigationActions'
+import { useDiograph } from '../../../home/useDiograph'
 import { inactivateButton } from '../../../buttons/buttonsActions'
 
 import deleteViewFixtureDiograph from './__fixtures__/deleteViewFixtureDiograph'
@@ -10,7 +10,7 @@ import deleteViewFixtureDiograph from './__fixtures__/deleteViewFixtureDiograph'
 import { useDeleteView } from './useDeleteView'
 
 jest.mock('../../../store')
-jest.mock('../../diograph/useDiograph')
+jest.mock('../../../home/useDiograph')
 jest.mock('../../diograph/diographActions')
 
 describe('useDeleteView', () => {

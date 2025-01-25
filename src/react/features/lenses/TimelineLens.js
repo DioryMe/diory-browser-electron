@@ -8,7 +8,7 @@ import { useUpdateTool } from '../diory/tools/update'
 
 import TimelineView from '../../components/lenses/timeline/TimelineView'
 
-import { withLensContainer } from '../diory/withLensContainer'
+import { withLensContainer } from './withLensContainer'
 
 import button from '../../components/lenses/timeline/diory'
 

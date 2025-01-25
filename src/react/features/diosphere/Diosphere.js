@@ -2,9 +2,9 @@ import React from 'react'
 
 import { useDispatchActions, useSelector } from '../../store'
 import { useDiographGoSide } from '../../components/diograph/useDiographGoSide'
-import { useDiosphere } from './useDiosphere'
+import { useDiograph } from '../home/useDiograph'
 
-import { goSide, selectStory } from './diosphereActions'
+import { goSide, selectStory } from '../navigation/navigationActions'
 
 import DiographView from '../../components/diograph/DiographView'
 import NavigationToSide from '../../components/NavigationToSide'
@@ -22,12 +22,12 @@ export const useDiographTools = () => {
 }
 
 const Diosphere = () => {
-  const diosphere = useDiosphere()
-  const { goLeft, goRight } = useDiographGoSide(diosphere, goSide)
+  const diograph = useDiograph()
+  const { goLeft, goRight } = useDiographGoSide(diograph, goSide)
   return (
     <>
       <NavigationToSide left onClick={goLeft} />
-      <DiographView {...diosphere} {...useDiographTools()} />
+      <DiographView {...diograph} {...useDiographTools()} />
       <NavigationToSide right onClick={goRight} />
     </>
   )

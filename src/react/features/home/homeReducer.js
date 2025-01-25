@@ -2,7 +2,7 @@ import { SET_STORE, GET_HOME_CONNECTION, SAVE_HOME_CONNECTION } from './homeActi
 import { createReducer, promiseReducers } from '../../store'
 
 const initialState = {
-  store: 'diory',
+  storeId: 'diory',
   client: undefined,
   address: undefined,
   loading: false,
@@ -17,9 +17,9 @@ export const setHomeConnection = (state, { payload }) => ({
   address: payload.address,
 })
 
-export const setStore = (state, { payload: { store } }) => ({
+export const setStore = (state, { payload: { storeId } }) => ({
   ...state,
-  store,
+  storeId,
 })
 
 export default createReducer(initialState, {

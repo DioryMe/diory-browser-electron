@@ -1,10 +1,10 @@
 import React from 'react'
 import { Tablist } from 'evergreen-ui'
 
-import { useDiograph } from './useDiograph'
+import { useDiograph } from '../home/useDiograph'
 import { useDispatchActions, useSelector } from '../../store'
 
-import { goHome, selectContext, selectStory } from './navigationActions'
+import { goHome, selectContext, selectStory } from '../navigation/navigationActions'
 import { setStore } from '../home/homeActions'
 
 import LensesNavigation from '../lenses/LensesNavigation'
@@ -14,13 +14,13 @@ import DiographNavigation from '../../components/diograph/DiographNavigation'
 import NavigationButton from '../../components/NavigationButton'
 
 const useHomeButton = () => {
-  const { store } = useSelector((state) => state.home)
+  const { storeId } = useSelector((state) => state.home)
   const { dispatch } = useDispatchActions()
   return {
     text: 'DIORY',
-    isSelected: store === 'diory',
+    isSelected: storeId === 'diory',
     onClick: () => {
-      store !== 'diory' ? dispatch(setStore('diory')) : dispatch(goHome())
+      storeId !== 'diory' ? dispatch(setStore('diory')) : dispatch(goHome())
     },
     fontWeight: 'bold',
   }

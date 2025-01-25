@@ -7,7 +7,7 @@ import { useMoveTool, useMoveToolIsActive } from '../diory/tools/move'
 
 import MapView from '../../components/lenses/map/MapView'
 
-import { withLensContainer } from '../diory/withLensContainer'
+import { withLensContainer } from './withLensContainer'
 
 import button from '../../components/lenses/map/diory'
 

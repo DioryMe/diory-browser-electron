@@ -2,15 +2,9 @@ import {
   GET_DIOSPHERE_DIOGRAPH,
   GENERATE_DIOSPHERE_DIOGRAPH,
   UPDATE_DIOSPHERE_DIOGRAPH,
-  SELECT_DIOSPHERE_CONTEXT,
-  SELECT_DIOSPHERE_STORY,
-  SELECT_DIOSPHERE_MEMORY,
-  GO_DIOSPHERE_FORWARD,
-  GO_DIOSPHERE_BACKWARD,
-  GO_DIOSPHERE_HOME,
-  GO_DIOSPHERE_SIDE,
 } from './diosphereActionTypes'
 import { createActions } from '../../store/storeUtils'
+import { selectStory } from '../navigation/navigationActions'
 
 const updateDiographAction = (diograph) => ({
   type: UPDATE_DIOSPHERE_DIOGRAPH,
@@ -23,31 +17,6 @@ export const updateDiograph =
     dispatch(updateDiographAction(diosphereClient.diograph.toObject()))
   }
 
-export const selectContext = ({ id }) => ({
-  type: SELECT_DIOSPHERE_CONTEXT,
-  payload: { id },
-})
-
-export const selectStory = ({ id }) => ({
-  type: SELECT_DIOSPHERE_STORY,
-  payload: { id },
-})
-
-export const selectMemory = ({ id } = {}) => ({
-  type: SELECT_DIOSPHERE_MEMORY,
-  payload: { id },
-})
-
-export const goBackward = () => ({ type: GO_DIOSPHERE_BACKWARD })
-export const goForward = () => ({ type: GO_DIOSPHERE_FORWARD })
-
-export const goSide = ({ storyId }) => ({
-  type: GO_DIOSPHERE_SIDE,
-  payload: { storyId },
-})
-
-export const goHome = () => ({ type: GO_DIOSPHERE_HOME })
-
 const getDiographActions = createActions(GET_DIOSPHERE_DIOGRAPH)
 export const getDiograph =
   (connection) =>
@@ -58,7 +27,9 @@ export const getDiograph =
       try {
         await diosphereClient.getDiograph([connection])
         dispatch(updateDiograph())
-        dispatch(selectStory(diosphereClient.diograph.getDiory({ id: '/' }).toObject()))
+        dispatch(
+          selectStory(diosphereClient.diograph.getDiory({ id: '/' }).toObject(), 'diosphere')
+        )
         dispatch(getDiographActions.success())
       } catch (error) {
         console.error(error)

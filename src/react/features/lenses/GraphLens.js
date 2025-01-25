@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { withLensContainer } from '../diory/withLensContainer'
+import { withLensContainer } from './withLensContainer'
 
 import GraphView from '../../components/lenses/graph/GraphView'
 

@@ -1,7 +1,7 @@
 import { useDispatchActions, useSelector } from '../../../../store'
 import { useButtons } from '../../../buttons/useButtons'
 import { inactivateButton } from '../../../buttons/buttonsActions'
-import { useDiograph } from '../../useDiograph'
+import { useDiograph } from '../../../home/useDiograph'
 
 import { createDiory, createLink } from '../../diographActions'
 

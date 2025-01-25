@@ -24,7 +24,7 @@ import { DiosphereNavigation } from './features/diosphere/DiosphereNavigation'
 import { DiosphereSideNavigation } from './features/diosphere/DiosphereSideNavigation'
 
 import { debounce } from './utils'
-import { DiographSideNavigation } from './features/diory/DiographSideNavigation'
+import { DiorySideNavigation } from './features/diory/DiorySideNavigation'
 import {
   useDiosphereEffect,
   useGenerateDiographEffect,
@@ -41,7 +41,7 @@ const Root = () => {
     dispatch(setSideBarWidth('right', widths[widths.length - 1]))
   }
 
-  const { store } = useSelector((store) => store.home)
+  const { storeId } = useSelector((store) => store.home)
   const { loaded: diographLoaded } = useSelector((state) => state.diory)
   const { selectedLensId } = useSelector((store) => store.lenses)
   return (
@@ -53,14 +53,14 @@ const Root = () => {
           <PanelGroup direction="horizontal" onLayout={debounce(onLayout, 100)}>
             <Panel defaultSize={15} minSize={1} style={{ position: 'relative' }}>
               <SideBarContent>
-                <DiographSideNavigation />
+                <DiorySideNavigation />
                 <DiosphereSideNavigation />
               </SideBarContent>
             </Panel>
             <PanelResizeHandle />
             {diographLoaded && (
               <Panel defaultSize={70} minSize={10} style={{ position: 'relative' }}>
-                {store === 'diory' ? <Diory /> : <Diosphere />}
+                {storeId === 'diory' ? <Diory /> : <Diosphere />}
               </Panel>
             )}
             <PanelResizeHandle />

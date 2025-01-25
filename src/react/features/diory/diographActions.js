@@ -1,6 +1,6 @@
 import { UPDATE_DIOGRAPH, GET_DIOGRAPH } from './diographActionTypes'
 import { createActions } from '../../store/storeUtils'
-import { selectStory } from './navigationActions'
+import { selectStory } from '../navigation/navigationActions'
 
 const updateDiographAction = (diograph) => ({
   type: UPDATE_DIOGRAPH,

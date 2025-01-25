@@ -1,7 +1,7 @@
 import { getDefaultImage } from '../../../../../shared/getDefaultImage'
 
 import { useDispatchActions } from '../../../../store'
-import { useDiograph } from '../../useDiograph'
+import { useDiograph } from '../../../home/useDiograph'
 
 import { inactivateButton } from '../../../buttons/buttonsActions'
 import { createDiory, createLink } from '../../diographActions'

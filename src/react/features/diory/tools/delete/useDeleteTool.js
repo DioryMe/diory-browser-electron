@@ -1,7 +1,7 @@
 import { useDispatchActions, useSelector } from '../../../../store'
 import { useButtons } from '../../../buttons/useButtons'
 
-import { selectMemory } from '../../navigationActions'
+import { selectMemory } from '../../../navigation/navigationActions'
 import { buttons, DELETE_TOOL_BUTTON } from './buttons'
 
 export const useDeleteTool = () => {

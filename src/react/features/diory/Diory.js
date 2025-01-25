@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useDispatchActions, useSelector } from '../../store'
-import { useDiograph } from './useDiograph'
+import { useDiograph } from '../home/useDiograph'
 
 import { useToggleContent } from '../content/useToggleContent'
 import { useDiographGoSide } from '../../components/diograph/useDiographGoSide'
@@ -11,7 +11,7 @@ import { useStoryTool } from './tools/story'
 import { useUpdateTool } from './tools/update'
 
 import { createLink } from './diographActions'
-import { goSide } from './navigationActions'
+import { goSide } from '../navigation/navigationActions'
 
 import DiographView from '../../components/diograph/DiographView'
 import NavigationToSide from '../../components/NavigationToSide'

@@ -33,7 +33,7 @@ export const saveHomeConnection = (connection) => async (dispatch, getState) => 
   }
 }
 
-export const setStore = (store) => ({
+export const setStore = (storeId) => ({
   type: SET_STORE,
-  payload: { store },
+  payload: { storeId },
 })

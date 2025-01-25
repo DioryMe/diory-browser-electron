@@ -1,5 +1,5 @@
 import { useDispatchActions, useSelector } from '../../../../store'
-import { selectStory } from '../../navigationActions'
+import { selectStory } from '../../../navigation/navigationActions'
 
 export const useStoryTool = () => {
   const { active, activeButton } = useSelector((state) => state.buttons)

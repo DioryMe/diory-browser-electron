@@ -2,13 +2,13 @@ import React from 'react'
 import { useDispatchActions, useSelector } from '../../../../store'
 
 import { updateDiory } from '../../diographActions'
-import { useDiograph } from '../../useDiograph'
+import { useDiograph } from '../../../home/useDiograph'
 
 import UpdateDioryView from '../../../../components/diories/UpdateDioryView'
 
 import { UPDATE_TOOL_BUTTON } from './buttons'
 import { inactivateButton } from '../../../buttons/buttonsActions'
-import { selectMemory } from '../../navigationActions'
+import { selectMemory } from '../../../navigation/navigationActions'
 
 const useToolActions = () => {
   const { dispatch } = useDispatchActions()

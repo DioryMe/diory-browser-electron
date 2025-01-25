@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { selectStory } from './navigationActions'
+import { selectStory } from '../navigation/navigationActions'
 
 import DiographFavorites from '../../components/diograph/DiographFavorites'
 
@@ -19,6 +19,6 @@ const favorites = [
   },
 ]
 
-export const DiographSideNavigation = () => (
+export const DiorySideNavigation = () => (
   <DiographFavorites favorites={favorites} selectStory={selectStory} />
 )

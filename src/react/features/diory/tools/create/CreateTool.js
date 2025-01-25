@@ -5,7 +5,7 @@ import { useCreateDiory } from './useCreateDiory'
 import { useButtons } from '../../../buttons/useButtons'
 
 import { inactivateButton } from '../../../buttons/buttonsActions'
-import { selectMemory } from '../../navigationActions'
+import { selectMemory } from '../../../navigation/navigationActions'
 
 import UpdateDioryView from '../../../../components/diories/UpdateDioryView'
 

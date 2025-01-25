@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { selectStory } from './diosphereActions'
+import { selectStory } from '../navigation/navigationActions'
 
 import DiographFavorites from '../../components/diograph/DiographFavorites'
 

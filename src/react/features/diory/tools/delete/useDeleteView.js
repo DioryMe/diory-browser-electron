@@ -1,7 +1,7 @@
 import { useSelector, useDispatchActions } from '../../../../store'
-import { goBackward, selectMemory } from '../../navigationActions'
+import { goBackward, selectMemory } from '../../../navigation/navigationActions'
 import { deleteDiory, deleteLinks } from '../../diographActions'
-import { useDiograph } from '../../useDiograph'
+import { useDiograph } from '../../../home/useDiograph'
 import { inactivateButton } from '../../../buttons/buttonsActions'
 
 const linkedDiories = (focusDiory, diograph) =>
