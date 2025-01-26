@@ -1,6 +1,9 @@
 import { useDispatchActions } from '../../store'
+import { goSide } from './navigationActions'
+import { useDiograph } from '../diograph/useDiograph'
 
-export const useDiographGoSide = ({ story, stories }, goSide) => {
+export const useGoSide = () => {
+  const { story, stories } = useDiograph()
   const { dispatch } = useDispatchActions()
   const storyIds = stories.map(({ id }) => id)
 

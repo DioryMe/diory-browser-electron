@@ -5,8 +5,7 @@ import { RESET_STORE } from './actionsTypes'
 import home from '../features/home/homeReducer'
 import buttons from '../features/buttons/buttonsReducer'
 import content from '../features/content/contentReducer'
-import diory from '../features/diory/diographReducer'
-import diosphere from '../features/diosphere/diosphereReducer'
+import diograph from '../features/diograph/diographReducer'
 import hand from '../features/hand/handReducer'
 import lenses from '../features/lenses/lensesReducer'
 import modal from '../features/modal/modalReducer'
@@ -17,8 +16,7 @@ const appReducer = combineReducers({
   home,
   buttons,
   content,
-  diory,
-  diosphere,
+  diograph,
   hand,
   lenses,
   modal,

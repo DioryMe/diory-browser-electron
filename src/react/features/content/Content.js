@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 import ContentView from './ContentView'
 import { useContentUrl } from './useContentUrl'
-import { useDiograph } from '../home/useDiograph'
+import { useDiograph } from '../diograph/useDiograph'
 
 const contentStyle = {
   position: 'relative',

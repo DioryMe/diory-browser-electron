@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector } from '../../../../store'
+import { useSelector } from '../../../store'
 import { useDeleteView } from './useDeleteView'
 
 import DeleteView from './DeleteView'

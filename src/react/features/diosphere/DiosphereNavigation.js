@@ -2,7 +2,7 @@ import React from 'react'
 import { Tablist } from 'evergreen-ui'
 
 import { useDispatchActions, useSelector } from '../../store'
-import { useDiograph } from '../home/useDiograph'
+import { useDiograph } from '../diograph/useDiograph'
 
 import { goHome, selectContext, selectStory } from '../navigation/navigationActions'
 import { setStore } from '../home/homeActions'
@@ -25,7 +25,7 @@ const useHomeButton = () => {
 }
 
 export const DiosphereNavigation = () => {
-  const diograph = useDiograph()
+  const diograph = useDiograph('diosphere')
   return (
     <NavigationBar bottom={0}>
       <NavigationButton {...useHomeButton()} />

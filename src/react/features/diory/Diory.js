@@ -1,26 +1,26 @@
 import React from 'react'
 
-import { useDispatchActions, useSelector } from '../../store'
-import { useDiograph } from '../home/useDiograph'
+import { useDispatchActions } from '../../store'
+import { useDiograph } from '../diograph/useDiograph'
 
 import { useToggleContent } from '../content/useToggleContent'
-import { useDiographGoSide } from '../../components/diograph/useDiographGoSide'
+import { useGoSide } from '../navigation/useGoSide'
+import { useNavigation } from '../navigation/useNavigation'
 
-import { useDeleteTool } from './tools/delete'
-import { useStoryTool } from './tools/story'
-import { useUpdateTool } from './tools/update'
+import { useDeleteTool } from '../tools/delete'
+import { useStoryTool } from '../tools/story'
+import { useUpdateTool } from '../tools/update'
 
-import { createLink } from './diographActions'
-import { goSide } from '../navigation/navigationActions'
+import { createLink } from '../diograph/diographActions'
 
 import DiographView from '../../components/diograph/DiographView'
 import NavigationToSide from '../../components/NavigationToSide'
-import CreateTool from './tools/create/CreateTool'
-import UpdateTool from './tools/update/UpdateTool'
-import DeleteTool from './tools/delete/DeleteTool'
+import CreateTool from '../tools/create/CreateTool'
+import UpdateTool from '../tools/update/UpdateTool'
+import DeleteTool from '../tools/delete/DeleteTool'
 
 export const useDiographTools = () => {
-  const { forward = [] } = useSelector((state) => state.navigation)
+  const { forward = [] } = useNavigation('diory')
 
   const selectStory = useStoryTool()
   const deleteDiory = useDeleteTool()
@@ -48,7 +48,7 @@ export const useDiographTools = () => {
 
 const Diory = () => {
   const diograph = useDiograph()
-  const { goLeft, goRight } = useDiographGoSide(diograph, goSide)
+  const { goLeft, goRight } = useGoSide()
 
   return (
     <>

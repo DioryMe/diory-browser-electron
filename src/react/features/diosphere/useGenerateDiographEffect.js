@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 
 import { useDispatchActions, useSelector } from '../../store'
 
-import { generateDiograph, getDiograph } from './diosphereActions'
+import { generateDiograph } from '../diograph/diographActions'
 
 const findDioryConnection = (dioryId, diograph) =>
   Object.entries(diograph)
@@ -10,7 +10,7 @@ const findDioryConnection = (dioryId, diograph) =>
     .find(([, { id }]) => id === dioryId)
 
 const useDioryConnection = () => {
-  const { storyId, diograph } = useSelector((state) => state.diosphere)
+  const { storyId, diograph = {} } = useSelector((state) => state.navigation.diosphere) || {}
 
   const [dioryConnection] = findDioryConnection(storyId, diograph) || []
   const [client, ...addressArray] = (dioryConnection || '').split('/') || []
@@ -19,17 +19,6 @@ const useDioryConnection = () => {
     client,
     address: addressArray.join('/'),
   }
-}
-
-export const useDiosphereEffect = () => {
-  const { client, address } = useSelector((state) => state.home)
-
-  const { dispatch } = useDispatchActions()
-  useEffect(() => {
-    if (client && address) {
-      dispatch(getDiograph({ client, address: `${address}/diosphere` }))
-    }
-  }, [dispatch, client, address])
 }
 
 export const useGenerateDiographEffect = () => {

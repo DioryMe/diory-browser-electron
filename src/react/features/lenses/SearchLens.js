@@ -1,14 +1,13 @@
 import React from 'react'
 
 import { useDispatchActions, useSelector } from '../../store'
-import { useStoryTool } from '../diory/tools/story'
-import { useUpdateTool } from '../diory/tools/update'
-import { useDeleteTool } from '../diory/tools/delete'
-import { useCreateDiory } from '../diory/tools/create/useCreateDiory'
+import { useStoryTool } from '../tools/story'
+import { useUpdateTool } from '../tools/update'
+import { useDeleteTool } from '../tools/delete'
+import { useCreateDiory } from '../tools/create'
+import { useLens } from './useLens'
 
-import { withLensContainer } from './withLensContainer'
-
-import { createLink } from '../diory/diographActions'
+import { createLink } from '../diograph/diographActions'
 import { selectLens, searchDiories } from './lensesActions'
 
 import SearchView from '../../components/lenses/search/SearchView'
@@ -52,10 +51,13 @@ const useSearchBar = () => {
   }
 }
 
-const SearchLens = () => (
-  <SearchView {...useSearch()}>
-    <SearchBar width="100%" {...useSearchBar()} />
-  </SearchView>
-)
-
-export default withLensContainer('search', button)(SearchLens)
+export const SearchLens = () => {
+  const { enabled } = useLens('graph', button)
+  const tools = useSearch()
+  const searchBar = useSearchBar()
+  return enabled ? (
+    <SearchView {...tools}>
+      <SearchBar width="100%" {...searchBar} />
+    </SearchView>
+  ) : null
+}

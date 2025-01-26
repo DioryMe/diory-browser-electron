@@ -6,7 +6,7 @@ import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels'
 
 import { useDispatchActions } from './store'
 import { useGetHomeConnection } from './features/home/useGetHomeConnection'
-import { useDioryEffect } from './features/diory/useDioryEffect'
+import { useDiographEffect } from './features/diograph/useDiographEffect'
 
 import { setSideBarWidth } from './features/sideBar/sideBarActions'
 
@@ -25,16 +25,10 @@ import { DiosphereSideNavigation } from './features/diosphere/DiosphereSideNavig
 
 import { debounce } from './utils'
 import { DiorySideNavigation } from './features/diory/DiorySideNavigation'
-import {
-  useDiosphereEffect,
-  useGenerateDiographEffect,
-} from './features/diosphere/useDiosphereEffect'
 
 const Root = () => {
   useGetHomeConnection()
-  useDioryEffect()
-  useDiosphereEffect()
-  useGenerateDiographEffect()
+  useDiographEffect()
 
   const { dispatch } = useDispatchActions()
   const onLayout = (widths) => {
@@ -42,7 +36,7 @@ const Root = () => {
   }
 
   const { storeId } = useSelector((store) => store.home)
-  const { loaded: diographLoaded } = useSelector((state) => state.diory)
+  const { loaded: diographLoaded } = useSelector((state) => state.diograph)
   const { selectedLensId } = useSelector((store) => store.lenses)
   return (
     <>

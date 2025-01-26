@@ -47,6 +47,7 @@ export const useDiographData = (navigationState, diograph = {}) => {
   const { context, contexts } = useContexts(contextId, storyId, backward, diograph)
 
   return {
+    diograph,
     context,
     contexts,
     story: diograph[storyId],

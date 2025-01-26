@@ -1,14 +1,14 @@
 import React from 'react'
 
-import { useCreateTool } from '../diory/tools/createLocation'
-import { useDeleteTool } from '../diory/tools/delete'
-import { useStoryTool } from '../diory/tools/story'
-import { useMoveTool, useMoveToolIsActive } from '../diory/tools/move'
-import { useUpdateTool } from '../diory/tools/update'
+import { useCreateTool } from '../tools/createLocation'
+import { useDeleteTool } from '../tools/delete'
+import { useStoryTool } from '../tools/story'
+import { useMoveTool, useMoveToolIsActive } from '../tools/move'
+import { useUpdateTool } from '../tools/update'
+import { useLens } from './useLens'
+import { useDiograph } from '../diograph/useDiograph'
 
 import TimelineView from '../../components/lenses/timeline/TimelineView'
-
-import { withLensContainer } from './withLensContainer'
 
 import button from '../../components/lenses/timeline/diory'
 
@@ -28,6 +28,9 @@ const useTimelineTools = () => {
   }
 }
 
-const TimelineLens = (diograph) => <TimelineView {...diograph} {...useTimelineTools()} />
-
-export default withLensContainer('timeline', button)(TimelineLens)
+export const TimelineLens = () => {
+  const diograph = useDiograph()
+  const tools = useTimelineTools()
+  const { enabled } = useLens('timeline', button)
+  return enabled ? <TimelineView {...diograph} {...tools} /> : null
+}

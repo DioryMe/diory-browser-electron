@@ -13,10 +13,9 @@ export const selectContext = ({ id }) => ({
   payload: { id },
 })
 
-export const selectStory = ({ id }, storeId) => ({
+export const selectStory = ({ id }) => ({
   type: SELECT_STORY,
   payload: { id },
-  storeId,
 })
 
 export const selectMemory = ({ id } = {}) => ({

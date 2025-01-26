@@ -1,6 +1,6 @@
-import { useDispatchActions, useSelector } from '../../../../store'
-import { useButtons } from '../../../buttons/useButtons'
-import { selectMemory } from '../../../navigation/navigationActions'
+import { useDispatchActions, useSelector } from '../../../store'
+import { useButtons } from '../../buttons/useButtons'
+import { selectMemory } from '../../navigation/navigationActions'
 import { buttons, UPDATE_TOOL_BUTTON } from './buttons'
 
 export const useUpdateTool = () => {

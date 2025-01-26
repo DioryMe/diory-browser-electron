@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux'
 
 import { useDispatchActions } from '../../store'
-import { useStoryTool } from '../diory/tools/story'
-import { useUpdateTool } from '../diory/tools/update'
-import { useDeleteTool } from '../diory/tools/delete'
+import { useStoryTool } from '../tools/story'
+import { useUpdateTool } from '../tools/update'
+import { useDeleteTool } from '../tools/delete'
 
-import { createLink } from '../diory/diographActions'
+import { createLink } from '../diograph/diographActions'
 import { addDioryToHand, clearHand } from './handActions'
 
 export const useHand = () => {

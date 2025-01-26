@@ -1,8 +1,8 @@
-import { useSelector, useDispatchActions } from '../../../../store'
-import { goBackward, selectMemory } from '../../../navigation/navigationActions'
-import { deleteDiory, deleteLinks } from '../../diographActions'
-import { useDiograph } from '../../../home/useDiograph'
-import { inactivateButton } from '../../../buttons/buttonsActions'
+import { useDispatchActions } from '../../../store'
+import { goBackward, selectMemory } from '../../navigation/navigationActions'
+import { deleteDiory, deleteLinks } from '../../diograph/diographActions'
+import { useDiograph } from '../../diograph/useDiograph'
+import { inactivateButton } from '../../buttons/buttonsActions'
 
 const linkedDiories = (focusDiory, diograph) =>
   Object.values(focusDiory.links || []).map(({ id }) => ({
@@ -38,9 +38,7 @@ const isFocusDeleted = (focusDiory, linkDiory) => {
 }
 
 export const useDeleteView = () => {
-  const { diograph } = useSelector((state) => state.diory)
-  const { story } = useDiograph()
-  const { memory } = useDiograph()
+  const { story, memory, diograph } = useDiograph()
   const { dispatch } = useDispatchActions()
 
   let deletedDiory

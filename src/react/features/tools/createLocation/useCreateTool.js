@@ -1,9 +1,9 @@
-import { useDispatchActions, useSelector } from '../../../../store'
-import { useButtons } from '../../../buttons/useButtons'
-import { inactivateButton } from '../../../buttons/buttonsActions'
-import { useDiograph } from '../../../home/useDiograph'
+import { useDispatchActions, useSelector } from '../../../store'
+import { useButtons } from '../../buttons/useButtons'
+import { inactivateButton } from '../../buttons/buttonsActions'
+import { useDiograph } from '../../diograph/useDiograph'
 
-import { createDiory, createLink } from '../../diographActions'
+import { createDiory, createLink } from '../../diograph/diographActions'
 
 import { buttons, CREATE_LOCATION_TOOL_BUTTON } from './buttons'
 

@@ -1,9 +1,9 @@
-import { useSelector, useDispatchActions } from '../../../../store'
+import { useSelector, useDispatchActions } from '../../../store'
 
-import { deleteDiory, deleteLinks } from '../../diographActions'
-import { goBackward, selectMemory } from '../../../navigation/navigationActions'
-import { useDiograph } from '../../../home/useDiograph'
-import { inactivateButton } from '../../../buttons/buttonsActions'
+import { deleteDiory, deleteLinks } from '../../diograph/diographActions'
+import { goBackward, selectMemory } from '../../navigation/navigationActions'
+import { useDiograph } from '../../diograph/useDiograph'
+import { inactivateButton } from '../../buttons/buttonsActions'
 
 import deleteViewFixtureDiograph from './__fixtures__/deleteViewFixtureDiograph'
 

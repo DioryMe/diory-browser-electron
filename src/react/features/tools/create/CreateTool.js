@@ -1,13 +1,13 @@
 import React from 'react'
 
-import { useDispatchActions, useSelector } from '../../../../store'
+import { useDispatchActions, useSelector } from '../../../store'
 import { useCreateDiory } from './useCreateDiory'
-import { useButtons } from '../../../buttons/useButtons'
+import { useButtons } from '../../buttons/useButtons'
 
-import { inactivateButton } from '../../../buttons/buttonsActions'
-import { selectMemory } from '../../../navigation/navigationActions'
+import { inactivateButton } from '../../buttons/buttonsActions'
+import { selectMemory } from '../../navigation/navigationActions'
 
-import UpdateDioryView from '../../../../components/diories/UpdateDioryView'
+import UpdateDioryView from '../../../components/diories/UpdateDioryView'
 
 import { BUTTON, buttons } from './buttons'
 

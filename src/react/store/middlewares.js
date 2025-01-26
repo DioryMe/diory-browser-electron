@@ -1,5 +1,4 @@
 export const addStoreId = (store) => (next) => (action) => {
-  console.log(action.storeId !== undefined)
   if (action.storeId !== undefined) return next(action)
 
   const { storeId } = store.getState().home

@@ -1,13 +1,13 @@
 import React from 'react'
 
-import { useStoryTool } from '../diory/tools/story'
-import { useCreateTool } from '../diory/tools/createLocation'
-import { useDeleteTool } from '../diory/tools/delete'
-import { useMoveTool, useMoveToolIsActive } from '../diory/tools/move'
+import { useStoryTool } from '../tools/story'
+import { useCreateTool } from '../tools/createLocation'
+import { useDeleteTool } from '../tools/delete'
+import { useMoveTool, useMoveToolIsActive } from '../tools/move'
+import { useLens } from './useLens'
+import { useDiograph } from '../diograph/useDiograph'
 
 import MapView from '../../components/lenses/map/MapView'
-
-import { withLensContainer } from './withLensContainer'
 
 import button from '../../components/lenses/map/diory'
 
@@ -25,6 +25,9 @@ const useMapTools = () => {
   }
 }
 
-const MapLens = (diograph) => <MapView {...diograph} {...useMapTools()} />
-
-export default withLensContainer('map', button)(MapLens)
+export const MapLens = () => {
+  const diograph = useDiograph()
+  const { enabled } = useLens('map', button)
+  const tools = useMapTools()
+  return enabled ? <MapView {...diograph} {...tools} /> : null
+}
