@@ -1,0 +1,32 @@
+{
+  "/": {
+    "id": "root"
+  },
+  "root": {
+    "id": "root",
+    "text": "My Diory",
+    "image": "diory-demo-content/demo-content.png",
+    "created": "2023-10-22T17:51:25.570Z",
+    "modified": "2025-01-11T21:05:14.446Z"
+  },
+  "LocalClient/public/diory": {
+    "id": "diory"
+  },
+  "diory": {
+    "id": "diory",
+    "text": "Diory",
+    "image": "diory-demo-content/demo-content.png",
+    "created": "2023-10-22T17:51:25.570Z",
+    "modified": "2025-01-11T21:05:14.446Z"
+  },
+  "LocalClient/public/diosphere": {
+    "id": "diosphere"
+  },
+  "diosphere": {
+    "id": "diosphere",
+    "text": "Diosphere",
+    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8GmnyHwAGEAJzBJT/2AAAAABJRU5ErkJggg==",
+    "created": "2023-10-22T17:51:25.570Z",
+    "modified": "2024-05-11T19:41:56.581Z"
+  }
+}

@@ -2,15 +2,19 @@ import { GET_DIOGRAPH, GENERATE_DIOGRAPH, UPDATE_DIOGRAPH } from './diographActi
 
 import { createReducer, promiseReducers } from '../../store'
 
+// type DiographState = {
+//   [connection: string]: Diograph
+// }
+
 const initialState = {
   loading: false,
   loaded: false,
   error: false,
 }
 
-export const updateDiograph = (state, { payload: { diograph }, storeId }) => ({
+export const updateDiograph = (state, { payload: { diograph }, connection }) => ({
   ...state,
-  [storeId]: diograph,
+  [connection]: diograph,
 })
 
 export default createReducer(initialState, {

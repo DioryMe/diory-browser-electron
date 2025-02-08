@@ -1,8 +1,8 @@
-export const addStoreId = (store) => (next) => (action) => {
-  if (action.storeId !== undefined) return next(action)
+export const addConnection = (store) => (next) => (action) => {
+  if (action.connection !== undefined) return next(action)
 
-  const { storeId } = store.getState().home
-  return next({ ...action, storeId })
+  const { connection } = store.getState().home
+  return next({ ...action, connection })
 }
 
 export const logger = (store) => (next) => (action) => {

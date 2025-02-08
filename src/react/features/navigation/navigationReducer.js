@@ -21,28 +21,28 @@ import { createReducer } from '../../store'
 
 const initialState = {}
 
-const addToStore = (oldState, storeId, newState) => ({
+const addToStore = (oldState, connection, newState) => ({
   ...oldState,
-  [storeId]: {
-    ...oldState[storeId],
+  [connection]: {
+    ...oldState[connection],
     ...newState,
   },
 })
 
-export const selectContext = (state, { payload, storeId }) =>
-  addToStore(state, storeId, {
+export const selectContext = (state, { payload, connection }) =>
+  addToStore(state, connection, {
     contextId: payload.id,
   })
 
 const init = (array) => array || []
 
-export const selectStory = (state, { payload, storeId }) => {
-  const previousState = state[storeId] || {}
+export const selectStory = (state, { payload, connection }) => {
+  const previousState = state[connection] || {}
   if (payload.id === previousState.storyId) {
     return state
   }
 
-  return addToStore(state, storeId, {
+  return addToStore(state, connection, {
     contextId: previousState.storyId,
     storyId: payload.id,
     backward: previousState.storyId
@@ -53,15 +53,15 @@ export const selectStory = (state, { payload, storeId }) => {
   })
 }
 
-export const selectMemory = (state, { payload, storeId }) =>
-  addToStore(state, storeId, {
+export const selectMemory = (state, { payload, connection }) =>
+  addToStore(state, connection, {
     memoryId: payload.id,
   })
 
-export const goSide = (state, { payload, storeId }) => {
-  const previousState = state[storeId] || {}
+export const goSide = (state, { payload, connection }) => {
+  const previousState = state[connection] || {}
 
-  return addToStore(state, storeId, {
+  return addToStore(state, connection, {
     storyId: payload.storyId,
     forward: [],
     path: Object.assign([], previousState.path, {
@@ -70,11 +70,11 @@ export const goSide = (state, { payload, storeId }) => {
   })
 }
 
-export const goBackward = (state, { storeId }) => {
-  const previousState = state[storeId] || {}
+export const goBackward = (state, { connection }) => {
+  const previousState = state[connection] || {}
 
   const [storyId, ...backward] = previousState.backward
-  return addToStore(state, storeId, {
+  return addToStore(state, connection, {
     storyId,
     backward,
     forward: [previousState.storyId, ...previousState.forward],
@@ -82,11 +82,11 @@ export const goBackward = (state, { storeId }) => {
   })
 }
 
-export const goForward = (state, { storeId }) => {
-  const previousState = state[storeId] || {}
+export const goForward = (state, { connection }) => {
+  const previousState = state[connection] || {}
 
   const [storyId, ...forward] = previousState.forward
-  return addToStore(state, storeId, {
+  return addToStore(state, connection, {
     storyId,
     backward: [previousState.storyId, ...init(previousState.backward)],
     forward,
@@ -94,12 +94,12 @@ export const goForward = (state, { storeId }) => {
   })
 }
 
-export const goHome = (state, { storeId }) => {
-  const previousState = state[storeId] || {}
-
-  return addToStore(state, storeId, {
+export const goHome = (state, { connection }) => {
+  const previousState = state[connection] || {}
+  console.log(previousState)
+  return addToStore(state, connection, {
     storyId: undefined,
-    backward: [previousState.storyId, ...previousState.backward],
+    backward: [previousState.storyId, ...(previousState.backward || [])],
     forward: [],
     path: [],
   })

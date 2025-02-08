@@ -9,6 +9,9 @@
     "modified": "2024-03-24T14:56:21.243Z",
     "links": [
       {
+        "id": "diory"
+      },
+      {
         "id": "bdbd606f-02e1-42e6-a01d-5fecb257bc76"
       },
       {
@@ -27,6 +30,17 @@
         "id": "IPFS"
       }
     ]
+  },
+  "LocalClient/public/diosphere/diory": {
+    "id": "diory"
+  },
+  "diory": {
+    "id": "diory",
+    "text": "Diory",
+    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcfdT2PwAGPgKeWQwJuAAAAABJRU5ErkJggg==",
+    "date": "2014-06-03T11:54:35.000Z",
+    "created": "2023-05-14T16:03:57.652Z",
+    "modified": "2024-12-25T14:13:35.872Z"
   },
   "LocalClient/public/diosphere/macbook-pro": {
     "id": "bdbd606f-02e1-42e6-a01d-5fecb257bc76"

@@ -41,8 +41,9 @@ const useContexts = (contextId, storyId, backward, diograph) => {
   }
 }
 
-export const useDiographData = (navigationState, diograph = {}) => {
-  const { contextId, storyId, memoryId, backward } = navigationState
+export const useDiographData = (navigationState = {}, diograph = {}) => {
+  const { contextId, memoryId, backward = [] } = navigationState
+  const storyId = navigationState.storyId || (diograph['/'] && diograph['/'].id)
 
   const { context, contexts } = useContexts(contextId, storyId, backward, diograph)
 

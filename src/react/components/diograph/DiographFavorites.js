@@ -7,12 +7,18 @@ import { useDispatchActions } from '../../store'
 import NavigationButton from '../NavigationButton'
 import { MenuItem } from '../MenuItem'
 
-const DiographFavorites = ({ favorites, selectStory }) => {
+const DiographFavorites = ({ favorites, setStore, selectStory }) => {
   const { dispatch } = useDispatchActions()
   return (
     <Menu appearance="minimal">
-      {favorites.map(({ id, text }) => (
-        <MenuItem key={text} onClick={() => dispatch(selectStory({ id }))}>
+      {Object.entries(favorites).map(([connection, { id, text }]) => (
+        <MenuItem
+          key={text}
+          onClick={() => {
+            dispatch(setStore(connection))
+            dispatch(selectStory(id))
+          }}
+        >
           {text}
         </MenuItem>
       ))}
@@ -22,7 +28,8 @@ const DiographFavorites = ({ favorites, selectStory }) => {
 }
 
 DiographFavorites.propTypes = {
-  favorites: PropTypes.array,
+  favorites: PropTypes.object,
+  setStore: PropTypes.func,
   selectStory: PropTypes.func,
 }
 

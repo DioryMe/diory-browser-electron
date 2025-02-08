@@ -2,7 +2,6 @@ import { ADD_DIORY_TO_HAND, CLEAR_HAND } from './handActionTypes'
 import { createReducer } from '../../store'
 
 const initialState = {
-  selectedTool: null,
   hand: [],
 }
 

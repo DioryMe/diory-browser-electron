@@ -1,6 +1,5 @@
 import { UPDATE_DIOGRAPH, GENERATE_DIOGRAPH, GET_DIOGRAPH } from './diographActionTypes'
 import { createActions } from '../../store/storeUtils'
-import { selectStory } from '../navigation/navigationActions'
 
 const updateDiographAction = (diograph) => ({
   type: UPDATE_DIOGRAPH,
@@ -9,14 +8,16 @@ const updateDiographAction = (diograph) => ({
 
 export const updateDiograph =
   () =>
-  (dispatch, _, { diographClient }) => {
-    dispatch(updateDiographAction(diographClient.diograph.toObject()))
+  (dispatch, getState, { diographClient }) => {
+    const { connection } = getState().home
+    dispatch(updateDiographAction(diographClient.diographs[connection].toObject()))
   }
 
 export const createDiory =
   (dioryData, alias) =>
-  (dispatch, _, { diographClient }) => {
-    const diory = diographClient.diograph.addDiory(dioryData, alias)
+  (dispatch, getState, { diographClient }) => {
+    const { connection } = getState().home
+    const diory = diographClient.diographs[connection].addDiory(dioryData, alias)
     dispatch(updateDiograph())
     return { diory: diory.toObject() }
   }
@@ -24,14 +25,16 @@ export const createDiory =
 export const updateDiory =
   (dioryData) =>
   (dispatch, getState, { diographClient }) => {
-    diographClient.diograph.updateDiory(dioryData)
+    const { connection } = getState().home
+    diographClient.diographs[connection].updateDiory(dioryData)
     dispatch(updateDiograph())
   }
 
 export const deleteDiory =
   (dioryData) =>
-  (dispatch, _, { diographClient }) => {
-    diographClient.diograph.removeDiory(dioryData)
+  (dispatch, getState, { diographClient }) => {
+    const { connection } = getState().home
+    diographClient.diographs[connection].removeDiory(dioryData)
     dispatch(updateDiograph())
   }
 
@@ -73,9 +76,8 @@ export const getDiograph =
     if (!loading) {
       dispatch(getDiographActions.begin())
       try {
-        await diographClient.getDiograph([connection])
-        dispatch(updateDiograph())
-        dispatch(selectStory(diographClient.diograph.getDiory({ id: '/' }).toObject()))
+        await diographClient.getDiograph(connection)
+        dispatch(updateDiograph(connection))
         dispatch(getDiographActions.success())
       } catch (error) {
         console.error(error)
@@ -92,7 +94,7 @@ export const generateDiograph =
     if (!generating) {
       dispatch(generateDiographActions.begin())
       try {
-        await diographClient.generateDiograph([connection])
+        await diographClient.generateDiograph(connection)
         dispatch(updateDiograph())
         dispatch(generateDiographActions.success())
       } catch (error) {

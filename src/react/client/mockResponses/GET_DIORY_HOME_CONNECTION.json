@@ -1,7 +1,3 @@
 {
-  "connection": {
-    "id": "home-connection",
-    "address": "public",
-    "client": "LocalClient"
-  }
+  "connection": "LocalClient/public/diosphere"
 }

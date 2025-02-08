@@ -8,7 +8,7 @@ const getHomeConnection = async () => {
   }
 
   const { filePaths } = await window.channelsApi.showOpenDialog()
-  return { address: filePaths[0], client: 'LocalClient' }
+  return `LocalClient/${filePaths[0]}`
 }
 
 export const useSaveHomeConnection = () => {
