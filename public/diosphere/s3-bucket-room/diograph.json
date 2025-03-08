@@ -1,5 +1,8 @@
 {
   "/": {
+    "id": "c553adfd-0d38-4ebc-8a3a-18a5b2940538"
+  },
+  "c553adfd-0d38-4ebc-8a3a-18a5b2940538": {
     "id": "c553adfd-0d38-4ebc-8a3a-18a5b2940538",
     "text": "s3-bucket-room",
     "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcfdT2PwAGPgKeWQwJuAAAAABJRU5ErkJggg==",

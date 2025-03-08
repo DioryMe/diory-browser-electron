@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useDispatchActions } from '../../store'
-import { useDiograph } from '../diograph/useDiograph'
+import { useDiograph } from './useDiograph'
 
 import { useToggleContent } from '../content/useToggleContent'
 import { useGoSide } from '../navigation/useGoSide'
@@ -11,13 +11,14 @@ import { useDeleteTool } from '../tools/delete'
 import { useStoryTool } from '../tools/story'
 import { useUpdateTool } from '../tools/update'
 
-import { createLink } from '../diograph/diographActions'
+import { createLink } from './diographActions'
 
 import DiographView from '../../components/diograph/DiographView'
 import NavigationToSide from '../../components/NavigationToSide'
 import CreateTool from '../tools/create/CreateTool'
 import UpdateTool from '../tools/update/UpdateTool'
 import DeleteTool from '../tools/delete/DeleteTool'
+import { useDiographEffect } from './useDiographEffect'
 
 export const useDiographTools = () => {
   const { forward = [] } = useNavigation('diory')
@@ -46,7 +47,9 @@ export const useDiographTools = () => {
   }
 }
 
-const Diory = () => {
+export const Diograph = () => {
+  useDiographEffect()
+
   const diograph = useDiograph()
   const { goLeft, goRight } = useGoSide()
 
@@ -61,5 +64,3 @@ const Diory = () => {
     </>
   )
 }
-
-export default Diory

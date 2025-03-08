@@ -1,15 +1,37 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 
-import { useDispatchActions, useSelector } from '../../store'
+import { useDispatchActions } from '../../store'
 import { getDiograph } from './diographActions'
+import { useDiograph } from './useDiograph'
+
+import { getDiosphereAddress } from './utils/getDiosphereAddress'
+import { getAddressPath } from './utils/getAddressPath'
+
+const unique = (item, index, array) => array.indexOf(item) === index
+
+const useMemoryAddresses = () => {
+  const { story } = useDiograph()
+  return useMemo(
+    () =>
+      story.links &&
+      story.links
+        .map(({ id }) => getDiosphereAddress(story.address, id))
+        .map(getAddressPath)
+        .map((path) => `${path}/`)
+        .filter(unique),
+    [story.id]
+  )
+}
 
 export const useDiographEffect = () => {
-  const { connection } = useSelector((state) => state.home)
+  const addresses = useMemoryAddresses()
 
   const { dispatch } = useDispatchActions()
   useEffect(() => {
-    if (connection) {
-      dispatch(getDiograph(connection))
+    if (addresses) {
+      addresses.forEach((address) => {
+        dispatch(getDiograph(address))
+      })
     }
-  }, [dispatch, connection])
+  }, [dispatch, addresses])
 }

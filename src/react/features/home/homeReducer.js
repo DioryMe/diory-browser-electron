@@ -1,32 +1,20 @@
-import {
-  GET_HOME_CONNECTION,
-  SAVE_HOME_CONNECTION,
-  SET_DIOGRAPH_CONNECTION,
-} from './homeActionTypes'
+import { GET_HOME_CONNECTION, SAVE_HOME_CONNECTION } from './homeActionTypes'
 import { createReducer, promiseReducers } from '../../store'
 
 const initialState = {
-  homeConnection: undefined,
-  connection: undefined,
+  address: undefined,
   loading: false,
   loaded: false,
   saving: false,
   saved: false,
 }
 
-export const setHomeConnection = (state, { payload: { connection } }) => ({
+export const setHomeConnection = (state, { payload: { address } }) => ({
   ...state,
-  homeConnection: connection,
-  connection,
-})
-
-export const setDiographConnection = (state, { payload: { connection } }) => ({
-  ...state,
-  connection,
+  address,
 })
 
 export default createReducer(initialState, {
   ...promiseReducers(GET_HOME_CONNECTION, 'loading', 'loaded', 'error', setHomeConnection),
   ...promiseReducers(SAVE_HOME_CONNECTION, 'saving', 'saved', 'error', setHomeConnection),
-  [SET_DIOGRAPH_CONNECTION]: setDiographConnection,
 })

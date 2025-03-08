@@ -15,8 +15,8 @@ export const useSaveHomeConnection = () => {
   const { dispatch } = useDispatchActions()
   return {
     onClick: async () => {
-      const connection = await getHomeConnection()
-      dispatch(saveHomeConnection(connection))
+      const address = await getHomeConnection()
+      dispatch(saveHomeConnection(address))
     },
   }
 }

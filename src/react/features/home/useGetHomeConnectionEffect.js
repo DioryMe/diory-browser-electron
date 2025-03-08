@@ -4,7 +4,7 @@ import { useDispatchActions } from '../../store'
 
 import { getHomeConnection } from './homeActions'
 
-export const useGetHomeConnection = () => {
+export const useGetHomeConnectionEffect = () => {
   const { dispatch } = useDispatchActions()
   useEffect(() => {
     dispatch(getHomeConnection())

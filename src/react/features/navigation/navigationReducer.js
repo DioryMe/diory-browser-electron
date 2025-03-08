@@ -10,100 +10,80 @@ import {
 
 import { createReducer } from '../../store'
 
-// type NavigationState = {
-//   contextId: null,
-//   storyId: null,
-//   memoryId: null,
-//   backward: [],
-//   forward: [],
-//   path: [],
-// }
+const initialState = {
+  contextId: null,
+  storyId: undefined,
+  memoryId: null,
+  backward: [],
+  forward: [],
+  path: [],
+}
 
-const initialState = {}
-
-const addToStore = (oldState, connection, newState) => ({
-  ...oldState,
-  [connection]: {
-    ...oldState[connection],
-    ...newState,
-  },
+export const selectContext = (state, { payload }) => ({
+  ...state,
+  contextId: payload.address,
 })
-
-export const selectContext = (state, { payload, connection }) =>
-  addToStore(state, connection, {
-    contextId: payload.id,
-  })
 
 const init = (array) => array || []
 
-export const selectStory = (state, { payload, connection }) => {
-  const previousState = state[connection] || {}
-  if (payload.id === previousState.storyId) {
+export const selectStory = (state, { payload }) => {
+  if (payload.address === state.storyId) {
     return state
   }
 
-  return addToStore(state, connection, {
-    contextId: previousState.storyId,
-    storyId: payload.id,
-    backward: previousState.storyId
-      ? [previousState.storyId, ...init(previousState.backward)]
-      : previousState.backward,
+  return {
+    ...state,
+    contextId: state.storyId,
+    storyId: payload.address,
+    backward: state.storyId ? [state.storyId, ...init(state.backward)] : state.backward,
     forward: [],
-    path: [...init(previousState.path), payload.id],
-  })
+    path: [...init(state.path), payload.address],
+  }
 }
 
-export const selectMemory = (state, { payload, connection }) =>
-  addToStore(state, connection, {
-    memoryId: payload.id,
-  })
+export const selectMemory = (state, { payload }) => ({
+  ...state,
+  memoryId: payload.address,
+})
 
-export const goSide = (state, { payload, connection }) => {
-  const previousState = state[connection] || {}
+export const goSide = (state, { payload }) => ({
+  ...state,
+  storyId: payload.storyId,
+  forward: [],
+  path: Object.assign([], state.path, {
+    [state.path.length - 1]: payload.storyId,
+  }),
+})
 
-  return addToStore(state, connection, {
-    storyId: payload.storyId,
-    forward: [],
-    path: Object.assign([], previousState.path, {
-      [previousState.path.length - 1]: payload.storyId,
-    }),
-  })
-}
-
-export const goBackward = (state, { connection }) => {
-  const previousState = state[connection] || {}
-
-  const [storyId, ...backward] = previousState.backward
-  return addToStore(state, connection, {
+export const goBackward = (state) => {
+  const [storyId, ...backward] = state.backward
+  return {
+    ...state,
     storyId,
     backward,
-    forward: [previousState.storyId, ...previousState.forward],
-    path: [...previousState.path].slice(0, -1),
-  })
+    forward: [state.storyId, ...state.forward],
+    path: [...state.path].slice(0, -1),
+  }
 }
 
-export const goForward = (state, { connection }) => {
-  const previousState = state[connection] || {}
-
-  const [storyId, ...forward] = previousState.forward
-  return addToStore(state, connection, {
+export const goForward = (state) => {
+  const [storyId, ...forward] = state.forward
+  return {
+    ...state,
     storyId,
-    backward: [previousState.storyId, ...init(previousState.backward)],
+    backward: [state.storyId, ...init(state.backward)],
     forward,
-    path: [...init(previousState.path), storyId],
-  })
+    path: [...init(state.path), storyId],
+  }
 }
 
-export const goHome = (state, { connection }) => {
-  const previousState = state[connection] || {}
-  console.log(previousState)
-  return addToStore(state, connection, {
-    storyId: undefined,
-    backward: [previousState.storyId, ...(previousState.backward || [])],
-    forward: [],
-    path: [],
-  })
-}
+export const goHome = (state) => ({
+  ...state,
+  storyId: undefined,
+  backward: [state.storyId, ...(state.backward || [])],
+  forward: [],
+  path: [],
+})
 
 export default createReducer(initialState, {
   [SELECT_CONTEXT]: selectContext,
