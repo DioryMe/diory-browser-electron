@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import { DiographClient } from '@diograph/diograph'
 
 import { reducer } from './reducer'
-import { addConnection, errorReporter, logger } from './middlewares'
+import { errorReporter, logger } from './middlewares'
 
 const diographClient = new DiographClient([window.localClient])
 
@@ -15,12 +15,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   reducer,
   composeEnhancers(
-    applyMiddleware(
-      thunk.withExtraArgument({ diographClient }),
-      addConnection,
-      errorReporter,
-      logger
-    )
+    applyMiddleware(thunk.withExtraArgument({ diographClient }), errorReporter, logger)
   )
 )
 

@@ -1,10 +1,3 @@
-export const addConnection = (store) => (next) => (action) => {
-  if (action.connection !== undefined) return next(action)
-
-  const { connection } = store.getState().home
-  return next({ ...action, connection })
-}
-
 export const logger = (store) => (next) => (action) => {
   console.log('dispatching', action)
   const result = next(action)

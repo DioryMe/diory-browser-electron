@@ -4,6 +4,4 @@ import { useButtonBar } from './useButtonBar'
 
 import ButtonBar from '../../components/ButtonBar'
 
-const Buttons = () => <ButtonBar {...useButtonBar()} />
-
-export default Buttons
+export const Buttons = () => <ButtonBar {...useButtonBar()} />

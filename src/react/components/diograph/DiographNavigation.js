@@ -24,14 +24,14 @@ const useContextButton = (context, selectStory) => {
   )
 }
 
-const useContextsPill = (contexts, selectContext) => {
-  const otherContexts = contexts.map((diory) => ({ label: diory.text, value: diory.id }))
+const useContextsPill = (contexts, selectStory) => {
+  const otherContexts = contexts.map((diory) => ({ label: diory.text, value: diory.address }))
 
   const { dispatch } = useDispatchActions()
   return {
     isShown: otherContexts.length > 1,
     options: otherContexts,
-    onClick: ({ value }) => dispatch(selectContext({ id: value })),
+    onClick: ({ value }) => dispatch(selectStory({ address: value })),
   }
 }
 
@@ -45,9 +45,9 @@ const useStoryButton = (story, selectStory) => {
   )
 }
 
-const DiographNavigation = ({ story, context, contexts, selectStory, selectContext }) => {
+const DiographNavigation = ({ story, context, contexts, selectStory }) => {
   const contextButton = useContextButton(context, selectStory)
-  const contextsPill = useContextsPill(contexts, selectContext)
+  const contextsPill = useContextsPill(contexts, selectStory)
   const storyButton = useStoryButton(story, selectStory)
 
   return (
@@ -69,7 +69,6 @@ DiographNavigation.propTypes = {
   context: PropTypes.object,
   contexts: PropTypes.array,
   selectStory: PropTypes.func,
-  selectContext: PropTypes.func,
 }
 
 export default DiographNavigation

@@ -5,27 +5,22 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels'
 
 import { useDispatchActions } from './store'
-import { useDiographEffect } from './features/diograph/useDiographEffect'
 
 import { setSideBarWidth } from './features/sideBar/sideBarActions'
 
 import { Home } from './features/home/Home'
-import { DioryNavigation } from './features/diory/DioryNavigation'
-import Buttons from './features/buttons/Buttons'
+import { Navigation } from './features/navigation/Navigation'
+import { Buttons } from './features/buttons/Buttons'
 import Fullscreen from './components/Fullscreen'
-import Lenses from './features/lenses/Lenses'
+import { Lenses } from './features/lenses/Lenses'
 import { Hand } from './features/hand/Hand'
-import Diory from './features/diory/Diory'
-import { DiorySideNavigation } from './features/diory/DiorySideNavigation'
+import { Diograph } from './features/diograph/Diograph'
+import { SidebarNavigation } from './features/navigation/SidebarNavigation'
 import { SideBarContent } from './components/SideBarContent'
 
 import { debounce } from './utils'
-import { useSetDiographConnectionEffect } from './features/diograph/useSetDiographConnectionEffect'
 
 const Root = () => {
-  useDiographEffect()
-  useSetDiographConnectionEffect()
-
   const { dispatch } = useDispatchActions()
   const onLayout = (widths) => {
     dispatch(setSideBarWidth('right', widths[widths.length - 1]))
@@ -37,18 +32,18 @@ const Root = () => {
     <>
       <Home />
       <DndProvider backend={HTML5Backend}>
-        <DioryNavigation />
+        <Navigation />
         <Fullscreen top={44}>
           <PanelGroup direction="horizontal" onLayout={debounce(onLayout, 100)}>
             <Panel defaultSize={15} minSize={1} style={{ position: 'relative' }}>
               <SideBarContent>
-                <DiorySideNavigation />
+                <SidebarNavigation />
               </SideBarContent>
             </Panel>
             <PanelResizeHandle />
             {diographLoaded && (
               <Panel defaultSize={70} minSize={10} style={{ position: 'relative' }}>
-                <Diory />
+                <Diograph />
               </Panel>
             )}
             <PanelResizeHandle />

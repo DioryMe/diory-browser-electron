@@ -7,12 +7,10 @@ import { SearchLens } from './SearchLens'
 
 export const DEFAULT_LENS = null
 
-const Lenses = () => (
+export const Lenses = () => (
   <>
     <GraphLens />
     <MapLens />
     <SearchLens />
   </>
 )
-
-export default Lenses
