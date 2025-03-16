@@ -25,7 +25,7 @@ export const useSearch = () => {
   const { dispatch } = useDispatchActions()
   return {
     query,
-    diorys: query ? resultsByQuery[query] : [],
+    diograph: query ? resultsByQuery[query] : {},
     onClick: ({ diory }) => {
       selectStory(diory)
       updateDiory(diory)
@@ -52,11 +52,11 @@ const useSearchBar = () => {
 }
 
 export const SearchLens = () => {
-  const { enabled } = useLens('graph', button)
-  const tools = useSearch()
+  const { enabled } = useLens('search', button)
+  const search = useSearch()
   const searchBar = useSearchBar()
   return enabled ? (
-    <SearchView {...tools}>
+    <SearchView {...search}>
       <SearchBar width="100%" {...searchBar} />
     </SearchView>
   ) : null

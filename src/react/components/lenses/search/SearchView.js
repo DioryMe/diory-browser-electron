@@ -14,7 +14,7 @@ const scaleContainer = {
 
 const SearchView = ({
   query,
-  diorys,
+  diograph,
   scrollIntoViewId,
   onClick,
   onDrop,
@@ -23,18 +23,18 @@ const SearchView = ({
 }) => {
   const searchRef = useRef()
   return (
-    <Pane background="src/react/components/lenses/search#222" height="100%" padding={12}>
+    <Pane background="#222" height="100%" padding={12}>
       <Pane padding={12}>{children}</Pane>
       {query && (
         <Pane padding={12}>
           <CreateDioryButton text={query} onClick={onCreateDiory} />
         </Pane>
       )}
-      {diorys.length ? (
+      {Object.keys(diograph).length ? (
         <DiorysGrid
           ref={searchRef}
           background={{ id: 'hand' }}
-          diorys={diorys}
+          diograph={diograph}
           scrollIntoViewId={scrollIntoViewId}
           onClick={onClick}
           onDrop={onDrop}
@@ -47,7 +47,7 @@ const SearchView = ({
 
 SearchView.propTypes = {
   query: PropTypes.string.isRequired,
-  diorys: PropTypes.array.isRequired,
+  diograph: PropTypes.object.isRequired,
   scrollIntoViewId: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,

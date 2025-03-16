@@ -31,7 +31,9 @@ export const updateDiory =
   (dioryData) =>
   (dispatch, getState, { diographClient }) => {
     console.log(getDiographInstance(diographClient, dioryData.address))
-    getDiographInstance(diographClient, dioryData.address).getDiory(dioryData).update(dioryData)
+    getDiographInstance(diographClient, dioryData.address)
+      .getDiory(dioryData)
+      .update(dioryData)
     dispatch(updateDiograph(dioryData.address))
   }
 
@@ -45,14 +47,18 @@ export const deleteDiory =
 export const createLink =
   (dioryObject, linkedDioryObject) =>
   (dispatch, getState, { diographClient }) => {
-    getDiographInstance(diographClient, dioryObject.address).getDiory(dioryObject).addLink({ id: linkedDioryObject.id })
+    getDiographInstance(diographClient, dioryObject.address)
+      .getDiory(dioryObject)
+      .addLink({ id: linkedDioryObject.address })
     dispatch(updateDiograph(dioryObject.address))
   }
 
 export const deleteLink =
   (dioryObject, linkedDioryObject) =>
   (dispatch, getState, { diographClient }) => {
-    getDiographInstance(diographClient, dioryObject.address).getDiory(dioryObject).removeLink({ id: linkedDioryObject.id })
+    getDiographInstance(diographClient, dioryObject.address)
+      .getDiory(dioryObject)
+      .removeLink(linkedDioryObject)
     dispatch(updateDiograph(dioryObject.address))
   }
 
@@ -60,9 +66,11 @@ export const deleteLinks =
   (deletedLinks) =>
   (dispatch, getState, { diographClient }) => {
     deletedLinks.forEach(({ fromDiory, toDiory }) => {
-      getDiographInstance(diographClient, fromDiory.address).getDiory(fromDiory).removeLink(fromDiory, { id: toDiory.id })
+      getDiographInstance(diographClient, fromDiory.address)
+        .getDiory(fromDiory)
+        .removeLink(toDiory)
     })
-    dispatch(updateDiograph(fromDiory.address))
+    dispatch(updateDiograph(deletedLinks[0].fromDiory.address))
   }
 
 export const resetDiograph =

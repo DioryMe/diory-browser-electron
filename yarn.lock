@@ -1989,10 +1989,10 @@
     path-browserify "^1.0.1"
     uuid "8.3.2"
 
-"@diograph/diograph@0.4.3-rc6":
-  version "0.4.3-rc6"
-  resolved "https://registry.yarnpkg.com/@diograph/diograph/-/diograph-0.4.3-rc6.tgz#47dce9ee9f7961de859e37feba1dfcf36419a15e"
-  integrity sha512-bWpmB0yaPi98HdxymbMTzsUbKUWmOjk1TCe+W6r4SldWN+s16lT7TJvygRq0EsyytCiAq2JI81wUzpoDs0hujw==
+"@diograph/diograph@0.4.3-rc8":
+  version "0.4.3-rc8"
+  resolved "https://registry.yarnpkg.com/@diograph/diograph/-/diograph-0.4.3-rc8.tgz#bc250f2575db3ab802217cd628f47ed7a217b45c"
+  integrity sha512-mOQvXgThAvU+gPNGoPqpwaWOlmI628djXyfEl/fRslqnDLs3GGfiEfBsSaXBDdiaA3e4v0aUyT8P35AFDloXPA==
   dependencies:
     "@diograph/folder-generator" "0.4.0-rc7"
     ajv "^8.12.0"

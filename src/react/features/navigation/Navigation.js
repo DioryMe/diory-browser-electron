@@ -18,7 +18,7 @@ const useHomeButton = () => {
   return {
     text: 'DIORY',
     onClick: () => {
-      dispatch(selectStory({ key: address }))
+      dispatch(selectStory({ address }))
     },
     fontWeight: 'bold',
   }
