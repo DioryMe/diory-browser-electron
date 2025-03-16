@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import TextInput from './TextInput'
@@ -38,9 +38,8 @@ const FormModal = ({ title, values, fields, onDone, onCancel }) => {
       }}
     >
       {fields.map(({ key, ...field }) => (
-        <>
+        <Fragment key={key}>
           <TextInput
-            key={key}
             {...field}
             onChange={(value) => setValue(key, value)}
             value={updatedValues[key]}
@@ -54,14 +53,14 @@ const FormModal = ({ title, values, fields, onDone, onCancel }) => {
           />
           {field.format === 'dialog' && (
             <Button
-              icon="plus"
+              data={{ icon: 'plus' }}
               onClick={async () => {
                 const filePath = await openDialog()
                 setValue(key, filePath)
               }}
             />
           )}
-        </>
+        </Fragment>
       ))}
     </Modal>
   )

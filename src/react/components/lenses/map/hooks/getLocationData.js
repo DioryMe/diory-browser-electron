@@ -21,7 +21,7 @@ export const getDioryLocationData = ({ story = {}, memories = [] }) => {
   const { latitude, longitude } = getDioryLocation({ story, memories })
 
   return {
-    id: story.id,
+    address: story.address,
     center: !!longitude &&
       !!latitude && {
         lat: latitude,

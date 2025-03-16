@@ -42,9 +42,9 @@ MapView.defaultProps = {
 MapView.propTypes = {
   story: PropTypes.object.isRequired,
   memories: PropTypes.array.isRequired,
+  enableDragging: PropTypes.bool,
   onMapClick: PropTypes.func,
   onPopupClick: PropTypes.func,
-  enableDragging: PropTypes.func,
   onDragEnd: PropTypes.func,
 }
 

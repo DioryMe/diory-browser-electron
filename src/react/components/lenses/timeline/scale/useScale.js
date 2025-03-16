@@ -36,6 +36,8 @@ function getIcon({ type, label, offset }) {
   }
 }
 
+const getAddresses = (array) => array.map(({ address }) => address)
+
 export const useScale = (mapRef) => {
   const markerRefs = useRef([])
   useEffect(() => {
@@ -50,22 +52,22 @@ export const useScale = (mapRef) => {
         const offset = mapRef.current._container.offsetHeight / 2 - 135
 
         const newMarkers = scaleData
-          .filter(({ id }) => !markerRefs.current.map(({ dioryId }) => dioryId).includes(id))
-          .map(({ id, center, label, type }) => {
+          .filter(({ address }) => !getAddresses(markerRefs.current).includes(address))
+          .map(({ address, center, label, type }) => {
             const marker = L.marker(center, {
               icon: new L.DivIcon(getIcon({ type, label, offset })),
             }).addTo(mapRef.current)
-            marker.dioryId = id
+            marker.address = address
             return marker
           })
           .map(addDataTestIdToMarker('linked-diory-marker'))
 
         markerRefs.current
-          .filter(({ dioryId }) => !scaleData.map(({ id }) => id).includes(dioryId))
+          .filter(({ address }) => !getAddresses(scaleData).includes(address))
           .map((marker) => marker.remove())
 
-        const oldMarkers = markerRefs.current.filter(({ dioryId }) =>
-          scaleData.map(({ id }) => id).includes(dioryId)
+        const oldMarkers = markerRefs.current.filter(({ address }) =>
+          getAddresses(scaleData).includes(address)
         )
 
         markerRefs.current = oldMarkers.concat(newMarkers)

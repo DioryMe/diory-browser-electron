@@ -10,12 +10,10 @@ import { getAddressPath } from './utils/getAddressPath'
 const unique = (item, index, array) => array.indexOf(item) === index
 
 const useMemoryAddresses = () => {
-  const { story } = useDiograph()
+  const { story = {} } = useDiograph()
   return useMemo(
     () =>
-      story.links &&
-      story.links
-        .map(({ id }) => getDiosphereAddress(story.address, id))
+      story.links && story.links.map(({ id } = {}) => getDiosphereAddress(story.address, id))
         .map(getAddressPath)
         .map((path) => `${path}/`)
         .filter(unique),

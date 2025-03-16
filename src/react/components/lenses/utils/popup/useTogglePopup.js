@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 export const useTogglePopup = (mapRef, diory) => {
   useEffect(() => {
     mapRef.current.eachLayer((marker) => {
-      if (marker.dioryId) {
+      if (marker.address) {
         marker.off('click')
         marker.on('click', () => {
           marker.togglePopup()

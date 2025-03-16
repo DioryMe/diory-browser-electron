@@ -4,12 +4,12 @@ export const useDragging = (mapRef, enableDragging, onDragEnd) => {
   useEffect(() => {
     if (mapRef.current) {
       mapRef.current.eachLayer((marker) => {
-        if (marker.dioryId) {
+        if (marker.address) {
           if (enableDragging) {
             marker.dragging.enable()
             marker.on('dragend', () => {
               const { lat: latitude, lng: longitude } = marker.getLatLng()
-              onDragEnd({ id: marker.dioryId, latlng: `${latitude}, ${longitude}` })
+              onDragEnd({ address: marker.address, latlng: `${latitude}, ${longitude}` })
             })
           } else {
             marker.dragging.disable()

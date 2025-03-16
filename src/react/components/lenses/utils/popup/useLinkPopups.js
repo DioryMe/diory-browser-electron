@@ -7,7 +7,7 @@ export const useLinkPopups = (markerRefs, memories) => {
       markerRefs.current
         .filter((marker) => !marker.getPopup())
         .forEach((marker) => {
-          const diory = memories.find(({ id }) => id === marker.dioryId)
+          const diory = memories.find(({ address }) => address === marker.address)
           const popup = createDioryPopup({ diory })
           marker.bindPopup(popup, {
             maxWidth: 600,
