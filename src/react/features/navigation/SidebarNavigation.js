@@ -10,7 +10,7 @@ import { DiographLinks } from '../../components/diograph/DiographLinks'
 const useFavorites = () => {
   const { diograph } = useSelector((state) => state.diograph)
   const { address } = useSelector((state) => state.home)
-  const { memories } = useDiographData({ storyId: `${address}favorites` }, diograph)
+  const { memories } = useDiographData({ storyKey: `${address}favorites` }, diograph)
   return memories
 }
 

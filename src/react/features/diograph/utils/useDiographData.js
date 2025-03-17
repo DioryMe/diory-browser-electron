@@ -1,33 +1,33 @@
 import { resolveReverseDiograph } from './resolveReverseDiograph'
-import { getDiosphereAddress } from './getDiosphereAddress'
+import { getDiographKey } from './getDiographKey'
 import { getDiory } from './getDiory'
 
-const getDiorys = (links, diograph, parentAddress) =>
+const getDiorys = (links, diograph, parentKey) =>
   Object.entries(links || {})
     .map(([, { id }]) => {
-      const address = getDiosphereAddress(parentAddress, id)
-      return getDiory(address, diograph || {})
+      const key = getDiographKey(parentKey, id)
+      return getDiory(key, diograph || {})
     })
     .filter(({ id }) => id)
 
-const getLinkedDiorys = (diosphereAddress, diograph) => {
-  const diory = getDiory(diosphereAddress, diograph)
+const getLinkedDiorys = (key, diograph) => {
+  const diory = getDiory(key, diograph)
   const links = diory && diory.links
-  return getDiorys(links, diograph, diosphereAddress)
+  return getDiorys(links, diograph, key)
 }
 
-const useContexts = (contextAddress, storyAddress, backward, diograph) => {
+const useContexts = (contextKey, storyKey, backward, diograph) => {
   const reverseDiograph = resolveReverseDiograph(diograph)
-  const contexts = getLinkedDiorys(storyAddress, reverseDiograph)
+  const contexts = getLinkedDiorys(storyKey, reverseDiograph)
   if (!contexts.length) {
     return {
       contexts: [],
     }
   }
-  const contextAddresses = contexts.map(({ address }) => address)
-  if (contextAddresses.includes(contextAddress)) {
+  const contextAddresses = contexts.map(({ key }) => key)
+  if (contextAddresses.includes(contextKey)) {
     return {
-      context: getDiory(contextAddress, diograph),
+      context: getDiory(contextKey, diograph),
       contexts,
     }
   }
@@ -45,16 +45,16 @@ const useContexts = (contextAddress, storyAddress, backward, diograph) => {
 }
 
 export const useDiographData = (navigationState = {}, diograph = {}) => {
-  const { storyId, contextId, memoryId, backward = [] } = navigationState
-  const { context, contexts } = useContexts(contextId, storyId, backward, diograph)
+  const { storyKey, contextKey, memoryKey, backward = [] } = navigationState
+  const { context, contexts } = useContexts(contextKey, storyKey, backward, diograph)
 
   return {
     diograph,
     context,
     contexts,
-    story: getDiory(storyId, diograph),
-    stories: getLinkedDiorys(contextId, diograph),
-    memory: getDiory(memoryId, diograph),
-    memories: getLinkedDiorys(storyId, diograph),
+    story: getDiory(storyKey, diograph),
+    stories: getLinkedDiorys(contextKey, diograph),
+    memory: getDiory(memoryKey, diograph),
+    memories: getLinkedDiorys(storyKey, diograph),
   }
 }

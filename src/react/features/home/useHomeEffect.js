@@ -11,7 +11,7 @@ export const useHomeEffect = () => {
   useEffect(() => {
     if (address) {
       dispatch(getDiograph(address))
-      dispatch(selectStory({ address }))
+      dispatch(selectStory({ key: address }))
     }
   }, [dispatch, address])
 }

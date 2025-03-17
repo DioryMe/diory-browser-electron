@@ -7,12 +7,12 @@ const addDataTestIdToMarker = (id) => (marker) => {
 }
 
 export const useDioryMarker = (mapRef, locationData) => {
-  const { address, center } = locationData || {}
+  const { key, center } = locationData || {}
   const markerRef = useRef(null)
   useEffect(() => {
     if (!markerRef.current && center) {
       const marker = L.marker(center)
-      marker.address = address
+      marker.key = key
 
       if (marker) {
         markerRef.current = addDataTestIdToMarker('diory-marker')(marker.addTo(mapRef.current))
@@ -21,7 +21,7 @@ export const useDioryMarker = (mapRef, locationData) => {
     if (markerRef.current && center) {
       markerRef.current.setLatLng(center)
     }
-  }, [mapRef, address, center])
+  }, [mapRef, key, center])
 
   return markerRef
 }

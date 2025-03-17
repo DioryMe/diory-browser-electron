@@ -25,13 +25,13 @@ const useContextButton = (context, selectStory) => {
 }
 
 const useContextsPill = (contexts, selectStory) => {
-  const otherContexts = contexts.map((diory) => ({ label: diory.text, value: diory.address }))
+  const otherContexts = contexts.map((diory) => ({ label: diory.text, value: diory.key }))
 
   const { dispatch } = useDispatchActions()
   return {
     isShown: otherContexts.length > 1,
     options: otherContexts,
-    onClick: ({ value }) => dispatch(selectStory({ address: value })),
+    onClick: ({ value }) => dispatch(selectStory({ key: value })),
   }
 }
 

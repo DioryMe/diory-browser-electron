@@ -34,7 +34,7 @@ const DiorysGrid = forwardRef(
       <Pane position="absolute" width="100%" height="100%" margin={0} marginBottom={-264}>
         <DragDrop diory={background} onDrop={onBackgroundDrop} onClick={onBackgroundClick} />
       </Pane>
-      {Object.entries(diograph || {}).map(([address, diory]) => (
+      {Object.entries(diograph || {}).map(([key, diory]) => (
         <GridItem
           key={diory.id}
           flex="1 1 360px"
@@ -43,9 +43,9 @@ const DiorysGrid = forwardRef(
           alignSelf="center"
           scrollIntoView={diory.id === scrollIntoViewId}
         >
-          <DragDrop diory={{ address, ...diory }} onDrop={onDrop}>
+          <DragDrop diory={{ key, ...diory }} onDrop={onDrop}>
             <Diory
-              diory={{ address, ...diory }}
+              diory={{ key, ...diory }}
               onClick={onClick}
               elevation={2}
               aria-controls={`panel-${diory.id}`}

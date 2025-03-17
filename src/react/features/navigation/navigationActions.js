@@ -8,19 +8,19 @@ import {
   GO_SIDE,
 } from './navigationActionTypes'
 
-export const selectContext = ({ address }) => ({
+export const selectContext = ({ key }) => ({
   type: SELECT_CONTEXT,
-  payload: { address },
+  payload: { key },
 })
 
-export const selectStory = ({ address }) => ({
+export const selectStory = ({ key }) => ({
   type: SELECT_STORY,
-  payload: { address },
+  payload: { key },
 })
 
-export const selectMemory = ({ address } = {}) => ({
+export const selectMemory = ({ key } = {}) => ({
   type: SELECT_MEMORY,
-  payload: { address },
+  payload: { key },
 })
 
 export const goBackward = () => ({ type: GO_BACKWARD })
@@ -29,7 +29,7 @@ export const goForward = () => ({ type: GO_FORWARD })
 
 export const goHome = () => ({ type: GO_HOME })
 
-export const goSide = ({ address }) => ({
+export const goSide = ({ key }) => ({
   type: GO_SIDE,
-  payload: { address },
+  payload: { key },
 })

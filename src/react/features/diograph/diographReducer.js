@@ -1,7 +1,7 @@
 import { GET_DIOGRAPH, GENERATE_DIOGRAPH, UPDATE_DIOGRAPH } from './diographActionTypes'
 
 import { createReducer, promiseReducers } from '../../store'
-import { getDiosphereAddress } from './utils/getDiosphereAddress'
+import { getDiographKey } from './utils/getDiographKey'
 import { createActions } from '../../store/storeUtils'
 
 const initialState = {
@@ -13,31 +13,31 @@ const initialState = {
 
 const getDiographActions = createActions(GET_DIOGRAPH)
 
-const getDiographBegin = (state, { payload: { address } }) => ({
+const getDiographBegin = (state, { payload: { key } }) => ({
   ...state,
   loading: {
     ...state.loading,
-    [address]: true,
+    [key]: true,
   },
 })
 
-const getDiographSuccess = (state, { payload: { address } }) => ({
+const getDiographSuccess = (state, { payload: { key } }) => ({
   ...state,
   loading: {
     ...state.loading,
-    [address]: false,
+    [key]: false,
   },
   loaded: {
     ...state.loaded,
-    [address]: true,
+    [key]: true,
   },
 })
 
-const updateDiograph = (state, { payload: { diograph, address: diographAddress } }) => ({
+const updateDiograph = (state, { payload: { diograph, address } }) => ({
   ...state,
-  diograph: Object.entries(diograph).reduce((obj, [address, diory]) => {
-    const diosphereAddress = getDiosphereAddress(diographAddress, address)
-    obj[diosphereAddress] = diory
+  diograph: Object.entries(diograph).reduce((obj, [key, diory]) => {
+    const diographKey = getDiographKey(address, key)
+    obj[diographKey] = diory
     return obj
   }, state.diograph),
 })

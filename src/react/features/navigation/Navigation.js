@@ -13,12 +13,12 @@ import DiographNavigation from '../../components/diograph/DiographNavigation'
 import NavigationButton from '../../components/NavigationButton'
 
 const useHomeButton = () => {
-  const { address } = useSelector((state) => state.home)
+  const { address: key } = useSelector((state) => state.home)
   const { dispatch } = useDispatchActions()
   return {
     text: 'DIORY',
     onClick: () => {
-      dispatch(selectStory({ address }))
+      dispatch(selectStory({ key }))
     },
     fontWeight: 'bold',
   }

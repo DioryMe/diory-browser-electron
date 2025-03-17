@@ -3,29 +3,29 @@ import { goSide } from './navigationActions'
 import { useDiograph } from '../diograph/useDiograph'
 
 export const useGoSide = () => {
-  const { story, stories } = useDiograph()
+  const { story = {}, stories } = useDiograph()
   const { dispatch } = useDispatchActions()
-  const storyIds = stories.map(({ address }) => address)
+  const storyKeys = stories.map(({ key }) => key)
 
-  if (!storyIds.length) {
+  if (!storyKeys.length) {
     return {}
   }
 
-  const storyIndex = storyIds.indexOf(story.address)
+  const storyIndex = storyKeys.indexOf(story.key)
   if (storyIndex === 0) {
     return {
-      goRight: () => dispatch(goSide({ address: storyIds[storyIndex + 1] })),
+      goRight: () => dispatch(goSide({ key: storyKeys[storyIndex + 1] })),
     }
   }
 
-  if (storyIndex === storyIds.length - 1) {
+  if (storyIndex === storyKeys.length - 1) {
     return {
-      goLeft: () => dispatch(goSide({ address: storyIds[storyIndex - 1] })),
+      goLeft: () => dispatch(goSide({ key: storyKeys[storyIndex - 1] })),
     }
   }
 
   return {
-    goRight: () => dispatch(goSide({ address: storyIds[storyIndex + 1] })),
-    goLeft: () => dispatch(goSide({ address: storyIds[storyIndex - 1] })),
+    goRight: () => dispatch(goSide({ key: storyKeys[storyIndex + 1] })),
+    goLeft: () => dispatch(goSide({ key: storyKeys[storyIndex - 1] })),
   }
 }

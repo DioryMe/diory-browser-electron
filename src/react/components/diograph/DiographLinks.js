@@ -7,10 +7,10 @@ import { MenuItem } from '../MenuItem'
 
 const DiographLinks = ({ links, onClick }) => (
   <Menu appearance="minimal">
-    {links.map(({ address, text }) => (
+    {links.map(({ key, text }) => (
       <MenuItem
         key={text}
-        onClick={() => onClick({ address })}
+        onClick={() => onClick({ key })}
       >
         {text}
       </MenuItem>

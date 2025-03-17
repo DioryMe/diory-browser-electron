@@ -1,11 +1,11 @@
-import { getDiosphereAddress } from './getDiosphereAddress'
+import { getDiographKey } from './getDiographKey'
 import { getDiory } from './getDiory'
 
 function removeLinks(diograph) {
   return Object.entries(diograph).reduce(
-    (diographWithoutLinks, [diosphereAddress, { links, ...diory }]) => ({
+    (diographWithoutLinks, [diographKey, { links, ...diory }]) => ({
       ...diographWithoutLinks,
-      [diosphereAddress]: diory,
+      [diographKey]: diory,
     }),
     {}
   )
@@ -14,22 +14,22 @@ function removeLinks(diograph) {
 export function resolveReverseDiograph(diograph) {
   const reverseDiograph = removeLinks(diograph)
 
-  Object.entries(diograph).forEach(([diosphereAddress, diory]) => {
+  Object.entries(diograph).forEach(([dioryKey, diory]) => {
     if (!diory.links) {
       return
     }
 
     Object.values(diory.links)
       .map(({ id }) => {
-        const { address } = getDiory(getDiosphereAddress(diosphereAddress, id), diograph)
-        return address
+        const { key: linkKey } = getDiory(getDiographKey(dioryKey, id), diograph)
+        return linkKey
       })
-      .filter((address) => diograph[address])
-      .forEach((address) => {
-        reverseDiograph[address].links = {
-          ...reverseDiograph[address].links,
+      .filter((linkKey) => diograph[linkKey])
+      .forEach((linkKey) => {
+        reverseDiograph[linkKey].links = {
+          ...reverseDiograph[linkKey].links,
           [diory.id]: {
-            id: diosphereAddress,
+            id: dioryKey,
           },
         }
       })

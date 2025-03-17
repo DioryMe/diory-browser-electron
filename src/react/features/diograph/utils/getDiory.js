@@ -1,14 +1,14 @@
-import { getAddressPath } from './getAddressPath'
+import { getKeyPath } from './getKeyPath'
 
-export const getDiory = (diosphereAddress, diograph) => {
-  if (!diosphereAddress) return
+export const getDiory = (key, diograph) => {
+  if (!key) return
 
-  if (diosphereAddress.endsWith('/') && diograph[diosphereAddress]) {
-    const diospherePath = getAddressPath(diosphereAddress)
-    const dioryId = diograph[diosphereAddress].id
-    const rootAddress = `${diospherePath}/${dioryId}`
-    return { address: rootAddress, ...diograph[rootAddress] }
+  if (key.endsWith('/') && diograph[key]) {
+    const path = getKeyPath(key)
+    const dioryId = diograph[key].id
+    const rootKey = `${path}/${dioryId}`
+    return { key: rootKey, ...diograph[rootKey] }
   }
 
-  return { address: diosphereAddress, ...diograph[diosphereAddress] }
+  return { key, ...diograph[key] }
 }

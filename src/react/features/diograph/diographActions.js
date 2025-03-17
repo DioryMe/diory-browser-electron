@@ -1,76 +1,69 @@
 import { UPDATE_DIOGRAPH, GENERATE_DIOGRAPH, GET_DIOGRAPH } from './diographActionTypes'
 import { createActions } from '../../store/storeUtils'
-import { getAddressPath } from './utils/getAddressPath'
 
 const updateDiographAction = (diograph, address) => ({
   type: UPDATE_DIOGRAPH,
   payload: { diograph, address },
 })
 
-const getDiographInstance = (diographClient, address) => {
-  const connection = getAddressPath(address)
-  return diographClient.diographs[connection]
-}
-
 export const updateDiograph =
-  (connectionId) =>
+  (address) =>
   (dispatch, getState, { diographClient }) => {
-    dispatch(updateDiographAction(getDiographInstance(diographClient, connectionId).toObject(), connectionId))
+    dispatch(updateDiographAction(diographClient.getDiograph(address).toObject(), address))
   }
 
 export const createDiory =
   (dioryData, alias) =>
   (dispatch, getState, { diographClient }) => {
-    const { storyId } = getState().navigation
-    const diory = getDiographInstance(diographClient, storyId).addDiory(dioryData, alias)
-    dispatch(updateDiograph(storyId))
+    const { storyKey } = getState().navigation
+    const diory = diographClient.getDiograph(storyKey).addDiory(dioryData, alias)
+    dispatch(updateDiograph(storyKey))
     return { diory: diory.toObject() }
   }
 
 export const updateDiory =
   (dioryData) =>
   (dispatch, getState, { diographClient }) => {
-    console.log(getDiographInstance(diographClient, dioryData.address))
-    getDiographInstance(diographClient, dioryData.address)
+    diographClient.getDiograph(dioryData.key)
       .getDiory(dioryData)
       .update(dioryData)
-    dispatch(updateDiograph(dioryData.address))
+    dispatch(updateDiograph(dioryData.key))
   }
 
 export const deleteDiory =
   (dioryData) =>
   (dispatch, getState, { diographClient }) => {
-    getDiographInstance(diographClient, dioryData.address).removeDiory(dioryData)
-    dispatch(updateDiograph(dioryData.address))
+    diographClient.getDiograph(dioryData.key).removeDiory(dioryData)
+    dispatch(updateDiograph(dioryData.key))
   }
 
 export const createLink =
   (dioryObject, linkedDioryObject) =>
   (dispatch, getState, { diographClient }) => {
-    getDiographInstance(diographClient, dioryObject.address)
+    diographClient.getDiograph(dioryObject.key)
       .getDiory(dioryObject)
-      .addLink({ id: linkedDioryObject.address })
-    dispatch(updateDiograph(dioryObject.address))
+      .addLink({ id: linkedDioryObject.key })
+    dispatch(updateDiograph(dioryObject.key))
   }
 
 export const deleteLink =
   (dioryObject, linkedDioryObject) =>
   (dispatch, getState, { diographClient }) => {
-    getDiographInstance(diographClient, dioryObject.address)
+    diographClient.getDiograph(dioryObject.key)
       .getDiory(dioryObject)
       .removeLink(linkedDioryObject)
-    dispatch(updateDiograph(dioryObject.address))
+    dispatch(updateDiograph(dioryObject.key))
   }
 
 export const deleteLinks =
   (deletedLinks) =>
   (dispatch, getState, { diographClient }) => {
     deletedLinks.forEach(({ fromDiory, toDiory }) => {
-      getDiographInstance(diographClient, fromDiory.address)
+      diographClient.getDiograph(fromDiory.key)
         .getDiory(fromDiory)
         .removeLink(toDiory)
     })
-    dispatch(updateDiograph(deletedLinks[0].fromDiory.address))
+    dispatch(updateDiograph(deletedLinks[0].fromDiory.key))
   }
 
 export const resetDiograph =
@@ -88,31 +81,12 @@ export const getDiograph =
     if (!loading[address] && !loaded[address]) {
       dispatch(getDiographActions.begin({ address }))
       try {
-        const connection = getAddressPath(address)
-        await diographClient.getDiograph(connection)
+        await diographClient.fetchDiograph(address)
         dispatch(updateDiograph(address))
         dispatch(getDiographActions.success({ address }))
       } catch (error) {
         console.error(error)
         dispatch(getDiographActions.failure(error))
-      }
-    }
-  }
-
-const generateDiographActions = createActions(GENERATE_DIOGRAPH)
-export const generateDiograph =
-  (address) =>
-  async (dispatch, getState, { diographClient }) => {
-    const { generating } = getState().diograph
-    if (!generating) {
-      dispatch(generateDiographActions.begin({ address }))
-      try {
-        await diographClient.generateDiograph(address)
-        dispatch(updateDiograph())
-        dispatch(generateDiographActions.success({ address }))
-      } catch (error) {
-        console.error(error)
-        dispatch(generateDiographActions.failure(error))
       }
     }
   }

@@ -4,8 +4,8 @@ import { useDispatchActions } from '../../store'
 import { getDiograph } from './diographActions'
 import { useDiograph } from './useDiograph'
 
-import { getDiosphereAddress } from './utils/getDiosphereAddress'
-import { getAddressPath } from './utils/getAddressPath'
+import { getDiographKey } from './utils/getDiographKey'
+import { getKeyPath } from './utils/getKeyPath'
 
 const unique = (item, index, array) => array.indexOf(item) === index
 
@@ -13,11 +13,11 @@ const useMemoryAddresses = () => {
   const { story = {} } = useDiograph()
   return useMemo(
     () =>
-      story.links && story.links.map(({ id } = {}) => getDiosphereAddress(story.address, id))
-        .map(getAddressPath)
+      story.links && story.links.map(({ id } = {}) => getDiographKey(story.key, id))
+        .map(getKeyPath)
         .map((path) => `${path}/`)
         .filter(unique),
-    [story.id]
+    [story.key]
   )
 }
 

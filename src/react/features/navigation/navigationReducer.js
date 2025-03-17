@@ -11,9 +11,9 @@ import {
 import { createReducer } from '../../store'
 
 const initialState = {
-  contextId: null,
-  storyId: undefined,
-  memoryId: null,
+  contextKey: null,
+  storyKey: undefined,
+  memoryKey: null,
   backward: [],
   forward: [],
   path: [],
@@ -21,66 +21,66 @@ const initialState = {
 
 export const selectContext = (state, { payload }) => ({
   ...state,
-  contextId: payload.address,
+  contextKey: payload.key,
 })
 
 const init = (array) => array || []
 
 export const selectStory = (state, { payload }) => {
-  if (payload.address === state.storyId) {
+  if (payload.key === state.storyKey) {
     return state
   }
 
   return {
     ...state,
-    contextId: state.storyId,
-    storyId: payload.address,
-    backward: state.storyId ? [state.storyId, ...init(state.backward)] : state.backward,
+    contextKey: state.storyKey,
+    storyKey: payload.key,
+    backward: state.storyKey ? [state.storyKey, ...init(state.backward)] : state.backward,
     forward: [],
-    path: [...init(state.path), payload.address],
+    path: [...init(state.path), payload.key],
   }
 }
 
 export const selectMemory = (state, { payload }) => ({
   ...state,
-  memoryId: payload.address,
+  memoryKey: payload.key,
 })
 
 export const goSide = (state, { payload }) => ({
   ...state,
-  storyId: payload.storyId,
+  storyKey: payload.key,
   forward: [],
   path: Object.assign([], state.path, {
-    [state.path.length - 1]: payload.storyId,
+    [state.path.length - 1]: payload.key,
   }),
 })
 
 export const goBackward = (state) => {
-  const [storyId, ...backward] = state.backward
+  const [storyKey, ...backward] = state.backward
   return {
     ...state,
-    storyId,
+    storyKey,
     backward,
-    forward: [state.storyId, ...state.forward],
+    forward: [state.storyKey, ...state.forward],
     path: [...state.path].slice(0, -1),
   }
 }
 
 export const goForward = (state) => {
-  const [storyId, ...forward] = state.forward
+  const [storyKey, ...forward] = state.forward
   return {
     ...state,
-    storyId,
-    backward: [state.storyId, ...init(state.backward)],
+    storyKey,
+    backward: [state.storyKey, ...init(state.backward)],
     forward,
-    path: [...init(state.path), storyId],
+    path: [...init(state.path), storyKey],
   }
 }
 
 export const goHome = (state) => ({
   ...state,
-  storyId: undefined,
-  backward: [state.storyId, ...(state.backward || [])],
+  storyKey: undefined,
+  backward: [state.storyKey, ...(state.backward || [])],
   forward: [],
   path: [],
 })

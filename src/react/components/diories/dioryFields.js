@@ -1,6 +1,6 @@
 export default [
   {
-    key: 'address',
+    key: 'key',
     label: 'Address',
     format: 'dialog',
   },

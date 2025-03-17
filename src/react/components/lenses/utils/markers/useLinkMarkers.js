@@ -6,25 +6,25 @@ const addDataTestIdToMarker = (id) => (marker) => {
   return marker
 }
 
-const getAddresses = (array) => array.map(({ address }) => address)
+const getKeys = (array) => array.map(({ key }) => key)
 
 export const useLinkMarkers = (mapRef, markerLocations) => {
   const markerRefs = useRef([])
   useEffect(() => {
     if (mapRef.current) {
       markerRefs.current
-        .filter(({ address }) => !getAddresses(markerLocations).includes(address))
+        .filter(({ key }) => !getKeys(markerLocations).includes(key))
         .map((marker) => marker.remove())
 
-      const oldMarkers = markerRefs.current.filter(({ address }) =>
-        getAddresses(markerLocations).includes(address)
+      const oldMarkers = markerRefs.current.filter(({ key }) =>
+        getKeys(markerLocations).includes(key)
       )
 
       const newMarkers = markerLocations
-        .filter(({ address }) => !getAddresses(markerRefs.current).includes(address))
-        .map(({ address, center }) => {
+        .filter(({ key }) => !getKeys(markerRefs.current).includes(key))
+        .map(({ key, center }) => {
           const marker = L.marker(center).addTo(mapRef.current)
-          marker.address = address
+          marker.key = key
           return marker
         })
         .map(addDataTestIdToMarker('linked-diory-marker'))
