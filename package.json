@@ -5,10 +5,8 @@
   "main": "electron-main.js",
   "private": true,
   "dependencies": {
-    "@diograph/diograph": "0.4.3-rc11",
     "@diograph/local-client": "^0.4.1",
-    "@diograph/local-client2": "npm:@diograph/local-client@0.2.0-rc2",
-    "@diograph/s3-client": "^0.2.0",
+    "@diory/client-js": "0.4.2-rc1",
     "electron-devtools-installer": "^3.2.0",
     "electron-log": "^4.4.7",
     "electron-notarize": "^1.2.1",

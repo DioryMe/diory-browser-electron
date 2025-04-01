@@ -1,24 +1,13 @@
 const { contextBridge, shell, ipcRenderer } = require('electron')
 const { fileURLToPath } = require('url')
 
+const { LocalClient } = require('@diograph/local-client')
 const { channels } = require('../src/shared/constants')
 
 const { getHomeConnection } = require('./lib/getHomeConnection')
 const { saveHomeConnection } = require('./lib/saveHomeConnection')
-const { featureIsEnabled } = require('./lib/utils')
 
-// Feature flags
-process.env.FEATURE_DCLI_ADAPTER = '0'
-contextBridge.exposeInMainWorld('featureIsEnabled', featureIsEnabled)
-
-if (featureIsEnabled('DCLI_ADAPTER')) {
-  const { DcliAdapter } = require('./dcliAdapter')
-  const dcliAdapter = new DcliAdapter()
-  contextBridge.exposeInMainWorld('dcliAdapter', dcliAdapter)
-} else {
-  const { LocalClient } = require('@diograph/local-client')
-  contextBridge.exposeInMainWorld('localClient', new LocalClient())
-}
+contextBridge.exposeInMainWorld('localClient', new LocalClient())
 
 function channelLogger(handler, params) {
   console.log(`BACK-REQ: ${handler.name} called with`, params)
