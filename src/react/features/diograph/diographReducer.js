@@ -13,23 +13,42 @@ const initialState = {
 
 const getDiographActions = createActions(GET_DIOGRAPH)
 
-const getDiographBegin = (state, { payload: { key } }) => ({
+const getDiographBegin = (state, { payload: { address } }) => ({
   ...state,
   loading: {
     ...state.loading,
-    [key]: true,
+    [address]: true,
   },
 })
 
-const getDiographSuccess = (state, { payload: { key } }) => ({
+const getDiographSuccess = (state, { payload: { address } }) => ({
   ...state,
   loading: {
     ...state.loading,
-    [key]: false,
+    [address]: false,
   },
   loaded: {
     ...state.loaded,
-    [key]: true,
+    [address]: true,
+  },
+})
+
+const getDiographFailure = (
+  state,
+  {
+    payload: {
+      error: { address, error },
+    },
+  }
+) => ({
+  ...state,
+  loading: {
+    ...state.loading,
+    [address]: false,
+  },
+  error: {
+    ...state.error,
+    [address]: error,
   },
 })
 
@@ -46,5 +65,6 @@ export default createReducer(initialState, {
   ...promiseReducers(GENERATE_DIOGRAPH, 'generating', 'generated', 'error'),
   [getDiographActions.begin().type]: getDiographBegin,
   [getDiographActions.success().type]: getDiographSuccess,
+  [getDiographActions.failure().type]: getDiographFailure,
   [UPDATE_DIOGRAPH]: updateDiograph,
 })

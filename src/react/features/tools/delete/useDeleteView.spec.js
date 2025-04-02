@@ -10,7 +10,7 @@ import deleteViewFixtureDiograph from './__fixtures__/deleteViewFixtureDiograph'
 import { useDeleteView } from './useDeleteView'
 
 jest.mock('../../../store')
-jest.mock('../../../home/useDiograph')
+jest.mock('../../diograph/useDiograph')
 jest.mock('../../diograph/diographActions')
 
 describe('useDeleteView', () => {
@@ -50,7 +50,15 @@ describe('useDeleteView', () => {
 
     it('delete focusDiory and all its links', () => {
       const focusDiory = deleteViewFixtureDiograph.someDioryId
-      useDiograph.mockImplementation(() => ({ story: focusDiory, memory: focusDiory }))
+      const linkDiory = deleteViewFixtureDiograph.linkedDioryId1
+      const context1 = deleteViewFixtureDiograph.reverseLinkedDioryId2
+      const context2 = deleteViewFixtureDiograph.bidirectionalLinkedDioryId3
+      useDiograph.mockImplementation(() => ({
+        story: focusDiory,
+        memory: focusDiory,
+        memories: [linkDiory, context2],
+        contexts: [context1, context2],
+      }))
 
       useDeleteView().onDone()
 

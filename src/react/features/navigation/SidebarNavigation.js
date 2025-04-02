@@ -16,5 +16,5 @@ const useFavorites = () => {
 
 export const SidebarNavigation = () => {
   const { dispatchAction } = useDispatchActions()
-  return <DiographLinks links={useFavorites()} onClick={dispatchAction(selectStory)}/>
+  return <DiographLinks links={useFavorites()} onClick={dispatchAction(selectStory)} />
 }

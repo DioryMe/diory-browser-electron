@@ -1,4 +1,3 @@
-import { queryDiograph } from '@diograph/diograph/dist/utils/queryDiograph'
 import {
   SELECT_LENS,
   ADD_LENS_BUTTON,
@@ -23,9 +22,7 @@ export const setSearchResults = (query, results) => ({
   payload: { query, results },
 })
 
-export const searchDiories = (query) => (dispatch, getState) => {
-  const { diograph } = getState().diograph
-  const resultDiograph = queryDiograph({ text: query }, diograph)
+export const searchDiories = (query, resultDiograph) => (dispatch, getState) => {
   dispatch(setSearchResults(query, resultDiograph))
   dispatch(setSearchQuery(query))
 }

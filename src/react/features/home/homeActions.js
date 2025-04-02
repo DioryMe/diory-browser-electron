@@ -11,7 +11,8 @@ export const getHomeConnection = () => async (dispatch, getState) => {
     dispatch(getHomeConnectionActions.begin())
     try {
       const { connection } = await invokeChannel(channels.GET_DIORY_HOME_CONNECTION) // TODO refactor
-      dispatch(getHomeConnectionActions.success({ address: `${connection}/` }))
+      const address = connection ? `${connection}/` : undefined
+      dispatch(getHomeConnectionActions.success({ address }))
     } catch (error) {
       console.error(error)
       dispatch(getHomeConnectionActions.failure(error))

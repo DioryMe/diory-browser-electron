@@ -31,7 +31,9 @@ const useContexts = (contextKey, storyKey, backward, diograph) => {
       contexts,
     }
   }
-  const backwardContextAddress = backward.find((id) => contextAddresses.includes(id))
+  const backwardContextAddress = backward.find((address) =>
+    contextAddresses.includes(getDiory(address, diograph).key)
+  )
   if (backwardContextAddress) {
     return {
       context: getDiory(backwardContextAddress, diograph),

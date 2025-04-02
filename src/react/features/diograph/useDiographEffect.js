@@ -13,7 +13,9 @@ const useMemoryAddresses = () => {
   const { story = {} } = useDiograph()
   return useMemo(
     () =>
-      story.links && story.links.map(({ id } = {}) => getDiographKey(story.key, id))
+      story.links &&
+      story.links
+        .map(({ id } = {}) => getDiographKey(story.key, id))
         .map(getKeyPath)
         .map((path) => `${path}/`)
         .filter(unique),

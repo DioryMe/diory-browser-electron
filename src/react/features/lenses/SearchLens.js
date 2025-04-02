@@ -14,6 +14,7 @@ import SearchView from '../../components/lenses/search/SearchView'
 import { SearchBar } from '../../components/lenses/search/SearchBar'
 
 import button from '../../components/lenses/search/diory'
+import { queryDiograph } from '../../components/lenses/search/queryDiograph'
 
 export const useSearch = () => {
   const { query, resultsByQuery } = useSelector((state) => state.lenses)
@@ -40,10 +41,12 @@ export const useSearch = () => {
 
 const useSearchBar = () => {
   const { selectedLensId } = useSelector((state) => state.lenses)
+  const { diograph } = useSelector((state) => state.diograph)
   const { dispatch } = useDispatchActions()
   return {
     onSearch: ({ target: { value } }) => {
-      dispatch(searchDiories(value))
+      const resultDiograph = queryDiograph({ text: value }, diograph)
+      dispatch(searchDiories(value, resultDiograph))
       if (selectedLensId !== 'search') {
         dispatch(selectLens('search'))
       }

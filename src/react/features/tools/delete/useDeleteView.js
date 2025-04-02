@@ -3,27 +3,7 @@ import { goBackward, selectMemory } from '../../navigation/navigationActions'
 import { deleteDiory, deleteLinks } from '../../diograph/diographActions'
 import { useDiograph } from '../../diograph/useDiograph'
 import { inactivateButton } from '../../buttons/buttonsActions'
-
-const linkedDiories = (focusDiory, diograph) =>
-  Object.values(focusDiory.links || []).map(({ id }) => ({
-    fromDiory: diograph[focusDiory.id],
-    toDiory: diograph[id],
-  }))
-
-const reverseLinkedDiories = (focusDiory, diograph) =>
-  Object.values(diograph)
-    .map((diory) =>
-      Object.entries(diory.links || {}).filter(([, { id }]) => id === focusDiory.id)[0]
-        ? {
-            fromDiory: diograph[diory.id],
-            toDiory: diograph[focusDiory.id],
-          }
-        : null
-    )
-    .filter(Boolean)
-
-const composeDeletedLinks = (focusDiory, linkDiory, diograph) =>
-  linkedDiories(focusDiory, diograph).concat(reverseLinkedDiories(focusDiory, diograph))
+import { useDeletedLinks } from './useDeletedLinks'
 
 const isFocusDeleted = (focusDiory, linkDiory) => {
   if (focusDiory && linkDiory && focusDiory.id === linkDiory.id) {
@@ -37,23 +17,16 @@ const isFocusDeleted = (focusDiory, linkDiory) => {
   return false
 }
 
+const useDeletedDiory = () => {
+  const { story, memory } = useDiograph()
+  return isFocusDeleted(story, memory) ? story : null
+}
+
 export const useDeleteView = () => {
-  const { story, memory, diograph } = useDiograph()
+  const deletedDiory = useDeletedDiory()
+  const deletedLinks = useDeletedLinks()
+
   const { dispatch } = useDispatchActions()
-
-  let deletedDiory
-  let deletedLinks
-  if (isFocusDeleted(story, memory)) {
-    deletedDiory = story
-    deletedLinks = composeDeletedLinks(story, memory, diograph)
-  } else {
-    deletedDiory = null
-    deletedLinks = [{ fromDiory: story, toDiory: memory }]
-  }
-
-  const resetView = () => {
-    dispatch(selectMemory())
-  }
 
   const deleteDioryAndLinks = () => {
     dispatch(deleteLinks(deletedLinks))
@@ -64,13 +37,13 @@ export const useDeleteView = () => {
       dispatch(inactivateButton())
     }
 
-    resetView()
+    dispatch(selectMemory())
   }
 
   return {
     diory: deletedDiory,
     links: deletedLinks,
     onDone: deleteDioryAndLinks,
-    onCancel: resetView,
+    onCancel: () => dispatch(selectMemory()),
   }
 }
