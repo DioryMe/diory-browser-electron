@@ -10,11 +10,12 @@ import { useLens } from './useLens'
 import { createLink } from '../diograph/diographActions'
 import { selectLens, searchDiories } from './lensesActions'
 
-import SearchView from '../../components/lenses/search/SearchView'
+import { queryDiograph } from '../../components/lenses/search/queryDiograph'
+
+import { SearchView } from '../../components/lenses/search/SearchView'
 import { SearchBar } from '../../components/lenses/search/SearchBar'
 
 import button from '../../components/lenses/search/diory'
-import { queryDiograph } from '../../components/lenses/search/queryDiograph'
 
 export const useSearch = () => {
   const { query, resultsByQuery } = useSelector((state) => state.lenses)

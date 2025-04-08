@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useInitial } from '../../../../utils/useCompare'
 
 export const useFitToBounds = (ref, { center, min, max }, config) => {
-  const isInitial = useInitial(center)
+  const isInitial = useInitial(true)
   useEffect(() => {
     if (ref.current && isInitial) {
       if (min && max) {
@@ -17,9 +17,10 @@ export const useFitToBounds = (ref, { center, min, max }, config) => {
         ref.current.flyToBounds([min, max], { maxZoom: config.MAX_ZOOM })
       } else if (center) {
         ref.current.flyTo(center, config.MAX_ZOOM)
-      } else {
-        ref.current.flyTo(config.DEFAULT_LOCATION, config.DEFAULT_ZOOM)
       }
+      // else {
+      //   ref.current.flyTo(config.DEFAULT_LOCATION, config.DEFAULT_ZOOM)
+      // }
     }
   }, [ref, isInitial, center, min, max, config])
 }

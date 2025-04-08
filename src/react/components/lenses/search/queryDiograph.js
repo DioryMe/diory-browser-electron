@@ -16,9 +16,8 @@ function reduceToDioriesObject(dioriesObject, [key, diory]) {
   }
 }
 
-export function queryDiograph(queryDiory, diories) {
-  return Object.entries(diories)
+export const queryDiograph = (queryDiory, diories) =>
+  Object.entries(diories)
     .filter(allKeysExist(queryDiory))
     .filter(allMatchToQuery(queryDiory))
     .reduce(reduceToDioriesObject, {})
-}

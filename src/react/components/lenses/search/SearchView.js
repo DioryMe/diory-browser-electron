@@ -55,4 +55,4 @@ SearchView.propTypes = {
   children: PropTypes.node,
 }
 
-export default SearchView
+export { SearchView }
