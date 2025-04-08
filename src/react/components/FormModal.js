@@ -19,7 +19,7 @@ const useUpdatedValues = (oldValues = {}) => {
 
 const useOpenDialog = () => async () => {
   const { filePaths } = await invokeChannel('showOpenDialog')
-  return filePaths[0]
+  return `LocalClient/${filePaths[0]}/`
 }
 
 const FormModal = ({ title, values, fields, onDone, onCancel }) => {

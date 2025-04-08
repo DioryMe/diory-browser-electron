@@ -11,7 +11,12 @@ export const useCreateDiory = () => {
   const { dispatch } = useDispatchActions()
   return (newDiory) => {
     const image = getDefaultImage()
-    const { diory } = dispatch(createDiory({ image, ...newDiory }))
-    dispatch(createLink(story, diory))
+    if (!newDiory.key) {
+      const { diory } = dispatch(createDiory({ image, ...newDiory }))
+      dispatch(createLink(story, diory))
+    }
+    if (newDiory.key) {
+      dispatch(createLink(story, newDiory))
+    }
   }
 }
