@@ -45,6 +45,9 @@ const useStoryButton = (story, selectStory) => {
   )
 }
 
+// TODO: Context of context navigation
+// TODO: Contexts dropdown, 4
+// TODO: Stories dropdown, 5/20
 const DiographNavigation = ({ story, context, contexts, selectStory }) => {
   const contextButton = useContextButton(context, selectStory)
   const contextsPill = useContextsPill(contexts, selectStory)

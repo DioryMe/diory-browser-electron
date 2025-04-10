@@ -19,7 +19,7 @@ const options = {
   controls: false,
   loop: true,
   autoPlay: true,
-  muted: true,
+  muted: false,
 }
 
 const VideoContent = ({ url }) => {

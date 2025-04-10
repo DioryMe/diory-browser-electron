@@ -14,6 +14,8 @@ const useFavorites = () => {
   return memories
 }
 
+// TODO: Favorites
+// TODO: Drag and drop, remove
 export const SidebarNavigation = () => {
   const { dispatchAction } = useDispatchActions()
   return <DiographLinks links={useFavorites()} onClick={dispatchAction(selectStory)} />

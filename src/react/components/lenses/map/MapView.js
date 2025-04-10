@@ -13,6 +13,7 @@ import { useDragging } from '../utils/markers/useDragging'
 
 import { getLocationData } from './hooks/getLocationData'
 
+// TODO: Stories visible on map, big, different color
 const MapView = ({ story, memories, onMapClick, onPopupClick, enableDragging, onDragEnd }) => {
   const id = 'mapId'
   const map = useMap(id)

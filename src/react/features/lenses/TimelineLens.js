@@ -28,6 +28,14 @@ const useTimelineTools = () => {
   }
 }
 
+
+// TODO: Diory grid
+// timeline: {
+//   2025:
+//   2024:
+//   2024-06:
+//   2024-06-01
+
 export const TimelineLens = () => {
   const diograph = useDiograph()
   const tools = useTimelineTools()

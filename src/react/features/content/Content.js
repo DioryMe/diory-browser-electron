@@ -1,9 +1,6 @@
 import React from 'react'
 
-import { useSelector } from 'react-redux'
-
 import ContentView from './ContentView'
-import { useContentUrl } from './useContentUrl'
 import { useDiograph } from '../diograph/useDiograph'
 
 const contentStyle = {
@@ -12,14 +9,18 @@ const contentStyle = {
   margin: '48px',
 }
 
-const Content = () => {
-  useContentUrl()
-  const { contentUrl } = useSelector((state) => state.content)
+const getAddressPath = (address) => {
+  const addressArray = address.split('/') || []
+  return addressArray.slice(1, -1).join('/')
+}
 
+const Content = () => {
   const { story = {} } = useDiograph()
   const { data = [] } = story
-  const { encodingFormat } = (data && data[0]) || {}
-  return <ContentView url={contentUrl} type={encodingFormat} style={contentStyle} />
+  const { encodingFormat, contentUrl } = (data && data[0]) || {}
+  const path = getAddressPath(story.key)
+  const url = `${path}${contentUrl}`
+  return <ContentView url={url} type={encodingFormat} style={contentStyle} />
 }
 
 export default Content

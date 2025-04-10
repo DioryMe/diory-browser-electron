@@ -8,7 +8,7 @@ function validateFolder(address) {
 }
 
 exports.saveHomeConnection = async function saveDioryHomeConnection({ connection }) {
-  // validateFolder(connection.address)
+  validateFolder(connection)
   settingsStore().set('dioryHomeConnection', connection)
   console.log(`saveHomeConnection: Saved homeConnection ${connection} to config.json`)
 
