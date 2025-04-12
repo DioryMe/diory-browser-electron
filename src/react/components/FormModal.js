@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 
 import TextInput from './TextInput'
 import { Modal } from '../features/modal/Modal'
-import Button from './Button'
-import { invokeChannel } from '../client/client'
 
 const useUpdatedValues = (oldValues = {}) => {
   const [newValues, setNewValues] = useState({})
@@ -17,14 +15,8 @@ const useUpdatedValues = (oldValues = {}) => {
   }
 }
 
-const useOpenDialog = () => async () => {
-  const { filePaths } = await invokeChannel('showOpenDialog')
-  return `LocalClient/${filePaths[0]}/`
-}
-
 const FormModal = ({ title, values, fields, onDone, onCancel }) => {
   const { setValue, updatedValues, resetView } = useUpdatedValues(values)
-  const openDialog = useOpenDialog()
   return (
     <Modal
       title={title}
@@ -51,15 +43,6 @@ const FormModal = ({ title, values, fields, onDone, onCancel }) => {
               }
             }}
           />
-          {field.format === 'dialog' && (
-            <Button
-              data={{ icon: 'plus' }}
-              onClick={async () => {
-                const filePath = await openDialog()
-                setValue(key, filePath)
-              }}
-            />
-          )}
         </Fragment>
       ))}
     </Modal>

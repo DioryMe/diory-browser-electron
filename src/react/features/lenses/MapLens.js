@@ -25,9 +25,13 @@ const useMapTools = () => {
   }
 }
 
-export const MapLens = () => {
+const MapWithTools = () => {
   const diograph = useDiograph()
-  const { enabled } = useLens('map', button)
   const tools = useMapTools()
-  return enabled ? <MapView {...diograph} {...tools} /> : null
+  return <MapView {...diograph} {...tools} />
+}
+
+export const MapLens = () => {
+  const { enabled } = useLens('map', button)
+  return enabled ? <MapWithTools /> : null
 }

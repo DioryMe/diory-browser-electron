@@ -1,8 +1,8 @@
-import { useDispatchActions } from '../../../store'
-import { goBackward, selectMemory } from '../../navigation/navigationActions'
-import { deleteDiory, deleteLinks } from '../../diograph/diographActions'
-import { useDiograph } from '../../diograph/useDiograph'
-import { inactivateButton } from '../../buttons/buttonsActions'
+import { useDispatchActions } from '../../../../store'
+import { goBackward, selectMemory } from '../../../navigation/navigationActions'
+import { deleteDiory, deleteLinks } from '../../../diograph/diographActions'
+import { useDiograph } from '../../../diograph/useDiograph'
+import { inactivateButton } from '../../../buttons/buttonsActions'
 import { useDeletedLinks } from './useDeletedLinks'
 
 const isFocusDeleted = (focusDiory, linkDiory) => {

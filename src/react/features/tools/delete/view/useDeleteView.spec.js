@@ -1,17 +1,17 @@
-import { useSelector, useDispatchActions } from '../../../store'
+import { useSelector, useDispatchActions } from '../../../../store'
 
-import { deleteDiory, deleteLinks } from '../../diograph/diographActions'
-import { goBackward, selectMemory } from '../../navigation/navigationActions'
-import { useDiograph } from '../../diograph/useDiograph'
-import { inactivateButton } from '../../buttons/buttonsActions'
+import { deleteDiory, deleteLinks } from '../../../diograph/diographActions'
+import { goBackward, selectMemory } from '../../../navigation/navigationActions'
+import { useDiograph } from '../../../diograph/useDiograph'
+import { inactivateButton } from '../../../buttons/buttonsActions'
 
-import deleteViewFixtureDiograph from './__fixtures__/deleteViewFixtureDiograph'
+import deleteViewFixtureDiograph from '../__fixtures__/deleteViewFixtureDiograph'
 
 import { useDeleteView } from './useDeleteView'
 
-jest.mock('../../../store')
-jest.mock('../../diograph/useDiograph')
-jest.mock('../../diograph/diographActions')
+jest.mock('../../../../store')
+jest.mock('../../../diograph/useDiograph')
+jest.mock('../../../diograph/diographActions')
 
 describe('useDeleteView', () => {
   let mockState

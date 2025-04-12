@@ -12,9 +12,10 @@ import { Home } from './features/home/Home'
 import { Navigation } from './features/navigation/Navigation'
 import { Buttons } from './features/buttons/Buttons'
 import Fullscreen from './components/Fullscreen'
+import { Diograph } from './features/diograph/Diograph'
 import { Lenses } from './features/lenses/Lenses'
 import { Hand } from './features/hand/Hand'
-import { Diograph } from './features/diograph/Diograph'
+import { Tools } from './features/tools/Tools'
 import { SidebarNavigation } from './features/navigation/SidebarNavigation'
 import { SideBarContent } from './components/SideBarContent'
 
@@ -55,6 +56,7 @@ const Root = () => {
         </Fullscreen>
       </DndProvider>
       <Buttons />
+      <Tools />
     </>
   )
 }

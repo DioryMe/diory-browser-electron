@@ -1,10 +1,5 @@
 export default [
   {
-    key: 'key',
-    label: 'Address',
-    format: 'dialog',
-  },
-  {
     key: 'text',
     label: 'Text',
     format: 'string',
@@ -28,11 +23,6 @@ export default [
   {
     key: 'data',
     label: 'Data',
-    format: 'object',
-  },
-  {
-    key: 'style',
-    label: 'Style',
     format: 'object',
   },
 ]

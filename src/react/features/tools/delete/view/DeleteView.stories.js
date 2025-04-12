@@ -1,7 +1,7 @@
 import React from 'react'
 
 import DeleteView from './DeleteView'
-import deleteViewFixtureDiograph from './__fixtures__/deleteViewFixtureDiograph'
+import deleteViewFixtureDiograph from '../__fixtures__/deleteViewFixtureDiograph'
 
 export default {
   title: 'Delete view',

@@ -1,14 +1,17 @@
 import React from 'react'
 import { useDispatchActions, useSelector } from '../../../store'
 
-import { updateDiory } from '../../diograph/diographActions'
 import { useDiograph } from '../../diograph/useDiograph'
 
-import UpdateDioryView from '../../../components/diories/UpdateDioryView'
-
-import { UPDATE_TOOL_BUTTON } from './buttons'
 import { inactivateButton } from '../../buttons/buttonsActions'
 import { selectMemory } from '../../navigation/navigationActions'
+import { updateDiory } from '../../diograph/diographActions'
+
+import { FormModal } from '../../../components/FormModal'
+
+import { UPDATE_TOOL_BUTTON } from './buttons'
+
+import dioryFields from './dioryFields'
 
 const useToolActions = () => {
   const { dispatch } = useDispatchActions()
@@ -25,14 +28,12 @@ const useToolActions = () => {
   }
 }
 
-const UpdateTool = () => {
+export const UpdateTool = () => {
   const { active } = useSelector((state) => state.buttons)
   const { memory } = useDiograph()
   const toolActions = useToolActions()
 
   return UPDATE_TOOL_BUTTON === active && !!memory ? (
-    <UpdateDioryView diory={memory} title="Update diory" {...toolActions} />
+    <FormModal title="Update diory" fields={dioryFields} values={memory} {...toolActions} />
   ) : null
 }
-
-export default UpdateTool

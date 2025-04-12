@@ -7,9 +7,11 @@ import { useButtons } from '../../buttons/useButtons'
 import { inactivateButton } from '../../buttons/buttonsActions'
 import { selectMemory } from '../../navigation/navigationActions'
 
-import UpdateDioryView from '../../../components/diories/UpdateDioryView'
+import { FormModal } from '../../../components/FormModal'
 
 import { BUTTON, buttons } from './buttons'
+
+import dioryFields from './dioryFields'
 
 const useToolActions = () => {
   const { dispatch } = useDispatchActions()
@@ -27,13 +29,11 @@ const useToolActions = () => {
   }
 }
 
-const CreateTool = () => {
+export const CreateTool = () => {
   useButtons(buttons)
 
   const { active } = useSelector((state) => state.buttons)
   const toolActions = useToolActions()
 
-  return BUTTON === active ? <UpdateDioryView title="Create diory" {...toolActions} /> : null
+  return BUTTON === active ? <FormModal title="Create diory" fields={dioryFields} {...toolActions} /> : null
 }
-
-export default CreateTool

@@ -1,4 +1,4 @@
-import { useDiograph } from '../../diograph/useDiograph'
+import { useDiograph } from '../../../diograph/useDiograph'
 
 const linkedDiories = (story, memories) =>
   (memories || []).map((memory) => ({
