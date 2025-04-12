@@ -3,6 +3,7 @@ import { GET_DIOGRAPH, GENERATE_DIOGRAPH, UPDATE_DIOGRAPH } from './diographActi
 import { createReducer, promiseReducers } from '../../store'
 import { getDiographKey } from './utils/getDiographKey'
 import { createActions } from '../../store/storeUtils'
+import loading from './loading.gif'
 
 const initialState = {
   diograph: {},
@@ -15,6 +16,14 @@ const getDiographActions = createActions(GET_DIOGRAPH)
 
 const getDiographBegin = (state, { payload: { address } }) => ({
   ...state,
+  diograph: {
+    [address]: {
+      id: address,
+      text: `Loading... ${address}`,
+      image: loading,
+    },
+    ...state.diograph,
+  },
   loading: {
     ...state.loading,
     [address]: true,
