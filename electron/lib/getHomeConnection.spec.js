@@ -1,5 +1,5 @@
 const { existsSync } = require('fs')
-const { getDioryHomeConnection } = require('./getHomeConnection')
+const { getHomeConnection } = require('./getHomeConnection')
 const { settingsStore } = require('./utils')
 
 const someDioryHomeConnection = {
@@ -9,7 +9,7 @@ const someDioryHomeConnection = {
 jest.mock('./utils')
 jest.mock('fs')
 
-describe('getDioryHomeConnection', () => {
+describe('getHomeConnection', () => {
   beforeEach(() => {
     settingsStore.mockImplementation(() => ({
       get: () => 'some-folder-location',
@@ -23,6 +23,6 @@ describe('getDioryHomeConnection', () => {
 
   it('returns dioryHomeConnection', async () => {
     existsSync.mockImplementation(() => true)
-    await expect(getDioryHomeConnection()).resolves.toEqual(someDioryHomeConnection)
+    await expect(getHomeConnection()).resolves.toEqual(someDioryHomeConnection)
   })
 })

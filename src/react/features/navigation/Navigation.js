@@ -25,12 +25,11 @@ const useHomeButton = () => {
 }
 
 export const Navigation = () => {
-  const diograph = useDiograph()
   return (
     <NavigationBar>
       <NavigationButton {...useHomeButton()} />
       <Tablist display="flex" alignSelf="center">
-        <DiographNavigation {...diograph} selectStory={selectStory} />
+        <DiographNavigation />
       </Tablist>
       <Tablist alignSelf="center" marginRight={8}>
         <LensesNavigation />

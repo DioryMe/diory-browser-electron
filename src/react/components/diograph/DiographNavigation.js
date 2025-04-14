@@ -3,18 +3,22 @@ import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
 import { useDispatchActions } from '../../store'
+import { useDiograph } from '../../features/diograph/useDiograph'
+
+import { selectStory } from '../../features/navigation/navigationActions'
 
 import NavigationButton from '../NavigationButton'
-import PillSelectMenu from '../PillSelectMenu'
+import NavigationDropdown from '../NavigationDropdown'
 
 const navigationTextStyle = {
   color: 'white',
   lineHeight: '28px',
   fontSize: '12px',
   borderRadius: '16px',
+  paddingLeft: '6px',
 }
 
-const useContextButton = (context, selectStory) => {
+const useContextButton = (context) => {
   const { dispatch } = useDispatchActions()
   return (
     context && {
@@ -24,18 +28,7 @@ const useContextButton = (context, selectStory) => {
   )
 }
 
-const useContextsPill = (contexts, selectStory) => {
-  const otherContexts = contexts.map((diory) => ({ label: diory.text, value: diory.key }))
-
-  const { dispatch } = useDispatchActions()
-  return {
-    isShown: otherContexts.length > 1,
-    options: otherContexts,
-    onClick: ({ value }) => dispatch(selectStory({ key: value })),
-  }
-}
-
-const useStoryButton = (story, selectStory) => {
+const useStoryButton = (story) => {
   const { dispatch } = useDispatchActions()
   return (
     story && {
@@ -45,24 +38,28 @@ const useStoryButton = (story, selectStory) => {
   )
 }
 
-// TODO: Context of context navigation
-// TODO: Contexts dropdown, 4
-// TODO: Stories dropdown, 5/20
-const DiographNavigation = ({ story, context, contexts, selectStory }) => {
-  const contextButton = useContextButton(context, selectStory)
-  const contextsPill = useContextsPill(contexts, selectStory)
-  const storyButton = useStoryButton(story, selectStory)
+const DiographNavigation = () => {
+  const { story, stories, context, contexts } = useDiograph()
 
+  const contextButton = useContextButton(context)
+  const storyButton = useStoryButton(story)
+
+  const { dispatchAction } = useDispatchActions()
   return (
     <>
       {contextButton && (
         <>
           <NavigationButton {...contextButton} />
-          <PillSelectMenu {...contextsPill} />
+          <NavigationDropdown diory={context} diories={contexts} onClick={dispatchAction(selectStory)} />
           <Pane {...navigationTextStyle}>/</Pane>
         </>
       )}
-      {storyButton && <NavigationButton {...storyButton} />}
+      {storyButton && (
+        <>
+          <NavigationButton {...storyButton} pointerEvents="none" />
+          <NavigationDropdown diory={story} diories={stories} onClick={dispatchAction(selectStory)} />
+        </>
+      )}
     </>
   )
 }

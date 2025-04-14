@@ -10,15 +10,15 @@ const getDiorys = (links, diograph, parentKey) =>
     })
     .filter(({ id }) => id)
 
-const getLinkedDiorys = (key, diograph) => {
-  const diory = getDiory(key, diograph)
+const getLinkedDiorys = (parentDiory = {}, diograph) => {
+  const diory = getDiory(parentDiory.key, diograph)
   const links = diory && diory.links
-  return getDiorys(links, diograph, key)
+  return getDiorys(links, diograph, parentDiory.key)
 }
 
-const useContexts = (contextKey, storyKey, backward, diograph) => {
+const useContexts = (contextKey, story, backward, diograph) => {
   const reverseDiograph = resolveReverseDiograph(diograph)
-  const contexts = getLinkedDiorys(storyKey, reverseDiograph)
+  const contexts = getLinkedDiorys(story, reverseDiograph)
   if (!contexts.length) {
     return {
       contexts: [],
@@ -48,15 +48,17 @@ const useContexts = (contextKey, storyKey, backward, diograph) => {
 
 export const useDiographData = (navigationState = {}, diograph = {}) => {
   const { storyKey, contextKey, memoryKey, backward = [] } = navigationState
-  const { context, contexts } = useContexts(contextKey, storyKey, backward, diograph)
+
+  const story = getDiory(storyKey, diograph)
+  const { context, contexts } = useContexts(contextKey, story, backward, diograph)
 
   return {
     diograph,
     context,
     contexts,
-    story: getDiory(storyKey, diograph),
-    stories: getLinkedDiorys(contextKey, diograph),
+    story,
+    stories: getLinkedDiorys(context, diograph),
     memory: getDiory(memoryKey, diograph),
-    memories: getLinkedDiorys(storyKey, diograph),
+    memories: getLinkedDiorys(story, diograph),
   }
 }
