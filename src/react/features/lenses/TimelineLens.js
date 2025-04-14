@@ -28,7 +28,6 @@ const useTimelineTools = () => {
   }
 }
 
-
 // TODO: Diory grid
 // timeline: {
 //   2025:

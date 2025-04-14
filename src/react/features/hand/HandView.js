@@ -12,15 +12,23 @@ const scaleContainer = {
   height: '200%',
 }
 
-const HandView = ({ diorys, scrollIntoViewId, onClick, onClear, onDrop, onBackgroundDrop }) => {
+const HandView = ({
+  story,
+  diorys,
+  scrollIntoViewId,
+  onClick,
+  onClear,
+  onDrop,
+  onBackgroundDrop,
+}) => {
   const handRef = useRef()
   return (
     <Pane background="#222" height="100%" padding={12}>
-      <NavigationButton text="HAND" />
+      <NavigationButton text={story.text} />
       {diorys.length ? <NavigationButton text="Clear" onClick={onClear} float="right" /> : null}
       <DiorysGrid
         ref={handRef}
-        background={{ id: 'hand' }}
+        background={{ id: story.id }}
         diorys={diorys}
         scrollIntoViewId={scrollIntoViewId}
         onClick={onClick}

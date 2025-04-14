@@ -9,16 +9,14 @@ const NavigationDropdown = ({ diory: selectedDiory, diories, onClick }) => {
 
   return (
     <Popover
-      position='bottom-right'
+      position="bottom-right"
       content={({ close }) => (
         <Menu>
           <Menu.OptionsGroup
-            options={diories
-              .map((diory) => ({
-                label: diory.text || diory.date,
-                value: diory.key,
-              }))
-            }
+            options={diories.map((diory) => ({
+              label: diory.text || diory.date,
+              value: diory.key,
+            }))}
             selected={selectedDiory.key}
             onChange={(key) => {
               close()
@@ -28,7 +26,7 @@ const NavigationDropdown = ({ diory: selectedDiory, diories, onClick }) => {
         </Menu>
       )}
     >
-      <Pill alignSelf='center' color='red' cursor='pointer'>
+      <Pill alignSelf="center" color="red" cursor="pointer">
         {diories.length}
       </Pill>
     </Popover>

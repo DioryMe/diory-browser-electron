@@ -50,14 +50,22 @@ const DiographNavigation = () => {
       {contextButton && (
         <>
           <NavigationButton {...contextButton} />
-          <NavigationDropdown diory={context} diories={contexts} onClick={dispatchAction(selectStory)} />
+          <NavigationDropdown
+            diory={context}
+            diories={contexts}
+            onClick={dispatchAction(selectStory)}
+          />
           <Pane {...navigationTextStyle}>/</Pane>
         </>
       )}
       {storyButton && (
         <>
           <NavigationButton {...storyButton} pointerEvents="none" />
-          <NavigationDropdown diory={story} diories={stories} onClick={dispatchAction(selectStory)} />
+          <NavigationDropdown
+            diory={story}
+            diories={stories}
+            onClick={dispatchAction(selectStory)}
+          />
         </>
       )}
     </>

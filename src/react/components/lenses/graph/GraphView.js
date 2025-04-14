@@ -94,13 +94,13 @@ const useDisplay = (sideBarWidth) => {
 
 const useFocusToStoryNode = (fgRef, storyNode) => {
   useEffect(() => {
-    const distance = 80;
-    const distRatio = 1 + distance/Math.hypot(storyNode.x, storyNode.y, storyNode.z);
+    const distance = 80
+    const distRatio = 1 + distance / Math.hypot(storyNode.x, storyNode.y, storyNode.z)
 
     fgRef.current.cameraPosition(
       { x: storyNode.x * distRatio, y: storyNode.y * distRatio, z: storyNode.z * distRatio }, // new position
       storyNode, // lookAt ({ x, y, z })
-      1000  // ms transition duration
+      1000 // ms transition duration
     )
   }, [fgRef, storyNode.id])
 }

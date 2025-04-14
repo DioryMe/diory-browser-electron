@@ -35,5 +35,7 @@ export const CreateTool = () => {
   const { active } = useSelector((state) => state.buttons)
   const toolActions = useToolActions()
 
-  return BUTTON === active ? <FormModal title="Create diory" fields={dioryFields} {...toolActions} /> : null
+  return BUTTON === active ? (
+    <FormModal title="Create diory" fields={dioryFields} {...toolActions} />
+  ) : null
 }

@@ -2,11 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
-const MenuItem = ({ isSelected, onClick, children }) => (
-  <Pane display="flex" color={isSelected ? 'white' : 'grey'}>
-    <Pane flex={1} display="flex" alignItems="center" cursor="pointer">
-      <Pane onClick={onClick}>{children}</Pane>
-    </Pane>
+const MenuItem = ({ onClick, children }) => (
+  <Pane
+    position="relative"
+    color="grey"
+    fontSize={12}
+    padding={4}
+    marginLeft={8}
+    cursor="pointer"
+    onClick={onClick}
+    textOverflow="ellipsis"
+    whiteSpace="nowrap"
+    overflow="hidden"
+  >
+    {children}
   </Pane>
 )
 

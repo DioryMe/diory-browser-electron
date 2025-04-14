@@ -6,7 +6,6 @@ import home from '../features/home/homeReducer'
 import buttons from '../features/buttons/buttonsReducer'
 import content from '../features/content/contentReducer'
 import diograph from '../features/diograph/diographReducer'
-import hand from '../features/hand/handReducer'
 import lenses from '../features/lenses/lensesReducer'
 import modal from '../features/modal/modalReducer'
 import navigation from '../features/navigation/navigationReducer'
@@ -17,7 +16,6 @@ const appReducer = combineReducers({
   buttons,
   content,
   diograph,
-  hand,
   lenses,
   modal,
   navigation,

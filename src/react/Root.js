@@ -17,15 +17,22 @@ import { Lenses } from './features/lenses/Lenses'
 import { Hand } from './features/hand/Hand'
 import { Tools } from './features/tools/Tools'
 import { SidebarNavigation } from './features/navigation/SidebarNavigation'
-import { SideBarContent } from './components/SideBarContent'
 
 import { debounce } from './utils'
+
+const useKey = (id) => {
+  const { address } = useSelector((state) => state.home)
+  return `${address}${id}`
+}
 
 const Root = () => {
   const { dispatch } = useDispatchActions()
   const onLayout = (widths) => {
     dispatch(setSideBarWidth('right', widths[widths.length - 1]))
   }
+
+  const handKey = useKey('hand')
+  const favoritesKey = useKey('favorites')
 
   const { loaded: diographLoaded } = useSelector((state) => state.diograph)
   const { selectedLensId } = useSelector((store) => store.lenses)
@@ -37,9 +44,7 @@ const Root = () => {
         <Fullscreen top={44}>
           <PanelGroup direction="horizontal" onLayout={debounce(onLayout, 100)}>
             <Panel defaultSize={15} minSize={1} style={{ position: 'relative' }}>
-              <SideBarContent>
-                <SidebarNavigation />
-              </SideBarContent>
+              <SidebarNavigation storyKey={favoritesKey} />
             </Panel>
             <PanelResizeHandle />
             {diographLoaded && (
@@ -50,7 +55,7 @@ const Root = () => {
             <PanelResizeHandle />
             <Panel defaultSize={15} minSize={1} style={{ position: 'relative' }}>
               <Lenses />
-              {!selectedLensId && <Hand />}
+              {!selectedLensId && <Hand storyKey={handKey} />}
             </Panel>
           </PanelGroup>
         </Fullscreen>

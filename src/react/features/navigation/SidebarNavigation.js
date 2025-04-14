@@ -6,17 +6,11 @@ import { useDispatchActions } from '../../store'
 import { selectStory } from './navigationActions'
 
 import { DiographLinks } from '../../components/diograph/DiographLinks'
+import { useSidebar } from './useSidebar'
+import { SideBarContent } from '../../components/SideBarContent'
 
-const useFavorites = () => {
-  const { diograph } = useSelector((state) => state.diograph)
-  const { address } = useSelector((state) => state.home)
-  const { memories } = useDiographData({ storyKey: `${address}favorites` }, diograph)
-  return memories
-}
-
-// TODO: Favorites
-// TODO: Drag and drop, remove
-export const SidebarNavigation = () => {
-  const { dispatchAction } = useDispatchActions()
-  return <DiographLinks links={useFavorites()} onClick={dispatchAction(selectStory)} />
-}
+export const SidebarNavigation = ({ storyKey }) => (
+  <SideBarContent>
+    <DiographLinks {...useSidebar(storyKey)} />
+  </SideBarContent>
+)

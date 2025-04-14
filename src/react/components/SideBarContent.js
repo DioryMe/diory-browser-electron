@@ -7,7 +7,6 @@ export const SideBarContent = ({ children }) => (
     id="left"
     height="100%"
     backgroundColor="#222"
-    paddingLeft={24}
     display="flex"
     flexDirection="column"
     justifyContent="space-between"

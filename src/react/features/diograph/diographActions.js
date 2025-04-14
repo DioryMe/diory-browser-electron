@@ -55,6 +55,8 @@ export const deleteLink =
 export const deleteLinks =
   (deletedLinks) =>
   (dispatch, getState, { diographClient }) => {
+    // FIX: Delete link
+
     deletedLinks.forEach(({ fromDiory, toDiory }) => {
       diographClient.getDiograph(fromDiory.key).getDiory(fromDiory).removeLink(toDiory)
     })
