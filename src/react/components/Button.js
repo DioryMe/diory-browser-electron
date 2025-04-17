@@ -20,8 +20,8 @@ const Button = ({ style = {}, data, active, onClick }) => (
       {...getActiveProps(active)}
       icon={<Icon icon={data.icon} />}
       iconSize={24}
-      height={56}
-      margin={8}
+      height={48}
+      margin={6}
       borderRadius="50%"
       {...style}
     />

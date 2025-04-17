@@ -9,9 +9,10 @@ import { updateDiory } from '../../diograph/diographActions'
 
 import { FormModal } from '../../../components/FormModal'
 
-import { UPDATE_TOOL_BUTTON } from './buttons'
+import { buttons, UPDATE_TOOL_BUTTON } from './buttons'
 
 import dioryFields from './dioryFields'
+import { useButtons } from '../../buttons/useButtons'
 
 const useToolActions = () => {
   const { dispatch } = useDispatchActions()
@@ -29,6 +30,8 @@ const useToolActions = () => {
 }
 
 export const UpdateTool = () => {
+  useButtons(buttons)
+
   const { active } = useSelector((state) => state.buttons)
   const { memory } = useDiograph()
   const toolActions = useToolActions()

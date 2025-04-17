@@ -10,7 +10,7 @@ export const useButtonBar = () => {
   const toggleButton = {
     id: 'tools',
     data: {
-      icon: open ? 'cross' : 'plus',
+      icon: open ? 'cross' : 'wrench',
       testid: 'tools',
     },
     onClick: () => {
