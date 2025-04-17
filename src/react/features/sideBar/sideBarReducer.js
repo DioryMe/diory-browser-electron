@@ -3,10 +3,10 @@ import { createReducer } from '../../store'
 
 const initialState = {
   sideBarWidth: {
-    left: 90,
-    right: 10,
+    left: 5,
+    right: 5,
   },
-  showSideBar: {
+  showSideBars: {
     left: false,
     right: false,
   },
@@ -14,9 +14,9 @@ const initialState = {
 
 export const toggleSideBar = (state, { payload }) => ({
   ...state,
-  showSideBar: {
-    ...state.showSideBar,
-    [payload.id]: !state.showSideBar[payload.id],
+  showSideBars: {
+    ...state.showSideBars,
+    [payload.id]: !state.showSideBars[payload.id],
   },
 })
 

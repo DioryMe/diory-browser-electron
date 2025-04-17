@@ -1,16 +1,14 @@
 import React from 'react'
 import { Tablist } from 'evergreen-ui'
 
-import { useDiograph } from '../diograph/useDiograph'
 import { useDispatchActions, useSelector } from '../../store'
 
 import { selectStory } from './navigationActions'
 
-import LensesNavigation from '../lenses/LensesNavigation'
-
 import NavigationBar from '../../components/NavigationBar'
-import DiographNavigation from '../../components/diograph/DiographNavigation'
 import NavigationButton from '../../components/NavigationButton'
+import DiographNavigation from '../../components/diograph/DiographNavigation'
+import LensesNavigation from '../lenses/LensesNavigation'
 
 const useHomeButton = () => {
   const { address: key } = useSelector((state) => state.home)
@@ -21,6 +19,7 @@ const useHomeButton = () => {
       dispatch(selectStory({ key }))
     },
     fontWeight: 'bold',
+    color: 'grey',
   }
 }
 

@@ -1,27 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Pane } from 'evergreen-ui'
-import { useSideBar } from './useSideBar'
 
-const SideBar = ({ id, children, ...props }) => {
-  const { showSideBar } = useSideBar(id)
-  return showSideBar ? (
-    <Pane
-      background="tint2"
-      position="absolute"
-      bottom={0}
-      display="flex"
-      flexDirection="column"
-      {...props}
-    >
-      {children}
-    </Pane>
-  ) : null
-}
+import { SideBarPanel } from './components/SideBarPanel'
+import { SideBarContainer } from '../../components/SideBarContainer'
+import { SideBarToggle } from './components/SideBarToggle'
+
+const SideBar = ({ side, children }) => (
+  <SideBarPanel side={side}>
+    <SideBarContainer>
+      <SideBarToggle side={side}>
+        {children}
+      </SideBarToggle>
+    </SideBarContainer>
+  </SideBarPanel>
+)
 
 SideBar.propTypes = {
-  id: PropTypes.string,
-  children: PropTypes.node,
+  side: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 }
 
-export default SideBar
+export { SideBar }

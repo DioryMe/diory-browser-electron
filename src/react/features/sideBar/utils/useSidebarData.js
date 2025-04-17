@@ -1,14 +1,14 @@
 import { useSelector } from 'react-redux'
 
-import { useDispatchActions } from '../../store'
-import { useStoryTool } from '../tools/story'
-import { useUpdateTool } from '../tools/update'
-import { useDeleteTool } from '../tools/delete'
-import { useDiographData } from '../diograph/utils/useDiographData'
+import { useDispatchActions } from '../../../store'
+import { useStoryTool } from '../../tools/story'
+import { useUpdateTool } from '../../tools/update'
+import { useDeleteTool } from '../../tools/delete'
+import { useDiographData } from '../../diograph/utils/useDiographData'
 
-import { createLink, updateDiory } from '../diograph/diographActions'
+import { createLink, updateDiory } from '../../diograph/diographActions'
 
-export const useSidebar = (storyKey) => {
+export const useSidebarData = (storyKey) => {
   const { diograph } = useSelector((state) => state.diograph)
   const { story, memories } = useDiographData({ storyKey }, diograph)
 
@@ -19,7 +19,7 @@ export const useSidebar = (storyKey) => {
   const { dispatch } = useDispatchActions()
   return {
     story,
-    diorys: memories,
+    memories,
     onClick: ({ diory }) => {
       selectStory(diory)
       selectUpdatedDiory(diory)
