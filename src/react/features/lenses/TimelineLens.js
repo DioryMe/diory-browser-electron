@@ -5,12 +5,10 @@ import { useDeleteTool } from '../tools/delete'
 import { useStoryTool } from '../tools/story'
 import { useMoveTool, useMoveToolIsActive } from '../tools/move'
 import { useUpdateTool } from '../tools/update'
-import { useLens } from './useLens'
+import { useLens } from './utils/useLens'
 import { useDiograph } from '../diograph/useDiograph'
 
-import TimelineView from '../../components/lenses/timeline/TimelineView'
-
-import button from '../../components/lenses/timeline/diory'
+import TimelineView from './components/timeline/TimelineView'
 
 const useTimelineTools = () => {
   const selectStory = useStoryTool()
@@ -38,6 +36,6 @@ const useTimelineTools = () => {
 export const TimelineLens = () => {
   const diograph = useDiograph()
   const tools = useTimelineTools()
-  const { enabled } = useLens('timeline', button)
+  const { enabled } = useLens('timeline')
   return enabled ? <TimelineView {...diograph} {...tools} /> : null
 }

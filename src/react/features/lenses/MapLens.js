@@ -4,12 +4,10 @@ import { useStoryTool } from '../tools/story'
 import { useCreateTool } from '../tools/createLocation'
 import { useDeleteTool } from '../tools/delete'
 import { useMoveTool, useMoveToolIsActive } from '../tools/move'
-import { useLens } from './useLens'
+import { useLens } from './utils/useLens'
 import { useDiograph } from '../diograph/useDiograph'
 
-import MapView from '../../components/lenses/map/MapView'
-
-import button from '../../components/lenses/map/diory'
+import MapView from './components/map/MapView'
 
 const useMapTools = () => {
   const selectStory = useStoryTool()
@@ -32,6 +30,6 @@ const MapWithTools = () => {
 }
 
 export const MapLens = () => {
-  const { enabled } = useLens('map', button)
+  const { enabled } = useLens('map')
   return enabled ? <MapWithTools /> : null
 }

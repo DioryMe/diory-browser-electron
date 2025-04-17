@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useInitial } from '../../../../utils/useCompare'
+import { useInitial } from '../../../../../utils/useCompare'
 
 export const useFitToBounds = (ref, { center, min, max }, config) => {
   const isInitial = useInitial(true)

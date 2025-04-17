@@ -5,17 +5,15 @@ import { useStoryTool } from '../tools/story'
 import { useUpdateTool } from '../tools/update'
 import { useDeleteTool } from '../tools/delete'
 import { useCreateDiory } from '../tools/create'
-import { useLens } from './useLens'
+import { useLens } from './utils/useLens'
 
 import { createLink } from '../diograph/diographActions'
 import { selectLens, searchDiories } from './lensesActions'
 
-import { queryDiograph } from '../../components/lenses/search/queryDiograph'
+import { queryDiograph } from './components/search/queryDiograph'
 
-import { SearchView } from '../../components/lenses/search/SearchView'
-import { SearchBar } from '../../components/lenses/search/SearchBar'
-
-import button from '../../components/lenses/search/diory'
+import { SearchView } from './components/search/SearchView'
+import { SearchBar } from './components/search/SearchBar'
 
 export const useSearch = () => {
   const { query, resultsByQuery } = useSelector((state) => state.lenses)
@@ -56,7 +54,7 @@ const useSearchBar = () => {
 }
 
 export const SearchLens = () => {
-  const { enabled } = useLens('search', button)
+  const { enabled } = useLens('search')
   const search = useSearch()
   const searchBar = useSearchBar()
   return enabled ? (

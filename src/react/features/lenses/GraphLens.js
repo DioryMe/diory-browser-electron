@@ -4,12 +4,10 @@ import { useSelector } from 'react-redux'
 import { useStoryTool } from '../tools/story'
 import { useUpdateTool } from '../tools/update'
 import { useDeleteTool } from '../tools/delete'
-import { useLens } from './useLens'
+import { useLens } from './utils/useLens'
 import { useDiograph } from '../diograph/useDiograph'
 
-import button from '../../components/lenses/graph/diory'
-
-import GraphView from '../../components/lenses/graph/GraphView'
+import GraphView from './components/graph/GraphView'
 
 export const useGraphTools = () => {
   const selectStory = useStoryTool()
@@ -30,6 +28,6 @@ export const GraphLens = () => {
   const { sideBarWidth } = useSelector((state) => state.sideBar)
   const tools = useGraphTools()
 
-  const { enabled } = useLens('graph', button)
-  return enabled ? <GraphView {...diograph} {...tools} sideBarWidth={sideBarWidth} /> : null
+  const { enabled } = useLens('graph')
+  return enabled ? <GraphView {...diograph} {...tools} sideBarWidth={sideBarWidth.right} /> : null
 }

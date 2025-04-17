@@ -5,10 +5,9 @@ import {
   SET_SEARCH_RESULTS,
 } from './lensesActionTypes'
 import { createReducer } from '../../store'
-import { DEFAULT_LENS } from './Lenses'
 
 const initialState = {
-  selectedLensId: DEFAULT_LENS,
+  selectedLensId: null,
   buttons: {},
   query: '',
   resultsByQuery: {},

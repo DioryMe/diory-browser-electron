@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import ForceGraph3D from 'react-force-graph-3d'
 import * as THREE from 'three'
 import SpriteText from 'three-spritetext'
-import Fullscreen from '../../Fullscreen'
-import { getDiory } from '../../../features/diograph/utils/getDiory'
-import { getDiographKey } from '../../../features/diograph/utils/getDiographKey'
-import { getDefaultImage } from '../../../../shared/getDefaultImage'
+import Fullscreen from '../../../../components/Fullscreen'
+import { getDiory } from '../../../diograph/utils/getDiory'
+import { getDiographKey } from '../../../diograph/utils/getDiographKey'
+import { getDefaultImage } from '../../../../../shared/getDefaultImage'
 
 const mapDiographToData = (diograph) => {
   const links = []
@@ -71,7 +71,7 @@ const useLinkDistance = (ref) => {
 }
 
 const useDisplay = (sideBarWidth) => {
-  const width = (sideBarWidth.right * window.innerWidth) / 100
+  const width = (sideBarWidth * window.innerWidth) / 100
   const height = window.innerHeight
 
   const [displayWidth, setDisplayWidth] = useState(width)
@@ -153,7 +153,7 @@ const GraphView = ({ story, diograph, onDioryClick, sideBarWidth }) => {
 GraphView.propTypes = {
   diograph: PropTypes.object.isRequired,
   onDioryClick: PropTypes.func.isRequired,
-  sideBarWidth: PropTypes.object,
+  sideBarWidth: PropTypes.number,
 }
 
 export default GraphView
