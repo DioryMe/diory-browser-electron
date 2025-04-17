@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { useSelector } from 'react-redux'
 
 import { useStoryTool } from '../tools/story'
 import { useUpdateTool } from '../tools/update'
 import { useDeleteTool } from '../tools/delete'
+import { useGraphData } from './components/graph/useGraphData'
 import { useLens } from './utils/useLens'
-import { useDiograph } from '../diograph/useDiograph'
 
 import GraphView from './components/graph/GraphView'
 
@@ -24,10 +24,11 @@ export const useGraphTools = () => {
 }
 
 export const GraphLens = () => {
-  const diograph = useDiograph()
-  const { sideBarWidth } = useSelector((state) => state.sideBar)
+  const graphLensData = useGraphData()
   const tools = useGraphTools()
 
+  const { sideBarWidth } = useSelector((state) => state.sideBar)
+
   const { enabled } = useLens('graph')
-  return enabled ? <GraphView {...diograph} {...tools} sideBarWidth={sideBarWidth.right} /> : null
+  return enabled ? <GraphView {...graphLensData} {...tools} sideBarWidth={sideBarWidth.right} /> : null
 }

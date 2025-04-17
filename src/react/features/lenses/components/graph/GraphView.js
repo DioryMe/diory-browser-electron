@@ -1,41 +1,11 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import ForceGraph3D from 'react-force-graph-3d'
 import * as THREE from 'three'
 import SpriteText from 'three-spritetext'
-import Fullscreen from '../../../../components/Fullscreen'
-import { getDiory } from '../../../diograph/utils/getDiory'
-import { getDiographKey } from '../../../diograph/utils/getDiographKey'
-import { getDefaultImage } from '../../../../../shared/getDefaultImage'
-
-const mapDiographToData = (diograph) => {
-  const links = []
-  Object.entries(diograph).forEach(([dioryKey, diory]) => {
-    if (diory.links) {
-      Object.values(diory.links)
-        .map(({ id }) => getDiory(getDiographKey(dioryKey, id), diograph))
-        .filter(({ key }) => !!diograph[key])
-        .forEach(({ key }) => {
-          links.push({
-            source: dioryKey,
-            target: key,
-          })
-        })
-    }
-  })
-
-  const nodes = Object.entries(diograph)
-    .filter(([key]) => !key.endsWith('/'))
-    .map(([key, diory]) => ({ ...diory, key, id: key }))
-
-  return {
-    nodes,
-    links,
-  }
-}
 
 const getNodeThreeObject = (node) => {
-  const imageParameters = { map: new THREE.TextureLoader().load(node.image || getDefaultImage()) }
+  const imageParameters = { map: new THREE.TextureLoader().load(node.image) }
   const imageMaterial = new THREE.SpriteMaterial(imageParameters)
   const imageSprite = new THREE.Sprite(imageMaterial)
   if (node.path === '/') {
@@ -44,8 +14,7 @@ const getNodeThreeObject = (node) => {
     imageSprite.scale.set(15, 10)
   }
 
-  const spriteText = new SpriteText(node.text, 0.1)
-  imageSprite.add(spriteText)
+  imageSprite.add(new SpriteText(node.text, 0.1))
 
   return imageSprite
 }
@@ -110,48 +79,43 @@ const useFocusToStoryNode = (fgRef, storyNode) => {
 // - larger link distance
 // - fix initial view
 
-const GraphView = ({ story, diograph, onDioryClick, sideBarWidth }) => {
+const GraphView = ({ storyNode, data, onDioryClick, sideBarWidth }) => {
   const fgRef = useRef()
+
   useLinkDistance(fgRef)
-
-  const { displayHeight, displayWidth } = useDisplay(sideBarWidth)
-
-  const data = useMemo(() => mapDiographToData(diograph), [diograph])
-
-  const storyNode = data.nodes.find(({ id }) => id === story.key)
   useFocusToStoryNode(fgRef, storyNode)
 
+  const { displayHeight, displayWidth } = useDisplay(sideBarWidth)
   return (
-    <Fullscreen id="graph-view" background="#222222">
-      <ForceGraph3D
-        ref={fgRef}
-        width={displayWidth}
-        height={displayHeight}
-        showNavInfo={false}
-        backgroundColor="#222222"
-        graphData={data}
-        nodeLabel="text"
-        nodeThreeObject={getNodeThreeObject}
-        linkThreeObject={getLinkThreeObject}
-        linkOpacity={1}
-        linkWidth="10px"
-        linkColor="#FFFFFF"
-        linkDirectionalArrowLength={2}
-        linkDirectionalArrowColor="#FFFFFF"
-        linkCurvature={0.3}
-        onNodeClick={(diory) => onDioryClick({ diory })}
-        onNodeDragEnd={(node) => {
-          node.fx = node.x // eslint-disable-line no-param-reassign
-          node.fy = node.y // eslint-disable-line no-param-reassign
-          node.fz = node.z // eslint-disable-line no-param-reassign
-        }}
-      />
-    </Fullscreen>
+    <ForceGraph3D
+      ref={fgRef}
+      width={displayWidth}
+      height={displayHeight}
+      showNavInfo={false}
+      backgroundColor="#222222"
+      graphData={data}
+      nodeLabel="text"
+      nodeThreeObject={getNodeThreeObject}
+      linkThreeObject={getLinkThreeObject}
+      linkOpacity={1}
+      linkWidth="10px"
+      linkColor="#FFFFFF"
+      linkDirectionalArrowLength={2}
+      linkDirectionalArrowColor="#FFFFFF"
+      linkCurvature={0.3}
+      onNodeClick={(diory) => onDioryClick({ diory })}
+      onNodeDragEnd={(node) => {
+        node.fx = node.x // eslint-disable-line no-param-reassign
+        node.fy = node.y // eslint-disable-line no-param-reassign
+        node.fz = node.z // eslint-disable-line no-param-reassign
+      }}
+    />
   )
 }
 
 GraphView.propTypes = {
-  diograph: PropTypes.object.isRequired,
+  storyNode: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
   onDioryClick: PropTypes.func.isRequired,
   sideBarWidth: PropTypes.number,
 }
