@@ -1,11 +1,12 @@
 import React from 'react'
+import { Panel } from 'react-resizable-panels'
 
 import { useDispatchActions } from '../../store'
 import { useDiographEffect } from './useDiographEffect'
 import { useDiograph } from './useDiograph'
 
 import { useToggleContent } from '../content/useToggleContent'
-import { useGoSide } from '../navigation/useGoSide'
+import { useGoSide } from '../navigation/utils/useGoSide'
 import { useNavigation } from '../navigation/useNavigation'
 
 import { useDeleteTool } from '../tools/delete'
@@ -14,8 +15,8 @@ import { useUpdateTool } from '../tools/update'
 
 import { createLink } from './diographActions'
 
-import DiographView from '../../components/diograph/DiographView'
-import NavigationToSide from '../../components/NavigationToSide'
+import NavigationToSide from './components/NavigationToSide'
+import DiographView from './components/DiographView'
 
 export const useDiographTools = () => {
   const { forward = [] } = useNavigation('diory')
@@ -51,10 +52,10 @@ export const Diograph = () => {
   const { goLeft, goRight } = useGoSide()
 
   return (
-    <>
+    <Panel minSize={20} style={{ position: 'relative' }}>
       <NavigationToSide left onClick={goLeft} />
       <DiographView {...diograph} {...useDiographTools()} />
       <NavigationToSide right onClick={goRight} />
-    </>
+    </Panel>
   )
 }

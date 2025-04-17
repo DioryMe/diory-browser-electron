@@ -8,7 +8,7 @@ const NavigationBar = ({ children, ...props }) => (
     justifyContent="space-between"
     padding={8}
     background="#222"
-    zIndex={15}
+    zIndex={10}
     position="absolute"
     width="100%"
     {...props}

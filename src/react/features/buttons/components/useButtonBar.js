@@ -1,6 +1,6 @@
-import { useDispatchActions, useSelector } from '../../store'
+import { useDispatchActions, useSelector } from '../../../store'
 
-import { openButtons, activateButton, inactivateButton } from './buttonsActions'
+import { openButtons, activateButton, inactivateButton } from '../buttonsActions'
 
 export const useButtonBar = () => {
   const { open, active, buttons } = useSelector((state) => state.buttons)

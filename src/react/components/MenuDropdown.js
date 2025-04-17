@@ -2,7 +2,7 @@ import React from 'react'
 import { Menu, Pane, Pill, Popover, SelectMenu } from 'evergreen-ui'
 import PropTypes from 'prop-types'
 
-const NavigationDropdown = ({ diory: selectedDiory, diories, onClick }) => {
+const MenuDropdown = ({ diory: selectedDiory, diories, onClick }) => {
   if (diories.length < 2) {
     return null
   }
@@ -33,10 +33,10 @@ const NavigationDropdown = ({ diory: selectedDiory, diories, onClick }) => {
   )
 }
 
-NavigationDropdown.propTypes = {
+MenuDropdown.propTypes = {
   diory: PropTypes.object.isRequired,
   diories: PropTypes.array.isRequired,
   onClick: PropTypes.func.isRequired,
 }
 
-export default NavigationDropdown
+export default MenuDropdown

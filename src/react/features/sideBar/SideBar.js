@@ -8,9 +8,7 @@ import { SideBarToggle } from './components/SideBarToggle'
 const SideBar = ({ side, children }) => (
   <SideBarPanel side={side}>
     <SideBarContainer>
-      <SideBarToggle side={side}>
-        {children}
-      </SideBarToggle>
+      <SideBarToggle side={side}>{children}</SideBarToggle>
     </SideBarContainer>
   </SideBarPanel>
 )

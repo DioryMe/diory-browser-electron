@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 
-export const useKey = (id) => {
+export const useHomeDiographKey = (id) => {
   const { address } = useSelector((state) => state.home)
   return `${address}${id}`
 }

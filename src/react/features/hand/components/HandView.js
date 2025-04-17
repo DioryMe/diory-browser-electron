@@ -2,9 +2,9 @@ import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
-import DiorysGrid from '../../../components/DiorysGrid'
+import DiorysGrid from '../../../components/diories/DiorysGrid'
 import { MenuItem } from '../../../components/MenuItem'
-import { SideBarTitle } from './SideBarTitle'
+import { SideBarTitle } from '../../sideBar/components/SideBarTitle'
 
 const scaleContainer = {
   transformOrigin: 'top left',
@@ -28,7 +28,7 @@ const HandView = ({
       <Pane display="flex" flexDirection="row">
         <SideBarTitle diory={story} onClick={onClick} />
         <MenuItem marginTop={4} marginBottom={4} onClick={onClear}>
-          {!!memories.length ? ' Clear' : ''}
+          {memories.length ? ' Clear' : ''}
         </MenuItem>
       </Pane>
       <Pane height="100%">
@@ -57,4 +57,4 @@ HandView.propTypes = {
   onBackgroundDrop: PropTypes.func.isRequired,
 }
 
-export default HandView
+export { HandView }

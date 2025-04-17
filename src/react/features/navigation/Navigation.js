@@ -5,9 +5,9 @@ import { useDispatchActions, useSelector } from '../../store'
 
 import { selectStory } from './navigationActions'
 
-import NavigationBar from '../../components/NavigationBar'
-import NavigationButton from '../../components/NavigationButton'
-import DiographNavigation from '../../components/diograph/DiographNavigation'
+import NavigationBar from './components/NavigationBar'
+import MenuButton from '../../components/MenuButton'
+import DiographNavigation from '../diograph/DiographNavigation'
 import LensesNavigation from '../lenses/LensesNavigation'
 
 const useHomeButton = () => {
@@ -26,7 +26,7 @@ const useHomeButton = () => {
 export const Navigation = () => {
   return (
     <NavigationBar>
-      <NavigationButton {...useHomeButton()} />
+      <MenuButton {...useHomeButton()} />
       <Tablist display="flex" alignSelf="center">
         <DiographNavigation />
       </Tablist>

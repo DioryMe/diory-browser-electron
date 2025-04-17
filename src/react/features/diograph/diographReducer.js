@@ -3,7 +3,7 @@ import { GET_DIOGRAPH, GENERATE_DIOGRAPH, UPDATE_DIOGRAPH } from './diographActi
 import { createReducer, promiseReducers } from '../../store'
 import { getDiographKey } from './utils/getDiographKey'
 import { createActions } from '../../store/storeUtils'
-import loading from './loading.gif'
+import loading from './utils/loading.gif'
 
 const initialState = {
   diograph: {},

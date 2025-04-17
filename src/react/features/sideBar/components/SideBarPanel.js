@@ -1,16 +1,10 @@
 import React, { useEffect, useRef } from 'react'
 
-import { useSidebarData } from '../utils/useSidebarData'
-import { useKey } from '../utils/useKey'
-
-import { SideBarContainer } from '../../../components/SideBarContainer'
-import { FavoritesView } from './FavoritesView'
-import SideBarToggle from './SideBarToggle'
-import SideBar from '../SideBar'
 import { Panel } from 'react-resizable-panels'
 import { useSelector } from 'react-redux'
+import PropTypes from 'prop-types'
 
-export const SideBarPanel = ({ side, children }) => {
+const SideBarPanel = ({ side, children }) => {
   const { sideBarWidth } = useSelector((state) => state.sideBar)
   const width = sideBarWidth[side]
 
@@ -27,3 +21,10 @@ export const SideBarPanel = ({ side, children }) => {
     </Panel>
   )
 }
+
+SideBarPanel.propTypes = {
+  side: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+}
+
+export { SideBarPanel }

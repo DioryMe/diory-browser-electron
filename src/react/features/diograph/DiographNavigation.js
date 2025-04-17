@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
 import { useDispatchActions } from '../../store'
-import { useDiograph } from '../../features/diograph/useDiograph'
+import { useDiograph } from './useDiograph'
 
-import { selectStory } from '../../features/navigation/navigationActions'
+import { selectStory } from '../navigation/navigationActions'
 
-import NavigationButton from '../NavigationButton'
-import NavigationDropdown from '../NavigationDropdown'
+import MenuButton from '../../components/MenuButton'
+import MenuDropdown from '../../components/MenuDropdown'
 
 const navigationTextStyle = {
   color: 'white',
@@ -49,23 +49,15 @@ const DiographNavigation = () => {
     <>
       {contextButton && (
         <>
-          <NavigationButton {...contextButton} />
-          <NavigationDropdown
-            diory={context}
-            diories={contexts}
-            onClick={dispatchAction(selectStory)}
-          />
+          <MenuButton {...contextButton} />
+          <MenuDropdown diory={context} diories={contexts} onClick={dispatchAction(selectStory)} />
           <Pane {...navigationTextStyle}>/</Pane>
         </>
       )}
       {storyButton && (
         <>
-          <NavigationButton {...storyButton} pointerEvents="none" />
-          <NavigationDropdown
-            diory={story}
-            diories={stories}
-            onClick={dispatchAction(selectStory)}
-          />
+          <MenuButton {...storyButton} pointerEvents="none" />
+          <MenuDropdown diory={story} diories={stories} onClick={dispatchAction(selectStory)} />
         </>
       )}
     </>

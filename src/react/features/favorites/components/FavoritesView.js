@@ -4,7 +4,7 @@ import { Menu, Pane } from 'evergreen-ui'
 
 import { MenuItem } from '../../../components/MenuItem'
 import DragDrop from '../../../components/DragDrop'
-import { SideBarTitle } from './SideBarTitle'
+import { SideBarTitle } from '../../sideBar/components/SideBarTitle'
 
 const FavoritesView = ({ story, memories = [], onClick, onBackgroundDrop }) => (
   <Menu>

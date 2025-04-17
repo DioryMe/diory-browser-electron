@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 
-import BackgroundDiory from '../diories/BackgroundDiory'
-import DiorysGrid from '../DiorysGrid'
-import Content from '../../features/content/Content'
-import Fullscreen from '../Fullscreen'
+import BackgroundDiory from '../../../components/diories/BackgroundDiory'
+import DiorysGrid from '../../../components/diories/DiorysGrid'
+import Content from '../../content/Content'
+import Fullscreen from '../../../components/Fullscreen'
 
 const useScrollToTopOnStoryChange = (story, elementRef) => {
   useEffect(() => {

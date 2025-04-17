@@ -1,4 +1,9 @@
-import { SET_SIDE_BAR_WIDTH, TOGGLE_SIDE_BAR } from './sideBarActionTypes'
+import {
+  CLOSE_SIDE_BAR,
+  OPEN_SIDE_BAR,
+  SET_SIDE_BAR_WIDTH,
+  TOGGLE_SIDE_BAR,
+} from './sideBarActionTypes'
 import { createReducer } from '../../store'
 
 const initialState = {
@@ -20,6 +25,22 @@ export const toggleSideBar = (state, { payload }) => ({
   },
 })
 
+export const openSideBar = (state, { payload }) => ({
+  ...state,
+  showSideBars: {
+    ...state.showSideBars,
+    [payload.id]: true,
+  },
+})
+
+export const closeSideBar = (state, { payload }) => ({
+  ...state,
+  showSideBars: {
+    ...state.showSideBars,
+    [payload.id]: false,
+  },
+})
+
 export const setSideBarWidth = (state, { payload }) => ({
   ...state,
   sideBarWidth: {
@@ -30,5 +51,7 @@ export const setSideBarWidth = (state, { payload }) => ({
 
 export default createReducer(initialState, {
   [TOGGLE_SIDE_BAR]: toggleSideBar,
+  [OPEN_SIDE_BAR]: openSideBar,
+  [CLOSE_SIDE_BAR]: closeSideBar,
   [SET_SIDE_BAR_WIDTH]: setSideBarWidth,
 })

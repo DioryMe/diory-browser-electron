@@ -2,19 +2,19 @@ import React from 'react'
 import { Pane } from 'evergreen-ui'
 import PropTypes from 'prop-types'
 
-export const SideBarContent = ({ children }) => (
+export const SideBarContainer = ({ children }) => (
   <Pane
     id="left"
     height="100%"
     backgroundColor="#222"
     display="flex"
     flexDirection="column"
-    justifyContent="space-between"
+    justifyContent="top"
   >
     {children}
   </Pane>
 )
 
-SideBarContent.propTypes = {
+SideBarContainer.propTypes = {
   children: PropTypes.node,
 }

@@ -2,17 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
-import Button from './Button'
+import Button from '../../../components/Button'
 
 const ButtonBar = ({ buttons }) => (
-  <Pane
-    position="absolute"
-    zIndex={1000}
-    bottom={0}
-    cursor="pointer"
-    right={0}
-    padding={8}
-  >
+  <Pane position="absolute" zIndex={1000} bottom={0} cursor="pointer" right={0} padding={8}>
     {buttons.map((button) => (
       <Button key={button.id} {...button} />
     ))}
