@@ -8,6 +8,7 @@ import { useGraphData } from './components/graph/useGraphData'
 import { useLens } from './utils/useLens'
 
 import GraphView from './components/graph/GraphView'
+import { useDiograph } from '../diograph/useDiograph'
 
 export const useGraphTools = () => {
   const selectStory = useStoryTool()
@@ -24,13 +25,14 @@ export const useGraphTools = () => {
 }
 
 export const GraphLens = () => {
-  const graphLensData = useGraphData()
+  const { story, diograph } = useDiograph()
+  const data = useGraphData(diograph)
   const tools = useGraphTools()
 
   const { sideBarWidth } = useSelector((state) => state.sideBar)
 
+  const storyNode = data.nodes.find(({ id }) => id === story.key)
+
   const { enabled } = useLens('graph')
-  return enabled ? (
-    <GraphView {...graphLensData} {...tools} sideBarWidth={sideBarWidth.right} />
-  ) : null
+  return enabled ? <GraphView storyNode={storyNode} data={data} {...tools} sideBarWidth={sideBarWidth.right} /> : null
 }

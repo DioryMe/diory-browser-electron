@@ -35,13 +35,6 @@ const mapDiographToData = (diograph) => {
   }
 }
 
-export const useGraphData = () => {
-  const { story, diograph } = useDiograph()
-
-  const data = useMemo(() => mapDiographToData(diograph), [diograph])
-  const storyNode = data.nodes.find(({ id }) => id === story.key)
-  return {
-    data,
-    storyNode,
-  }
+export const useGraphData = (diograph) => {
+  return useMemo(() => mapDiographToData(diograph), [diograph])
 }

@@ -61,23 +61,30 @@ const useDisplay = (sideBarWidth) => {
   }
 }
 
+const setStoryNodeToFocus = (fgRef, storyNode) => {
+  const distance = 80
+  const distRatio = 1 + distance / Math.hypot(storyNode.x, storyNode.y, storyNode.z)
+
+  fgRef.current.cameraPosition(
+    { x: storyNode.x * distRatio, y: storyNode.y * distRatio, z: storyNode.z * distRatio }, // new position
+    storyNode, // lookAt ({ x, y, z })
+    1000 // ms transition duration
+  )
+}
+
 const useFocusToStoryNode = (fgRef, storyNode) => {
   useEffect(() => {
-    const distance = 80
-    const distRatio = 1 + distance / Math.hypot(storyNode.x, storyNode.y, storyNode.z)
-
-    fgRef.current.cameraPosition(
-      { x: storyNode.x * distRatio, y: storyNode.y * distRatio, z: storyNode.z * distRatio }, // new position
-      storyNode, // lookAt ({ x, y, z })
-      1000 // ms transition duration
-    )
-  }, [fgRef, storyNode.id])
+    if (fgRef.current && storyNode) {
+      setTimeout(() => {
+        setStoryNodeToFocus(fgRef, storyNode)
+      }, 100)
+    }
+  }, [fgRef, storyNode])
 }
 
 // TODO selected diory
 // - larger size
 // - larger link distance
-// - fix initial view
 
 const GraphView = ({ storyNode, data, onDioryClick, sideBarWidth }) => {
   const fgRef = useRef()
@@ -103,12 +110,14 @@ const GraphView = ({ storyNode, data, onDioryClick, sideBarWidth }) => {
       linkDirectionalArrowLength={2}
       linkDirectionalArrowColor="#FFFFFF"
       linkCurvature={0.3}
+      warmupTicks={200}
       onNodeClick={(diory) => onDioryClick({ diory })}
       onNodeDragEnd={(node) => {
         node.fx = node.x // eslint-disable-line no-param-reassign
         node.fy = node.y // eslint-disable-line no-param-reassign
         node.fz = node.z // eslint-disable-line no-param-reassign
       }}
+      onEngineStop={() => setStoryNodeToFocus(fgRef, storyNode)}
     />
   )
 }
