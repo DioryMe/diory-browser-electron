@@ -9,15 +9,15 @@ const MenuDropdown = ({ diory: selectedDiory, diories, onClick }) => {
 
   return (
     <Popover
-      position="bottom-right"
+      position="bottom-left"
       content={({ close }) => (
         <Menu>
           <Menu.OptionsGroup
             options={diories.map((diory) => ({
-              label: diory.text || diory.date,
+              label: diory.text || diory.date || diory.id,
               value: diory.key,
             }))}
-            selected={selectedDiory.key}
+            selected={selectedDiory && selectedDiory.key}
             onChange={(key) => {
               close()
               onClick(diories.find((diory) => diory.key === key))
@@ -26,7 +26,7 @@ const MenuDropdown = ({ diory: selectedDiory, diories, onClick }) => {
         </Menu>
       )}
     >
-      <Pill alignSelf="center" color="red" cursor="pointer">
+      <Pill alignSelf="center" cursor="pointer" color="grey" fontSize={10}>
         {diories.length}
       </Pill>
     </Popover>
@@ -34,9 +34,9 @@ const MenuDropdown = ({ diory: selectedDiory, diories, onClick }) => {
 }
 
 MenuDropdown.propTypes = {
-  diory: PropTypes.object.isRequired,
+  diory: PropTypes.object,
   diories: PropTypes.array.isRequired,
   onClick: PropTypes.func.isRequired,
 }
 
-export default MenuDropdown
+export { MenuDropdown }

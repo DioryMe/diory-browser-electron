@@ -1,28 +1,34 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
+import Icon from './Icon'
 
-const MenuItem = ({ onClick, children, ...props }) => (
+const MenuItem = ({ id, text, icon, date, isSelected, onClick, ...props }) => (
   <Pane
     position="relative"
-    color="grey"
-    fontSize={12}
-    padding={4}
-    marginLeft={12}
+    color={isSelected ? 'white' : 'grey'}
+    alignSelf="center"
+    padding={6}
     cursor="pointer"
-    onClick={onClick}
+    fontSize={12}
     textOverflow="ellipsis"
     whiteSpace="nowrap"
     overflow="hidden"
+    onClick={onClick}
     {...props}
   >
-    {children}
+    {icon && <Icon icon={icon} verticalAlign="middle" marginRight={6} />}
+    {text || date || id || ''}
   </Pane>
 )
 
 MenuItem.propTypes = {
+  id: PropTypes.string,
+  text: PropTypes.string,
+  icon: PropTypes.string,
+  date: PropTypes.string,
+  isSelected: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
 }
 
 export { MenuItem }

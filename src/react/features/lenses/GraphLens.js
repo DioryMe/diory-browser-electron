@@ -30,5 +30,7 @@ export const GraphLens = () => {
   const { sideBarWidth } = useSelector((state) => state.sideBar)
 
   const { enabled } = useLens('graph')
-  return enabled ? <GraphView {...graphLensData} {...tools} sideBarWidth={sideBarWidth.right} /> : null
+  return enabled ? (
+    <GraphView {...graphLensData} {...tools} sideBarWidth={sideBarWidth.right} />
+  ) : null
 }

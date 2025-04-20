@@ -25,11 +25,14 @@ const HandView = ({
   const handRef = useRef()
   return (
     <>
-      <Pane display="flex" flexDirection="row">
+      <Pane display="flex" flexDirection="row" paddingLeft={8}>
         <SideBarTitle diory={story} onClick={onClick} />
-        <MenuItem marginTop={4} marginBottom={4} onClick={onClear}>
-          {memories.length ? ' Clear' : ''}
-        </MenuItem>
+        <MenuItem
+          text={memories.length ? ' Clear' : ''}
+          marginTop={4}
+          marginBottom={4}
+          onClick={onClear}
+        />
       </Pane>
       <Pane height="100%">
         <DiorysGrid

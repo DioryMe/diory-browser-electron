@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { useSideBarToggle } from '../useSideBar'
 
-import MenuIcon from '../../../components/MenuIcon'
+import { MenuItem } from '../../../components/MenuItem'
 
 const SideBarToggle = ({ side, children }) => {
   const { showSideBar, toggleSideBar } = useSideBarToggle(side)
@@ -12,7 +12,7 @@ const SideBarToggle = ({ side, children }) => {
   const icon = showSideBar ? side : closeIcon
   return (
     <>
-      <MenuIcon
+      <MenuItem
         icon={`chevron-${icon}`}
         onClick={toggleSideBar}
         alignSelf={side === 'left' ? 'flex-end' : 'flex-start'}

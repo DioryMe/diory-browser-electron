@@ -1,21 +1,21 @@
 import React from 'react'
+import { Pane } from 'evergreen-ui'
 
 import { useDispatchActions, useSelector } from '../../store'
 import { useSideBarToggle } from '../sideBar/useSideBar'
 
-import { selectLens } from './lensesActions'
+import { selectLens } from '../lenses/lensesActions'
 
-import MenuIcon from '../../components/MenuIcon'
+import { MenuItem } from '../../components/MenuItem'
 
 export const useLensesNavigation = () => {
   const { selectedLensId, buttons } = useSelector((state) => state.lenses)
   const { openSideBar, closeSideBar } = useSideBarToggle('right')
   const { dispatch } = useDispatchActions()
   return {
-    lensButtons: Object.values(buttons).map(({ id, ...diory }) => ({
+    buttons: Object.values(buttons).map(({ id, icon }) => ({
       key: id,
-      id,
-      diory,
+      icon,
       onClick: () => {
         const newSelectedLensId = id === selectedLensId ? null : id
         dispatch(selectLens(newSelectedLensId))
@@ -27,8 +27,14 @@ export const useLensesNavigation = () => {
 }
 
 const LensesNavigation = () => {
-  const { lensButtons } = useLensesNavigation()
-  return lensButtons.map((lensButton) => <MenuIcon {...lensButton} {...lensButton.diory} />)
+  const { buttons } = useLensesNavigation()
+  return (
+    <Pane alignSelf="center" marginRight={8} display="flex" flexDirection="row">
+      {buttons.map((button) => (
+        <MenuItem {...button} />
+      ))}
+    </Pane>
+  )
 }
 
-export default LensesNavigation
+export { LensesNavigation }

@@ -1,38 +1,32 @@
 import React from 'react'
-import { Tablist } from 'evergreen-ui'
+import { Pane } from 'evergreen-ui'
 
 import { useDispatchActions, useSelector } from '../../store'
 
 import { selectStory } from './navigationActions'
 
 import NavigationBar from './components/NavigationBar'
-import MenuButton from '../../components/MenuButton'
-import DiographNavigation from '../diograph/DiographNavigation'
-import LensesNavigation from '../lenses/LensesNavigation'
+import { MenuItem } from '../../components/MenuItem'
+import { DiographNavigation } from './DiographNavigation'
+import { LensesNavigation } from './LensesNavigation'
 
 const useHomeButton = () => {
   const { address: key } = useSelector((state) => state.home)
   const { dispatch } = useDispatchActions()
   return {
     text: 'DIORY',
-    onClick: () => {
-      dispatch(selectStory({ key }))
-    },
-    fontWeight: 'bold',
-    color: 'grey',
+    onClick: () => dispatch(selectStory({ key })),
   }
 }
 
 export const Navigation = () => {
   return (
     <NavigationBar>
-      <MenuButton {...useHomeButton()} />
-      <Tablist display="flex" alignSelf="center">
+      <MenuItem fontWeight="bold" {...useHomeButton()} />
+      <Pane alignSelf="center" marginRight={8} display="flex" flexDirection="row">
         <DiographNavigation />
-      </Tablist>
-      <Tablist alignSelf="center" marginRight={8}>
-        <LensesNavigation />
-      </Tablist>
+      </Pane>
+      <LensesNavigation />
     </NavigationBar>
   )
 }

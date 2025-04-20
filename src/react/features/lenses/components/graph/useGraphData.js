@@ -26,7 +26,7 @@ const mapDiographToData = (diograph) => {
       ...diory,
       key,
       id: key,
-      image: diory.image || getDefaultImage()
+      image: diory.image || getDefaultImage(),
     }))
 
   return {
