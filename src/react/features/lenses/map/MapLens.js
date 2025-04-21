@@ -1,13 +1,13 @@
 import React from 'react'
 
-import { useStoryTool } from '../tools/story'
-import { useCreateTool } from '../tools/createLocation'
-import { useDeleteTool } from '../tools/delete'
-import { useMoveTool, useMoveToolIsActive } from '../tools/move'
-import { useLens } from './utils/useLens'
-import { useDiograph } from '../diograph/useDiograph'
+import { useStoryTool } from '../../tools/story'
+import { useCreateTool } from '../../tools/createLocation'
+import { useDeleteTool } from '../../tools/delete'
+import { useMoveTool, useMoveToolIsActive } from '../../tools/move'
+import { useLens } from '../utils/useLens'
+import { useDiograph } from '../../diograph/useDiograph'
 
-import MapView from './components/map/MapView'
+import MapView from './MapView'
 
 const useMapTools = () => {
   const selectStory = useStoryTool()

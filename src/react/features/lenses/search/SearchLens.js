@@ -1,19 +1,19 @@
 import React from 'react'
 
-import { useDispatchActions, useSelector } from '../../store'
-import { useStoryTool } from '../tools/story'
-import { useUpdateTool } from '../tools/update'
-import { useDeleteTool } from '../tools/delete'
-import { useCreateDiory } from '../tools/create'
-import { useLens } from './utils/useLens'
+import { useDispatchActions, useSelector } from '../../../store'
+import { useStoryTool } from '../../tools/story'
+import { useUpdateTool } from '../../tools/update'
+import { useDeleteTool } from '../../tools/delete'
+import { useCreateDiory } from '../../tools/create'
+import { useLens } from '../utils/useLens'
 
-import { createLink } from '../diograph/diographActions'
-import { selectLens, searchDiories } from './lensesActions'
+import { createLink } from '../../diograph/diographActions'
+import { selectLens, searchDiories } from '../lensesActions'
 
-import { queryDiograph } from './components/search/queryDiograph'
+import { queryDiograph } from './queryDiograph'
 
-import { SearchView } from './components/search/SearchView'
-import { SearchBar } from './components/search/SearchBar'
+import { SearchView } from './SearchView'
+import { SearchBar } from './SearchBar'
 
 export const useSearch = () => {
   const { query, resultsByQuery } = useSelector((state) => state.lenses)

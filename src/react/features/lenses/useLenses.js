@@ -1,8 +1,8 @@
 import { useLensButton } from './utils/useLensButton'
 
-import mapLensButton from './components/map/button'
-import graphLensButton from './components/graph/button'
-import searchLensButton from './components/search/button'
+import mapLensButton from './map/button'
+import graphLensButton from './graph/button'
+import searchLensButton from './search/button'
 
 export const useLenses = () => {
   useLensButton(mapLensButton)

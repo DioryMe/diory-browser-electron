@@ -1,8 +1,7 @@
 import { useMemo } from 'react'
-import { getDiory } from '../../../diograph/utils/getDiory'
-import { getDiographKey } from '../../../diograph/utils/getDiographKey'
-import { useDiograph } from '../../../diograph/useDiograph'
-import { getDefaultImage } from '../../../../../shared/getDefaultImage'
+import { getDiory } from '../../diograph/utils/getDiory'
+import { getDiographKey } from '../../diograph/utils/getDiographKey'
+import { getDefaultImage } from '../../../../shared/getDefaultImage'
 
 const mapDiographToData = (diograph) => {
   const links = []

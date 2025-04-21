@@ -1,14 +1,14 @@
 import React from 'react'
 
-import { useCreateTool } from '../tools/createLocation'
-import { useDeleteTool } from '../tools/delete'
-import { useStoryTool } from '../tools/story'
-import { useMoveTool, useMoveToolIsActive } from '../tools/move'
-import { useUpdateTool } from '../tools/update'
-import { useLens } from './utils/useLens'
-import { useDiograph } from '../diograph/useDiograph'
+import { useCreateTool } from '../../tools/createLocation'
+import { useDeleteTool } from '../../tools/delete'
+import { useStoryTool } from '../../tools/story'
+import { useMoveTool, useMoveToolIsActive } from '../../tools/move'
+import { useUpdateTool } from '../../tools/update'
+import { useLens } from '../utils/useLens'
+import { useDiograph } from '../../diograph/useDiograph'
 
-import TimelineView from './components/timeline/TimelineView'
+import TimelineView from './TimelineView'
 
 const useTimelineTools = () => {
   const selectStory = useStoryTool()

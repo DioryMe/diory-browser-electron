@@ -1,14 +1,14 @@
 import React, { memo } from 'react'
 import { useSelector } from 'react-redux'
 
-import { useStoryTool } from '../tools/story'
-import { useUpdateTool } from '../tools/update'
-import { useDeleteTool } from '../tools/delete'
-import { useGraphData } from './components/graph/useGraphData'
-import { useLens } from './utils/useLens'
+import { useStoryTool } from '../../tools/story'
+import { useUpdateTool } from '../../tools/update'
+import { useDeleteTool } from '../../tools/delete'
+import { useGraphData } from './useGraphData'
+import { useLens } from '../utils/useLens'
 
-import GraphView from './components/graph/GraphView'
-import { useDiograph } from '../diograph/useDiograph'
+import GraphView from './GraphView'
+import { useDiograph } from '../../diograph/useDiograph'
 
 export const useGraphTools = () => {
   const selectStory = useStoryTool()

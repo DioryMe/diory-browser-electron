@@ -2,8 +2,8 @@ import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
-import CreateDioryButton from '../../../../components/diories/CreateDioryButton'
-import DiorysGrid from '../../../../components/diories/DiorysGrid'
+import CreateDioryButton from '../../../components/diories/CreateDioryButton'
+import DiorysGrid from '../../../components/diories/DiorysGrid'
 
 const scaleContainer = {
   transformOrigin: 'top left',
