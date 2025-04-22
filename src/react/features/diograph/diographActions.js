@@ -1,7 +1,7 @@
 import { UPDATE_DIOGRAPH, GET_DIOGRAPH } from './diographActionTypes'
 import { createActions } from '../../store/storeUtils'
 
-const updateDiographAction = (diograph, address) => ({
+export const updateDiographAction = (diograph, address) => ({
   type: UPDATE_DIOGRAPH,
   payload: { diograph, address },
 })

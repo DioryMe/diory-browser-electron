@@ -26,6 +26,9 @@ const BackgroundDiory = ({ diory, children, ...styleProps }) => {
     text: {
       display: 'none',
     },
+    links: {
+      display: 'none',
+    },
     ...styleProps,
   }
 

@@ -64,7 +64,7 @@ const getDiographFailure = (
 const updateDiograph = (state, { payload: { diograph, address } }) => ({
   ...state,
   diograph: Object.entries(diograph).reduce((obj, [key, diory]) => {
-    const diographKey = getDiographKey(address, key)
+    const diographKey = address ? getDiographKey(address, key) : key
     obj[diographKey] = diory
     return obj
   }, state.diograph),

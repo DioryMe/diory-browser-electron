@@ -4,6 +4,8 @@ import { Pane } from 'evergreen-ui'
 
 import CreateDioryButton from '../../../components/diories/CreateDioryButton'
 import DiorysGrid from '../../../components/diories/DiorysGrid'
+import Fullscreen from '../../../components/Fullscreen'
+import { SideBarTitle } from '../../sideBar/components/SideBarTitle'
 
 const scaleContainer = {
   transformOrigin: 'top left',
@@ -23,25 +25,32 @@ const SearchView = ({
 }) => {
   const searchRef = useRef()
   return (
-    <Pane background="#222" height="100%" padding={12}>
-      <Pane padding={12}>{children}</Pane>
-      {query && (
-        <Pane padding={12}>
-          <CreateDioryButton text={query} onClick={onCreateDiory} />
-        </Pane>
-      )}
-      {Object.keys(diograph).length ? (
-        <DiorysGrid
-          ref={searchRef}
-          background={{ id: 'hand' }}
-          diograph={diograph}
-          scrollIntoViewId={scrollIntoViewId}
-          onClick={onClick}
-          onDrop={onDrop}
-          {...scaleContainer}
-        />
-      ) : null}
-    </Pane>
+    <>
+      <Pane padding={6}>
+        <SideBarTitle diory={{ text: 'SEARCH' }} />
+        <Pane padding={6}>{children}</Pane>
+        {query && (
+          <Pane padding={6}>
+            <CreateDioryButton text={query} onClick={onCreateDiory} />
+          </Pane>
+        )}
+      </Pane>
+      <Pane position="relative" flex={1} margin={12}>
+        <Fullscreen>
+          {Object.keys(diograph).length ? (
+            <DiorysGrid
+              ref={searchRef}
+              background={{ id: 'hand' }}
+              diorys={Object.values(diograph)}
+              scrollIntoViewId={scrollIntoViewId}
+              onClick={onClick}
+              onDrop={onDrop}
+              {...scaleContainer}
+            />
+          ) : null}
+        </Fullscreen>
+      </Pane>
+    </>
   )
 }
 

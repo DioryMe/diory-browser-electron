@@ -19,6 +19,9 @@ const getDefaultImage = () => {
   return `data:image/png;base64,${prefix}${colorCode}${suffix}`
 }
 
+const isDefaultImage = (image) => image && image.includes(prefix) && image.includes(suffix)
+
 module.exports = {
   getDefaultImage,
+  isDefaultImage,
 }

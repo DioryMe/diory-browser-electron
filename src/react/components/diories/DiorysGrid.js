@@ -7,20 +7,17 @@ import DragDrop from '../DragDrop'
 import Diory from './Diory'
 
 const DiorysGrid = forwardRef(
-  (
-    {
+  ({
       background,
-      diograph,
-      diorys,
+      diorys = [],
+      itemStyle,
       scrollIntoViewId,
       onClick,
       onDrop,
       onBackgroundClick,
       onBackgroundDrop,
       ...props
-    },
-    ref
-  ) => (
+    }, ref) => (
     <Pane
       ref={ref}
       position="relative"
@@ -34,7 +31,7 @@ const DiorysGrid = forwardRef(
       <Pane position="absolute" width="100%" height="100%" margin={0} marginBottom={-264}>
         <DragDrop diory={background} onDrop={onBackgroundDrop} onClick={onBackgroundClick} />
       </Pane>
-      {Object.entries(diograph || {}).map(([key, diory]) => (
+      {diorys.map((diory) => (
         <GridItem
           key={diory.id}
           flex="1 1 360px"
@@ -42,31 +39,12 @@ const DiorysGrid = forwardRef(
           margin={24}
           alignSelf="center"
           scrollIntoView={diory.id === scrollIntoViewId}
-        >
-          <DragDrop diory={{ key, ...diory }} onDrop={onDrop}>
-            <Diory
-              diory={{ key, ...diory }}
-              onClick={onClick}
-              elevation={2}
-              aria-controls={`panel-${diory.id}`}
-            />
-          </DragDrop>
-        </GridItem>
-      ))}
-      {(diorys || []).map((diory) => (
-        <GridItem
-          key={diory.id}
-          flex="1 1 360px"
-          height={240}
-          margin={24}
-          alignSelf="center"
-          scrollIntoView={diory.id === scrollIntoViewId}
+          {...itemStyle}
         >
           <DragDrop diory={diory} onDrop={onDrop}>
             <Diory
               diory={diory}
               onClick={onClick}
-              elevation={2}
               aria-controls={`panel-${diory.id}`}
             />
           </DragDrop>
@@ -79,7 +57,7 @@ const DiorysGrid = forwardRef(
 DiorysGrid.propTypes = {
   background: PropTypes.object.isRequired,
   diorys: PropTypes.array,
-  diograph: PropTypes.object,
+  itemProps: PropTypes.object,
   scrollIntoViewId: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,

@@ -5,6 +5,7 @@ import { Pane } from 'evergreen-ui'
 import DiorysGrid from '../../../components/diories/DiorysGrid'
 import { MenuItem } from '../../../components/MenuItem'
 import { SideBarTitle } from '../../sideBar/components/SideBarTitle'
+import Fullscreen from '../../../components/Fullscreen'
 
 const scaleContainer = {
   transformOrigin: 'top left',
@@ -34,17 +35,19 @@ const HandView = ({
           onClick={onClear}
         />
       </Pane>
-      <Pane height="100%">
-        <DiorysGrid
-          ref={handRef}
-          background={story}
-          diorys={memories}
-          scrollIntoViewId={scrollIntoViewId}
-          onClick={onClick}
-          onDrop={onDrop}
-          onBackgroundDrop={onBackgroundDrop}
-          {...scaleContainer}
-        />
+      <Pane position="relative" flex={1}>
+        <Fullscreen>
+          <DiorysGrid
+            ref={handRef}
+            background={story}
+            diorys={memories}
+            scrollIntoViewId={scrollIntoViewId}
+            onClick={onClick}
+            onDrop={onDrop}
+            onBackgroundDrop={onBackgroundDrop}
+            {...scaleContainer}
+          />
+        </Fullscreen>
       </Pane>
     </>
   )

@@ -3,14 +3,7 @@ import { Pane } from 'evergreen-ui'
 import PropTypes from 'prop-types'
 
 export const SideBarContainer = ({ children }) => (
-  <Pane
-    id="left"
-    height="100%"
-    backgroundColor="#222"
-    display="flex"
-    flexDirection="column"
-    justifyContent="top"
-  >
+  <Pane height="100%" backgroundColor="#222" display="flex" flexDirection="column">
     {children}
   </Pane>
 )

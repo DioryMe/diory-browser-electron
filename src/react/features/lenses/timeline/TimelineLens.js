@@ -1,41 +1,61 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-import { useCreateTool } from '../../tools/createLocation'
+import { useDispatchActions } from '../../../store'
 import { useDeleteTool } from '../../tools/delete'
 import { useStoryTool } from '../../tools/story'
-import { useMoveTool, useMoveToolIsActive } from '../../tools/move'
 import { useUpdateTool } from '../../tools/update'
 import { useLens } from '../utils/useLens'
 import { useDiograph } from '../../diograph/useDiograph'
 
-import TimelineView from './TimelineView'
+import { createLink, updateDiographAction } from '../../diograph/diographActions'
 
-const useTimelineTools = () => {
+import { TimelineView } from './TimelineView'
+import { resolveTimelineDiograph } from './resolveTimelineDiograph'
+import { useSelector } from 'react-redux'
+import { useHomeDiographKey } from '../../home/utils/useHomeDiographKey'
+import { useDiographData } from '../../diograph/utils/useDiographData'
+
+export const useTools = () => {
   const selectStory = useStoryTool()
-  const deleteDiory = useDeleteTool()
-  const updateDiory = useUpdateTool()
+  const selectUpdatedDiory = useUpdateTool()
+  const selectDeletedDiory = useDeleteTool()
+
+  const { dispatch } = useDispatchActions()
   return {
-    onPopupClick: (diory) => {
+    onClick: ({ diory }) => {
       selectStory(diory)
-      deleteDiory(diory)
-      updateDiory(diory)
+      selectUpdatedDiory(diory)
+      selectDeletedDiory(diory)
     },
-    onMapClick: useCreateTool(),
-    onDragEnd: useMoveTool(),
-    enableDragging: useMoveToolIsActive(),
+    onDrop: ({ diory, draggedDiory }) => dispatch(createLink(diory, draggedDiory)),
   }
 }
 
-// TODO: Diory grid
-// timeline: {
-//   2025:
-//   2024:
-//   2024-06:
-//   2024-06-01
+// TODO:
+// Date context
+// Timeline diory in focus
+// Link all diories
+
+const useAddTimelineEffect = () => {
+  const { story, memories } = useDiograph()
+  const { address } = useSelector((state) => state.home)
+
+  const { dispatch } = useDispatchActions()
+  useEffect(() => {
+    const { diograph } = resolveTimelineDiograph(memories)
+    dispatch(updateDiographAction(diograph, address))
+  }, [story.key])
+}
 
 export const TimelineLens = () => {
-  const diograph = useDiograph()
-  const tools = useTimelineTools()
+  useAddTimelineEffect()
+
+  const { diograph } = useDiograph()
+  const timelineKey = useHomeDiographKey('timeline')
+  const timelineDiograph = useDiographData({ storyKey: timelineKey }, diograph)
+
+  const tools = useTools()
+
   const { enabled } = useLens('timeline')
-  return enabled ? <TimelineView {...diograph} {...tools} /> : null
+  return enabled ? <TimelineView {...timelineDiograph} {...tools} /> : null
 }
