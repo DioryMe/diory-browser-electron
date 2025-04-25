@@ -1,7 +1,7 @@
 import { useDispatchActions } from '../../../../store'
 import { goBackward, selectMemory } from '../../../navigation/navigationActions'
 import { deleteDiory, deleteLinks } from '../../../diograph/diographActions'
-import { useDiograph } from '../../../diograph/useDiograph'
+import { useDiories } from '../../../diograph/utils/useDiories'
 import { inactivateButton } from '../../../buttons/buttonsActions'
 import { useDeletedLinks } from './useDeletedLinks'
 
@@ -18,7 +18,7 @@ const isFocusDeleted = (focusDiory, linkDiory) => {
 }
 
 const useDeletedDiory = () => {
-  const { story, memory } = useDiograph()
+  const { story, memory } = useDiories()
   return isFocusDeleted(story, memory) ? story : null
 }
 

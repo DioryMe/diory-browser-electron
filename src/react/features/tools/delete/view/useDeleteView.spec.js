@@ -2,7 +2,7 @@ import { useSelector, useDispatchActions } from '../../../../store'
 
 import { deleteDiory, deleteLinks } from '../../../diograph/diographActions'
 import { goBackward, selectMemory } from '../../../navigation/navigationActions'
-import { useDiograph } from '../../../diograph/useDiograph'
+import { useDiories } from '../../../diograph/utils/useDiories'
 import { inactivateButton } from '../../../buttons/buttonsActions'
 
 import deleteViewFixtureDiograph from '../__fixtures__/deleteViewFixtureDiograph'
@@ -10,7 +10,7 @@ import deleteViewFixtureDiograph from '../__fixtures__/deleteViewFixtureDiograph
 import { useDeleteView } from './useDeleteView'
 
 jest.mock('../../../../store')
-jest.mock('../../../diograph/useDiograph')
+jest.mock('../../../diograph/utils/useDiories')
 jest.mock('../../../diograph/diographActions')
 
 describe('useDeleteView', () => {
@@ -39,7 +39,7 @@ describe('useDeleteView', () => {
     it('delete link between focusDiory and linkDiory', () => {
       const focusDiory = deleteViewFixtureDiograph.someDioryId
       const linkDiory = deleteViewFixtureDiograph.linkedDioryId1
-      useDiograph.mockImplementation(() => ({ story: focusDiory, memory: linkDiory }))
+      useDiories.mockImplementation(() => ({ story: focusDiory, memory: linkDiory }))
 
       useDeleteView().onDone()
 
@@ -53,7 +53,7 @@ describe('useDeleteView', () => {
       const linkDiory = deleteViewFixtureDiograph.linkedDioryId1
       const context1 = deleteViewFixtureDiograph.reverseLinkedDioryId2
       const context2 = deleteViewFixtureDiograph.bidirectionalLinkedDioryId3
-      useDiograph.mockImplementation(() => ({
+      useDiories.mockImplementation(() => ({
         story: focusDiory,
         memory: focusDiory,
         memories: [linkDiory, context2],
@@ -80,7 +80,7 @@ describe('useDeleteView', () => {
 
     it('delete focusDiory without links', () => {
       const focusDiory = deleteViewFixtureDiograph.dioryWithoutLinks
-      useDiograph.mockImplementation(() => ({ story: focusDiory, memory: focusDiory }))
+      useDiories.mockImplementation(() => ({ story: focusDiory, memory: focusDiory }))
 
       useDeleteView().onDone()
 

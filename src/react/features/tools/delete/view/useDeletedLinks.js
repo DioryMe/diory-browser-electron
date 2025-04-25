@@ -1,4 +1,5 @@
-import { useDiograph } from '../../../diograph/useDiograph'
+import { useDiories } from '../../../diograph/utils/useDiories'
+import { useContextDiories } from '../../../diograph/utils/useContextDiories'
 
 const linkedDiories = (story, memories) =>
   (memories || []).map((memory) => ({
@@ -28,7 +29,8 @@ const isFocusDeleted = (focusDiory, linkDiory) => {
 }
 
 export const useDeletedLinks = () => {
-  const { story, memory, memories, contexts } = useDiograph()
+  const { story, memory, memories } = useDiories()
+  const { contexts } = useContextDiories()
   let deletedLinks
   if (isFocusDeleted(story, memory)) {
     deletedLinks = composeDeletedLinks(story, memories, contexts)

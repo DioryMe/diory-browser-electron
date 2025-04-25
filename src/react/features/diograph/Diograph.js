@@ -3,7 +3,7 @@ import { Panel } from 'react-resizable-panels'
 
 import { useDispatchActions } from '../../store'
 import { useDiographEffect } from './useDiographEffect'
-import { useDiograph } from './useDiograph'
+import { useDiories } from './utils/useDiories'
 
 import { useToggleContent } from '../content/useToggleContent'
 import { useGoSide } from '../navigation/utils/useGoSide'
@@ -48,7 +48,7 @@ export const useDiographTools = () => {
 export const Diograph = () => {
   useDiographEffect()
 
-  const diograph = useDiograph()
+  const diograph = useDiories()
   const { goLeft, goRight } = useGoSide()
 
   return (

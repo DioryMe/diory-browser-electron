@@ -4,13 +4,13 @@ import { useDispatchActions } from '../../../store'
 import { useStoryTool } from '../../tools/story'
 import { useUpdateTool } from '../../tools/update'
 import { useDeleteTool } from '../../tools/delete'
-import { useDiographData } from '../../diograph/utils/useDiographData'
+import { resolveDiories } from '../../diograph/utils/resolveDiories'
 
 import { createLink, updateDiory } from '../../diograph/diographActions'
 
 export const useSidebarData = (storyKey) => {
   const { diograph } = useSelector((state) => state.diograph)
-  const { story, memories } = useDiographData({ storyKey }, diograph)
+  const { story, memories } = resolveDiories({ storyKey }, diograph)
 
   const selectStory = useStoryTool()
   const selectUpdatedDiory = useUpdateTool()

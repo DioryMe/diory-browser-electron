@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { useDispatchActions } from '../../store'
-import { useDiograph } from '../diograph/useDiograph'
+import { useDiories } from '../diograph/utils/useDiories'
 
 import { setContentUrl } from './contentActions'
 
 export const useContentUrl = () => {
-  const { story } = useDiograph()
+  const { story } = useDiories()
   const { data = [] } = story
   const { contentUrl, encodingFormat } = (data && data[0]) || {}
   const address = `${story.key}/${contentUrl}`

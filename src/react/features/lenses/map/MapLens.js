@@ -5,7 +5,7 @@ import { useCreateTool } from '../../tools/createLocation'
 import { useDeleteTool } from '../../tools/delete'
 import { useMoveTool, useMoveToolIsActive } from '../../tools/move'
 import { useLens } from '../utils/useLens'
-import { useDiograph } from '../../diograph/useDiograph'
+import { useDiories } from '../../diograph/utils/useDiories'
 
 import MapView from './MapView'
 
@@ -24,7 +24,7 @@ const useMapTools = () => {
 }
 
 const MapWithTools = () => {
-  const diograph = useDiograph()
+  const diograph = useDiories()
   const tools = useMapTools()
   return <MapView {...diograph} {...tools} />
 }

@@ -2,7 +2,7 @@ import { useDispatchActions, useSelector } from '../../../store'
 
 import { useButtons } from '../../buttons/useButtons'
 import { useEffect } from 'react'
-import { useDiograph } from '../../diograph/useDiograph'
+import { useDiories } from '../../diograph/utils/useDiories'
 
 import { createLink } from '../../diograph/diographActions'
 import { getFolderPath } from './getFolderPath'
@@ -13,7 +13,7 @@ import { inactivateButton } from '../../buttons/buttonsActions'
 export const useCreateLinkTool = () => {
   useButtons(buttons)
 
-  const { story } = useDiograph()
+  const { story } = useDiories()
   const { active } = useSelector((state) => state.buttons)
 
   const { dispatch } = useDispatchActions()

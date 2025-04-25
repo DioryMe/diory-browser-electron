@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 
 import { useStoryTool } from '../../tools/story'
@@ -8,7 +8,6 @@ import { useGraphData } from './useGraphData'
 import { useLens } from '../utils/useLens'
 
 import GraphView from './GraphView'
-import { useDiograph } from '../../diograph/useDiograph'
 
 export const useGraphTools = () => {
   const selectStory = useStoryTool()
@@ -25,14 +24,14 @@ export const useGraphTools = () => {
 }
 
 export const GraphLens = () => {
-  const { story, diograph } = useDiograph()
-  const data = useGraphData(diograph)
-  const tools = useGraphTools()
-
+  const { diograph } = useSelector((state) => state.diograph)
+  const { storyKey } = useSelector((state) => state.navigation)
   const { sideBarWidth } = useSelector((state) => state.sideBar)
 
-  const storyNode = data.nodes.find(({ id }) => id === story.key)
+  const graphData = useGraphData(diograph)
+  const tools = useGraphTools()
+  const storyNode = graphData.nodes.find(({ id }) => id === storyKey)
 
   const { enabled } = useLens('graph')
-  return enabled ? <GraphView storyNode={storyNode} data={data} {...tools} sideBarWidth={sideBarWidth.right} /> : null
+  return enabled ? <GraphView storyNode={storyNode} data={graphData} {...tools} sideBarWidth={sideBarWidth.right} /> : null
 }

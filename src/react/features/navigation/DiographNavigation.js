@@ -2,12 +2,13 @@ import React from 'react'
 import { Pane } from 'evergreen-ui'
 
 import { useDispatchActions } from '../../store'
-import { useDiograph } from '../diograph/useDiograph'
+import { useDiories } from '../diograph/utils/useDiories'
 
 import { selectStory } from './navigationActions'
 
 import { MenuDropdown } from '../../components/MenuDropdown'
 import { MenuItem } from '../../components/MenuItem'
+import { useContextDiories } from '../diograph/utils/useContextDiories'
 
 const NavigationDivider = () => (
   <Pane color="white" fontSize={12} borderRadius={16} paddingRight={6} alignSelf="center">
@@ -16,7 +17,8 @@ const NavigationDivider = () => (
 )
 
 const DiographNavigation = () => {
-  const { story, stories, context, contexts, memories } = useDiograph()
+  const { story, memories } = useDiories()
+  const { stories, context, contexts } = useContextDiories()
 
   const { dispatch, dispatchAction } = useDispatchActions()
   return (

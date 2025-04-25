@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatchActions, useSelector } from '../../../store'
 
-import { useDiograph } from '../../diograph/useDiograph'
+import { useDiories } from '../../diograph/utils/useDiories'
 
 import { inactivateButton } from '../../buttons/buttonsActions'
 import { selectMemory } from '../../navigation/navigationActions'
@@ -33,7 +33,7 @@ export const UpdateTool = () => {
   useButtons(buttons)
 
   const { active } = useSelector((state) => state.buttons)
-  const { memory } = useDiograph()
+  const { memory } = useDiories()
   const toolActions = useToolActions()
 
   return UPDATE_TOOL_BUTTON === active && !!memory ? (

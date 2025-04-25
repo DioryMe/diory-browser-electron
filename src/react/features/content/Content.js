@@ -1,7 +1,7 @@
 import React from 'react'
 
 import ContentView from './ContentView'
-import { useDiograph } from '../diograph/useDiograph'
+import { useDiories } from '../diograph/utils/useDiories'
 
 const contentStyle = {
   position: 'relative',
@@ -15,7 +15,7 @@ const getAddressPath = (address) => {
 }
 
 const Content = () => {
-  const { story = {} } = useDiograph()
+  const { story = {} } = useDiories()
   const { data = [] } = story
   const { encodingFormat, contentUrl } = (data && data[0]) || {}
   const path = getAddressPath(story.key)

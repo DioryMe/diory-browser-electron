@@ -1,7 +1,7 @@
 import { useDispatchActions, useSelector } from '../../../store'
 import { useButtons } from '../../buttons/useButtons'
 import { inactivateButton } from '../../buttons/buttonsActions'
-import { useDiograph } from '../../diograph/useDiograph'
+import { useDiories } from '../../diograph/utils/useDiories'
 
 import { createDiory, createLink } from '../../diograph/diographActions'
 
@@ -11,7 +11,7 @@ export const useCreateTool = () => {
   useButtons(buttons)
 
   const { active } = useSelector((state) => state.buttons)
-  const { story } = useDiograph()
+  const { story } = useDiories()
   const { dispatch } = useDispatchActions()
 
   return (newDiory) => {

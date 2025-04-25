@@ -2,7 +2,7 @@ import { useEffect, useMemo } from 'react'
 
 import { useDispatchActions } from '../../store'
 import { getDiograph } from './diographActions'
-import { useDiograph } from './useDiograph'
+import { useDiories } from './utils/useDiories'
 
 import { getDiographKey } from './utils/getDiographKey'
 import { getKeyPath } from './utils/getKeyPath'
@@ -10,7 +10,7 @@ import { getKeyPath } from './utils/getKeyPath'
 const unique = (item, index, array) => array.indexOf(item) === index
 
 const useMemoryAddresses = () => {
-  const { story = {} } = useDiograph()
+  const { story = {} } = useDiories()
   return useMemo(
     () =>
       story.links &&
