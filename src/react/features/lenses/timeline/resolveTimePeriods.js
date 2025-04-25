@@ -68,3 +68,4 @@ export const resolveTimePeriods = (minDate, maxDate) => {
 
   return formatHours(minDate, maxDate)
 }
+
