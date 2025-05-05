@@ -3,11 +3,13 @@ import {
   SELECT_LENS,
   SET_SEARCH_QUERY,
   SET_SEARCH_RESULTS,
+  SELECT_PERIOD,
 } from './lensesActionTypes'
 import { createReducer } from '../../store'
 
 const initialState = {
   selectedLensId: null,
+  selectedPeriod: null,
   buttons: {},
   query: '',
   resultsByQuery: {},
@@ -39,9 +41,15 @@ export const setSearchResults = (state, { payload }) => ({
   },
 })
 
+export const selectPeriod = (state, { payload }) => ({
+  ...state,
+  selectedPeriod: payload.period,
+})
+
 export default createReducer(initialState, {
   [SELECT_LENS]: selectLens,
   [ADD_LENS_BUTTON]: addLensButton,
   [SET_SEARCH_QUERY]: setSearchQuery,
   [SET_SEARCH_RESULTS]: setSearchResults,
+  [SELECT_PERIOD]: selectPeriod,
 })

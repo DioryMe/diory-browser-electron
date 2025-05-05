@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
+import { useDispatchActions } from '../../../store'
 
-import { useDispatchActions, useSelector } from '../../../store'
 import { addLensButton } from '../lensesActions'
 
 export const useLensButton = (button) => {

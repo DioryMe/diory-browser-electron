@@ -34,6 +34,4 @@ const mapDiographToData = (diograph) => {
   }
 }
 
-export const useGraphData = (diograph) => {
-  return useMemo(() => mapDiographToData(diograph), [diograph])
-}
+export const useGraphData = (diograph) => useMemo(() => mapDiographToData(diograph), [diograph])

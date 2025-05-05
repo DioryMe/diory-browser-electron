@@ -27,7 +27,7 @@ const HandView = ({
   return (
     <>
       <Pane display="flex" flexDirection="row" paddingLeft={8}>
-        <SideBarTitle diory={story} onClick={onClick} />
+        <SideBarTitle {...story} onClick={onClick} />
         <MenuItem
           text={memories.length ? ' Clear' : ''}
           marginTop={4}

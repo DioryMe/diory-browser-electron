@@ -12,7 +12,7 @@ const FavoritesView = ({ story, memories = [], onClick, onBackgroundDrop }) => (
       <DragDrop diory={story} onDrop={onBackgroundDrop} />
     </Pane>
     <Pane paddingLeft={10}>
-      <SideBarTitle diory={story} onClick={onClick} />
+      <SideBarTitle {...story} onClick={onClick} />
       {memories.map((diory) => (
         <MenuItem key={diory.id} {...diory} onClick={() => onClick({ diory })} />
       ))}

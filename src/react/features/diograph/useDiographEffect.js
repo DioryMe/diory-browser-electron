@@ -6,8 +6,7 @@ import { useDiories } from './utils/useDiories'
 
 import { getDiographKey } from './utils/getDiographKey'
 import { getKeyPath } from './utils/getKeyPath'
-
-const unique = (item, index, array) => array.indexOf(item) === index
+import { unique } from '../../utils/unique'
 
 const useMemoryAddresses = () => {
   const { story = {} } = useDiories()
@@ -17,6 +16,7 @@ const useMemoryAddresses = () => {
       story.links
         .map(({ id } = {}) => getDiographKey(story.key, id))
         .map(getKeyPath)
+        .filter(Boolean)
         .map((path) => `${path}/`)
         .filter(unique),
     [story.key]

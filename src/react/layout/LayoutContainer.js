@@ -1,15 +1,17 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { PanelGroup } from 'react-resizable-panels'
 
+import PropTypes from 'prop-types'
 import { useDispatchActions } from '../store'
 
 import { setSideBarWidth } from '../features/sideBar/sideBarActions'
 
 import { debounce } from '../utils'
-import Fullscreen from '../components/Fullscreen'
-import { useSelector } from 'react-redux'
 
-export const LayoutContainer = ({ children }) => {
+import Fullscreen from '../components/Fullscreen'
+
+const LayoutContainer = ({ children }) => {
   const { sideBarWidth } = useSelector((state) => state.sideBar)
 
   const { dispatch } = useDispatchActions()
@@ -28,3 +30,9 @@ export const LayoutContainer = ({ children }) => {
     </Fullscreen>
   )
 }
+
+LayoutContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+}
+
+export { LayoutContainer }

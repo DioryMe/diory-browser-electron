@@ -7,37 +7,46 @@ import Fullscreen from '../../../components/Fullscreen'
 import DiorysGrid from '../../../components/diories/DiorysGrid'
 
 const itemStyle = {
-  flex: "1 1 120px",
+  flex: '1 1 120px',
   height: 80,
   margin: 8,
 }
 const dioryStyle = {
   text: {
-    padding: '4px'
+    padding: '4px',
   },
   links: {
     padding: '4px',
-  }
+  },
 }
 
 const TimelineView = ({
-  story,
+  titles,
+  periods,
   memories,
   scrollIntoViewId,
   onClick,
   onDrop,
+  onPeriodClick,
 }) => {
   const handRef = useRef()
   return (
     <>
-      <Pane display="flex" flexDirection="row" paddingLeft={14}>
-        <SideBarTitle diory={story} onClick={onClick} />
+      <Pane display="flex" flexDirection="row" flexWrap="wrap" paddingLeft={14}>
+        {titles.map((title) => (
+          <SideBarTitle key={title.id} {...title} onClick={onPeriodClick} />
+        ))}
       </Pane>
+      <Pane position="relative" flex={0} display="flex" flexWrap="wrap" paddingLeft={14}>
+        {periods.map((period) => (
+          <SideBarTitle key={period.id} {...period} onClick={onPeriodClick} />
+        ))}
+      </Pane>
+
       <Pane position="relative" flex={1}>
         <Fullscreen>
           <DiorysGrid
             ref={handRef}
-            background={story}
             diorys={memories.map((diory) => ({ ...diory, style: dioryStyle }))}
             padding={8}
             itemStyle={itemStyle}
@@ -52,11 +61,13 @@ const TimelineView = ({
 }
 
 TimelineView.propTypes = {
-  story: PropTypes.object.isRequired,
+  titles: PropTypes.array.isRequired,
+  periods: PropTypes.array.isRequired,
   memories: PropTypes.array.isRequired,
   scrollIntoViewId: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,
+  onPeriodClick: PropTypes.func.isRequired,
 }
 
 export { TimelineView }

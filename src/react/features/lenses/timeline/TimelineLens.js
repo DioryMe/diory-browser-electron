@@ -1,19 +1,23 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 import { useDispatchActions } from '../../../store'
 import { useDeleteTool } from '../../tools/delete'
 import { useStoryTool } from '../../tools/story'
 import { useUpdateTool } from '../../tools/update'
+
 import { useLens } from '../utils/useLens'
-import { useDiories } from '../../diograph/utils/useDiories'
-import { useSelector } from 'react-redux'
+import { useTimelineTitles } from './utils/useTimelineTitles'
+import { useTimePeriods } from './utils/useTimePeriods'
 
-import { createLink, updateDiographAction } from '../../diograph/diographActions'
+import { createLink } from '../../diograph/diographActions'
 
-import { resolveTimelineDiories } from './resolveTimelineDiories'
+import { selectPeriod } from '../lensesActions'
+import { filterByPeriod } from './utils/filterByPeriod'
 
 import { TimelineView } from './TimelineView'
 
+// Diograph tools
 export const useTools = () => {
   const selectStory = useStoryTool()
   const selectUpdatedDiory = useUpdateTool()
@@ -22,26 +26,39 @@ export const useTools = () => {
   const { dispatch } = useDispatchActions()
   return {
     onClick: ({ diory }) => {
-      dispatch(updateDiographAction({ [diory.key]: diory }))
       selectStory(diory)
       selectUpdatedDiory(diory)
       selectDeletedDiory(diory)
     },
     onDrop: ({ diory, draggedDiory }) => dispatch(createLink(diory, draggedDiory)),
+    onPeriodClick: ({ id }) => {
+      dispatch(selectPeriod(id))
+    },
   }
 }
 
-// Date to focus -> memories with date
-// Timeline -> all memories -> dates with diories
+const mapDiographToDiories = (diograph) =>
+  Object.entries(diograph).map(([key, diory]) => ({ key, ...diory }))
 
+const useDateMemories = () => {
+  const { selectedPeriod } = useSelector((state) => state.lenses)
+  const { diograph } = useSelector((state) => state.diograph)
+
+  if (selectedPeriod === 'timeline') {
+    return []
+  }
+
+  return mapDiographToDiories(filterByPeriod(selectedPeriod, diograph))
+}
 
 export const TimelineLens = () => {
-  const { diograph } = useSelector((state) => state.diograph)
-  const { memories } = useDiories()
-  const timelineDiories = resolveTimelineDiories(memories, diograph)
-
+  const titles = useTimelineTitles()
+  const timePeriods = useTimePeriods()
+  const dateMemories = useDateMemories()
   const tools = useTools()
 
   const { enabled } = useLens('timeline')
-  return enabled ? <TimelineView {...timelineDiories} {...tools} /> : null
+  return !enabled ? null : (
+    <TimelineView titles={titles} periods={timePeriods} memories={dateMemories} {...tools} />
+  )
 }

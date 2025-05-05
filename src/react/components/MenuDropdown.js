@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Pane, Pill, Popover, SelectMenu } from 'evergreen-ui'
+import { Menu, Pill, Popover } from 'evergreen-ui'
 import PropTypes from 'prop-types'
 
 const MenuDropdown = ({ diory: selectedDiory, diories, onClick }) => {
@@ -10,6 +10,7 @@ const MenuDropdown = ({ diory: selectedDiory, diories, onClick }) => {
   return (
     <Popover
       position="bottom-left"
+      // eslint-disable-next-line react/no-unstable-nested-components
       content={({ close }) => (
         <Menu>
           <Menu.OptionsGroup

@@ -19,14 +19,12 @@ const useHomeButton = () => {
   }
 }
 
-export const Navigation = () => {
-  return (
-    <NavigationBar>
-      <MenuItem fontWeight="bold" {...useHomeButton()} />
-      <Pane alignSelf="center" marginRight={8} display="flex" flexDirection="row">
-        <DiographNavigation />
-      </Pane>
-      <LensesNavigation />
-    </NavigationBar>
-  )
-}
+export const Navigation = () => (
+  <NavigationBar>
+    <MenuItem fontWeight="bold" {...useHomeButton()} />
+    <Pane alignSelf="center" marginRight={8} display="flex" flexDirection="row">
+      <DiographNavigation />
+    </Pane>
+    <LensesNavigation />
+  </NavigationBar>
+)

@@ -33,5 +33,12 @@ export const GraphLens = () => {
   const storyNode = graphData.nodes.find(({ id }) => id === storyKey)
 
   const { enabled } = useLens('graph')
-  return enabled ? <GraphView storyNode={storyNode} data={graphData} {...tools} sideBarWidth={sideBarWidth.right} /> : null
+  return enabled ? (
+    <GraphView
+      storyNode={storyNode}
+      data={graphData}
+      {...tools}
+      sideBarWidth={sideBarWidth.right}
+    />
+  ) : null
 }

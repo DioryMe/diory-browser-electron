@@ -3,6 +3,7 @@ import { useSelector, useDispatchActions } from '../../../../store'
 import { deleteDiory, deleteLinks } from '../../../diograph/diographActions'
 import { goBackward, selectMemory } from '../../../navigation/navigationActions'
 import { useDiories } from '../../../diograph/utils/useDiories'
+import { useContextDiories } from '../../../diograph/utils/useContextDiories'
 import { inactivateButton } from '../../../buttons/buttonsActions'
 
 import deleteViewFixtureDiograph from '../__fixtures__/deleteViewFixtureDiograph'
@@ -11,6 +12,7 @@ import { useDeleteView } from './useDeleteView'
 
 jest.mock('../../../../store')
 jest.mock('../../../diograph/utils/useDiories')
+jest.mock('../../../diograph/utils/useContextDiories')
 jest.mock('../../../diograph/diographActions')
 
 describe('useDeleteView', () => {
@@ -40,6 +42,7 @@ describe('useDeleteView', () => {
       const focusDiory = deleteViewFixtureDiograph.someDioryId
       const linkDiory = deleteViewFixtureDiograph.linkedDioryId1
       useDiories.mockImplementation(() => ({ story: focusDiory, memory: linkDiory }))
+      useContextDiories.mockImplementation(() => ({}))
 
       useDeleteView().onDone()
 
@@ -57,6 +60,8 @@ describe('useDeleteView', () => {
         story: focusDiory,
         memory: focusDiory,
         memories: [linkDiory, context2],
+      }))
+      useContextDiories.mockImplementation(() => ({
         contexts: [context1, context2],
       }))
 
@@ -81,6 +86,7 @@ describe('useDeleteView', () => {
     it('delete focusDiory without links', () => {
       const focusDiory = deleteViewFixtureDiograph.dioryWithoutLinks
       useDiories.mockImplementation(() => ({ story: focusDiory, memory: focusDiory }))
+      useContextDiories.mockImplementation(() => ({}))
 
       useDeleteView().onDone()
 

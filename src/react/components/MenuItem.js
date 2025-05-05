@@ -28,7 +28,7 @@ MenuItem.propTypes = {
   icon: PropTypes.string,
   date: PropTypes.string,
   isSelected: PropTypes.bool,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 }
 
 export { MenuItem }

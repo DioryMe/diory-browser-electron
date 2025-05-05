@@ -2,10 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { useSideBarToggle } from '../useSideBar'
-
 import { MenuItem } from '../../../components/MenuItem'
-import Fullscreen from '../../../components/Fullscreen'
-import { Pane } from 'evergreen-ui'
 
 const SideBarToggle = ({ side, children }) => {
   const { showSideBar, toggleSideBar } = useSideBarToggle(side)

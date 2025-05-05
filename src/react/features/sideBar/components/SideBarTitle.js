@@ -3,17 +3,20 @@ import PropTypes from 'prop-types'
 
 import { MenuItem } from '../../../components/MenuItem'
 
-const SideBarTitle = ({ diory, onClick }) => (
+const SideBarTitle = ({ id, text, isSelected, onClick }) => (
   <MenuItem
-    text={diory.text ? diory.text.toUpperCase() : ''}
+    text={text ? text.toUpperCase() : ''}
+    isSelected={isSelected}
     marginTop={4}
     marginBottom={4}
-    onClick={() => onClick({ diory })}
+    onClick={() => onClick({ id })}
   />
 )
 
 SideBarTitle.propTypes = {
-  diory: PropTypes.object,
+  id: PropTypes.string,
+  text: PropTypes.string,
+  isSelected: PropTypes.bool,
   onClick: PropTypes.func,
 }
 

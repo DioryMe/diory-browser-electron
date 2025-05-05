@@ -4,7 +4,7 @@ import { getLinkedDiories } from './getLinkedDiories'
 
 const resolveContext = (contextKey, story, backward, diograph) => {
   const reverseDiograph = resolveReverseDiograph(diograph)
-  const contexts = getLinkedDiories(story, reverseDiograph)
+  const contexts = getLinkedDiories(story, reverseDiograph).filter(({ key }) => key !== story.key)
   if (!contexts.length) {
     return {
       contexts: [],

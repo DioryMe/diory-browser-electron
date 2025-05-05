@@ -7,7 +7,8 @@ import DragDrop from '../DragDrop'
 import Diory from './Diory'
 
 const DiorysGrid = forwardRef(
-  ({
+  (
+    {
       background,
       diorys = [],
       itemStyle,
@@ -17,7 +18,9 @@ const DiorysGrid = forwardRef(
       onBackgroundClick,
       onBackgroundDrop,
       ...props
-    }, ref) => (
+    },
+    ref
+  ) => (
     <Pane
       ref={ref}
       position="relative"
@@ -29,24 +32,22 @@ const DiorysGrid = forwardRef(
       {...props}
     >
       <Pane position="absolute" width="100%" height="100%" margin={0} marginBottom={-264}>
-        <DragDrop diory={background} onDrop={onBackgroundDrop} onClick={onBackgroundClick} />
+        {background && (
+          <DragDrop diory={background} onDrop={onBackgroundDrop} onClick={onBackgroundClick} />
+        )}
       </Pane>
       {diorys.map((diory) => (
         <GridItem
-          key={diory.id}
+          key={diory.key}
           flex="1 1 360px"
           height={240}
           margin={24}
           alignSelf="center"
-          scrollIntoView={diory.id === scrollIntoViewId}
+          scrollIntoView={diory.key === scrollIntoViewId}
           {...itemStyle}
         >
           <DragDrop diory={diory} onDrop={onDrop}>
-            <Diory
-              diory={diory}
-              onClick={onClick}
-              aria-controls={`panel-${diory.id}`}
-            />
+            <Diory diory={diory} onClick={onClick} aria-controls={`panel-${diory.id}`} />
           </DragDrop>
         </GridItem>
       ))}
@@ -55,9 +56,9 @@ const DiorysGrid = forwardRef(
 )
 
 DiorysGrid.propTypes = {
-  background: PropTypes.object.isRequired,
+  background: PropTypes.object,
   diorys: PropTypes.array,
-  itemProps: PropTypes.object,
+  itemStyle: PropTypes.object,
   scrollIntoViewId: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,

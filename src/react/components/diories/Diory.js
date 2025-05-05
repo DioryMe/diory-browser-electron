@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
-import { Pane, Icon, Pill } from 'evergreen-ui'
+import { Pane, Icon } from 'evergreen-ui'
 
 import Image from './Image'
 
@@ -68,7 +68,9 @@ const Diory = ({ diory, onClick, children, ...props }) => {
           </Pane>
         )}
         {links && links.length && (
-          <Box {...defaultStyle.links} {...styleLinks}>{links.length}</Box>
+          <Box {...defaultStyle.links} {...styleLinks}>
+            {links.length}
+          </Box>
         )}
       </Box>
       {children}
@@ -83,6 +85,7 @@ Diory.propTypes = {
     image: PropTypes.string,
     style: PropTypes.object,
     data: PropTypes.array,
+    links: PropTypes.array,
   }),
   onClick: PropTypes.func,
   children: PropTypes.node,

@@ -1,7 +1,4 @@
-import { useEffect } from 'react'
-
-import { useDispatchActions, useSelector } from '../../../store'
-import { addLensButton } from '../lensesActions'
+import { useSelector } from '../../../store'
 
 export const useLens = (lensId) => {
   const { selectedLensId } = useSelector((state) => state.lenses)

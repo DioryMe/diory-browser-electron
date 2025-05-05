@@ -3,6 +3,7 @@ import {
   ADD_LENS_BUTTON,
   SET_SEARCH_QUERY,
   SET_SEARCH_RESULTS,
+  SELECT_PERIOD,
 } from './lensesActionTypes'
 
 export const selectLens = (id) => ({ type: SELECT_LENS, payload: { id } })
@@ -22,7 +23,12 @@ export const setSearchResults = (query, results) => ({
   payload: { query, results },
 })
 
-export const searchDiories = (query, resultDiograph) => (dispatch, getState) => {
+export const searchDiories = (query, resultDiograph) => (dispatch) => {
   dispatch(setSearchResults(query, resultDiograph))
   dispatch(setSearchQuery(query))
 }
+
+export const selectPeriod = (period) => ({
+  type: SELECT_PERIOD,
+  payload: { period },
+})

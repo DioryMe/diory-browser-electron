@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { SideBarPanel } from './components/SideBarPanel'
 import { SideBarContainer } from '../../components/SideBarContainer'
 import { SideBarToggle } from './components/SideBarToggle'
-import Fullscreen from '../../components/Fullscreen'
 
 const SideBar = ({ side, children }) => (
   <SideBarPanel side={side}>
