@@ -22,6 +22,7 @@ export const useCreateLinkTool = () => {
       const folderPath = await getFolderPath()
       if (folderPath) {
         dispatch(createLink(story, { key: folderPath }))
+        // TODO generate new diograph
       }
       dispatch(inactivateButton())
     }

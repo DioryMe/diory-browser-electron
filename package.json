@@ -6,7 +6,7 @@
   "private": true,
   "dependencies": {
     "@diograph/local-client": "^0.4.1",
-    "@diory/client-js": "0.4.2-rc2",
+    "@diory/client-js": "0.4.2-rc5",
     "electron-devtools-installer": "^3.2.0",
     "electron-log": "^4.4.7",
     "electron-notarize": "^1.2.1",
