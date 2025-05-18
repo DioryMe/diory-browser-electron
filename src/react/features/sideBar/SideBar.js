@@ -1,17 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { SideBarPanel } from './components/SideBarPanel'
 import { SideBarContainer } from '../../components/SideBarContainer'
-import { SideBarToggle } from './components/SideBarToggle'
+import { useSideBar } from './useSideBar'
 
-const SideBar = ({ side, children }) => (
-  <SideBarPanel side={side}>
-    <SideBarContainer>
-      <SideBarToggle side={side}>{children}</SideBarToggle>
-    </SideBarContainer>
-  </SideBarPanel>
-)
+const SideBar = ({ side, children }) => {
+  const { showSideBar } = useSideBar(side)
+
+  const [showContent, setShowContent] = useState(false)
+  useEffect(() => {
+    if (!showSideBar) {
+      setShowContent(false)
+    }
+    if (showSideBar) {
+      setTimeout(() => {
+        setShowContent(showSideBar)
+      }, 10)
+    }
+  }, [showSideBar])
+
+  return (
+    <SideBarPanel side={side}>
+      <SideBarContainer>
+        {showContent && children}
+      </SideBarContainer>
+    </SideBarPanel>
+  )
+}
 
 SideBar.propTypes = {
   side: PropTypes.string.isRequired,

@@ -2,7 +2,7 @@ import React from 'react'
 import { Pane } from 'evergreen-ui'
 
 import { useDispatchActions, useSelector } from '../../store'
-import { useSideBarToggle } from '../sideBar/useSideBar'
+import { useSideBar } from '../sideBar/useSideBar'
 
 import { selectLens } from '../lenses/lensesActions'
 
@@ -10,7 +10,7 @@ import { MenuItem } from '../../components/MenuItem'
 
 export const useLensesNavigation = () => {
   const { selectedLensId, buttons } = useSelector((state) => state.lenses)
-  const { openSideBar, closeSideBar } = useSideBarToggle('right')
+  const { openSideBar, closeSideBar } = useSideBar('right')
   const { dispatch } = useDispatchActions()
   return {
     buttons: Object.values(buttons).map(({ id, icon }) => ({
@@ -19,7 +19,7 @@ export const useLensesNavigation = () => {
       onClick: () => {
         const newSelectedLensId = id === selectedLensId ? null : id
         dispatch(selectLens(newSelectedLensId))
-        id === selectedLensId ? closeSideBar() : openSideBar(40)
+        id === selectedLensId ? closeSideBar() : openSideBar()
       },
       isSelected: id === selectedLensId,
     })),

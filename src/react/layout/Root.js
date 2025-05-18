@@ -26,13 +26,13 @@ const Root = () => {
         <LayoutContainer>
           <SideBar side="left">
             <Favorites />
+            <Hand />
           </SideBar>
           <PanelResizeHandle />
           <Diograph />
           <PanelResizeHandle />
           <SideBar side="right">
             <Lenses />
-            <Hand />
           </SideBar>
         </LayoutContainer>
       </DndProvider>

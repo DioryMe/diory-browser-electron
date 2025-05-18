@@ -1,34 +1,35 @@
 import { useDispatchActions, useSelector } from '../../store'
 
-import { closeSideBar, openSideBar, setSideBarWidth, toggleSideBar } from './sideBarActions'
+import { closeSideBar, openSideBar, setSideBarWidth } from './sideBarActions'
+import { selectLens } from '../lenses/lensesActions'
 
-const CLOSED_SIDE_BAR_WIDTH = 5
-const OPEN_SIDE_BAR_WIDTH = 20
-
-export const useSideBarToggle = (side) => {
-  const { showSideBars } = useSelector((state) => state.sideBar)
+export const useSideBar = (side) => {
+  const { showSideBars, sideBarWidth } = useSelector((state) => state.sideBar)
 
   const { dispatch } = useDispatchActions()
   const showSideBar = showSideBars[side]
   return {
     showSideBar,
+    sideBarWidth: showSideBar ? sideBarWidth[side] : 0,
     toggleSideBar: () => {
-      dispatch(setSideBarWidth(side, showSideBar ? CLOSED_SIDE_BAR_WIDTH : OPEN_SIDE_BAR_WIDTH))
-      setTimeout(() => {
-        dispatch(toggleSideBar(side))
-      }, 10)
+      dispatch(showSideBar ? closeSideBar(side): openSideBar(side))
     },
-    openSideBar: (width) => {
-      dispatch(setSideBarWidth(side, width || OPEN_SIDE_BAR_WIDTH))
-      setTimeout(() => {
-        dispatch(openSideBar(side))
-      }, 10)
+    openSideBar: () => {
+      dispatch(openSideBar(side))
     },
     closeSideBar: () => {
-      dispatch(setSideBarWidth(side, CLOSED_SIDE_BAR_WIDTH))
-      setTimeout(() => {
-        dispatch(closeSideBar(side))
-      }, 10)
+      dispatch(closeSideBar(side))
     },
+    onWidthChange: (newWidth) => {
+      if (newWidth !== sideBarWidth[side] && newWidth !== 1) {
+        dispatch(setSideBarWidth(side, newWidth))
+      }
+      if (newWidth > 1) {
+        dispatch(openSideBar(side))
+      }
+      if (newWidth === 1) {
+        dispatch(closeSideBar(side))
+      }
+    }
   }
 }
