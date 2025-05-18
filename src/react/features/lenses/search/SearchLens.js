@@ -5,7 +5,6 @@ import { useStoryTool } from '../../tools/story'
 import { useUpdateTool } from '../../tools/update'
 import { useDeleteTool } from '../../tools/delete'
 import { useCreateDiory } from '../../tools/create'
-import { useLens } from '../utils/useLens'
 
 import { createLink } from '../../diograph/diographActions'
 import { selectLens, searchDiories } from '../lensesActions'
@@ -54,12 +53,11 @@ const useSearchBar = () => {
 }
 
 export const SearchLens = () => {
-  const { enabled } = useLens('search')
   const search = useSearch()
   const searchBar = useSearchBar()
-  return enabled ? (
+  return (
     <SearchView {...search}>
       <SearchBar width="100%" {...searchBar} />
     </SearchView>
-  ) : null
+  )
 }

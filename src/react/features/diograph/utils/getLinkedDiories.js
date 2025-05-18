@@ -2,7 +2,7 @@ import { getDiory } from './getDiory'
 import { getDiories } from './getDiories'
 
 export const getLinkedDiories = (parentDiory, diograph) => {
-  if (parentDiory) return []
+  if (!parentDiory) return []
 
   const diory = getDiory(parentDiory.key, diograph)
   const links = diory && diory.links

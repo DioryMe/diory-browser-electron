@@ -6,9 +6,10 @@ import { useHomeDiographKey } from '../home/utils/useHomeDiographKey'
 
 import { HandView } from './components/HandView'
 
+// TODO initialise hand to diograph
+
 export const Hand = () => {
   const handKey = useHomeDiographKey('hand')
   const sideBarData = useSidebarData(handKey)
-  const { selectedLensId } = useSelector((store) => store.lenses)
-  return selectedLensId ? null : <HandView {...sideBarData} />
+  return <HandView {...sideBarData} />
 }
