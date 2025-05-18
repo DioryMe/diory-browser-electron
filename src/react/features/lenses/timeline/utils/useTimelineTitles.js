@@ -8,18 +8,7 @@ import { splitPeriodToPeriods } from './splitPeriodToPeriods'
 import { filterByPeriod } from './filterByPeriod'
 import { useDiories } from '../../../diograph/utils/useDiories'
 
-const useStoryTitle = () => {
-  const { story, memories } = useDiories()
-  const amount = memories.filter(({ date }) => date).length
-  console.log(story)
-  return {
-    key: 'story',
-    text: `${story.text || story.date || story.id} (${amount})`,
-    isSelected: true,
-  }
-}
-
-const useTimeline = () => {
+export const useTimeline = () => {
   const { selectedPeriod } = useSelector((state) => state.lenses)
   const { diograph } = useSelector((state) => state.diograph)
 
@@ -42,30 +31,24 @@ const getTitle = (period, index, diograph) => {
 
 export const useTimelineTitles = () => {
   const { diograph } = useSelector((state) => state.diograph)
-
-  const timelineTitle = useTimeline()
-  const storyTitle = useStoryTitle()
+  const { story } = useDiories()
 
   const { selectedPeriod } = useSelector((state) => state.lenses)
-  if (!selectedPeriod) {
-    return [timelineTitle, storyTitle]
-  }
+  const periods = splitPeriodToPeriods(selectedPeriod || story.date).filter(
+    (period) => period !== 'timeline'
+  )
 
-  const periods = splitPeriodToPeriods(selectedPeriod).filter((period) => period !== 'timeline')
-  return [timelineTitle]
-    .concat(
-      periods.map((period, index) => ({
-        key: period,
-        id: period,
-        text: getTitle(period, index, diograph),
-        isSelected: selectedPeriod === period,
-      }))
-    )
-    .concat([
-      {
-        key: 'clear',
-        id: null,
-        text: 'Clear',
-      },
-    ])
+  return periods.map((period, index) => ({
+    key: period,
+    id: period,
+    text: getTitle(period, index, diograph),
+    isSelected: selectedPeriod === period,
+  }))
+  .concat(selectedPeriod? [
+    {
+      key: 'clear',
+      id: null,
+      text: 'Clear',
+    },
+  ] : [])
 }

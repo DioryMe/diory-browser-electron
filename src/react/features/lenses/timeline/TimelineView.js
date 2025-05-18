@@ -21,8 +21,9 @@ const dioryStyle = {
 }
 
 const TimelineView = ({
-  titles,
-  periods,
+                        timeline,
+  titles = [],
+  periods = [],
   memories,
   scrollIntoViewId,
   onClick,
@@ -33,18 +34,25 @@ const TimelineView = ({
   return (
     <>
       <Pane display="flex" flexDirection="row" flexWrap="wrap" paddingLeft={14}>
-        {titles.map((title) => (
-          <SideBarTitle key={title.id} {...title} onClick={onPeriodClick} />
-        ))}
+        <SideBarTitle {...timeline} onClick={onPeriodClick} />
       </Pane>
       <Pane position="relative" flex={0} display="flex" flexWrap="wrap" paddingLeft={14}>
-        {periods.map((period) => (
-          <SideBarTitle key={period.id} {...period} onClick={onPeriodClick} />
+        {titles.map((title) => (
+          <SideBarTitle key={title.id} {...title} onClick={onPeriodClick} />
         ))}
       </Pane>
 
       <Pane position="relative" flex={1}>
         <Fullscreen>
+          <DiorysGrid
+            ref={handRef}
+            diorys={periods.map((diory) => ({ ...diory, style: dioryStyle }))}
+            padding={8}
+            itemStyle={itemStyle}
+            scrollIntoViewId={scrollIntoViewId}
+            onClick={({ diory }) => onPeriodClick(diory)}
+            onDrop={onDrop}
+          />
           <DiorysGrid
             ref={handRef}
             diorys={memories.map((diory) => ({ ...diory, style: dioryStyle }))}
@@ -61,8 +69,9 @@ const TimelineView = ({
 }
 
 TimelineView.propTypes = {
-  titles: PropTypes.array.isRequired,
-  periods: PropTypes.array.isRequired,
+  timeline: PropTypes.object.isRequired,
+  titles: PropTypes.array,
+  periods: PropTypes.array,
   memories: PropTypes.array.isRequired,
   scrollIntoViewId: PropTypes.string,
   onClick: PropTypes.func.isRequired,

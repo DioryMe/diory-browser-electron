@@ -17,7 +17,6 @@ const filterLinkDiograph = (timelineDate, diograph) =>
 const createDateDiory = (diograph) => (date) => {
   const validDate = date.length === 13 ? `${date}:00` : date
   const linksDiograph = filterLinkDiograph(date, diograph)
-  console.log(validDate)
   return {
     key: date,
     id: date,

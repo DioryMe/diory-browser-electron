@@ -36,7 +36,7 @@ export const useTimePeriods = () => {
       .filter(({ date }) => date)
       .map(({ date }) => date.slice(0, 4))
       .filter(unique)
-    return Object.values(getDatesDiograph(years, diograph)).map(mapToPeriod)
+    return Object.values(getDatesDiograph(years, diograph)) // .map(mapToPeriod)
   }
 
   if (selectedPeriod) {
@@ -49,8 +49,8 @@ export const useTimePeriods = () => {
       .map(getNextPeriod(selectedPeriod))
       .filter(unique)
 
-    return Object.values(getDatesDiograph(selectedDates, diograph)).map(mapToPeriod)
+    return Object.values(getDatesDiograph(selectedDates, diograph)) // .map(mapToPeriod)
   }
 
-  return Object.values(resolveDatesDiograph(memories, diograph)).map(mapToPeriod)
+  return Object.values(resolveDatesDiograph(memories, diograph)) // .map(mapToPeriod)
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 import { useDispatchActions } from '../../../store'
@@ -6,8 +6,7 @@ import { useDeleteTool } from '../../tools/delete'
 import { useStoryTool } from '../../tools/story'
 import { useUpdateTool } from '../../tools/update'
 
-import { useLens } from '../utils/useLens'
-import { useTimelineTitles } from './utils/useTimelineTitles'
+import { useTimeline, useTimelineTitles } from './utils/useTimelineTitles'
 import { useTimePeriods } from './utils/useTimePeriods'
 
 import { createLink } from '../../diograph/diographActions'
@@ -19,6 +18,12 @@ import { TimelineView } from './TimelineView'
 
 // Diograph tools
 export const useTools = () => {
+  const { storyKey } = useSelector((state) => state.navigation)
+  useEffect(() => {
+    dispatch(selectPeriod(null))
+  }, [storyKey])
+
+
   const selectStory = useStoryTool()
   const selectUpdatedDiory = useUpdateTool()
   const selectDeletedDiory = useDeleteTool()
@@ -52,13 +57,11 @@ const useDateMemories = () => {
 }
 
 export const TimelineLens = () => {
+  const timeline = useTimeline()
   const titles = useTimelineTitles()
   const timePeriods = useTimePeriods()
   const dateMemories = useDateMemories()
   const tools = useTools()
 
-  const { enabled } = useLens('timeline')
-  return !enabled ? null : (
-    <TimelineView titles={titles} periods={timePeriods} memories={dateMemories} {...tools} />
-  )
+  return <TimelineView timeline={timeline} titles={titles} periods={timePeriods} memories={dateMemories} {...tools} />
 }

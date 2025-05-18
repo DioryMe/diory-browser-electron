@@ -1,4 +1,6 @@
 export const splitPeriodToPeriods = (period) => {
+  if (!period) return []
+
   const [date, time] = period.split('T')
   const datePeriods = date.split('-').map((_, index, part) => part.slice(0, index + 1).join('-'))
 
@@ -6,6 +8,5 @@ export const splitPeriodToPeriods = (period) => {
     return datePeriods
   }
 
-  const timePeriods = time.split(':').map((_, index, part) => part.slice(0, index + 1).join('-'))
-  return datePeriods.concat(timePeriods.map((timePeriod) => `${datePeriods[2]}T${timePeriod}`))
+  return datePeriods.concat([`${datePeriods[2]}T${time.slice(0, 2)}`])
 }
