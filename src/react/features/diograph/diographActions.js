@@ -78,8 +78,7 @@ export const getDiograph =
     if (!loading[address] && !loaded[address]) {
       dispatch(getDiographActions.begin({ address }))
       try {
-        // TODO saveDiograph
-        await diographClient.generateDiograph(address)
+        await diographClient.generateDiograph(address, true)
         dispatch(updateDiograph(address))
         dispatch(getDiographActions.success({ address }))
       } catch (error) {

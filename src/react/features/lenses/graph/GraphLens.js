@@ -31,10 +31,12 @@ export const GraphLens = () => {
   const tools = useGraphTools()
   const storyNode = graphData.nodes.find(({ id }) => id === storyKey)
 
-  return <GraphView
-    storyNode={storyNode}
-    data={graphData}
-    {...tools}
-    sideBarWidth={sideBarWidth.right}
-  />
+  return (
+    <GraphView
+      storyNode={storyNode}
+      data={graphData}
+      {...tools}
+      sideBarWidth={sideBarWidth.right}
+    />
+  )
 }

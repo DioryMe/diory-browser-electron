@@ -5,8 +5,6 @@
   "main": "electron-main.js",
   "private": true,
   "dependencies": {
-    "@diograph/local-client": "^0.4.1",
-    "@diory/client-js": "0.4.2-rc5",
     "electron-devtools-installer": "^3.2.0",
     "electron-log": "^4.4.7",
     "electron-notarize": "^1.2.1",
@@ -23,6 +21,8 @@
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "^7.17.12",
     "@babel/register": "^7.17.7",
+    "@diograph/local-client": "^0.4.1",
+    "@diory/client-js": "0.4.3",
     "@storybook/addon-actions": "^6.5.9",
     "@storybook/addon-links": "^6.5.9",
     "@storybook/addons": "^6.5.9",

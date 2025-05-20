@@ -19,8 +19,6 @@ const getNextPeriod =
       : nextPeriod
   }
 
-const mapToPeriod = (period) => ({ ...period, text: `${period.text} (${period.links.length})` })
-
 const lessThanHour = (period) => {
   const [, time] = period.split('T')
   return time && time.length >= 2

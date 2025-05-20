@@ -1,5 +1,4 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 
 import { useSidebarData } from '../sideBar/utils/useSidebarData'
 import { useHomeDiographKey } from '../home/utils/useHomeDiographKey'

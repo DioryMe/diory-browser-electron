@@ -4,7 +4,7 @@ import { useDispatchActions, useSelector } from '../../../store'
 import { useButtons } from '../../buttons/useButtons'
 import { useDiories } from '../../diograph/utils/useDiories'
 
-import { createLink } from '../../diograph/diographActions'
+import { createLink, getDiograph } from '../../diograph/diographActions'
 import { getFolderPath } from './getFolderPath'
 
 import { buttons, BUTTON } from './buttons'
@@ -22,7 +22,7 @@ export const useCreateLinkTool = () => {
       const folderPath = await getFolderPath()
       if (folderPath) {
         dispatch(createLink(story, { key: folderPath }))
-        // TODO generate new diograph
+        dispatch(getDiograph(folderPath))
       }
       dispatch(inactivateButton())
     }

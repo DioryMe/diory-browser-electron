@@ -1,8 +1,4 @@
-import {
-  CLOSE_SIDE_BAR,
-  OPEN_SIDE_BAR,
-  SET_SIDE_BAR_WIDTH,
-} from './sideBarActionTypes'
+import { CLOSE_SIDE_BAR, OPEN_SIDE_BAR, SET_SIDE_BAR_WIDTH } from './sideBarActionTypes'
 
 export const openSideBar = (id) => ({
   type: OPEN_SIDE_BAR,

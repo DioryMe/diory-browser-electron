@@ -38,17 +38,22 @@ export const useTimelineTitles = () => {
     (period) => period !== 'timeline'
   )
 
-  return periods.map((period, index) => ({
-    key: period,
-    id: period,
-    text: getTitle(period, index, diograph),
-    isSelected: selectedPeriod === period,
-  }))
-  .concat(selectedPeriod? [
-    {
-      key: 'clear',
-      id: null,
-      text: 'Clear',
-    },
-  ] : [])
+  return periods
+    .map((period, index) => ({
+      key: period,
+      id: period,
+      text: getTitle(period, index, diograph),
+      isSelected: selectedPeriod === period,
+    }))
+    .concat(
+      selectedPeriod
+        ? [
+            {
+              key: 'clear',
+              id: null,
+              text: 'Clear',
+            },
+          ]
+        : []
+    )
 }

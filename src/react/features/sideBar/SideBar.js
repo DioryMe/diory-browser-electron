@@ -22,9 +22,7 @@ const SideBar = ({ side, children }) => {
 
   return (
     <SideBarPanel side={side}>
-      <SideBarContainer>
-        {showContent && children}
-      </SideBarContainer>
+      <SideBarContainer>{showContent && children}</SideBarContainer>
     </SideBarPanel>
   )
 }

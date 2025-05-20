@@ -23,7 +23,6 @@ export const useTools = () => {
     dispatch(selectPeriod(null))
   }, [storyKey])
 
-
   const selectStory = useStoryTool()
   const selectUpdatedDiory = useUpdateTool()
   const selectDeletedDiory = useDeleteTool()
@@ -63,5 +62,13 @@ export const TimelineLens = () => {
   const dateMemories = useDateMemories()
   const tools = useTools()
 
-  return <TimelineView timeline={timeline} titles={titles} periods={timePeriods} memories={dateMemories} {...tools} />
+  return (
+    <TimelineView
+      timeline={timeline}
+      titles={titles}
+      periods={timePeriods}
+      memories={dateMemories}
+      {...tools}
+    />
+  )
 }

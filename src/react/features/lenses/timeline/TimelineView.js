@@ -21,7 +21,7 @@ const dioryStyle = {
 }
 
 const TimelineView = ({
-                        timeline,
+  timeline,
   titles = [],
   periods = [],
   memories,

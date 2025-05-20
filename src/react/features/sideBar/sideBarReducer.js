@@ -1,8 +1,4 @@
-import {
-  CLOSE_SIDE_BAR,
-  OPEN_SIDE_BAR,
-  SET_SIDE_BAR_WIDTH,
-} from './sideBarActionTypes'
+import { CLOSE_SIDE_BAR, OPEN_SIDE_BAR, SET_SIDE_BAR_WIDTH } from './sideBarActionTypes'
 import { createReducer } from '../../store'
 
 const initialState = {
