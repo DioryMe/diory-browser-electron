@@ -1,6 +1,16 @@
 {
+  "bafkreibgptoanpt6sntifopumuix5zyxs5steeyt7v77j6ybbdwgqumhsm": {
+    "id": "bafkreibgptoanpt6sntifopumuix5zyxs5steeyt7v77j6ybbdwgqumhsm",
+    "text": "diograph.json",
+    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcfdT2PwAGPgKeWQwJuAAAAABJRU5ErkJggg==",
+    "date": "2024-05-25T20:38:49.711Z",
+    "created": "2024-05-25T20:38:49.711Z",
+    "modified": "2024-05-25T20:38:49.711Z"
+  },
   "/": {
-    "id": "c553adfd-0d38-4ebc-8a3a-18a5b2940538"
+    "id": "c553adfd-0d38-4ebc-8a3a-18a5b2940538",
+    "created": "2023-08-01T10:31:29.017Z",
+    "modified": "2024-05-25T20:38:49.711Z"
   },
   "c553adfd-0d38-4ebc-8a3a-18a5b2940538": {
     "id": "c553adfd-0d38-4ebc-8a3a-18a5b2940538",
@@ -10,17 +20,20 @@
     "links": [
       {
         "id": "bafkreibgptoanpt6sntifopumuix5zyxs5steeyt7v77j6ybbdwgqumhsm"
+      },
+      {
+        "id": "bafkreiejk4jce4xng4wctvlkpm43efpbmviadprvxmy7ejfqbjomnm4yra"
       }
     ],
     "created": "2023-08-01T10:31:29.017Z",
     "modified": "2024-05-25T20:38:49.711Z"
   },
-  "/diograph.json": {
-    "text": "diograph.json",
-    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcfdT2PwAGPgKeWQwJuAAAAABJRU5ErkJggg==",
-    "date": "2024-05-25T20:38:49.711Z",
-    "created": "2024-05-25T20:38:49.711Z",
-    "modified": "2024-05-25T20:38:49.711Z",
-    "id": "bafkreibgptoanpt6sntifopumuix5zyxs5steeyt7v77j6ybbdwgqumhsm"
+  "bafkreiejk4jce4xng4wctvlkpm43efpbmviadprvxmy7ejfqbjomnm4yra": {
+    "id": "bafkreiejk4jce4xng4wctvlkpm43efpbmviadprvxmy7ejfqbjomnm4yra",
+    "text": "diory.json",
+    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8c43hPwAHewLTbrmJlAAAAABJRU5ErkJggg==",
+    "date": "2025-02-05T21:13:23.579Z",
+    "created": "2025-02-05T21:13:23.579Z",
+    "modified": "2025-02-05T21:13:23.579Z"
   }
 }
