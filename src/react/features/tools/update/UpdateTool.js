@@ -3,7 +3,6 @@ import { useDispatchActions, useSelector } from '../../../store'
 
 import { useDiories } from '../../diograph/utils/useDiories'
 
-import { inactivateButton } from '../../buttons/buttonsActions'
 import { selectMemory } from '../../navigation/navigationActions'
 import { updateDiory } from '../../diograph/diographActions'
 
@@ -19,11 +18,9 @@ const useToolActions = () => {
   return {
     onDone: (updatedDiory) => {
       dispatch(updateDiory(updatedDiory))
-      dispatch(inactivateButton())
       dispatch(selectMemory())
     },
     onCancel: () => {
-      dispatch(inactivateButton())
       dispatch(selectMemory())
     },
   }

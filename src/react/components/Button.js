@@ -23,6 +23,7 @@ const Button = ({ style = {}, data, active, onClick }) => (
       height={48}
       margin={6}
       borderRadius="50%"
+      border="none"
       {...style}
     />
   </div>

@@ -17,6 +17,7 @@ const getAddressPath = (address) => {
 const Content = () => {
   const { story = {} } = useDiories()
   const { data = [] } = story
+  // TODO all contents
   const { encodingFormat, contentUrl } = (data && data[0]) || {}
   const path = getAddressPath(story.key)
   const url = `${path}${contentUrl}`
