@@ -5,6 +5,7 @@ import { Pane } from 'evergreen-ui'
 import { SideBarTitle } from '../../sideBar/components/SideBarTitle'
 import Fullscreen from '../../../components/Fullscreen'
 import DiorysGrid from '../../../components/diories/DiorysGrid'
+import Diory from '../../../components/diories/Diory'
 
 const itemStyle = {
   flex: '1 1 120px',
@@ -44,15 +45,14 @@ const TimelineView = ({
 
       <Pane position="relative" flex={1}>
         <Fullscreen>
-          <DiorysGrid
-            ref={handRef}
-            diorys={periods.map((diory) => ({ ...diory, style: dioryStyle }))}
-            padding={8}
-            itemStyle={itemStyle}
-            scrollIntoViewId={scrollIntoViewId}
-            onClick={({ diory }) => onPeriodClick(diory)}
-            onDrop={onDrop}
-          />
+          <Pane position="relative" flex={0} display="flex" flexWrap="wrap" padding={8}>
+            {periods.map(({ id, label, image, amount }) => (
+              <Pane {...itemStyle} paddingBottom={24} onClick={() => onPeriodClick({ id })}>
+                <SideBarTitle text={label} amount={amount} />
+                <Diory diory={{ id, image }}></Diory>
+              </Pane>
+            ))}
+          </Pane>
           <DiorysGrid
             ref={handRef}
             diorys={memories.map((diory) => ({ ...diory, style: dioryStyle }))}

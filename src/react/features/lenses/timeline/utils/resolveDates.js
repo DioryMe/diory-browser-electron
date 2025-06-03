@@ -44,15 +44,15 @@ const formatDays = (startTime, endTime) =>
 
 const formatHour = (yearMonthDay) => (hour) => `${yearMonthDay}T${twoDigits(hour)}`
 
-const formatHours = (startTime, endTime) =>
-  formatDays(startTime, endTime)
-    .map((yearMonthDay, index, array) => {
-      const minHour = isFirst(index) ? new Date(startTime).getUTCHours() : 0
-      const maxHour = isLast(index, array) ? new Date(endTime).getUTCHours() : 23
-
-      return arrayRange(minHour, maxHour).map(formatHour(yearMonthDay))
-    })
-    .flat()
+// const formatHours = (startTime, endTime) =>
+//   formatDays(startTime, endTime)
+//     .map((yearMonthDay, index, array) => {
+//       const minHour = isFirst(index) ? new Date(startTime).getUTCHours() : 0
+//       const maxHour = isLast(index, array) ? new Date(endTime).getUTCHours() : 23
+//
+//       return arrayRange(minHour, maxHour).map(formatHour(yearMonthDay))
+//     })
+//     .flat()
 
 export const resolveDates = (startTime, endTime) => {
   const timeDifference = endTime - startTime
@@ -65,9 +65,5 @@ export const resolveDates = (startTime, endTime) => {
     return formatMonths(startTime, endTime)
   }
 
-  if (timeDifference > 48 * HOURS) {
-    return formatDays(startTime, endTime)
-  }
-
-  return formatHours(startTime, endTime)
+  return formatDays(startTime, endTime)
 }

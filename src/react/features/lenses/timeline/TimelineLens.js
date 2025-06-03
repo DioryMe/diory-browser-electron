@@ -12,9 +12,9 @@ import { useTimePeriods } from './utils/useTimePeriods'
 import { createLink } from '../../diograph/diographActions'
 
 import { selectPeriod } from '../lensesActions'
-import { filterByPeriod } from './utils/filterByPeriod'
 
 import { TimelineView } from './TimelineView'
+import { startsWithPeriod } from './utils/startsWithPeriod'
 
 // Diograph tools
 export const useTools = () => {
@@ -44,15 +44,20 @@ export const useTools = () => {
 const mapDiographToDiories = (diograph) =>
   Object.entries(diograph).map(([key, diory]) => ({ key, ...diory }))
 
+const isDayPeriod = (period) => {
+  const [date] = period.split('T')
+  return date.split('-').length === 3
+}
+
 const useDateMemories = () => {
   const { selectedPeriod } = useSelector((state) => state.lenses)
   const { diograph } = useSelector((state) => state.diograph)
 
-  if (selectedPeriod === 'timeline') {
-    return []
+  if (selectedPeriod && isDayPeriod(selectedPeriod)) {
+    return mapDiographToDiories(diograph).filter(startsWithPeriod(selectedPeriod))
   }
 
-  return mapDiographToDiories(filterByPeriod(selectedPeriod, diograph))
+  return []
 }
 
 export const TimelineLens = () => {

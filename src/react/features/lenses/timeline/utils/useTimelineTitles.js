@@ -5,8 +5,8 @@ import { useDispatchActions } from '../../../../store'
 import { selectPeriod } from '../../lensesActions'
 
 import { splitPeriodToPeriods } from './splitPeriodToPeriods'
-import { filterByPeriod } from './filterByPeriod'
 import { useDiories } from '../../../diograph/utils/useDiories'
+import { startsWithPeriod } from './startsWithPeriod'
 
 export const useTimeline = () => {
   const { selectedPeriod } = useSelector((state) => state.lenses)
@@ -25,7 +25,7 @@ export const useTimeline = () => {
 const getTitle = (period, index, diograph) => {
   const [date, time] = period.split('T')
   const periodTitle = time ? `${time}:00` : date.split('-')[index]
-  const amount = Object.keys(filterByPeriod(period, diograph)).length
+  const amount = Object.values(diograph).filter(startsWithPeriod(period)).length
   return `${periodTitle} (${amount})`
 }
 

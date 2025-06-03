@@ -1,11 +1,11 @@
-import { getDefaultImage, isDefaultImage } from '../../../../../shared/getDefaultImage'
+import { isDefaultImage } from '../../../../../shared/getDefaultImage'
 import { unique } from '../../../../utils/unique'
 
 const findImage = (links) =>
   links
     .map(({ image }) => image)
     .filter(Boolean)
-    .find((image) => !isDefaultImage(image)) || getDefaultImage()
+    .find((image) => !isDefaultImage(image))
 
 const filterLinkDiograph = (timelineDate, diograph) =>
   Object.fromEntries(
@@ -37,4 +37,4 @@ const reduceToDiograph = (obj, diory) => {
 }
 
 export const getDatesDiograph = (dates, diograph) =>
-  dates.map(createDateDiory(diograph)).filter(filterByLinks).reduce(reduceToDiograph, {})
+  dates.map(createDateDiory(diograph)).reduce(reduceToDiograph, {})
