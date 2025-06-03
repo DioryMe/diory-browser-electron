@@ -1,17 +1,11 @@
-import { useSelector } from 'react-redux'
-
 import { useDispatchActions } from '../../../store'
 import { useStoryTool } from '../../tools/story'
 import { useUpdateTool } from '../../tools/update'
 import { useDeleteTool } from '../../tools/delete'
-import { resolveDiories } from '../../diograph/utils/resolveDiories'
 
 import { createLink, updateDiory } from '../../diograph/diographActions'
 
-export const useSidebarData = (storyKey) => {
-  const { diograph } = useSelector((state) => state.diograph)
-  const { story, memories } = resolveDiories({ storyKey }, diograph)
-
+export const useSidebarData = ({ story, memories }) => {
   const selectStory = useStoryTool()
   const selectUpdatedDiory = useUpdateTool()
   const selectDeletedDiory = useDeleteTool()
