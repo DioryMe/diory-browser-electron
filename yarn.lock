@@ -1406,10 +1406,10 @@
     path-browserify "^1.0.1"
     uuid "^9.0.0"
 
-"@diograph/folder-generator@^0.4.3":
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/@diograph/folder-generator/-/folder-generator-0.4.3.tgz#2e33f0948e4591547717c7542911cc762a63879c"
-  integrity sha512-7tIuSrSqLGhtv9enmmkPTZC8dQgidm0Gl8vB6zgoD3znjR7fO7v6MoWvPqA4CmeJr06rvwRVopd8iCNL3h2noQ==
+"@diograph/folder-generator@0.4.4-rc1":
+  version "0.4.4-rc1"
+  resolved "https://registry.yarnpkg.com/@diograph/folder-generator/-/folder-generator-0.4.4-rc1.tgz#45a9879aee2cfd3722230af436805660f2d41ced"
+  integrity sha512-u0b+oEwZdy8Hi0YqhPUtaJC3E+lgUDhmdpJzUoAC1wjVFybnv79CfOc17xzWgMjCA7FTxd7PmFqRfrj7YFnCkg==
   dependencies:
     "@diograph/diograph" "0.4.3"
     "@diograph/file-generator" "0.4.0"
@@ -1426,13 +1426,13 @@
     sharp "0.31.2"
     uuid "^10.0.0"
 
-"@diory/client-js@0.4.3":
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/@diory/client-js/-/client-js-0.4.3.tgz#b5c0631b925def07078697c18750e50a8de0a39c"
-  integrity sha512-D8ap9EBBp+ODDHUz7sTHxLq3+u1Be3FxVK0rNW2/S2gI4Jmr+Eo1zJ/mX7LYwmFuCVQyFLhEDLw6sI69mHFV2w==
+"@diory/client-js@0.4.4-rc1":
+  version "0.4.4-rc1"
+  resolved "https://registry.yarnpkg.com/@diory/client-js/-/client-js-0.4.4-rc1.tgz#02f6eb89f2ecf48aa1ea7b4aff40b18825510d22"
+  integrity sha512-1dCdkl0gEQvvtVh5cBgnhIB4SiGLwgrlNwKj1+zfTlvoO5qa8WyeBMXIMOaMCDUzXzu+kDzHfXz1UtErPl8E9Q==
   dependencies:
     "@diograph/diograph" "^0.4.3"
-    "@diograph/folder-generator" "^0.4.3"
+    "@diograph/folder-generator" "0.4.4-rc1"
     path-browserify "^1.0.1"
     uuid "8.3.2"
 

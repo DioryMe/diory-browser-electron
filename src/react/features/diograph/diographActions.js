@@ -70,6 +70,7 @@ export const resetDiograph =
     dispatch(updateDiograph(address))
   }
 
+const saveInProd = process.env.NODE_ENV !== 'development'
 const getDiographActions = createActions(GET_DIOGRAPH)
 export const getDiograph =
   (address) =>
@@ -78,7 +79,7 @@ export const getDiograph =
     if (!loading[address] && !loaded[address]) {
       dispatch(getDiographActions.begin({ address }))
       try {
-        await diographClient.generateDiograph(address, true)
+        await diographClient.generateDiograph(address, saveInProd)
         dispatch(updateDiograph(address))
         dispatch(getDiographActions.success({ address }))
       } catch (error) {

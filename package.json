@@ -22,7 +22,7 @@
     "@babel/preset-react": "^7.17.12",
     "@babel/register": "^7.17.7",
     "@diograph/local-client": "^0.4.1",
-    "@diory/client-js": "0.4.3",
+    "@diory/client-js": "0.4.4-rc1",
     "@storybook/addon-actions": "^6.5.9",
     "@storybook/addon-links": "^6.5.9",
     "@storybook/addons": "^6.5.9",
