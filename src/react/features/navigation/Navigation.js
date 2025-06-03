@@ -1,11 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
 import { useDispatchActions, useSelector } from '../../store'
+import { useSaveHomeAddress } from '../home/useSaveHomeAddress'
 
 import { selectStory } from './navigationActions'
 
-import NavigationBar from './components/NavigationBar'
+import { NavigationBar } from './components/NavigationBar'
 import { MenuItem } from '../../components/MenuItem'
 import { DiographNavigation } from './DiographNavigation'
 import { LensesNavigation } from './LensesNavigation'
@@ -20,15 +22,36 @@ const useHomeButton = () => {
   }
 }
 
+const useChangeHomeButton = () => {
+  const { onClick } = useSaveHomeAddress()
+  return {
+    icon: 'cross',
+    onClick,
+  }
+}
+
+const NavigationContent = ({ children }) => (
+  <Pane alignSelf="center" display="flex" flexDirection="row">
+    {children}
+  </Pane>
+)
+
+NavigationContent.propTypes = {
+  children: PropTypes.node,
+}
+
 export const Navigation = () => (
   <NavigationBar>
-    <Pane alignSelf="center" display="flex" flexDirection="row">
+    <NavigationContent>
       <SideBarToggle side="left" />
       <MenuItem fontWeight="bold" {...useHomeButton()} />
-    </Pane>
-    <Pane alignSelf="center" marginRight={8} display="flex" flexDirection="row">
+    </NavigationContent>
+    <NavigationContent>
       <DiographNavigation />
-    </Pane>
-    <LensesNavigation />
+    </NavigationContent>
+    <NavigationContent>
+      <LensesNavigation />
+      <MenuItem fontWeight="bold" {...useChangeHomeButton()} />
+    </NavigationContent>
   </NavigationBar>
 )

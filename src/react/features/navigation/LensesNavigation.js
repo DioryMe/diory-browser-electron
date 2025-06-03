@@ -1,5 +1,4 @@
 import React from 'react'
-import { Pane } from 'evergreen-ui'
 
 import { useDispatchActions, useSelector } from '../../store'
 import { useSideBar } from '../sideBar/useSideBar'
@@ -29,11 +28,11 @@ export const useLensesNavigation = () => {
 const LensesNavigation = () => {
   const { buttons } = useLensesNavigation()
   return (
-    <Pane alignSelf="center" marginRight={8} display="flex" flexDirection="row">
+    <>
       {buttons.map((button) => (
         <MenuItem {...button} />
       ))}
-    </Pane>
+    </>
   )
 }
 

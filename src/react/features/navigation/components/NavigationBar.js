@@ -21,4 +21,4 @@ NavigationBar.propTypes = {
   children: PropTypes.node,
 }
 
-export default NavigationBar
+export { NavigationBar }
