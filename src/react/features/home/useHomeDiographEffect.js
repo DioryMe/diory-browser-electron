@@ -4,7 +4,7 @@ import { useDispatchActions, useSelector } from '../../store'
 import { selectStory } from '../navigation/navigationActions'
 import { getDiograph } from '../diograph/diographActions'
 
-export const useHomeEffect = () => {
+export const useHomeDiographEffect = () => {
   const { address } = useSelector((state) => state.home)
 
   const { dispatch } = useDispatchActions()

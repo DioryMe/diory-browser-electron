@@ -1,14 +1,19 @@
 import React from 'react'
 import { useSelector } from '../../store'
-import { useGetHomeConnectionEffect } from './useGetHomeConnectionEffect'
-import { useHomeEffect } from './useHomeEffect'
+import { useGetHomeAddressEffect } from './useGetHomeAddressEffect'
+import { useHomeDiographEffect } from './useHomeDiographEffect'
 
 import HomeView from './HomeView'
+import { useSaveHomeAddress } from './useSaveHomeAddress'
 
 export const Home = () => {
-  useGetHomeConnectionEffect()
-  useHomeEffect()
+  useGetHomeAddressEffect()
+  useHomeDiographEffect()
+
+  // TODO initialiseHomeDiograph()
 
   const { initializing, address } = useSelector((state) => state.home)
-  return address ? null : <HomeView initializing={initializing} />
+  const { onClick } = useSaveHomeAddress()
+
+  return address ? null : <HomeView initializing={initializing} onClick={onClick} />
 }
