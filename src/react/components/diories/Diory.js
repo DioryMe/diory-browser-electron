@@ -3,7 +3,10 @@ import PropTypes from 'prop-types'
 import Box from 'ui-box'
 import { Pane, Icon } from 'evergreen-ui'
 
-import Image from './Image'
+import { Image } from './Image'
+import { GridImage } from './GridImage'
+import { isDefaultImage } from '../../../shared/getDefaultImage'
+import { Gradient } from './Gradient'
 
 const defaultStyle = {
   container: {
@@ -13,12 +16,12 @@ const defaultStyle = {
     overflow: 'hidden',
   },
   text: {
-    position: 'relative',
+    position: 'absolute',
     padding: '16px',
     color: 'rgba(255, 255, 255, 0.7)',
     fontWeight: 'bold',
   },
-  links: {
+  topCorner: {
     position: 'absolute',
     padding: '16px',
     color: 'rgba(255, 255, 255, 0.7)',
@@ -28,8 +31,25 @@ const defaultStyle = {
   },
 }
 
-const Diory = ({ diory, onClick, children, ...props }) => {
-  const { id, text, image, style: dioryStyle = {}, data, links } = diory
+const buttonStyles = {
+  width: '18px',
+  height: '18px',
+  textAlign: 'center',
+  border: '3px solid rgba(255, 255, 255, 0.6)',
+}
+
+const SelectButton = ({ diory, onClick }) =>
+  <Pane
+    {...buttonStyles}
+    backgroundColor={diory.selected ? 'rgba(255, 255, 255, 0.6)' : ''}
+    onClick={(event) => {
+      event.stopPropagation()
+      onClick()
+    }}
+  />
+
+const Diory = ({ diory, isGridImage, onSelect, onClick, children, ...props }) => {
+  const { id, text, image, style: dioryStyle = {}, data, links, selected } = diory
   const {
     image: styleImage,
     text: styleText,
@@ -49,14 +69,8 @@ const Diory = ({ diory, onClick, children, ...props }) => {
       onClick={(event) => onClick && onClick({ diory, event })}
     >
       <Box {...defaultStyle.container} background={background}>
-        {image && (
-          <Image
-            image={image}
-            style={styleImage}
-            gradient={Boolean(text) && !/^data:/.exec(image)}
-            gradientRgba="0, 0, 0, 0.2"
-          />
-        )}
+        {!isGridImage && image && <Image image={image} style={styleImage} />}
+        {text && image && !isDefaultImage(image) && <Gradient />}
         {text && (
           <Box {...defaultStyle.text} {...styleText}>
             {text}
@@ -67,13 +81,18 @@ const Diory = ({ diory, onClick, children, ...props }) => {
             <Icon key="icon" size={80} style={{ width: '100%', opacity: 0.8 }} {...data} />
           </Pane>
         )}
-        {links && links.length && (
-          <Box {...defaultStyle.links} {...styleLinks}>
+        {!selected && links && links.length && (
+          <Box {...defaultStyle.topCorner} {...styleLinks}>
             {links.length}
           </Box>
         )}
+        {isGridImage && <GridImage image={image} style={styleImage} />}
+        {selected && (
+          <Box {...defaultStyle.topCorner} {...styleLinks}>
+            <SelectButton diory={diory} onClick={() => onSelect && onSelect(diory)} />
+          </Box>
+        )}
       </Box>
-      {children}
     </Box>
   )
 }
@@ -87,6 +106,7 @@ Diory.propTypes = {
     data: PropTypes.array,
     links: PropTypes.array,
   }),
+  isGridImage: PropTypes.bool,
   onClick: PropTypes.func,
   children: PropTypes.node,
 }

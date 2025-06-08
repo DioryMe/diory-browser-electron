@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { useOpenFolderButton } from '../../buttons/utils/useOpenFolderButton'
 
-import Image from '../../../components/diories/Image'
+import { Image } from '../../../components/diories/Image'
 
 const defaultStyles = {
   backgroundSize: 'contain',

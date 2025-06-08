@@ -14,6 +14,7 @@ const backgroundStyle = {
   width: '100%',
   height: '100%',
   zIndex: -1000,
+  opacity: 0.9,
 }
 
 const BackgroundDiory = ({ diory, children, ...styleProps }) => {

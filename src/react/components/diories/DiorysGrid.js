@@ -5,6 +5,8 @@ import { Pane } from 'evergreen-ui'
 import GridItem from '../GridItem'
 import DragDrop from '../DragDrop'
 import Diory from './Diory'
+import Fullscreen from '../Fullscreen'
+import Icon from '../Icon'
 
 const DiorysGrid = forwardRef(
   (
@@ -17,6 +19,7 @@ const DiorysGrid = forwardRef(
       onDrop,
       onBackgroundClick,
       onBackgroundDrop,
+      onSelect,
       ...props
     },
     ref
@@ -39,15 +42,17 @@ const DiorysGrid = forwardRef(
       {diorys.map((diory) => (
         <GridItem
           key={diory.key}
-          flex="1 1 360px"
+          flex="1 1 auto"
           height={240}
+          minWidth={240}
+          maxWidth={760}
           margin={24}
           alignSelf="center"
           scrollIntoView={diory.key === scrollIntoViewId}
           {...itemStyle}
         >
           <DragDrop diory={diory} onDrop={onDrop}>
-            <Diory diory={diory} onClick={onClick} aria-controls={`panel-${diory.id}`} />
+            <Diory diory={diory} isGridImage onClick={onClick} onSelect={onSelect} aria-controls={`panel-${diory.id}`}></Diory>
           </DragDrop>
         </GridItem>
       ))}
@@ -62,6 +67,7 @@ DiorysGrid.propTypes = {
   scrollIntoViewId: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired,
   onBackgroundClick: PropTypes.func,
   onBackgroundDrop: PropTypes.func,
 }
