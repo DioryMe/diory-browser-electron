@@ -19,15 +19,16 @@ const DiographView = ({
   onDrop,
   onStoryClick,
   onMemoryClick,
+  onSelect,
 }) => {
   const storyRef = useRef()
 
-  useScrollToTopOnStoryChange(story, storyRef)
+  // useScrollToTopOnStoryChange(story, storyRef)
 
   return story ? (
     <>
       <BackgroundDiory diory={story} />
-      <Fullscreen>
+      <Fullscreen padding={24}>
         <div ref={storyRef} />
         <Content />
         <DiorysGrid
@@ -36,6 +37,7 @@ const DiographView = ({
           scrollIntoViewId={scrollIntoViewId}
           onClick={onMemoryClick}
           onDrop={onDrop}
+          onSelect={onSelect}
           onBackgroundClick={onStoryClick}
           onBackgroundDrop={onDrop}
         />

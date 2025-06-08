@@ -1,5 +1,5 @@
 import React from 'react'
-import { Panel } from 'react-resizable-panels'
+import { useSelector } from 'react-redux'
 
 import { useDispatchActions } from '../../store'
 import { useDiographEffect } from './useDiographEffect'
@@ -14,9 +14,11 @@ import { useStoryTool } from '../tools/story'
 import { useUpdateTool } from '../tools/update'
 
 import { createLink } from './diographActions'
+import { selectDiory } from '../navigation/navigationActions'
 
 import NavigationToSide from './components/NavigationToSide'
 import DiographView from './components/DiographView'
+import { Pane } from 'evergreen-ui'
 
 export const useDiographTools = () => {
   const { forward = [] } = useNavigation('diory')
@@ -39,23 +41,35 @@ export const useDiographTools = () => {
       deleteDiory(diory)
       updateDiory(diory)
     },
+    onSelect: ({ key }) => {
+      dispatch(selectDiory({ key }))
+    },
     onDrop: ({ diory, draggedDiory }) => {
       dispatch(createLink(diory, draggedDiory))
     },
   }
 }
 
+const useSelectedDiories = () => {
+  const { selectedDiories } = useSelector((state) => state.navigation)
+  const { open } = useSelector((state) => state.buttons)
+  return {
+    mapSelected: (diory) => ({ ...diory, selected: open ? !!selectedDiories[diory.key] : null }),
+  }
+}
+
 export const Diograph = () => {
   useDiographEffect()
 
-  const diograph = useDiories()
+  const { story, memories } = useDiories()
   const { goLeft, goRight } = useGoSide()
+  const { mapSelected } = useSelectedDiories()
 
   return (
-    <Panel minSize={20} style={{ position: 'relative' }}>
+    <Pane height="100%" position="relative">
       <NavigationToSide left onClick={goLeft} />
-      <DiographView {...diograph} {...useDiographTools()} />
+      <DiographView story={story} memories={memories.map(mapSelected)} {...useDiographTools()} />
       <NavigationToSide right onClick={goRight} />
-    </Panel>
+    </Pane>
   )
 }

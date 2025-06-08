@@ -55,10 +55,29 @@ export const deleteLink =
 export const deleteLinks =
   (deletedLinks) =>
   (dispatch, getState, { diographClient }) => {
-    // FIX: Delete link
-
     deletedLinks.forEach(({ fromDiory, toDiory }) => {
-      diographClient.getDiograph(fromDiory.key).getDiory(fromDiory).removeLink(toDiory)
+      console.log(diographClient.getDiograph(fromDiory.key).getDiory(fromDiory))
+      console.log(toDiory)
+      try {
+        // Id
+        diographClient.getDiograph(fromDiory.key).getDiory(fromDiory).removeLink(toDiory)
+      } catch (error) {
+        console.log(error)
+      }
+      try {
+        // Folder link
+        const id = `${toDiory.key.split('/').slice(0, -1).join('/')}/`
+        diographClient.getDiograph(fromDiory.key).getDiory(fromDiory).removeLink({ id })
+      } catch (error) {
+        console.log(error)
+      }
+      try {
+        // Relative link
+        const id = `/${toDiory.key.split('/').at(-2)}/`
+        diographClient.getDiograph(fromDiory.key).getDiory(fromDiory).removeLink({ id })
+      } catch (error) {
+        console.log(error)
+      }
     })
     dispatch(updateDiograph(deletedLinks[0].fromDiory.key))
   }

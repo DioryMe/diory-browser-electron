@@ -2,6 +2,7 @@ import {
   SELECT_CONTEXT,
   SELECT_STORY,
   SELECT_MEMORY,
+  SELECT_DIORY,
   GO_FORWARD,
   GO_BACKWARD,
   GO_HOME,
@@ -20,6 +21,11 @@ export const selectStory = ({ key }) => ({
 
 export const selectMemory = ({ key } = {}) => ({
   type: SELECT_MEMORY,
+  payload: { key },
+})
+
+export const selectDiory = ({ key } = {}) => ({
+  type: SELECT_DIORY,
   payload: { key },
 })
 

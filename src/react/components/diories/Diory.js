@@ -81,13 +81,13 @@ const Diory = ({ diory, isGridImage, onSelect, onClick, children, ...props }) =>
             <Icon key="icon" size={80} style={{ width: '100%', opacity: 0.8 }} {...data} />
           </Pane>
         )}
-        {!selected && links && links.length && (
+        {selected == null && links && links.length && (
           <Box {...defaultStyle.topCorner} {...styleLinks}>
             {links.length}
           </Box>
         )}
         {isGridImage && <GridImage image={image} style={styleImage} />}
-        {selected && (
+        {selected != null && (
           <Box {...defaultStyle.topCorner} {...styleLinks}>
             <SelectButton diory={diory} onClick={() => onSelect && onSelect(diory)} />
           </Box>

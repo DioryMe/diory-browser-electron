@@ -1,20 +1,17 @@
 import { useDiories } from '../../../diograph/utils/useDiories'
 import { useContextDiories } from '../../../diograph/utils/useContextDiories'
 
-const linkedDiories = (story, memories) =>
+const getLinkedDiories = (story, memories) =>
   (memories || []).map((memory) => ({
     fromDiory: story,
     toDiory: memory,
   }))
 
-const reverseLinkedDiories = (story, contexts) =>
+const getReverseLinkedDiories = (story, contexts) =>
   (contexts || []).map((context) => ({
     fromDiory: context,
     toDiory: story,
   }))
-
-const composeDeletedLinks = (story, memories, contexts) =>
-  linkedDiories(story, memories).concat(reverseLinkedDiories(story, contexts))
 
 const isFocusDeleted = (focusDiory, linkDiory) => {
   if (focusDiory && linkDiory && focusDiory.id === linkDiory.id) {
@@ -28,15 +25,21 @@ const isFocusDeleted = (focusDiory, linkDiory) => {
   return false
 }
 
-export const useDeletedLinks = () => {
+export const useDeletedDiories = () => {
   const { story, memory, memories } = useDiories()
   const { contexts } = useContextDiories()
-  let deletedLinks
+
   if (isFocusDeleted(story, memory)) {
-    deletedLinks = composeDeletedLinks(story, memories, contexts)
-  } else {
-    deletedLinks = [{ fromDiory: story, toDiory: memory }]
+    const linkedDiories = getLinkedDiories(story, memory)
+    const reverseLinkedDiories = getReverseLinkedDiories(story, contexts)
+
+    return {
+      diory: story,
+      links: linkedDiories.concat(reverseLinkedDiories),
+    }
   }
 
-  return deletedLinks
+  return {
+    links: [{ fromDiory: story, toDiory: memory }],
+  }
 }
