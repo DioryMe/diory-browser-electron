@@ -1,2 +1,4 @@
-export const startsWithPeriod = (selectedPeriod) => ({ date })  =>
-  date && date.startsWith(selectedPeriod)
+export const startsWithPeriod =
+  (selectedPeriod) =>
+  ({ date }) =>
+    date && date.startsWith(selectedPeriod)

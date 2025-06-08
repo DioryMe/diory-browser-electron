@@ -6,6 +6,9 @@ import { useSideBar } from '../sideBar/useSideBar'
 import { selectLens } from '../lenses/lensesActions'
 
 import { MenuItem } from '../../components/MenuItem'
+import { NavigationContent } from './NavigationContent'
+import { NavigationBar } from './components/NavigationBar'
+import { SideBarToggleButton } from '../sideBar/components/SideBarToggleButton'
 
 export const useLensesNavigation = () => {
   const { selectedLensId, buttons } = useSelector((state) => state.lenses)
@@ -28,11 +31,16 @@ export const useLensesNavigation = () => {
 const LensesNavigation = () => {
   const { buttons } = useLensesNavigation()
   return (
-    <>
-      {buttons.map((button) => (
-        <MenuItem {...button} />
-      ))}
-    </>
+    <NavigationBar>
+      <NavigationContent>
+        <SideBarToggleButton side="right" />
+      </NavigationContent>
+      <NavigationContent>
+        {buttons.map((button) => (
+          <MenuItem {...button} />
+        ))}
+      </NavigationContent>
+    </NavigationBar>
   )
 }
 

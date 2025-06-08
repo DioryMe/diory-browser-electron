@@ -2,15 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
-const NavigationBar = ({ children, ...props }) => (
+const NavigationBar = ({ side, children, ...props }) => (
   <Pane
-    display="flex"
-    justifyContent="space-between"
-    padding={8}
-    background="#222"
     zIndex={10}
-    position="absolute"
-    width="100%"
+    flex="0 0 44px"
+    display="flex"
+    background="#222"
+    padding={8}
+    justifyContent={side || 'space-between'}
     {...props}
   >
     {children}

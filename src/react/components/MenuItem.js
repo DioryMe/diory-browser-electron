@@ -8,6 +8,7 @@ const MenuItem = ({ id, text, icon, amount, date, isSelected, onClick, ...props 
     position="relative"
     color={isSelected ? 'white' : 'grey'}
     alignSelf="center"
+    margin="auto"
     padding={6}
     cursor="pointer"
     fontSize={12}

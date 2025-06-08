@@ -8,7 +8,7 @@ import {
 import { createReducer } from '../../store'
 
 const initialState = {
-  selectedLensId: null,
+  selectedLensId: 'map',
   selectedPeriod: null,
   buttons: {},
   query: '',

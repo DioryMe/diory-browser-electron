@@ -1,29 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
-import { SideBarPanel } from './components/SideBarPanel'
-import { SideBarContainer } from '../../components/SideBarContainer'
 import { useSideBar } from './useSideBar'
 
-const SideBar = ({ side, children }) => {
-  const { showSideBar } = useSideBar(side)
+import { SideBarResize } from './components/SideBarResize'
+import { SideBarContainer } from '../../components/SideBarContainer'
+import { SideBarToggle } from './components/SideBarToggle'
+import { SideBarToggleButton } from './components/SideBarToggleButton'
 
-  const [showContent, setShowContent] = useState(false)
-  useEffect(() => {
-    if (!showSideBar) {
-      setShowContent(false)
-    }
-    if (showSideBar) {
-      setTimeout(() => {
-        setShowContent(showSideBar)
-      }, 10)
-    }
-  }, [showSideBar])
+const SideBar = ({ side, children }) => {
+  const { sideBarWidth, showSideBar } = useSideBar(side)
 
   return (
-    <SideBarPanel side={side}>
-      <SideBarContainer>{showContent && children}</SideBarContainer>
-    </SideBarPanel>
+    <SideBarResize width={sideBarWidth}>
+      <SideBarContainer>
+        <SideBarToggle show={showSideBar}>{children}</SideBarToggle>
+      </SideBarContainer>
+    </SideBarResize>
   )
 }
 

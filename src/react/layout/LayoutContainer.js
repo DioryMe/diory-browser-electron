@@ -19,11 +19,9 @@ const LayoutContainer = ({ children }) => {
   }
 
   return (
-    <Fullscreen top={44}>
-      <PanelGroup direction="horizontal" onLayout={debounce(onWidthChange, 100)}>
-        {children}
-      </PanelGroup>
-    </Fullscreen>
+    <PanelGroup direction="horizontal" onLayout={debounce(onWidthChange, 100)}>
+      {children}
+    </PanelGroup>
   )
 }
 

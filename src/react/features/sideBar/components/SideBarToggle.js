@@ -1,26 +1,31 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
-import { useSideBar } from '../useSideBar'
-import { MenuItem } from '../../../components/MenuItem'
+const useShowContent = (show) => {
+  const [showContent, setShowContent] = useState(false)
+  useEffect(() => {
+    if (!show) {
+      setShowContent(false)
+    }
+    if (show) {
+      setTimeout(() => {
+        setShowContent(show)
+      }, 10)
+    }
+  }, [show])
 
-const SideBarToggle = ({ side }) => {
-  const { showSideBar, toggleSideBar } = useSideBar(side)
+  return { showContent }
+}
 
-  const closeIcon = side === 'left' ? 'right' : 'left'
-  const icon = showSideBar ? side : closeIcon
-  return (
-    <MenuItem
-      icon={`chevron-${icon}`}
-      onClick={toggleSideBar}
-      alignSelf={side === 'left' ? 'flex-end' : 'flex-start'}
-      data-testid="toggleSideBar"
-    />
-  )
+const SideBarToggle = ({ show, children }) => {
+  const { showContent } = useShowContent(show)
+
+  return showContent ? children : null
 }
 
 SideBarToggle.propTypes = {
-  side: PropTypes.string.isRequired,
+  show: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
 }
 
 export { SideBarToggle }

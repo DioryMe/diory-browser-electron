@@ -1,10 +1,22 @@
 import { useDispatchActions, useSelector } from '../../../store'
 
 import { openButtons, activateButton, inactivateButton } from '../buttonsActions'
+import { selectDiory } from '../../navigation/navigationActions'
+
+const useInactivateButton = () => {
+  const { dispatch } = useDispatchActions()
+  return {
+    inactivateButton: () => {
+      dispatch(inactivateButton())
+      dispatch(selectDiory({ key: null }))
+    },
+  }
+}
 
 export const useButtonBar = () => {
   const { open, active, buttons } = useSelector((state) => state.buttons)
 
+  const { inactivateButton } = useInactivateButton()
   const { dispatch } = useDispatchActions()
 
   const toggleButton = {
@@ -14,7 +26,7 @@ export const useButtonBar = () => {
       testid: 'tools',
     },
     onClick: () => {
-      dispatch(open ? inactivateButton() : openButtons())
+      open ? inactivateButton() : dispatch(openButtons())
     },
   }
 
@@ -25,7 +37,7 @@ export const useButtonBar = () => {
       ...button,
       active: button.id === active,
       onClick: () => {
-        dispatch(button.id === active ? inactivateButton() : activateButton(button.id))
+        button.id === active ? inactivateButton() : dispatch(activateButton(button.id))
       },
     }))
 
