@@ -31,10 +31,9 @@ const DiorysGrid = forwardRef(
       display="flex"
       flexWrap="wrap"
       alignContent="flex-start"
-      paddingBottom={264}
       {...props}
     >
-      <Pane position="absolute" width="100%" height="100%" margin={0} marginBottom={-264}>
+      <Pane position="absolute" width="100%" height="100%" margin={0}>
         {background && (
           <DragDrop diory={background} onDrop={onBackgroundDrop} onClick={onBackgroundClick} />
         )}
@@ -45,14 +44,20 @@ const DiorysGrid = forwardRef(
           flex="1 1 auto"
           height={240}
           minWidth={240}
-          maxWidth={760}
+          maxWidth={564}
           margin={24}
           alignSelf="center"
           scrollIntoView={diory.key === scrollIntoViewId}
           {...itemStyle}
         >
           <DragDrop diory={diory} onDrop={onDrop}>
-            <Diory diory={diory} isGridImage onClick={onClick} onSelect={onSelect} aria-controls={`panel-${diory.id}`}></Diory>
+            <Diory
+              diory={diory}
+              isGridImage
+              onClick={onClick}
+              onSelect={onSelect}
+              aria-controls={`panel-${diory.id}`}
+            ></Diory>
           </DragDrop>
         </GridItem>
       ))}
@@ -67,7 +72,7 @@ DiorysGrid.propTypes = {
   scrollIntoViewId: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,
-  onSelect: PropTypes.func.isRequired,
+  onSelect: PropTypes.func,
   onBackgroundClick: PropTypes.func,
   onBackgroundDrop: PropTypes.func,
 }

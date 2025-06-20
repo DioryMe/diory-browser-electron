@@ -7,48 +7,59 @@ import { useLenses } from '../features/lenses/useLenses'
 
 import { Home } from '../features/home/Home'
 import { DiographNavigation } from '../features/navigation/DiographNavigation'
-import { LayoutContainer } from './LayoutContainer'
+import { PanelContainer } from '../features/sidePanel/PanelContainer'
 import { Favorites } from '../features/favorites/Favorites'
 import { Diograph } from '../features/diograph/Diograph'
 import { Lenses } from '../features/lenses/Lenses'
 import { Hand } from '../features/hand/Hand'
 import { Buttons } from '../features/buttons/Buttons'
 import { Tools } from '../features/tools/Tools'
-import { SideBar } from '../features/sideBar/SideBar'
+import { SidePanel } from '../features/sidePanel/SidePanel'
 import Fullscreen from '../components/Fullscreen'
 import { LensesNavigation } from '../features/navigation/LensesNavigation'
 import { DiosphereNavigation } from '../features/navigation/DiosphereNavigation'
+import { useSidePanel } from '../features/sidePanel/useSidePanel'
 
 const Root = () => {
   useLenses()
+
+  const { onWidthChange: onWidthChangeLeft } = useSidePanel('left')
+  const { onWidthChange: onWidthChangeRight } = useSidePanel('right')
+
+  const onWidthChange = (widths) => {
+    onWidthChangeLeft(widths[0])
+    onWidthChangeRight(widths[widths.length - 1])
+  }
+
   return (
     <>
       <Home />
       <DndProvider backend={HTML5Backend}>
         <Fullscreen>
-          <PanelGroup direction="vertical">
+          <PanelContainer direction="vertical" sidePanels={['', 'bottom']}>
             <Panel>
-              <LayoutContainer>
-                <SideBar side="left">
+              <PanelContainer direction="horizontal" sidePanels={['left', '', 'right']}>
+                <SidePanel side="left">
                   <DiosphereNavigation />
                   <Favorites />
-                  <Hand />
-                </SideBar>
+                </SidePanel>
                 <PanelResizeHandle />
                 <Panel minSize={20} style={{ display: 'flex', flexDirection: 'column' }}>
                   <DiographNavigation />
                   <Diograph />
                 </Panel>
                 <PanelResizeHandle />
-                <SideBar side="right">
+                <SidePanel side="right">
                   <LensesNavigation />
                   <Lenses />
-                </SideBar>
-              </LayoutContainer>
+                </SidePanel>
+              </PanelContainer>
             </Panel>
             <PanelResizeHandle />
-            <SideBar side="bottom"></SideBar>
-          </PanelGroup>
+            <SidePanel side="bottom">
+              <Hand />
+            </SidePanel>
+          </PanelContainer>
         </Fullscreen>
       </DndProvider>
       <Buttons />

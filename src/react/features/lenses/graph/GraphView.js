@@ -39,8 +39,8 @@ const useLinkDistance = (ref) => {
   }, [ref])
 }
 
-const useDisplay = (sideBarWidth) => {
-  const width = (sideBarWidth * window.innerWidth) / 100
+const useDisplay = (sidePanelWidth) => {
+  const width = (sidePanelWidth * window.innerWidth) / 100
   const height = window.innerHeight
 
   const [displayWidth, setDisplayWidth] = useState(width)
@@ -86,13 +86,13 @@ const useFocusToStoryNode = (fgRef, storyNode) => {
 // - larger size
 // - larger link distance
 
-const GraphView = ({ storyNode, data, onDioryClick, sideBarWidth }) => {
+const GraphView = ({ storyNode, data, onDioryClick, sidePanelWidth }) => {
   const fgRef = useRef()
 
   useLinkDistance(fgRef)
   useFocusToStoryNode(fgRef, storyNode)
 
-  const { displayHeight, displayWidth } = useDisplay(sideBarWidth)
+  const { displayHeight, displayWidth } = useDisplay(sidePanelWidth)
   return (
     <ForceGraph3D
       ref={fgRef}
@@ -126,7 +126,7 @@ GraphView.propTypes = {
   storyNode: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
   onDioryClick: PropTypes.func.isRequired,
-  sideBarWidth: PropTypes.number,
+  sidePanelWidth: PropTypes.number,
 }
 
 export default GraphView

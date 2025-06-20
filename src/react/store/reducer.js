@@ -9,7 +9,7 @@ import diograph from '../features/diograph/diographReducer'
 import lenses from '../features/lenses/lensesReducer'
 import modal from '../features/modal/modalReducer'
 import navigation from '../features/navigation/navigationReducer'
-import sideBar from '../features/sideBar/sideBarReducer'
+import sidePanel from '../features/sidePanel/sidePanelReducer'
 
 const appReducer = combineReducers({
   home,
@@ -19,7 +19,7 @@ const appReducer = combineReducers({
   lenses,
   modal,
   navigation,
-  sideBar,
+  sidePanel,
 })
 
 export const reducer = (state, action) => {

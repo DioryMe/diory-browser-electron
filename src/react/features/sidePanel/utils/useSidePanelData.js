@@ -5,7 +5,7 @@ import { useDeleteTool } from '../../tools/delete'
 
 import { createLink, updateDiory } from '../../diograph/diographActions'
 
-export const useSidebarData = ({ story, memories }) => {
+export const useSidePanelData = ({ story, memories }) => {
   const selectStory = useStoryTool()
   const selectUpdatedDiory = useUpdateTool()
   const selectDeletedDiory = useDeleteTool()

@@ -25,7 +25,7 @@ export const useGraphTools = () => {
 export const GraphLens = () => {
   const { diograph } = useSelector((state) => state.diograph)
   const { storyKey } = useSelector((state) => state.navigation)
-  const { sideBarWidth } = useSelector((state) => state.sideBar)
+  const { sidePanelWidths } = useSelector((state) => state.sidePanel)
 
   const graphData = useGraphData(diograph)
   const tools = useGraphTools()
@@ -36,7 +36,7 @@ export const GraphLens = () => {
       storyNode={storyNode}
       data={graphData}
       {...tools}
-      sideBarWidth={sideBarWidth.right}
+      sidePanelWidth={sidePanelWidths.right}
     />
   )
 }

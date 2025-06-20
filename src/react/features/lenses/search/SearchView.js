@@ -5,7 +5,7 @@ import { Pane } from 'evergreen-ui'
 import CreateDioryButton from '../../../components/diories/CreateDioryButton'
 import DiorysGrid from '../../../components/diories/DiorysGrid'
 import Fullscreen from '../../../components/Fullscreen'
-import { SideBarTitle } from '../../sideBar/components/SideBarTitle'
+import { SidePanelTitle } from '../../sidePanel/components/SidePanelTitle'
 
 const scaleContainer = {
   transformOrigin: 'top left',
@@ -27,7 +27,7 @@ const SearchView = ({
   return (
     <>
       <Pane padding={6}>
-        <SideBarTitle text="SEARCH" />
+        <SidePanelTitle text="SEARCH" />
         <Pane padding={6}>{children}</Pane>
         {query && (
           <Pane padding={6}>

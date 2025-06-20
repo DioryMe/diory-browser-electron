@@ -12,17 +12,26 @@ const defaultStyle = {
 }
 
 const GridImage = ({ image, children, ...props }) => {
-  const [isBroken, setIsBroken] = useState(false);
+  const [isBroken, setIsBroken] = useState(false)
 
   if (isBroken) {
-    return <Diory diory={{
-      text: "Image not found",
-      image: getDefaultImage() }}
-    />
+    return (
+      <Diory
+        diory={{
+          text: 'Image not found',
+          image: getDefaultImage(),
+        }}
+      />
+    )
   }
 
   return (
-    <img alt={image} src={image} style={{ ...defaultStyle, ...props }} onError={() => setIsBroken(true)} />
+    <img
+      alt={image}
+      src={image}
+      style={{ ...defaultStyle, ...props }}
+      onError={() => setIsBroken(true)}
+    />
   )
 }
 

@@ -1,26 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { useSideBar } from '../useSideBar'
+import { useSidePanel } from '../useSidePanel'
 import { MenuItem } from '../../../components/MenuItem'
 
-const SideBarToggleButton = ({ side }) => {
-  const { showSideBar, toggleSideBar } = useSideBar(side)
+const SidePanelToggleButton = ({ side }) => {
+  const { showSidePanel, toggleSidePanel } = useSidePanel(side)
 
   const closeIcon = side === 'left' ? 'right' : 'left'
-  const icon = showSideBar ? side : closeIcon
+  const icon = showSidePanel ? side : closeIcon
   return (
     <MenuItem
       icon={`chevron-${icon}`}
-      onClick={toggleSideBar}
+      onClick={toggleSidePanel}
       alignSelf={side === 'left' ? 'flex-end' : 'flex-start'}
-      data-testid="toggleSideBar"
+      data-testid="toggleSidePanel"
     />
   )
 }
 
-SideBarToggleButton.propTypes = {
+SidePanelToggleButton.propTypes = {
   side: PropTypes.string.isRequired,
 }
 
-export { SideBarToggleButton }
+export { SidePanelToggleButton }

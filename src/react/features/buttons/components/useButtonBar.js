@@ -2,13 +2,27 @@ import { useDispatchActions, useSelector } from '../../../store'
 
 import { openButtons, activateButton, inactivateButton } from '../buttonsActions'
 import { selectDiory } from '../../navigation/navigationActions'
+import { useSidePanel } from '../../sidePanel/useSidePanel'
 
 const useInactivateButton = () => {
+  const { closeSidePanel } = useSidePanel('bottom')
   const { dispatch } = useDispatchActions()
   return {
     inactivateButton: () => {
       dispatch(inactivateButton())
       dispatch(selectDiory({ key: null }))
+      closeSidePanel()
+    },
+  }
+}
+
+const useOpenButtons = () => {
+  const { openSidePanel } = useSidePanel('bottom')
+  const { dispatch } = useDispatchActions()
+  return {
+    openButtons: () => {
+      dispatch(openButtons())
+      openSidePanel()
     },
   }
 }
@@ -17,6 +31,7 @@ export const useButtonBar = () => {
   const { open, active, buttons } = useSelector((state) => state.buttons)
 
   const { inactivateButton } = useInactivateButton()
+  const { openButtons } = useOpenButtons()
   const { dispatch } = useDispatchActions()
 
   const toggleButton = {
@@ -26,7 +41,7 @@ export const useButtonBar = () => {
       testid: 'tools',
     },
     onClick: () => {
-      open ? inactivateButton() : dispatch(openButtons())
+      open ? inactivateButton() : openButtons()
     },
   }
 

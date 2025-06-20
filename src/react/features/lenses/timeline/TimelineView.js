@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
-import { SideBarTitle } from '../../sideBar/components/SideBarTitle'
+import { SidePanelTitle } from '../../sidePanel/components/SidePanelTitle'
 import Fullscreen from '../../../components/Fullscreen'
 import DiorysGrid from '../../../components/diories/DiorysGrid'
 import Diory from '../../../components/diories/Diory'
@@ -35,11 +35,11 @@ const TimelineView = ({
   return (
     <>
       <Pane display="flex" flexDirection="row" flexWrap="wrap" paddingLeft={14}>
-        <SideBarTitle {...timeline} onClick={onPeriodClick} />
+        <SidePanelTitle {...timeline} onClick={onPeriodClick} />
       </Pane>
       <Pane position="relative" flex={0} display="flex" flexWrap="wrap" paddingLeft={14}>
         {titles.map((title) => (
-          <SideBarTitle key={title.id} {...title} onClick={onPeriodClick} />
+          <SidePanelTitle key={title.id} {...title} onClick={onPeriodClick} />
         ))}
       </Pane>
 
@@ -48,7 +48,7 @@ const TimelineView = ({
           <Pane position="relative" flex={0} display="flex" flexWrap="wrap" padding={8}>
             {periods.map(({ id, label, image, amount }) => (
               <Pane {...itemStyle} paddingBottom={24} onClick={() => onPeriodClick({ id })}>
-                <SideBarTitle text={label} amount={amount} />
+                <SidePanelTitle text={label} amount={amount} />
                 <Diory diory={{ id, image }}></Diory>
               </Pane>
             ))}

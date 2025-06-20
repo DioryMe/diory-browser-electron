@@ -7,7 +7,6 @@ import { inactivateButton } from '../../buttons/buttonsActions'
 import { selectDiory } from '../../navigation/navigationActions'
 import { deleteLinks } from '../../diograph/diographActions'
 
-
 import { DELETE_TOOL_BUTTON } from './buttons'
 
 export const useDeleteSelectedDioriesEffect = () => {

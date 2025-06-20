@@ -24,6 +24,7 @@ const Button = ({ style = {}, data, active, onClick }) => (
       margin={6}
       borderRadius="50%"
       border="none"
+      backgroundColor="lightgray"
       {...style}
     />
   </div>

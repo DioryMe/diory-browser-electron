@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Panel } from 'react-resizable-panels'
 
-const SideBarResize = ({ width, children }) => {
+const SidePanelSize = ({ width, children }) => {
   const ref = useRef()
   useEffect(() => {
     if (ref.current) {
@@ -17,9 +17,9 @@ const SideBarResize = ({ width, children }) => {
   )
 }
 
-SideBarResize.propTypes = {
+SidePanelSize.propTypes = {
   width: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 }
 
-export { SideBarResize }
+export { SidePanelSize }

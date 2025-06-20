@@ -1,18 +1,17 @@
 import React from 'react'
 
 import { useDispatchActions, useSelector } from '../../store'
-import { useSideBar } from '../sideBar/useSideBar'
+import { useSidePanel } from '../sidePanel/useSidePanel'
 
 import { selectLens } from '../lenses/lensesActions'
 
 import { MenuItem } from '../../components/MenuItem'
 import { NavigationContent } from './NavigationContent'
 import { NavigationBar } from './components/NavigationBar'
-import { SideBarToggleButton } from '../sideBar/components/SideBarToggleButton'
 
 export const useLensesNavigation = () => {
   const { selectedLensId, buttons } = useSelector((state) => state.lenses)
-  const { openSideBar, closeSideBar } = useSideBar('right')
+  const { openSidePanel, closeSidePanel } = useSidePanel('right')
   const { dispatch } = useDispatchActions()
   return {
     buttons: Object.values(buttons).map(({ id, icon }) => ({
@@ -21,7 +20,7 @@ export const useLensesNavigation = () => {
       onClick: () => {
         const newSelectedLensId = id === selectedLensId ? null : id
         dispatch(selectLens(newSelectedLensId))
-        id === selectedLensId ? closeSideBar() : openSideBar()
+        id === selectedLensId ? closeSidePanel() : openSidePanel()
       },
       isSelected: id === selectedLensId,
     })),
@@ -31,10 +30,7 @@ export const useLensesNavigation = () => {
 const LensesNavigation = () => {
   const { buttons } = useLensesNavigation()
   return (
-    <NavigationBar>
-      <NavigationContent>
-        <SideBarToggleButton side="right" />
-      </NavigationContent>
+    <NavigationBar side="right">
       <NavigationContent>
         {buttons.map((button) => (
           <MenuItem {...button} />

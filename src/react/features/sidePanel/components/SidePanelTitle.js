@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { MenuItem } from '../../../components/MenuItem'
 
-const SideBarTitle = ({ id, text, amount, isSelected, onClick }) => (
+const SidePanelTitle = ({ id, text, amount, isSelected, onClick }) => (
   <MenuItem
     text={text ? text.toUpperCase() : ''}
     amount={amount}
@@ -14,7 +14,7 @@ const SideBarTitle = ({ id, text, amount, isSelected, onClick }) => (
   />
 )
 
-SideBarTitle.propTypes = {
+SidePanelTitle.propTypes = {
   id: PropTypes.string,
   text: PropTypes.string,
   amount: PropTypes.string,
@@ -22,4 +22,4 @@ SideBarTitle.propTypes = {
   onClick: PropTypes.func,
 }
 
-export { SideBarTitle }
+export { SidePanelTitle }

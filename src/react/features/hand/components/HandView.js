@@ -4,14 +4,13 @@ import { Pane } from 'evergreen-ui'
 
 import DiorysGrid from '../../../components/diories/DiorysGrid'
 import { MenuItem } from '../../../components/MenuItem'
-import { SideBarTitle } from '../../sideBar/components/SideBarTitle'
 import Fullscreen from '../../../components/Fullscreen'
 
-const scaleContainer = {
-  transformOrigin: 'top left',
-  transform: 'scale(0.5)',
-  width: '200%',
-  height: '200%',
+const itemStyle = {
+  height: 120,
+  minWidth: 120,
+  maxWidth: 282,
+  margin: 24,
 }
 
 const HandView = ({
@@ -25,31 +24,26 @@ const HandView = ({
 }) => {
   const handRef = useRef()
   return (
-    <>
-      <Pane display="flex" flexDirection="row" paddingLeft={8}>
-        <SideBarTitle {...story} onClick={onClick} />
-        <MenuItem
-          text={memories.length ? ' Clear' : ''}
-          marginTop={4}
-          marginBottom={4}
-          onClick={onClear}
-        />
+    <Fullscreen display="flex" flexDirection="column">
+      <DiorysGrid
+        ref={handRef}
+        background={story}
+        diorys={memories}
+        scrollIntoViewId={scrollIntoViewId}
+        onClick={onClick}
+        onDrop={onDrop}
+        onBackgroundDrop={onBackgroundDrop}
+        itemStyle={itemStyle}
+        flex="1"
+      />
+      <Pane display="flex">
+        {memories.length ? (
+          <MenuItem text="CLEAR HAND" marginTop={4} marginBottom={4} onClick={onClear} />
+        ) : (
+          <MenuItem text="Drag diories to hand" marginTop={4} marginBottom={4} />
+        )}
       </Pane>
-      <Pane position="relative" flex={1}>
-        <Fullscreen>
-          <DiorysGrid
-            ref={handRef}
-            background={story}
-            diorys={memories}
-            scrollIntoViewId={scrollIntoViewId}
-            onClick={onClick}
-            onDrop={onDrop}
-            onBackgroundDrop={onBackgroundDrop}
-            {...scaleContainer}
-          />
-        </Fullscreen>
-      </Pane>
-    </>
+    </Fullscreen>
   )
 }
 

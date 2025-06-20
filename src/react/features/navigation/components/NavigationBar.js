@@ -5,10 +5,9 @@ import { Pane } from 'evergreen-ui'
 const NavigationBar = ({ side, children, ...props }) => (
   <Pane
     zIndex={10}
-    flex="0 0 44px"
+    flex="0 0 32px"
     display="flex"
     background="#222"
-    padding={8}
     justifyContent={side || 'space-between'}
     {...props}
   >

@@ -17,15 +17,15 @@ const useShowContent = (show) => {
   return { showContent }
 }
 
-const SideBarToggle = ({ show, children }) => {
+const SidePanelToggle = ({ show, children }) => {
   const { showContent } = useShowContent(show)
 
   return showContent ? children : null
 }
 
-SideBarToggle.propTypes = {
+SidePanelToggle.propTypes = {
   show: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
 }
 
-export { SideBarToggle }
+export { SidePanelToggle }

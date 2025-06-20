@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useSidebarData } from '../sideBar/utils/useSidebarData'
+import { useSidePanelData } from '../sidePanel/utils/useSidePanelData'
 import { useHomeDiographKey } from '../home/utils/useHomeDiographKey'
 import { useStoryDiories } from '../diograph/utils/useDiories'
 
@@ -13,6 +13,6 @@ export const Hand = () => {
 
   useInitialiseDiory('hand')
 
-  const sideBarData = useSidebarData({ story, memories })
-  return <HandView {...sideBarData} />
+  const sidePanelData = useSidePanelData({ story, memories })
+  return <HandView {...sidePanelData} />
 }

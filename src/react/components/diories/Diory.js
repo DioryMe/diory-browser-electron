@@ -38,7 +38,7 @@ const buttonStyles = {
   border: '3px solid rgba(255, 255, 255, 0.6)',
 }
 
-const SelectButton = ({ diory, onClick }) =>
+const SelectButton = ({ diory, onClick }) => (
   <Pane
     {...buttonStyles}
     backgroundColor={diory.selected ? 'rgba(255, 255, 255, 0.6)' : ''}
@@ -47,6 +47,7 @@ const SelectButton = ({ diory, onClick }) =>
       onClick()
     }}
   />
+)
 
 const Diory = ({ diory, isGridImage, onSelect, onClick, children, ...props }) => {
   const { id, text, image, style: dioryStyle = {}, data, links, selected } = diory
