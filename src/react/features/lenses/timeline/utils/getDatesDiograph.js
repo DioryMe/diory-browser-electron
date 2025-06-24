@@ -29,7 +29,7 @@ const createDateDiory = (diograph) => (date) => {
   }
 }
 
-const filterByLinks = ({ links }) => links && links.length
+// const filterByLinks = ({ links }) => links && links.length
 
 const reduceToDiograph = (obj, diory) => {
   obj[diory.key] = diory

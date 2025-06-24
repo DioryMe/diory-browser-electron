@@ -29,7 +29,7 @@ export const saveHomeAddress = (connection) => async (dispatch, getState) => {
       await invokeChannel(channels.SAVE_DIORY_HOME_CONNECTION, { connection })
       dispatch(saveHomeAddressActions.success({ address: `${connection}/` }))
     } catch (error) {
-      dispatch(saveHomeConnectionActions.failure(error))
+      dispatch(saveHomeAddressActions.failure(error))
     }
   }
 }

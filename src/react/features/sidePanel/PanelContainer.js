@@ -4,25 +4,43 @@ import PropTypes from 'prop-types'
 import { PanelGroup } from 'react-resizable-panels'
 
 import { debounce } from '../../utils'
-import { useSidePanel } from './useSidePanel'
+import { closeSidePanel, openSidePanel, setSidePanelWidth } from './sidePanelActions'
+import { useDispatchActions, useSelector } from '../../store'
+
+const useWidthChange = () => {
+  const { showSidePanels, sidePanelWidths } = useSelector((state) => state.sidePanel)
+
+  const { dispatch } = useDispatchActions()
+  return {
+    onWidthChange: (newWidth, side) => {
+      const sidePanelWidth = sidePanelWidths[side]
+      const showSidePanel = showSidePanels[side]
+      if (newWidth !== sidePanelWidth && newWidth !== 1) {
+        dispatch(setSidePanelWidth(side, newWidth))
+      }
+      if (newWidth > 1 && !showSidePanel) {
+        dispatch(openSidePanel(side))
+      }
+      if (newWidth === 1 && showSidePanel) {
+        dispatch(closeSidePanel(side))
+      }
+    },
+  }
+}
 
 const PanelContainer = ({ direction = 'horizontal', children, sidePanels }) => {
-  const actions = {}
-  sidePanels.forEach((sidePanel, index) => {
-    if (sidePanel) {
-      const { onWidthChange } = useSidePanel(sidePanel)
-      actions[index] = onWidthChange
-    }
-  })
+  const { onWidthChange } = useWidthChange()
 
-  const onWidthChange = (widths) => {
-    widths.forEach((width, index) => {
-      actions[index] && actions[index](width)
+  const onLayout = (widths) => {
+    widths.forEach((newWidth, index) => {
+      if (sidePanels[index]) {
+        onWidthChange(newWidth, sidePanels[index])
+      }
     })
   }
 
   return (
-    <PanelGroup direction={direction} onLayout={debounce(onWidthChange, 100)}>
+    <PanelGroup direction={direction} onLayout={debounce(onLayout, 100)}>
       {children}
     </PanelGroup>
   )

@@ -1,12 +1,16 @@
 import React from 'react'
 
+import { useSelector } from '../../store'
+import { useLenses } from './useLenses'
+
 import { GraphLens } from './graph/GraphLens'
 import { MapLens } from './map/MapLens'
 import { TimelineLens } from './timeline/TimelineLens'
 import { SearchLens } from './search/SearchLens'
-import { useSelector } from '../../store'
 
 export const Lenses = () => {
+  useLenses()
+
   const { selectedLensId } = useSelector((state) => state.lenses)
 
   switch (selectedLensId) {

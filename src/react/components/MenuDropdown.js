@@ -9,7 +9,7 @@ const MenuDropdown = ({ diory: selectedDiory, diories, onClick }) => {
 
   return (
     <Popover
-      position="bottom-left"
+      position="bottom-right"
       // eslint-disable-next-line react/no-unstable-nested-components
       content={({ close }) => (
         <Menu>

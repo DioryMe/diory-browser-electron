@@ -24,8 +24,8 @@ const SidePanelToggle = ({ show, children }) => {
 }
 
 SidePanelToggle.propTypes = {
-  show: PropTypes.bool.isRequired,
-  children: PropTypes.node.isRequired,
+  show: PropTypes.bool,
+  children: PropTypes.node,
 }
 
 export { SidePanelToggle }

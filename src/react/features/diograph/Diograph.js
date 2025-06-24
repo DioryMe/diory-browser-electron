@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
+import { Pane } from 'evergreen-ui'
 import { useDispatchActions } from '../../store'
 import { useDiographEffect } from './useDiographEffect'
 import { useDiories } from './utils/useDiories'
@@ -18,7 +19,6 @@ import { selectDiory } from '../navigation/navigationActions'
 
 import NavigationToSide from './components/NavigationToSide'
 import DiographView from './components/DiographView'
-import { Pane } from 'evergreen-ui'
 
 export const useDiographTools = () => {
   const { forward = [] } = useNavigation('diory')

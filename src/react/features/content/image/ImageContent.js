@@ -17,7 +17,6 @@ const options = {
 }
 
 const ImageContent = ({ url }) => {
-  console.log(url)
   useOpenFolderButton(url)
 
   return <Image image={url} style={defaultStyles} data-testid="image-content" {...options} />

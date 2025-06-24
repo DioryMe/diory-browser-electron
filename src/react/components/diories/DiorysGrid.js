@@ -5,8 +5,6 @@ import { Pane } from 'evergreen-ui'
 import GridItem from '../GridItem'
 import DragDrop from '../DragDrop'
 import Diory from './Diory'
-import Fullscreen from '../Fullscreen'
-import Icon from '../Icon'
 
 const DiorysGrid = forwardRef(
   (
@@ -57,7 +55,7 @@ const DiorysGrid = forwardRef(
               onClick={onClick}
               onSelect={onSelect}
               aria-controls={`panel-${diory.id}`}
-            ></Diory>
+            />
           </DragDrop>
         </GridItem>
       ))}

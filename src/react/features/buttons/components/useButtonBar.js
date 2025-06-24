@@ -47,7 +47,7 @@ export const useButtonBar = () => {
 
   const toolButtons = Object.values(buttons)
     .filter(({ data: { type } }) => type !== 'content')
-    .filter(({ id }) => !active || id == active)
+    .filter(({ id }) => !active || id === active)
     .map((button) => ({
       ...button,
       active: button.id === active,

@@ -18,7 +18,7 @@ const SidePanelSize = ({ width, children }) => {
 }
 
 SidePanelSize.propTypes = {
-  width: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired,
   children: PropTypes.node.isRequired,
 }
 

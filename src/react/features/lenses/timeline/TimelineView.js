@@ -49,7 +49,7 @@ const TimelineView = ({
             {periods.map(({ id, label, image, amount }) => (
               <Pane {...itemStyle} paddingBottom={24} onClick={() => onPeriodClick({ id })}>
                 <SidePanelTitle text={label} amount={amount} />
-                <Diory diory={{ id, image }}></Diory>
+                <Diory diory={{ id, image }} />
               </Pane>
             ))}
           </Pane>

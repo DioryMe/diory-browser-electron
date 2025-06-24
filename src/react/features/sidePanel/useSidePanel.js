@@ -20,16 +20,5 @@ export const useSidePanel = (side) => {
     closeSidePanel: () => {
       dispatch(closeSidePanel(side))
     },
-    onWidthChange: (newWidth) => {
-      if (newWidth !== sidePanelWidth && newWidth !== 1) {
-        dispatch(setSidePanelWidth(side, newWidth))
-      }
-      if (newWidth > 1 && !showSidePanel) {
-        dispatch(openSidePanel(side))
-      }
-      if (newWidth === 1 && showSidePanel) {
-        dispatch(closeSidePanel(side))
-      }
-    },
   }
 }

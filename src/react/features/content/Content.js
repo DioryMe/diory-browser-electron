@@ -1,27 +1,20 @@
 import React from 'react'
+import { Pane } from 'evergreen-ui'
 
-import ContentView from './ContentView'
-import { useDiories } from '../diograph/utils/useDiories'
+import { useContent } from './useContent'
 
-const contentStyle = {
-  position: 'relative',
-  height: '100%',
-  margin: '48px',
-}
-
-const getAddressPath = (address) => {
-  const addressArray = address.split('/') || []
-  return addressArray.slice(1, -1).join('/')
-}
+import { ContentCarousel } from './ContentCarousel'
+import { ContentView } from './ContentView'
 
 const Content = () => {
-  const { story = {} } = useDiories()
-  const { data = [] } = story
-  // TODO all contents
-  const { encodingFormat, contentUrl } = (data && data[0]) || {}
-  const path = getAddressPath(story.key)
-  const url = `${path}${contentUrl}`
-  return <ContentView url={url} type={encodingFormat} style={contentStyle} />
+  const { content, carousel } = useContent()
+  return content ? (
+    <ContentCarousel {...carousel}>
+      <Pane position="relative" height="100%">
+        <ContentView {...content} />
+      </Pane>
+    </ContentCarousel>
+  ) : null
 }
 
 export default Content

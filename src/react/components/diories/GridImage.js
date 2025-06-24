@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import Box from 'ui-box'
 import PropTypes from 'prop-types'
+
 import { getDefaultImage } from '../../../shared/getDefaultImage'
-import Diory from './Diory'
+
+import { Image } from './Image'
 
 const defaultStyle = {
   objectFit: 'cover',
@@ -11,25 +12,18 @@ const defaultStyle = {
   width: '100%',
 }
 
-const GridImage = ({ image, children, ...props }) => {
+const GridImage = ({ image, style }) => {
   const [isBroken, setIsBroken] = useState(false)
 
   if (isBroken) {
-    return (
-      <Diory
-        diory={{
-          text: 'Image not found',
-          image: getDefaultImage(),
-        }}
-      />
-    )
+    return <Image image={getDefaultImage()} />
   }
 
   return (
     <img
       alt={image}
       src={image}
-      style={{ ...defaultStyle, ...props }}
+      style={{ ...defaultStyle, ...style }}
       onError={() => setIsBroken(true)}
     />
   )
@@ -37,7 +31,7 @@ const GridImage = ({ image, children, ...props }) => {
 
 GridImage.propTypes = {
   image: PropTypes.string,
-  children: PropTypes.node,
+  style: PropTypes.object,
 }
 
 export { GridImage }

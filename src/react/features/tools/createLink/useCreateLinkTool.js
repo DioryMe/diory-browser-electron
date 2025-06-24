@@ -5,7 +5,7 @@ import { useButtons } from '../../buttons/useButtons'
 import { useDiories } from '../../diograph/utils/useDiories'
 
 import { createLink, getDiograph } from '../../diograph/diographActions'
-import { getLocalAddress } from '../../utils/getLocalAddress'
+import { getLocalAddress } from '../../../utils/getLocalAddress'
 
 import { buttons, BUTTON } from './buttons'
 import { inactivateButton } from '../../buttons/buttonsActions'

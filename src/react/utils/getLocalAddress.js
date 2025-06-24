@@ -1,4 +1,4 @@
-import { invokeChannel } from '../../client/client'
+import { invokeChannel } from '../client/client'
 
 export const getLocalAddress = async () => {
   const { filePaths } = await invokeChannel('showOpenDialog')

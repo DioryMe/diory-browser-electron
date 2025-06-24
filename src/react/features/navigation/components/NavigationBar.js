@@ -16,6 +16,7 @@ const NavigationBar = ({ side, children, ...props }) => (
 )
 
 NavigationBar.propTypes = {
+  side: PropTypes.string,
   children: PropTypes.node,
 }
 

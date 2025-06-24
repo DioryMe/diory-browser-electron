@@ -12,7 +12,7 @@ import { useContextDiories } from '../diograph/utils/useContextDiories'
 import { useHomeButton } from './useHomeButton'
 
 const NavigationDivider = () => (
-  <Pane color="white" fontSize={12} borderRadius={16} paddingRight={6} alignSelf="center">
+  <Pane color="white" fontSize={12} borderRadius={16} margin={6} alignSelf="center">
     /
   </Pane>
 )
@@ -28,15 +28,15 @@ const DiographAddress = () => {
       <NavigationDivider />
       {context && (
         <>
-          <MenuDropdown diory={context} diories={contexts} onClick={dispatchAction(selectStory)} />
           <MenuItem {...context} onClick={() => dispatch(selectStory(context))} />
+          <MenuDropdown diory={context} diories={contexts} onClick={dispatchAction(selectStory)} />
           <NavigationDivider />
         </>
       )}
       {story && (
         <>
-          <MenuDropdown diory={story} diories={stories} onClick={dispatchAction(selectStory)} />
           <MenuItem {...story} color="white" pointerEvents="none" />
+          <MenuDropdown diory={story} diories={stories} onClick={dispatchAction(selectStory)} />
         </>
       )}
 

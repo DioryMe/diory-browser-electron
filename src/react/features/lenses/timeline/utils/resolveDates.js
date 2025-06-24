@@ -42,7 +42,7 @@ const formatDays = (startTime, endTime) =>
     })
     .flat()
 
-const formatHour = (yearMonthDay) => (hour) => `${yearMonthDay}T${twoDigits(hour)}`
+// const formatHour = (yearMonthDay) => (hour) => `${yearMonthDay}T${twoDigits(hour)}`
 
 // const formatHours = (startTime, endTime) =>
 //   formatDays(startTime, endTime)
