@@ -7,15 +7,16 @@ const MenuDropdown = ({ diory: selectedDiory, diories, onClick }) => {
     return null
   }
 
+  const index = selectedDiory && (diories.map(({key}) => key).indexOf(selectedDiory.key) + 1)
   return (
     <Popover
       position="bottom-right"
       // eslint-disable-next-line react/no-unstable-nested-components
       content={({ close }) => (
-        <Menu>
+        <Menu inverted>
           <Menu.OptionsGroup
-            options={diories.map((diory) => ({
-              label: diory.text || diory.date || diory.id,
+            options={diories.map((diory, index) => ({
+              label: `${index + 1}: ${diory.text || diory.date || diory.id}`,
               value: diory.key,
             }))}
             selected={selectedDiory && selectedDiory.key}
@@ -28,7 +29,7 @@ const MenuDropdown = ({ diory: selectedDiory, diories, onClick }) => {
       )}
     >
       <Pill alignSelf="center" cursor="pointer" color="grey" fontSize={10}>
-        {diories.length}
+        {index ? `${index}/${diories.length}` : diories.length}
       </Pill>
     </Popover>
   )
