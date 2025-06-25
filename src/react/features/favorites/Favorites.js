@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useHomeDiographKey } from '../home/utils/useHomeDiographKey'
-import { useSidePanelData } from '../sidePanel/utils/useSidePanelData'
+import { useSidePanelActions } from '../sidePanel/utils/useSidePanelActions'
 
 import { FavoritesView } from './components/FavoritesView'
 import { useStoryDiories } from '../diograph/utils/useDiories'
@@ -11,7 +11,8 @@ export const Favorites = () => {
   useInitialiseDiory('favorites')
 
   const storyKey = useHomeDiographKey('favorites')
-  const { story, memories } = useStoryDiories({ storyKey })
+  const storyDiories = useStoryDiories({ storyKey })
+  const actions = useSidePanelActions(storyDiories)
 
-  return <FavoritesView {...useSidePanelData({ story, memories })} />
+  return <FavoritesView {...storyDiories} {...actions} />
 }

@@ -38,9 +38,14 @@ const HandView = ({
       />
       <Pane display="flex">
         {memories.length ? (
-          <MenuItem text="CLEAR HAND" marginTop={4} marginBottom={4} onClick={onClear} />
+          <MenuItem
+            diory={{ text: 'CLEAR HAND' }}
+            marginTop={4}
+            marginBottom={4}
+            onClick={onClear}
+          />
         ) : (
-          <MenuItem text="Drag diories to hand" marginTop={4} marginBottom={4} />
+          <MenuItem diory={{ text: 'Drag diories to hand' }} marginTop={4} marginBottom={4} />
         )}
       </Pane>
     </Fullscreen>

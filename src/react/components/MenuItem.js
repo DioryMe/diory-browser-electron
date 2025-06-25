@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 import Icon from './Icon'
 
-const MenuItem = ({ id, text, icon, amount, date, isSelected, onClick, ...props }) => (
+const MenuItem = ({ diory, amount, isSelected, onClick, ...props }) => (
   <Pane
     position="relative"
     color={isSelected ? 'white' : 'grey'}
@@ -14,23 +14,21 @@ const MenuItem = ({ id, text, icon, amount, date, isSelected, onClick, ...props 
     textOverflow="ellipsis"
     whiteSpace="nowrap"
     overflow="hidden"
-    onClick={onClick}
+    onClick={() => onClick({ diory })}
     display="flex"
     justifyContent="space-between"
     {...props}
   >
-    {icon && <Icon icon={icon} verticalAlign="middle" marginRight={6} />}
-    <span>{text || date || id || ''}</span>
+    {diory.icon && <Icon icon={diory.icon} verticalAlign="middle" marginRight={6} />}
+    <span>{diory.text || diory.date || diory.id || ''}</span>
     <span>{amount || ''}</span>
   </Pane>
 )
 
 MenuItem.propTypes = {
-  id: PropTypes.string,
-  text: PropTypes.string,
+  diory: PropTypes.object,
   amount: PropTypes.string,
   icon: PropTypes.string,
-  date: PropTypes.string,
   isSelected: PropTypes.bool,
   onClick: PropTypes.func,
 }

@@ -11,7 +11,7 @@ const SidePanelToggleButton = ({ side }) => {
   const icon = showSidePanel ? side : closeIcon
   return (
     <MenuItem
-      icon={`chevron-${icon}`}
+      diory={{ icon: `chevron-${icon}` }}
       onClick={toggleSidePanel}
       alignSelf={side === 'left' ? 'flex-end' : 'flex-start'}
       data-testid="toggleSidePanel"

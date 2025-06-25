@@ -1,15 +1,8 @@
 import React from 'react'
 import { Pane } from 'evergreen-ui'
 
-import { useDispatchActions } from '../../store'
-import { useDiories } from '../diograph/utils/useDiories'
-
-import { selectStory } from './navigationActions'
-
 import { MenuDropdown } from '../../components/MenuDropdown'
 import { MenuItem } from '../../components/MenuItem'
-import { useContextDiories } from '../diograph/utils/useContextDiories'
-import { useHomeButton } from './useHomeButton'
 
 const NavigationDivider = () => (
   <Pane color="white" fontSize={12} borderRadius={16} margin={6} alignSelf="center">
@@ -17,37 +10,31 @@ const NavigationDivider = () => (
   </Pane>
 )
 
-const DiographAddress = () => {
-  const { story, memories } = useDiories()
-  const { stories, context, contexts } = useContextDiories()
+const DiographAddress = ({ home, story, stories, context, contexts, memories, onClick }) => (
+  <>
+    <MenuItem diory={home} fontWeight="bold" onClick={onClick} />
+    <NavigationDivider />
+    {context && (
+      <>
+        <MenuItem diory={context} onClick={onClick} />
+        <MenuDropdown diory={context} diories={contexts} onClick={onClick} />
+        <NavigationDivider />
+      </>
+    )}
+    {story && (
+      <>
+        <MenuItem diory={story} color="white" pointerEvents="none" />
+        <MenuDropdown diory={story} diories={stories} onClick={onClick} />
+      </>
+    )}
 
-  const { dispatch, dispatchAction } = useDispatchActions()
-  return (
-    <>
-      <MenuItem fontWeight="bold" {...useHomeButton()} />
-      <NavigationDivider />
-      {context && (
-        <>
-          <MenuItem {...context} onClick={() => dispatch(selectStory(context))} />
-          <MenuDropdown diory={context} diories={contexts} onClick={dispatchAction(selectStory)} />
-          <NavigationDivider />
-        </>
-      )}
-      {story && (
-        <>
-          <MenuItem {...story} color="white" pointerEvents="none" />
-          <MenuDropdown diory={story} diories={stories} onClick={dispatchAction(selectStory)} />
-        </>
-      )}
-
-      {memories.length > 1 && (
-        <>
-          <NavigationDivider />
-          <MenuDropdown diories={memories} onClick={dispatchAction(selectStory)} />
-        </>
-      )}
-    </>
-  )
-}
+    {memories.length > 1 && (
+      <>
+        <NavigationDivider />
+        <MenuDropdown diories={memories} onClick={onClick} />
+      </>
+    )}
+  </>
+)
 
 export { DiographAddress }

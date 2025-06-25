@@ -7,7 +7,7 @@ const MenuDropdown = ({ diory: selectedDiory, diories, onClick }) => {
     return null
   }
 
-  const index = selectedDiory && (diories.map(({key}) => key).indexOf(selectedDiory.key) + 1)
+  const index = selectedDiory && diories.map(({ key }) => key).indexOf(selectedDiory.key) + 1
   return (
     <Popover
       position="bottom-right"
@@ -22,7 +22,7 @@ const MenuDropdown = ({ diory: selectedDiory, diories, onClick }) => {
             selected={selectedDiory && selectedDiory.key}
             onChange={(key) => {
               close()
-              onClick(diories.find((diory) => diory.key === key))
+              onClick({ diory: { key } })
             }}
           />
         </Menu>

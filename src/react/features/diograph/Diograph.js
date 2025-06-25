@@ -41,8 +41,8 @@ export const useDiographTools = () => {
       deleteDiory(diory)
       updateDiory(diory)
     },
-    onSelect: ({ key }) => {
-      dispatch(selectDiory({ key }))
+    onSelect: (diory) => {
+      dispatch(selectDiory(diory))
     },
     onDrop: ({ diory, draggedDiory }) => {
       dispatch(createLink(diory, draggedDiory))

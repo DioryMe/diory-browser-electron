@@ -28,7 +28,7 @@ const DiographView = ({
   return story ? (
     <>
       <BackgroundDiory diory={story} />
-      <Fullscreen padding={24}>
+      <Fullscreen>
         <div ref={storyRef} />
         <Content />
         <DiorysGrid

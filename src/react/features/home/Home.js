@@ -1,10 +1,11 @@
 import React from 'react'
 import { useSelector } from '../../store'
+
 import { useGetHomeAddressEffect } from './useGetHomeAddressEffect'
+import { useSaveHomeAddress } from './useSaveHomeAddress'
 import { useHomeDiographEffect } from './useHomeDiographEffect'
 
 import HomeView from './HomeView'
-import { useSaveHomeAddress } from './useSaveHomeAddress'
 
 export const Home = () => {
   useGetHomeAddressEffect()
@@ -13,7 +14,7 @@ export const Home = () => {
   // TODO initialiseHomeDiograph()
 
   const { initializing, address } = useSelector((state) => state.home)
-  const { onClick } = useSaveHomeAddress()
+  const { saveHomeAddress } = useSaveHomeAddress()
 
-  return address ? null : <HomeView initializing={initializing} onClick={onClick} />
+  return address ? null : <HomeView initializing={initializing} onClick={saveHomeAddress} />
 }

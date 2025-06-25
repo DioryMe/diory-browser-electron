@@ -5,12 +5,12 @@ import { MenuItem } from '../../../components/MenuItem'
 
 const SidePanelTitle = ({ id, text, amount, isSelected, onClick }) => (
   <MenuItem
-    text={text ? text.toUpperCase() : ''}
+    diory={{ id, text: text ? text.toUpperCase() : '' }}
     amount={amount}
     isSelected={isSelected}
     marginTop={4}
     marginBottom={4}
-    onClick={() => onClick && onClick({ id })}
+    onClick={onClick}
   />
 )
 
