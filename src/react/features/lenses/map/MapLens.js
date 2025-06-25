@@ -7,6 +7,7 @@ import { useMoveTool, useMoveToolIsActive } from '../../tools/move'
 import { useDiories } from '../../diograph/utils/useDiories'
 
 import MapView from './MapView'
+import { useAddLocationTool } from '../../tools/addLocation'
 
 const useMapTools = () => {
   const selectStory = useStoryTool()
@@ -16,7 +17,7 @@ const useMapTools = () => {
       selectStory(diory)
       deleteDiory(diory)
     },
-    onMapClick: useCreateTool(),
+    onMapClick: useAddLocationTool(),
     onDragEnd: useMoveTool(),
     enableDragging: useMoveToolIsActive(),
   }
