@@ -21,7 +21,7 @@ const Root = () => (
   <>
     <Home />
     <DndProvider backend={HTML5Backend}>
-      <Fullscreen>
+      <Fullscreen zIndex={0}>
         <PanelContainer direction="vertical" sidePanels={['', 'bottom']}>
           <Panel>
             <PanelContainer direction="horizontal" sidePanels={['left', '', 'right']}>

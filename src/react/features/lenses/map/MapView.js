@@ -18,8 +18,6 @@ const MapView = ({ story, memories, onMapClick, onPopupClick, enableDragging, on
   const id = 'mapId'
   const map = useMap(id)
 
-  usePopupClick(map, onPopupClick)
-
   const locationData = getLocationData({ story, memories })
 
   useMapBounds(map, locationData.story)
@@ -27,6 +25,7 @@ const MapView = ({ story, memories, onMapClick, onPopupClick, enableDragging, on
 
   usePopups(map, markers, story, memories)
 
+  usePopupClick(map, onPopupClick)
   useMapClick(map, onMapClick)
   useDragging(map, enableDragging, onDragEnd)
 

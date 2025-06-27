@@ -50,7 +50,7 @@ export const selectMemory = (state, { payload }) => ({
 
 export const selectDiory = (state, { payload }) => ({
   ...state,
-  selectedDiories: payload.key
+  selectedDiories: payload != null
     ? {
         ...state.selectedDiories,
         [payload.key]: !state.selectedDiories[payload.key],

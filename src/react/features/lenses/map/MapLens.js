@@ -8,14 +8,18 @@ import { useDiories } from '../../diograph/utils/useDiories'
 
 import MapView from './MapView'
 import { useAddLocationTool } from '../../tools/addLocation'
+import { useUpdateTool } from '../../tools/update'
 
 const useMapTools = () => {
   const selectStory = useStoryTool()
   const deleteDiory = useDeleteTool()
+  const updateDiory = useUpdateTool()
+
   return {
     onPopupClick: (diory) => {
       selectStory(diory)
       deleteDiory(diory)
+      updateDiory(diory)
     },
     onMapClick: useAddLocationTool(),
     onDragEnd: useMoveTool(),

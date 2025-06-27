@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useDispatchActions, useSelector } from '../../../store'
-import { useCreateDiory } from './useCreateDiory'
+import { useCreateTool } from './useCreateTool'
 import { useButtons } from '../../buttons/useButtons'
 
 import { inactivateButton } from '../../buttons/buttonsActions'
@@ -15,7 +15,7 @@ import dioryFields from './dioryFields'
 
 const useToolActions = () => {
   const { dispatch } = useDispatchActions()
-  const createDiory = useCreateDiory()
+  const createDiory = useCreateTool()
   return {
     onDone: (updatedDiory) => {
       createDiory(updatedDiory)

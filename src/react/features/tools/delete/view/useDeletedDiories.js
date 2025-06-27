@@ -30,7 +30,7 @@ export const useDeletedDiories = () => {
   const { contexts } = useContextDiories()
 
   if (isFocusDeleted(story, memory)) {
-    const linkedDiories = getLinkedDiories(story, memory)
+    const linkedDiories = getLinkedDiories(story, memories)
     const reverseLinkedDiories = getReverseLinkedDiories(story, contexts)
 
     return {

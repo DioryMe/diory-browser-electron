@@ -4,7 +4,7 @@ import { useDispatchActions, useSelector } from '../../../store'
 import { useStoryTool } from '../../tools/story'
 import { useUpdateTool } from '../../tools/update'
 import { useDeleteTool } from '../../tools/delete'
-import { useCreateDiory } from '../../tools/create'
+import { useCreateTool } from '../../tools/create'
 
 import { createLink } from '../../diograph/diographActions'
 import { selectLens, searchDiories } from '../lensesActions'
@@ -19,7 +19,7 @@ export const useSearch = () => {
   const selectStory = useStoryTool()
   const updateDiory = useUpdateTool()
   const deleteDiory = useDeleteTool()
-  const createDiory = useCreateDiory()
+  const createDiory = useCreateTool()
 
   const { dispatch } = useDispatchActions()
   return {

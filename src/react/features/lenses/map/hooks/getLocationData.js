@@ -1,7 +1,7 @@
 // eslint-disable-next-line default-param-last
 const concat = (array = [], item) => (typeof item !== 'undefined' ? array.concat(item) : array)
 
-const getDioryLocation = ({ story, memories }) => {
+const getDioryLocation = ({ story }) => {
   // eslint-disable-next-line no-unused-vars
   const { latlng } = story
   if (latlng) {
@@ -21,7 +21,7 @@ export const getDioryLocationData = ({ story = {}, memories = [] }) => {
   const { latitude, longitude } = getDioryLocation({ story, memories })
 
   return {
-    key: story.key,
+    diory: story,
     center: !!longitude &&
       !!latitude && {
         lat: latitude,

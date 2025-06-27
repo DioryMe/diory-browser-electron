@@ -7,6 +7,7 @@ export const useUpdateTool = () => {
   const { dispatch } = useDispatchActions()
   return (clickedDiory) => {
     if (UPDATE_TOOL_BUTTON === active) {
+      // TODO Activate tool in store
       dispatch(selectMemory(clickedDiory))
     }
   }

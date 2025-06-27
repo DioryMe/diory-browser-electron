@@ -7,6 +7,7 @@ const getActiveProps = (active) =>
   active && {
     appearance: 'primary',
     intent: 'success',
+    backgroundColor: 'green',
   }
 
 const Button = ({ style = {}, data, active, onClick }) => (
@@ -17,7 +18,6 @@ const Button = ({ style = {}, data, active, onClick }) => (
     tabIndex={0}
   >
     <IconButton
-      {...getActiveProps(active)}
       icon={<Icon icon={data.icon} />}
       iconSize={24}
       height={48}
@@ -25,6 +25,7 @@ const Button = ({ style = {}, data, active, onClick }) => (
       borderRadius="50%"
       border="none"
       backgroundColor="lightgray"
+      {...getActiveProps(active)}
       {...style}
     />
   </div>

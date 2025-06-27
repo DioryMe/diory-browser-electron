@@ -10,7 +10,7 @@ const useInactivateButton = () => {
   return {
     inactivateButton: () => {
       dispatch(inactivateButton())
-      dispatch(selectDiory({ key: null }))
+      dispatch(selectDiory())
       closeSidePanel()
     },
   }

@@ -33,6 +33,7 @@ export const UpdateTool = () => {
   const { memory } = useDiories()
   const toolActions = useToolActions()
 
+  // TODO: Use own store to show
   return UPDATE_TOOL_BUTTON === active && !!memory ? (
     <FormModal title="Update diory" fields={dioryFields} values={memory} {...toolActions} />
   ) : null
