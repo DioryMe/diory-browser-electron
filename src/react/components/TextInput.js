@@ -120,7 +120,7 @@ TextInput.propTypes = {
   hint: PropTypes.string,
   validationMessage: PropTypes.string,
   format: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.number]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.number, PropTypes.array]),
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
 }

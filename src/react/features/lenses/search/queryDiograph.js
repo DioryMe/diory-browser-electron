@@ -12,7 +12,7 @@ function allMatchToQuery(queryDiory) {
 function reduceToDioriesObject(dioriesObject, [key, diory]) {
   return {
     ...dioriesObject,
-    [key]: diory,
+    [key]: { key, ...diory },
   }
 }
 

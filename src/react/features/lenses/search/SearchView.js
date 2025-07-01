@@ -7,11 +7,11 @@ import DiorysGrid from '../../../components/diories/DiorysGrid'
 import Fullscreen from '../../../components/Fullscreen'
 import { SidePanelTitle } from '../../sidePanel/components/SidePanelTitle'
 
-const scaleContainer = {
-  transformOrigin: 'top left',
-  transform: 'scale(0.5)',
-  width: '200%',
-  height: '200%',
+const itemStyle = {
+  height: 120,
+  minWidth: 120,
+  maxWidth: 282,
+  margin: 6,
 }
 
 const SearchView = ({
@@ -35,7 +35,7 @@ const SearchView = ({
           </Pane>
         )}
       </Pane>
-      <Pane position="relative" flex={1} margin={12}>
+      <Pane position="relative" flex={1} margin={6}>
         <Fullscreen>
           {Object.keys(diograph).length ? (
             <DiorysGrid
@@ -45,7 +45,8 @@ const SearchView = ({
               scrollIntoViewId={scrollIntoViewId}
               onClick={onClick}
               onDrop={onDrop}
-              {...scaleContainer}
+              itemStyle={itemStyle}
+              padding = {0}
             />
           ) : null}
         </Fullscreen>

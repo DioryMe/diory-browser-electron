@@ -1,14 +1,4 @@
-import React, { useState } from 'react'
-
-import { useDiories } from '../diograph/utils/useDiories'
-
-import { ContentCarousel } from './ContentCarousel'
-import { ContentView } from './ContentView'
-
-const getAddressPath = (address) => {
-  const addressArray = address.split('/') || []
-  return addressArray.slice(1, -1).join('/')
-}
+import { useState } from 'react'
 
 const getNextIndex = (index, length) => {
   const isLast = index === length - 1
@@ -20,17 +10,14 @@ const getContent = ({ encodingFormat, contentUrl }, path) => ({
   type: encodingFormat,
 })
 
-export const useContent = () => {
+export const useContentCarousel = (data, path) => {
   const [index, setIndex] = useState(0)
 
-  const { story = {} } = useDiories()
-  const { data = [] } = story
   if (!data.length) {
     return {}
   }
 
   const contentIndex = Math.min(index, data.length - 1)
-  const path = getAddressPath(story.key)
   return {
     content: getContent(data[contentIndex], path),
     carousel: {

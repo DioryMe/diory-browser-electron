@@ -123,7 +123,7 @@ const GraphView = ({ storyNode, data, onDioryClick, sidePanelWidth }) => {
 }
 
 GraphView.propTypes = {
-  storyNode: PropTypes.object.isRequired,
+  storyNode: PropTypes.object,
   data: PropTypes.object.isRequired,
   onDioryClick: PropTypes.func.isRequired,
   sidePanelWidth: PropTypes.number,

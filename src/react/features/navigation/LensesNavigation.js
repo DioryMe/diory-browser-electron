@@ -14,22 +14,25 @@ export const useActions = () => {
   const { openSidePanel, closeSidePanel } = useSidePanel('right')
   const { dispatch } = useDispatchActions()
   return {
-    selectLens: ({ id }) => {
-      const newSelectedLensId = id === selectedLensId ? null : id
+    selectLens: ({ diory }) => {
+      const newSelectedLensId = diory.id === selectedLensId ? null : diory.id
       dispatch(selectLens(newSelectedLensId))
-      id === selectedLensId ? closeSidePanel() : openSidePanel()
+      diory.id === selectedLensId ? closeSidePanel() : openSidePanel()
     },
   }
 }
 
 const useLensesButtons = () => {
   const { buttons } = useSelector((state) => state.lenses)
+  const { selectedLensId } = useSelector((state) => state.lenses)
   return {
-    buttons: Object.values(buttons).map(({ id, icon }) => ({
+    buttons: Object.values(buttons).map(({ id, text, icon }) => ({
       diory: {
         id,
-        image: icon,
+        text,
+        icon,
       },
+      isSelected: selectedLensId === id,
     })),
   }
 }
@@ -40,8 +43,8 @@ const LensesNavigation = () => {
   return (
     <NavigationBar side="right">
       <NavigationContent>
-        {buttons.map(({ diory }) => (
-          <MenuItem key={diory.id} diory={diory} onClick={selectLens} />
+        {buttons.map(({ diory, isSelected }) => (
+          <MenuItem key={diory.id} diory={diory} isSelected={isSelected} onClick={selectLens} />
         ))}
       </NavigationContent>
     </NavigationBar>

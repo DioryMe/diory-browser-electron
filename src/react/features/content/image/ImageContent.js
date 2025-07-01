@@ -16,10 +16,10 @@ const options = {
   muted: false,
 }
 
-const ImageContent = ({ url }) => {
+const ImageContent = ({ url, onClick }) => {
   useOpenFolderButton(url)
 
-  return <Image image={url} style={defaultStyles} data-testid="image-content" {...options} />
+  return <Image image={url} style={defaultStyles} data-testid="image-content" {...options} onClick={onClick} />
 }
 
 ImageContent.propTypes = {

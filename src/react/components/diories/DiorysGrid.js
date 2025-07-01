@@ -11,7 +11,7 @@ const DiorysGrid = forwardRef(
     {
       background,
       diorys = [],
-      itemStyle,
+      itemStyle = {},
       scrollIntoViewId,
       onClick,
       onDrop,
@@ -32,7 +32,7 @@ const DiorysGrid = forwardRef(
       padding={24}
       {...props}
     >
-      <Pane position="absolute" width="100%" height="100%" margin={-24}>
+      <Pane position="absolute" width="100%" height="100%" margin={-itemStyle.margin || -24}>
         {background && (
           <DragDrop diory={background} onDrop={onBackgroundDrop} onClick={onBackgroundClick} />
         )}
