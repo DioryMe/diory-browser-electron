@@ -5,7 +5,7 @@ export const buttons = [
     id: BUTTON,
     text: 'Create diory',
     data: {
-      icon: 'new-text-box',
+      icon: 'new-object',
       testid: 'create',
     },
   },

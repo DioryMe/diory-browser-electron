@@ -10,6 +10,7 @@ const NavigationDivider = () => (
   </Pane>
 )
 
+// TODO Update text
 const DiographAddress = ({ home, story, stories, context, contexts, memories, onClick }) => (
   <>
     <MenuItem diory={home} fontWeight="bold" onClick={onClick} />
@@ -23,12 +24,12 @@ const DiographAddress = ({ home, story, stories, context, contexts, memories, on
     )}
     {story && (
       <>
-        <MenuItem diory={story} color="white" pointerEvents="none" />
+        <MenuItem diory={story} color="white" pointerEvents="none" onClick={onClick} />
         <MenuDropdown diory={story} diories={stories} onClick={onClick} />
       </>
     )}
 
-    {memories.length > 1 && (
+    {memories && (
       <>
         <NavigationDivider />
         <MenuDropdown diories={memories} onClick={onClick} />

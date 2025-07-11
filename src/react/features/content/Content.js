@@ -1,8 +1,6 @@
 import React from 'react'
 import { Pane } from 'evergreen-ui'
 
-import { useDeleteTool } from '../tools/delete'
-import { useUpdateTool } from '../tools/update'
 import { useToggleContent } from './useToggleContent'
 
 import { useContentCarousel } from './components/useContentCarousel'
@@ -10,6 +8,7 @@ import { useDiories } from '../diograph/utils/useDiories'
 
 import { ContentView } from './ContentView'
 import { ContentCarousel } from './components/ContentCarousel'
+import { useSelectDiory } from '../tools/useSelectDiory'
 
 const getAddressPath = (address) => {
   const addressArray = address.split('/') || []
@@ -19,15 +18,13 @@ const getAddressPath = (address) => {
 export const useContentActions = () => {
   const { story = {} } = useDiories()
 
-  const deleteDiory = useDeleteTool()
-  const updateDiory = useUpdateTool()
   const { toggleContent } = useToggleContent()
+  const { selectDiory } = useSelectDiory()
 
   return {
     onContentClick: () => {
       toggleContent()
-      deleteDiory(story)
-      updateDiory(story)
+      selectDiory(story)
     },
   }
 }

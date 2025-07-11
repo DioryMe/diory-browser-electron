@@ -1,23 +1,20 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { useStoryTool } from '../../tools/story'
-import { useUpdateTool } from '../../tools/update'
-import { useDeleteTool } from '../../tools/delete'
+import { useSelectStory } from '../../tools/selectStory'
+import { useSelectDiory } from '../../tools/useSelectDiory'
 import { useGraphData } from './useGraphData'
 
 import GraphView from './GraphView'
 
 export const useGraphTools = () => {
-  const selectStory = useStoryTool()
-  const updateDiory = useUpdateTool()
-  const deleteDiory = useDeleteTool()
+  const { selectStory } = useSelectStory()
+  const { selectDiory } = useSelectDiory()
 
   return {
     onDioryClick: ({ diory }) => {
       selectStory(diory)
-      deleteDiory(diory)
-      updateDiory(diory)
+      selectDiory(diory)
     },
   }
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector } from '../../store'
 
-import { useUpdateTool } from '../tools/update'
-import { useStoryTool } from '../tools/story'
+import { useSelectStory } from '../tools/selectStory'
+import { useSelectDiory } from '../tools/useSelectDiory'
 
 import { useDiories } from '../diograph/utils/useDiories'
 import { useContextDiories } from '../diograph/utils/useContextDiories'
@@ -12,13 +12,13 @@ import { DiographAddress } from './DiographAddress'
 import { NavigationContent } from './NavigationContent'
 import { SidePanelToggleButton } from '../sidePanel/components/SidePanelToggleButton'
 
-const useActions = () => {
-  const updateDiory = useUpdateTool()
-  const selectStory = useStoryTool()
+const useNavigationActions = () => {
+  const { selectStory } = useSelectStory()
+  const { selectDiory } = useSelectDiory()
   return {
-    selectStory: ({ diory }) => {
+    onClick: ({ diory }) => {
       selectStory(diory)
-      updateDiory(diory)
+      selectDiory(diory)
     },
   }
 }
@@ -27,7 +27,7 @@ export const DiographNavigation = () => {
   const { address } = useSelector((state) => state.home)
   const diories = useDiories()
   const contextDiories = useContextDiories()
-  const { selectStory } = useActions()
+  const { onClick } = useNavigationActions()
 
   return (
     <NavigationBar>
@@ -39,7 +39,7 @@ export const DiographNavigation = () => {
           home={{ text: 'DIORY', key: address }}
           {...diories}
           {...contextDiories}
-          onClick={selectStory}
+          onClick={onClick}
         />
       </NavigationContent>
       <NavigationContent>

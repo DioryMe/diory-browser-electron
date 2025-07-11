@@ -2,20 +2,13 @@ import { useDispatchActions, useSelector } from '../../../store'
 
 import { useButtons } from '../../buttons/useButtons'
 import { useDiories } from '../../diograph/utils/useDiories'
+import { useSelectedDiories } from '../useSelectedDiories'
 
 import { updateDiory } from '../../diograph/diographActions'
-import { selectDiory } from '../../navigation/navigationActions'
+import { clearSelectedDiories } from '../toolsActions'
 import { inactivateButton } from '../../buttons/buttonsActions'
 
 import { buttons, ADD_LOCATION_TOOL_BUTTON } from './buttons'
-
-const useSelectedDiories = () => {
-  const { selectedDiories } = useSelector((state) => state.navigation)
-  const { diograph } = useSelector((state) => state.diograph)
-  return Object.entries(selectedDiories)
-    .filter(([, selected]) => selected)
-    .map(([key]) => ({ key, ...diograph[key] }))
-}
 
 const useUpdateSelectedDiories = () => {
   const selectedDiories = useSelectedDiories()
@@ -23,10 +16,9 @@ const useUpdateSelectedDiories = () => {
   return {
     updateDiories: ({ latlng }) => {
       selectedDiories.forEach((diory) => {
-        console.log(diory)
         dispatch(updateDiory({ ...diory, latlng }))
       })
-      dispatch(selectDiory())
+      dispatch(clearSelectedDiories())
     }
   }
 }

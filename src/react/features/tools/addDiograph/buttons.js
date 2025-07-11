@@ -3,9 +3,9 @@ export const BUTTON = 'CREATE_LINK_TOOL'
 export const buttons = [
   {
     id: BUTTON,
-    text: 'Create link',
+    text: 'Add folder',
     data: {
-      icon: 'link',
+      icon: 'folder-new',
       testid: 'link',
     },
   },

@@ -1,21 +1,17 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-
 import { Pane } from 'evergreen-ui'
-import { useDispatchActions } from '../../store'
+
 import { useDiographEffect } from './useDiographEffect'
 import { useDiories } from './utils/useDiories'
+
+import { useSelectStory } from '../tools/selectStory'
+import { useSelectDiory } from '../tools/useSelectDiory'
+import { useLinkDiories } from '../tools/linkDiories/useLinkDiories'
 
 import { useToggleContent } from '../content/useToggleContent'
 import { useGoSide } from '../navigation/utils/useGoSide'
 import { useNavigation } from '../navigation/useNavigation'
-
-import { useDeleteTool } from '../tools/delete'
-import { useStoryTool } from '../tools/story'
-import { useUpdateTool } from '../tools/update'
-
-import { createLink } from './diographActions'
-import { selectDiory } from '../navigation/navigationActions'
 
 import NavigationToSide from './components/NavigationToSide'
 import DiographView from './components/DiographView'
@@ -23,35 +19,33 @@ import DiographView from './components/DiographView'
 export const useDiographTools = () => {
   const { forward = [] } = useNavigation('diory')
 
-  const selectStory = useStoryTool()
-  const deleteDiory = useDeleteTool()
-  const updateDiory = useUpdateTool()
+  const { selectStory } = useSelectStory()
+  const { selectDiory } = useSelectDiory()
+  const { linkDiories } = useLinkDiories()
+
   const { toggleContent } = useToggleContent()
 
-  const { dispatch } = useDispatchActions()
   return {
     scrollIntoViewId: forward[0],
     onStoryClick: ({ diory }) => {
       toggleContent()
-      deleteDiory(diory)
-      updateDiory(diory)
+      selectDiory(diory)
     },
     onMemoryClick: ({ diory }) => {
       selectStory(diory)
-      deleteDiory(diory)
-      updateDiory(diory)
+      selectDiory(diory)
     },
-    onSelect: (diory) => {
-      dispatch(selectDiory(diory))
+    onSelect: ({ diory }) => {
+      selectDiory(diory, true)
     },
     onDrop: ({ diory, draggedDiory }) => {
-      dispatch(createLink(diory, draggedDiory))
+      linkDiories(diory, draggedDiory)
     },
   }
 }
 
-const useSelectedDiories = () => {
-  const { selectedDiories } = useSelector((state) => state.navigation)
+const useMapSelectedDiories = () => {
+  const { selectedDiories } = useSelector((state) => state.tools)
   const { open } = useSelector((state) => state.buttons)
   return {
     mapSelected: (diory) => ({ ...diory, selected: open ? !!selectedDiories[diory.key] : null }),
@@ -63,7 +57,7 @@ export const Diograph = () => {
 
   const { story, memories } = useDiories()
   const { goLeft, goRight } = useGoSide()
-  const { mapSelected } = useSelectedDiories()
+  const { mapSelected } = useMapSelectedDiories()
 
   return (
     <Pane height="100%" position="relative">

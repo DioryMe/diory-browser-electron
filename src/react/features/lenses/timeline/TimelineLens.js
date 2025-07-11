@@ -2,41 +2,41 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 import { useDispatchActions } from '../../../store'
-import { useDeleteTool } from '../../tools/delete'
-import { useStoryTool } from '../../tools/story'
-import { useUpdateTool } from '../../tools/update'
+import { useSelectStory } from '../../tools/selectStory'
+import { useSelectDiory } from '../../tools/useSelectDiory'
 
 import { useTimeline, useTimelineTitles } from './utils/useTimelineTitles'
 import { useTimePeriods } from './utils/useTimePeriods'
 
 import { createLink } from '../../diograph/diographActions'
-
 import { selectPeriod } from '../lensesActions'
-
-import { TimelineView } from './TimelineView'
 import { startsWithPeriod } from './utils/startsWithPeriod'
 
-// Diograph tools
-export const useTools = () => {
+import { TimelineView } from './TimelineView'
+
+// TODO Add moment to timeline story
+// TODO Add diory to timeline story
+// TODO Always (1/7) in title also
+// TODO Always (1/2) pill
+const useTimelineActions = () => {
   const { storyKey } = useSelector((state) => state.navigation)
   useEffect(() => {
-    dispatch(selectPeriod(null))
+    dispatch(selectPeriod({ id: null }))
   }, [storyKey])
 
-  const selectStory = useStoryTool()
-  const selectUpdatedDiory = useUpdateTool()
-  const selectDeletedDiory = useDeleteTool()
+  const { selectStory } = useSelectStory()
+  const { selectDiory } = useSelectDiory()
 
   const { dispatch } = useDispatchActions()
   return {
     onClick: ({ diory }) => {
       selectStory(diory)
-      selectUpdatedDiory(diory)
-      selectDeletedDiory(diory)
+      selectDiory(diory)
     },
+    onAdd: () => {},
     onDrop: ({ diory, draggedDiory }) => dispatch(createLink(diory, draggedDiory)),
-    onPeriodClick: ({ id }) => {
-      dispatch(selectPeriod(id))
+    onPeriodClick: ({ diory }) => {
+      dispatch(selectPeriod(diory))
     },
   }
 }
@@ -53,6 +53,7 @@ const useDateMemories = () => {
   const { selectedPeriod } = useSelector((state) => state.lenses)
   const { diograph } = useSelector((state) => state.diograph)
 
+  // TODO Show first 100, show story in context, show more
   if (selectedPeriod && isDayPeriod(selectedPeriod)) {
     return mapDiographToDiories(diograph).filter(startsWithPeriod(selectedPeriod))
   }
@@ -62,10 +63,10 @@ const useDateMemories = () => {
 
 export const TimelineLens = () => {
   const timeline = useTimeline()
-  const titles = useTimelineTitles()
-  const timePeriods = useTimePeriods()
-  const dateMemories = useDateMemories()
-  const tools = useTools()
+  const titles = useTimelineTitles() // TODO remove
+  const timePeriods = useTimePeriods() // TODO always
+  const dateMemories = useDateMemories() // TODO always 50
+  const actions = useTimelineActions()
 
   return (
     <TimelineView
@@ -73,7 +74,7 @@ export const TimelineLens = () => {
       titles={titles}
       periods={timePeriods}
       memories={dateMemories}
-      {...tools}
+      {...actions}
     />
   )
 }

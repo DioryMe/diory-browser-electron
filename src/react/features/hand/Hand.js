@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useInitialiseDiory } from '../diograph/utils/useInitialiseDiory'
 
-import { useSidePanelActions } from '../sidePanel/utils/useSidePanelActions'
+import { useSidePanelActions } from '../sidePanel/useSidePanelActions'
 import { useHomeDiographKey } from '../home/utils/useHomeDiographKey'
 import { useStoryDiories } from '../diograph/utils/useDiories'
 

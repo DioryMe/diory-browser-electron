@@ -5,7 +5,7 @@ export const buttons = [
     id: ADD_LOCATION_TOOL_BUTTON,
     text: 'Add location',
     data: {
-      icon: 'locate',
+      icon: 'add-location',
       testid: 'add-location',
     },
   },

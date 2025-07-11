@@ -48,16 +48,6 @@ export const selectMemory = (state, { payload }) => ({
   memoryKey: payload.key,
 })
 
-export const selectDiory = (state, { payload }) => ({
-  ...state,
-  selectedDiories: payload != null
-    ? {
-        ...state.selectedDiories,
-        [payload.key]: !state.selectedDiories[payload.key],
-      }
-    : {},
-})
-
 export const goSide = (state, { payload }) => ({
   ...state,
   storyKey: payload.key,
@@ -101,7 +91,6 @@ export default createReducer(initialState, {
   [SELECT_CONTEXT]: selectContext,
   [SELECT_STORY]: selectStory,
   [SELECT_MEMORY]: selectMemory,
-  [SELECT_DIORY]: selectDiory,
   [GO_BACKWARD]: goBackward,
   [GO_FORWARD]: goForward,
   [GO_SIDE]: goSide,

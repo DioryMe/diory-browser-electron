@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useHomeDiographKey } from '../home/utils/useHomeDiographKey'
-import { useSidePanelActions } from '../sidePanel/utils/useSidePanelActions'
+import { useSidePanelActions } from '../sidePanel/useSidePanelActions'
 
 import { FavoritesView } from './components/FavoritesView'
 import { useStoryDiories } from '../diograph/utils/useDiories'

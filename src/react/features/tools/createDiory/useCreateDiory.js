@@ -5,7 +5,7 @@ import { useDiories } from '../../diograph/utils/useDiories'
 
 import { createDiory, createLink } from '../../diograph/diographActions'
 
-export const useCreateTool = () => {
+export const useCreateDiory = () => {
   const { story } = useDiories()
 
   const { dispatch } = useDispatchActions()

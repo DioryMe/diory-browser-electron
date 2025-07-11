@@ -24,11 +24,6 @@ export const selectMemory = ({ key } = {}) => ({
   payload: { key },
 })
 
-export const selectDiory = ({ key } = {}) => ({
-  type: SELECT_DIORY,
-  payload: { key },
-})
-
 export const goBackward = () => ({ type: GO_BACKWARD })
 
 export const goForward = () => ({ type: GO_FORWARD })

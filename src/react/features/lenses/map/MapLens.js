@@ -1,25 +1,21 @@
 import React from 'react'
 
-import { useStoryTool } from '../../tools/story'
-import { useCreateTool } from '../../tools/createLocation'
-import { useDeleteTool } from '../../tools/delete'
-import { useMoveTool, useMoveToolIsActive } from '../../tools/move'
 import { useDiories } from '../../diograph/utils/useDiories'
+import { useSelectStory } from '../../tools/selectStory'
+import { useSelectDiory } from '../../tools/useSelectDiory'
+import { useMoveTool, useMoveToolIsActive } from '../../tools/moveLocation'
+import { useAddLocationTool } from '../../tools/addLocation'
 
 import MapView from './MapView'
-import { useAddLocationTool } from '../../tools/addLocation'
-import { useUpdateTool } from '../../tools/update'
 
 const useMapTools = () => {
-  const selectStory = useStoryTool()
-  const deleteDiory = useDeleteTool()
-  const updateDiory = useUpdateTool()
+  const { selectStory } = useSelectStory()
+  const { selectDiory } = useSelectDiory()
 
   return {
     onPopupClick: (diory) => {
       selectStory(diory)
-      deleteDiory(diory)
-      updateDiory(diory)
+      selectDiory(diory)
     },
     onMapClick: useAddLocationTool(),
     onDragEnd: useMoveTool(),
@@ -27,6 +23,9 @@ const useMapTools = () => {
   }
 }
 
+// TODO Zoom level to lngLatZoom
+// TODO Group
+// TODO Add place
 export const MapLens = () => {
   const diograph = useDiories()
   const tools = useMapTools()

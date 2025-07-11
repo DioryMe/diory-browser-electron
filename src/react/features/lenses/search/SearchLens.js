@@ -1,10 +1,8 @@
 import React from 'react'
-
 import { useDispatchActions, useSelector } from '../../../store'
-import { useStoryTool } from '../../tools/story'
-import { useUpdateTool } from '../../tools/update'
-import { useDeleteTool } from '../../tools/delete'
-import { useCreateTool } from '../../tools/create'
+
+import { useSelectStory } from '../../tools/selectStory'
+import { useCreateDiory } from '../../tools/createDiory'
 
 import { createLink } from '../../diograph/diographActions'
 import { selectLens, searchDiories } from '../lensesActions'
@@ -13,13 +11,13 @@ import { queryDiograph } from './queryDiograph'
 
 import { SearchView } from './SearchView'
 import { SearchBar } from './SearchBar'
+import { useSelectDiory } from '../../tools/useSelectDiory'
 
 export const useSearch = () => {
   const { query, resultsByQuery } = useSelector((state) => state.lenses)
-  const selectStory = useStoryTool()
-  const updateDiory = useUpdateTool()
-  const deleteDiory = useDeleteTool()
-  const createDiory = useCreateTool()
+  const { selectStory } = useSelectStory()
+  const { selectDiory } = useSelectDiory()
+  const createDiory = useCreateDiory()
 
   const { dispatch } = useDispatchActions()
   return {
@@ -27,8 +25,7 @@ export const useSearch = () => {
     diograph: query ? resultsByQuery[query] : {},
     onClick: ({ diory }) => {
       selectStory(diory)
-      updateDiory(diory)
-      deleteDiory(diory)
+      selectDiory(diory)
     },
     onDrop: ({ diory, draggedDiory }) => {
       dispatch(createLink(diory, draggedDiory))

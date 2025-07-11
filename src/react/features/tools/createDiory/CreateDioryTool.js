@@ -1,11 +1,9 @@
 import React from 'react'
 
-import { useDispatchActions, useSelector } from '../../../store'
-import { useCreateTool } from './useCreateTool'
+import { useSelector } from '../../../store'
+import { useCreateDiory } from './useCreateDiory'
 import { useButtons } from '../../buttons/useButtons'
-
-import { inactivateButton } from '../../buttons/buttonsActions'
-import { selectMemory } from '../../navigation/navigationActions'
+import { useCloseButtons } from '../../buttons/useButtonActions'
 
 import { FormModal } from '../../../components/FormModal'
 
@@ -14,22 +12,18 @@ import { BUTTON, buttons } from './buttons'
 import dioryFields from './dioryFields'
 
 const useToolActions = () => {
-  const { dispatch } = useDispatchActions()
-  const createDiory = useCreateTool()
+  const { closeButtons  } = useCloseButtons()
+  const createDiory = useCreateDiory()
   return {
     onDone: (updatedDiory) => {
       createDiory(updatedDiory)
-      dispatch(inactivateButton())
-      dispatch(selectMemory())
+      closeButtons()
     },
-    onCancel: () => {
-      dispatch(inactivateButton())
-      dispatch(selectMemory())
-    },
+    onCancel: closeButtons,
   }
 }
 
-export const CreateTool = () => {
+export const CreateDioryTool = () => {
   useButtons(buttons)
 
   const { active } = useSelector((state) => state.buttons)
