@@ -1,6 +1,6 @@
 import { useDispatchActions, useSelector } from '../../store'
 
-import { closeSidePanel, openSidePanel, setSidePanelWidth } from './sidePanelActions'
+import { closeSidePanel, openSidePanel } from './sidePanelActions'
 
 export const useSidePanel = (side) => {
   const { showSidePanels, sidePanelWidths } = useSelector((state) => state.sidePanel)

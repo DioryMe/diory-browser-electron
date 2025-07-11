@@ -21,7 +21,7 @@ export const useDeleteActions = ({ diories, links }) => {
 
   return {
     onDone: () => {
-      diories.forEach(diory => {
+      diories.forEach((diory) => {
         dispatch(deleteDiory(diory))
       })
       dispatch(deleteLinks(links))
@@ -44,6 +44,11 @@ export const DeleteDioriesTool = () => {
 
   const { active } = useSelector((state) => state.buttons)
   return DELETE_DIORIES_BUTTON === active && deletedLinks.length ? (
-    <DeleteView title="Delete diories" diories={selectedDiories} links={deletedLinks} {...actions} />
+    <DeleteView
+      title="Delete diories"
+      diories={selectedDiories}
+      links={deletedLinks}
+      {...actions}
+    />
   ) : null
 }

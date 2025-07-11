@@ -46,7 +46,7 @@ const SearchView = ({
               onClick={onClick}
               onDrop={onDrop}
               itemStyle={itemStyle}
-              padding = {0}
+              padding={0}
             />
           ) : null}
         </Fullscreen>

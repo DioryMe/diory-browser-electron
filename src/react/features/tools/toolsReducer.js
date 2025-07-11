@@ -11,12 +11,12 @@ export const selectDiory = (state, { payload }) => ({
   selectedDiories: {
     ...state.selectedDiories,
     [payload.key]: !state.selectedDiories[payload.key],
-  }
+  },
 })
 
 export const clearSelectedDiories = (state) => ({
   ...state,
-  selectedDiories: {}
+  selectedDiories: {},
 })
 
 export default createReducer(initialState, {

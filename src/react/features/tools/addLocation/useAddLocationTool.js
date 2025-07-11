@@ -19,7 +19,7 @@ const useUpdateSelectedDiories = () => {
         dispatch(updateDiory({ ...diory, latlng }))
       })
       dispatch(clearSelectedDiories())
-    }
+    },
   }
 }
 
@@ -29,7 +29,7 @@ const useUpdateStory = () => {
   return {
     updateStory: ({ latlng }) => {
       dispatch(updateDiory({ ...story, latlng }))
-    }
+    },
   }
 }
 

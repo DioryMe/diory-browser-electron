@@ -43,6 +43,7 @@ Button.defaultProps = {
 }
 
 Button.propTypes = {
+  text: PropTypes.string,
   style: PropTypes.object,
   data: PropTypes.shape({
     icon: PropTypes.string,

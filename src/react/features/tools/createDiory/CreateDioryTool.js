@@ -12,7 +12,7 @@ import { BUTTON, buttons } from './buttons'
 import dioryFields from './dioryFields'
 
 const useToolActions = () => {
-  const { closeButtons  } = useCloseButtons()
+  const { closeButtons } = useCloseButtons()
   const createDiory = useCreateDiory()
   return {
     onDone: (updatedDiory) => {

@@ -1,4 +1,4 @@
-import { useDispatchActions, useSelector } from '../../../store'
+import { useDispatchActions } from '../../../store'
 
 import { useSelectedDiories } from '../useSelectedDiories'
 
@@ -13,9 +13,9 @@ export const useLinkDiories = () => {
       dispatch(createLink(diory, draggedDiory))
       selectedDiories
         .filter(({ id }) => id !== draggedDiory.id)
-        .forEach(selectedDiory => {
+        .forEach((selectedDiory) => {
           dispatch(createLink(diory, selectedDiory))
         })
-    }
+    },
   }
 }

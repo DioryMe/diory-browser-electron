@@ -20,14 +20,14 @@ import { TimelineView } from './TimelineView'
 // TODO Always (1/2) pill
 const useTimelineActions = () => {
   const { storyKey } = useSelector((state) => state.navigation)
+  const { dispatch } = useDispatchActions()
   useEffect(() => {
     dispatch(selectPeriod({ id: null }))
-  }, [storyKey])
+  }, [dispatch, storyKey])
 
   const { selectStory } = useSelectStory()
   const { selectDiory } = useSelectDiory()
 
-  const { dispatch } = useDispatchActions()
   return {
     onClick: ({ diory }) => {
       selectStory(diory)

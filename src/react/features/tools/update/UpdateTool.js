@@ -32,6 +32,11 @@ export const UpdateTool = () => {
 
   // TODO multiupdate
   return UPDATE_TOOL_BUTTON === active && selectedDiories.length ? (
-    <FormModal title="Update diory" fields={dioryFields} values={selectedDiories[0]} {...toolActions} />
+    <FormModal
+      title="Update diory"
+      fields={dioryFields}
+      values={selectedDiories[0]}
+      {...toolActions}
+    />
   ) : null
 }

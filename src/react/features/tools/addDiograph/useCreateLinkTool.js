@@ -30,5 +30,5 @@ export const useCreateLinkTool = () => {
       dispatch(inactivateButton())
       action()
     }
-  }, [active, story])
+  }, [dispatch, active, story])
 }

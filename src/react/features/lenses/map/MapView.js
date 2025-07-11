@@ -29,7 +29,7 @@ const MapView = ({ story, memories, onMapClick, onPopupClick, enableDragging, on
   useMapClick(map, onMapClick)
   useDragging(map, enableDragging, onDragEnd)
 
-  return <div id={id} style={{ height: '100%' }}/>
+  return <div id={id} style={{ height: '100%' }} />
 }
 
 MapView.defaultProps = {

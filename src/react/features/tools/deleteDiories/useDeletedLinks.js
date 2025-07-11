@@ -9,21 +9,23 @@ export const useDeletedLinks = () => {
   const { selectedDiories = [] } = useSelectedDiories()
   const { diograph } = useSelector((state) => state.diograph)
 
-  return selectedDiories.map((diory) => {
-    const navigationState = { storyKey: diory.key }
+  return selectedDiories
+    .map((diory) => {
+      const navigationState = { storyKey: diory.key }
 
-    const { memories } = resolveDiories(navigationState, diograph)
-    const { contexts } = resolveContextDiories(navigationState, diograph)
+      const { memories } = resolveDiories(navigationState, diograph)
+      const { contexts } = resolveContextDiories(navigationState, diograph)
 
-    const linkedDiories = memories.map((link) => ({
-      fromDiory: diory,
-      toDiory: link,
-    }))
-    const reverseLinkedDiories = contexts.map((link) => ({
-      fromDiory: link,
-      toDiory: diory,
-    }))
+      const linkedDiories = memories.map((link) => ({
+        fromDiory: diory,
+        toDiory: link,
+      }))
+      const reverseLinkedDiories = contexts.map((link) => ({
+        fromDiory: link,
+        toDiory: diory,
+      }))
 
-    return linkedDiories.concat(reverseLinkedDiories)
-  }).flat()
+      return linkedDiories.concat(reverseLinkedDiories)
+    })
+    .flat()
 }

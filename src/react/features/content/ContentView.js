@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Pane } from 'evergreen-ui'
 
 import VideoContent from './video/VideoContent'
 import AudioContent from './audio/AudioContent'

@@ -19,11 +19,20 @@ const options = {
 const ImageContent = ({ url, onClick }) => {
   useOpenFolderButton(url)
 
-  return <Image image={url} style={defaultStyles} data-testid="image-content" {...options} onClick={onClick} />
+  return (
+    <Image
+      image={url}
+      style={defaultStyles}
+      data-testid="image-content"
+      {...options}
+      onClick={onClick}
+    />
+  )
 }
 
 ImageContent.propTypes = {
   url: PropTypes.string,
+  onClick: PropTypes.func,
 }
 
 export default ImageContent

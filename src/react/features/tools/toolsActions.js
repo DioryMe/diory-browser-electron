@@ -1,8 +1,4 @@
-import {
-  SELECT_DIORY,
-  CLEAR_SELECTED_DIORIES,
-} from './toolsActionTypes'
-
+import { SELECT_DIORY, CLEAR_SELECTED_DIORIES } from './toolsActionTypes'
 
 export const selectDiory = ({ key } = {}) => ({
   type: SELECT_DIORY,

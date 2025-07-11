@@ -9,6 +9,6 @@ export const useSelectDiory = () => {
       if (!!active || isMultiSelect) {
         dispatch(selectDiory(clickedDiory))
       }
-    }
+    },
   }
 }

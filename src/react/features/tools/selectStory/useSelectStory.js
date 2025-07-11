@@ -10,6 +10,6 @@ export const useSelectStory = () => {
       if (!active || activeButton.data.enableDioryClick) {
         dispatch(selectStory(clickedDiory))
       }
-    }
+    },
   }
 }

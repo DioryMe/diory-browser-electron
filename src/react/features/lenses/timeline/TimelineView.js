@@ -47,7 +47,11 @@ const TimelineView = ({
         <Fullscreen>
           <Pane position="relative" flex={0} display="flex" flexWrap="wrap" padding={8}>
             {periods.map(({ id, label, image, amount }) => (
-              <Pane {...itemStyle} paddingBottom={24} onClick={() => onPeriodClick({ diory: { id } })}>
+              <Pane
+                {...itemStyle}
+                paddingBottom={24}
+                onClick={() => onPeriodClick({ diory: { id } })}
+              >
                 <SidePanelTitle text={label} amount={amount} />
                 <Diory diory={{ id, image }} />
               </Pane>
