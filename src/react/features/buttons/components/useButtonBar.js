@@ -1,47 +1,24 @@
 import { useDispatchActions, useSelector } from '../../../store'
 
-import { openButtons, activateButton, inactivateButton } from '../buttonsActions'
-import { selectDiory } from '../../navigation/navigationActions'
-import { useSidePanel } from '../../sidePanel/useSidePanel'
-
-const useInactivateButton = () => {
-  const { closeSidePanel } = useSidePanel('bottom')
-  const { dispatch } = useDispatchActions()
-  return {
-    inactivateButton: () => {
-      dispatch(inactivateButton())
-      dispatch(selectDiory())
-      closeSidePanel()
-    },
-  }
-}
-
-const useOpenButtons = () => {
-  const { openSidePanel } = useSidePanel('bottom')
-  const { dispatch } = useDispatchActions()
-  return {
-    openButtons: () => {
-      dispatch(openButtons())
-      openSidePanel()
-    },
-  }
-}
+import { activateButton } from '../buttonsActions'
+import { useCloseButtons, useOpenButtons } from '../useButtonActions'
 
 export const useButtonBar = () => {
   const { open, active, buttons } = useSelector((state) => state.buttons)
 
-  const { inactivateButton } = useInactivateButton()
+  const { closeButtons } = useCloseButtons()
   const { openButtons } = useOpenButtons()
   const { dispatch } = useDispatchActions()
 
   const toggleButton = {
     id: 'tools',
+    text: open ? 'Close tools' : '',
     data: {
       icon: open ? 'cross' : 'wrench',
       testid: 'tools',
     },
     onClick: () => {
-      open ? inactivateButton() : openButtons()
+      open ? closeButtons() : openButtons()
     },
   }
 
@@ -52,7 +29,7 @@ export const useButtonBar = () => {
       ...button,
       active: button.id === active,
       onClick: () => {
-        button.id === active ? inactivateButton() : dispatch(activateButton(button.id))
+        button.id === active ? closeButtons() : dispatch(activateButton(button.id))
       },
     }))
 

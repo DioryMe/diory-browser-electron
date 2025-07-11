@@ -10,6 +10,7 @@ import lenses from '../features/lenses/lensesReducer'
 import modal from '../features/modal/modalReducer'
 import navigation from '../features/navigation/navigationReducer'
 import sidePanel from '../features/sidePanel/sidePanelReducer'
+import tools from '../features/tools/toolsReducer'
 
 const appReducer = combineReducers({
   home,
@@ -20,6 +21,7 @@ const appReducer = combineReducers({
   modal,
   navigation,
   sidePanel,
+  tools,
 })
 
 export const reducer = (state, action) => {

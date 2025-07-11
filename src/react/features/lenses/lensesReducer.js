@@ -43,7 +43,7 @@ export const setSearchResults = (state, { payload }) => ({
 
 export const selectPeriod = (state, { payload }) => ({
   ...state,
-  selectedPeriod: payload.period,
+  selectedPeriod: payload.id,
 })
 
 export default createReducer(initialState, {

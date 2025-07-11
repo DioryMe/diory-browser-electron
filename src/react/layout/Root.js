@@ -23,7 +23,7 @@ const Root = () => (
     <DndProvider backend={HTML5Backend}>
       <Fullscreen zIndex={0}>
         <PanelContainer direction="vertical" sidePanels={['', 'bottom']}>
-          <Panel>
+          <Panel className="hover">
             <PanelContainer direction="horizontal" sidePanels={['left', '', 'right']}>
               <SidePanel side="left">
                 <DiosphereNavigation />

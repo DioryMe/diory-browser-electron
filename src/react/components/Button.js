@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { IconButton } from 'evergreen-ui'
+import { IconButton, Pane } from 'evergreen-ui'
 import Icon from './Icon'
 
 const getActiveProps = (active) =>
@@ -10,13 +10,17 @@ const getActiveProps = (active) =>
     backgroundColor: 'green',
   }
 
-const Button = ({ style = {}, data, active, onClick }) => (
-  <div
+const Button = ({ text, style = {}, data, active, onClick }) => (
+  <Pane
     role="button"
     onClick={onClick}
     data-testid={`${data.testid}-button${active ? '--active' : ''}`}
     tabIndex={0}
+    display="flex"
+    alignItems="center"
+    justifyContent="right"
   >
+    <Pane color="white">{text}</Pane>
     <IconButton
       icon={<Icon icon={data.icon} />}
       iconSize={24}
@@ -28,7 +32,7 @@ const Button = ({ style = {}, data, active, onClick }) => (
       {...getActiveProps(active)}
       {...style}
     />
-  </div>
+  </Pane>
 )
 
 Button.defaultProps = {

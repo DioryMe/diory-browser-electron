@@ -90,7 +90,7 @@ const Diory = ({ diory, isGridImage, onSelect, onClick, children, ...props }) =>
         {isGridImage && <GridImage image={image} style={styleImage} />}
         {selected != null && (
           <Box {...defaultStyle.topCorner} {...styleLinks}>
-            <SelectButton diory={diory} onClick={() => onSelect && onSelect(diory)} />
+            <SelectButton diory={diory} onClick={() => onSelect && onSelect({ diory })} />
           </Box>
         )}
       </Box>

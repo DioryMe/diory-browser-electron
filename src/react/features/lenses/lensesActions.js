@@ -28,7 +28,7 @@ export const searchDiories = (query, resultDiograph) => (dispatch) => {
   dispatch(setSearchQuery(query))
 }
 
-export const selectPeriod = (period) => ({
+export const selectPeriod = ({ id }) => ({
   type: SELECT_PERIOD,
-  payload: { period },
+  payload: { id },
 })
