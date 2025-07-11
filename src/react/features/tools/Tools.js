@@ -1,19 +1,21 @@
 import React from 'react'
 
-import { useCreateLinkTool } from './createLink'
+import { useCreateLinkTool } from './addDiograph'
 
-import { CreateTool } from './create'
-import { UpdateTool } from './update'
-import { DeleteTool } from './delete'
+import { CreateDioryTool } from './createDiory/CreateDioryTool'
+import { UpdateTool } from './update/UpdateTool'
+import { DeleteDioriesTool } from './deleteDiories/DeleteDioriesTool'
+import { DeleteLinksTool } from './deleteLinks/DeleteLinksTool'
 
 export const Tools = () => {
   useCreateLinkTool()
 
   return (
     <>
-      <CreateTool />
       <UpdateTool />
-      <DeleteTool />
+      <CreateDioryTool />
+      <DeleteDioriesTool />
+      <DeleteLinksTool />
     </>
   )
 }
