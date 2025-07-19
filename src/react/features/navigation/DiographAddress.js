@@ -11,7 +11,7 @@ const NavigationDivider = () => (
 )
 
 // TODO Update text
-const DiographAddress = ({ home, story, stories, context, contexts, memories, onClick }) => (
+const DiographAddress = ({ home, story, stories, context, contexts, onClick }) => (
   <>
     <MenuItem diory={home} fontWeight="bold" onClick={onClick} />
     <NavigationDivider />
@@ -26,13 +26,6 @@ const DiographAddress = ({ home, story, stories, context, contexts, memories, on
       <>
         <MenuItem diory={story} color="white" pointerEvents="none" onClick={onClick} />
         <MenuDropdown diory={story} diories={stories} onClick={onClick} />
-      </>
-    )}
-
-    {memories && (
-      <>
-        <NavigationDivider />
-        <MenuDropdown diories={memories} onClick={onClick} />
       </>
     )}
   </>

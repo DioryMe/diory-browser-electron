@@ -3,6 +3,10 @@ import { Menu, Pill, Popover } from 'evergreen-ui'
 import PropTypes from 'prop-types'
 
 const MenuDropdown = ({ diory: selectedDiory, diories, onClick }) => {
+  if (diories.length <= 1) {
+    return null
+  }
+
   const index = selectedDiory && diories.map(({ key }) => key).indexOf(selectedDiory.key) + 1
   return (
     <Popover
