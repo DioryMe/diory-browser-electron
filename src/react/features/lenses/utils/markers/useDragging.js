@@ -4,7 +4,7 @@ export const useDragging = (mapRef, enableDragging, onDragEnd) => {
   useEffect(() => {
     if (mapRef.current) {
       mapRef.current.eachLayer((marker) => {
-        if (marker.diory) {
+        if (marker.diory && marker.dragging) {
           if (enableDragging) {
             marker.dragging.enable()
             marker.on('dragend', () => {

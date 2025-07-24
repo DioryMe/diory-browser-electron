@@ -13,7 +13,9 @@ export const useFitToBounds = (ref, { center, min, max }, config) => {
 
       if (centerString) {
         const center = JSON.parse(centerString)
-        isInitial ?  ref.current.setView(center, config.MAX_ZOOM) : ref.current.flyTo(center, config.MAX_ZOOM)
+        isInitial
+          ? ref.current.setView(center, config.MAX_ZOOM)
+          : ref.current.flyTo(center, config.MAX_ZOOM)
         return
       }
 
