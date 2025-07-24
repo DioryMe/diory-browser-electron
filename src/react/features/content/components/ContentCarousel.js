@@ -1,5 +1,6 @@
 import React from 'react'
 import { Pane } from 'evergreen-ui'
+import PropTypes from 'prop-types'
 
 const circleStyle = {
   opacity: 0.5,
@@ -23,9 +24,18 @@ const ContentCounter = ({ selected, amount }) => (
   </Pane>
 )
 
-export const ContentCarousel = ({ selected, amount, onClick, children }) => (
+const ContentCarousel = ({ selected, amount, onClick, children }) => (
   <Pane onClick={onClick} height="100%" padding={24} cursor={amount > 1 ? 'pointer' : 'default'}>
     {children}
     {amount > 1 && <ContentCounter selected={selected} amount={amount} />}
   </Pane>
 )
+
+ContentCarousel.propTypes = {
+  selected: PropTypes.bool,
+  amount: PropTypes.number,
+  onClick: PropTypes.func,
+  children: PropTypes.node,
+}
+
+export { ContentCarousel }

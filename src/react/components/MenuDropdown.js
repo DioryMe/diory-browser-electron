@@ -2,7 +2,7 @@ import React from 'react'
 import { Menu, Pill, Popover } from 'evergreen-ui'
 import PropTypes from 'prop-types'
 
-const MenuDropdown = ({ diory: selectedDiory, diories, onClick }) => {
+const MenuDropdown = ({ diory: selectedDiory, diories, onClick, position = 'left' }) => {
   if (diories.length <= 1) {
     return null
   }
@@ -10,7 +10,7 @@ const MenuDropdown = ({ diory: selectedDiory, diories, onClick }) => {
   const index = selectedDiory && diories.map(({ key }) => key).indexOf(selectedDiory.key) + 1
   return (
     <Popover
-      position="bottom-right"
+      position={`bottom-${position}`}
       // eslint-disable-next-line react/no-unstable-nested-components
       content={({ close }) => (
         <Menu inverted>
@@ -39,6 +39,7 @@ MenuDropdown.propTypes = {
   diory: PropTypes.object,
   diories: PropTypes.array.isRequired,
   onClick: PropTypes.func.isRequired,
+  position: PropTypes.string,
 }
 
 export { MenuDropdown }

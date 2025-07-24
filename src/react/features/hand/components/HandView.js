@@ -7,10 +7,8 @@ import { MenuItem } from '../../../components/MenuItem'
 import Fullscreen from '../../../components/Fullscreen'
 
 const itemStyle = {
-  height: 120,
-  minWidth: 120,
-  maxWidth: 282,
-  margin: 24,
+  height: 'calc(100% - 24px)',
+  margin: 12,
 }
 
 const HandView = ({
@@ -24,19 +22,21 @@ const HandView = ({
 }) => {
   const handRef = useRef()
   return (
-    <Fullscreen display="flex" flexDirection="column">
+    <Fullscreen display="flex" flexDirection="column" justifyContent="space-between">
       <DiorysGrid
         ref={handRef}
+        isHorizontal
         background={story}
         diorys={memories}
         scrollIntoViewId={scrollIntoViewId}
         onClick={onClick}
         onDrop={onDrop}
         onBackgroundDrop={onBackgroundDrop}
+        overflowX="auto"
+        padding={12}
         itemStyle={itemStyle}
-        flex="1"
       />
-      <Pane display="flex">
+      <Pane display="flex" justifyContent="center">
         {memories.length ? (
           <MenuItem
             diory={{ text: 'CLEAR HAND' }}

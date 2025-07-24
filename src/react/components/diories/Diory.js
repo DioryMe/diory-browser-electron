@@ -49,6 +49,11 @@ const SelectButton = ({ diory, onClick }) => (
   />
 )
 
+SelectButton.propTypes = {
+  diory: PropTypes.object,
+  onClick: PropTypes.func,
+}
+
 const Diory = ({ diory, isGridImage, onSelect, onClick, children, ...props }) => {
   const { id, text, image, style: dioryStyle = {}, data, links, selected } = diory
   const {
@@ -106,9 +111,11 @@ Diory.propTypes = {
     style: PropTypes.object,
     data: PropTypes.array,
     links: PropTypes.array,
+    selected: PropTypes.bool,
   }),
   isGridImage: PropTypes.bool,
   onClick: PropTypes.func,
+  onSelect: PropTypes.func,
   children: PropTypes.node,
 }
 

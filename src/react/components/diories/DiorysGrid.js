@@ -5,6 +5,15 @@ import { Pane } from 'evergreen-ui'
 import GridItem from '../GridItem'
 import DragDrop from '../DragDrop'
 import Diory from './Diory'
+import Fullscreen from '../Fullscreen'
+
+const horizontalStyle = {
+  flexDirection: 'column',
+}
+
+const verticalStyle = {
+  width: '100%',
+}
 
 const DiorysGrid = forwardRef(
   (
@@ -18,6 +27,7 @@ const DiorysGrid = forwardRef(
       onBackgroundClick,
       onBackgroundDrop,
       onSelect,
+      isHorizontal,
       ...props
     },
     ref
@@ -25,11 +35,11 @@ const DiorysGrid = forwardRef(
     <Pane
       ref={ref}
       position="relative"
-      width="100%"
+      padding={24}
       display="flex"
       flexWrap="wrap"
       alignContent="flex-start"
-      padding={24}
+      {...(isHorizontal ? horizontalStyle : verticalStyle)}
       {...props}
     >
       <Pane position="absolute" width="100%" height="100%" margin={-itemStyle.margin || -24}>
@@ -64,6 +74,7 @@ const DiorysGrid = forwardRef(
 DiorysGrid.propTypes = {
   background: PropTypes.object,
   diorys: PropTypes.array,
+  isHorizontal: PropTypes.bool,
   itemStyle: PropTypes.object,
   scrollIntoViewId: PropTypes.string,
   onClick: PropTypes.func.isRequired,
