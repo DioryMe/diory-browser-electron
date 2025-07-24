@@ -6,10 +6,8 @@ export const getLinkedDiories = (dioryKey, diograph) => {
 
   const diory = getDiory(dioryKey, diograph)
   const links = diory && diory.links
-  return Object.entries(links || {})
-    .map(([, { id }]) => {
-      const key = getDiographKey(dioryKey, id)
-      return getDiory(key, diograph || {})
-    })
+  return Object.entries(links || {}).map(([, { id }]) => {
+    const key = getDiographKey(dioryKey, id)
+    return getDiory(key, diograph || {})
+  })
 }
-

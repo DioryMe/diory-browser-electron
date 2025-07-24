@@ -3,7 +3,7 @@ import { useDispatchActions, useSelector } from '../../../store'
 
 import { useButtons } from '../../buttons/useButtons'
 import { useSelectedDiories } from '../useSelectedDiories'
-import { useDeletedLinks } from './useDeletedLinks'
+import { useDeletedDiories } from './useDeletedDiories'
 import { useCloseButtons } from '../../buttons/useButtonActions'
 import { useStoryDiories } from '../../diograph/utils/useDiories'
 
@@ -39,7 +39,7 @@ export const DeleteDioriesTool = () => {
   useButtons(buttons)
 
   const { selectedDiories = [] } = useSelectedDiories()
-  const deletedLinks = useDeletedLinks()
+  const deletedLinks = useDeletedDiories()
   const actions = useDeleteActions({ diories: selectedDiories, links: deletedLinks })
 
   const { active } = useSelector((state) => state.buttons)

@@ -1,10 +1,4 @@
-import {
-  SELECT_STORY,
-  GO_BACKWARD,
-  GO_FORWARD,
-  GO_HOME,
-  GO_SIDE,
-} from './navigationActionTypes'
+import { SELECT_STORY, GO_BACKWARD, GO_FORWARD, GO_HOME, GO_SIDE } from './navigationActionTypes'
 
 import { createReducer } from '../../store'
 

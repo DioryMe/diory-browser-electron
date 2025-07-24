@@ -1,6 +1,7 @@
 import React from 'react'
 import { Pane } from 'evergreen-ui'
 
+import PropTypes from 'prop-types'
 import { MenuDropdown } from '../../components/MenuDropdown'
 import { MenuItem } from '../../components/MenuItem'
 
@@ -18,17 +19,26 @@ const DiographAddress = ({ home, story, stories, context, contexts, onClick }) =
     {context && (
       <>
         <MenuItem diory={context} onClick={onClick} />
-        <MenuDropdown diory={context} diories={contexts} onClick={onClick} />
+        <MenuDropdown diory={context} diories={contexts} onClick={onClick} position="right" />
         <NavigationDivider />
       </>
     )}
     {story && (
       <>
+        <MenuDropdown diory={story} diories={stories} onClick={onClick} position="left" />
         <MenuItem diory={story} color="white" pointerEvents="none" onClick={onClick} />
-        <MenuDropdown diory={story} diories={stories} onClick={onClick} />
       </>
     )}
   </>
 )
+
+DiographAddress.propTypes = {
+  home: PropTypes.string,
+  story: PropTypes.object,
+  stories: PropTypes.array,
+  context: PropTypes.object,
+  contexts: PropTypes.array,
+  onClick: PropTypes.func,
+}
 
 export { DiographAddress }

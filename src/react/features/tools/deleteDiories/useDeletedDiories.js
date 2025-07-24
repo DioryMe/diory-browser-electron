@@ -1,11 +1,8 @@
-import { useSelector } from 'react-redux'
-
-import { useSelectedDiories } from '../useSelectedDiories'
-
 import { useGetContextDiories } from '../../diograph/utils/useContextDiories'
+import { useSelectedDiories } from '../useSelectedDiories'
 import { useGetDiories } from '../../diograph/utils/useDiories'
 
-export const useDeletedLinks = () => {
+export const useDeletedDiories = () => {
   const { selectedDiories = [] } = useSelectedDiories()
   const { getDiories } = useGetDiories()
   const { getContextDiories } = useGetContextDiories()
