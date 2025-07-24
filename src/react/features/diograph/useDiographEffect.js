@@ -2,14 +2,14 @@ import { useEffect, useMemo } from 'react'
 
 import { useDispatchActions } from '../../store'
 import { getDiograph } from './diographActions'
-import { useDiories } from './utils/useDiories'
+import { useStoryDiories } from './utils/useDiories'
 
 import { getDiographKey } from './utils/getDiographKey'
 import { getKeyPath } from './utils/getKeyPath'
 import { unique } from '../../utils/unique'
 
 const useMemoryAddresses = () => {
-  const { story = {} } = useDiories()
+  const { story = {} } = useStoryDiories()
   return useMemo(
     () =>
       story.links &&

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useDiories } from '../../diograph/utils/useDiories'
+import { useStoryDiories } from '../../diograph/utils/useDiories'
 import { useSelectStory } from '../../tools/selectStory'
 import { useSelectDiory } from '../../tools/useSelectDiory'
 import { useMoveTool, useMoveToolIsActive } from '../../tools/moveLocation'
@@ -27,7 +27,7 @@ const useMapTools = () => {
 // TODO Group
 // TODO Add place
 export const MapLens = () => {
-  const diograph = useDiories()
+  const diograph = useStoryDiories()
   const tools = useMapTools()
   return <MapView {...diograph} {...tools} />
 }

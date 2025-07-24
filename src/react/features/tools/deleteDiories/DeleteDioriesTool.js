@@ -5,7 +5,7 @@ import { useButtons } from '../../buttons/useButtons'
 import { useSelectedDiories } from '../useSelectedDiories'
 import { useDeletedLinks } from './useDeletedLinks'
 import { useCloseButtons } from '../../buttons/useButtonActions'
-import { useDiories } from '../../diograph/utils/useDiories'
+import { useStoryDiories } from '../../diograph/utils/useDiories'
 
 import { deleteDiory, deleteLinks } from '../../diograph/diographActions'
 import { goBackward } from '../../navigation/navigationActions'
@@ -15,7 +15,7 @@ import { buttons, DELETE_DIORIES_BUTTON } from './buttons'
 import DeleteView from '../components/DeleteView'
 
 export const useDeleteActions = ({ diories, links }) => {
-  const { story } = useDiories()
+  const { story } = useStoryDiories()
   const { closeButtons } = useCloseButtons()
   const { dispatch } = useDispatchActions()
 

@@ -33,7 +33,7 @@ const TimelineView = ({
 }) => {
   const handRef = useRef()
   return (
-    <>
+    <Pane height="100%" display="flex" flexDirection="column">
       <Pane display="flex" flexDirection="row" flexWrap="wrap" paddingLeft={14}>
         <SidePanelTitle {...timeline} onClick={onPeriodClick} />
       </Pane>
@@ -68,7 +68,7 @@ const TimelineView = ({
           />
         </Fullscreen>
       </Pane>
-    </>
+    </Pane>
   )
 }
 

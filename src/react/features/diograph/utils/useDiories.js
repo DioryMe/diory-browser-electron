@@ -1,13 +1,43 @@
 import { useSelector } from 'react-redux'
-import { resolveDiories } from './resolveDiories'
+
 import { useNavigation } from '../../navigation/useNavigation'
+import { useSelectedDiories } from '../../tools/useSelectedDiories'
 
-export const useStoryDiories = (navigationState = {}) => {
+import { getDiory } from './getDiory'
+import { getLinkedDiories } from './getLinkedDiories'
+
+const isSelected = (dioryKey, selectedDiories = []) => selectedDiories.some(({ key }) => key === dioryKey)
+
+export const getStoryDiories = (storyKey, diograph = {}, selectedDiories = []) => {
+  const story = getDiory(storyKey, diograph)
+  console.log()
+  return {
+    story: { ...story, selected: isSelected(storyKey, selectedDiories) },
+    memories: getLinkedDiories(storyKey, diograph).map((diory) => ({...diory, selected: isSelected(storyKey, selectedDiories) })),
+  }
+}
+
+export const useGetDiories = () => {
   const { diograph } = useSelector((state) => state.diograph)
-  return resolveDiories(navigationState, diograph)
+  const { selectedDiories } = useSelectedDiories()
+  return {
+    getDiories: (storyKey) => getStoryDiories(storyKey, diograph, selectedDiories)
+  }
 }
 
-export const useDiories = () => {
-  const navigationState = useNavigation()
-  return useStoryDiories(navigationState)
+export const useDiories = (storyKey) => {
+  const { getDiories } = useGetDiories()
+  return getDiories(storyKey)
 }
+
+export const useStoryDiories = () => {
+  const { storyKey } = useNavigation()
+  const { getDiories } = useGetDiories()
+  return getDiories(storyKey)
+}
+
+// {
+//    key,
+//    diory,
+//    selected,
+// }

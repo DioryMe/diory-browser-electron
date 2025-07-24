@@ -1,7 +1,7 @@
 import { useDispatchActions, useSelector } from '../../../store'
 
 import { useButtons } from '../../buttons/useButtons'
-import { useDiories } from '../../diograph/utils/useDiories'
+import { useStoryDiories } from '../../diograph/utils/useDiories'
 import { useSelectedDiories } from '../useSelectedDiories'
 
 import { updateDiory } from '../../diograph/diographActions'
@@ -24,7 +24,7 @@ const useUpdateSelectedDiories = () => {
 }
 
 const useUpdateStory = () => {
-  const { story } = useDiories()
+  const { story } = useStoryDiories()
   const { selectedDiories } = useSelectedDiories()
   const { dispatch } = useDispatchActions()
   return {

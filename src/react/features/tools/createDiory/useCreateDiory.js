@@ -1,12 +1,12 @@
 import { getDefaultImage } from '../../../../shared/getDefaultImage'
 
 import { useDispatchActions } from '../../../store'
-import { useDiories } from '../../diograph/utils/useDiories'
+import { useStoryDiories } from '../../diograph/utils/useDiories'
 
 import { createDiory, createLink } from '../../diograph/diographActions'
 
 export const useCreateDiory = () => {
-  const { story } = useDiories()
+  const { story } = useStoryDiories()
 
   const { dispatch } = useDispatchActions()
   return (newDiory) => {

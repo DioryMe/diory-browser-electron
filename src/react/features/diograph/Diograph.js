@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Pane } from 'evergreen-ui'
 
 import { useDiographEffect } from './useDiographEffect'
-import { useDiories } from './utils/useDiories'
+import { useStoryDiories } from './utils/useDiories'
 
 import { useSelectStory } from '../tools/selectStory'
 import { useSelectDiory } from '../tools/useSelectDiory'
@@ -55,7 +55,7 @@ const useMapSelectedDiories = () => {
 export const Diograph = () => {
   useDiographEffect()
 
-  const { story, memories } = useDiories()
+  const { story, memories } = useStoryDiories()
   const { goLeft, goRight } = useGoSide()
   const { mapSelected } = useMapSelectedDiories()
 

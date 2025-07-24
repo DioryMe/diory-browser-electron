@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDispatchActions, useSelector } from '../../../store'
 
 import { useButtons } from '../../buttons/useButtons'
-import { useDiories } from '../../diograph/utils/useDiories'
+import { useStoryDiories } from '../../diograph/utils/useDiories'
 
 import { createLink, getDiograph } from '../../diograph/diographActions'
 import { getLocalAddress } from '../../../utils/getLocalAddress'
@@ -13,7 +13,7 @@ import { inactivateButton } from '../../buttons/buttonsActions'
 export const useCreateLinkTool = () => {
   useButtons(buttons)
 
-  const { story } = useDiories()
+  const { story } = useStoryDiories()
   const { active } = useSelector((state) => state.buttons)
 
   const { dispatch } = useDispatchActions()

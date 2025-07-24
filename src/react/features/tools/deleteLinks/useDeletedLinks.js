@@ -1,4 +1,4 @@
-import { useDiories } from '../../diograph/utils/useDiories'
+import { useStoryDiories } from '../../diograph/utils/useDiories'
 import { useSelectedDiories } from '../useSelectedDiories'
 
 const mapToLinks = (diory, links) =>
@@ -8,7 +8,7 @@ const mapToLinks = (diory, links) =>
   }))
 
 export const useDeletedLinks = () => {
-  const { story } = useDiories()
+  const { story } = useStoryDiories()
   const { selectedDiories } = useSelectedDiories()
   return mapToLinks(story, selectedDiories)
 }

@@ -5,7 +5,7 @@ import { useDispatchActions } from '../../../../store'
 import { selectPeriod } from '../../lensesActions'
 
 import { splitPeriodToPeriods } from './splitPeriodToPeriods'
-import { useDiories } from '../../../diograph/utils/useDiories'
+import { useStoryDiories } from '../../../diograph/utils/useDiories'
 import { startsWithPeriod } from './startsWithPeriod'
 
 export const useTimeline = () => {
@@ -31,7 +31,7 @@ const getTitle = (period, index, diograph) => {
 
 export const useTimelineTitles = () => {
   const { diograph } = useSelector((state) => state.diograph)
-  const { story } = useDiories()
+  const { story } = useStoryDiories()
 
   const { selectedPeriod } = useSelector((state) => state.lenses)
   const periods = splitPeriodToPeriods(selectedPeriod || story.date).filter(

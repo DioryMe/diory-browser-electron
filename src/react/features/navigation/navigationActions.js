@@ -1,25 +1,13 @@
 import {
-  SELECT_CONTEXT,
   SELECT_STORY,
-  SELECT_MEMORY,
   GO_FORWARD,
   GO_BACKWARD,
   GO_HOME,
   GO_SIDE,
 } from './navigationActionTypes'
 
-export const selectContext = ({ key }) => ({
-  type: SELECT_CONTEXT,
-  payload: { key },
-})
-
 export const selectStory = ({ key }) => ({
   type: SELECT_STORY,
-  payload: { key },
-})
-
-export const selectMemory = ({ key } = {}) => ({
-  type: SELECT_MEMORY,
   payload: { key },
 })
 

@@ -2,19 +2,18 @@ import { useSelector } from 'react-redux'
 
 import { useSelectedDiories } from '../useSelectedDiories'
 
-import { resolveContextDiories } from '../../diograph/utils/resolveContextDiories'
-import { resolveDiories } from '../../diograph/utils/resolveDiories'
+import { useGetContextDiories } from '../../diograph/utils/useContextDiories'
+import { useGetDiories } from '../../diograph/utils/useDiories'
 
 export const useDeletedLinks = () => {
   const { selectedDiories = [] } = useSelectedDiories()
-  const { diograph } = useSelector((state) => state.diograph)
+  const { getDiories } = useGetDiories()
+  const { getContextDiories } = useGetContextDiories()
 
   return selectedDiories
     .map((diory) => {
-      const navigationState = { storyKey: diory.key }
-
-      const { memories } = resolveDiories(navigationState, diograph)
-      const { contexts } = resolveContextDiories(navigationState, diograph)
+      const { memories } = getDiories(diory.key)
+      const { contexts } = getContextDiories(diory.key)
 
       const linkedDiories = memories.map((link) => ({
         fromDiory: diory,

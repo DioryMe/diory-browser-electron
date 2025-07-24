@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { useDiories } from '../../../diograph/utils/useDiories'
+import { useStoryDiories } from '../../../diograph/utils/useDiories'
 
 import { resolveDatesDiograph } from './resolveDatesDiograph'
 import { getDatesDiograph } from './getDatesDiograph'
@@ -44,7 +44,7 @@ const addTotalAmount =
 export const useTimePeriods = () => {
   const { selectedPeriod } = useSelector((state) => state.lenses) // 2021
   const { diograph } = useSelector((state) => state.diograph)
-  const { memories } = useDiories()
+  const { memories } = useStoryDiories()
 
   if (selectedPeriod === 'timeline') {
     const years = Object.values(diograph)

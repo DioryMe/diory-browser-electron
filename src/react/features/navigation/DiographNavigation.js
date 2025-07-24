@@ -4,8 +4,8 @@ import { useSelector } from '../../store'
 import { useSelectStory } from '../tools/selectStory'
 import { useSelectDiory } from '../tools/useSelectDiory'
 
-import { useDiories } from '../diograph/utils/useDiories'
-import { useContextDiories } from '../diograph/utils/useContextDiories'
+import { useStoryDiories } from '../diograph/utils/useDiories'
+import { useStoryContextDiories } from '../diograph/utils/useContextDiories'
 
 import { NavigationBar } from './components/NavigationBar'
 import { DiographAddress } from './DiographAddress'
@@ -25,8 +25,8 @@ const useNavigationActions = () => {
 
 export const DiographNavigation = () => {
   const { address } = useSelector((state) => state.home)
-  const diories = useDiories()
-  const contextDiories = useContextDiories()
+  const diories = useStoryDiories()
+  const contextDiories = useStoryContextDiories()
   const { onClick } = useNavigationActions()
 
   return (
