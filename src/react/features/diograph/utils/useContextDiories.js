@@ -1,6 +1,5 @@
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
-import { useNavigation } from '../../navigation/useNavigation'
 
 import { resolveReverseDiograph } from './resolveReverseDiograph'
 import { getLinkedDiories } from './getLinkedDiories'
@@ -27,6 +26,6 @@ export const useContextDiories = (storyKey, backward) => {
 }
 
 export const useStoryContextDiories = () => {
-  const { storyKey, backward } = useNavigation()
+  const { storyKey, backward } = useSelector((state) => state.navigation)
   return useContextDiories(storyKey, backward)
 }

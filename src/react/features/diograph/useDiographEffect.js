@@ -4,7 +4,7 @@ import { useDispatchActions } from '../../store'
 import { getDiograph } from './diographActions'
 import { useStoryDiories } from './utils/useDiories'
 
-import { getDiographKey } from './utils/getDiographKey'
+import { resolveLinkKey } from './utils/resolveLinkKey'
 import { getKeyPath } from './utils/getKeyPath'
 import { unique } from '../../utils/unique'
 
@@ -14,7 +14,7 @@ const useMemoryAddresses = () => {
     () =>
       story.links &&
       story.links
-        .map(({ id } = {}) => getDiographKey(story.key, id))
+        .map(({ id } = {}) => resolveLinkKey(story.key, id))
         .map(getKeyPath)
         .filter(Boolean)
         .map((path) => `${path}/`)

@@ -11,13 +11,12 @@ import { useLinkDiories } from '../tools/linkDiories/useLinkDiories'
 
 import { useToggleContent } from '../content/useToggleContent'
 import { useGoSide } from '../navigation/utils/useGoSide'
-import { useNavigation } from '../navigation/useNavigation'
 
 import NavigationToSide from './components/NavigationToSide'
 import DiographView from './components/DiographView'
 
 export const useDiographTools = () => {
-  const { forward = [] } = useNavigation('diory')
+  const { forward = [] } = useSelector((state) => state.navigation)
 
   const { selectStory } = useSelectStory()
   const { selectDiory } = useSelectDiory()

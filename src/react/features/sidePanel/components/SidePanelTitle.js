@@ -17,7 +17,7 @@ const SidePanelTitle = ({ diory, amount, isSelected, onClick }) => (
 SidePanelTitle.propTypes = {
   id: PropTypes.string,
   text: PropTypes.string,
-  amount: PropTypes.string,
+  amount: PropTypes.number,
   isSelected: PropTypes.bool,
   onClick: PropTypes.func,
 }

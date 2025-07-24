@@ -1,5 +1,5 @@
-import { getDiographKey } from './getDiographKey'
-import { getDiory } from './getDiory'
+import { resolveLinkKey } from './resolveLinkKey'
+import { resolveDioryKey } from './resolveDioryKey'
 
 function removeLinks(diograph) {
   return Object.entries(diograph).reduce(
@@ -20,10 +20,8 @@ export function resolveReverseDiograph(diograph) {
     }
 
     Object.values(diory.links)
-      .map(({ id }) => {
-        const { key: linkKey } = getDiory(getDiographKey(dioryKey, id), diograph)
-        return linkKey
-      })
+      .map(({ id }) => resolveDioryKey(resolveLinkKey(dioryKey, id), diograph))
+      .filter(Boolean)
       .filter((linkKey) => diograph[linkKey])
       .forEach((linkKey) => {
         reverseDiograph[linkKey].links = {

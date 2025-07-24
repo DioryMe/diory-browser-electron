@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux'
 
-import { useNavigation } from '../../navigation/useNavigation'
 import { useSelectedDiories } from '../../tools/useSelectedDiories'
 
 import { getDiory } from './getDiory'
@@ -35,7 +34,7 @@ export const useDiories = (storyKey) => {
 }
 
 export const useStoryDiories = () => {
-  const { storyKey } = useNavigation()
+  const { storyKey } = useSelector((state) => state.navigation)
   const { getDiories } = useGetDiories()
   return getDiories(storyKey)
 }

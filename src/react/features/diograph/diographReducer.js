@@ -1,7 +1,7 @@
 import { GET_DIOGRAPH, GENERATE_DIOGRAPH, UPDATE_DIOGRAPH } from './diographActionTypes'
 
 import { createReducer, promiseReducers } from '../../store'
-import { getDiographKey } from './utils/getDiographKey'
+import { resolveLinkKey } from './utils/resolveLinkKey'
 import { createActions } from '../../store/storeUtils'
 import loading from './utils/loading.gif'
 
@@ -64,7 +64,7 @@ const getDiographFailure = (
 const updateDiograph = (state, { payload: { diograph, address } }) => ({
   ...state,
   diograph: Object.entries(diograph).reduce((obj, [key, diory]) => {
-    const diographKey = address ? getDiographKey(address, key) : key
+    const diographKey = address ? resolveLinkKey(address, key) : key
     obj[diographKey] = diory
     return obj
   }, state.diograph),

@@ -21,7 +21,7 @@ export const useContentCarousel = (data, path) => {
   return {
     content: getContent(data[contentIndex], path),
     carousel: {
-      selected: contentIndex,
+      selectedIndex: contentIndex,
       amount: data.length,
       onClick: () => setIndex(getNextIndex(contentIndex, data.length)),
     },
