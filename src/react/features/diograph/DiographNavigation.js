@@ -4,27 +4,16 @@ import { useSelector } from '../../store'
 import { useSelectStory } from '../tools/selectStory'
 import { useSelectDiory } from '../tools/useSelectDiory'
 
-import { useStoryDiories } from '../diograph/utils/useDiories'
-import { useStoryContextDiories } from '../diograph/utils/useContextDiories'
+import { useStoryDiories } from './utils/useDiories'
+import { useStoryContextDiories } from './utils/useContextDiories'
+import { useNavigationActions } from '../navigation/useNavigationActions'
 
-import { NavigationBar } from './components/NavigationBar'
-import { DiographAddress } from './DiographAddress'
-import { NavigationContent } from './NavigationContent'
+import { NavigationBar } from '../navigation/components/NavigationBar'
+import { DiographAddress } from './components/DiographAddress'
+import { NavigationContent } from '../navigation/components/NavigationContent'
 import { SidePanelToggleButton } from '../sidePanel/components/SidePanelToggleButton'
 
-const useNavigationActions = () => {
-  const { selectStory } = useSelectStory()
-  const { selectDiory } = useSelectDiory()
-  return {
-    onClick: ({ diory }) => {
-      selectStory(diory)
-      selectDiory(diory)
-    },
-  }
-}
-
 export const DiographNavigation = () => {
-  const { address } = useSelector((state) => state.home)
   const diories = useStoryDiories()
   const contextDiories = useStoryContextDiories()
   const { onClick } = useNavigationActions()
@@ -36,7 +25,6 @@ export const DiographNavigation = () => {
       </NavigationContent>
       <NavigationContent>
         <DiographAddress
-          home={{ text: 'DIORY', key: address }}
           {...diories}
           {...contextDiories}
           onClick={onClick}

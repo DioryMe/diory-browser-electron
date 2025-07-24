@@ -2,8 +2,8 @@ import React from 'react'
 import { Pane } from 'evergreen-ui'
 
 import PropTypes from 'prop-types'
-import { MenuDropdown } from '../../components/MenuDropdown'
-import { MenuItem } from '../../components/MenuItem'
+import { MenuDropdown } from '../../../components/MenuDropdown'
+import { MenuItem } from '../../../components/MenuItem'
 
 const NavigationDivider = () => (
   <Pane color="white" fontSize={12} borderRadius={16} margin={6} alignSelf="center">
@@ -14,8 +14,6 @@ const NavigationDivider = () => (
 // TODO Update text
 const DiographAddress = ({ home, story, stories, context, contexts, onClick }) => (
   <>
-    <MenuItem diory={home} fontWeight="bold" onClick={onClick} />
-    <NavigationDivider />
     {context && (
       <>
         <MenuItem diory={context} onClick={onClick} />
@@ -33,7 +31,6 @@ const DiographAddress = ({ home, story, stories, context, contexts, onClick }) =
 )
 
 DiographAddress.propTypes = {
-  home: PropTypes.string,
   story: PropTypes.object,
   stories: PropTypes.array,
   context: PropTypes.object,

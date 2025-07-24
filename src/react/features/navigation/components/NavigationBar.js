@@ -5,6 +5,7 @@ import { Pane } from 'evergreen-ui'
 const NavigationBar = ({ side, children, ...props }) => (
   <Pane
     zIndex={10}
+    height="32px"
     flex="0 0 32px"
     display="flex"
     background="#222"

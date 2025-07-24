@@ -3,11 +3,11 @@ import React from 'react'
 import { useDispatchActions, useSelector } from '../../store'
 import { useSidePanel } from '../sidePanel/useSidePanel'
 
-import { selectLens } from '../lenses/lensesActions'
+import { selectLens } from './lensesActions'
 
 import { MenuItem } from '../../components/MenuItem'
-import { NavigationContent } from './NavigationContent'
-import { NavigationBar } from './components/NavigationBar'
+import { NavigationContent } from '../navigation/components/NavigationContent'
+import { NavigationBar } from '../navigation/components/NavigationBar'
 
 export const useActions = () => {
   const { selectedLensId } = useSelector((state) => state.lenses)
