@@ -1,8 +1,13 @@
 import React from 'react'
 import { useDispatchActions, useSelector } from '../../../store'
 
+import { useLensButton } from '../utils/useLensButton'
+import { useCreateHomeDiory } from '../../home/utils/useCreateHomeDiory'
+import { useLens } from '../useLens'
+
 import { useSelectStory } from '../../tools/selectStory'
 import { useCreateDiory } from '../../tools/createDiory'
+import { useSelectDiory } from '../../tools/useSelectDiory'
 
 import { createLink } from '../../diograph/diographActions'
 import { selectLens, searchDiories } from '../lensesActions'
@@ -11,7 +16,8 @@ import { queryDiograph } from './queryDiograph'
 
 import { SearchView } from './SearchView'
 import { SearchBar } from './SearchBar'
-import { useSelectDiory } from '../../tools/useSelectDiory'
+
+import searchLens from './button'
 
 export const useSearch = () => {
   const { query, resultsByQuery } = useSelector((state) => state.lenses)
@@ -50,11 +56,14 @@ const useSearchBar = () => {
 }
 
 export const SearchLens = () => {
+  useCreateHomeDiory(searchLens.id)
+  useLensButton(searchLens)
+
   const search = useSearch()
   const searchBar = useSearchBar()
-  return (
+  return useLens(searchLens.id)? (
     <SearchView {...search}>
       <SearchBar width="100%" {...searchBar} />
     </SearchView>
-  )
+  ) : null
 }

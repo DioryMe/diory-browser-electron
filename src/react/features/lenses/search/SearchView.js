@@ -27,7 +27,7 @@ const SearchView = ({
   return (
     <>
       <Pane padding={6}>
-        <SidePanelTitle text="SEARCH" />
+        <SidePanelTitle diory={{ text: "SEARCH" }}/>
         <Pane padding={6}>{children}</Pane>
         {query && (
           <Pane padding={6}>

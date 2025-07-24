@@ -35,11 +35,11 @@ const TimelineView = ({
   return (
     <Pane height="100%" display="flex" flexDirection="column">
       <Pane display="flex" flexDirection="row" flexWrap="wrap" paddingLeft={14}>
-        <SidePanelTitle {...timeline} onClick={onPeriodClick} />
+        <SidePanelTitle  diory={timeline} onClick={onPeriodClick} />
       </Pane>
       <Pane position="relative" flex={0} display="flex" flexWrap="wrap" paddingLeft={14}>
         {titles.map((title) => (
-          <SidePanelTitle key={title.id} {...title} onClick={onPeriodClick} />
+          <SidePanelTitle key={title.id} diory={title} onClick={onPeriodClick} />
         ))}
       </Pane>
 
@@ -52,7 +52,7 @@ const TimelineView = ({
                 paddingBottom={24}
                 onClick={() => onPeriodClick({ diory: { id } })}
               >
-                <SidePanelTitle text={label} amount={amount} />
+                <SidePanelTitle diory={{ text: label}} amount={amount} />
                 <Diory diory={{ id, image }} />
               </Pane>
             ))}

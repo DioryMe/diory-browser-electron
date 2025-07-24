@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
+import { useCreateHomeDiory } from '../../home/utils/useCreateHomeDiory'
+import { useLensButton } from '../utils/useLensButton'
+import { useLens } from '../useLens'
+
 import { useDispatchActions } from '../../../store'
 import { useSelectStory } from '../../tools/selectStory'
 import { useSelectDiory } from '../../tools/useSelectDiory'
@@ -13,6 +17,8 @@ import { selectPeriod } from '../lensesActions'
 import { startsWithPeriod } from './utils/startsWithPeriod'
 
 import { TimelineView } from './TimelineView'
+
+import timelineLens from './button'
 
 // TODO Add moment to timeline story
 // TODO Add diory to timeline story
@@ -62,13 +68,16 @@ const useDateMemories = () => {
 }
 
 export const TimelineLens = () => {
+  useCreateHomeDiory('timeline')
+  useLensButton(timelineLens)
+
   const timeline = useTimeline()
   const titles = useTimelineTitles() // TODO remove
   const timePeriods = useTimePeriods() // TODO always
   const dateMemories = useDateMemories() // TODO always 50
   const actions = useTimelineActions()
 
-  return (
+  return useLens(timelineLens.id)? (
     <TimelineView
       timeline={timeline}
       titles={titles}
@@ -76,5 +85,5 @@ export const TimelineLens = () => {
       memories={dateMemories}
       {...actions}
     />
-  )
+  ) : null
 }

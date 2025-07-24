@@ -1,19 +1,20 @@
 import { useMemo } from 'react'
 import { getDiory } from '../../diograph/utils/getDiory'
-import { getDiographKey } from '../../diograph/utils/getDiographKey'
+import { resolveLinkKey } from '../../diograph/utils/resolveLinkKey'
 import { getDefaultImage } from '../../../../shared/getDefaultImage'
+import { resolveDioryKey } from '../../diograph/utils/resolveDioryKey'
 
 const mapDiographToData = (diograph) => {
   const links = []
   Object.entries(diograph).forEach(([dioryKey, diory]) => {
     if (diory.links) {
       Object.values(diory.links)
-        .map(({ id }) => getDiory(getDiographKey(dioryKey, id), diograph))
-        .filter(({ key }) => !!diograph[key])
-        .forEach(({ key }) => {
+        .map(({ id }) => resolveDioryKey(resolveLinkKey(dioryKey, id), diograph))
+        .filter((linkKey) => !!diograph[linkKey])
+        .forEach((linkKey) => {
           links.push({
             source: dioryKey,
-            target: key,
+            target: linkKey,
           })
         })
     }

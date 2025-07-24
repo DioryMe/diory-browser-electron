@@ -35,7 +35,6 @@ export const useLinkMarkers = (mapRef, markerLocations) => {
       const newMarkers = markerLocations
         .filter(({ diory }) => !getKeys(markerRefs.current).includes(diory.key))
         .map(({ diory, center }) => {
-          console.log(diory)
           const icon = getIcon(diory)
           const marker = L.marker(center, { icon }).addTo(mapRef.current)
           marker.diory = diory
