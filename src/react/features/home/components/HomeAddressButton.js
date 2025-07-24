@@ -2,7 +2,7 @@ import React from 'react'
 import { Pane } from 'evergreen-ui'
 import PropTypes from 'prop-types'
 
-const HomeButton = ({ onClick }) => (
+const HomeAddressButton = ({ onClick }) => (
   <Pane
     cursor="pointer"
     display="flex"
@@ -18,8 +18,8 @@ const HomeButton = ({ onClick }) => (
   </Pane>
 )
 
-HomeButton.propTypes = {
+HomeAddressButton.propTypes = {
   onClick: PropTypes.func,
 }
 
-export default HomeButton
+export default HomeAddressButton

@@ -1,17 +1,17 @@
 import React from 'react'
 
-import { useInitialiseDiory } from '../diograph/utils/useInitialiseDiory'
+import { useCreateHomeDiory } from '../home/utils/useCreateHomeDiory'
 
 import { useSidePanelActions } from '../sidePanel/useSidePanelActions'
-import { useHomeDiographKey } from '../home/utils/useHomeDiographKey'
+import { useHomeKey } from '../home/utils/useHomeKey'
 import { useDiories } from '../diograph/utils/useDiories'
 
 import { HandView } from './components/HandView'
 
 export const Hand = () => {
-  useInitialiseDiory('hand')
+  useCreateHomeDiory('hand')
 
-  const handKey = useHomeDiographKey('hand')
+  const handKey = useHomeKey('hand')
   const handDiories = useDiories(handKey)
   const actions = useSidePanelActions(handDiories)
 

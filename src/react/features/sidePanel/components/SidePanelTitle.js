@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 
 import { MenuItem } from '../../../components/MenuItem'
 
-const SidePanelTitle = ({ id, text, amount, isSelected, onClick }) => (
+const SidePanelTitle = ({ diory, amount, isSelected, onClick }) => (
   <MenuItem
-    diory={{ id, text: text ? text.toUpperCase() : '' }}
+    diory={diory}
     amount={amount}
     isSelected={isSelected}
     marginTop={4}

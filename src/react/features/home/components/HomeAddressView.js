@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Heading, Pane } from 'evergreen-ui'
 
-import Fullscreen from '../../components/Fullscreen'
-import HomeButton from './HomeButton'
+import Fullscreen from '../../../components/Fullscreen'
+import HomeAddressButton from './HomeAddressButton'
 
-const HomeView = ({ initializing, onClick }) => (
+const HomeAddressView = ({ initializing, onClick }) => (
   <Fullscreen
     background="#fcd600"
     display="flex"
@@ -24,14 +24,14 @@ const HomeView = ({ initializing, onClick }) => (
       <Heading size={900} width="100%">
         Welcome to Diory!
       </Heading>
-      {!initializing && <HomeButton onClick={onClick} />}
+      {!initializing && <HomeAddressButton onClick={onClick} />}
     </Pane>
   </Fullscreen>
 )
 
-HomeView.propTypes = {
+HomeAddressView.propTypes = {
   initializing: PropTypes.bool,
   onClick: PropTypes.func,
 }
 
-export default HomeView
+export default HomeAddressView
