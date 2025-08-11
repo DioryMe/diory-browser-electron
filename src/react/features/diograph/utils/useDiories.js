@@ -10,7 +10,6 @@ const isSelected = (dioryKey, selectedDiories = []) =>
 
 export const getStoryDiories = (storyKey, diograph = {}, selectedDiories = []) => {
   const story = getDiory(storyKey, diograph)
-  console.log()
   return {
     story: { ...story, selected: isSelected(storyKey, selectedDiories) },
     memories: getLinkedDiories(storyKey, diograph).map((diory) => ({

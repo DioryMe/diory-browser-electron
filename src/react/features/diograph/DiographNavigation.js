@@ -1,8 +1,4 @@
 import React from 'react'
-import { useSelector } from '../../store'
-
-import { useSelectStory } from '../tools/selectStory'
-import { useSelectDiory } from '../tools/useSelectDiory'
 
 import { useStoryDiories } from './utils/useDiories'
 import { useStoryContextDiories } from './utils/useContextDiories'
@@ -24,11 +20,7 @@ export const DiographNavigation = () => {
         <SidePanelToggleButton side="left" />
       </NavigationContent>
       <NavigationContent>
-        <DiographAddress
-          {...diories}
-          {...contextDiories}
-          onClick={onClick}
-        />
+        <DiographAddress {...diories} {...contextDiories} onClick={onClick} />
       </NavigationContent>
       <NavigationContent>
         <SidePanelToggleButton side="right" />

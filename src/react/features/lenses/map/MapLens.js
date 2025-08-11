@@ -1,9 +1,5 @@
 import React from 'react'
 
-import { useCreateHomeDiory } from '../../home/utils/useCreateHomeDiory'
-import { useLensButton } from '../utils/useLensButton'
-import { useLens } from '../useLens'
-
 import { useStoryDiories } from '../../diograph/utils/useDiories'
 import { useSelectStory } from '../../tools/selectStory'
 import { useSelectDiory } from '../../tools/useSelectDiory'
@@ -13,6 +9,8 @@ import { useAddLocationTool } from '../../tools/addLocation'
 import MapView from './MapView'
 
 import mapLensButton from './button'
+
+export { mapLensButton }
 
 const useMapTools = () => {
   const { selectStory } = useSelectStory()
@@ -33,11 +31,8 @@ const useMapTools = () => {
 // TODO Group
 // TODO Add place
 export const MapLens = () => {
-  useCreateHomeDiory('map')
-  useLensButton(mapLensButton)
-
   const diograph = useStoryDiories()
   const tools = useMapTools()
 
-  return useLens('map')? <MapView {...diograph} {...tools} /> : null
+  return <MapView {...diograph} {...tools} />
 }

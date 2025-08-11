@@ -1,15 +1,19 @@
 import React from 'react'
 
-import { GraphLens } from './graph/GraphLens'
-import { MapLens } from './map/MapLens'
-import { TimelineLens } from './timeline/TimelineLens'
-import { SearchLens } from './search/SearchLens'
+import { useLens } from './useLens'
+
+import { FolderLens, folderLensButton } from './folder/FolderLens'
+import { GraphLens, graphLensButton } from './graph/GraphLens'
+import { MapLens, mapLensButton } from './map/MapLens'
+import { TimelineLens, timelineLensButton } from './timeline/TimelineLens'
+import { SearchLens, searchLensButton } from './search/SearchLens'
 
 export const Lenses = () => (
   <>
-    <GraphLens />
-    <MapLens />
-    <TimelineLens />
-    <SearchLens />
+    {useLens(folderLensButton) && <FolderLens />}
+    {useLens(graphLensButton) && <GraphLens />}
+    {useLens(mapLensButton) && <MapLens />}
+    {useLens(timelineLensButton) && <TimelineLens />}
+    {useLens(searchLensButton) && <SearchLens />}
   </>
 )

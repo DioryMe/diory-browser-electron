@@ -44,10 +44,9 @@ export const useDiographTools = () => {
 }
 
 const useMapSelectedDiories = () => {
-  const { selectedDiories } = useSelector((state) => state.tools)
   const { open } = useSelector((state) => state.buttons)
   return {
-    mapSelected: (diory) => ({ ...diory, selected: open ? !!selectedDiories[diory.key] : null }),
+    mapSelected: (diory) => ({ ...diory, selected: open ? diory.selected : null }),
   }
 }
 

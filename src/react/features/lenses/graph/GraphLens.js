@@ -1,17 +1,15 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { useCreateHomeDiory } from '../../home/utils/useCreateHomeDiory'
-import { useLensButton } from '../utils/useLensButton'
-import { useLens } from '../useLens'
-
 import { useSelectStory } from '../../tools/selectStory'
 import { useSelectDiory } from '../../tools/useSelectDiory'
 import { useGraphData } from './useGraphData'
 
 import GraphView from './GraphView'
 
-import graphLens from './button'
+import graphLensButton from './button'
+
+export { graphLensButton }
 
 export const useGraphTools = () => {
   const { selectStory } = useSelectStory()
@@ -26,9 +24,6 @@ export const useGraphTools = () => {
 }
 
 export const GraphLens = () => {
-  useCreateHomeDiory(graphLens.id)
-  useLensButton(graphLens)
-
   const { diograph } = useSelector((state) => state.diograph)
   const { storyKey } = useSelector((state) => state.navigation)
   const { sidePanelWidths } = useSelector((state) => state.sidePanel)
@@ -37,12 +32,12 @@ export const GraphLens = () => {
   const tools = useGraphTools()
   const storyNode = graphData.nodes.find(({ id }) => id === storyKey)
 
-  return useLens(graphLens.id)? (
+  return (
     <GraphView
       storyNode={storyNode}
       data={graphData}
       {...tools}
       sidePanelWidth={sidePanelWidths.right}
     />
-  ) : null
+  )
 }

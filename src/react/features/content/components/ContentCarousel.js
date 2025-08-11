@@ -19,7 +19,11 @@ const ContentCounter = ({ selectedIndex, amount }) => (
     width="100%"
   >
     {[...Array(amount).keys()].map((index) => (
-      <Pane key={index} {...circleStyle} backgroundColor={index === selectedIndex ? 'grey' : 'white'} />
+      <Pane
+        key={index}
+        {...circleStyle}
+        backgroundColor={index === selectedIndex ? 'grey' : 'white'}
+      />
     ))}
   </Pane>
 )

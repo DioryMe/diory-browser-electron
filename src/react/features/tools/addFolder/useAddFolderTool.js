@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { useDispatchActions, useSelector } from '../../../store'
 
 import { useButtons } from '../../buttons/useButtons'
-import { useStoryDiories } from '../../diograph/utils/useDiories'
 
 import { createLink, getDiograph } from '../../diograph/diographActions'
 import { getLocalAddress } from '../../../utils/getLocalAddress'
@@ -10,10 +9,9 @@ import { getLocalAddress } from '../../../utils/getLocalAddress'
 import { buttons, BUTTON } from './buttons'
 import { inactivateButton } from '../../buttons/buttonsActions'
 
-export const useCreateLinkTool = () => {
+export const useAddFolderTool = () => {
   useButtons(buttons)
 
-  const { story } = useStoryDiories()
   const { active } = useSelector((state) => state.buttons)
 
   const { dispatch } = useDispatchActions()
@@ -21,7 +19,7 @@ export const useCreateLinkTool = () => {
     async function action() {
       const folderPath = await getLocalAddress()
       if (folderPath) {
-        dispatch(createLink(story, { key: folderPath }))
+        dispatch(createLink({ id: 'folders' }, { key: folderPath }))
         dispatch(getDiograph(folderPath))
       }
     }
@@ -30,5 +28,5 @@ export const useCreateLinkTool = () => {
       dispatch(inactivateButton())
       action()
     }
-  }, [dispatch, active, story])
+  }, [dispatch, active])
 }

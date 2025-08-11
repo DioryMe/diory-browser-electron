@@ -18,11 +18,7 @@ const HomeBarView = ({ story, memories = [], onClick, onBackgroundDrop, onLeaveH
       </Pane>
 
       <Pane paddingLeft={10}>
-        <MenuItem
-          diory={{ icon: 'log-out' }}
-          onClick={onLeaveHome}
-          fontWeight="bold"
-        />
+        <MenuItem diory={{ icon: 'log-out' }} onClick={onLeaveHome} fontWeight="bold" />
       </Pane>
     </Pane>
   </>

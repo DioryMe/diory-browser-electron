@@ -1,15 +1,11 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
-import { useCreateHomeDiory } from '../../home/utils/useCreateHomeDiory'
-import { useLensButton } from '../utils/useLensButton'
-import { useLens } from '../useLens'
-
 import { useDispatchActions } from '../../../store'
 import { useSelectStory } from '../../tools/selectStory'
 import { useSelectDiory } from '../../tools/useSelectDiory'
 
-import { useTimeline, useTimelineTitles } from './utils/useTimelineTitles'
+import { useHeader, useTimelineTitles } from './utils/useTimelineTitles'
 import { useTimePeriods } from './utils/useTimePeriods'
 
 import { createLink } from '../../diograph/diographActions'
@@ -18,7 +14,9 @@ import { startsWithPeriod } from './utils/startsWithPeriod'
 
 import { TimelineView } from './TimelineView'
 
-import timelineLens from './button'
+import timelineLensButton from './button'
+
+export { timelineLensButton }
 
 // TODO Add moment to timeline story
 // TODO Add diory to timeline story
@@ -68,22 +66,19 @@ const useDateMemories = () => {
 }
 
 export const TimelineLens = () => {
-  useCreateHomeDiory('timeline')
-  useLensButton(timelineLens)
-
-  const timeline = useTimeline()
+  const header = useHeader()
   const titles = useTimelineTitles() // TODO remove
   const timePeriods = useTimePeriods() // TODO always
   const dateMemories = useDateMemories() // TODO always 50
   const actions = useTimelineActions()
 
-  return useLens(timelineLens.id)? (
+  return (
     <TimelineView
-      timeline={timeline}
+      header={header}
       titles={titles}
       periods={timePeriods}
       memories={dateMemories}
       {...actions}
     />
-  ) : null
+  )
 }

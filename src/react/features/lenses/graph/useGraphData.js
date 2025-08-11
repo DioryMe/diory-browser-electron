@@ -1,5 +1,4 @@
 import { useMemo } from 'react'
-import { getDiory } from '../../diograph/utils/getDiory'
 import { resolveLinkKey } from '../../diograph/utils/resolveLinkKey'
 import { getDefaultImage } from '../../../../shared/getDefaultImage'
 import { resolveDioryKey } from '../../diograph/utils/resolveDioryKey'

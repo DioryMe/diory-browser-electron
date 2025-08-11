@@ -14,7 +14,12 @@ const HomeNavigation = () => {
   return (
     <NavigationBar>
       <NavigationContent>
-        <MenuItem diory={{ text: 'DIORY', key: address }} fontWeight='bold' paddingLeft={10} onClick={onClick} />
+        <MenuItem
+          diory={{ text: 'DIORY', key: address }}
+          fontWeight="bold"
+          paddingLeft={10}
+          onClick={onClick}
+        />
       </NavigationContent>
     </NavigationBar>
   )

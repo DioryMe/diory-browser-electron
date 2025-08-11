@@ -4,6 +4,7 @@ import {
   SET_SEARCH_QUERY,
   SET_SEARCH_RESULTS,
   SELECT_PERIOD,
+  SELECT_FOLDER,
 } from './lensesActionTypes'
 
 export const selectLens = (id) => ({ type: SELECT_LENS, payload: { id } })
@@ -31,4 +32,9 @@ export const searchDiories = (query, resultDiograph) => (dispatch) => {
 export const selectPeriod = ({ id }) => ({
   type: SELECT_PERIOD,
   payload: { id },
+})
+
+export const selectedFolder = ({ key }) => ({
+  type: SELECT_FOLDER,
+  payload: { key },
 })

@@ -5,7 +5,6 @@ import { Pane } from 'evergreen-ui'
 import GridItem from '../GridItem'
 import DragDrop from '../DragDrop'
 import Diory from './Diory'
-import Fullscreen from '../Fullscreen'
 
 const horizontalStyle = {
   flexDirection: 'column',

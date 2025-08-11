@@ -16,8 +16,11 @@ export const Home = ({ children }) => {
   const { loaded } = useSelector((state) => state.diograph)
 
   const { saveHomeAddress } = useSaveHomeAddress()
-  return loaded[address] ? children :
+  return loaded[address] ? (
+    children
+  ) : (
     <HomeWelcome>
       {!loading && !address && <HomeAddressButton onClick={saveHomeAddress} />}
     </HomeWelcome>
+  )
 }

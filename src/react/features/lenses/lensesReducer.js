@@ -4,12 +4,14 @@ import {
   SET_SEARCH_QUERY,
   SET_SEARCH_RESULTS,
   SELECT_PERIOD,
+  SELECT_FOLDER,
 } from './lensesActionTypes'
 import { createReducer } from '../../store'
 
 const initialState = {
   selectedLensId: 'map',
   selectedPeriod: null,
+  selectedFolderKey: null,
   buttons: {},
   query: '',
   resultsByQuery: {},
@@ -46,10 +48,16 @@ export const selectPeriod = (state, { payload }) => ({
   selectedPeriod: payload.id,
 })
 
+export const selectFolder = (state, { payload }) => ({
+  ...state,
+  selectedFolderKey: payload.key,
+})
+
 export default createReducer(initialState, {
   [SELECT_LENS]: selectLens,
   [ADD_LENS_BUTTON]: addLensButton,
   [SET_SEARCH_QUERY]: setSearchQuery,
   [SET_SEARCH_RESULTS]: setSearchResults,
   [SELECT_PERIOD]: selectPeriod,
+  [SELECT_FOLDER]: selectFolder,
 })

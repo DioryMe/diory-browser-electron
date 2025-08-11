@@ -24,34 +24,30 @@ const isDayPeriod = (period) => {
   return date.split('-').length === 3
 }
 
-const mapToPeriod = ({ id, text, links, image }) => ({
-  id,
-  label: text,
-  amount: links.length,
-  image,
-})
-
-const addTotalAmount =
-  (diograph) =>
-  ({ amount, ...period }) => {
-    const totalAmount = Object.values(diograph).filter(startsWithPeriod(period.id)).length
-    return {
-      ...period,
-      amount: `${amount} / ${totalAmount}`,
-    }
+const addAmount = (memories, diograph) => (period) => {
+  const amount = memories.filter(startsWithPeriod(period.id)).length
+  const totalAmount = Object.values(diograph).filter(startsWithPeriod(period.id)).length
+  return {
+    ...period,
+    amount: `${amount} / ${totalAmount}`,
   }
+}
 
+// TODO image to all periods (story, memory, other)
+// TODO indicate story period (same as map)
+// TODO clear selection on story change
 export const useTimePeriods = () => {
   const { selectedPeriod } = useSelector((state) => state.lenses) // 2021
   const { diograph } = useSelector((state) => state.diograph)
-  const { memories } = useStoryDiories()
+  const { story, memories } = useStoryDiories()
+  const diories = [story].concat(memories)
 
   if (selectedPeriod === 'timeline') {
     const years = Object.values(diograph)
       .filter(({ date }) => date)
       .map(({ date }) => date.slice(0, 4))
       .filter(unique)
-    return Object.values(getDatesDiograph(years, diograph)).map(mapToPeriod)
+    return Object.values(getDatesDiograph(years, diograph)).map(addAmount(diories, diograph))
   }
 
   if (selectedPeriod) {
@@ -61,10 +57,8 @@ export const useTimePeriods = () => {
 
     const selectedDiories = Object.values(diograph).filter(startsWithPeriod(selectedPeriod))
 
-    return Object.values(resolveDatesDiograph(selectedDiories)).map(mapToPeriod)
+    return Object.values(resolveDatesDiograph(selectedDiories)).map(addAmount(diories, diograph))
   }
 
-  return Object.values(resolveDatesDiograph(memories))
-    .map(mapToPeriod)
-    .map(addTotalAmount(diograph))
+  return Object.values(resolveDatesDiograph(diories)).map(addAmount(diories, diograph))
 }

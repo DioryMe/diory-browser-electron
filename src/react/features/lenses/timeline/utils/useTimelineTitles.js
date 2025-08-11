@@ -8,7 +8,7 @@ import { splitPeriodToPeriods } from './splitPeriodToPeriods'
 import { useStoryDiories } from '../../../diograph/utils/useDiories'
 import { startsWithPeriod } from './startsWithPeriod'
 
-export const useTimeline = () => {
+export const useHeader = () => {
   const { selectedPeriod } = useSelector((state) => state.lenses)
   const { diograph } = useSelector((state) => state.diograph)
 
@@ -29,6 +29,8 @@ const getTitle = (period, index, diograph) => {
   return `${periodTitle} (${amount})`
 }
 
+// TODO single line with header
+// TODO use pill and /
 export const useTimelineTitles = () => {
   const { diograph } = useSelector((state) => state.diograph)
   const { story } = useStoryDiories()
