@@ -78,7 +78,7 @@ DiorysGrid.propTypes = {
   itemStyle: PropTypes.object,
   scrollIntoViewId: PropTypes.string,
   onClick: PropTypes.func.isRequired,
-  onDrop: PropTypes.func.isRequired,
+  onDrop: PropTypes.func,
   onSelect: PropTypes.func,
   onBackgroundClick: PropTypes.func,
   onBackgroundDrop: PropTypes.func,

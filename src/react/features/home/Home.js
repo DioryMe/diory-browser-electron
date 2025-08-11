@@ -1,17 +1,23 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector } from '../../store'
 
-import { useSidePanelActions } from '../sidePanel/useSidePanelActions'
-import { useDiories } from '../diograph/utils/useDiories'
+import { useHomeDiographEffect } from './useHomeDiographEffect'
+import { useGetHomeAddressEffect } from './useGetHomeAddressEffect'
 import { useSaveHomeAddress } from './useSaveHomeAddress'
 
-import { HomeView } from './components/HomeView'
+import { HomeWelcome } from './components/HomeWelcome'
+import { HomeAddressButton } from './components/HomeAddressButton'
 
-export const Home = () => {
-  const { address } = useSelector((state) => state.home)
-  const homeDiories = useDiories(address)
-  const actions = useSidePanelActions(homeDiories)
+export const Home = ({ children }) => {
+  useGetHomeAddressEffect()
+  useHomeDiographEffect()
+
+  const { loading, address } = useSelector((state) => state.home)
+  const { loaded } = useSelector((state) => state.diograph)
+
   const { saveHomeAddress } = useSaveHomeAddress()
-
-  return <HomeView {...homeDiories} {...actions} onLeaveHome={saveHomeAddress} />
+  return loaded[address] ? children :
+    <HomeWelcome>
+      {!loading && !address && <HomeAddressButton onClick={saveHomeAddress} />}
+    </HomeWelcome>
 }

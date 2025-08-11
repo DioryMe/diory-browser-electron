@@ -19,5 +19,5 @@ export const useCreateHomeDiory = (id) => {
       dispatch(createDiory({ key, id, text: capitalizeFirstLetter(id) }))
       dispatch(createLink({ id: '/' }, { id }))
     }
-  }, [diory])
+  }, [diory, id])
 }

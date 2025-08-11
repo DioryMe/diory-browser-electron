@@ -22,4 +22,4 @@ HomeAddressButton.propTypes = {
   onClick: PropTypes.func,
 }
 
-export default HomeAddressButton
+export { HomeAddressButton }

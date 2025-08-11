@@ -3,24 +3,23 @@ import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Panel, PanelResizeHandle } from 'react-resizable-panels'
 
-import { HomeAddress } from '../features/home/HomeAddress'
-import { HomeNavigation } from '../features/home/HomeNavigation'
-import { DiographNavigation } from '../features/diograph/DiographNavigation'
-import { PanelContainer } from '../features/sidePanel/PanelContainer'
 import { Home } from '../features/home/Home'
+import { HomeNavigation } from '../features/home/HomeNavigation'
+import { HomeBar } from '../features/home/HomeBar'
+import { DiographNavigation } from '../features/diograph/DiographNavigation'
 import { Diograph } from '../features/diograph/Diograph'
-import { Lenses } from '../features/lenses/Lenses'
 import { Hand } from '../features/hand/Hand'
-import { Buttons } from '../features/buttons/Buttons'
-import { Tools } from '../features/tools/Tools'
-import { SidePanel } from '../features/sidePanel/SidePanel'
+import { Lenses } from '../features/lenses/Lenses'
 import { LensesNavigation } from '../features/lenses/LensesNavigation'
+import { Tools } from '../features/tools/Tools'
+import { Buttons } from '../features/buttons/Buttons'
+import { PanelContainer } from '../features/sidePanel/PanelContainer'
+import { SidePanel } from '../features/sidePanel/SidePanel'
 
 import Fullscreen from '../components/Fullscreen'
 
 const Root = () => (
-  <>
-    <HomeAddress />
+  <Home>
     <DndProvider backend={HTML5Backend}>
       <Fullscreen zIndex={0}>
         <PanelContainer direction="vertical" sidePanels={['', 'bottom']}>
@@ -28,7 +27,7 @@ const Root = () => (
             <PanelContainer direction="horizontal" sidePanels={['left', '', 'right']}>
               <SidePanel side="left">
                 <HomeNavigation />
-                <Home />
+                <HomeBar />
               </SidePanel>
               <PanelResizeHandle />
               <Panel minSize={20} style={{ display: 'flex', flexDirection: 'column' }}>
@@ -51,7 +50,7 @@ const Root = () => (
     </DndProvider>
     <Buttons />
     <Tools />
-  </>
+  </Home>
 )
 
 export default Root
