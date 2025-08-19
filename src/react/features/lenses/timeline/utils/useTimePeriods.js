@@ -33,6 +33,8 @@ const addAmount = (memories, diograph) => (period) => {
   }
 }
 
+const addSelected = ({ date }) => (period) => ({...period, selected: date && date.startsWith(period.id)})
+
 // TODO image to all periods (story, memory, other)
 // TODO indicate story period (same as map)
 // TODO clear selection on story change
@@ -47,7 +49,7 @@ export const useTimePeriods = () => {
       .filter(({ date }) => date)
       .map(({ date }) => date.slice(0, 4))
       .filter(unique)
-    return Object.values(getDatesDiograph(years, diograph)).map(addAmount(diories, diograph))
+    return Object.values(getDatesDiograph(years, diograph)).map(addAmount(diories, diograph)).map(addSelected(story))
   }
 
   if (selectedPeriod) {
@@ -57,8 +59,8 @@ export const useTimePeriods = () => {
 
     const selectedDiories = Object.values(diograph).filter(startsWithPeriod(selectedPeriod))
 
-    return Object.values(resolveDatesDiograph(selectedDiories)).map(addAmount(diories, diograph))
+    return Object.values(resolveDatesDiograph(selectedDiories)).map(addAmount(diories, diograph)).map(addSelected(story))
   }
 
-  return Object.values(resolveDatesDiograph(diories)).map(addAmount(diories, diograph))
+  return Object.values(resolveDatesDiograph(diories)).map(addAmount(diories, diograph)).map(addSelected(story))
 }

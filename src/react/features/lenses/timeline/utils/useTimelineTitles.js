@@ -4,7 +4,7 @@ import { useDispatchActions } from '../../../../store'
 
 import { selectPeriod } from '../../lensesActions'
 
-import { splitPeriodToPeriods } from './splitPeriodToPeriods'
+import { splitDateToPeriods } from './splitDateToPeriods'
 import { useStoryDiories } from '../../../diograph/utils/useDiories'
 import { startsWithPeriod } from './startsWithPeriod'
 
@@ -33,29 +33,16 @@ const getTitle = (period, index, diograph) => {
 // TODO use pill and /
 export const useTimelineTitles = () => {
   const { diograph } = useSelector((state) => state.diograph)
-  const { story } = useStoryDiories()
 
   const { selectedPeriod } = useSelector((state) => state.lenses)
-  const periods = splitPeriodToPeriods(selectedPeriod || story.date).filter(
-    (period) => period !== 'timeline'
-  )
+  const periods = selectedPeriod !== 'timeline' ? splitDateToPeriods(selectedPeriod) : []
 
-  return periods
+  const header = useHeader()
+  return [header, ...periods
     .map((period, index) => ({
       key: period,
       id: period,
       text: getTitle(period, index, diograph),
       isSelected: selectedPeriod === period,
-    }))
-    .concat(
-      selectedPeriod
-        ? [
-            {
-              key: 'clear',
-              id: null,
-              text: 'Clear',
-            },
-          ]
-        : []
-    )
+    }))]
 }

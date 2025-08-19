@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { Fragment, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
@@ -21,8 +21,9 @@ const dioryStyle = {
   },
 }
 
+const isLast = (index, length) => index === length - 1
+
 const TimelineView = ({
-  header,
   titles = [],
   periods = [],
   memories,
@@ -34,23 +35,24 @@ const TimelineView = ({
   const handRef = useRef()
   return (
     <Pane height="100%" display="flex" flexDirection="column">
-      <Pane display="flex" flexDirection="row" flexWrap="wrap" paddingLeft={14}>
-        <SidePanelTitle diory={header} onClick={onPeriodClick} />
-      </Pane>
-      <Pane position="relative" flex={0} display="flex" flexWrap="wrap" paddingLeft={14}>
-        {titles.map((title) => (
-          <SidePanelTitle key={title.id} diory={title} onClick={onPeriodClick} />
+      <Pane position="relative" flex={0} display="flex" flexWrap="wrap" paddingLeft={14} color="grey">
+        {titles.map((title, index, array) => (
+          <Fragment key={title.id}>
+            <SidePanelTitle diory={title} onClick={onPeriodClick} />
+            { !isLast(index, array.length) && <span>/</span> }
+          </Fragment>
         ))}
       </Pane>
 
       <Pane position="relative" flex={1}>
         <Fullscreen>
           <Pane position="relative" flex={0} display="flex" flexWrap="wrap" padding={8}>
-            {periods.map(({ id, text, image, amount }) => (
+            {periods.map(({ id, text, image, amount, selected }) => (
               <Pane
                 {...itemStyle}
                 key={id}
                 paddingBottom={24}
+                border={selected ? '4px solid red' : ''}
                 onClick={() => onPeriodClick({ diory: { id } })}
               >
                 <SidePanelTitle diory={{ text }} amount={amount} />
@@ -60,7 +62,7 @@ const TimelineView = ({
           </Pane>
           <DiorysGrid
             ref={handRef}
-            diorys={memories.map((diory) => ({ ...diory, style: dioryStyle }))}
+            diorys={memories.map((diory) => ({ ...diory, style: { ...dioryStyle, ...diory.style } }))}
             padding={8}
             itemStyle={itemStyle}
             scrollIntoViewId={scrollIntoViewId}
@@ -74,7 +76,6 @@ const TimelineView = ({
 }
 
 TimelineView.propTypes = {
-  header: PropTypes.object.isRequired,
   titles: PropTypes.array,
   periods: PropTypes.array,
   memories: PropTypes.array.isRequired,

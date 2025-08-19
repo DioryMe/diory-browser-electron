@@ -57,13 +57,14 @@ const formatDays = (startTime, endTime) =>
 export const resolveDates = (startTime, endTime) => {
   const timeDifference = endTime - startTime
 
-  if (timeDifference > 36 * MONTHS) {
+  if (timeDifference > 18 * MONTHS) {
     return formatYears(startTime, endTime)
   }
 
-  if (timeDifference > 60 * DAYS) {
+  if (timeDifference > 45 * DAYS) {
     return formatMonths(startTime, endTime)
   }
 
   return formatDays(startTime, endTime)
 }
+
