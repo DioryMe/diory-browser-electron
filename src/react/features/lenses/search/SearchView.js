@@ -5,7 +5,7 @@ import { Pane } from 'evergreen-ui'
 import CreateDioryButton from '../../../components/diories/CreateDioryButton'
 import DiorysGrid from '../../../components/diories/DiorysGrid'
 import Fullscreen from '../../../components/Fullscreen'
-import { SidePanelTitle } from '../../sidePanel/components/SidePanelTitle'
+import { SidePanelTitle } from '../../../components/SidePanelTitle'
 
 const itemStyle = {
   height: 120,

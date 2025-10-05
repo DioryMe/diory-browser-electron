@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
-import { SidePanelTitle } from '../../sidePanel/components/SidePanelTitle'
+import { SidePanelTitle } from '../../../components/SidePanelTitle'
 import Fullscreen from '../../../components/Fullscreen'
 import DiorysGrid from '../../../components/diories/DiorysGrid'
 

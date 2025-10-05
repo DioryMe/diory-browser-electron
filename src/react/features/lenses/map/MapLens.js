@@ -30,6 +30,9 @@ const useMapTools = () => {
 // TODO Zoom level to lngLatZoom
 // TODO Group
 // TODO Add place
+// TODO show stories on map (without impact to view)
+// TODO show parent on map (without impact on view)
+// TODO fix move story location
 export const MapLens = () => {
   const diograph = useStoryDiories()
   const tools = useMapTools()

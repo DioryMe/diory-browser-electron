@@ -5,23 +5,23 @@ export default [
     format: 'dialog',
   },
   {
-    key: 'text',
+    key: 'text', // copy from children
     label: 'Text',
     format: 'string',
     autoFocus: true,
   },
   {
-    key: 'image',
+    key: 'image', // TODO copy from children
     label: 'Image',
     format: 'string',
   },
   {
-    key: 'latlng',
+    key: 'latlng', // TODO copy from children
     label: 'LatLng',
     format: 'latlng',
   },
   {
-    key: 'date',
+    key: 'date', // TODO copy from children
     label: 'Date',
     format: 'date',
   },

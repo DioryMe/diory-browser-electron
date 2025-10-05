@@ -1,7 +1,3 @@
-const HOURS = 60 * 60 * 1000
-const DAYS = 24 * HOURS
-const MONTHS = 29 * DAYS
-
 const arrayRange = (start, stop, step = 1) =>
   Array.from({ length: (stop - start) / step + 1 }, (value, index) => start + index * step)
 
@@ -42,29 +38,16 @@ const formatDays = (startTime, endTime) =>
     })
     .flat()
 
-// const formatHour = (yearMonthDay) => (hour) => `${yearMonthDay}T${twoDigits(hour)}`
+const isYearPeriodId = (periodId) => periodId.length === 4
 
-// const formatHours = (startTime, endTime) =>
-//   formatDays(startTime, endTime)
-//     .map((yearMonthDay, index, array) => {
-//       const minHour = isFirst(index) ? new Date(startTime).getUTCHours() : 0
-//       const maxHour = isLast(index, array) ? new Date(endTime).getUTCHours() : 23
-//
-//       return arrayRange(minHour, maxHour).map(formatHour(yearMonthDay))
-//     })
-//     .flat()
-
-export const resolveDates = (startTime, endTime) => {
-  const timeDifference = endTime - startTime
-
-  if (timeDifference > 18 * MONTHS) {
+export const resolveChildPeriodIds = (selectedPeriod, startTime, endTime) => {
+  if (selectedPeriod === 'timeline') {
     return formatYears(startTime, endTime)
   }
 
-  if (timeDifference > 45 * DAYS) {
+  if (isYearPeriodId(selectedPeriod)) {
     return formatMonths(startTime, endTime)
   }
 
   return formatDays(startTime, endTime)
 }
-

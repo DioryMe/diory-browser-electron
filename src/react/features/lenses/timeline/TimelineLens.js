@@ -3,22 +3,22 @@ import { useSelector } from 'react-redux'
 
 import { useDispatchActions } from '../../../store'
 import { useSelectStory } from '../../tools/selectStory'
-import { useSelectDiory } from '../../tools/useSelectDiory'
+import { usePeriodTitles } from './utils/usePeriodTitles'
+import { useStoryDiories } from '../../diograph/utils/useDiories'
+import { useGetHomeDiory } from '../../home/utils/useGetHomeDiory'
+import { usePeriodDiories } from './utils/usePeriodDiories'
+import { usePeriodMemories } from './utils/usePeriodMemories'
 
-import { useHeader, useTimelineTitles } from './utils/useTimelineTitles'
-import { useTimePeriods } from './utils/useTimePeriods'
-
-import { createLink } from '../../diograph/diographActions'
+import { createDiory, createLink } from '../../diograph/diographActions'
 import { selectPeriod } from '../lensesActions'
-import { startsWithPeriod } from './utils/startsWithPeriod'
+
+import { getStartAndEndTimes } from './utils/getStartAndEndTimes'
+import { splitDateToPeriods } from './utils/splitDateToPeriods'
+import { createPeriodDiory } from './utils/createPeriodDiory'
 
 import { TimelineView } from './TimelineView'
 
 import timelineLensButton from './button'
-import { getStartAndEndTimes } from './utils/getStartAndEndTimes'
-import { useStoryDiories } from '../../diograph/utils/useDiories'
-import { splitDateToPeriods } from './utils/splitDateToPeriods'
-
 export { timelineLensButton }
 
 // TODO Add moment to timeline story
@@ -28,54 +28,34 @@ export { timelineLensButton }
 
 // TODO sort diories
 const useTimelineActions = () => {
-  const { dispatch } = useDispatchActions()
+  const { diograph } = useSelector((state) => state.diograph)
+  const { selectedPeriod } = useSelector((state) => state.lenses)
+  const { open } = useSelector((state) => state.buttons)
 
+  const { getHomeDiory } = useGetHomeDiory()
   const { selectStory } = useSelectStory()
-  const { selectDiory } = useSelectDiory()
 
+  const { dispatch } = useDispatchActions()
   return {
-    onClick: ({ diory }) => {
-      selectStory(diory)
-      selectDiory(diory)
-    },
-    onAdd: () => {},
-    onDrop: ({ diory, draggedDiory }) => dispatch(createLink(diory, draggedDiory)),
     onPeriodClick: ({ diory }) => {
       dispatch(selectPeriod(diory))
     },
+    onMemoryClick: ({ diory }) => {
+      if (!open) {
+        selectStory(diory)
+      }
+      if (open) {
+        let momentDiory = getHomeDiory(selectedPeriod)
+        if (!momentDiory) {
+          const periodDiory = createPeriodDiory(selectedPeriod, diograph)
+          const { diory, key } = dispatch(createDiory(periodDiory))
+          momentDiory = { key, ...diory }
+        }
+        dispatch(createLink(momentDiory, diory))
+      }
+    },
+    onDrop: ({ diory, draggedDiory }) => dispatch(createLink(diory, draggedDiory)),
   }
-}
-
-const mapDiographToDiories = (diograph) =>
-  Object.entries(diograph).map(([key, diory]) => ({ key, ...diory }))
-
-const isDayPeriod = (period) => {
-  const [date] = period.split('T')
-  return date.split('-').length === 3
-}
-
-const sortByDate = ({ date }) => date
-
-const includesDiory = (diories, diory) => diories.map(({ key }) => key).includes(diory.key)
-const addStoryStyle = ({ key }) => (diory) => diory.key === key ? {...diory, style: { border: '4px solid red' }} : diory
-const addMemoryStyle = (memories) => (diory) => includesDiory(memories, diory) ? {...diory, style: { border: '4px solid yellow' }} : diory
-
-const useDateMemories = () => {
-  const { selectedPeriod } = useSelector((state) => state.lenses)
-  const { diograph } = useSelector((state) => state.diograph)
-  const { story, memories } = useStoryDiories()
-
-  if (selectedPeriod === 'timeline') {
-    return []
-  }
-
-  // TODO Show first x around selected diory
-  return mapDiographToDiories(diograph)
-    .filter(startsWithPeriod(selectedPeriod))
-    .sort(sortByDate)
-    .map(addStoryStyle(story))
-    .map(addMemoryStyle(memories))
-    .filter((value,index) => index < 100)
 }
 
 const resolvePeriod = (startTime, endTime) => {
@@ -102,17 +82,10 @@ const useSelectPeriodEffect = () => {
 export const TimelineLens = () => {
   useSelectPeriodEffect()
 
-  const titles = useTimelineTitles() // TODO remove
-  const timePeriods = useTimePeriods() // TODO always
-  const dateMemories = useDateMemories() // TODO always 50
+  const titles = usePeriodTitles()
+  const periods = usePeriodDiories()
+  const memories = usePeriodMemories()
   const actions = useTimelineActions()
 
-  return (
-    <TimelineView
-      titles={titles}
-      periods={timePeriods}
-      memories={dateMemories}
-      {...actions}
-    />
-  )
+  return <TimelineView titles={titles} periods={periods} memories={memories} {...actions} />
 }

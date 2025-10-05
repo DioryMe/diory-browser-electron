@@ -15,10 +15,10 @@ export const updateDiograph =
 export const createDiory =
   (dioryData, alias) =>
   (dispatch, getState, { diographClient }) => {
-    const { storyKey } = getState().navigation
-    const diory = diographClient.getDiograph(storyKey).addDiory(dioryData, alias)
-    dispatch(updateDiograph(storyKey))
-    return { diory: diory.toObject() }
+    const { address } = getState().home
+    const diory = diographClient.getDiograph(address).addDiory(dioryData, alias)
+    dispatch(updateDiograph(address))
+    return { diory: diory.toObject(), key: `${address}${diory.id}` }
   }
 
 export const updateDiory =
@@ -41,6 +41,7 @@ export const createLink =
     const id = diographClient.getDiograph(dioryObject.key).diograph[linkedDioryObject.id]
       ? linkedDioryObject.id
       : linkedDioryObject.key
+    console.log(dioryObject, id)
     diographClient.getDiograph(dioryObject.key).getDiory(dioryObject).addLink({ id })
     dispatch(updateDiograph(dioryObject.key))
   }

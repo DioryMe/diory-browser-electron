@@ -21,7 +21,10 @@ const getDefaultImage = () => {
 
 const isDefaultImage = (image) => image && image.includes(prefix) && image.includes(suffix)
 
+const getNonDefaultImage = (image) => (!isDefaultImage(image) ? image : null)
+
 module.exports = {
   getDefaultImage,
+  getNonDefaultImage,
   isDefaultImage,
 }

@@ -1,4 +1,4 @@
 export const startsWithPeriod =
   (selectedPeriod) =>
-  ({ date }) =>
-    date && date.startsWith(selectedPeriod)
+  ({ date, id }) =>
+    date && date.startsWith(selectedPeriod) && id !== selectedPeriod
