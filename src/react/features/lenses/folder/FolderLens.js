@@ -8,10 +8,13 @@ import { useAddFolderTool } from '../../tools/addFolder'
 
 import { selectedFolder } from '../lensesActions'
 
-import { FolderView } from './FolderView'
+import { FolderView } from './components/FolderView'
 
-import folderLensButton from './button'
-export { folderLensButton }
+export const folderLensButton = {
+  id: 'folder',
+  text: 'Folders',
+  icon: 'folder-open',
+}
 
 const useSelectFolder = () => {
   const { dispatch } = useDispatchActions()

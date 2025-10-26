@@ -5,7 +5,7 @@ import { useCreateDiory } from './useCreateDiory'
 import { useButtons } from '../../buttons/useButtons'
 import { useCloseButtons } from '../../buttons/useButtonActions'
 
-import { FormModal } from '../../../components/FormModal'
+import { FormModal } from '../components/FormModal'
 
 import { BUTTON, buttons } from './buttons'
 

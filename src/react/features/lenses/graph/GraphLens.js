@@ -1,14 +1,18 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
+import { useGraphData } from './utils/useGraphData'
+
 import { useSelectStory } from '../../tools/selectStory'
-import { useSelectDiory } from '../../tools/useSelectDiory'
-import { useGraphData } from './useGraphData'
+import { useSelectDiory } from '../../tools/utils/useSelectDiory'
 
-import GraphView from './GraphView'
+import GraphView from './components/GraphView'
 
-import graphLensButton from './button'
-export { graphLensButton }
+export const graphLensButton = {
+  id: 'map',
+  text: 'Map',
+  icon: 'map',
+}
 
 export const GraphLens = () => {
   const { diograph } = useSelector((state) => state.diograph)

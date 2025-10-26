@@ -1,5 +1,5 @@
 import { useStoryDiories } from '../../diograph/utils/useDiories'
-import { useSelectedDiories } from '../useSelectedDiories'
+import { useSelectedDiories } from '../utils/useSelectedDiories'
 
 const mapToLinks = (diory, links) =>
   links.map((link) => ({

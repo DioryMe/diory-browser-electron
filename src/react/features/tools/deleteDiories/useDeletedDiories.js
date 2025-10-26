@@ -1,5 +1,5 @@
 import { useGetContextDiories } from '../../diograph/utils/useContextDiories'
-import { useSelectedDiories } from '../useSelectedDiories'
+import { useSelectedDiories } from '../utils/useSelectedDiories'
 import { useGetDiories } from '../../diograph/utils/useDiories'
 
 export const useDeletedDiories = () => {

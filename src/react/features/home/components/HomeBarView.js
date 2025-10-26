@@ -10,6 +10,7 @@ const HomeBarView = ({ story, memories = [], onClick, onBackgroundDrop, onLeaveH
     <Pane position="absolute" width="100%" height="100%" margin={0} zIndex={0}>
       <DragDrop diory={story} onDrop={onBackgroundDrop} />
     </Pane>
+
     <Pane flex={1} display="flex" flexDirection="column" justifyContent="space-between">
       <Pane paddingLeft={10} flex={1}>
         {memories.map((memory) => (

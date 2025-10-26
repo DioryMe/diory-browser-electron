@@ -1,12 +1,12 @@
 import React from 'react'
 import { Pane } from 'evergreen-ui'
 
-import { useToggleContent } from './useToggleContent'
+import { useToggleContent } from './utils/useToggleContent'
 
 import { useContentCarousel } from './components/useContentCarousel'
 import { useStoryDiories } from '../diograph/utils/useDiories'
 
-import { ContentView } from './ContentView'
+import { ContentView } from './components/ContentView'
 import { ContentCarousel } from './components/ContentCarousel'
 
 const getAddressPath = (address = '') => {

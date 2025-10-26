@@ -1,0 +1,51 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+
+import { useMap } from '../utils/useMap'
+import { useMapBounds } from '../utils/useMapBounds'
+
+import { useMarkers } from '../utils/markers/useMarkers'
+import { usePopups } from '../utils/popup/usePopups'
+
+import { usePopupClick } from '../utils/popup/usePopupClick'
+import { useMapClick } from '../utils/useMapClick'
+import { useDragging } from '../utils/markers/useDragging'
+
+import { getLocationData } from '../utils/getLocationData'
+
+// TODO: Stories visible on map, big, different color
+const MapView = ({ story, memories, onMapClick, onPopupClick, enableDragging, onDragEnd }) => {
+  const id = 'mapId'
+  const map = useMap(id)
+
+  const locationData = getLocationData({ story, memories })
+
+  useMapBounds(map, locationData.story)
+  const markers = useMarkers(map, locationData.story, locationData.memories)
+
+  usePopups(map, markers, story, memories)
+
+  usePopupClick(map, onPopupClick)
+  useMapClick(map, onMapClick)
+  useDragging(map, enableDragging, onDragEnd)
+
+  return <div id={id} style={{ height: '100%' }} />
+}
+
+MapView.defaultProps = {
+  onMapClick: () => {},
+  onPopupClick: () => {},
+  enableDragging: () => {},
+  onDragEnd: () => {},
+}
+
+MapView.propTypes = {
+  story: PropTypes.object.isRequired,
+  memories: PropTypes.array.isRequired,
+  enableDragging: PropTypes.bool,
+  onMapClick: PropTypes.func,
+  onPopupClick: PropTypes.func,
+  onDragEnd: PropTypes.func,
+}
+
+export default MapView

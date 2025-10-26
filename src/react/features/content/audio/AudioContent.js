@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { useTogglePlayButtons } from '../../buttons/utils/useTogglePlayButtons'
-import { useContentElement } from '../contentUtils'
+import { useContentElement } from '../utils/contentUtils'
 
 import Fullscreen from '../../../components/Fullscreen'
 import { useOpenFolderButton } from '../../buttons/utils/useOpenFolderButton'

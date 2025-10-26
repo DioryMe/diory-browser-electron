@@ -1,5 +1,5 @@
 import { useActiveButton } from '../../buttons/utils/useActiveButton'
-import { useActiveContent } from '../useActiveContent'
+import { useActiveContent } from '../utils/useActiveContent'
 
 import { invokeChannel } from '../../../client/client'
 import { channels } from '../../../../shared/constants'

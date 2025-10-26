@@ -2,14 +2,14 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Pane } from 'evergreen-ui'
 
-import { useDiographEffect } from './useDiographEffect'
+import { useDiographEffect } from './utils/useDiographEffect'
 import { useStoryDiories } from './utils/useDiories'
 
 import { useSelectStory } from '../tools/selectStory'
-import { useSelectDiory } from '../tools/useSelectDiory'
+import { useSelectDiory } from '../tools/utils/useSelectDiory'
 import { useLinkDiories } from '../tools/linkDiories'
-import { useSelectedDiories } from '../tools/useSelectedDiories'
-import { useToggleContent } from '../content/useToggleContent'
+import { useSelectedDiories } from '../tools/utils/useSelectedDiories'
+import { useToggleContent } from '../content/utils/useToggleContent'
 
 import { useGoSide } from '../navigation/utils/useGoSide'
 

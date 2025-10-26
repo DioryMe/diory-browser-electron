@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
-import GridItem from '../GridItem'
+import GridItem from './GridItem'
 import DragDrop from '../DragDrop'
 import Diory from './Diory'
 

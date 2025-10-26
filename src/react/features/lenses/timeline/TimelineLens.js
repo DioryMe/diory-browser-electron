@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux'
 
 import { useDispatchActions } from '../../../store'
 import { useGetHomeDiory } from '../../home/utils/useGetHomeDiory'
-import { useSelectDiory } from '../../tools/useSelectDiory'
+import { useSelectDiory } from '../../tools/utils/useSelectDiory'
 import { useLinkDiories } from '../../tools/linkDiories'
-import { useSelectedDiories } from '../../tools/useSelectedDiories'
+import { useSelectedDiories } from '../../tools/utils/useSelectedDiories'
 import { useSelectStory } from '../../tools/selectStory'
 
 import { usePeriodTitles } from './utils/usePeriodTitles'
@@ -21,10 +21,13 @@ import { splitDateToPeriods } from './utils/splitDateToPeriods'
 import { createPeriodDiory } from './utils/createPeriodDiory'
 import { includedInLinks } from '../../diograph/utils/dioryUtils'
 
-import { TimelineView } from './TimelineView'
+import { TimelineView } from './components/TimelineView'
 
-import timelineLensButton from './button'
-export { timelineLensButton }
+export const timelineLensButton = {
+  id: 'timeline',
+  text: 'Timeline',
+  icon: 'calendar',
+}
 
 // TODO Add moment to timeline story
 // TODO Add diory to timeline story
@@ -56,10 +59,11 @@ const useTimelineActions = () => {
           const { diory, key } = dispatch(createDiory(periodDiory))
           momentDiory = { key, ...diory }
         }
-        !includedInLinks(momentDiory, diory) ? dispatch(createLink(momentDiory, diory)) : dispatch(deleteLink(momentDiory, diory))
+        !includedInLinks(momentDiory, diory)
+          ? dispatch(createLink(momentDiory, diory))
+          : dispatch(deleteLink(momentDiory, diory))
       }
     },
-
   }
 }
 
@@ -92,11 +96,14 @@ export const TimelineLens = () => {
 
   const actions = useTimelineActions()
 
-  return <TimelineView
-    titles={usePeriodTitles()}
-    periods={usePeriodDiories()}
-    memories={memories.map(mapSelectedDiory)}
-    onSelect={useSelectDiory()}
-    onDrop={useLinkDiories()}
-    {...actions} />
+  return (
+    <TimelineView
+      titles={usePeriodTitles()}
+      periods={usePeriodDiories()}
+      memories={memories.map(mapSelectedDiory)}
+      onSelect={useSelectDiory()}
+      onDrop={useLinkDiories()}
+      {...actions}
+    />
+  )
 }

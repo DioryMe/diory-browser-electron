@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useLens } from './useLens'
+import { useLens } from './utils/useLens'
 
 import { FolderLens, folderLensButton } from './folder/FolderLens'
 import { GraphLens, graphLensButton } from './graph/GraphLens'

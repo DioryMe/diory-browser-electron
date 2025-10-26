@@ -1,11 +1,11 @@
 import React from 'react'
 import { useSelector } from '../../store'
 
-import { useHomeDiographEffect } from './useHomeDiographEffect'
-import { useGetHomeAddressEffect } from './useGetHomeAddressEffect'
-import { useSaveHomeAddress } from './useSaveHomeAddress'
+import { useHomeDiographEffect } from './utils/useHomeDiographEffect'
+import { useGetHomeAddressEffect } from './utils/useGetHomeAddressEffect'
+import { useSaveHomeAddress } from './utils/useSaveHomeAddress'
 
-import { HomeView } from './HomeView'
+import { HomeView } from './components/HomeView'
 
 export const Home = ({ children }) => {
   useGetHomeAddressEffect()
@@ -14,11 +14,13 @@ export const Home = ({ children }) => {
   const { loading, address } = useSelector((state) => state.home)
   const { loaded } = useSelector((state) => state.diograph)
 
-  return <HomeView
-    showChildren={loaded[address]}
-    showButton={!loading && !address}
-    onButtonClick={useSaveHomeAddress()}
-  >
-    {children}
-  </HomeView>
+  return (
+    <HomeView
+      showChildren={loaded[address]}
+      showButton={!loading && !address}
+      onButtonClick={useSaveHomeAddress()}
+    >
+      {children}
+    </HomeView>
+  )
 }

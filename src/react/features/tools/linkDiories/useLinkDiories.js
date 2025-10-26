@@ -1,6 +1,6 @@
 import { useDispatchActions } from '../../../store'
 
-import { useSelectedDiories } from '../useSelectedDiories'
+import { useSelectedDiories } from '../utils/useSelectedDiories'
 
 import { createLink } from '../../diograph/diographActions'
 

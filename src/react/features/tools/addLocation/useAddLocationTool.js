@@ -2,7 +2,7 @@ import { useDispatchActions, useSelector } from '../../../store'
 
 import { useButtons } from '../../buttons/useButtons'
 import { useStoryDiories } from '../../diograph/utils/useDiories'
-import { useSelectedDiories } from '../useSelectedDiories'
+import { useSelectedDiories } from '../utils/useSelectedDiories'
 
 import { updateDiory } from '../../diograph/diographActions'
 import { clearSelectedDiories } from '../toolsActions'

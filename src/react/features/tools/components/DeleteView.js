@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Modal } from '../../modal/Modal'
+import { Modal } from './Modal'
 
 const DeleteView = ({ title, diories = [], links = [], onDone, onCancel }) => (
   <Modal title={title} onDone={onDone} onCancel={onCancel} confirmLabel="Delete" intent="danger">
