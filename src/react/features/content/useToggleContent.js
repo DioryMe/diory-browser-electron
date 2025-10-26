@@ -5,7 +5,5 @@ export const useToggleContent = () => {
   const { content } = useSelector((state) => state.content)
 
   const { dispatch } = useDispatchActions()
-  return {
-    toggleContent: () => content && dispatch(toggleContent()),
-  }
+  return () => content && dispatch(toggleContent())
 }

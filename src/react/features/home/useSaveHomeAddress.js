@@ -14,12 +14,10 @@ const getHomeAddress = async () => {
 
 export const useSaveHomeAddress = () => {
   const { dispatch } = useDispatchActions()
-  return {
-    saveHomeAddress: async () => {
-      const address = await getHomeAddress()
-      if (address) {
-        dispatch(saveHomeAddress(address))
-      }
-    },
+  return async () => {
+    const address = await getHomeAddress()
+    if (address) {
+      dispatch(saveHomeAddress(address))
+    }
   }
 }

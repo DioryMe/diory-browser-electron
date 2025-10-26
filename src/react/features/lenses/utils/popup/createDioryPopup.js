@@ -3,8 +3,8 @@ import L from 'leaflet'
 const getPopupStyle = ({ image }) =>
   [
     'overflow: hidden',
-    'min-width: 400px',
-    'min-height: 200px',
+    'min-width: 300px',
+    'min-height: 150px',
     `background-color: #fa7921`,
     `background-image: url('${image}')`,
     'background-size: cover',
@@ -15,7 +15,7 @@ const getPopupStyle = ({ image }) =>
 export const createDioryPopup = ({ diory = {} }) => {
   const elements = [
     diory.text &&
-      `<div style="margin: 16px; font-size: 16px; font-weight: bold; color: white">${diory.text}</div>`,
+      `<div style="margin: 8px; font-size: 16px; font-weight: bold; color: white">${diory.text}</div>`,
   ]
     .filter(Boolean)
     .join('')

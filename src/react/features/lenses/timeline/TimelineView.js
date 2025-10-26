@@ -25,6 +25,7 @@ const TimelineView = ({
   scrollIntoViewId,
   onPeriodClick,
   onMemoryClick,
+  onSelect,
   onDrop,
 }) => {
   const handRef = useRef()
@@ -47,6 +48,7 @@ const TimelineView = ({
             diorys={memories}
             scrollIntoViewId={scrollIntoViewId}
             onClick={onMemoryClick}
+            onSelect={onSelect}
             onDrop={onDrop}
           />
         </Fullscreen>

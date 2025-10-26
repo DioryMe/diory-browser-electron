@@ -19,22 +19,20 @@ const findPeriodImage = (selectedPeriod, diories = []) =>
 
 export const mapToPeriodDiory =
   (storyDiories, diograph) =>
-  ({ id, links, image }) => {
-    return {
-      diory: {
-        id,
-        text: getPeriodTitle(id, links, diograph),
-        image:
-          getNonDefaultImage(image) ||
-          findPeriodImage(id, storyDiories) ||
-          findPeriodImage(id, Object.values(diograph)) ||
-          getDefaultImage(),
-      },
-      isSelected: storyDiories.some(startsWithPeriod(id)),
-      // hasStory
-      // hasMemories
-    }
-  }
+  ({ id, links, image }) => ({
+    diory: {
+      id,
+      text: getPeriodTitle(id, links, diograph),
+      image:
+        getNonDefaultImage(image) ||
+        findPeriodImage(id, storyDiories) ||
+        findPeriodImage(id, Object.values(diograph)) ||
+        getDefaultImage(),
+    },
+    isSelected: storyDiories.some(startsWithPeriod(id)),
+    // hasStory
+    // hasMemories
+  })
 
 export const usePeriodDiories = () => {
   const { selectedPeriod } = useSelector((state) => state.lenses)

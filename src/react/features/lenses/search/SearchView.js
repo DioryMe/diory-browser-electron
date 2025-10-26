@@ -15,10 +15,11 @@ const itemStyle = {
 }
 
 const SearchView = ({
-  query,
-  diograph,
+  diory,
+  memories,
   scrollIntoViewId,
   onClick,
+  onSelect,
   onDrop,
   onCreateDiory,
   children,
@@ -29,26 +30,25 @@ const SearchView = ({
       <Pane padding={6}>
         <SidePanelTitle diory={{ text: 'SEARCH' }} />
         <Pane padding={6}>{children}</Pane>
-        {query && (
+        {diory && (
           <Pane padding={6}>
-            <CreateDioryButton text={query} onClick={onCreateDiory} />
+            <CreateDioryButton {...diory} onClick={onCreateDiory} />
           </Pane>
         )}
       </Pane>
       <Pane position="relative" flex={1} margin={6}>
         <Fullscreen>
-          {Object.keys(diograph).length ? (
-            <DiorysGrid
-              ref={searchRef}
-              background={{ id: 'hand' }}
-              diorys={Object.values(diograph)}
-              scrollIntoViewId={scrollIntoViewId}
-              onClick={onClick}
-              onDrop={onDrop}
-              itemStyle={itemStyle}
-              padding={0}
-            />
-          ) : null}
+          <DiorysGrid
+            ref={searchRef}
+            background={{ id: 'search' }}
+            diorys={memories}
+            scrollIntoViewId={scrollIntoViewId}
+            onClick={onClick}
+            onSelect={onSelect}
+            onDrop={onDrop}
+            itemStyle={itemStyle}
+            padding={0}
+          />
         </Fullscreen>
       </Pane>
     </>
@@ -56,10 +56,11 @@ const SearchView = ({
 }
 
 SearchView.propTypes = {
-  query: PropTypes.string.isRequired,
-  diograph: PropTypes.object.isRequired,
+  story: PropTypes.object,
+  memories: PropTypes.array.isRequired,
   scrollIntoViewId: PropTypes.string,
   onClick: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,
   onCreateDiory: PropTypes.func.isRequired,
   children: PropTypes.node,

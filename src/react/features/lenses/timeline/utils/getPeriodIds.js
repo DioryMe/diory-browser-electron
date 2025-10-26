@@ -4,13 +4,12 @@ import { getStartAndEndTimes } from './getStartAndEndTimes'
 import { resolveChildPeriodIds } from './resolveChildPeriodIds'
 import { getDioriesInPeriod } from './getDioriesInPeriod'
 
-const getYearPeriodIds = (diograph) => {
-  return Object.values(diograph)
+const getYearPeriodIds = (diograph) =>
+  Object.values(diograph)
     .filter(({ date }) => date)
     .map(({ date }) => date.slice(0, 4))
     .filter(unique)
     .sort()
-}
 
 const getChildPeriodIds = (selectedPeriodId, diograph) => {
   const diories = getDioriesInPeriod(selectedPeriodId, diograph)
@@ -19,8 +18,7 @@ const getChildPeriodIds = (selectedPeriodId, diograph) => {
   return resolveChildPeriodIds(selectedPeriodId, startTime, endTime)
 }
 
-export const getPeriodIds = (selectedPeriod, diograph) => {
-  return selectedPeriod === 'timeline'
+export const getPeriodIds = (selectedPeriod, diograph) =>
+  selectedPeriod === 'timeline'
     ? getYearPeriodIds(diograph)
     : getChildPeriodIds(selectedPeriod, diograph)
-}

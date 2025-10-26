@@ -7,7 +7,6 @@ const initialState = {
   backward: [],
   forward: [],
   path: [],
-  selectedDiories: [],
 }
 
 const init = (array) => array || []

@@ -10,9 +10,8 @@ const isPeriodId = (period) => {
   return !Number.isNaN(date.valueOf())
 }
 
-export const getDioriesInPeriod = (selectedPeriod, diograph) => {
-  return mapDiographToDiories(diograph)
+export const getDioriesInPeriod = (selectedPeriod, diograph) =>
+  mapDiographToDiories(diograph)
     .filter(startsWithPeriod(selectedPeriod))
     .filter(({ id }) => !isPeriodId(id))
     .sort(sortByDate)
-}

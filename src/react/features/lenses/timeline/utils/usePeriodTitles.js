@@ -14,17 +14,16 @@ const getTimelineTitle = (selectedPeriod, diograph) => ({
   isSelected: selectedPeriod === 'timeline',
 })
 
+// TODO amount open ? all : linked
 const mapToPeriod =
   (selectedPeriod, diograph) =>
-  ({ id, links }) => {
-    return {
-      diory: {
-        id,
-        text: getPeriodTitle(id, links, diograph),
-      },
-      isSelected: selectedPeriod === id,
-    }
-  }
+  ({ id, links }) => ({
+    diory: {
+      id,
+      text: getPeriodTitle(id, links, diograph),
+    },
+    isSelected: selectedPeriod === id,
+  })
 
 export const usePeriodTitles = () => {
   const { diograph } = useSelector((state) => state.diograph)

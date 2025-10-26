@@ -7,60 +7,35 @@ import { useStoryDiories } from './utils/useDiories'
 
 import { useSelectStory } from '../tools/selectStory'
 import { useSelectDiory } from '../tools/useSelectDiory'
-import { useLinkDiories } from '../tools/linkDiories/useLinkDiories'
-
+import { useLinkDiories } from '../tools/linkDiories'
+import { useSelectedDiories } from '../tools/useSelectedDiories'
 import { useToggleContent } from '../content/useToggleContent'
+
 import { useGoSide } from '../navigation/utils/useGoSide'
 
 import NavigationToSide from './components/NavigationToSide'
 import DiographView from './components/DiographView'
 
-export const useDiographTools = () => {
-  const { forward = [] } = useSelector((state) => state.navigation)
-
-  const { selectStory } = useSelectStory()
-  const { selectDiory } = useSelectDiory()
-  const { linkDiories } = useLinkDiories()
-
-  const { toggleContent } = useToggleContent()
-
-  return {
-    scrollIntoViewId: forward[0],
-    onStoryClick: ({ diory }) => {
-      toggleContent()
-      selectDiory(diory)
-    },
-    onMemoryClick: ({ diory }) => {
-      selectStory(diory)
-      selectDiory(diory)
-    },
-    onSelect: ({ diory }) => {
-      selectDiory(diory, true)
-    },
-    onDrop: ({ diory, draggedDiory }) => {
-      linkDiories(diory, draggedDiory)
-    },
-  }
-}
-
-const useMapSelectedDiories = () => {
-  const { open } = useSelector((state) => state.buttons)
-  return {
-    mapSelected: (diory) => ({ ...diory, selected: open ? diory.selected : null }),
-  }
-}
-
 export const Diograph = () => {
   useDiographEffect()
 
+  const { forward = [] } = useSelector((state) => state.navigation)
   const { story, memories } = useStoryDiories()
   const { goLeft, goRight } = useGoSide()
-  const { mapSelected } = useMapSelectedDiories()
+  const { mapSelectedDiory } = useSelectedDiories()
 
   return (
     <Pane height="100%" position="relative">
       <NavigationToSide left onClick={goLeft} />
-      <DiographView story={story} memories={memories.map(mapSelected)} {...useDiographTools()} />
+      <DiographView
+        scrollIntoViewId={forward[0]}
+        story={story}
+        memories={memories.map(mapSelectedDiory)}
+        onStoryClick={useToggleContent()}
+        onMemoryClick={useSelectStory()}
+        onSelect={useSelectDiory()}
+        onDrop={useLinkDiories()}
+      />
       <NavigationToSide right onClick={goRight} />
     </Pane>
   )

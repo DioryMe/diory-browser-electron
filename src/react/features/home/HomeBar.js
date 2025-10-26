@@ -1,17 +1,25 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { useSidePanelActions } from '../sidePanel/useSidePanelActions'
 import { useDiories } from '../diograph/utils/useDiories'
 import { useSaveHomeAddress } from './useSaveHomeAddress'
 
 import { HomeBarView } from './components/HomeBarView'
+import { useSelectStory } from '../tools/selectStory'
+import { useSelectDiory } from '../tools/useSelectDiory'
+import { useLinkDiories } from '../tools/linkDiories'
 
 export const HomeBar = () => {
   const { address } = useSelector((state) => state.home)
-  const homeDiories = useDiories(address)
-  const actions = useSidePanelActions(homeDiories)
-  const { saveHomeAddress } = useSaveHomeAddress()
+  const { story, memories } = useDiories(address)
 
-  return <HomeBarView {...homeDiories} {...actions} onLeaveHome={saveHomeAddress} />
+  return <HomeBarView
+    story={story}
+    memories={memories}
+    onClick={useSelectStory()}
+    onSelect={useSelectDiory()}
+    onDrop={useLinkDiories()}
+    onBackgroundDrop={useLinkDiories()}
+    onLeaveHome={useSaveHomeAddress()}
+  />
 }

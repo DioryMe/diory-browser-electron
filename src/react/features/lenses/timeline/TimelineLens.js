@@ -2,19 +2,24 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 import { useDispatchActions } from '../../../store'
+import { useGetHomeDiory } from '../../home/utils/useGetHomeDiory'
+import { useSelectDiory } from '../../tools/useSelectDiory'
+import { useLinkDiories } from '../../tools/linkDiories'
+import { useSelectedDiories } from '../../tools/useSelectedDiories'
 import { useSelectStory } from '../../tools/selectStory'
+
 import { usePeriodTitles } from './utils/usePeriodTitles'
 import { useStoryDiories } from '../../diograph/utils/useDiories'
-import { useGetHomeDiory } from '../../home/utils/useGetHomeDiory'
 import { usePeriodDiories } from './utils/usePeriodDiories'
 import { usePeriodMemories } from './utils/usePeriodMemories'
 
-import { createDiory, createLink } from '../../diograph/diographActions'
+import { createDiory, createLink, deleteLink } from '../../diograph/diographActions'
 import { selectPeriod } from '../lensesActions'
 
 import { getStartAndEndTimes } from './utils/getStartAndEndTimes'
 import { splitDateToPeriods } from './utils/splitDateToPeriods'
 import { createPeriodDiory } from './utils/createPeriodDiory'
+import { includedInLinks } from '../../diograph/utils/dioryUtils'
 
 import { TimelineView } from './TimelineView'
 
@@ -33,7 +38,7 @@ const useTimelineActions = () => {
   const { open } = useSelector((state) => state.buttons)
 
   const { getHomeDiory } = useGetHomeDiory()
-  const { selectStory } = useSelectStory()
+  const selectStory = useSelectStory()
 
   const { dispatch } = useDispatchActions()
   return {
@@ -42,7 +47,7 @@ const useTimelineActions = () => {
     },
     onMemoryClick: ({ diory }) => {
       if (!open) {
-        selectStory(diory)
+        selectStory({ diory })
       }
       if (open) {
         let momentDiory = getHomeDiory(selectedPeriod)
@@ -51,10 +56,10 @@ const useTimelineActions = () => {
           const { diory, key } = dispatch(createDiory(periodDiory))
           momentDiory = { key, ...diory }
         }
-        dispatch(createLink(momentDiory, diory))
+        !includedInLinks(momentDiory, diory) ? dispatch(createLink(momentDiory, diory)) : dispatch(deleteLink(momentDiory, diory))
       }
     },
-    onDrop: ({ diory, draggedDiory }) => dispatch(createLink(diory, draggedDiory)),
+
   }
 }
 
@@ -82,10 +87,16 @@ const useSelectPeriodEffect = () => {
 export const TimelineLens = () => {
   useSelectPeriodEffect()
 
-  const titles = usePeriodTitles()
-  const periods = usePeriodDiories()
   const memories = usePeriodMemories()
+  const { mapSelectedDiory } = useSelectedDiories()
+
   const actions = useTimelineActions()
 
-  return <TimelineView titles={titles} periods={periods} memories={memories} {...actions} />
+  return <TimelineView
+    titles={usePeriodTitles()}
+    periods={usePeriodDiories()}
+    memories={memories.map(mapSelectedDiory)}
+    onSelect={useSelectDiory()}
+    onDrop={useLinkDiories()}
+    {...actions} />
 }

@@ -1,0 +1,1 @@
+export { useLinkDiories } from './useLinkDiories'

@@ -3,6 +3,11 @@ import PropTypes from 'prop-types'
 import { IconButton, Pane } from 'evergreen-ui'
 import Icon from './Icon'
 
+const textStyle = {
+  color: 'rgba(255,255,255,0.7)',
+  backgroundColor: 'rgba(0,0,0,0.2)',
+}
+
 const getActiveProps = (active) =>
   active && {
     appearance: 'primary',
@@ -20,7 +25,7 @@ const Button = ({ text, style = {}, data, active, onClick }) => (
     alignItems="center"
     justifyContent="right"
   >
-    <Pane color="white">{text}</Pane>
+    <Pane {...textStyle}>{text}</Pane>
     <IconButton
       icon={<Icon icon={data.icon} />}
       iconSize={24}

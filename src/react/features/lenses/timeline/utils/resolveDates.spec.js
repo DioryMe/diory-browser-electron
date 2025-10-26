@@ -1,9 +1,9 @@
-import { resolveDates } from './resolveChildPeriodIds'
+import { resolveChildPeriodIds } from './resolveChildPeriodIds'
 
 describe.skip('resolveTimeperiods', () => {
   describe('given more than 3 years', () => {
     it('returns years', () => {
-      const timePeriods = resolveDates(
+      const timePeriods = resolveChildPeriodIds(
         new Date('2020-12-31T00:00:00').getTime(),
         new Date('2025-01-01T00:00:01').getTime()
       )
@@ -21,7 +21,7 @@ describe.skip('resolveTimeperiods', () => {
     })
 
     it('returns years', () => {
-      const timePeriods = resolveDates(
+      const timePeriods = resolveChildPeriodIds(
         new Date('2020-06-01T00:00:00').getTime(),
         new Date('2024-06-02T00:00:01').getTime()
       )
@@ -40,7 +40,7 @@ describe.skip('resolveTimeperiods', () => {
 
   describe('given more than 2 months', () => {
     it('returns months', () => {
-      const timePeriods = resolveDates(
+      const timePeriods = resolveChildPeriodIds(
         new Date('2020-12-31T00:00:00').getTime(),
         new Date('2021-03-01T00:00:01').getTime()
       )
@@ -56,7 +56,7 @@ describe.skip('resolveTimeperiods', () => {
     })
 
     it('returns months', () => {
-      const timePeriods = resolveDates(
+      const timePeriods = resolveChildPeriodIds(
         new Date('2021-01-01T00:00:00').getTime(),
         new Date('2021-03-03T00:00:01').getTime()
       )
@@ -73,7 +73,7 @@ describe.skip('resolveTimeperiods', () => {
 
   describe('given more than 3 days', () => {
     it('returns days', () => {
-      const timePeriods = resolveDates(
+      const timePeriods = resolveChildPeriodIds(
         new Date('2020-12-31T00:00:00').getTime(),
         new Date('2021-01-03T00:00:01').getTime()
       )
@@ -89,7 +89,7 @@ describe.skip('resolveTimeperiods', () => {
     })
 
     it('returns days in normal year', () => {
-      const timePeriods = resolveDates(
+      const timePeriods = resolveChildPeriodIds(
         new Date('2021-02-27T00:00:00').getTime(),
         new Date('2021-03-02T00:00:01').getTime()
       )
@@ -105,7 +105,7 @@ describe.skip('resolveTimeperiods', () => {
     })
 
     it('returns days in leap year', () => {
-      const timePeriods = resolveDates(
+      const timePeriods = resolveChildPeriodIds(
         new Date('2020-02-27T00:00:00').getTime(),
         new Date('2020-03-01T00:00:01').getTime()
       )
@@ -123,7 +123,7 @@ describe.skip('resolveTimeperiods', () => {
 
   describe('given less than 3 days', () => {
     it('returns hours', () => {
-      const timePeriods = resolveDates(
+      const timePeriods = resolveChildPeriodIds(
         new Date('2020-12-30T20:00:00Z').getTime(),
         new Date('2021-01-02T03:00:01Z').getTime()
       )

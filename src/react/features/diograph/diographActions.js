@@ -49,7 +49,10 @@ export const createLink =
 export const deleteLink =
   (dioryObject, linkedDioryObject) =>
   (dispatch, getState, { diographClient }) => {
-    diographClient.getDiograph(dioryObject.key).getDiory(dioryObject).removeLink(linkedDioryObject)
+    const id = diographClient.getDiograph(dioryObject.key).diograph[linkedDioryObject.id]
+      ? linkedDioryObject.id
+      : linkedDioryObject.key
+    diographClient.getDiograph(dioryObject.key).getDiory(dioryObject).removeLink({ id })
     dispatch(updateDiograph(dioryObject.key))
   }
 

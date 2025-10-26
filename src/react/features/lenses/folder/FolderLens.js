@@ -11,15 +11,12 @@ import { selectedFolder } from '../lensesActions'
 import { FolderView } from './FolderView'
 
 import folderLensButton from './button'
-
 export { folderLensButton }
 
-const useActions = () => {
+const useSelectFolder = () => {
   const { dispatch } = useDispatchActions()
-  return {
-    onClick: ({ diory }) => {
-      dispatch(selectedFolder(diory))
-    },
+  return ({ diory }) => {
+    dispatch(selectedFolder(diory))
   }
 }
 
@@ -35,14 +32,13 @@ export const FolderLens = () => {
   // TODO Add folder button
   // TODO Path
   const { memories } = useFolderDiories()
-  const actions = useActions()
 
   return (
     <FolderView
       header={{ text: 'Folders' }}
       titles={[]}
-      memories={memories.map((memory) => ({ ...memory, selected: null }))}
-      {...actions}
+      memories={memories}
+      onClick={useSelectFolder()}
     />
   )
 }

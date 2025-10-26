@@ -5,27 +5,13 @@ import { useSelectStory } from '../../tools/selectStory'
 import { useSelectDiory } from '../../tools/useSelectDiory'
 import { useMoveTool, useMoveToolIsActive } from '../../tools/moveLocation'
 import { useAddLocationTool } from '../../tools/addLocation'
+import { useSelectedDiories } from '../../tools/useSelectedDiories'
 
 import MapView from './MapView'
 
 import mapLensButton from './button'
 
 export { mapLensButton }
-
-const useMapTools = () => {
-  const { selectStory } = useSelectStory()
-  const { selectDiory } = useSelectDiory()
-
-  return {
-    onPopupClick: (diory) => {
-      selectStory(diory)
-      selectDiory(diory)
-    },
-    onMapClick: useAddLocationTool(),
-    onDragEnd: useMoveTool(),
-    enableDragging: useMoveToolIsActive(),
-  }
-}
 
 // TODO Zoom level to lngLatZoom
 // TODO Group
@@ -34,8 +20,16 @@ const useMapTools = () => {
 // TODO show parent on map (without impact on view)
 // TODO fix move story location
 export const MapLens = () => {
-  const diograph = useStoryDiories()
-  const tools = useMapTools()
+  const { story, memories } = useStoryDiories()
+  const { mapSelectedDiory } = useSelectedDiories()
 
-  return <MapView {...diograph} {...tools} />
+  return <MapView
+    story={story}
+    memories={memories.map(mapSelectedDiory)}
+    onPopupClick={useSelectStory()}
+    onSelect={useSelectDiory()}
+    onMapClick={useAddLocationTool()}
+    onDragEnd={useMoveTool()}
+    enableDragging={useMoveToolIsActive()}
+  />
 }

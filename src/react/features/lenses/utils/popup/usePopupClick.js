@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 export const usePopupClick = (mapRef, onPopupClick) => {
   useEffect(() => {
     let diory
-    const handleClick = () => onPopupClick(diory)
+    const handleClick = () => onPopupClick({ diory })
     if (mapRef.current) {
       mapRef.current.off('popupopen')
       mapRef.current.on('popupopen', (event) => {

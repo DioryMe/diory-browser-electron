@@ -8,20 +8,7 @@ import { useGraphData } from './useGraphData'
 import GraphView from './GraphView'
 
 import graphLensButton from './button'
-
 export { graphLensButton }
-
-export const useGraphTools = () => {
-  const { selectStory } = useSelectStory()
-  const { selectDiory } = useSelectDiory()
-
-  return {
-    onDioryClick: ({ diory }) => {
-      selectStory(diory)
-      selectDiory(diory)
-    },
-  }
-}
 
 export const GraphLens = () => {
   const { diograph } = useSelector((state) => state.diograph)
@@ -29,14 +16,14 @@ export const GraphLens = () => {
   const { sidePanelWidths } = useSelector((state) => state.sidePanel)
 
   const graphData = useGraphData(diograph)
-  const tools = useGraphTools()
   const storyNode = graphData.nodes.find(({ id }) => id === storyKey)
 
   return (
     <GraphView
       storyNode={storyNode}
       data={graphData}
-      {...tools}
+      onDioryClick={useSelectStory()}
+      onSelect={useSelectDiory()}
       sidePanelWidth={sidePanelWidths.right}
     />
   )

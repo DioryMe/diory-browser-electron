@@ -5,8 +5,7 @@ import { useHomeDiographEffect } from './useHomeDiographEffect'
 import { useGetHomeAddressEffect } from './useGetHomeAddressEffect'
 import { useSaveHomeAddress } from './useSaveHomeAddress'
 
-import { HomeWelcome } from './components/HomeWelcome'
-import { HomeAddressButton } from './components/HomeAddressButton'
+import { HomeView } from './HomeView'
 
 export const Home = ({ children }) => {
   useGetHomeAddressEffect()
@@ -15,12 +14,11 @@ export const Home = ({ children }) => {
   const { loading, address } = useSelector((state) => state.home)
   const { loaded } = useSelector((state) => state.diograph)
 
-  const { saveHomeAddress } = useSaveHomeAddress()
-  return loaded[address] ? (
-    children
-  ) : (
-    <HomeWelcome>
-      {!loading && !address && <HomeAddressButton onClick={saveHomeAddress} />}
-    </HomeWelcome>
-  )
+  return <HomeView
+    showChildren={loaded[address]}
+    showButton={!loading && !address}
+    onButtonClick={useSaveHomeAddress()}
+  >
+    {children}
+  </HomeView>
 }

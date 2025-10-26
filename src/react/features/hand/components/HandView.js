@@ -16,6 +16,7 @@ const HandView = ({
   memories,
   scrollIntoViewId,
   onClick,
+  onSelect,
   onClear,
   onDrop,
   onBackgroundDrop,
@@ -30,6 +31,7 @@ const HandView = ({
         diorys={memories}
         scrollIntoViewId={scrollIntoViewId}
         onClick={onClick}
+        onSelect={onSelect}
         onDrop={onDrop}
         onBackgroundDrop={onBackgroundDrop}
         overflowX="auto"
@@ -57,6 +59,7 @@ HandView.propTypes = {
   memories: PropTypes.array.isRequired,
   scrollIntoViewId: PropTypes.string,
   onClick: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired,
   onClear: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,
   onBackgroundDrop: PropTypes.func.isRequired,
