@@ -11,7 +11,7 @@ const getPeriodStyle = (isSelected) => ({
   flex: '0 0 100px',
   height: 60,
   margin: 4,
-  ...(isSelected && { border: '2px solid grey' }),
+  ...(isSelected && { border: '2px solid yellow' }),
   text: {
     fontSize: 12,
     padding: 4,
@@ -64,6 +64,7 @@ TimelineView.propTypes = {
   scrollIntoViewId: PropTypes.string,
   onPeriodClick: PropTypes.func.isRequired,
   onMemoryClick: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,
 }
 

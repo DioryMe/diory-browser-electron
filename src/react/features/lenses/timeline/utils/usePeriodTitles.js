@@ -5,39 +5,43 @@ import { useGetHomeDiory } from '../../../home/utils/useGetHomeDiory'
 import { splitDateToPeriods } from './splitDateToPeriods'
 import { getPeriodTitle } from './getPeriodTitle'
 import { getDioriesInPeriod } from './getDioriesInPeriod'
+import { useShowTotalState } from './useShowTotalState'
+import { getPeriodDiories } from './getPeriodDiories'
 
-const getTimelineTitle = (selectedPeriod, diograph) => ({
-  diory: {
-    id: 'timeline',
-    text: `Timeline (${getDioriesInPeriod('', diograph).length})`,
-  },
-  isSelected: selectedPeriod === 'timeline',
-})
+const getTimelineTitle = (diograph, showTotal) => {
+  const totalAmount = getDioriesInPeriod('', diograph).length
+  const selectedAmount = getPeriodDiories('', diograph).length
+  return ({
+    diory: {
+      id: 'timeline',
+      text: `Timeline (${showTotal ? totalAmount: selectedAmount})`,
+    },
+  })
+}
 
-// TODO amount open ? all : linked
-const mapToPeriod =
-  (selectedPeriod, diograph) =>
-  ({ id, links }) => ({
+const mapToTitle =
+  (diograph, showTotal) =>
+  ({ id }) => ({
     diory: {
       id,
-      text: getPeriodTitle(id, links, diograph),
+      text: getPeriodTitle(id, diograph, showTotal),
     },
-    isSelected: selectedPeriod === id,
   })
 
 export const usePeriodTitles = () => {
   const { diograph } = useSelector((state) => state.diograph)
   const { selectedPeriod } = useSelector((state) => state.lenses)
+  const showTotal = useShowTotalState()
   const { getHomeDiory } = useGetHomeDiory()
 
-  const timelineTitle = getTimelineTitle(selectedPeriod, diograph)
+  const timelineTitle = getTimelineTitle(diograph, showTotal)
   if (selectedPeriod === 'timeline') {
     return [timelineTitle]
   }
 
   const selectedPeriodTitles = splitDateToPeriods(selectedPeriod)
     .map((id) => getHomeDiory(id) || { id })
-    .map(mapToPeriod(selectedPeriod, diograph))
+    .map(mapToTitle(diograph, showTotal))
 
   return [timelineTitle].concat(selectedPeriodTitles)
 }

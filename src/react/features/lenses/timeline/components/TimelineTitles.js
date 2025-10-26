@@ -22,7 +22,7 @@ const TimelineTitles = ({ titles = [], onClick }) => (
         array // TODO use pill
       ) => (
         <Fragment key={diory.id}>
-          <SidePanelTitle diory={diory} isSelected={isSelected} onClick={onClick} />
+          <SidePanelTitle diory={diory} isSelected={isLast(index, array.length)} onClick={onClick} />
           {!isLast(index, array.length) && <span>/</span>}
         </Fragment>
       )

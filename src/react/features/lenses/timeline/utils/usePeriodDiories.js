@@ -8,6 +8,7 @@ import { getPeriodIds } from './getPeriodIds'
 import { findImage } from './createPeriodDiory'
 import { startsWithPeriod } from './startsWithPeriod'
 import { getPeriodTitle } from './getPeriodTitle'
+import { useShowTotalState } from './useShowTotalState'
 
 const isDayPeriod = (period) => {
   const [date] = period.split('T')
@@ -18,11 +19,11 @@ const findPeriodImage = (selectedPeriod, diories = []) =>
   findImage(diories.filter(startsWithPeriod(selectedPeriod)))
 
 export const mapToPeriodDiory =
-  (storyDiories, diograph) =>
-  ({ id, links, image }) => ({
+  (storyDiories, diograph, showTotal) =>
+  ({ id, image }) => ({
     diory: {
       id,
-      text: getPeriodTitle(id, links, diograph),
+      text: getPeriodTitle(id, diograph, showTotal),
       image:
         getNonDefaultImage(image) ||
         findPeriodImage(id, storyDiories) ||
@@ -39,6 +40,7 @@ export const usePeriodDiories = () => {
   const { diograph } = useSelector((state) => state.diograph)
   const { story, memories } = useStoryDiories()
   const { getHomeDiory } = useGetHomeDiory()
+  const showTotal = useShowTotalState()
 
   if (!selectedPeriod || isDayPeriod(selectedPeriod)) {
     return []
@@ -47,5 +49,5 @@ export const usePeriodDiories = () => {
   const storyDiories = [story].concat(memories)
   return getPeriodIds(selectedPeriod, diograph)
     .map((id) => getHomeDiory(id) || { id })
-    .map(mapToPeriodDiory(storyDiories, diograph))
+    .map(mapToPeriodDiory(storyDiories, diograph, showTotal))
 }

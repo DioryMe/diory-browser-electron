@@ -9,9 +9,9 @@ import { useSelectDiory } from '../../tools/utils/useSelectDiory'
 import GraphView from './components/GraphView'
 
 export const graphLensButton = {
-  id: 'map',
-  text: 'Map',
-  icon: 'map',
+  id: 'graph',
+  text: 'Graph',
+  icon: 'graph',
 }
 
 export const GraphLens = () => {

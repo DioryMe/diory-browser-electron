@@ -16,7 +16,7 @@ const itemStyle = {
 }
 
 const SearchLensView = ({
-  diory,
+  story,
   memories,
   scrollIntoViewId,
   onSearch,
@@ -33,9 +33,9 @@ const SearchLensView = ({
         <Pane padding={6}>
           <SearchBar width="100%" onSearch={onSearch} />
         </Pane>
-        {diory && (
+        {story && (
           <Pane padding={6}>
-            <CreateDioryButton {...diory} onClick={onCreateDiory} />
+            <CreateDioryButton {...story} onClick={onCreateDiory} />
           </Pane>
         )}
       </Pane>

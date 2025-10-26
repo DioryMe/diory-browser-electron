@@ -29,9 +29,7 @@ export const timelineLensButton = {
   icon: 'calendar',
 }
 
-// TODO Add moment to timeline story
 // TODO Add diory to timeline story
-// TODO Always (1/7) in title also
 // TODO Always (1/2) pill
 
 // TODO sort diories
@@ -85,7 +83,7 @@ const useSelectPeriodEffect = () => {
   const { dispatch } = useDispatchActions()
   useEffect(() => {
     dispatch(selectPeriod({ id: periodId }))
-  }, [periodId])
+  }, [dispatch, periodId])
 }
 
 export const TimelineLens = () => {
