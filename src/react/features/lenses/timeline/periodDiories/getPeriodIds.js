@@ -1,8 +1,7 @@
 import { unique } from '../../../../utils/unique'
 
-import { getStartAndEndTimes } from './getStartAndEndTimes'
+import { getStartAndEndTimes, getDioriesInPeriod } from '../utils/timelineUtils'
 import { resolveChildPeriodIds } from './resolveChildPeriodIds'
-import { getDioriesInPeriod } from './getDioriesInPeriod'
 
 const getYearPeriodIds = (diograph) =>
   Object.values(diograph)

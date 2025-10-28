@@ -7,16 +7,15 @@ import DiorysGrid from '../../../../components/diories/DiorysGrid'
 import Diory from '../../../../components/diories/Diory'
 import { TimelineTitles } from './TimelineTitles'
 
-const getPeriodStyle = (isSelected) => ({
+const periodStyle = {
   flex: '0 0 100px',
   height: 60,
   margin: 4,
-  ...(isSelected && { border: '2px solid yellow' }),
   text: {
     fontSize: 12,
     padding: 4,
   },
-})
+}
 
 const TimelineView = ({
   titles = [],
@@ -35,10 +34,10 @@ const TimelineView = ({
         <Fullscreen>
           <Pane position="relative" display="flex" flexWrap="wrap" padding={4}>
             <TimelineTitles titles={titles} onClick={onPeriodClick} />
-            {periods.map(({ diory, isSelected }) => (
+            {periods.map(({ diory }) => (
               <Diory
                 key={diory.id}
-                diory={{ ...diory, style: getPeriodStyle(isSelected) }}
+                diory={{ ...diory, style: { ...periodStyle, ...diory.style } }}
                 onClick={onPeriodClick}
               />
             ))}

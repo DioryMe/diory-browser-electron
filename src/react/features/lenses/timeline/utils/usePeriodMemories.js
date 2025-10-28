@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux'
 import { useGetHomeDiory } from '../../../home/utils/useGetHomeDiory'
 
 import { includedInLinks } from '../../../diograph/utils/dioryUtils'
-import { getDioriesInPeriod } from './getDioriesInPeriod'
+import { getDioriesInPeriod } from './timelineUtils'
 
 const addStyles = (periodStory) => (periodMemory) => ({
   ...periodMemory,
-  style: !includedInLinks(periodStory, periodMemory) && { opacity: '40%' },
+  style: { ...(!includedInLinks(periodStory, periodMemory) && { opacity: '40%' }) },
 })
 
 export const usePeriodMemories = () => {

@@ -1,3 +1,5 @@
+import { isYearPeriodId } from '../utils/periodIdUtils'
+
 const arrayRange = (start, stop, step = 1) =>
   Array.from({ length: (stop - start) / step + 1 }, (value, index) => start + index * step)
 
@@ -37,8 +39,6 @@ const formatDays = (startTime, endTime) =>
       return arrayRange(minDay, maxDay).map(formatDay(yearMonth))
     })
     .flat()
-
-const isYearPeriodId = (periodId) => periodId.length === 4
 
 export const resolveChildPeriodIds = (selectedPeriod, startTime, endTime) => {
   if (selectedPeriod === 'timeline') {
