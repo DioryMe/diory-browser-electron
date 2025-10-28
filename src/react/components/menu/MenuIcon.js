@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Tab } from 'evergreen-ui'
-import Icon from './Icon'
+import Icon from '../Icon'
 
 const MenuIcon = ({ id, icon, isSelected, onClick, disabled, ...props }) =>
   disabled ? null : (

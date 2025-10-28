@@ -14,8 +14,8 @@ export const splitDateToPeriodIds = (date) => {
 
 export const startsWithPeriodId =
   (periodId) =>
-    ({ date }) =>
-      date && date.startsWith(periodId)
+  ({ date }) =>
+    date && date.startsWith(periodId)
 
 export const isYearPeriodId = (periodId) => periodId.length === 4
 

@@ -1,7 +1,9 @@
 import { useDispatchActions } from '../../../store'
+import { useCreateDiory } from '../createDiory/useCreateDiory'
+import { useToggleDioryLinks } from '../updateLinks/useToggleDioryLinks'
 import { useGetHomeDiory } from '../../home/utils/useGetHomeDiory'
 
-import { createDiory, createLink, deleteLink } from '../../diograph/diographActions'
+import { createLink } from '../../diograph/diographActions'
 
 import { includedInLinks } from '../../diograph/utils/dioryUtils'
 import { splitDateToPeriodIds } from '../../lenses/timeline/utils/periodIdUtils'
@@ -18,51 +20,40 @@ const createPeriodDiory = (period) => {
 
 const useGetPeriodDiories = () => {
   const { getHomeDiory } = useGetHomeDiory()
-  const { dispatch } = useDispatchActions()
+  const createDiory = useCreateDiory()
 
-  return (selectedPeriod) => splitDateToPeriodIds(selectedPeriod)
-    .reverse().concat(['timeline'])
-    .map(periodId => {
-      const existingPeriodDiory = getHomeDiory(periodId)
-      if (existingPeriodDiory) {
-        return existingPeriodDiory
-      }
+  return (selectedPeriod) =>
+    splitDateToPeriodIds(selectedPeriod)
+      .reverse()
+      .concat(['timeline'])
+      .map((periodId) => {
+        const existingDiory = getHomeDiory(periodId)
+        if (existingDiory) return existingDiory
 
-      const periodDioryObject = createPeriodDiory(periodId)
-      const { diory, key } = dispatch(createDiory(periodDioryObject))
-      return { key, ...diory }
-    })
+        const periodDioryObject = createPeriodDiory(periodId)
+        return createDiory(periodDioryObject)
+      })
 }
 
 const useLinkPeriodDiories = () => {
   const { dispatch } = useDispatchActions()
-
-  return (periodDiories) => periodDiories.forEach((periodDiory, index, array) => {
-    const nextPeriodDiory = array[index+1]
-    if (!includedInLinks(nextPeriodDiory, periodDiory)) {
-      dispatch(createLink(nextPeriodDiory, periodDiory))
-    }
-  })
-}
-
-const useToggleDioryLinks = () => {
-  const { dispatch } = useDispatchActions()
-
-  return (diory, linkedDiory) => {
-    !includedInLinks(diory, linkedDiory)
-      ? dispatch(createLink(diory, diory))
-      : dispatch(deleteLink(diory, diory))
-  }
+  return (periodDiories) =>
+    periodDiories.forEach((periodDiory, index, array) => {
+      const nextPeriodDiory = array[index + 1]
+      if (nextPeriodDiory && !includedInLinks(nextPeriodDiory, periodDiory)) {
+        dispatch(createLink(nextPeriodDiory, periodDiory))
+      }
+    })
 }
 
 export const useUpdatePeriodDiories = () => {
   const getPeriodDiories = useGetPeriodDiories()
+  const toggleDioryLinks = useToggleDioryLinks()
   const linkPeriodDiories = useLinkPeriodDiories()
-  const toggleDioryLInks = useToggleDioryLinks()
 
   return ({ diory, periodId }) => {
     const periodDiories = getPeriodDiories(periodId)
-    toggleDioryLInks(periodDiories[0], diory)
+    toggleDioryLinks(periodDiories[0], diory)
     linkPeriodDiories(periodDiories)
   }
 }

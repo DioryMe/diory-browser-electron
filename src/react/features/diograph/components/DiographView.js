@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 
 import BackgroundDiory from '../../../components/diories/BackgroundDiory'
@@ -6,11 +6,11 @@ import DiorysGrid from '../../../components/diories/DiorysGrid'
 import Content from '../../content/Content'
 import Fullscreen from '../../../components/Fullscreen'
 
-const useScrollToTopOnStoryChange = (story, elementRef) => {
-  useEffect(() => {
-    if (elementRef.current) elementRef.current.scrollIntoView()
-  }, [elementRef, story])
-}
+// const useScrollToTopOnStoryChange = (story, elementRef) => {
+//   useEffect(() => {
+//     if (elementRef.current) elementRef.current.scrollIntoView()
+//   }, [elementRef, story])
+// }
 
 const DiographView = ({
   story,
@@ -57,6 +57,7 @@ DiographView.propTypes = {
   scrollIntoViewId: PropTypes.string,
   onStoryClick: PropTypes.func,
   onMemoryClick: PropTypes.func,
+  onSelect: PropTypes.func,
   onDrop: PropTypes.func,
 }
 

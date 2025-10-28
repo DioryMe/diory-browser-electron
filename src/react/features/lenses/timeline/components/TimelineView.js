@@ -6,6 +6,7 @@ import Fullscreen from '../../../../components/Fullscreen'
 import DiorysGrid from '../../../../components/diories/DiorysGrid'
 import Diory from '../../../../components/diories/Diory'
 import { TimelineTitles } from './TimelineTitles'
+import { MenuItem } from '../../../../components/menu/MenuItem'
 
 const periodStyle = {
   flex: '0 0 100px',
@@ -26,6 +27,7 @@ const TimelineView = ({
   onMemoryClick,
   onSelect,
   onDrop,
+  onViewAllClick,
 }) => {
   const handRef = useRef()
   return (
@@ -42,6 +44,7 @@ const TimelineView = ({
               />
             ))}
           </Pane>
+          {!memories.length && <MenuItem diory={{ text: 'VIEW ALL' }} onClick={onViewAllClick} />}
           <DiorysGrid
             ref={handRef}
             diorys={memories}
@@ -65,6 +68,7 @@ TimelineView.propTypes = {
   onMemoryClick: PropTypes.func.isRequired,
   onSelect: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,
+  onViewAllClick: PropTypes.func.isRequired,
 }
 
 export { TimelineView }

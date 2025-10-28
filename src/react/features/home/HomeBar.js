@@ -21,7 +21,7 @@ export const HomeBar = () => {
       onSelect={useSelectDiory()}
       onDrop={useLinkDiories()}
       onBackgroundDrop={useLinkDiories()}
-      onLeaveHome={useSaveHomeAddress()}
+      onLogout={useSaveHomeAddress()}
     />
   )
 }

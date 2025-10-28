@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { useSidePanel } from '../useSidePanel'
-import { MenuItem } from '../../../components/MenuItem'
+import { MenuItem } from '../../../components/menu/MenuItem'
 
 const SidePanelToggleButton = ({ side }) => {
   const { showSidePanel, toggleSidePanel } = useSidePanel(side)

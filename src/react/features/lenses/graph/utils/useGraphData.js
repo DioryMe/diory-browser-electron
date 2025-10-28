@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { resolveLinkKey } from '../../../diograph/utils/resolveLinkKey'
-import { getDefaultImage } from '../../../../../shared/getDefaultImage'
+import { getDefaultImage } from '../../../diograph/utils/getDefaultImage'
 import { resolveDioryKey } from '../../../diograph/utils/resolveDioryKey'
 
 const mapDiographToData = (diograph) => {

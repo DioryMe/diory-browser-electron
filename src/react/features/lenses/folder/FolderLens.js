@@ -8,7 +8,7 @@ import { useAddFolderTool } from '../../tools/addFolder'
 
 import { selectedFolder } from '../lensesActions'
 
-import { FolderView } from './components/FolderView'
+import { FolderLensView } from './components/FolderLensView'
 
 export const folderLensButton = {
   id: 'folder',
@@ -36,12 +36,5 @@ export const FolderLens = () => {
   // TODO Path
   const { memories } = useFolderDiories()
 
-  return (
-    <FolderView
-      header={{ text: 'Folders' }}
-      titles={[]}
-      memories={memories}
-      onClick={useSelectFolder()}
-    />
-  )
+  return <FolderLensView titles={[]} memories={memories} onClick={useSelectFolder()} />
 }

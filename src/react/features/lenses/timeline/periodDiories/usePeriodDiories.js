@@ -16,15 +16,16 @@ const useEnrichPeriodDiory = () => {
   const { story, memories } = useStoryDiories()
   const storyDiories = [story].concat(memories)
 
-  return (period) =>
-    ({
-      ...period,
-      image:
-        getNonDefaultImage(period.image) ||
-        findPeriodImage(period.id, storyDiories) ||
-        findPeriodImage(period.id, Object.values(diograph)),
-      style: { ...(storyDiories.some(startsWithPeriodId(period.id)) && { border: '2px solid yellow' }) },
-    })
+  return (period) => ({
+    ...period,
+    image:
+      getNonDefaultImage(period.image) ||
+      findPeriodImage(period.id, storyDiories) ||
+      findPeriodImage(period.id, Object.values(diograph)),
+    style: {
+      ...(storyDiories.some(startsWithPeriodId(period.id)) && { border: '2px solid yellow' }),
+    },
+  })
 }
 
 export const usePeriodDiories = () => {

@@ -4,7 +4,7 @@ import { useDispatchActions, useSelector } from '../../../store'
 import { useSelectedDiories } from '../../tools/utils/useSelectedDiories'
 
 import { useSelectStory } from '../../tools/selectStory'
-import { useCreateDiory } from '../../tools/createDiory'
+import { useCreateDioryToStory } from '../../tools/createDiory'
 import { useSelectDiory } from '../../tools/utils/useSelectDiory'
 import { useLinkDiories } from '../../tools/linkDiories'
 
@@ -51,7 +51,7 @@ export const SearchLens = () => {
       onClick={useSelectStory()}
       onSelect={useSelectDiory()}
       onDrop={useLinkDiories()}
-      onCreateDiory={useCreateDiory()}
+      onCreateDiory={useCreateDioryToStory()}
     />
   )
 }

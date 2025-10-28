@@ -41,7 +41,6 @@ export const createLink =
     const id = diographClient.getDiograph(dioryObject.key).diograph[linkedDioryObject.id]
       ? linkedDioryObject.id
       : linkedDioryObject.key
-    console.log(dioryObject, id)
     diographClient.getDiograph(dioryObject.key).getDiory(dioryObject).addLink({ id })
     dispatch(updateDiograph(dioryObject.key))
   }

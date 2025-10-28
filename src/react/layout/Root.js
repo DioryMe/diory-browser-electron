@@ -1,7 +1,7 @@
 import React from 'react'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import { Panel, PanelResizeHandle } from 'react-resizable-panels'
+import { Panel } from 'react-resizable-panels'
 
 import { Home } from '../features/home/Home'
 import { HomeNavigation } from '../features/home/HomeNavigation'
@@ -29,19 +29,16 @@ const Root = () => (
                 <HomeNavigation />
                 <HomeBar />
               </SidePanel>
-              <PanelResizeHandle />
               <Panel minSize={20} style={{ display: 'flex', flexDirection: 'column' }}>
                 <DiographNavigation />
                 <Diograph />
               </Panel>
-              <PanelResizeHandle />
               <SidePanel side="right">
                 <LensesNavigation />
                 <Lenses />
               </SidePanel>
             </PanelContainer>
           </Panel>
-          <PanelResizeHandle />
           <SidePanel side="bottom">
             <Hand />
           </SidePanel>

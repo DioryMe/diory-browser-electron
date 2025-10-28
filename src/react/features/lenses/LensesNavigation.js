@@ -5,7 +5,7 @@ import { useSidePanel } from '../sidePanel/useSidePanel'
 
 import { selectLens } from './lensesActions'
 
-import { MenuItem } from '../../components/MenuItem'
+import { MenuItem } from '../../components/menu/MenuItem'
 import { NavigationContent } from '../navigation/components/NavigationContent'
 import { NavigationBar } from '../navigation/components/NavigationBar'
 
@@ -29,8 +29,8 @@ const useLensesButtons = () => {
     buttons: Object.values(buttons).map(({ id, text, icon }) => ({
       diory: {
         id,
-        text,
         icon,
+        text: selectedLensId === id ? text : '',
       },
       isSelected: selectedLensId === id,
     })),

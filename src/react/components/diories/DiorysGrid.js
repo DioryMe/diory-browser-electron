@@ -50,6 +50,7 @@ const DiorysGrid = forwardRef(
         <GridItem
           key={diory.key}
           height={240}
+          minWidth={180}
           margin={24}
           alignSelf="center"
           scrollIntoView={diory.key === scrollIntoViewId}

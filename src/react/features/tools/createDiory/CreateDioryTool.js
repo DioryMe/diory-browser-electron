@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useSelector } from '../../../store'
-import { useCreateDiory } from './useCreateDiory'
+import { useCreateDioryToStory } from './useCreateDioryToStory'
 import { useButtons } from '../../buttons/useButtons'
 import { useCloseButtons } from '../../buttons/useButtonActions'
 
@@ -13,7 +13,7 @@ import dioryFields from './dioryFields'
 
 const useToolActions = () => {
   const { closeButtons } = useCloseButtons()
-  const createDiory = useCreateDiory()
+  const createDiory = useCreateDioryToStory()
   return {
     onDone: (updatedDiory) => {
       createDiory(updatedDiory)

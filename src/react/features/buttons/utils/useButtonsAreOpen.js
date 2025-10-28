@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 
-export const useShowTotalState = () => {
+export const useButtonsAreOpen = () => {
   const { open } = useSelector((state) => state.buttons)
   return open
 }

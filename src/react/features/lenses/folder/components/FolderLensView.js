@@ -2,9 +2,9 @@ import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
-import { SidePanelTitle } from '../../../../components/SidePanelTitle'
 import Fullscreen from '../../../../components/Fullscreen'
 import DiorysGrid from '../../../../components/diories/DiorysGrid'
+import { MenuItem } from '../../../../components/menu/MenuItem'
 
 const itemStyle = {
   flex: '1 1 120px',
@@ -20,16 +20,13 @@ const dioryStyle = {
   },
 }
 
-const FolderView = ({ header, titles = [], memories, scrollIntoViewId, onClick }) => {
+const FolderLensView = ({ titles = [], memories, scrollIntoViewId, onClick }) => {
   const handRef = useRef()
   return (
     <Pane height="100%" display="flex" flexDirection="column">
-      <Pane display="flex" flexDirection="row" flexWrap="wrap" paddingLeft={14}>
-        <SidePanelTitle diory={header} onClick={onClick} />
-      </Pane>
       <Pane position="relative" flex={0} display="flex" flexWrap="wrap" paddingLeft={14}>
         {titles.map((title) => (
-          <SidePanelTitle key={title.id} diory={title} onClick={onClick} />
+          <MenuItem key={title.id} diory={title} onClick={onClick} />
         ))}
       </Pane>
 
@@ -49,12 +46,11 @@ const FolderView = ({ header, titles = [], memories, scrollIntoViewId, onClick }
   )
 }
 
-FolderView.propTypes = {
-  header: PropTypes.object.isRequired,
+FolderLensView.propTypes = {
   titles: PropTypes.array,
   memories: PropTypes.array.isRequired,
   scrollIntoViewId: PropTypes.string,
   onClick: PropTypes.func.isRequired,
 }
 
-export { FolderView }
+export { FolderLensView }

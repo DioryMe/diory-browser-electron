@@ -1,9 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
-import PropTypes from 'prop-types'
-import { MenuDropdown } from '../../../components/MenuDropdown'
-import { MenuItem } from '../../../components/MenuItem'
+import { MenuDropdown } from '../../../components/menu/MenuDropdown'
+import { MenuItem } from '../../../components/menu/MenuItem'
 
 const NavigationDivider = () => (
   <Pane color="white" fontSize={12} borderRadius={16} margin={6} alignSelf="center">
@@ -11,12 +11,14 @@ const NavigationDivider = () => (
   </Pane>
 )
 
+const fallbackText = (diory) => ({ ...diory, text: diory.text || diory.date || diory.id })
+
 // TODO Update text
-const DiographAddress = ({ home, story, stories, context, contexts, onClick }) => (
+const DiographAddress = ({ story, stories, context, contexts, onClick }) => (
   <>
     {context && (
       <>
-        <MenuItem diory={context} onClick={onClick} />
+        <MenuItem diory={fallbackText(context)} onClick={onClick} />
         <MenuDropdown diory={context} diories={contexts} onClick={onClick} position="right" />
         <NavigationDivider />
       </>
@@ -24,7 +26,12 @@ const DiographAddress = ({ home, story, stories, context, contexts, onClick }) =
     {story && (
       <>
         <MenuDropdown diory={story} diories={stories} onClick={onClick} position="left" />
-        <MenuItem diory={story} color="white" pointerEvents="none" onClick={onClick} />
+        <MenuItem
+          diory={fallbackText(story)}
+          color="white"
+          pointerEvents="none"
+          onClick={onClick}
+        />
       </>
     )}
   </>

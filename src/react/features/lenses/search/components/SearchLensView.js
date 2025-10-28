@@ -5,7 +5,6 @@ import { Pane } from 'evergreen-ui'
 import CreateDioryButton from '../../../../components/diories/CreateDioryButton'
 import DiorysGrid from '../../../../components/diories/DiorysGrid'
 import Fullscreen from '../../../../components/Fullscreen'
-import { SidePanelTitle } from '../../../../components/SidePanelTitle'
 import { SearchBar } from './SearchBar'
 
 const itemStyle = {
@@ -29,7 +28,6 @@ const SearchLensView = ({
   return (
     <>
       <Pane padding={6}>
-        <SidePanelTitle diory={{ text: 'SEARCH' }} />
         <Pane padding={6}>
           <SearchBar width="100%" onSearch={onSearch} />
         </Pane>

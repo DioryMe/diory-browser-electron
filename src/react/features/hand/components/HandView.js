@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
 
 import DiorysGrid from '../../../components/diories/DiorysGrid'
-import { MenuItem } from '../../../components/MenuItem'
+import { MenuItem } from '../../../components/menu/MenuItem'
 import Fullscreen from '../../../components/Fullscreen'
 
 const itemStyle = {

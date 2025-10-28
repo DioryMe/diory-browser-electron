@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import { getDefaultImage } from '../../../shared/getDefaultImage'
+import { getDefaultImage } from '../../features/diograph/utils/getDefaultImage'
 
 import { Image } from './Image'
 

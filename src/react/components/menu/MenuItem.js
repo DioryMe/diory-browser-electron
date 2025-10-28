@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Pane } from 'evergreen-ui'
-import Icon from './Icon'
+import Icon from '../Icon'
 
 const MenuItem = ({ diory, isSelected, onClick, ...props }) => (
   <Pane
@@ -20,7 +20,7 @@ const MenuItem = ({ diory, isSelected, onClick, ...props }) => (
     {...props}
   >
     {diory.icon && <Icon icon={diory.icon} verticalAlign="middle" marginRight={6} />}
-    <b>{diory.text || diory.date || diory.id || ''}</b>
+    <b>{diory.text || ''}</b>
   </Pane>
 )
 

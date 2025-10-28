@@ -7,7 +7,7 @@ const mapToLinks = (diory, links) =>
     toDiory: link,
   }))
 
-export const useDeletedLinks = () => {
+export const useSelectedLinks = () => {
   const { story } = useStoryDiories()
   const { selectedDiories } = useSelectedDiories()
   return mapToLinks(story, selectedDiories)

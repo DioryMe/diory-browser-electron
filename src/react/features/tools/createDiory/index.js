@@ -1,2 +1,2 @@
 export { CreateDioryTool } from './CreateDioryTool'
-export { useCreateDiory } from './useCreateDiory'
+export { useCreateDioryToStory } from './useCreateDioryToStory'

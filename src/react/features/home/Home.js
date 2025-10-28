@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { useSelector } from '../../store'
 
 import { useHomeDiographEffect } from './utils/useHomeDiographEffect'
@@ -7,7 +8,7 @@ import { useSaveHomeAddress } from './utils/useSaveHomeAddress'
 
 import { HomeView } from './components/HomeView'
 
-export const Home = ({ children }) => {
+const Home = ({ children }) => {
   useGetHomeAddressEffect()
   useHomeDiographEffect()
 
@@ -24,3 +25,9 @@ export const Home = ({ children }) => {
     </HomeView>
   )
 }
+
+Home.propTypes = {
+  children: PropTypes.node.isRequired,
+}
+
+export { Home }

@@ -17,6 +17,7 @@ import { usePeriodMemories } from './utils/usePeriodMemories'
 import { useButtonsAreOpen } from '../../buttons/utils/useButtonsAreOpen'
 
 import { TimelineView } from './components/TimelineView'
+import { openButtons } from '../../buttons/buttonsActions'
 
 export const timelineLensButton = {
   id: 'timeline',
@@ -41,10 +42,11 @@ const useTimelineActions = () => {
       dispatch(selectPeriod(diory))
     },
     onMemoryClick: ({ diory }) => {
-      buttonsAreOpen ?
-        updatePeriodDiories({ diory, periodId: selectedPeriod }) :
-        selectStory({ diory })
+      buttonsAreOpen
+        ? updatePeriodDiories({ diory, periodId: selectedPeriod })
+        : selectStory({ diory })
     },
+    onViewAllClick: () => dispatch(openButtons()),
   }
 }
 

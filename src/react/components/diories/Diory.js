@@ -5,7 +5,7 @@ import { Pane, Icon } from 'evergreen-ui'
 
 import { Image } from './Image'
 import { GridImage } from './GridImage'
-import { isDefaultImage } from '../../../shared/getDefaultImage'
+import { isDefaultImage } from '../../features/diograph/utils/getDefaultImage'
 import { Gradient } from './Gradient'
 
 const defaultStyle = {
@@ -61,7 +61,7 @@ const Diory = ({ diory, isGridImage, onSelect, onClick, children, ...props }) =>
     text: styleText,
     links: styleLinks,
     width: flexBasis,
-    background = '#414141',
+    background,
     ...style
   } = dioryStyle
 

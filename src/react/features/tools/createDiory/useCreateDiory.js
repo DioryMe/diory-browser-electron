@@ -1,22 +1,12 @@
-import { getDefaultImage } from '../../../../shared/getDefaultImage'
-
 import { useDispatchActions } from '../../../store'
-import { useStoryDiories } from '../../diograph/utils/useDiories'
-
-import { createDiory, createLink } from '../../diograph/diographActions'
+import { createDiory } from '../../diograph/diographActions'
+import { getDefaultImage } from '../../diograph/utils/getDefaultImage'
 
 export const useCreateDiory = () => {
-  const { story } = useStoryDiories()
-
   const { dispatch } = useDispatchActions()
-  return (newDiory) => {
+  return (dioryObject) => {
     const image = getDefaultImage()
-    if (!newDiory.key) {
-      const { diory } = dispatch(createDiory({ image, ...newDiory }))
-      dispatch(createLink(story, diory))
-    }
-    if (newDiory.key) {
-      dispatch(createLink(story, newDiory))
-    }
+    const { key, diory } = dispatch(createDiory({ image, ...dioryObject }))
+    return { key, ...diory }
   }
 }
