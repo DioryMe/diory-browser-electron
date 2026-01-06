@@ -7,10 +7,10 @@ const { settingsStore } = require('./utils')
 //   }
 // }
 
-exports.saveHomeAddress = async function saveDioryHomeAddress({ address }) {
+exports.saveHomeAddress = async function saveHomeAddress({ address }) {
   // validateFolder(address)
-  settingsStore().set('dioryHomeAddress', address)
-  console.log(`saveHomeAddress: Saved homeAddress ${address} to config.json`)
+  settingsStore().set('homeAddress', address)
+  console.log(`saveHomeAddress: Saved ${JSON.stringify(address)} to config.json`)
 
   return { address }
 }

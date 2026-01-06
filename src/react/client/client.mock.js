@@ -1,4 +1,4 @@
-import GET_DIORY_HOME_ADDRESS from './mockResponses/GET_DIORY_HOME_ADDRESS.json'
+import GET_HOME_ADDRESS from './mockResponses/GET_HOME_ADDRESS.json'
 import { channels } from '../../shared/constants'
 
 const showOpenDiolog = () => {
@@ -18,7 +18,7 @@ const mockChannels = () => {
 
   return {
     ...channels,
-    GET_DIORY_HOME_ADDRESS,
+    GET_HOME_ADDRESS,
   }
 }
 

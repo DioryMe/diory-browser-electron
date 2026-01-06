@@ -21,8 +21,8 @@ function channelLogger(handler, params) {
 // NOTE: Currently channels using channelLogger can receive only one parameter!
 // NOTE2: All functions used as channels must return a Promise!
 contextBridge.exposeInMainWorld('channelsApi', {
-  [channels.GET_DIORY_HOME_ADDRESS]: (params) => channelLogger(getHomeAddress, params),
-  [channels.SAVE_DIORY_HOME_ADDRESS]: (params) => channelLogger(saveHomeAddress, params),
+  [channels.GET_HOME_ADDRESS]: (params) => channelLogger(getHomeAddress, params),
+  [channels.SAVE_HOME_ADDRESS]: (params) => channelLogger(saveHomeAddress, params),
   [channels.OPEN_FOLDER]: async (fileUrl) => shell.showItemInFolder(fileURLToPath(fileUrl)),
   openItemInDesktopManner: (fileUrl) => shell.openPath(fileURLToPath(fileUrl)),
   [channels.OPEN_IN_BROWSER]: (url) => shell.openExternal(url),
