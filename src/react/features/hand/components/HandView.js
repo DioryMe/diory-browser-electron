@@ -55,7 +55,7 @@ const HandView = ({
 }
 
 HandView.propTypes = {
-  story: PropTypes.object.isRequired,
+  story: PropTypes.object,
   memories: PropTypes.array.isRequired,
   scrollIntoViewId: PropTypes.string,
   onClick: PropTypes.func.isRequired,

@@ -20,6 +20,7 @@ const defaultStyle = {
     padding: '16px',
     color: 'rgba(255, 255, 255, 0.7)',
     fontWeight: 'bold',
+    whiteSpace: 'pre-line',
   },
   topCorner: {
     position: 'absolute',
@@ -55,7 +56,7 @@ SelectButton.propTypes = {
 }
 
 const Diory = ({ diory, isGridImage, onSelect, onClick, children, ...props }) => {
-  const { id, text, image, style: dioryStyle = {}, data, links, selected } = diory
+  const { id, text, image, style: dioryStyle = {}, data, links, selected } = diory || {}
   const {
     image: styleImage,
     text: styleText,

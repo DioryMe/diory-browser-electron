@@ -4,7 +4,7 @@ import { useDispatchActions, useSelector } from '../../../store'
 import { useSelectedDiories } from '../../tools/utils/useSelectedDiories'
 
 import { useSelectStory } from '../../tools/selectStory'
-import { useCreateDioryToStory } from '../../tools/createDiory'
+import { useCreateDioryToStory } from '../../tools/createDiory/useCreateDioryToStory'
 import { useSelectDiory } from '../../tools/utils/useSelectDiory'
 import { useLinkDiories } from '../../tools/linkDiories'
 

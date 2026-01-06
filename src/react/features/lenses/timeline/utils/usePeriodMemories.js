@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 
-import { useGetHomeDiory } from '../../../home/utils/useGetHomeDiory'
+import { useGetDioryById } from '../../../diograph/utils/useGetDioryById'
 
 import { includedInLinks } from '../../../diograph/utils/dioryUtils'
 import { getDioriesInPeriod } from './timelineUtils'
@@ -14,13 +14,13 @@ export const usePeriodMemories = () => {
   const { diograph } = useSelector((state) => state.diograph)
   const { selectedPeriod } = useSelector((state) => state.lenses)
   const { open } = useSelector((state) => state.buttons)
-  const { getHomeDiory } = useGetHomeDiory()
+  const { getDiory } = useGetDioryById()
 
   if (selectedPeriod === 'timeline') {
     return []
   }
 
-  const periodStory = getHomeDiory(selectedPeriod)
+  const periodStory = getDiory(selectedPeriod)
   return getDioriesInPeriod(selectedPeriod, diograph)
     .filter((periodMemory) => open || includedInLinks(periodStory, periodMemory))
     .map(addStyles(periodStory))

@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 
 import { useButtonsAreOpen } from '../../../buttons/utils/useButtonsAreOpen'
-import { useGetHomeDiory } from '../../../home/utils/useGetHomeDiory'
+import { useGetDioryById } from '../../../diograph/utils/useGetDioryById'
 
 import { getDioriesInPeriod } from '../utils/timelineUtils'
 import { getPeriodDiories } from './getPeriodDiories'
@@ -29,10 +29,10 @@ const getPeriodTitle = (periodId, showTotal, diograph) => {
 export const useMapToPeriodDiory = () => {
   const { diograph } = useSelector((state) => state.diograph)
   const showTotal = useButtonsAreOpen()
-  const { getHomeDiory } = useGetHomeDiory()
+  const { getDiory } = useGetDioryById()
 
   return (periodId) => ({
-    ...getHomeDiory(periodId),
+    ...getDiory(periodId),
     id: periodId,
     text: getPeriodTitle(periodId, showTotal, diograph),
   })

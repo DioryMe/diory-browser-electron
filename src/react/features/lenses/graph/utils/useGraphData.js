@@ -1,14 +1,13 @@
 import { useMemo } from 'react'
-import { resolveLinkKey } from '../../../diograph/utils/resolveLinkKey'
 import { getDefaultImage } from '../../../diograph/utils/getDefaultImage'
-import { resolveDioryKey } from '../../../diograph/utils/resolveDioryKey'
+import { addDioryId, resolveDiographKey } from '../../../diograph/utils/diographUtils'
 
 const mapDiographToData = (diograph) => {
   const links = []
   Object.entries(diograph).forEach(([dioryKey, diory]) => {
     if (diory.links) {
       Object.values(diory.links)
-        .map(({ id }) => resolveDioryKey(resolveLinkKey(dioryKey, id), diograph))
+        .map(({ id }) => addDioryId(resolveDiographKey(dioryKey, id), diograph))
         .filter((linkKey) => !!diograph[linkKey])
         .forEach((linkKey) => {
           links.push({

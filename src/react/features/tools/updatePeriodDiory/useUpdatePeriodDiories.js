@@ -1,7 +1,7 @@
 import { useDispatchActions } from '../../../store'
 import { useCreateDiory } from '../createDiory/useCreateDiory'
 import { useToggleDioryLinks } from '../updateLinks/useToggleDioryLinks'
-import { useGetHomeDiory } from '../../home/utils/useGetHomeDiory'
+import { useGetDioryById } from '../../diograph/utils/useGetDioryById'
 
 import { createLink } from '../../diograph/diographActions'
 
@@ -19,7 +19,7 @@ const createPeriodDiory = (period) => {
 }
 
 const useGetPeriodDiories = () => {
-  const { getHomeDiory } = useGetHomeDiory()
+  const { getDiory } = useGetDioryById()
   const createDiory = useCreateDiory()
 
   return (selectedPeriod) =>
@@ -27,7 +27,7 @@ const useGetPeriodDiories = () => {
       .reverse()
       .concat(['timeline'])
       .map((periodId) => {
-        const existingDiory = getHomeDiory(periodId)
+        const existingDiory = getDiory(periodId)
         if (existingDiory) return existingDiory
 
         const periodDioryObject = createPeriodDiory(periodId)

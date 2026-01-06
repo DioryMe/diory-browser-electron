@@ -1,4 +1,4 @@
-import { mapDiographToDiories } from '../../../diograph/utils/mapDiographToDiories'
+import { mapDiographToDiories } from '../../../diograph/utils/diographUtils'
 import { startsWithPeriodId, isPeriodId } from '../utils/periodIdUtils'
 
 const sortByDate = ({ date }) => date

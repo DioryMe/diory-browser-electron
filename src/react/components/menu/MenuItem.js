@@ -19,8 +19,12 @@ const MenuItem = ({ diory, isSelected, onClick, ...props }) => (
     justifyContent="space-between"
     {...props}
   >
-    {diory.icon && <Icon icon={diory.icon} verticalAlign="middle" marginRight={6} />}
-    <b>{diory.text || ''}</b>
+    {diory.icon && <Icon icon={diory.icon} verticalAlign="middle" />}
+    {diory.text && (
+      <Pane fontWeight="bold" marginLeft={4}>
+        {diory.text}
+      </Pane>
+    )}
   </Pane>
 )
 

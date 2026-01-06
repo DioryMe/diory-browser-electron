@@ -10,7 +10,7 @@ import { SearchLens, searchLensButton } from './search/SearchLens'
 
 export const Lenses = () => (
   <>
-    {useLens(folderLensButton) && <FolderLens />}
+    {/*{useLens(folderLensButton) && <FolderLens />}*/}
     {useLens(graphLensButton) && <GraphLens />}
     {useLens(mapLensButton) && <MapLens />}
     {useLens(timelineLensButton) && <TimelineLens />}

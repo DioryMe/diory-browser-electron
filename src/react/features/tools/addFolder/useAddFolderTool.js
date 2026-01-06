@@ -3,7 +3,7 @@ import { useDispatchActions, useSelector } from '../../../store'
 
 import { useButtons } from '../../buttons/useButtons'
 
-import { createLink, getDiograph } from '../../diograph/diographActions'
+import { createLink, setDiographAddress } from '../../diograph/diographActions'
 import { getLocalAddress } from '../../../utils/getLocalAddress'
 
 import { buttons, BUTTON } from './buttons'
@@ -20,7 +20,7 @@ export const useAddFolderTool = () => {
       const folderPath = await getLocalAddress()
       if (folderPath) {
         dispatch(createLink({ id: 'folders' }, { key: folderPath }))
-        dispatch(getDiograph(folderPath))
+        dispatch(setDiographAddress(folderPath))
       }
     }
 
