@@ -3,6 +3,7 @@ import { useDispatchActions } from '../../../store'
 import { saveHomeAddress } from '../homeActions'
 
 import { getLocalAddress } from '../../../utils/getLocalAddress'
+import { resetStore } from '../../../store/actions'
 
 const getHomeAddress = async () => {
   if (window.processEnv.TESTCAFE_TEST) {
@@ -15,6 +16,7 @@ const getHomeAddress = async () => {
 export const useSaveHomeAddress = () => {
   const { dispatch } = useDispatchActions()
   return async () => {
+    dispatch(resetStore())
     const address = await getHomeAddress()
     if (address) {
       dispatch(saveHomeAddress(address))
