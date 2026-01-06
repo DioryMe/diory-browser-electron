@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 
-import { getDiory } from './getDiory'
+import { getDiory } from './useGetDioryById'
 import { getLinkedDiories } from './getLinkedDiories'
 
 export const getStoryDiories = (storyKey, diograph = {}) => {

@@ -1,18 +1,22 @@
-import { GET_DIOGRAPH, GENERATE_DIOGRAPH, UPDATE_DIOGRAPH } from './diographActionTypes'
+import {
+  generateDiographActions,
+  getDiographActions,
+  SET_DIOGRAPH_ADDRESS,
+  UPDATE_DIOGRAPH,
+} from './diographActionTypes'
 
-import { createReducer, promiseReducers } from '../../store'
-import { resolveLinkKey } from './utils/resolveLinkKey'
-import { createActions } from '../../store/storeUtils'
+import { createReducer } from '../../store'
+import { resolveDiographKey } from './utils/diographUtils'
 import loading from './utils/loading.gif'
 
 const initialState = {
+  address: null,
+  isDiory: false,
   diograph: {},
   loading: {},
   loaded: {},
   error: {},
 }
-
-const getDiographActions = createActions(GET_DIOGRAPH)
 
 const getDiographBegin = (state, { payload: { address } }) => ({
   ...state,
@@ -64,16 +68,25 @@ const getDiographFailure = (
 const updateDiograph = (state, { payload: { diograph, address } }) => ({
   ...state,
   diograph: Object.entries(diograph).reduce((obj, [key, diory]) => {
-    const diographKey = address ? resolveLinkKey(address, key) : key
+    const diographKey = resolveDiographKey(address, key)
     obj[diographKey] = diory
     return obj
   }, state.diograph),
 })
 
+export const setDiographAddress = (state, { payload: { address, isDiory } }) => ({
+  ...state,
+  address,
+  isDiory,
+})
+
 export default createReducer(initialState, {
-  ...promiseReducers(GENERATE_DIOGRAPH, 'generating', 'generated', 'error'),
   [getDiographActions.begin().type]: getDiographBegin,
   [getDiographActions.success().type]: getDiographSuccess,
   [getDiographActions.failure().type]: getDiographFailure,
+  [generateDiographActions.begin().type]: getDiographBegin,
+  [generateDiographActions.success().type]: getDiographSuccess,
+  [generateDiographActions.failure().type]: getDiographFailure,
   [UPDATE_DIOGRAPH]: updateDiograph,
+  [SET_DIOGRAPH_ADDRESS]: setDiographAddress,
 })

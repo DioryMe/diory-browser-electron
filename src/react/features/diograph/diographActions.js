@@ -1,5 +1,14 @@
-import { UPDATE_DIOGRAPH, GET_DIOGRAPH } from './diographActionTypes'
-import { createActions } from '../../store/storeUtils'
+import {
+  SET_DIOGRAPH_ADDRESS,
+  UPDATE_DIOGRAPH,
+  getDiographActions,
+  generateDiographActions,
+} from './diographActionTypes'
+
+export const setDiographAddress = (address, isDiory) => ({
+  type: SET_DIOGRAPH_ADDRESS,
+  payload: { address, isDiory },
+})
 
 export const updateDiographAction = (diograph, address) => ({
   type: UPDATE_DIOGRAPH,
@@ -15,7 +24,7 @@ export const updateDiograph =
 export const createDiory =
   (dioryData, alias) =>
   (dispatch, getState, { diographClient }) => {
-    const { address } = getState().home
+    const { address } = getState().diograph
     const diory = diographClient.getDiograph(address).addDiory(dioryData, alias)
     dispatch(updateDiograph(address))
     return { diory: diory.toObject(), key: `${address}${diory.id}` }
@@ -38,21 +47,23 @@ export const deleteDiory =
 export const createLink =
   (dioryObject, linkedDioryObject) =>
   (dispatch, getState, { diographClient }) => {
-    const id = diographClient.getDiograph(dioryObject.key).diograph[linkedDioryObject.id]
+    const address = dioryObject.key || getState().diograph.address
+    const id = diographClient.getDiograph(address).diograph[linkedDioryObject.id]
       ? linkedDioryObject.id
       : linkedDioryObject.key
-    diographClient.getDiograph(dioryObject.key).getDiory(dioryObject).addLink({ id })
-    dispatch(updateDiograph(dioryObject.key))
+    diographClient.getDiograph(address).getDiory(dioryObject).addLink({ id })
+    dispatch(updateDiograph(address))
   }
 
 export const deleteLink =
   (dioryObject, linkedDioryObject) =>
   (dispatch, getState, { diographClient }) => {
-    const id = diographClient.getDiograph(dioryObject.key).diograph[linkedDioryObject.id]
+    const address = dioryObject.key || getState().diograph.address
+    const id = diographClient.getDiograph(address).diograph[linkedDioryObject.id]
       ? linkedDioryObject.id
       : linkedDioryObject.key
-    diographClient.getDiograph(dioryObject.key).getDiory(dioryObject).removeLink({ id })
-    dispatch(updateDiograph(dioryObject.key))
+    diographClient.getDiograph(address).getDiory(dioryObject).removeLink({ id })
+    dispatch(updateDiograph(address))
   }
 
 export const deleteLinks =
@@ -81,8 +92,6 @@ export const resetDiograph =
     dispatch(updateDiograph(address))
   }
 
-const saveInProd = process.env.NODE_ENV !== 'development'
-const getDiographActions = createActions(GET_DIOGRAPH)
 export const getDiograph =
   (address) =>
   async (dispatch, getState, { diographClient }) => {
@@ -90,12 +99,30 @@ export const getDiograph =
     if (!loading[address] && !loaded[address]) {
       dispatch(getDiographActions.begin({ address }))
       try {
-        await diographClient.generateDiograph(address, saveInProd)
+        await diographClient.fetchDiograph(address, saveInProd)
         dispatch(updateDiograph(address))
         dispatch(getDiographActions.success({ address }))
       } catch (error) {
         console.error(error)
         dispatch(getDiographActions.failure({ address, error }))
+      }
+    }
+  }
+
+const saveInProd = process.env.NODE_ENV !== 'development'
+export const generateDiograph =
+  (address) =>
+  async (dispatch, getState, { diographClient }) => {
+    const { loading, loaded } = getState().diograph
+    if (!loading[address] && !loaded[address]) {
+      dispatch(generateDiographActions.begin({ address }))
+      try {
+        await diographClient.generateDiograph(address, saveInProd)
+        dispatch(updateDiograph(address))
+        dispatch(generateDiographActions.success({ address }))
+      } catch (error) {
+        console.error(error)
+        dispatch(generateDiographActions.failure({ address, error }))
       }
     }
   }

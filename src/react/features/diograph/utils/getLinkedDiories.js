@@ -1,5 +1,5 @@
-import { getDiory } from './getDiory'
-import { resolveLinkKey } from './resolveLinkKey'
+import { getDiory } from './useGetDioryById'
+import { resolveDiographKey } from './diographUtils'
 
 export const getLinkedDiories = (dioryKey, diograph) => {
   if (!dioryKey) return []
@@ -8,8 +8,11 @@ export const getLinkedDiories = (dioryKey, diograph) => {
   const links = diory && diory.links
   return Object.entries(links || {})
     .map(([, { id }]) => {
-      const key = resolveLinkKey(dioryKey, id)
-      return getDiory(key, diograph || {})
+      const [linkKey] = Object.entries(diograph).find(([, { id: dioryId }]) => dioryId === id) || [
+        id,
+      ]
+      const diographKey = resolveDiographKey(dioryKey, linkKey)
+      return getDiory(diographKey, diograph || {})
     })
     .filter(Boolean)
 }

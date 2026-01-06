@@ -3,7 +3,32 @@ import { useSelector } from 'react-redux'
 
 import { resolveReverseDiograph } from './resolveReverseDiograph'
 import { getLinkedDiories } from './getLinkedDiories'
-import { resolveContext } from './resolveContext'
+import { getDiory } from './useGetDioryById'
+
+const resolveContext = (storyKey, backward, diograph, reverseDiograph) => {
+  const contexts = getLinkedDiories(storyKey, reverseDiograph).filter(({ key }) => key !== storyKey)
+  if (!contexts.length) {
+    return {
+      contexts: [],
+    }
+  }
+
+  const contextKeys = contexts.map(({ key }) => key)
+  const backwardContextKey = (backward || []).find((backwardKey) =>
+    contextKeys.includes(backwardKey)
+  )
+  if (backwardContextKey) {
+    return {
+      context: getDiory(backwardContextKey, diograph),
+      contexts,
+    }
+  }
+
+  return {
+    context: contexts[0],
+    contexts,
+  }
+}
 
 export const useGetContextDiories = () => {
   const { diograph } = useSelector((state) => state.diograph)

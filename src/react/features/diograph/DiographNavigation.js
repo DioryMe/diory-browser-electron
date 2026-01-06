@@ -1,25 +1,25 @@
 import React from 'react'
 
-import { useStoryDiories } from './utils/useDiories'
-import { useStoryContextDiories } from './utils/useContextDiories'
-import { useSelectStory } from '../tools/selectStory'
-
 import { NavigationBar } from '../navigation/components/NavigationBar'
 import { DiographAddress } from './components/DiographAddress'
 import { NavigationContent } from '../navigation/components/NavigationContent'
 import { SidePanelToggleButton } from '../sidePanel/components/SidePanelToggleButton'
+import PropTypes from 'prop-types'
 
-export const DiographNavigation = () => {
-  const diories = useStoryDiories()
-  const contextDiories = useStoryContextDiories()
-
+const DiographNavigation = ({ story, stories, context, contexts, onClick }) => {
   return (
     <NavigationBar>
       <NavigationContent>
         <SidePanelToggleButton side="left" />
       </NavigationContent>
       <NavigationContent>
-        <DiographAddress {...diories} {...contextDiories} onClick={useSelectStory()} />
+        <DiographAddress
+          story={story}
+          stories={stories}
+          context={context}
+          contexts={contexts}
+          onClick={onClick}
+        />
       </NavigationContent>
       <NavigationContent>
         <SidePanelToggleButton side="right" />
@@ -27,3 +27,13 @@ export const DiographNavigation = () => {
     </NavigationBar>
   )
 }
+
+DiographNavigation.propTypes = {
+  story: PropTypes.object,
+  stories: PropTypes.array,
+  context: PropTypes.object,
+  contexts: PropTypes.array,
+  onClick: PropTypes.func,
+}
+
+export { DiographNavigation }
