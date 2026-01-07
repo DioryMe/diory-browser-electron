@@ -21,14 +21,12 @@
 
 ## Features
 
-### Rooms
-- Update room
-- Add room
-- Delete room (TODO)
-- Drag border to resize
-- Change room
+### Home
+- Enter diory diograph'
+- Add folder diograph
+- Enter folder diograph
 
-### Diory browser
+### Diograph browser
 - Contexts (in header)
   - Select to show story
 - Story

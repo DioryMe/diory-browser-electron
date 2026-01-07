@@ -8,10 +8,7 @@ export const getLinkedDiories = (dioryKey, diograph) => {
   const links = diory && diory.links
   return Object.entries(links || {})
     .map(([, { id }]) => {
-      const [linkKey] = Object.entries(diograph).find(([, { id: dioryId }]) => dioryId === id) || [
-        id,
-      ]
-      const diographKey = resolveDiographKey(dioryKey, linkKey)
+      const diographKey = resolveDiographKey(dioryKey, id)
       return getDiory(diographKey, diograph || {})
     })
     .filter(Boolean)

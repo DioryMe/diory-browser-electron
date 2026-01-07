@@ -2,8 +2,13 @@ import { useSelector } from 'react-redux'
 import { addDioryId, getPath } from './diographUtils'
 
 export const getDiory = (address, diograph) => {
-  const key = addDioryId(address, diograph)
-  return key ? { key, ...diograph[key] } : undefined
+  const dioryKey = addDioryId(address, diograph)
+  if (!diograph[dioryKey]) return undefined
+
+  const [key] = Object.entries(diograph).find(
+    ([diographKey, { id }]) => diograph[dioryKey].id === id && diographKey !== dioryKey
+  ) || [dioryKey]
+  return { key, ...diograph[dioryKey] }
 }
 
 export const useGetDioryById = () => {
