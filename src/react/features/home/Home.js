@@ -3,10 +3,11 @@ import { useDispatchActions, useSelector } from '../../store'
 
 import { useGetHomeEffect } from './useGetHomeEffect'
 import { useAddFolderTool } from '../tools/addFolder'
-import { useDiories } from '../diograph/utils/useDiories'
+import { getStoryDiories } from '../diograph/utils/getStoryDiories'
 import { useSaveHomeAddress } from './utils/useSaveHomeAddress'
 
 import { setDiographAddress } from '../diograph/diographActions'
+import { setIsHome } from './homeActions'
 
 import { HomeView } from './components/HomeView'
 import { HomeNavigation } from './components/HomeNavigation'
@@ -18,10 +19,20 @@ const useActions = () => {
 
   const { dispatch } = useDispatchActions()
   return {
-    onStoryClick: ({ diory }) => {
-      address ? dispatch(setDiographAddress(diory.key, true)) : saveHomeAddress()
+    onStoryClick: () => {
+      if (!address) {
+        saveHomeAddress()
+      }
+
+      if (address) {
+        dispatch(setIsHome(false))
+        dispatch(setDiographAddress(address, true))
+      }
     },
-    onMemoryClick: ({ diory }) => dispatch(setDiographAddress(diory.key, false)),
+    onMemoryClick: ({ diory }) => {
+      dispatch(setIsHome(false))
+      dispatch(setDiographAddress(diory.key, false))
+    },
   }
 }
 
@@ -37,8 +48,9 @@ export const Home = () => {
 
   const { address } = useSelector((state) => state.home)
 
-  const { story } = useDiories(address)
-  const { memories } = useDiories(`${address}folders`)
+  const { diograph } = useSelector((state) => state.diograph)
+  const { story } = getStoryDiories(address, diograph)
+  const { memories } = getStoryDiories(`${address}folders`, diograph)
 
   const actions = useActions()
 

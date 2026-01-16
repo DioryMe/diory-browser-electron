@@ -1,7 +1,12 @@
-import { getHomeAddressActions, saveHomeAddressActions } from './homeActionTypes'
+import { getHomeAddressActions, saveHomeAddressActions, SET_IS_HOME } from './homeActionTypes'
 
 import { invokeChannel } from '../../client/client'
 import { channels } from '../../../shared/constants'
+
+export const setIsHome = (isHome) => ({
+  type: SET_IS_HOME,
+  payload: { isHome },
+})
 
 export const getHomeAddress = () => async (dispatch, getState) => {
   const { loading } = getState().home
