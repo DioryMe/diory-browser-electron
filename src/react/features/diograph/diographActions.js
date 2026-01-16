@@ -25,8 +25,8 @@ export const createDiory =
   (dioryData, alias) =>
   (dispatch, getState, { diographClient }) => {
     const { address } = getState().diograph
-    const diory = diographClient.getDiograph(address).addDiory(dioryData, alias)
-    dispatch(updateDiograph(address))
+    const diory = diographClient.getDiograph(dioryData.key || address).addDiory(dioryData, alias)
+    dispatch(updateDiograph(dioryData.key || address))
     return { diory: diory.toObject(), key: `${address}${diory.id}` }
   }
 
@@ -100,8 +100,8 @@ export const getDiograph =
       dispatch(getDiographActions.begin({ address }))
       try {
         await diographClient.fetchDiograph(address, saveInProd)
-        dispatch(updateDiograph(address))
         dispatch(getDiographActions.success({ address }))
+        dispatch(updateDiograph(address))
       } catch (error) {
         console.error(error)
         dispatch(getDiographActions.failure({ address, error }))
@@ -118,8 +118,8 @@ export const generateDiograph =
       dispatch(generateDiographActions.begin({ address }))
       try {
         await diographClient.generateDiograph(address, saveInProd)
-        dispatch(updateDiograph(address))
         dispatch(generateDiographActions.success({ address }))
+        dispatch(updateDiograph(address))
       } catch (error) {
         console.error(error)
         dispatch(generateDiographActions.failure({ address, error }))
