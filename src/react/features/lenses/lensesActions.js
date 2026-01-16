@@ -5,6 +5,7 @@ import {
   SET_SEARCH_RESULTS,
   SELECT_PERIOD,
   SELECT_FOLDER,
+  SET_SHOW_PERIOD_MEMORIES,
 } from './lensesActionTypes'
 
 export const selectLens = (id) => ({ type: SELECT_LENS, payload: { id } })
@@ -37,4 +38,9 @@ export const selectPeriod = ({ id }) => ({
 export const selectedFolder = ({ key }) => ({
   type: SELECT_FOLDER,
   payload: { key },
+})
+
+export const setShowPeriodMemories = (showPeriodMemories) => ({
+  type: SET_SHOW_PERIOD_MEMORIES,
+  payload: { showPeriodMemories },
 })

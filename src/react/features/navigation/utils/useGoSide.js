@@ -1,11 +1,7 @@
 import { useDispatchActions } from '../../../store'
 import { goSide } from '../navigationActions'
-import { useStoryDiories } from '../../diograph/utils/useDiories'
-import { useStoryContextDiories } from '../../diograph/utils/useContextDiories'
 
-export const useGoSide = () => {
-  const { story = {} } = useStoryDiories()
-  const { stories } = useStoryContextDiories()
+export const useGoSide = (story, stories) => {
   const { dispatch } = useDispatchActions()
   const storyKeys = stories.map(({ key }) => key)
 

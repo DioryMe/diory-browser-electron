@@ -1,26 +1,31 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { useDiories } from '../diograph/utils/useDiories'
+import { getStoryDiories } from '../diograph/utils/getStoryDiories'
 
+import { useDiograph } from '../diograph/utils/useDiograph'
 import { useSelectStory } from '../tools/selectStory'
 import { useSelectDiory } from '../tools/utils/useSelectDiory'
 import { useLinkDiories } from '../tools/linkDiories'
 import { useDispatchActions } from '../../store'
-import { setDiographAddress } from '../diograph/diographActions'
+import { useCreateDioryById } from '../tools/createDiory/useCreateDioryById'
+
+import { resetStore } from '../../store/actions'
 
 import { FavoritesView } from './components/FavoritesView'
 import { FavoritesNavigation } from './components/FavoritesNavigation'
-import { useCreateDioryById } from '../tools/createDiory/useCreateDioryById'
 
 const useReturnToHome = () => {
   const { dispatch } = useDispatchActions()
-  return () => dispatch(setDiographAddress(null))
+  return () => {
+    dispatch(resetStore())
+  }
 }
 
 export const Favorites = () => {
-  const favoritesDiory = useCreateDioryById('favorites') || {}
-  const { story, memories } = useDiories(favoritesDiory.key)
+  const { diograph } = useDiograph()
+  const favoritesDiory = useCreateDioryById('favorites', diograph) || {}
+  const { story, memories } = getStoryDiories(favoritesDiory.key, diograph)
 
   const { address } = useSelector((state) => state.diograph)
 

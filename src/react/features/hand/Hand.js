@@ -1,23 +1,25 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
+import { useDiograph } from '../diograph/utils/useDiograph'
 import { useCreateDioryById } from '../tools/createDiory/useCreateDioryById'
-
-import { useDiories } from '../diograph/utils/useDiories'
-import { useSelectedDiories } from '../tools/utils/useSelectedDiories'
-
+import { useMapSelectedDiory } from '../tools/utils/useMapSelectedDiory'
 import { useSelectStory } from '../tools/selectStory'
 import { useSelectDiory } from '../tools/utils/useSelectDiory'
 import { useLinkDiories } from '../tools/linkDiories'
+
 import { updateDiory } from '../diograph/diographActions'
+
+import { getStoryDiories } from '../diograph/utils/getStoryDiories'
 
 import { HandView } from './components/HandView'
 
 export const Hand = () => {
-  const handDiory = useCreateDioryById('hand') || {}
-  const { story, memories } = useDiories(handDiory.key)
+  const { diograph } = useDiograph()
+  const handDiory = useCreateDioryById('hand', diograph) || {}
+  const { story, memories } = getStoryDiories(handDiory.key, diograph)
 
-  const { mapSelectedDiory } = useSelectedDiories()
+  const { mapSelectedDiory } = useMapSelectedDiory()
 
   const { dispatch } = useDispatch()
   return (

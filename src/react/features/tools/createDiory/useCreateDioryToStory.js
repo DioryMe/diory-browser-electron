@@ -1,12 +1,15 @@
-import { getDefaultImage } from '../../diograph/utils/getDefaultImage'
-
+import { useSelector } from 'react-redux'
 import { useDispatchActions } from '../../../store'
-import { useStoryDiories } from '../../diograph/utils/useDiories'
 
 import { createDiory, createLink } from '../../diograph/diographActions'
 
+import { getDefaultImage } from '../../diograph/utils/getDefaultImage'
+import { getStoryDiories } from '../../diograph/utils/getStoryDiories'
+
 export const useCreateDioryToStory = () => {
-  const { story } = useStoryDiories()
+  const { diograph } = useSelector((state) => state.diograph)
+  const { storyKey } = useSelector((state) => state.navigation)
+  const { story } = getStoryDiories(storyKey, diograph)
 
   const { dispatch } = useDispatchActions()
   return (newDiory) => {

@@ -2,10 +2,12 @@ import React from 'react'
 import { useDispatchActions, useSelector } from '../../../store'
 
 import { useButtons } from '../../buttons/useButtons'
-import { useSelectedLinks } from './useSelectedLinks'
 import { useCloseButtons } from '../../buttons/useButtonActions'
+import { useSelectedDiories } from '../utils/useSelectedDiories'
 
 import { deleteLinks } from '../../diograph/diographActions'
+
+import { getStoryDiories } from '../../diograph/utils/getStoryDiories'
 
 import DeleteView from '../components/DeleteView'
 
@@ -21,6 +23,21 @@ export const useDeleteActions = (selectedLinks) => {
     },
     onCancel: closeButtons,
   }
+}
+
+const mapToLinks = (diory, links) =>
+  links.map((link) => ({
+    fromDiory: diory,
+    toDiory: link,
+  }))
+
+const useSelectedLinks = () => {
+  const { diograph } = useSelector((state) => state.diograph)
+  const { storyKey } = useSelector((state) => state.navigation)
+  const { story } = getStoryDiories(storyKey, diograph)
+
+  const { selectedDiories } = useSelectedDiories()
+  return mapToLinks(story, selectedDiories)
 }
 
 export const DeleteLinksTool = () => {

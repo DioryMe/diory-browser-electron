@@ -30,8 +30,7 @@ const resolveContext = (storyKey, backward, diograph, reverseDiograph) => {
   }
 }
 
-export const useGetContextDiories = () => {
-  const { diograph } = useSelector((state) => state.diograph)
+export const useGetContextDiories = (diograph) => {
   const reverseDiograph = useMemo(() => resolveReverseDiograph(diograph), [Object.keys(diograph)])
   return {
     getContextDiories: (storyKey, backward) => {
@@ -45,12 +44,12 @@ export const useGetContextDiories = () => {
   }
 }
 
-export const useContextDiories = (storyKey, backward) => {
-  const { getContextDiories } = useGetContextDiories()
+export const useContextDiories = (storyKey, backward, diograph) => {
+  const { getContextDiories } = useGetContextDiories(diograph)
   return getContextDiories(storyKey, backward)
 }
 
-export const useStoryContextDiories = () => {
+export const useStoryContextDiories = (diograph) => {
   const { storyKey, backward } = useSelector((state) => state.navigation)
-  return useContextDiories(storyKey, backward)
+  return useContextDiories(storyKey, backward, diograph)
 }

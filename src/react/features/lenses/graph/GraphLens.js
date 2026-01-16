@@ -14,8 +14,7 @@ export const graphLensButton = {
   icon: 'graph',
 }
 
-export const GraphLens = () => {
-  const { diograph } = useSelector((state) => state.diograph)
+export const GraphLens = ({ diograph }) => {
   const { storyKey } = useSelector((state) => state.navigation)
   const { sidePanelWidths } = useSelector((state) => state.sidePanel)
 

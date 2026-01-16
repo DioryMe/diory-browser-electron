@@ -1,10 +1,9 @@
 import { useEffect } from 'react'
-
+import { useSelector } from 'react-redux'
 import { useDispatchActions } from '../../../store'
-import { useStoryDiories } from '../../diograph/utils/useDiories'
 
+import { getStoryDiories } from '../../diograph/utils/getStoryDiories'
 import { selectPeriod } from '../lensesActions'
-
 import { getStartAndEndTimes } from './utils/timelineUtils'
 import { splitDateToPeriodIds } from './utils/periodIdUtils'
 
@@ -19,7 +18,10 @@ const resolvePeriod = (startTime, endTime) => {
 }
 
 export const useSelectPeriodEffect = () => {
-  const { story, memories } = useStoryDiories()
+  const { diograph } = useSelector((state) => state.diograph)
+  const { storyKey } = useSelector((state) => state.navigation)
+  const { story, memories } = getStoryDiories(storyKey, diograph)
+
   const diories = [story].concat(memories)
   const { startTime, endTime } = getStartAndEndTimes(diories)
   const periodId = resolvePeriod(startTime, endTime)

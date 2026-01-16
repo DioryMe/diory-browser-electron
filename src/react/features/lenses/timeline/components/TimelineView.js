@@ -23,6 +23,7 @@ const TimelineView = ({
   periods = [],
   memories,
   scrollIntoViewId,
+  viewAll,
   onPeriodClick,
   onMemoryClick,
   onSelect,
@@ -44,7 +45,7 @@ const TimelineView = ({
               />
             ))}
           </Pane>
-          {!memories.length && <MenuItem diory={{ text: 'VIEW ALL' }} onClick={onViewAllClick} />}
+          <MenuItem diory={viewAll} onClick={onViewAllClick} />
           <DiorysGrid
             ref={handRef}
             diorys={memories}

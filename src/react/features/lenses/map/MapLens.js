@@ -1,11 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
-import { useStoryDiories } from '../../diograph/utils/useDiories'
 import { useSelectStory } from '../../tools/selectStory'
 import { useSelectDiory } from '../../tools/utils/useSelectDiory'
 import { useMoveTool, useMoveToolIsActive } from '../../tools/moveLocation'
 import { useAddLocationTool } from '../../tools/addLocation'
-import { useSelectedDiories } from '../../tools/utils/useSelectedDiories'
+import { useMapSelectedDiory } from '../../tools/utils/useMapSelectedDiory'
+
+import { getStoryDiories } from '../../diograph/utils/getStoryDiories'
 
 import MapView from './components/MapView'
 
@@ -22,9 +24,11 @@ export const mapLensButton = {
 // TODO show parent on map (without impact on view)
 // TODO fix move story location
 export const MapLens = () => {
-  const { story, memories } = useStoryDiories()
-  const { mapSelectedDiory } = useSelectedDiories()
+  const { diograph } = useSelector((state) => state.diograph)
+  const { storyKey } = useSelector((state) => state.navigation)
+  const { story, memories } = getStoryDiories(storyKey, diograph)
 
+  const { mapSelectedDiory } = useMapSelectedDiory()
   return (
     <MapView
       story={story}

@@ -1,11 +1,9 @@
-import { useSelector } from 'react-redux'
-
-import { useButtonsAreOpen } from '../../../buttons/utils/useButtonsAreOpen'
 import { useGetDioryById } from '../../../diograph/utils/useGetDioryById'
 
 import { getDioriesInPeriod } from '../utils/timelineUtils'
 import { getPeriodDiories } from './getPeriodDiories'
 import { isNotPeriodId } from '../utils/periodIdUtils'
+import { useSelector } from 'react-redux'
 
 const resolveAmount = (periodId, showTotal, diograph) => {
   const periodKey = periodId === 'timeline' ? '' : periodId
@@ -26,14 +24,13 @@ const getPeriodTitle = (periodId, showTotal, diograph) => {
   return `${title} (${amount})`
 }
 
-export const useMapToPeriodDiory = () => {
-  const { diograph } = useSelector((state) => state.diograph)
-  const showTotal = useButtonsAreOpen()
-  const { getDiory } = useGetDioryById()
+export const useMapToPeriodDiory = (diograph) => {
+  const { showPeriodMemories } = useSelector((state) => state.lenses)
+  const { getDiory } = useGetDioryById(diograph)
 
   return (periodId) => ({
     ...getDiory(periodId),
     id: periodId,
-    text: getPeriodTitle(periodId, showTotal, diograph),
+    text: getPeriodTitle(periodId, showPeriodMemories, diograph),
   })
 }

@@ -10,11 +10,9 @@ const addStyles = (periodStory) => (periodMemory) => ({
   style: { ...(!includedInLinks(periodStory, periodMemory) && { opacity: '40%' }) },
 })
 
-export const usePeriodMemories = () => {
-  const { diograph } = useSelector((state) => state.diograph)
-  const { selectedPeriod } = useSelector((state) => state.lenses)
-  const { open } = useSelector((state) => state.buttons)
-  const { getDiory } = useGetDioryById()
+export const usePeriodMemories = (diograph) => {
+  const { selectedPeriod, showPeriodMemories } = useSelector((state) => state.lenses)
+  const { getDiory } = useGetDioryById(diograph)
 
   if (selectedPeriod === 'timeline') {
     return []
@@ -22,7 +20,7 @@ export const usePeriodMemories = () => {
 
   const periodStory = getDiory(selectedPeriod)
   return getDioriesInPeriod(selectedPeriod, diograph)
-    .filter((periodMemory) => open || includedInLinks(periodStory, periodMemory))
+    .filter((periodMemory) => showPeriodMemories || includedInLinks(periodStory, periodMemory))
     .map(addStyles(periodStory))
     .filter((value, index) => index < 100)
 }

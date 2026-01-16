@@ -1,12 +1,13 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
+import { useDiograph } from '../../diograph/utils/useDiograph'
 import { useDispatchActions } from '../../../store'
-import { useDiories } from '../../diograph/utils/useDiories'
 import { useAddFolderTool } from '../../tools/addFolder'
 import { useCreateDioryById } from '../../tools/createDiory/useCreateDioryById'
 
 import { selectedFolder } from '../lensesActions'
+import { getStoryDiories } from '../../diograph/utils/getStoryDiories'
 
 import { FolderLensView } from './components/FolderLensView'
 
@@ -24,9 +25,10 @@ const useSelectFolder = () => {
 }
 
 const useFolderDiories = () => {
-  const foldersDiory = useCreateDioryById('folders') || {}
+  const { diograph } = useDiograph()
+  const foldersDiory = useCreateDioryById('folders', diograph) || {}
   const { selectedFolderKey } = useSelector((state) => state.lenses)
-  return useDiories(selectedFolderKey || foldersDiory.key)
+  return getStoryDiories(selectedFolderKey || foldersDiory.key, diograph)
 }
 
 export const FolderLens = () => {

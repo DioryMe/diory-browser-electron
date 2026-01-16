@@ -6,11 +6,9 @@ import { SidePanel } from '../features/sidePanel/SidePanel'
 import Fullscreen from '../components/Fullscreen'
 
 import { Favorites } from '../features/favorites/Favorites'
-import { DiographNavigation } from '../features/diograph/DiographNavigation'
 import { Diograph } from '../features/diograph/Diograph'
 import { Hand } from '../features/hand/Hand'
 import { Lenses } from '../features/lenses/Lenses'
-import { LensesNavigation } from '../features/lenses/LensesNavigation'
 import { Tools } from '../features/tools/Tools'
 
 export const Browser = () => (
@@ -25,7 +23,6 @@ export const Browser = () => (
             <Diograph />
           </Panel>
           <SidePanel side="right">
-            <LensesNavigation />
             <Lenses />
           </SidePanel>
         </PanelContainer>

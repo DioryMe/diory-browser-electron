@@ -1,10 +1,11 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Pane } from 'evergreen-ui'
 
 import { useToggleContent } from './utils/useToggleContent'
-
 import { useContentCarousel } from './components/useContentCarousel'
-import { useStoryDiories } from '../diograph/utils/useDiories'
+
+import { getStoryDiories } from '../diograph/utils/getStoryDiories'
 
 import { ContentView } from './components/ContentView'
 import { ContentCarousel } from './components/ContentCarousel'
@@ -15,7 +16,10 @@ const getAddressPath = (address = '') => {
 }
 
 const Content = () => {
-  const { story = {} } = useStoryDiories()
+  const { diograph } = useSelector((state) => state.diograph)
+  const { storyKey } = useSelector((state) => state.navigation)
+  const { story = {} } = getStoryDiories(storyKey, diograph)
+
   const { data = [] } = story
   const path = getAddressPath(story.key)
   const { content, carousel } = useContentCarousel(data, path)

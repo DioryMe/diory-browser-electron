@@ -1,15 +1,12 @@
 import { useGetContextDiories } from '../../diograph/utils/useContextDiories'
-import { useSelectedDiories } from '../utils/useSelectedDiories'
-import { useGetDiories } from '../../diograph/utils/useDiories'
+import { getStoryDiories } from '../../diograph/utils/getStoryDiories'
 
-export const useDeletedDiories = () => {
-  const { selectedDiories = [] } = useSelectedDiories()
-  const { getDiories } = useGetDiories()
-  const { getContextDiories } = useGetContextDiories()
+export const useDeletedDiories = (diograph, selectedDiories) => {
+  const { getContextDiories } = useGetContextDiories(diograph)
 
   return selectedDiories
     .map((diory) => {
-      const { memories } = getDiories(diory.key)
+      const { memories } = getStoryDiories(diory.key, diograph)
       const { contexts } = getContextDiories(diory.key)
 
       const linkedDiories = memories.map((link) => ({

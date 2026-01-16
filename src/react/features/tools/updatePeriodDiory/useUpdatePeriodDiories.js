@@ -11,15 +11,14 @@ import { splitDateToPeriodIds } from '../../lenses/timeline/utils/periodIdUtils'
 const createPeriodDiory = (period) => {
   const validDate = period.length === 13 ? `${period}:00` : period
   return {
-    key: period,
     id: period,
     text: validDate.split('T').join(' '),
     date: new Date(validDate).toISOString(),
   }
 }
 
-const useGetPeriodDiories = () => {
-  const { getDiory } = useGetDioryById()
+const useGetPeriodDiories = (diograph) => {
+  const { getDiory } = useGetDioryById(diograph)
   const createDiory = useCreateDiory()
 
   return (selectedPeriod) =>
@@ -46,8 +45,8 @@ const useLinkPeriodDiories = () => {
     })
 }
 
-export const useUpdatePeriodDiories = () => {
-  const getPeriodDiories = useGetPeriodDiories()
+export const useUpdatePeriodDiories = (diograph) => {
+  const getPeriodDiories = useGetPeriodDiories(diograph)
   const toggleDioryLinks = useToggleDioryLinks()
   const linkPeriodDiories = useLinkPeriodDiories()
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatchActions, useSelector } from '../../../store'
 
-import { useSelectedDiories } from '../../tools/utils/useSelectedDiories'
+import { useMapSelectedDiory } from '../../tools/utils/useMapSelectedDiory'
 
 import { useSelectStory } from '../../tools/selectStory'
 import { useCreateDioryToStory } from '../../tools/createDiory/useCreateDioryToStory'
@@ -12,6 +12,7 @@ import { selectLens, searchDiories } from '../lensesActions'
 import { queryDiograph } from './utils/queryDiograph'
 
 import { SearchLensView } from './components/SearchLensView'
+import { useDiograph } from '../../diograph/utils/useDiograph'
 
 export const searchLensButton = {
   id: 'search',
@@ -27,9 +28,8 @@ const useSearchQuery = () => {
   }
 }
 
-const useSearch = () => {
+const useSearch = (diograph) => {
   const { selectedLensId } = useSelector((state) => state.lenses)
-  const { diograph } = useSelector((state) => state.diograph)
   const { dispatch } = useDispatchActions()
   return ({ target: { value } }) => {
     const resultDiograph = queryDiograph({ text: value }, diograph)
@@ -40,14 +40,14 @@ const useSearch = () => {
   }
 }
 
-export const SearchLens = () => {
+export const SearchLens = ({ diograph }) => {
   const { story, memories } = useSearchQuery()
-  const { mapSelectedDiory } = useSelectedDiories()
+  const { mapSelectedDiory } = useMapSelectedDiory()
   return (
     <SearchLensView
       story={story}
       memories={memories.map(mapSelectedDiory)}
-      onSearch={useSearch()}
+      onSearch={useSearch(diograph)}
       onClick={useSelectStory()}
       onSelect={useSelectDiory()}
       onDrop={useLinkDiories()}
