@@ -1,19 +1,4 @@
-import { useDispatchActions, useSelector } from '../../../store'
-import { updateDiory } from '../../diograph/diographActions'
-import { clearSelectedDiories } from '../toolsActions'
-
-export const useUpdateSelectedDiories = () => {
-  const { selectedDiories } = useSelectedDiories()
-  const { dispatch } = useDispatchActions()
-  return {
-    updateSelectedDiories: ({ latlng }) => {
-      selectedDiories.forEach((diory) => {
-        dispatch(updateDiory({ ...diory, latlng }))
-      })
-      dispatch(clearSelectedDiories())
-    },
-  }
-}
+import { useSelector } from '../../../store'
 
 export const useSelectedDiories = () => {
   const { diograph } = useSelector((state) => state.diograph)

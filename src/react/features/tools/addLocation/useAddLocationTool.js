@@ -1,10 +1,10 @@
 import { useDispatchActions, useSelector } from '../../../store'
 
 import { useButtons } from '../../buttons/useButtons'
-import { useSelectedDiories, useUpdateSelectedDiories } from '../utils/useSelectedDiories'
+import { useSelectedDiories } from '../utils/useSelectedDiories'
+import { useUpdateSelectedDiories } from '../utils/useUpdateSelectedDiories'
 
 import { updateDiory } from '../../diograph/diographActions'
-import { clearSelectedDiories } from '../toolsActions'
 import { inactivateButton } from '../../buttons/buttonsActions'
 
 import { buttons, ADD_LOCATION_TOOL_BUTTON } from './buttons'
@@ -14,7 +14,7 @@ const useUpdateStory = () => {
 
   const { dispatch } = useDispatchActions()
   return {
-    updateStory: ({ latlng }) => dispatch(updateDiory({ key, latlng }))
+    updateStory: ({ latlng }) => dispatch(updateDiory({ key, latlng })),
   }
 }
 
@@ -30,7 +30,7 @@ export const useAddLocationTool = () => {
   const { dispatch } = useDispatchActions()
   return (diory) => {
     if (ADD_LOCATION_TOOL_BUTTON === active) {
-      selectedDiories.length? updateSelectedDiories(diory) : updateStory(diory)
+      selectedDiories.length ? updateSelectedDiories(diory) : updateStory(diory)
       dispatch(inactivateButton())
     }
   }

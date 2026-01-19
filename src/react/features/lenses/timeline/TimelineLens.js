@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import { useSelectPeriodEffect } from './useSelectPeriodEffect'
 
@@ -48,7 +49,7 @@ const useTimelineActions = (diograph) => {
   }
 }
 
-export const TimelineLens = ({ diograph }) => {
+const TimelineLens = ({ diograph }) => {
   useSelectPeriodEffect()
 
   const { showPeriodMemories } = useSelector((state) => state.lenses)
@@ -69,3 +70,9 @@ export const TimelineLens = ({ diograph }) => {
     />
   )
 }
+
+TimelineLens.propTypes = {
+  diograph: PropTypes.object,
+}
+
+export { TimelineLens }

@@ -19,7 +19,7 @@ export const useMapSelectedDiory = () => {
       mapSelectedDiory: (diory) => ({
         ...diory,
         selected: open ? !!selectedDiories[diory.key] : null,
-      })
+      }),
     }
   }
 
@@ -27,6 +27,6 @@ export const useMapSelectedDiory = () => {
     mapSelectedDiory: (diory) => ({
       ...diory,
       selected: isDioryInDiograph(diory.id, address, diograph),
-    })
+    }),
   }
 }

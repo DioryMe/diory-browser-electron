@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import { useDispatchActions, useSelector } from '../../../store'
 
 import { useMapSelectedDiory } from '../../tools/utils/useMapSelectedDiory'
@@ -12,7 +14,6 @@ import { selectLens, searchDiories } from '../lensesActions'
 import { queryDiograph } from './utils/queryDiograph'
 
 import { SearchLensView } from './components/SearchLensView'
-import { useDiograph } from '../../diograph/utils/useDiograph'
 
 export const searchLensButton = {
   id: 'search',
@@ -40,7 +41,7 @@ const useSearch = (diograph) => {
   }
 }
 
-export const SearchLens = ({ diograph }) => {
+const SearchLens = ({ diograph }) => {
   const { story, memories } = useSearchQuery()
   const { mapSelectedDiory } = useMapSelectedDiory()
   return (
@@ -55,3 +56,9 @@ export const SearchLens = ({ diograph }) => {
     />
   )
 }
+
+SearchLens.propTypes = {
+  diograph: PropTypes.object,
+}
+
+export { SearchLens }

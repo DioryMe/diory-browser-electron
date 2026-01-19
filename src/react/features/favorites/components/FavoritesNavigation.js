@@ -3,6 +3,7 @@ import React from 'react'
 import { MenuItem } from '../../../components/menu/MenuItem'
 import { NavigationContent } from '../../navigation/components/NavigationContent'
 import { NavigationBar } from '../../navigation/components/NavigationBar'
+import PropTypes from 'prop-types'
 
 const FavoritesNavigation = ({ diory, onLogout, onDioryClick }) => (
   <NavigationBar>
@@ -17,5 +18,11 @@ const FavoritesNavigation = ({ diory, onLogout, onDioryClick }) => (
     </NavigationContent>
   </NavigationBar>
 )
+
+FavoritesNavigation.propTypes = {
+  diory: PropTypes.object,
+  onLogout: PropTypes.func.isRequired,
+  onDioryClick: PropTypes.func.isRequired,
+}
 
 export { FavoritesNavigation }

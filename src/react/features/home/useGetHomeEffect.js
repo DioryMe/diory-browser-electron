@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 import { useDispatchActions } from '../../store'
 
 import { getHomeAddress } from './homeActions'
-import { useSelector } from 'react-redux'
 import { getDiograph, setDiographAddress } from '../diograph/diographActions'
 
 export const useGetHomeEffect = () => {

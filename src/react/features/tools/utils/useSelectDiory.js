@@ -12,7 +12,7 @@ export const useToggleHomeDiograph = () => {
 
   const { dispatch } = useDispatchActions()
   return (diory) => {
-   const key = `${address}${diory.id}`
+    const key = `${address}${diory.id}`
     isDioryInDiograph(diory.id, address, diograph)
       ? dispatch(deleteDiory({ ...diory, key }))
       : dispatch(createDiory({ ...diory, key }))
@@ -24,6 +24,6 @@ export const useSelectDiory = () => {
   const toggleHomeDiograph = useToggleHomeDiograph()
   const { dispatch } = useDispatchActions()
   return ({ diory }) => {
-    isDiory? dispatch(selectDiory(diory)) : toggleHomeDiograph(diory)
+    isDiory ? dispatch(selectDiory(diory)) : toggleHomeDiograph(diory)
   }
 }

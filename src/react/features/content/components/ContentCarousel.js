@@ -1,6 +1,6 @@
 import React from 'react'
-import { Pane } from 'evergreen-ui'
 import PropTypes from 'prop-types'
+import { Pane } from 'evergreen-ui'
 
 const circleStyle = {
   opacity: 0.5,

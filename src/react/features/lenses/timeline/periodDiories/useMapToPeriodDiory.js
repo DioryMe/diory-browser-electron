@@ -1,9 +1,9 @@
+import { useSelector } from 'react-redux'
 import { useGetDioryById } from '../../../diograph/utils/useGetDioryById'
 
 import { getDioriesInPeriod } from '../utils/timelineUtils'
 import { getPeriodDiories } from './getPeriodDiories'
 import { isNotPeriodId } from '../utils/periodIdUtils'
-import { useSelector } from 'react-redux'
 
 const resolveAmount = (periodId, showTotal, diograph) => {
   const periodKey = periodId === 'timeline' ? '' : periodId
