@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 
 import { useGraphData } from './utils/useGraphData'
@@ -14,7 +15,7 @@ export const graphLensButton = {
   icon: 'graph',
 }
 
-export const GraphLens = ({ diograph }) => {
+const GraphLens = ({ diograph }) => {
   const { storyKey } = useSelector((state) => state.navigation)
   const { sidePanelWidths } = useSelector((state) => state.sidePanel)
 
@@ -31,3 +32,9 @@ export const GraphLens = ({ diograph }) => {
     />
   )
 }
+
+GraphLens.propTypes = {
+  diograph: PropTypes.object,
+}
+
+export { GraphLens }

@@ -14,7 +14,6 @@ export const Lenses = () => {
   return (
     <>
       <LensesNavigation />
-      {/*{useLens(folderLensButton) && <FolderLens />}*/}
       {useLens(graphLensButton, diograph) && <GraphLens diograph={diograph} />}
       {useLens(mapLensButton, diograph) && <MapLens diograph={diograph} />}
       {useLens(timelineLensButton, diograph) && <TimelineLens diograph={diograph} />}

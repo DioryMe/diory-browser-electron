@@ -28,6 +28,11 @@ const ContentCounter = ({ selectedIndex, amount }) => (
   </Pane>
 )
 
+ContentCounter.propTypes = {
+  selectedIndex: PropTypes.number.isRequired,
+  amount: PropTypes.number.isRequired,
+}
+
 const ContentCarousel = ({ selectedIndex, amount, onClick, children }) => (
   <Pane onClick={onClick} height="100%" padding={24} cursor={amount > 1 ? 'pointer' : 'default'}>
     {children}

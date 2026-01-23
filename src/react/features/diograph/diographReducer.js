@@ -69,7 +69,7 @@ const updateDiograph = (state, { payload: { diograph, address } }) => ({
   ...state,
   diograph: Object.entries(diograph).reduce((obj, [key, diory]) => {
     const diographKey = resolveDiographKey(address, key)
-    obj[diographKey] = diory
+    diory == null ? delete obj[diographKey] : (obj[diographKey] = diory)
     return obj
   }, state.diograph),
 })

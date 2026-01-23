@@ -10,7 +10,7 @@ import { useLinkDiories } from '../tools/linkDiories'
 import { useDispatchActions } from '../../store'
 import { useCreateDioryById } from '../tools/createDiory/useCreateDioryById'
 
-import { resetStore } from '../../store/actions'
+import { setIsHome } from '../home/homeActions'
 
 import { FavoritesView } from './components/FavoritesView'
 import { FavoritesNavigation } from './components/FavoritesNavigation'
@@ -18,7 +18,7 @@ import { FavoritesNavigation } from './components/FavoritesNavigation'
 const useReturnToHome = () => {
   const { dispatch } = useDispatchActions()
   return () => {
-    dispatch(resetStore())
+    dispatch(setIsHome(true))
   }
 }
 

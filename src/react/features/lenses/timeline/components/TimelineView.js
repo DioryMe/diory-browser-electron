@@ -64,6 +64,7 @@ TimelineView.propTypes = {
   titles: PropTypes.array,
   periods: PropTypes.array,
   memories: PropTypes.array.isRequired,
+  viewAll: PropTypes.object,
   scrollIntoViewId: PropTypes.string,
   onPeriodClick: PropTypes.func.isRequired,
   onMemoryClick: PropTypes.func.isRequired,

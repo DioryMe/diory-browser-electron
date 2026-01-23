@@ -1,9 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { MenuItem } from '../../../components/menu/MenuItem'
 import { NavigationContent } from '../../navigation/components/NavigationContent'
 import { NavigationBar } from '../../navigation/components/NavigationBar'
-import PropTypes from 'prop-types'
 
 const FavoritesNavigation = ({ diory, onLogout, onDioryClick }) => (
   <NavigationBar>

@@ -16,9 +16,15 @@ export const updateDiographAction = (diograph, address) => ({
 })
 
 export const updateDiograph =
-  (address) =>
+  (address, removedDiory) =>
   (dispatch, getState, { diographClient }) => {
-    dispatch(updateDiographAction(diographClient.getDiograph(address).toObject(), address))
+    const diograph = diographClient.getDiograph(address).toObject()
+
+    // TODO mark diory as deleted
+    if (removedDiory) {
+      diograph[removedDiory.id] = null
+    }
+    dispatch(updateDiographAction(diograph, address))
   }
 
 export const createDiory =
@@ -41,7 +47,7 @@ export const deleteDiory =
   (dioryData) =>
   (dispatch, getState, { diographClient }) => {
     diographClient.getDiograph(dioryData.key).removeDiory(dioryData)
-    dispatch(updateDiograph(dioryData.key))
+    dispatch(updateDiograph(dioryData.key, dioryData))
   }
 
 export const createLink =

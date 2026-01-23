@@ -6,27 +6,25 @@ import { DiographAddress } from './components/DiographAddress'
 import { NavigationContent } from '../navigation/components/NavigationContent'
 import { SidePanelToggleButton } from '../sidePanel/components/SidePanelToggleButton'
 
-const DiographNavigation = ({ story, stories, context, contexts, onClick }) => {
-  return (
-    <NavigationBar>
-      <NavigationContent>
-        <SidePanelToggleButton side="left" />
-      </NavigationContent>
-      <NavigationContent>
-        <DiographAddress
-          story={story}
-          stories={stories}
-          context={context}
-          contexts={contexts}
-          onClick={onClick}
-        />
-      </NavigationContent>
-      <NavigationContent>
-        <SidePanelToggleButton side="right" />
-      </NavigationContent>
-    </NavigationBar>
-  )
-}
+const DiographNavigation = ({ story, stories, context, contexts, onClick }) => (
+  <NavigationBar>
+    <NavigationContent>
+      <SidePanelToggleButton side="left" />
+    </NavigationContent>
+    <NavigationContent>
+      <DiographAddress
+        story={story}
+        stories={stories}
+        context={context}
+        contexts={contexts}
+        onClick={onClick}
+      />
+    </NavigationContent>
+    <NavigationContent>
+      <SidePanelToggleButton side="right" />
+    </NavigationContent>
+  </NavigationBar>
+)
 
 DiographNavigation.propTypes = {
   story: PropTypes.object,

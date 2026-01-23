@@ -15,7 +15,6 @@ export const useAddFolderTool = () => {
 
   const createDiory = useCreateDiory()
 
-  const { address } = useSelector((state) => state.home)
   const { active } = useSelector((state) => state.buttons)
 
   const { dispatch } = useDispatchActions()
@@ -25,7 +24,7 @@ export const useAddFolderTool = () => {
       if (folderPath) {
         // TODO Generate diograph from folderPath
         const { id } = createDiory({ text: folderPath }, folderPath)
-        dispatch(createLink({ key: `${address}/folders` }, { id }))
+        dispatch(createLink({ id: 'folders' }, { id }))
         dispatch(setDiographAddress(folderPath))
       }
     }
