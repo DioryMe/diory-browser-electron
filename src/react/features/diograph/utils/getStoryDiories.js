@@ -1,4 +1,4 @@
-import { getDiory } from './useGetDioryById'
+import { getDiory } from './getDiory'
 import { getLinkedDiories } from './getLinkedDiories'
 
 export const getStoryDiories = (storyKey, diograph = {}) => ({

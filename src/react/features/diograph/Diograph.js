@@ -7,9 +7,9 @@ import { useGenerateDiographEffect } from './useGenerateDiographEffect'
 import { getStoryDiories } from './utils/getStoryDiories'
 import { useStoryContextDiories } from './utils/useContextDiories'
 
-import { useSelectStory } from '../tools/selectStory'
-import { useSelectDiory } from '../tools/utils/useSelectDiory'
-import { useLinkDiories } from '../tools/linkDiories'
+import { useOnSelectStory } from '../tools/onSelectStory'
+import { useOnSelectDiory } from '../tools/onSelectDiory/useOnSelectDiory'
+import { useLinkDiories } from '../tools/actions/linkDiories'
 import { useMapSelectedDiory } from '../tools/utils/useMapSelectedDiory'
 import { useToggleContent } from '../content/utils/useToggleContent'
 import { useGoSide } from '../navigation/utils/useGoSide'
@@ -38,7 +38,7 @@ export const Diograph = () => {
         stories={stories}
         context={context}
         contexts={contexts}
-        onClick={useSelectStory()}
+        onClick={useOnSelectStory()}
       />
       <Pane height="100%" position="relative">
         <NavigationToSide left onClick={goLeft} />
@@ -47,8 +47,8 @@ export const Diograph = () => {
           story={story}
           memories={memories.map(mapSelectedDiory)}
           onStoryClick={useToggleContent()}
-          onMemoryClick={useSelectStory()}
-          onSelect={useSelectDiory()}
+          onMemoryClick={useOnSelectStory()}
+          onSelect={useOnSelectDiory()}
           onDrop={useLinkDiories()}
         />
         <NavigationToSide right onClick={goRight} />

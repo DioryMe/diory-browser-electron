@@ -11,6 +11,8 @@ export const addDioryId = (key, diograph) => {
   return key
 }
 
+export const getDiographKey = (dioryKey, id) => `${getPath(dioryKey)}/${id}`
+
 export const resolveDiographKey = (dioryKey, linkId) => {
   const dioryPath = getPath(dioryKey)
 
