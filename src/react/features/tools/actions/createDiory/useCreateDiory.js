@@ -1,6 +1,6 @@
-import { useDispatchActions } from '../../../store'
-import { createDiory } from '../../diograph/diographActions'
-import { getDefaultImage } from '../../diograph/utils/getDefaultImage'
+import { useDispatchActions } from '../../../../store'
+import { createDiory } from '../../../diograph/diographActions'
+import { getDefaultImage } from '../../../diograph/utils/getDefaultImage'
 
 export const useCreateDiory = () => {
   const { dispatch } = useDispatchActions()

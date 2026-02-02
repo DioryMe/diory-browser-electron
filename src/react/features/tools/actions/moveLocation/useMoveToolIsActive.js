@@ -1,4 +1,4 @@
-import { useSelector } from '../../../store'
+import { useSelector } from '../../../../store'
 
 import { MOVE_TOOL_BUTTON } from './buttons'
 

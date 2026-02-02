@@ -1,12 +1,14 @@
-import { useDispatchActions } from '../../../store'
+import { useDispatchActions } from '../../../../store'
 import { useCreateDiory } from '../createDiory/useCreateDiory'
 import { useToggleDioryLinks } from '../updateLinks/useToggleDioryLinks'
-import { useGetDioryById } from '../../diograph/utils/useGetDioryById'
 
-import { createLink } from '../../diograph/diographActions'
+import { createLink } from '../../../diograph/diographActions'
 
-import { includedInLinks } from '../../diograph/utils/dioryUtils'
-import { splitDateToPeriodIds } from '../../lenses/timeline/utils/periodIdUtils'
+import { includedInLinks } from '../../../diograph/utils/dioryUtils'
+import { splitDateToPeriodIds } from '../../../lenses/timeline/periods/periodIdUtils'
+import { useSelector } from 'react-redux'
+import { getDiographKey } from '../../../diograph/utils/diographUtils'
+import { getDiory } from '../../../diograph/utils/getDiory'
 
 const createPeriodDiory = (period) => {
   const validDate = period.length === 13 ? `${period}:00` : period
@@ -18,7 +20,7 @@ const createPeriodDiory = (period) => {
 }
 
 const useGetPeriodDiories = (diograph) => {
-  const { getDiory } = useGetDioryById(diograph)
+  const { address } = useSelector((state) => state.diograph)
   const createDiory = useCreateDiory()
 
   return (selectedPeriod) =>
@@ -26,7 +28,7 @@ const useGetPeriodDiories = (diograph) => {
       .reverse()
       .concat(['timeline'])
       .map((periodId) => {
-        const existingDiory = getDiory(periodId)
+        const existingDiory = getDiory(getDiographKey(address, periodId), diograph)
         if (existingDiory) return existingDiory
 
         const periodDioryObject = createPeriodDiory(periodId)

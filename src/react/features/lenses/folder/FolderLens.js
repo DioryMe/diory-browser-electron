@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux'
 
 import { useDiograph } from '../../diograph/utils/useDiograph'
 import { useDispatchActions } from '../../../store'
-import { useAddFolderTool } from '../../tools/addFolder'
-import { useCreateDioryById } from '../../tools/createDiory/useCreateDioryById'
+import { useAddFolderTool } from '../../tools/actions/addFolder'
+import { useCreateDioryById } from '../../tools/actions/createDiory/useCreateDioryById'
 
 import { selectedFolder } from '../lensesActions'
 import { getStoryDiories } from '../../diograph/utils/getStoryDiories'

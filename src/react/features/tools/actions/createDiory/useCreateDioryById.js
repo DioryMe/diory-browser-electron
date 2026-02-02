@@ -2,16 +2,17 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 import { useCreateDiory } from './useCreateDiory'
-import { useGetDioryById } from '../../diograph/utils/useGetDioryById'
+import { getDiory } from '../../../diograph/utils/getDiory'
+import { getDiographKey } from '../../../diograph/utils/diographUtils'
 
 const capitalizeFirstLetter = (val) => String(val).charAt(0).toUpperCase() + String(val).slice(1)
 
 export const useCreateDioryById = (id, diograph) => {
-  const { getDiory } = useGetDioryById(diograph)
-  const { isDiory } = useSelector((state) => state.diograph)
-  const createDiory = useCreateDiory()
+  const { isDiory, address } = useSelector((state) => state.diograph)
+  const key = getDiographKey(address, id)
+  let diory = getDiory(key, diograph)
 
-  let diory = getDiory(id)
+  const createDiory = useCreateDiory()
   useEffect(() => {
     if (isDiory && !diory) {
       diory = createDiory({ id, text: capitalizeFirstLetter(id) })

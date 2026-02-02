@@ -1,10 +1,10 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { useSelectStory } from '../../tools/selectStory'
-import { useSelectDiory } from '../../tools/utils/useSelectDiory'
-import { useMoveTool, useMoveToolIsActive } from '../../tools/moveLocation'
-import { useAddLocationTool } from '../../tools/addLocation'
+import { useOnSelectStory } from '../../tools/onSelectStory'
+import { useOnSelectDiory } from '../../tools/onSelectDiory/useOnSelectDiory'
+import { useMoveTool, useMoveToolIsActive } from '../../tools/actions/moveLocation'
+import { useAddLocationTool } from '../../tools/actions/addLocation'
 import { useMapSelectedDiory } from '../../tools/utils/useMapSelectedDiory'
 
 import { getStoryDiories } from '../../diograph/utils/getStoryDiories'
@@ -33,8 +33,8 @@ export const MapLens = () => {
     <MapView
       story={story}
       memories={memories.map(mapSelectedDiory)}
-      onPopupClick={useSelectStory()}
-      onSelect={useSelectDiory()}
+      onPopupClick={useOnSelectStory()}
+      onSelect={useOnSelectDiory()}
       onMapClick={useAddLocationTool()}
       onDragEnd={useMoveTool()}
       enableDragging={useMoveToolIsActive()}

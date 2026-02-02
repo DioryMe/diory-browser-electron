@@ -1,18 +1,20 @@
 import { useEffect } from 'react'
-import { useDispatchActions, useSelector } from '../../../store'
+import { useDispatchActions, useSelector } from '../../../../store'
 
-import { useButtons } from '../../buttons/useButtons'
+import { useButtons } from '../../../buttons/useButtons'
 import { useCreateDiory } from '../createDiory/useCreateDiory'
+import { useGenerateDiory } from '../generateDiory/useGenerateDiory'
 
-import { createLink, setDiographAddress } from '../../diograph/diographActions'
-import { getLocalAddress } from '../../../utils/getLocalAddress'
+import { createLink, setDiographAddress } from '../../../diograph/diographActions'
+import { getLocalAddress } from '../../../../utils/getLocalAddress'
+import { inactivateButton } from '../../../buttons/buttonsActions'
 
 import { buttons, BUTTON } from './buttons'
-import { inactivateButton } from '../../buttons/buttonsActions'
 
 export const useAddFolderTool = () => {
   useButtons(buttons)
 
+  const generateDiory = useGenerateDiory()
   const createDiory = useCreateDiory()
 
   const { active } = useSelector((state) => state.buttons)
@@ -22,9 +24,10 @@ export const useAddFolderTool = () => {
     async function action() {
       const folderPath = await getLocalAddress()
       if (folderPath) {
-        // TODO Generate diograph from folderPath
-        const { id } = createDiory({ text: folderPath }, folderPath)
-        dispatch(createLink({ id: 'folders' }, { id }))
+        const { diory } = await generateDiory(folderPath)
+        createDiory(diory, folderPath)
+
+        dispatch(createLink({ id: 'folders' }, diory))
         dispatch(setDiographAddress(folderPath))
       }
     }

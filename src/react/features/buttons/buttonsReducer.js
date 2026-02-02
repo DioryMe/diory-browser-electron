@@ -43,6 +43,7 @@ const activateButton = (state, { payload: { buttonId } }) => ({
   ...state,
   active: buttonId,
   activeButton: state.buttons[buttonId],
+  open: true,
 })
 
 const inactivateButton = (state) => ({

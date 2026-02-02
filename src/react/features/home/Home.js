@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatchActions, useSelector } from '../../store'
 
 import { useGetHomeEffect } from './useGetHomeEffect'
-import { useAddFolderTool } from '../tools/addFolder'
+import { useAddFolderTool } from '../tools/actions/addFolder'
 import { getStoryDiories } from '../diograph/utils/getStoryDiories'
 import { useSaveHomeAddress } from './utils/useSaveHomeAddress'
 

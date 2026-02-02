@@ -1,6 +1,6 @@
 import { useSelector } from '../../../store'
 import { useLensButton } from './useLensButton'
-import { useCreateDioryById } from '../../tools/createDiory/useCreateDioryById'
+import { useCreateDioryById } from '../../tools/actions/createDiory/useCreateDioryById'
 
 export const useLens = (button, diograph) => {
   useLensButton(button)

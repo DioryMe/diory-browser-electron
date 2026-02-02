@@ -5,10 +5,10 @@ import { useDispatchActions, useSelector } from '../../../store'
 
 import { useMapSelectedDiory } from '../../tools/utils/useMapSelectedDiory'
 
-import { useSelectStory } from '../../tools/selectStory'
-import { useCreateDioryToStory } from '../../tools/createDiory/useCreateDioryToStory'
-import { useSelectDiory } from '../../tools/utils/useSelectDiory'
-import { useLinkDiories } from '../../tools/linkDiories'
+import { useOnSelectStory } from '../../tools/onSelectStory'
+import { useCreateDioryToStory } from '../../tools/actions/createDiory/useCreateDioryToStory'
+import { useOnSelectDiory } from '../../tools/onSelectDiory/useOnSelectDiory'
+import { useLinkDiories } from '../../tools/actions/linkDiories'
 
 import { selectLens, searchDiories } from '../lensesActions'
 import { queryDiograph } from './utils/queryDiograph'
@@ -49,8 +49,8 @@ const SearchLens = ({ diograph }) => {
       story={story}
       memories={memories.map(mapSelectedDiory)}
       onSearch={useSearch(diograph)}
-      onClick={useSelectStory()}
-      onSelect={useSelectDiory()}
+      onClick={useOnSelectStory()}
+      onSelect={useOnSelectDiory()}
       onDrop={useLinkDiories()}
       onCreateDiory={useCreateDioryToStory()}
     />

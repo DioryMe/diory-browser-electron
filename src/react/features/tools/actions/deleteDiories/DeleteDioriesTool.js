@@ -1,19 +1,19 @@
 import React from 'react'
-import { useDispatchActions, useSelector } from '../../../store'
+import { useDispatchActions, useSelector } from '../../../../store'
 
-import { useButtons } from '../../buttons/useButtons'
-import { useSelectedDiories } from '../utils/useSelectedDiories'
+import { useButtons } from '../../../buttons/useButtons'
+import { useSelectedDiories } from '../../utils/useSelectedDiories'
 import { useDeletedDiories } from './useDeletedDiories'
-import { useCloseButtons } from '../../buttons/useButtonActions'
+import { useCloseButtons } from '../../../buttons/useButtonActions'
 
-import { deleteDiory, deleteLinks } from '../../diograph/diographActions'
-import { goBackward } from '../../navigation/navigationActions'
+import { deleteDiory, deleteLinks } from '../../../diograph/diographActions'
+import { goBackward } from '../../../navigation/navigationActions'
 
-import { getStoryDiories } from '../../diograph/utils/getStoryDiories'
+import { getStoryDiories } from '../../../diograph/utils/getStoryDiories'
 
 import { buttons, DELETE_DIORIES_BUTTON } from './buttons'
 
-import DeleteView from '../components/DeleteView'
+import DeleteView from '../../components/DeleteView'
 
 export const useDeleteActions = ({ story, diories, links }) => {
   const { closeButtons } = useCloseButtons()

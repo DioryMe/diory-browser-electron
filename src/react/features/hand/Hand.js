@@ -2,11 +2,11 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 
 import { useDiograph } from '../diograph/utils/useDiograph'
-import { useCreateDioryById } from '../tools/createDiory/useCreateDioryById'
+import { useCreateDioryById } from '../tools/actions/createDiory/useCreateDioryById'
 import { useMapSelectedDiory } from '../tools/utils/useMapSelectedDiory'
-import { useSelectStory } from '../tools/selectStory'
-import { useSelectDiory } from '../tools/utils/useSelectDiory'
-import { useLinkDiories } from '../tools/linkDiories'
+import { useOnSelectStory } from '../tools/onSelectStory'
+import { useOnSelectDiory } from '../tools/onSelectDiory/useOnSelectDiory'
+import { useLinkDiories } from '../tools/actions/linkDiories'
 
 import { updateDiory } from '../diograph/diographActions'
 
@@ -26,8 +26,8 @@ export const Hand = () => {
     <HandView
       story={story}
       memories={memories.map(mapSelectedDiory)}
-      onClick={useSelectStory()}
-      onSelect={useSelectDiory()}
+      onClick={useOnSelectStory()}
+      onSelect={useOnSelectDiory()}
       onDrop={useLinkDiories()}
       onBackgroundDrop={useLinkDiories()}
       onClear={() => dispatch(updateDiory({ ...story, links: [] }))}

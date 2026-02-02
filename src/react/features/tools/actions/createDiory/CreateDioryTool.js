@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { useSelector } from '../../../store'
+import { useSelector } from '../../../../store'
 import { useCreateDioryToStory } from './useCreateDioryToStory'
-import { useButtons } from '../../buttons/useButtons'
-import { useCloseButtons } from '../../buttons/useButtonActions'
+import { useButtons } from '../../../buttons/useButtons'
+import { useCloseButtons } from '../../../buttons/useButtonActions'
 
-import { FormModal } from '../components/FormModal'
+import { FormModal } from '../../components/FormModal'
 
 import { BUTTON, buttons } from './buttons'
 

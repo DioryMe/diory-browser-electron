@@ -1,15 +1,15 @@
 import React from 'react'
-import { useDispatchActions, useSelector } from '../../../store'
+import { useDispatchActions, useSelector } from '../../../../store'
 
-import { useButtons } from '../../buttons/useButtons'
-import { useCloseButtons } from '../../buttons/useButtonActions'
-import { useSelectedDiories } from '../utils/useSelectedDiories'
+import { useButtons } from '../../../buttons/useButtons'
+import { useCloseButtons } from '../../../buttons/useButtonActions'
+import { useSelectedDiories } from '../../utils/useSelectedDiories'
 
-import { deleteLinks } from '../../diograph/diographActions'
+import { deleteLinks } from '../../../diograph/diographActions'
 
-import { getStoryDiories } from '../../diograph/utils/getStoryDiories'
+import { getStoryDiories } from '../../../diograph/utils/getStoryDiories'
 
-import DeleteView from '../components/DeleteView'
+import DeleteView from '../../components/DeleteView'
 
 import { buttons, DELETE_LINKS_BUTTON } from './buttons'
 

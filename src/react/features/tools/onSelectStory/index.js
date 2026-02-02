@@ -1,0 +1,1 @@
+export { useOnSelectStory } from './useOnSelectStory'

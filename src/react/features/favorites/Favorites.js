@@ -4,11 +4,11 @@ import { useSelector } from 'react-redux'
 import { getStoryDiories } from '../diograph/utils/getStoryDiories'
 
 import { useDiograph } from '../diograph/utils/useDiograph'
-import { useSelectStory } from '../tools/selectStory'
-import { useSelectDiory } from '../tools/utils/useSelectDiory'
-import { useLinkDiories } from '../tools/linkDiories'
+import { useOnSelectStory } from '../tools/onSelectStory'
+import { useOnSelectDiory } from '../tools/onSelectDiory/useOnSelectDiory'
+import { useLinkDiories } from '../tools/actions/linkDiories'
 import { useDispatchActions } from '../../store'
-import { useCreateDioryById } from '../tools/createDiory/useCreateDioryById'
+import { useCreateDioryById } from '../tools/actions/createDiory/useCreateDioryById'
 
 import { setIsHome } from '../home/homeActions'
 
@@ -34,13 +34,13 @@ export const Favorites = () => {
       <FavoritesNavigation
         diory={{ text: 'DIORY', key: address }}
         onLogout={useReturnToHome()}
-        onDioryClick={useSelectStory()}
+        onDioryClick={useOnSelectStory()}
       />
       <FavoritesView
         story={story}
         memories={memories}
-        onClick={useSelectStory()}
-        onSelect={useSelectDiory()}
+        onClick={useOnSelectStory()}
+        onSelect={useOnSelectDiory()}
         onDrop={useLinkDiories()}
         onBackgroundDrop={useLinkDiories()}
       />

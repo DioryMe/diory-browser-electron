@@ -1,8 +1,8 @@
-import { useDispatchActions, useSelector } from '../../../store'
-import { useButtons } from '../../buttons/useButtons'
+import { useDispatchActions, useSelector } from '../../../../store'
+import { useButtons } from '../../../buttons/useButtons'
 
-import { inactivateButton } from '../../buttons/buttonsActions'
-import { updateDiory } from '../../diograph/diographActions'
+import { inactivateButton } from '../../../buttons/buttonsActions'
+import { updateDiory } from '../../../diograph/diographActions'
 
 import { buttons, MOVE_TOOL_BUTTON } from './buttons'
 
