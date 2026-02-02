@@ -1,4 +1,4 @@
-import { resolveChildPeriodIds } from '../periodDiories/resolveChildPeriodIds'
+import { resolveChildPeriodIds } from '../periods/resolveChildPeriodIds'
 
 describe.skip('resolveTimeperiods', () => {
   describe('given more than 3 years', () => {

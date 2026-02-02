@@ -1,17 +1,18 @@
 import { useSelector } from 'react-redux'
 
 import { getStoryDiories } from '../../../diograph/utils/getStoryDiories'
-import { useMapToPeriodDiory } from './useMapToPeriodDiory'
+import { useMapToPeriod } from './useMapToPeriod'
 
 import { findImage } from '../../../diograph/utils/dioryUtils'
 import { getNonDefaultImage } from '../../../diograph/utils/getDefaultImage'
 import { getPeriodIds } from './getPeriodIds'
-import { isDayPeriodId, startsWithPeriodId } from '../utils/periodIdUtils'
+import { isDayPeriodId, startsWithPeriodId } from './periodIdUtils'
 
 const findPeriodImage = (selectedPeriod, diories = []) =>
   findImage(diories.filter(startsWithPeriodId(selectedPeriod)))
 
-const useEnrichPeriodDiory = (diograph) => {
+const useEnrichPeriod = (diograph) => {
+  // TODO where to get image
   const { storyKey } = useSelector((state) => state.navigation)
   const { story, memories } = getStoryDiories(storyKey, diograph)
   const storyDiories = [story].concat(memories)
@@ -28,11 +29,11 @@ const useEnrichPeriodDiory = (diograph) => {
   })
 }
 
-export const usePeriodDiories = (diograph) => {
+export const usePeriods = (diograph) => {
   const { selectedPeriod } = useSelector((state) => state.lenses)
 
-  const mapToPeriod = useMapToPeriodDiory(diograph)
-  const enrichPeriodDiory = useEnrichPeriodDiory(diograph)
+  const mapToPeriod = useMapToPeriod(diograph)
+  const enrichPeriodDiory = useEnrichPeriod(diograph)
 
   if (!selectedPeriod || isDayPeriodId(selectedPeriod)) {
     return []
@@ -41,5 +42,4 @@ export const usePeriodDiories = (diograph) => {
   return getPeriodIds(selectedPeriod, diograph)
     .map(mapToPeriod)
     .map(enrichPeriodDiory)
-    .map((diory) => ({ diory }))
 }

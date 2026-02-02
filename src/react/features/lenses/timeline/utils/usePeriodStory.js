@@ -2,19 +2,20 @@ import { useSelector } from 'react-redux'
 import { useMapSelectedDiory } from '../../../tools/utils/useMapSelectedDiory'
 
 import { getDiographKey } from '../../../diograph/utils/diographUtils'
-import { getLinkedDiories } from '../../../diograph/utils/getLinkedDiories'
+import { getDiory } from '../../../diograph/utils/getDiory'
 
-import { isNotPeriodId } from '../periods/periodIdUtils'
-
-const getPeriodMemories = (selectedPeriodId, address, diograph) => {
+const getPeriodStory = (selectedPeriodId, address, diograph) => {
   const selectedPeriodKey = getDiographKey(address, selectedPeriodId)
-  return getLinkedDiories(selectedPeriodKey, diograph)
-    .filter(({ id }) => isNotPeriodId(id))
+  return {
+    id: selectedPeriodId,
+    text: selectedPeriodId,
+    ...getDiory(selectedPeriodKey, diograph),
+  }
 }
 
-export const usePeriodMemories = (diograph) => {
+export const usePeriodStory = (diograph) => {
   const { selectedPeriod } = useSelector((state) => state.lenses)
   const { address } = useSelector((state) => state.diograph)
   const { mapSelectedDiory } = useMapSelectedDiory()
-  return getPeriodMemories(selectedPeriod, address, diograph).map(mapSelectedDiory)
+  return mapSelectedDiory(getPeriodStory(selectedPeriod, address, diograph))
 }

@@ -5,7 +5,7 @@ import { useDispatchActions } from '../../../store'
 import { getStoryDiories } from '../../diograph/utils/getStoryDiories'
 import { selectPeriod } from '../lensesActions'
 import { getStartAndEndTimes } from './utils/timelineUtils'
-import { splitDateToPeriodIds } from './utils/periodIdUtils'
+import { splitDateToPeriodIds } from './periods/periodIdUtils'
 
 const resolvePeriod = (startTime, endTime) => {
   if (!startTime || !endTime) {

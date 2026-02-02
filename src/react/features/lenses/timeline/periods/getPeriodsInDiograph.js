@@ -1,9 +1,9 @@
 import { mapDiographToDiories } from '../../../diograph/utils/diographUtils'
-import { startsWithPeriodId, isPeriodId } from '../utils/periodIdUtils'
+import { startsWithPeriodId, isPeriodId } from './periodIdUtils'
 
 const sortByDate = ({ date }) => date
 
-export const getPeriodDiories = (selectedPeriod, diograph) =>
+export const getPeriodsInDiograph = (selectedPeriod, diograph) =>
   mapDiographToDiories(diograph)
     .filter(startsWithPeriodId(selectedPeriod))
     .filter(({ id }) => isPeriodId(id))

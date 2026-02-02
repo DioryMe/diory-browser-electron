@@ -1,0 +1,26 @@
+import { useSelector } from 'react-redux'
+import { useMapSelectedDiory } from '../../../tools/utils/useMapSelectedDiory'
+
+import { includedInLinks } from '../../../diograph/utils/dioryUtils'
+import { getDiographKey } from '../../../diograph/utils/diographUtils'
+import { getDiory } from '../../../diograph/utils/getDiory'
+
+import { getDioriesInPeriod } from './timelineUtils'
+
+const getPeriodDiories = (selectedPeriodId, address, diograph) => {
+  if (selectedPeriodId === 'timeline') {
+    return []
+  }
+
+  const selectedPeriodDiory = getDiory(getDiographKey(selectedPeriodId, address), diograph)
+  return getDioriesInPeriod(selectedPeriodId, diograph)
+    .filter((periodDiory) => !includedInLinks(selectedPeriodDiory, periodDiory))
+    .filter((value, index) => index < 100)
+}
+
+export const usePeriodDiories = (diograph) => {
+  const { selectedPeriod } = useSelector((state) => state.lenses)
+  const { address } = useSelector((state) => state.diograph)
+  const { mapSelectedDiory } = useMapSelectedDiory()
+  return getPeriodDiories(selectedPeriod, address, diograph).map(mapSelectedDiory)
+}

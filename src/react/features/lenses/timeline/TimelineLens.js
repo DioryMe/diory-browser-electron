@@ -4,18 +4,19 @@ import PropTypes from 'prop-types'
 
 import { useSelectPeriodEffect } from './useSelectPeriodEffect'
 
-import { useUpdatePeriodDiories } from '../../tools/updatePeriodDiory/useUpdatePeriodDiories'
-import { useMapSelectedDiory } from '../../tools/utils/useMapSelectedDiory'
-import { usePeriodTitles } from './periodDiories/usePeriodTitles'
-import { usePeriodDiories } from './periodDiories/usePeriodDiories'
+import { usePeriodTitles } from './periods/usePeriodTitles'
+import { usePeriods } from './periods/usePeriods'
+import { usePeriodStory } from './utils/usePeriodStory'
 import { usePeriodMemories } from './utils/usePeriodMemories'
+import { usePeriodDiories } from './utils/getPeriodDiories'
 
 import { useDispatchActions } from '../../../store'
-import { useSelectDiory } from '../../tools/utils/useSelectDiory'
-import { useSelectStory } from '../../tools/selectStory'
-import { useLinkDiories } from '../../tools/linkDiories'
+import { useOnSelectDiory } from '../../tools/onSelectDiory/useOnSelectDiory'
+import { useOnSelectStory } from '../../tools/onSelectStory'
+import { useLinkDiories } from '../../tools/actions/linkDiories'
+import { useUpdatePeriodDiories } from '../../tools/actions/updatePeriodDiory/useUpdatePeriodDiories'
 
-import { selectPeriod, setShowPeriodMemories } from '../lensesActions'
+import { selectPeriod } from '../lensesActions'
 
 import { TimelineView } from './components/TimelineView'
 
@@ -33,7 +34,7 @@ const useTimelineActions = (diograph) => {
   const { selectedPeriod, showPeriodMemories } = useSelector((state) => state.lenses)
   const updatePeriodDiories = useUpdatePeriodDiories(diograph)
 
-  const selectStory = useSelectStory()
+  const selectStory = useOnSelectStory()
 
   const { dispatch } = useDispatchActions()
   return {
@@ -45,26 +46,22 @@ const useTimelineActions = (diograph) => {
         ? updatePeriodDiories({ diory, periodId: selectedPeriod })
         : selectStory({ diory })
     },
-    onViewAllClick: () => dispatch(setShowPeriodMemories(!showPeriodMemories)),
   }
 }
 
 const TimelineLens = ({ diograph }) => {
   useSelectPeriodEffect()
 
-  const { showPeriodMemories } = useSelector((state) => state.lenses)
-  const memories = usePeriodMemories(diograph)
-  const { mapSelectedDiory } = useMapSelectedDiory()
-
   const actions = useTimelineActions(diograph)
 
   return (
     <TimelineView
       titles={usePeriodTitles(diograph)}
-      periods={usePeriodDiories(diograph)}
-      viewAll={{ text: showPeriodMemories ? 'SHOW PERIOD' : 'SHOW ALL' }}
-      memories={memories.map(mapSelectedDiory)}
-      onSelect={useSelectDiory()}
+      periods={usePeriods(diograph)}
+      periodStory={usePeriodStory(diograph)}
+      periodMemories={usePeriodMemories(diograph)}
+      periodDiories={usePeriodDiories(diograph)}
+      onSelect={useOnSelectDiory()}
       onDrop={useLinkDiories()}
       {...actions}
     />
