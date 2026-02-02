@@ -5,9 +5,11 @@ import { useLens } from './utils/useLens'
 import { LensesNavigation } from './LensesNavigation'
 import { GraphLens, graphLensButton } from './graph/GraphLens'
 import { MapLens, mapLensButton } from './map/MapLens'
-import { TimelineLens, timelineLensButton } from './timeline/TimelineLens'
+import { TimelineLens } from './timeline/TimelineLens'
 import { SearchLens, searchLensButton } from './search/SearchLens'
 import { useDiograph } from '../diograph/utils/useDiograph'
+
+import { timelineLensButton } from './timeline/button'
 
 export const Lenses = () => {
   const { diograph } = useDiograph()

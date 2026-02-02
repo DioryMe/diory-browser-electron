@@ -13,7 +13,6 @@ const initialState = {
   buttons: {},
   selectedLensId: 'timeline',
   selectedPeriod: null,
-  showPeriodMemories: false,
   selectedFolderKey: null,
   query: '',
   resultsByQuery: {},
@@ -55,11 +54,6 @@ export const selectFolder = (state, { payload }) => ({
   selectedFolderKey: payload.key,
 })
 
-export const setShowPeriodMemories = (state, { payload }) => ({
-  ...state,
-  showPeriodMemories: payload.showPeriodMemories,
-})
-
 export default createReducer(initialState, {
   [SELECT_LENS]: selectLens,
   [ADD_LENS_BUTTON]: addLensButton,
@@ -67,5 +61,4 @@ export default createReducer(initialState, {
   [SET_SEARCH_RESULTS]: setSearchResults,
   [SELECT_PERIOD]: selectPeriod,
   [SELECT_FOLDER]: selectFolder,
-  [SET_SHOW_PERIOD_MEMORIES]: setShowPeriodMemories,
 })

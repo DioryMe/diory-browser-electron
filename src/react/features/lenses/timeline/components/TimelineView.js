@@ -53,6 +53,7 @@ const TimelineView = ({
             onClick={onMemoryClick}
             onSelect={onSelect}
             onDrop={onDrop}
+            padding={0}
           />
           {!!periodDiories.length && <MenuItem diory={{ text: 'Period diories' }}/>}
           <Pane position="relative" display="flex" flexWrap="wrap" padding={4}>

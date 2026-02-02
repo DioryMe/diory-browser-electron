@@ -14,25 +14,16 @@ import { useDispatchActions } from '../../../store'
 import { useOnSelectDiory } from '../../tools/onSelectDiory/useOnSelectDiory'
 import { useOnSelectStory } from '../../tools/onSelectStory'
 import { useLinkDiories } from '../../tools/actions/linkDiories'
-import { useUpdatePeriodDiories } from '../../tools/actions/updatePeriodDiory/useUpdatePeriodDiories'
+import { useUpdatePeriods } from '../../tools/actions/updatePeriods/useUpdatePeriods'
 
 import { selectPeriod } from '../lensesActions'
 
 import { TimelineView } from './components/TimelineView'
 
-export const timelineLensButton = {
-  id: 'timeline',
-  text: 'Timeline',
-  icon: 'calendar',
-}
-
-// TODO Add diory to timeline story
-// TODO Always (1/2) pill
-
 // TODO sort diories
 const useTimelineActions = (diograph) => {
-  const { selectedPeriod, showPeriodMemories } = useSelector((state) => state.lenses)
-  const updatePeriodDiories = useUpdatePeriodDiories(diograph)
+  const { selectedPeriod } = useSelector((state) => state.lenses)
+  const updatePeriods = useUpdatePeriods(diograph)
 
   const selectStory = useOnSelectStory()
 
@@ -42,10 +33,11 @@ const useTimelineActions = (diograph) => {
       dispatch(selectPeriod(diory))
     },
     onMemoryClick: ({ diory }) => {
-      showPeriodMemories
-        ? updatePeriodDiories({ diory, periodId: selectedPeriod })
-        : selectStory({ diory })
+      updatePeriods({ periodId: selectedPeriod, diory })
+      selectStory({ diory })
     },
+    onSelect: useOnSelectDiory(),
+    onDrop: useLinkDiories(),
   }
 }
 
@@ -61,8 +53,6 @@ const TimelineLens = ({ diograph }) => {
       periodStory={usePeriodStory(diograph)}
       periodMemories={usePeriodMemories(diograph)}
       periodDiories={usePeriodDiories(diograph)}
-      onSelect={useOnSelectDiory()}
-      onDrop={useLinkDiories()}
       {...actions}
     />
   )
