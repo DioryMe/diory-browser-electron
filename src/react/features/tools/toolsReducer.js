@@ -1,4 +1,4 @@
-import { SELECT_DIORY, CLEAR_SELECTED_DIORIES } from './toolsActionTypes'
+import { SELECT_DIORY, SET_SELECTED_DIORIES, CLEAR_SELECTED_DIORIES } from './toolsActionTypes'
 
 import { createReducer } from '../../store'
 
@@ -14,6 +14,11 @@ export const selectDiory = (state, { payload }) => ({
   },
 })
 
+export const setSelectedDiories = (state, { payload }) => ({
+  ...state,
+  selectedDiories: payload.selectedDiories,
+})
+
 export const clearSelectedDiories = (state) => ({
   ...state,
   selectedDiories: {},
@@ -21,5 +26,6 @@ export const clearSelectedDiories = (state) => ({
 
 export default createReducer(initialState, {
   [SELECT_DIORY]: selectDiory,
+  [SET_SELECTED_DIORIES]: setSelectedDiories,
   [CLEAR_SELECTED_DIORIES]: clearSelectedDiories,
 })

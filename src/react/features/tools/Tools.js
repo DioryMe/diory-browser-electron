@@ -1,10 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { CreateDioryTool } from './createDiory/CreateDioryTool'
-import { UpdateTool } from './update/UpdateTool'
-import { DeleteDioriesTool } from './deleteDiories/DeleteDioriesTool'
-import { DeleteLinksTool } from './updateLinks/DeleteLinksTool'
+import { CreateDioryTool } from './actions/createDiory/CreateDioryTool'
+import { UpdateTool } from './actions/update/UpdateTool'
+import { DeleteDioriesTool } from './actions/deleteDiories/DeleteDioriesTool'
+import { DeleteLinksTool } from './actions/updateLinks/DeleteLinksTool'
+import { TakeToHomeTool } from './actions/takeToDiory/TakeToDioryTool'
 
 export const Tools = () => {
   const { isDiory } = useSelector((state) => state.diograph)
@@ -15,5 +16,9 @@ export const Tools = () => {
       <DeleteDioriesTool />
       <DeleteLinksTool />
     </>
-  ) : null
+  ) : (
+    <>
+      <TakeToHomeTool />
+    </>
+  )
 }

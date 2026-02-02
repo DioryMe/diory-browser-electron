@@ -7,6 +7,7 @@ import DiorysGrid from '../../../../components/diories/DiorysGrid'
 import Diory from '../../../../components/diories/Diory'
 import { TimelineTitles } from './TimelineTitles'
 import BackgroundDiory from '../../../../components/diories/BackgroundDiory'
+import { MenuItem } from '../../../../components/menu/MenuItem'
 
 const periodStyle = {
   flex: '0 0 100px',
