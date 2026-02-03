@@ -1,7 +1,6 @@
 import { mapDiographToDiories } from '../../../diograph/utils/diographUtils'
 import { startsWithPeriodId, isPeriodId } from './periodIdUtils'
-
-const sortByDate = ({ date }) => date
+import { sortByDate } from '../utils/timelineUtils'
 
 export const getPeriodsInDiograph = (selectedPeriod, diograph) =>
   mapDiographToDiories(diograph)

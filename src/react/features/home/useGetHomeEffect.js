@@ -8,7 +8,6 @@ import { getDiograph, setDiographAddress } from '../diograph/diographActions'
 
 export const useGetHomeEffect = () => {
   const { address: homeAddress } = useSelector((state) => state.home)
-  const { address: diographAddress } = useSelector((state) => state.diograph)
 
   const { dispatch } = useDispatchActions()
   useEffect(() => {
@@ -18,9 +17,9 @@ export const useGetHomeEffect = () => {
   }, [dispatch, homeAddress])
 
   useEffect(() => {
-    if (homeAddress && !diographAddress) {
+    if (homeAddress) {
       dispatch(setDiographAddress(homeAddress))
       dispatch(getDiograph(homeAddress))
     }
-  }, [dispatch, homeAddress, diographAddress])
+  }, [dispatch, homeAddress])
 }

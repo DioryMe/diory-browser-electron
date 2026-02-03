@@ -1,3 +1,7 @@
+import { findImage } from '../../../diograph/utils/dioryUtils'
+import { useSelector } from 'react-redux'
+import { getDiographKey } from '../../../diograph/utils/diographUtils'
+
 export const isPeriodId = (periodId) => {
   const date = new Date(periodId)
   return !Number.isNaN(date.valueOf())
@@ -22,4 +26,13 @@ export const isYearPeriodId = (periodId) => periodId.length === 4
 export const isDayPeriodId = (periodId) => {
   const [date] = periodId.split('T')
   return date.split('-').length === 3
+}
+
+export const findPeriodImage = (periodId, diories = []) =>
+  findImage(diories.filter(startsWithPeriodId(periodId)))
+
+export const useSelectedPeriodKey = () => {
+  const { selectedPeriod } = useSelector((state) => state.lenses)
+  const { address } = useSelector((state) => state.diograph)
+  return getDiographKey(address, selectedPeriod)
 }

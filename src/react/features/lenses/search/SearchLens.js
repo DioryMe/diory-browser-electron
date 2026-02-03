@@ -5,9 +5,9 @@ import { useDispatchActions, useSelector } from '../../../store'
 
 import { useMapSelectedDiory } from '../../tools/utils/useMapSelectedDiory'
 
-import { useOnSelectStory } from '../../tools/onSelectStory'
+import { useOnDioryClick } from '../../tools/useOnDioryClick'
 import { useCreateDioryToStory } from '../../tools/actions/createDiory/useCreateDioryToStory'
-import { useOnSelectDiory } from '../../tools/onSelectDiory/useOnSelectDiory'
+import { useOnCheckboxClick } from '../../tools/useOnCheckboxClick'
 import { useLinkDiories } from '../../tools/actions/linkDiories'
 
 import { selectLens, searchDiories } from '../lensesActions'
@@ -49,8 +49,8 @@ const SearchLens = ({ diograph }) => {
       story={story}
       memories={memories.map(mapSelectedDiory)}
       onSearch={useSearch(diograph)}
-      onClick={useOnSelectStory()}
-      onSelect={useOnSelectDiory()}
+      onClick={useOnDioryClick()}
+      onSelect={useOnCheckboxClick({ diograph })}
       onDrop={useLinkDiories()}
       onCreateDiory={useCreateDioryToStory()}
     />

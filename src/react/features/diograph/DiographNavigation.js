@@ -5,11 +5,13 @@ import { NavigationBar } from '../navigation/components/NavigationBar'
 import { DiographAddress } from './components/DiographAddress'
 import { NavigationContent } from '../navigation/components/NavigationContent'
 import { SidePanelToggleButton } from '../sidePanel/components/SidePanelToggleButton'
+import { MenuItem } from '../../components/menu/MenuItem'
 
-const DiographNavigation = ({ story, stories, context, contexts, onClick }) => (
+const DiographNavigation = ({ home, story, stories, context, contexts, onClick }) => (
   <NavigationBar>
     <NavigationContent>
       <SidePanelToggleButton side="left" />
+      <MenuItem diory={home} fontWeight="bold" onClick={onClick} />
     </NavigationContent>
     <NavigationContent>
       <DiographAddress

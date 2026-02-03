@@ -6,7 +6,7 @@ import Icon from '../Icon'
 const MenuItem = ({ diory, isSelected, onClick, ...props }) => (
   <Pane
     position="relative"
-    color={isSelected ? 'white' : 'grey'}
+    color={isSelected ? 'white' : 'lightgray'}
     alignSelf="center"
     margin={6}
     cursor="pointer"

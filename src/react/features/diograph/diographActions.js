@@ -100,15 +100,15 @@ export const deleteLinks =
 
 export const generateDiory =
   (address) =>
-    async (dispatch, getState, { diographClient }) => {
-      console.log('generateDiory', address)
-      await diographClient.generateDiograph(address, false)
-      const diory = diographClient.getDiograph(address).getDiory({ id: '/' })
-      return {
-        key: address,
-        diory
-      }
+  async (dispatch, getState, { diographClient }) => {
+    console.log('generateDiory', address)
+    await diographClient.generateDiograph(address, false)
+    const diory = diographClient.getDiograph(address).getDiory({ id: '/' })
+    return {
+      key: address,
+      diory,
     }
+  }
 
 export const resetDiograph =
   (address) =>

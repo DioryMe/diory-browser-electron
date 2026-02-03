@@ -4,25 +4,27 @@ import { Pane } from 'evergreen-ui'
 
 import { useGenerateDiographEffect } from './useGenerateDiographEffect'
 
-import { getStoryDiories } from './utils/getStoryDiories'
 import { useStoryContextDiories } from './utils/useContextDiories'
 
-import { useOnSelectStory } from '../tools/onSelectStory'
-import { useOnSelectDiory } from '../tools/onSelectDiory/useOnSelectDiory'
 import { useLinkDiories } from '../tools/actions/linkDiories'
-import { useMapSelectedDiory } from '../tools/utils/useMapSelectedDiory'
 import { useToggleContent } from '../content/utils/useToggleContent'
 import { useGoSide } from '../navigation/utils/useGoSide'
+import { useOnCheckboxClick } from '../tools/useOnCheckboxClick'
+import { useOnDioryClick } from '../tools/useOnDioryClick'
 
+import { useDiograph } from './utils/useDiograph'
+import { useMapSelectedDiory } from '../tools/utils/useMapSelectedDiory'
+
+import { getStoryDiories } from './utils/getStoryDiories'
+
+import { DiographNavigation } from './DiographNavigation'
 import NavigationToSide from './components/NavigationToSide'
 import DiographView from './components/DiographView'
-import { DiographNavigation } from './DiographNavigation'
-import { useDiograph } from './utils/useDiograph'
 
 export const Diograph = () => {
   useGenerateDiographEffect()
 
-  const { diograph } = useDiograph()
+  const { diograph, address } = useDiograph()
   const { storyKey } = useSelector((state) => state.navigation)
   const { story, memories } = getStoryDiories(storyKey, diograph)
 
@@ -34,11 +36,12 @@ export const Diograph = () => {
   return (
     <>
       <DiographNavigation
+        home={{ text: 'DIORY', key: address }}
         story={story}
         stories={stories}
         context={context}
         contexts={contexts}
-        onClick={useOnSelectStory()}
+        onClick={useOnDioryClick()}
       />
       <Pane height="100%" position="relative">
         <NavigationToSide left onClick={goLeft} />
@@ -47,8 +50,8 @@ export const Diograph = () => {
           story={story}
           memories={memories.map(mapSelectedDiory)}
           onStoryClick={useToggleContent()}
-          onMemoryClick={useOnSelectStory()}
-          onSelect={useOnSelectDiory()}
+          onMemoryClick={useOnDioryClick()}
+          onSelect={useOnCheckboxClick({ diograph })}
           onDrop={useLinkDiories()}
         />
         <NavigationToSide right onClick={goRight} />

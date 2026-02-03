@@ -1,11 +1,10 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 
 import { getStoryDiories } from '../diograph/utils/getStoryDiories'
 
 import { useDiograph } from '../diograph/utils/useDiograph'
-import { useOnSelectStory } from '../tools/onSelectStory'
-import { useOnSelectDiory } from '../tools/onSelectDiory/useOnSelectDiory'
+import { useOnDioryClick } from '../tools/useOnDioryClick'
+import { useOnCheckboxClick } from '../tools/useOnCheckboxClick'
 import { useLinkDiories } from '../tools/actions/linkDiories'
 import { useDispatchActions } from '../../store'
 import { useCreateDioryById } from '../tools/actions/createDiory/useCreateDioryById'
@@ -27,20 +26,14 @@ export const Favorites = () => {
   const favoritesDiory = useCreateDioryById('favorites', diograph) || {}
   const { story, memories } = getStoryDiories(favoritesDiory.key, diograph)
 
-  const { address } = useSelector((state) => state.diograph)
-
   return (
     <>
-      <FavoritesNavigation
-        diory={{ text: 'DIORY', key: address }}
-        onLogout={useReturnToHome()}
-        onDioryClick={useOnSelectStory()}
-      />
+      <FavoritesNavigation onLogout={useReturnToHome()} />
       <FavoritesView
         story={story}
         memories={memories}
-        onClick={useOnSelectStory()}
-        onSelect={useOnSelectDiory()}
+        onClick={useOnDioryClick()}
+        onSelect={useOnCheckboxClick({ diograph })}
         onDrop={useLinkDiories()}
         onBackgroundDrop={useLinkDiories()}
       />

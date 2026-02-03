@@ -11,41 +11,32 @@ import { usePeriodMemories } from './utils/usePeriodMemories'
 import { usePeriodDiories } from './utils/getPeriodDiories'
 
 import { useDispatchActions } from '../../../store'
-import { useOnSelectDiory } from '../../tools/onSelectDiory/useOnSelectDiory'
-import { useOnSelectStory } from '../../tools/onSelectStory'
+import { useOnCheckboxClick } from '../../tools/useOnCheckboxClick'
+import { useOnDioryClick } from '../../tools/useOnDioryClick'
 import { useLinkDiories } from '../../tools/actions/linkDiories'
-import { useUpdatePeriods } from '../../tools/actions/updatePeriods/useUpdatePeriods'
 
 import { selectPeriod } from '../lensesActions'
 
 import { TimelineView } from './components/TimelineView'
+import { useUpdatePeriods } from '../../tools/actions/updatePeriods/useUpdatePeriods'
 
-// TODO sort diories
-const useTimelineActions = (diograph) => {
+const useOnSelect = (diograph, isDiory) => {
   const { selectedPeriod } = useSelector((state) => state.lenses)
-  const updatePeriods = useUpdatePeriods(diograph)
+  const updatePeriods = useUpdatePeriods(diograph, !isDiory)
+  const onSelect = useOnCheckboxClick()
 
-  const selectStory = useOnSelectStory()
-
-  const { dispatch } = useDispatchActions()
-  return {
-    onPeriodClick: ({ diory }) => {
-      dispatch(selectPeriod(diory))
-    },
-    onMemoryClick: ({ diory }) => {
-      updatePeriods({ periodId: selectedPeriod, diory })
-      selectStory({ diory })
-    },
-    onSelect: useOnSelectDiory(),
-    onDrop: useLinkDiories(),
+  return ({ diory }) => {
+    updatePeriods({ periodId: selectedPeriod, diory })
+    onSelect({ diory })
   }
 }
 
-const TimelineLens = ({ diograph }) => {
+// TODO remove address from key
+// TODO sort diories
+const TimelineLens = ({ diograph, isDiory }) => {
   useSelectPeriodEffect()
 
-  const actions = useTimelineActions(diograph)
-
+  const { dispatch } = useDispatchActions()
   return (
     <TimelineView
       titles={usePeriodTitles(diograph)}
@@ -53,13 +44,17 @@ const TimelineLens = ({ diograph }) => {
       periodStory={usePeriodStory(diograph)}
       periodMemories={usePeriodMemories(diograph)}
       periodDiories={usePeriodDiories(diograph)}
-      {...actions}
+      onPeriodClick={({ diory }) => dispatch(selectPeriod(diory))}
+      onMemoryClick={useOnDioryClick()}
+      onSelect={useOnSelect(diograph, isDiory)}
+      onDrop={useLinkDiories()}
     />
   )
 }
 
 TimelineLens.propTypes = {
   diograph: PropTypes.object,
+  isDiory: PropTypes.bool,
 }
 
 export { TimelineLens }

@@ -38,4 +38,3 @@ export const selectedFolder = ({ key }) => ({
   type: SELECT_FOLDER,
   payload: { key },
 })
-

@@ -1,10 +1,8 @@
 import { useSelector } from '../../../store'
 import { useLensButton } from './useLensButton'
-import { useCreateDioryById } from '../../tools/actions/createDiory/useCreateDioryById'
 
-export const useLens = (button, diograph) => {
+export const useLens = (button) => {
   useLensButton(button)
-  useCreateDioryById(button.id, diograph)
 
   const { selectedLensId } = useSelector((state) => state.lenses)
   return selectedLensId === button.id

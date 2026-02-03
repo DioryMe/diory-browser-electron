@@ -9,8 +9,7 @@ import { clearSelectedDiories, setSelectedDiories } from '../../toolsActions'
 import { TAKE_TOOL_BUTTON } from './buttons'
 
 export const isDioryInDiograph = (dioryId, diograph) => {
-  const dioryIds = Object.entries(diograph)
-    .map(([, { id }]) => id)
+  const dioryIds = Object.entries(diograph).map(([, { id }]) => id)
   return dioryIds.includes(dioryId)
 }
 
@@ -20,7 +19,7 @@ export const useDioryToSelectedEffect = () => {
   const { diograph } = useDiograph()
 
   const selectedDiories = Object.entries(diograph)
-    .filter(([,{ id }]) => isDioryInDiograph(id, homeDiograph))
+    .filter(([, { id }]) => isDioryInDiograph(id, homeDiograph))
     .map(([key]) => key)
     .reduce((obj, key) => {
       obj[key] = true

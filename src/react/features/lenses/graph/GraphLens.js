@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux'
 
 import { useGraphData } from './utils/useGraphData'
 
-import { useOnSelectStory } from '../../tools/onSelectStory'
-import { useOnSelectDiory } from '../../tools/onSelectDiory/useOnSelectDiory'
+import { useOnDioryClick } from '../../tools/useOnDioryClick'
+import { useOnCheckboxClick } from '../../tools/useOnCheckboxClick'
 
 import GraphView from './components/GraphView'
 
@@ -26,8 +26,8 @@ const GraphLens = ({ diograph }) => {
     <GraphView
       storyNode={storyNode}
       data={graphData}
-      onDioryClick={useOnSelectStory()}
-      onSelect={useOnSelectDiory()}
+      onDioryClick={useOnDioryClick()}
+      onSelect={useOnCheckboxClick({ diograph })}
       sidePanelWidth={sidePanelWidths.right}
     />
   )

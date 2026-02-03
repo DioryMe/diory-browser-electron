@@ -4,12 +4,13 @@ import { useDispatchActions, useSelector } from '../../../../store'
 import { updateDiory } from '../../../diograph/diographActions'
 import { useButtons } from '../../../buttons/useButtons'
 import { useSelectedDiories } from '../../utils/useSelectedDiories'
+import { useCloseButtons } from '../../../buttons/useButtonActions'
+
+import dioryFields from './dioryFields'
 
 import { FormModal } from '../../components/FormModal'
 
 import { buttons, UPDATE_TOOL_BUTTON } from './buttons'
-import dioryFields from './dioryFields'
-import { useCloseButtons } from '../../../buttons/useButtonActions'
 
 const useToolActions = () => {
   const { closeButtons } = useCloseButtons()
@@ -23,7 +24,7 @@ const useToolActions = () => {
   }
 }
 
-export const UpdateTool = () => {
+export const UpdateDioryTool = () => {
   useButtons(buttons)
 
   const { active } = useSelector((state) => state.buttons)

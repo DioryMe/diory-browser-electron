@@ -3,13 +3,9 @@ import { useSelector } from 'react-redux'
 import { getStoryDiories } from '../../../diograph/utils/getStoryDiories'
 import { useMapToPeriod } from './useMapToPeriod'
 
-import { findImage } from '../../../diograph/utils/dioryUtils'
 import { getNonDefaultImage } from '../../../diograph/utils/getDefaultImage'
 import { getPeriodIds } from './getPeriodIds'
-import { isDayPeriodId, startsWithPeriodId } from './periodIdUtils'
-
-const findPeriodImage = (selectedPeriod, diories = []) =>
-  findImage(diories.filter(startsWithPeriodId(selectedPeriod)))
+import { findPeriodImage, isDayPeriodId, startsWithPeriodId } from './periodIdUtils'
 
 const useEnrichPeriod = (diograph) => {
   // TODO where to get image
@@ -39,7 +35,5 @@ export const usePeriods = (diograph) => {
     return []
   }
 
-  return getPeriodIds(selectedPeriod, diograph)
-    .map(mapToPeriod)
-    .map(enrichPeriodDiory)
+  return getPeriodIds(selectedPeriod, diograph).map(mapToPeriod).map(enrichPeriodDiory)
 }

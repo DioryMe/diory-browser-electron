@@ -1,9 +1,7 @@
-import { getDiographKey, mapDiographToDiories } from '../../../diograph/utils/diographUtils'
-import { startsWithPeriodId, isPeriodId, isNotPeriodId } from '../periods/periodIdUtils'
-import { getDiory } from '../../../diograph/utils/getDiory'
-import { getLinkedDiories } from '../../../diograph/utils/getLinkedDiories'
+import { mapDiographToDiories } from '../../../diograph/utils/diographUtils'
+import { startsWithPeriodId, isPeriodId } from '../periods/periodIdUtils'
 
-const sortByDate = ({ date }) => date
+export const sortByDate = ({ date }) => date
 
 export const getDioriesInPeriod = (selectedPeriod, diograph) =>
   mapDiographToDiories(diograph)

@@ -1,16 +1,13 @@
 import { useDispatchActions, useSelector } from '../../../../store'
-import { useButtons } from '../../../buttons/useButtons'
 
 import { inactivateButton } from '../../../buttons/buttonsActions'
 import { createDiory, createLink } from '../../../diograph/diographActions'
 
 import { getStoryDiories } from '../../../diograph/utils/getStoryDiories'
 
-import { buttons, CREATE_LOCATION_TOOL_BUTTON } from './buttons'
+import { CREATE_LOCATION_TOOL_BUTTON } from './buttons'
 
 export const useCreateTool = () => {
-  useButtons(buttons)
-
   const { active } = useSelector((state) => state.buttons)
   const { diograph } = useSelector((state) => state.diograph)
   const { storyKey } = useSelector((state) => state.navigation)

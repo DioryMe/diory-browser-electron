@@ -25,6 +25,7 @@ export const useAddFolderTool = () => {
       const folderPath = await getLocalAddress()
       if (folderPath) {
         const { diory } = await generateDiory(folderPath)
+        console.log(diory, folderPath)
         createDiory(diory, folderPath)
 
         dispatch(createLink({ id: 'folders' }, diory))

@@ -5,7 +5,6 @@ import {
   SET_SEARCH_RESULTS,
   SELECT_PERIOD,
   SELECT_FOLDER,
-  SET_SHOW_PERIOD_MEMORIES,
 } from './lensesActionTypes'
 import { createReducer } from '../../store'
 

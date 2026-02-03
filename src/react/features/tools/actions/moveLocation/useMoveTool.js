@@ -6,8 +6,8 @@ import { updateDiory } from '../../../diograph/diographActions'
 
 import { buttons, MOVE_TOOL_BUTTON } from './buttons'
 
-export const useMoveTool = () => {
-  useButtons(buttons)
+export const useMoveTool = (disabled) => {
+  useButtons(buttons, disabled)
   const { active } = useSelector((state) => state.buttons)
 
   const { dispatch } = useDispatchActions()

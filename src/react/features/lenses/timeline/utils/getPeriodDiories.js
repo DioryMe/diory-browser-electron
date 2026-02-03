@@ -12,9 +12,9 @@ const getPeriodDiories = (selectedPeriodId, address, diograph) => {
     return []
   }
 
-  const selectedPeriodDiory = getDiory(getDiographKey(selectedPeriodId, address), diograph)
+  const selectedPeriodDiory = getDiory(getDiographKey(address, selectedPeriodId), diograph)
   return getDioriesInPeriod(selectedPeriodId, diograph)
-    .filter((periodDiory) => !includedInLinks(selectedPeriodDiory, periodDiory))
+    .filter((diory) => !includedInLinks(selectedPeriodDiory, diory))
     .filter((value, index) => index < 100)
 }
 

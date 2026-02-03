@@ -34,7 +34,7 @@ const TimelineView = ({
   return (
     <Pane height="100%" display="flex" flexDirection="column">
       <Pane position="relative" flex={1}>
-        { periodStory && <BackgroundDiory diory={periodStory} /> }
+        {periodStory && <BackgroundDiory diory={periodStory} />}
         <Fullscreen>
           <Pane position="relative" display="flex" flexWrap="wrap" padding={4}>
             <TimelineTitles titles={titles} onClick={onPeriodClick} />
@@ -46,7 +46,7 @@ const TimelineView = ({
               />
             ))}
           </Pane>
-          {!!periodMemories.length && <MenuItem diory={{ text: 'Period memories' }}/>}
+          {!!periodMemories.length && <MenuItem diory={{ text: 'Period memories' }} />}
           <DiorysGrid
             ref={handRef}
             diorys={periodMemories}
@@ -55,14 +55,15 @@ const TimelineView = ({
             onDrop={onDrop}
             padding={0}
           />
-          {!!periodDiories.length && <MenuItem diory={{ text: 'Period diories' }}/>}
+          {!!periodDiories.length && <MenuItem diory={{ text: 'Period diories' }} />}
           <Pane position="relative" display="flex" flexWrap="wrap" padding={4}>
             {periodDiories.map((diory) => (
               <Diory
                 key={diory.id}
                 diory={{ ...diory, style: { ...periodStyle, ...diory.style } }}
                 onClick={onMemoryClick}
-                onSelect={onSelect}              />
+                onSelect={onSelect}
+              />
             ))}
           </Pane>
         </Fullscreen>
@@ -76,7 +77,7 @@ TimelineView.propTypes = {
   periods: PropTypes.array,
   periodStory: PropTypes.object,
   periodMemories: PropTypes.array.isRequired,
-  scrollIntoViewId: PropTypes.string,
+  periodDiories: PropTypes.array.isRequired,
   onPeriodClick: PropTypes.func.isRequired,
   onMemoryClick: PropTypes.func.isRequired,
   onSelect: PropTypes.func.isRequired,
