@@ -1,8 +1,6 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
 
-import { useDiograph } from '../diograph/utils/useDiograph'
-import { useCreateDioryById } from '../tools/actions/createDiory/useCreateDioryById'
+import { useDispatchActions } from '../../store'
 import { useMapSelectedDiory } from '../tools/utils/useMapSelectedDiory'
 import { useOnDioryClick } from '../tools/useOnDioryClick'
 import { useOnCheckboxClick } from '../tools/useOnCheckboxClick'
@@ -14,14 +12,13 @@ import { getStoryDiories } from '../diograph/utils/getStoryDiories'
 
 import { HandView } from './components/HandView'
 
-export const Hand = () => {
-  const { diograph } = useDiograph()
-  const handDiory = useCreateDioryById('hand', diograph) || {}
+export const Hand = ({ diograph, createDiory }) => {
+  const handDiory = createDiory({ id: 'hand' })
   const { story, memories } = getStoryDiories(handDiory.key, diograph)
 
   const { mapSelectedDiory } = useMapSelectedDiory()
 
-  const { dispatch } = useDispatch()
+  const { dispatch } = useDispatchActions()
   return (
     <HandView
       story={story}

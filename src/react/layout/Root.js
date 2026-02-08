@@ -5,11 +5,13 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Home } from '../features/home/Home'
 import { Browser } from './Browser'
 import { Buttons } from '../features/buttons/Buttons'
-import { useIsHome } from '../features/home/utils/useIsHome'
+import { Welcome } from '../features/home/Welcome'
 
 const Root = () => (
   <DndProvider backend={HTML5Backend}>
-    {useIsHome() ? <Home /> : <Browser />}
+    <Welcome />
+    <Home />
+    <Browser />
     <Buttons />
   </DndProvider>
 )

@@ -37,6 +37,7 @@ const HandView = ({
         overflowX="auto"
         padding={12}
         itemStyle={itemStyle}
+        height="100%"
       />
       <Pane display="flex" justifyContent="center">
         {memories.length ? (

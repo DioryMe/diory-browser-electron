@@ -21,10 +21,11 @@ import { DiographNavigation } from './DiographNavigation'
 import NavigationToSide from './components/NavigationToSide'
 import DiographView from './components/DiographView'
 
-export const Diograph = () => {
+export const Diograph = ({ diograph }) => {
   useGenerateDiographEffect()
 
-  const { diograph, address } = useDiograph()
+  // TODO remove address
+  const { address } = useDiograph()
   const { storyKey } = useSelector((state) => state.navigation)
   const { story, memories } = getStoryDiories(storyKey, diograph)
 

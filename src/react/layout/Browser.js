@@ -1,6 +1,9 @@
 import React from 'react'
 import { Panel } from 'react-resizable-panels'
 
+import { useDiograph } from '../features/diograph/utils/useDiograph'
+import { useIsHome } from '../features/home/utils/useIsHome'
+
 import { PanelContainer } from '../features/sidePanel/PanelContainer'
 import { SidePanel } from '../features/sidePanel/SidePanel'
 import Fullscreen from '../components/Fullscreen'
@@ -11,26 +14,32 @@ import { Hand } from '../features/hand/Hand'
 import { Lenses } from '../features/lenses/Lenses'
 import { Tools } from '../features/tools/Tools'
 
-export const Browser = () => (
-  <Fullscreen zIndex={0}>
-    <PanelContainer direction="vertical" sidePanels={['', 'bottom']}>
-      <Panel className="hover">
-        <PanelContainer direction="horizontal" sidePanels={['left', '', 'right']}>
-          <SidePanel side="left">
-            <Favorites />
+export const Browser = () => {
+  const { diograph, isDiory, createDiory } = useDiograph()
+
+  return !useIsHome() ? (
+    <Fullscreen zIndex={0}>
+      <PanelContainer direction='vertical' sidePanels={['', 'bottom']}>
+        <Panel className='hover'>
+          <PanelContainer direction='horizontal' sidePanels={['left', '', 'right']}>
+            <SidePanel side='left'>
+              <Favorites diograph={diograph} createDiory={createDiory} />
+            </SidePanel>
+            <Panel minSize={20} style={{ display: 'flex', flexDirection: 'column' }}>
+              <Diograph diograph={diograph} />
+            </Panel>
+            <SidePanel side='right'>
+              <Lenses diograph={diograph} isDiory={isDiory} createDiory={createDiory} />
+            </SidePanel>
+          </PanelContainer>
+        </Panel>
+        { isDiory && (
+          <SidePanel side='bottom'>
+            <Hand diograph={diograph} createDiory={createDiory} />
           </SidePanel>
-          <Panel minSize={20} style={{ display: 'flex', flexDirection: 'column' }}>
-            <Diograph />
-          </Panel>
-          <SidePanel side="right">
-            <Lenses />
-          </SidePanel>
-        </PanelContainer>
-      </Panel>
-      <SidePanel side="bottom">
-        <Hand />
-      </SidePanel>
-    </PanelContainer>
-    <Tools />
-  </Fullscreen>
-)
+        )}
+      </PanelContainer>
+      <Tools isDiory={isDiory} />
+    </Fullscreen>
+  ): null
+}

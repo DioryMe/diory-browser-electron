@@ -2,12 +2,10 @@ import React from 'react'
 
 import { getStoryDiories } from '../diograph/utils/getStoryDiories'
 
-import { useDiograph } from '../diograph/utils/useDiograph'
 import { useOnDioryClick } from '../tools/useOnDioryClick'
 import { useOnCheckboxClick } from '../tools/useOnCheckboxClick'
 import { useLinkDiories } from '../tools/actions/linkDiories'
 import { useDispatchActions } from '../../store'
-import { useCreateDioryById } from '../tools/actions/createDiory/useCreateDioryById'
 
 import { setIsHome } from '../home/homeActions'
 
@@ -21,9 +19,8 @@ const useReturnToHome = () => {
   }
 }
 
-export const Favorites = () => {
-  const { diograph } = useDiograph()
-  const favoritesDiory = useCreateDioryById('favorites', diograph) || {}
+export const Favorites = ({ diograph, createDiory }) => {
+  const favoritesDiory = createDiory({ id: 'favorites' })
   const { story, memories } = getStoryDiories(favoritesDiory.key, diograph)
 
   return (
