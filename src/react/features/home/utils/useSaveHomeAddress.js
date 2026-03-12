@@ -4,6 +4,7 @@ import { saveHomeAddress } from '../homeActions'
 
 import { getLocalAddress } from '../../../utils/getLocalAddress'
 import { resetStore } from '../../../store/actions'
+import { generateDiograph } from '../../diograph/diographActions'
 
 const getHomeAddress = async () => {
   if (window.processEnv.TESTCAFE_TEST) {
@@ -20,6 +21,7 @@ export const useSaveHomeAddress = () => {
     const address = await getHomeAddress()
     if (address) {
       dispatch(saveHomeAddress(address))
+      dispatch(generateDiograph(address))
     }
   }
 }

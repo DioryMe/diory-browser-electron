@@ -16,8 +16,10 @@ export const Welcome = () => {
   const saveHomeAddress = useSaveHomeAddress()
   return !address ? (
     <Fullscreen>
-      <BackgroundDiory diory={{ image: 'diory-demo-content/Scouts BSA International/PIXNIO-53553-1782x1188.jpeg' }} />
-      <Diory diory={welcomeStory}  onClick={saveHomeAddress} />
+      <BackgroundDiory
+        diory={{ image: 'diory-demo-content/Scouts BSA International/PIXNIO-53553-1782x1188.jpeg' }}
+      />
+      <Diory diory={welcomeStory} onClick={saveHomeAddress} />
     </Fullscreen>
   ) : null
 }

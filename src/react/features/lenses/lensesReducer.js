@@ -10,7 +10,7 @@ import { createReducer } from '../../store'
 
 const initialState = {
   buttons: {},
-  selectedLensId: 'timeline',
+  selectedLensId: null,
   selectedPeriod: null,
   selectedFolderKey: null,
   query: '',

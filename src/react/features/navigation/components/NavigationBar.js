@@ -8,7 +8,7 @@ const NavigationBar = ({ side, children, ...props }) => (
     height="32px"
     flex="0 0 32px"
     display="flex"
-    justifyContent={side || 'space-between'}
+    justifyContent="space-between"
     {...props}
   >
     {children}

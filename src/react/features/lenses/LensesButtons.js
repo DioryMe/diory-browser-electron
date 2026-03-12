@@ -6,8 +6,11 @@ import { useSidePanel } from '../sidePanel/useSidePanel'
 import { selectLens } from './lensesActions'
 
 import { MenuItem } from '../../components/menu/MenuItem'
-import { NavigationContent } from '../navigation/components/NavigationContent'
-import { NavigationBar } from '../navigation/components/NavigationBar'
+
+import { graphLensButton } from './graph/GraphLens'
+import { mapLensButton } from './map/MapLens'
+import { searchLensButton } from './search/SearchLens'
+import { timelineLensButton } from './timeline/button'
 
 export const useActions = () => {
   const { selectedLensId } = useSelector((state) => state.lenses)
@@ -23,8 +26,10 @@ export const useActions = () => {
 }
 
 const useLensesButtons = () => {
-  const { buttons } = useSelector((state) => state.lenses)
   const { selectedLensId } = useSelector((state) => state.lenses)
+
+  const buttons = [graphLensButton, mapLensButton, timelineLensButton, searchLensButton]
+
   return {
     buttons: Object.values(buttons).map(({ id, text, icon }) => ({
       diory: {
@@ -37,18 +42,16 @@ const useLensesButtons = () => {
   }
 }
 
-const LensesNavigation = () => {
+const LensesButtons = () => {
   const { buttons } = useLensesButtons()
   const { selectLens } = useActions()
   return (
-    <NavigationBar side="right">
-      <NavigationContent>
-        {buttons.map(({ diory, isSelected }) => (
-          <MenuItem key={diory.id} diory={diory} isSelected={isSelected} onClick={selectLens} />
-        ))}
-      </NavigationContent>
-    </NavigationBar>
+    <>
+      {buttons.map(({ diory, isSelected }) => (
+        <MenuItem key={diory.id} diory={diory} isSelected={isSelected} onClick={selectLens} />
+      ))}
+    </>
   )
 }
 
-export { LensesNavigation }
+export { LensesButtons }

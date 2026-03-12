@@ -2,7 +2,6 @@ import React from 'react'
 
 import { useLens } from './utils/useLens'
 
-import { LensesNavigation } from './LensesNavigation'
 import { GraphLens, graphLensButton } from './graph/GraphLens'
 import { MapLens, mapLensButton } from './map/MapLens'
 import { TimelineLens } from './timeline/TimelineLens'
@@ -20,7 +19,6 @@ export const Lenses = ({ diograph, isDiory, createDiory }) => {
 
   return (
     <>
-      <LensesNavigation />
       {useLens(graphLensButton) && <GraphLens diograph={diograph} />}
       {useLens(mapLensButton) && <MapLens diograph={diograph} isDiory={isDiory} />}
       {useLens(timelineLensButton) && <TimelineLens diograph={diograph} isDiory={isDiory} />}

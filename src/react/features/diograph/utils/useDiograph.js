@@ -17,10 +17,7 @@ export const useDiograph = (diographAddress) => {
     address,
     createDiory: (dioryObject) => {
       const key = getDiographKey(address, dioryObject.id)
-      return (
-        getDiory(key, diograph) ||
-        createDiory(dioryObject)
-      )
-    }
+      return getDiory(key, diograph) || createDiory(dioryObject)
+    },
   }
 }

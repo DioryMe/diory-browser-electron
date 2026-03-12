@@ -15,6 +15,7 @@ import { HomeView } from './components/HomeView'
 import { HomeNavigation } from './components/HomeNavigation'
 import Fullscreen from '../../components/Fullscreen'
 import BackgroundDiory from '../../components/diories/BackgroundDiory'
+import { NavigationBar } from '../navigation/components/NavigationBar'
 
 // TODO move to hooks
 const useActions = () => {
@@ -46,13 +47,14 @@ const HomeData = () => {
 
   return (
     <Fullscreen>
-      <HomeNavigation onLogout={useSaveHomeAddress()} />
+      <NavigationBar>
+        <HomeNavigation
+          home={{ text: 'DIORY' }}
+          onLogout={useSaveHomeAddress()}
+        />
+      </NavigationBar>
       <BackgroundDiory diory={story} />
-      <HomeView
-        story={story}
-        memories={memories}
-        {...actions}
-      />
+      <HomeView story={story} memories={memories} {...actions} />
     </Fullscreen>
   )
 }
@@ -61,7 +63,5 @@ export const Home = () => {
   useGetHomeEffect()
 
   const { address } = useSelector((state) => state.home)
-  return useIsHome() && address ? (
-    <HomeData />
-  ) : null
+  return useIsHome() && address ? <HomeData /> : null
 }
