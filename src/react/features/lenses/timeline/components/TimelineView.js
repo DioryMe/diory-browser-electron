@@ -8,11 +8,13 @@ import Diory from '../../../../components/diories/Diory'
 import { TimelineTitles } from './TimelineTitles'
 import BackgroundDiory from '../../../../components/diories/BackgroundDiory'
 import { MenuItem } from '../../../../components/menu/MenuItem'
+import DragDrop from '../../../../components/DragDrop'
 
 const periodStyle = {
-  flex: '0 0 100px',
+  flex: '0 0 60px',
   height: 60,
   margin: 4,
+  background: 'rgba(255,255,255,0.1)',
   text: {
     fontSize: 12,
     padding: 4,
@@ -29,41 +31,34 @@ const TimelineView = ({
   onMemoryClick,
   onSelect,
   onDrop,
+  onBackgroundDrop,
 }) => {
   const handRef = useRef()
   return (
     <Pane height="100%" display="flex" flexDirection="column">
       <Pane position="relative" flex={1}>
-        {periodStory && <BackgroundDiory diory={periodStory} />}
         <Fullscreen>
-          <Pane position="relative" display="flex" flexWrap="wrap" padding={4}>
-            <TimelineTitles titles={titles} onClick={onPeriodClick} />
-            {periods.map((diory) => (
-              <Diory
-                key={diory.id}
-                diory={{ ...diory, style: { ...periodStyle, ...diory.style } }}
-                onClick={onPeriodClick}
-              />
-            ))}
+          <Pane position="relative" display="flex" flexWrap="wrap" padding={4} backgroundColor="#222">
+            <TimelineTitles parents={titles} childs={periods} onClick={onPeriodClick} />
           </Pane>
-          {!!periodMemories.length && <MenuItem diory={{ text: 'Period memories' }} />}
+          {periodStory && <BackgroundDiory diory={periodStory} />}
           <DiorysGrid
-            ref={handRef}
+            background={periodStory}
             diorys={periodMemories}
             onClick={onMemoryClick}
-            onSelect={onSelect}
             onDrop={onDrop}
-            padding={0}
+            onSelect={onSelect}
+            onBackgroundClick={onMemoryClick}
+            onBackgroundDrop={onBackgroundDrop}
           />
           {!!periodDiories.length && <MenuItem diory={{ text: 'Period diories' }} />}
           <Pane position="relative" display="flex" flexWrap="wrap" padding={4}>
             {periodDiories.map((diory) => (
-              <Diory
-                key={diory.id}
-                diory={{ ...diory, style: { ...periodStyle, ...diory.style } }}
-                onClick={onMemoryClick}
-                onSelect={onSelect}
-              />
+              <Pane key={diory.id} {...periodStyle} >
+                <DragDrop diory={diory} onDrop={onDrop}>
+                  <Diory diory={diory} onClick={onMemoryClick} onSelect={onSelect} />
+                </DragDrop>
+              </Pane>
             ))}
           </Pane>
         </Fullscreen>
@@ -82,6 +77,7 @@ TimelineView.propTypes = {
   onMemoryClick: PropTypes.func.isRequired,
   onSelect: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,
+  onBackgroundDrop: PropTypes.func.isRequired,
 }
 
 export { TimelineView }

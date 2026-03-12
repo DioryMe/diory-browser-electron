@@ -6,27 +6,34 @@ import { MenuItem } from '../../../../components/menu/MenuItem'
 
 const isLast = (index, length) => index === length - 1
 
-const TimelineTitles = ({ titles = [], onClick }) => (
+const TimelineTitles = ({ parents = [], childs = [], divider = '/', onClick }) => (
   <Pane
     position="relative"
     flex="0 0 100%"
-    paddingLeft={4}
     display="flex"
     flexWrap="wrap"
     alignItems="center"
     color="grey"
   >
-    {titles.map(({ diory, isSelected }, index, array) => (
+    {parents.map(({ isSelected, ...diory }, index, array) => (
       <Fragment key={diory.id}>
-        <MenuItem diory={diory} isSelected={isLast(index, array.length)} onClick={onClick} />
+        <MenuItem diory={diory} isSelected={isSelected} onClick={onClick} margin={3} />
         {!isLast(index, array.length) && <span>/</span>}
+      </Fragment>
+    ))}
+    {!!childs.length && <span>-</span>}
+    {childs.map(({ isSelected, ...diory }, index, array) => (
+      <Fragment key={diory.id}>
+        <MenuItem diory={diory} isSelected={isSelected} onClick={onClick} margin={3} />
       </Fragment>
     ))}
   </Pane>
 )
 
 TimelineTitles.propTypes = {
-  titles: PropTypes.array,
+  parents: PropTypes.array,
+  childs: PropTypes.array,
+  divider: PropTypes.string,
   onClick: PropTypes.func.isRequired,
 }
 

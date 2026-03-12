@@ -22,7 +22,7 @@ export const useSelectPeriodEffect = () => {
   const { storyKey } = useSelector((state) => state.navigation)
   const { story, memories } = getStoryDiories(storyKey, diograph)
 
-  const diories = [story].concat(memories)
+  const diories = [story].concat(memories).filter(Boolean)
   const { startTime, endTime } = getStartAndEndTimes(diories)
   const periodId = resolvePeriod(startTime, endTime)
 

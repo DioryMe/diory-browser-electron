@@ -8,6 +8,5 @@ export const usePeriodTitles = (diograph) => {
 
   return ['timeline']
     .concat(splitDateToPeriodIds(selectedPeriod))
-    .map(useMapToPeriod(diograph))
-    .map((diory) => ({ diory }))
+    .map(useMapToPeriod(diograph, selectedPeriod))
 }

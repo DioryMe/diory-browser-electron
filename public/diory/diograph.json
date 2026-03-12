@@ -753,19 +753,7 @@
       }
     ],
     "created": "2024-03-24T14:56:21.243Z",
-    "modified": "2026-01-07T19:59:28.373Z"
-  },
-  "favorites": {
-    "id": "favorites",
-    "text": "Favorites",
-    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8GmnyHwAGEAJzBJT/2AAAAABJRU5ErkJggg==",
-    "links": [
-      {
-        "id": "ef79b80c-e319-4bfb-8faa-ebbc1150f27f"
-      }
-    ],
-    "created": "2026-01-06T10:40:21.154Z",
-    "modified": "2026-01-06T11:00:15.085Z"
+    "modified": "2026-02-06T20:54:18.540Z"
   },
   "graph": {
     "id": "graph",
@@ -818,5 +806,23 @@
     "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMUMgn7DwACmQGdtDFX8AAAAABJRU5ErkJggg==",
     "created": "2026-01-07T19:59:28.359Z",
     "modified": "2026-01-07T19:59:28.359Z"
+  },
+  "favorites": {
+    "id": "favorites",
+    "text": "Favorites",
+    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8GmnyHwAGEAJzBJT/2AAAAABJRU5ErkJggg==",
+    "links": [
+      {
+        "id": "timeline"
+      },
+      {
+        "id": "map"
+      },
+      {
+        "id": "graph"
+      }
+    ],
+    "created": "2026-03-12T12:00:10.688Z",
+    "modified": "2026-03-12T12:00:10.688Z"
   }
 }

@@ -25,12 +25,13 @@ const getPeriodTitle = (periodId, showTotal, diograph) => {
   return `${title} (${amount})`
 }
 
-export const useMapToPeriod = (diograph) => {
+export const useMapToPeriod = (diograph, selectedPeriod) => {
   const { address } = useSelector((state) => state.diograph)
 
   return (periodId) => ({
     ...getDiory(getDiographKey(address, periodId), diograph),
     id: periodId,
     text: getPeriodTitle(periodId, true, diograph),
+    isSelected: periodId === selectedPeriod,
   })
 }
