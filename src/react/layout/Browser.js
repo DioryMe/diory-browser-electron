@@ -1,9 +1,6 @@
 import React from 'react'
 import { Panel } from 'react-resizable-panels'
 
-import { useDiograph } from '../features/diograph/utils/useDiograph'
-import { useIsHome } from '../features/home/utils/useIsHome'
-
 import { PanelContainer } from '../features/sidePanel/PanelContainer'
 import { SidePanel } from '../features/sidePanel/SidePanel'
 import Fullscreen from '../components/Fullscreen'
@@ -15,10 +12,8 @@ import { Lenses } from '../features/lenses/Lenses'
 import { Tools } from '../features/tools/Tools'
 import { Navigation } from '../features/navigation/Navigation'
 
-export const Browser = () => {
-  const { diograph, isDiory, createDiory } = useDiograph()
-
-  return !useIsHome() ? (
+export const Browser = ({ diograph, isDiory, createDiory }) => {
+  return (
     <Fullscreen zIndex={0}>
       <PanelContainer direction="vertical" sidePanels={['', 'bottom']}>
         <Panel className="hover">
@@ -43,5 +38,5 @@ export const Browser = () => {
       </PanelContainer>
       <Tools isDiory={isDiory} />
     </Fullscreen>
-  ) : null
+  )
 }

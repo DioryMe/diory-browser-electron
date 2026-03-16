@@ -4,8 +4,11 @@ import PropTypes from 'prop-types'
 import { MenuItem } from '../../../components/menu/MenuItem'
 import { NavigationContent } from '../../navigation/components/NavigationContent'
 
-const HomeNavigation = ({ home, onLogout }) => (
+const HomeNavigation = ({ logo, home, onLogout }) => (
   <>
+    <NavigationContent>
+      <MenuItem diory={logo} color="white" fontWeight="bold" />
+    </NavigationContent>
     <NavigationContent>
       <MenuItem diory={home} color="white" fontWeight="bold" />
     </NavigationContent>

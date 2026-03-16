@@ -1,5 +1,4 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { useSelectPeriodEffect } from './useSelectPeriodEffect'
@@ -35,14 +34,19 @@ const useOnPeriodDrop = (diograph, isDiory) => {
 const TimelineLens = ({ diograph, isDiory }) => {
   useSelectPeriodEffect()
 
+  const periodMemories= usePeriodMemories(diograph)
+  const periodDiories= usePeriodDiories(diograph)
+
+  console.log(periodDiories)
+
   const { dispatch } = useDispatchActions()
   return (
     <TimelineView
       titles={usePeriodTitles(diograph)}
       periods={usePeriods(diograph)}
       periodStory={usePeriodStory(diograph)}
-      periodMemories={usePeriodMemories(diograph)}
-      periodDiories={usePeriodDiories(diograph)}
+      periodMemories={isDiory ? periodMemories: periodDiories}
+      periodDiories={isDiory ? periodDiories : []}
       onPeriodClick={({ diory }) => dispatch(selectPeriod(diory))}
       onMemoryClick={useOnDioryClick()}
       onSelect={useOnCheckboxClick()}

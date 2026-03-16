@@ -126,8 +126,8 @@ export const getDiograph =
       dispatch(getDiographActions.begin({ address }))
       try {
         await diographClient.fetchDiograph(address, saveInProd)
-        dispatch(getDiographActions.success({ address }))
         dispatch(updateDiograph(address))
+        dispatch(getDiographActions.success({ address }))
       } catch (error) {
         console.error(error)
         dispatch(getDiographActions.failure({ address, error }))

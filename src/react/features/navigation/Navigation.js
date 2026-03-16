@@ -15,12 +15,13 @@ import { NavigationContent } from './components/NavigationContent'
 import { MenuItem } from '../../components/menu/MenuItem'
 import { DiographAddress } from '../diograph/components/DiographAddress'
 import { useSidePanel } from '../sidePanel/useSidePanel'
+import { NavigationDivider } from '../diograph/components/NavigationDivider'
 
 const Navigation = ({ diograph }) => {
-  const { address } = useDiograph()
+  const { rootKey } = useDiograph()
 
   const { storyKey } = useSelector((state) => state.navigation)
-  const { story, } = getStoryDiories(storyKey, diograph)
+  const { story } = getStoryDiories(storyKey, diograph)
 
   const { context, stories, contexts } = useStoryContextDiories(diograph)
 
@@ -29,10 +30,23 @@ const Navigation = ({ diograph }) => {
   return (
     <NavigationBar>
       <NavigationContent>
-        <MenuItem diory={{ text: 'DIORY', key: address }} fontWeight="bold" onClick={useOnDioryClick()} />
-        <MenuItem diory={{ icon: showSidePanel ? 'star' : 'star-empty' }} onClick={toggleSidePanel} />
+        <MenuItem
+          diory={{ text: 'DIORY', key: rootKey }}
+          fontWeight="bold"
+          onClick={useOnDioryClick()}
+        />
+        <MenuItem
+          diory={{ icon: showSidePanel ? 'star' : 'star-empty' }}
+          onClick={toggleSidePanel}
+        />
       </NavigationContent>
       <NavigationContent>
+        {story && story.key === rootKey && (
+          <>
+            <MenuItem diory={{ text: 'Home' }} onClick={useReturnToHome()} />
+            <NavigationDivider />
+          </>
+        )}
         <DiographAddress
           story={story}
           stories={stories}
@@ -43,7 +57,6 @@ const Navigation = ({ diograph }) => {
       </NavigationContent>
       <NavigationContent paddingRight={8}>
         <LensesButtons />
-        <MenuItem diory={{ icon: 'log-out' }} onClick={useReturnToHome()} fontWeight="bold" />
       </NavigationContent>
     </NavigationBar>
   )

@@ -10,7 +10,11 @@ import { FavoritesView } from './components/FavoritesView'
 
 // TODO add timeline etc. to sidebar
 export const Favorites = ({ diograph, createDiory }) => {
-  const favoritesDiory = createDiory({ id: 'favorites', text: 'Favorites', links: [{ id: 'timeline' }, { id: 'map' }, { id: 'graph' }] })
+  const favoritesDiory = createDiory({
+    id: 'favorites',
+    text: 'Favorites',
+    links: [{ id: 'timeline' }, { id: 'map' }, { id: 'graph' }],
+  })
   const { story, memories } = getStoryDiories(favoritesDiory.key, diograph)
 
   return (

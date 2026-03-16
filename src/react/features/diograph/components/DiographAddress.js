@@ -1,19 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Pane } from 'evergreen-ui'
 
 import { MenuDropdown } from '../../../components/menu/MenuDropdown'
 import { MenuItem } from '../../../components/menu/MenuItem'
-
-const NavigationDivider = () => (
-  <Pane color="white" fontSize={12} borderRadius={16} margin={6} alignSelf="center">
-    /
-  </Pane>
-)
+import { NavigationDivider } from './NavigationDivider'
 
 const fallbackText = (diory) => ({ ...diory, text: diory.text || diory.date || diory.id })
 
-// TODO Update text
 const DiographAddress = ({ story, stories, context, contexts, onClick }) => (
   <>
     {context && (

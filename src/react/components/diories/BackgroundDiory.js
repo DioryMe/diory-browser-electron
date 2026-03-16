@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { isDefaultImage } from '../../features/diograph/utils/getDefaultImage'
+
 import Diory from './Diory'
 
 const blurStyle = {
@@ -17,7 +19,7 @@ const backgroundStyle = {
   opacity: 0.9,
 }
 
-const BackgroundDiory = ({ diory, children, ...styleProps }) => {
+const BackgroundDiory = ({ diory, ...styleProps }) => {
   const style = {
     ...diory.style,
     image: {
@@ -33,10 +35,9 @@ const BackgroundDiory = ({ diory, children, ...styleProps }) => {
     ...styleProps,
   }
 
-  return (
+  return isDefaultImage(diory.image) ? null : (
     <div style={backgroundStyle}>
       <Diory diory={{ ...diory, style }} />
-      {children}
     </div>
   )
 }
@@ -48,7 +49,6 @@ BackgroundDiory.propTypes = {
     image: PropTypes.string,
     style: PropTypes.object,
   }),
-  children: PropTypes.node,
 }
 
 export default BackgroundDiory

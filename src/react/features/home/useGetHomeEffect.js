@@ -7,7 +7,12 @@ import { getHomeAddress } from './homeActions'
 import { getDiograph, setDiographAddress } from '../diograph/diographActions'
 
 export const useGetHomeEffect = () => {
-  const { address: homeAddress } = useSelector((state) => state.home)
+  const {
+    address: homeAddress,
+    loading: homeLoading,
+    loaded: homeLoaded,
+  } = useSelector((state) => state.home)
+  const { loading, loaded } = useSelector((state) => state.diograph)
 
   const { dispatch } = useDispatchActions()
   useEffect(() => {
@@ -22,4 +27,9 @@ export const useGetHomeEffect = () => {
       dispatch(getDiograph(homeAddress))
     }
   }, [dispatch, homeAddress])
+
+  return {
+    loading: homeLoading || loading[homeAddress],
+    loaded: homeLoaded && loaded[homeAddress],
+  }
 }

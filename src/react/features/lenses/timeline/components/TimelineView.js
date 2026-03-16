@@ -38,7 +38,13 @@ const TimelineView = ({
     <Pane height="100%" display="flex" flexDirection="column">
       <Pane position="relative" flex={1}>
         <Fullscreen>
-          <Pane position="relative" display="flex" flexWrap="wrap" padding={4} backgroundColor="#222">
+          <Pane
+            position="relative"
+            display="flex"
+            flexWrap="wrap"
+            padding={4}
+            backgroundColor="#222"
+          >
             <TimelineTitles parents={titles} childs={periods} onClick={onPeriodClick} />
           </Pane>
           {periodStory && <BackgroundDiory diory={periodStory} />}
@@ -54,7 +60,7 @@ const TimelineView = ({
           {!!periodDiories.length && <MenuItem diory={{ text: 'Period diories' }} />}
           <Pane position="relative" display="flex" flexWrap="wrap" padding={4}>
             {periodDiories.map((diory) => (
-              <Pane key={diory.id} {...periodStyle} >
+              <Pane key={diory.id} {...periodStyle}>
                 <DragDrop diory={diory} onDrop={onDrop}>
                   <Diory diory={diory} onClick={onMemoryClick} onSelect={onSelect} />
                 </DragDrop>
