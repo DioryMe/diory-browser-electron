@@ -48,6 +48,7 @@ const TimelineView = ({
             <TimelineTitles parents={titles} childs={periods} onClick={onPeriodClick} />
           </Pane>
           {periodStory && <BackgroundDiory diory={periodStory} />}
+          {/* TODO: period title, create period, drag period to story? */}
           <DiorysGrid
             background={periodStory}
             diorys={periodMemories}

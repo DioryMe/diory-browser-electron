@@ -27,6 +27,7 @@ const Navigation = ({ diograph }) => {
 
   const { showSidePanel, toggleSidePanel } = useSidePanel('left')
 
+  const returnToHome = useReturnToHome()
   return (
     <NavigationBar>
       <NavigationContent>
@@ -43,7 +44,7 @@ const Navigation = ({ diograph }) => {
       <NavigationContent>
         {story && story.key === rootKey && (
           <>
-            <MenuItem diory={{ text: 'Home' }} onClick={useReturnToHome()} />
+            <MenuItem diory={{ text: 'Home' }} onClick={returnToHome} />
             <NavigationDivider />
           </>
         )}

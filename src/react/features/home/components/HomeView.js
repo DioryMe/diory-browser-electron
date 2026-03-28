@@ -22,7 +22,7 @@ const dioryStyle = {
 const HomeView = ({ story, memories, scrollIntoViewId, onStoryClick, onMemoryClick }) => (
   <>
     <Diory diory={story} marginLeft={12} marginRight={12} height="50%" onClick={onStoryClick} />
-    <MenuItem diory={{ text: 'Folders' }} margin={12} marginBottom={0} />
+    <MenuItem diory={{ text: 'Import folders' }} margin={12} marginBottom={0} />
     <DiorysGrid
       diorys={memories.map((diory) => ({ ...diory, style: dioryStyle }))}
       scrollIntoViewId={scrollIntoViewId}

@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux'
 
 import { useCreateDiory } from '../createDiory/useCreateDiory'
-import { useToggleDioryLinks } from '../toggleLinks/useToggleDioryLinks'
 import { useLinkDioryArray } from '../linkDiories/useLinkDioryArray'
 
 import {
@@ -40,14 +39,12 @@ const useCreatePeriodDiories = (diograph) => {
 
 export const useUpdatePeriods = (diograph, disabled) => {
   const createPeriodDiories = useCreatePeriodDiories(diograph)
-  const toggleDioryLinks = useToggleDioryLinks()
   const linkDioryArray = useLinkDioryArray()
 
-  return ({ diory, periodId }) => {
+  return ({ periodId }) => {
     const periodDiories = createPeriodDiories(periodId)
-    toggleDioryLinks(periodDiories[0], diory)
     linkDioryArray(periodDiories)
 
-    return true
+    return periodDiories[0]
   }
 }

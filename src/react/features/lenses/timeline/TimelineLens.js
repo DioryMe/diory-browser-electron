@@ -18,12 +18,15 @@ import { selectPeriod } from '../lensesActions'
 
 import { TimelineView } from './components/TimelineView'
 import { useUpdatePeriods } from '../../tools/actions/updatePeriods/useUpdatePeriods'
+import { useToggleDioryLinks } from '../../tools/actions/toggleLinks/useToggleDioryLinks'
 
 const useOnPeriodDrop = (diograph, isDiory) => {
   const updatePeriods = useUpdatePeriods(diograph, !isDiory)
+  const toggleDioryLinks = useToggleDioryLinks()
 
   return ({ diory, draggedDiory }) => {
-    updatePeriods({ periodId: diory.id, diory: draggedDiory })
+    const periodDiory = updatePeriods({ periodId: diory.id })
+    toggleDioryLinks(periodDiory, draggedDiory)
   }
 }
 
@@ -34,10 +37,8 @@ const useOnPeriodDrop = (diograph, isDiory) => {
 const TimelineLens = ({ diograph, isDiory }) => {
   useSelectPeriodEffect()
 
-  const periodMemories= usePeriodMemories(diograph)
+  // const periodMemories= usePeriodMemories(diograph)
   const periodDiories= usePeriodDiories(diograph)
-
-  console.log(periodDiories)
 
   const { dispatch } = useDispatchActions()
   return (
@@ -45,8 +46,8 @@ const TimelineLens = ({ diograph, isDiory }) => {
       titles={usePeriodTitles(diograph)}
       periods={usePeriods(diograph)}
       periodStory={usePeriodStory(diograph)}
-      periodMemories={isDiory ? periodMemories: periodDiories}
-      periodDiories={isDiory ? periodDiories : []}
+      periodMemories={periodDiories}
+      periodDiories={[]}
       onPeriodClick={({ diory }) => dispatch(selectPeriod(diory))}
       onMemoryClick={useOnDioryClick()}
       onSelect={useOnCheckboxClick()}
