@@ -3,31 +3,20 @@ import { useSelector } from 'react-redux'
 
 import { useDispatchActions } from '../../store'
 
-import { getHomeAddress } from './homeActions'
-import { getDiograph, setDiographAddress } from '../diograph/diographActions'
+import { getHomeDiograph } from './homeActions'
 
 export const useGetHomeEffect = () => {
-  const {
-    address: homeAddress,
-  } = useSelector((state) => state.home)
-  const { loading, loaded } = useSelector((state) => state.diograph)
+  const { diograph, loading, loaded } = useSelector((state) => state.home)
 
   const { dispatch } = useDispatchActions()
   useEffect(() => {
-    if (!homeAddress) {
-      dispatch(getHomeAddress())
+    if (!diograph) {
+      dispatch(getHomeDiograph())
     }
-  }, [dispatch, homeAddress])
-
-  useEffect(() => {
-    if (homeAddress) {
-      dispatch(setDiographAddress(homeAddress))
-      dispatch(getDiograph(homeAddress))
-    }
-  }, [dispatch, homeAddress])
+  }, [dispatch, diograph])
 
   return {
-    loading: loading[homeAddress],
-    loaded: homeAddress && loaded[homeAddress],
+    loading,
+    loaded,
   }
 }

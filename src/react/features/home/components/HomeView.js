@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import BackgroundDiory from '../../../components/diories/BackgroundDiory'
 import DiorysGrid from '../../../components/diories/DiorysGrid'
 import Diory from '../../../components/diories/Diory'
 import { MenuItem } from '../../../components/menu/MenuItem'
@@ -21,6 +22,7 @@ const dioryStyle = {
 
 const HomeView = ({ story, memories, scrollIntoViewId, onStoryClick, onMemoryClick }) => (
   <>
+    <BackgroundDiory diory={story} />
     <Diory diory={story} marginLeft={12} marginRight={12} height="50%" onClick={onStoryClick} />
     <MenuItem diory={{ text: 'Import folders' }} margin={12} marginBottom={0} />
     <DiorysGrid

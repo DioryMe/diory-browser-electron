@@ -1,8 +1,8 @@
-import { GET_HOME_ADDRESS, SAVE_HOME_ADDRESS, SET_IS_HOME } from './homeActionTypes'
+import { GET_HOME_DIOGRAPH, SAVE_HOME_DIOGRAPH, SET_IS_HOME } from './homeActionTypes'
 import { createReducer, promiseReducers } from '../../store'
 
 const initialState = {
-  address: undefined,
+  diograph: null,
   isHome: true,
   loading: false,
   loaded: false,
@@ -10,9 +10,9 @@ const initialState = {
   saved: false,
 }
 
-export const setHomeAddress = (state, { payload: { address } }) => ({
+export const getHomeDiograph = (state, { payload: { diograph } }) => ({
   ...state,
-  address,
+  diograph,
 })
 
 export const setIsHome = (state, { payload: { isHome } }) => ({
@@ -21,7 +21,7 @@ export const setIsHome = (state, { payload: { isHome } }) => ({
 })
 
 export default createReducer(initialState, {
-  ...promiseReducers(GET_HOME_ADDRESS, 'loading', 'loaded', 'error', setHomeAddress),
-  ...promiseReducers(SAVE_HOME_ADDRESS, 'saving', 'saved', 'error', setHomeAddress),
+  ...promiseReducers(GET_HOME_DIOGRAPH, 'loading', 'loaded', 'error', getHomeDiograph),
+  ...promiseReducers(SAVE_HOME_DIOGRAPH, 'saving', 'saved', 'error', getHomeDiograph),
   [SET_IS_HOME]: setIsHome,
 })
