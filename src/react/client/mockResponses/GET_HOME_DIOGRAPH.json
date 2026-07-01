@@ -1,73 +1,32 @@
 {
-  "diory": {
-    "id": "diory",
-    "text": "My Diory",
-    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOMPvD6PwAGiwMHcHyXEAAAAABJRU5ErkJggg==",
-    "links": [
-      {
-        "id": "diory-demo-content"
-      }
-    ],
-    "created": "2026-05-15T13:48:26.305Z",
-    "modified": "2026-05-15T13:49:25.595Z"
-  },
-  "LocalClient/public/diory/": {
-    "id": "diory",
-    "created": "2025-05-20T17:56:58.569Z",
-    "modified": "2026-05-15T13:48:11.976Z"
-  },
-  "folders": {
-    "id": "folders",
-    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOMPvD6PwAGiwMHcHyXEAAAAABJRU5ErkJggg==",
-    "links": [
-      {
-        "id": "e2ba215a-4f98-4c3f-a833-0cb925fe8fd2"
-      }
-    ],
-    "created": "2026-05-15T13:48:26.305Z",
-    "modified": "2026-05-15T13:49:25.595Z"
-  },
-  "LocalClient//Users/op/Vaellukset/2023 Kelvenne/": {
-    "id": "e2ba215a-4f98-4c3f-a833-0cb925fe8fd2",
-    "created": "2025-05-22T17:48:01.545Z",
-    "modified": "2026-03-29T13:17:15.901Z"
-  },
-  "e2ba215a-4f98-4c3f-a833-0cb925fe8fd2": {
-    "id": "e2ba215a-4f98-4c3f-a833-0cb925fe8fd2",
-    "text": "2023 Kelvenne",
-    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8Van4HwAGngKVn65TsQAAAABJRU5ErkJggg==",
-    "latlng": "61.37902322171466, 25.455463659195345",
-    "date": "2023-06-16T18:56:38.000Z",
-    "links": [
-      {
-        "id": "9e182648-983f-4443-9b19-52884ca9d960"
-      },
-      {
-        "id": "39dc9de1-3343-49cb-bc71-9df1b8013b54"
-      },
-      {
-        "id": "2ab7a125-80f5-48cc-a56b-d0e9e785737e"
-      },
-      {
-        "id": "9daae861-35a1-453e-b1fa-71fdef5851b0"
-      },
-      {
-        "id": "ca1df09c-b2b2-4dba-877d-2bad313cf5f0"
-      },
-      {
-        "id": "434534bc-0b2c-47dc-a195-9f56e1d7c89f"
-      },
-      {
-        "id": "031572fc-f476-4cf2-b61e-24325d83e48f"
-      },
-      {
-        "id": "40eda8ad-7501-466b-b43b-b8fb0f9b7150"
-      },
-      {
-        "id": "822080a8-f282-4876-a3ee-0bcd1c47d44d"
-      }
-    ],
-    "created": "2025-05-22T17:48:01.545Z",
-    "modified": "2026-03-29T13:17:15.901Z"
+  "diograph": {
+    "diory": {
+      "id": "diory",
+      "text": "My Diory",
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOMPvD6PwAGiwMHcHyXEAAAAABJRU5ErkJggg==",
+      "links": [
+        {
+          "id": "diory-demo-content"
+        }
+      ],
+      "created": "2026-05-15T13:48:26.305Z",
+      "modified": "2026-05-15T13:49:25.595Z"
+    },
+    "LocalClient/public/diory/": {
+      "id": "diory",
+      "created": "2025-05-20T17:56:58.569Z",
+      "modified": "2026-05-15T13:48:11.976Z"
+    },
+    "folders": {
+      "id": "folders",
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOMPvD6PwAGiwMHcHyXEAAAAABJRU5ErkJggg==",
+      "links": [
+        {
+          "id": "e2ba215a-4f98-4c3f-a833-0cb925fe8fd2"
+        }
+      ],
+      "created": "2026-05-15T13:48:26.305Z",
+      "modified": "2026-05-15T13:49:25.595Z"
+    }
   }
 }

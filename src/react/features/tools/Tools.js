@@ -6,8 +6,8 @@ import { DeleteDioriesTool } from './actions/deleteDiories/DeleteDioriesTool'
 import { DeleteLinksTool } from './actions/deleteLinks/DeleteLinksTool'
 import { TakeToHomeTool } from './actions/takeToDiory/TakeToDioryTool'
 
-export const Tools = ({ isDiory }) => {
-  return isDiory ? (
+export const Tools = ({ isDiory }) =>
+  isDiory ? (
     <>
       <UpdateDioryTool />
       <CreateDioryTool />
@@ -17,4 +17,3 @@ export const Tools = ({ isDiory }) => {
   ) : (
     <TakeToHomeTool />
   )
-}

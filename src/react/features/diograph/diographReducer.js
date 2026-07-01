@@ -2,6 +2,7 @@ import {
   generateDiographActions,
   getDiographActions,
   SET_DIOGRAPH_ADDRESS,
+  SET_DIOGRAPH_PATH,
   UPDATE_DIOGRAPH,
 } from './diographActionTypes'
 
@@ -18,12 +19,12 @@ const initialState = {
   error: {},
 }
 
-const getDiographBegin = (state, { payload: { address } }) => ({
+const getDiographBegin = (state, { payload: { address, path } }) => ({
   ...state,
   diograph: {
-    [address]: {
-      id: address,
-      text: `Loading... ${address}`,
+    [path]: {
+      id: path,
+      text: `Loading... ${path}`,
       image: loading,
     },
     ...state.diograph,
@@ -68,16 +69,23 @@ const getDiographFailure = (
 const updateDiograph = (state, { payload: { diograph, address } }) => ({
   ...state,
   diograph: Object.entries(diograph).reduce((obj, [key, diory]) => {
-    const diographKey = resolveDiographKey(address, key)
-    diory == null ? delete obj[diographKey] : (obj[diographKey] = diory)
+    // const diographKey = resolveDiographKey(address, key)
+    // console.log(key, diographKey)
+    if (diory != null) obj[key] = diory
     return obj
-  }, state.diograph),
+  }, {}),
 })
 
 export const setDiographAddress = (state, { payload: { address, isDiory } }) => ({
   ...state,
   address,
   isDiory,
+  diograph: {},
+})
+
+export const setDiographPath = (state, { payload: { path } }) => ({
+  ...state,
+  path,
 })
 
 export default createReducer(initialState, {
@@ -89,4 +97,5 @@ export default createReducer(initialState, {
   [generateDiographActions.failure().type]: getDiographFailure,
   [UPDATE_DIOGRAPH]: updateDiograph,
   [SET_DIOGRAPH_ADDRESS]: setDiographAddress,
+  [SET_DIOGRAPH_PATH]: setDiographPath,
 })

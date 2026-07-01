@@ -11,8 +11,12 @@ import { Hand } from '../features/hand/Hand'
 import { Lenses } from '../features/lenses/Lenses'
 import { Tools } from '../features/tools/Tools'
 import { Navigation } from '../features/navigation/Navigation'
+import { useDiograph } from '../features/diograph/utils/useDiograph'
+import { useGenerateDiographEffect } from '../features/diograph/useGenerateDiographEffect'
 
-export const Browser = ({ diograph, isDiory, createDiory }) => {
+export const Browser = () => {
+  useGenerateDiographEffect()
+  const { diograph, isDiory, createDiory } = useDiograph()
   return (
     <Fullscreen zIndex={0}>
       <PanelContainer direction="vertical" sidePanels={['', 'bottom']}>

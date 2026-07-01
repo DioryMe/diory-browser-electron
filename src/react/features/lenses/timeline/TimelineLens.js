@@ -38,7 +38,7 @@ const TimelineLens = ({ diograph, isDiory }) => {
   useSelectPeriodEffect()
 
   // const periodMemories= usePeriodMemories(diograph)
-  const periodDiories= usePeriodDiories(diograph)
+  const periodDiories = usePeriodDiories(diograph)
 
   const { dispatch } = useDispatchActions()
   return (

@@ -18,15 +18,13 @@ export const Favorites = ({ diograph, createDiory }) => {
   const { story, memories } = getStoryDiories(favoritesDiory.key, diograph)
 
   return (
-    <>
-      <FavoritesView
-        story={story}
-        memories={memories}
-        onClick={useOnDioryClick()}
-        onSelect={useOnCheckboxClick()}
-        onDrop={useLinkDiories()}
-        onBackgroundDrop={useLinkDiories()}
-      />
-    </>
+    <FavoritesView
+      story={story}
+      memories={memories}
+      onClick={useOnDioryClick()}
+      onSelect={useOnCheckboxClick()}
+      onDrop={useLinkDiories()}
+      onBackgroundDrop={useLinkDiories()}
+    />
   )
 }

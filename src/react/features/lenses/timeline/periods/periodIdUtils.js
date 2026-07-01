@@ -1,5 +1,5 @@
-import { findImage } from '../../../diograph/utils/dioryUtils'
 import { useSelector } from 'react-redux'
+import { findImage } from '../../../diograph/utils/dioryUtils'
 import { getDiographKey } from '../../../diograph/utils/diographUtils'
 
 export const isPeriodId = (periodId) => {

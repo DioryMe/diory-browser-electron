@@ -1406,33 +1406,33 @@
     path-browserify "^1.0.1"
     uuid "^9.0.0"
 
-"@diograph/folder-generator@0.4.4-rc1":
-  version "0.4.4-rc1"
-  resolved "https://registry.yarnpkg.com/@diograph/folder-generator/-/folder-generator-0.4.4-rc1.tgz#45a9879aee2cfd3722230af436805660f2d41ced"
-  integrity sha512-u0b+oEwZdy8Hi0YqhPUtaJC3E+lgUDhmdpJzUoAC1wjVFybnv79CfOc17xzWgMjCA7FTxd7PmFqRfrj7YFnCkg==
+"@diograph/folder-generator@0.4.4-rc7":
+  version "0.4.4-rc7"
+  resolved "https://registry.yarnpkg.com/@diograph/folder-generator/-/folder-generator-0.4.4-rc7.tgz#bfb5841e4ee6eda40ad9f100bde266578c9c98d7"
+  integrity sha512-4ieM3dK/ILevoDXgeRPqFXnVlOSxF38KzqiBMCNgWwqpjw0y581LKkjbLeHYHLSXZT3p+q/2OpAynDirs4k1/w==
   dependencies:
     "@diograph/diograph" "0.4.3"
     "@diograph/file-generator" "0.4.0"
     path-browserify "^1.0.1"
     uuid "^8.3.2"
 
-"@diograph/local-client@^0.4.1":
-  version "0.4.1"
-  resolved "https://registry.npmjs.org/@diograph/local-client/-/local-client-0.4.1.tgz"
-  integrity sha512-9z2ZKwFILY6KvVudmYTAI6ilMn/wdJZgp4MoRq3VbhbKnYTiLdRv+AFUmVO92NItV43QJnApNCb8euFrtqcTjA==
+"@diograph/local-client@^0.4.3":
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/@diograph/local-client/-/local-client-0.4.3.tgz#0de3674e86e284417fa37646dd53c7fe4d4cfcc6"
+  integrity sha512-t932X7ImY/ZlBHoQuYjPyjRNS6fgxg5ohzMR6uFmmp5u9vS4eBaaHvR8iOAL0OXTdBo2wN82kGOJPVAyFwp0dw==
   dependencies:
     file-type "16.4.0"
     path-browserify "^1.0.1"
     sharp "0.31.2"
     uuid "^10.0.0"
 
-"@diory/client-js@0.4.4-rc1":
-  version "0.4.4-rc1"
-  resolved "https://registry.yarnpkg.com/@diory/client-js/-/client-js-0.4.4-rc1.tgz#02f6eb89f2ecf48aa1ea7b4aff40b18825510d22"
-  integrity sha512-1dCdkl0gEQvvtVh5cBgnhIB4SiGLwgrlNwKj1+zfTlvoO5qa8WyeBMXIMOaMCDUzXzu+kDzHfXz1UtErPl8E9Q==
+"@diory/client-js@0.4.4-rc15":
+  version "0.4.4-rc15"
+  resolved "https://registry.yarnpkg.com/@diory/client-js/-/client-js-0.4.4-rc15.tgz#69a991d8a644b7f48ffad636f80e08c435bced13"
+  integrity sha512-wKaeZxP69WnnAeZh3nTamlme00sJnURLNEk9W6ggLMZRqq8+k3B8l8p4YSGVtgslUzGkHd3nKvOdIae38U8EmA==
   dependencies:
     "@diograph/diograph" "^0.4.3"
-    "@diograph/folder-generator" "0.4.4-rc1"
+    "@diograph/folder-generator" "0.4.4-rc7"
     path-browserify "^1.0.1"
     uuid "8.3.2"
 

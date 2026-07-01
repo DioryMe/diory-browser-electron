@@ -1,10 +1,8 @@
-export const useOnButtonClick = () => {
-  return () => {
-    switch (true) {
-      case 'useToolWithSelectedDiories':
-        return true
-      default:
-      //
-    }
+export const useOnButtonClick = () => () => {
+  switch (true) {
+    case 'useToolWithSelectedDiories':
+      return true
+    default:
+    //
   }
 }

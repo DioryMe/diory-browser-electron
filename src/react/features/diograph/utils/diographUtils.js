@@ -4,7 +4,7 @@ export const addDioryId = (key, diograph) => {
   if (!key || !diograph[key]) return null
 
   if (key.endsWith('/')) {
-    const rootKey = `${key}${diograph[key].id}`
+    const rootKey = `${diograph[key].id}`
     return diograph[rootKey] ? rootKey : key
   }
 
@@ -16,10 +16,10 @@ export const getDiographKey = (dioryKey, id) => `${getPath(dioryKey)}/${id}`
 export const resolveDiographKey = (dioryKey, linkId) => {
   const dioryPath = getPath(dioryKey)
 
-  const keyParts = linkId.split('/')
-  if (keyParts.length === 1 && dioryPath) {
-    return `${dioryPath}/${linkId}`
-  }
+  // const keyParts = linkId.split('/')
+  // if (keyParts.length === 1 && dioryPath) {
+  //   return `${dioryPath}/${linkId}`
+  // }
 
   if (linkId.startsWith('/')) {
     return `${dioryPath}${linkId}`

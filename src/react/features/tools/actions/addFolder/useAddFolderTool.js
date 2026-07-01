@@ -2,20 +2,17 @@ import { useEffect } from 'react'
 import { useDispatchActions, useSelector } from '../../../../store'
 
 import { useButtons } from '../../../buttons/useButtons'
-import { useCreateDiory } from '../createDiory/useCreateDiory'
-import { useGenerateDiory } from '../generateDiory/useGenerateDiory'
 
-import { createLink, setDiographAddress } from '../../../diograph/diographActions'
+import { setDiographAddress } from '../../../diograph/diographActions'
 import { getLocalAddress } from '../../../../utils/getLocalAddress'
 import { inactivateButton } from '../../../buttons/buttonsActions'
 
 import { buttons, BUTTON } from './buttons'
+import { selectStory } from '../../../navigation/navigationActions'
+import { addHomeFolder, setIsHome } from '../../../home/homeActions'
 
 export const useAddFolderTool = () => {
   useButtons(buttons)
-
-  const generateDiory = useGenerateDiory()
-  const createDiory = useCreateDiory()
 
   const { active } = useSelector((state) => state.buttons)
 
@@ -24,10 +21,11 @@ export const useAddFolderTool = () => {
     async function action() {
       const folderPath = await getLocalAddress()
       if (folderPath) {
-        const { diory, key } = await generateDiory(folderPath)
-        createDiory(diory, folderPath)
+        await dispatch(addHomeFolder(folderPath))
 
-        dispatch(createLink({ id: 'folders' }, { key, ...diory }))
+        dispatch(setIsHome(false))
+        dispatch(setDiographAddress(folderPath, false))
+        dispatch(selectStory({ key: '/' }))
       }
     }
 

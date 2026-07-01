@@ -13,8 +13,9 @@ const getPeriodDiories = (selectedPeriodId, address, diograph) => {
   }
 
   const selectedPeriodDiory = getDiory(getDiographKey(address, selectedPeriodId), diograph)
-  return getDioriesInPeriod(selectedPeriodId, diograph)
-    .filter((diory) => !includedInLinks(selectedPeriodDiory, diory))
+  return getDioriesInPeriod(selectedPeriodId, diograph).filter(
+    (diory) => !includedInLinks(selectedPeriodDiory, diory)
+  )
 }
 
 export const usePeriodDiories = (diograph) => {

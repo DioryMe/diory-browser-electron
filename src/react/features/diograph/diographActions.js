@@ -1,5 +1,6 @@
 import {
   SET_DIOGRAPH_ADDRESS,
+  SET_DIOGRAPH_PATH,
   UPDATE_DIOGRAPH,
   getDiographActions,
   generateDiographActions,
@@ -8,6 +9,11 @@ import {
 export const setDiographAddress = (address, isDiory) => ({
   type: SET_DIOGRAPH_ADDRESS,
   payload: { address, isDiory },
+})
+
+export const setDiographPath = (path, isDiory) => ({
+  type: SET_DIOGRAPH_PATH,
+  payload: { path, isDiory },
 })
 
 export const updateDiographAction = (diograph, address) => ({
@@ -99,10 +105,10 @@ export const deleteLinks =
   }
 
 export const generateDiory =
-  (address) =>
+  (address, path = '/') =>
   async (dispatch, getState, { diographClient }) => {
     console.log('generateDiory', address)
-    await diographClient.generateDiograph(address, false)
+    await diographClient.generateDiograph(address, path, { saveDiograph: true })
     const diory = diographClient.getDiograph(address).getDiory({ id: '/' })
     return {
       key: address,
@@ -120,13 +126,12 @@ export const resetDiograph =
 export const getDiograph =
   (address) =>
   async (dispatch, getState, { diographClient }) => {
-    console.log('getDiograph', address)
+    console.log('getDiograph', address, 'huuuuuu')
     const { loading, loaded } = getState().diograph
     if (!loading[address] && !loaded[address]) {
       dispatch(getDiographActions.begin({ address }))
       try {
-        await diographClient.fetchDiograph(address, saveInProd)
-        dispatch(updateDiograph(address))
+        await diographClient.fetchDiograph(address)
         dispatch(getDiographActions.success({ address }))
       } catch (error) {
         console.error(error)
@@ -135,16 +140,18 @@ export const getDiograph =
     }
   }
 
-const saveInProd = process.env.NODE_ENV !== 'development'
+const saveDiograph = process.env.NODE_ENV !== 'development'
 export const generateDiograph =
-  (address) =>
+  (root, path) =>
   async (dispatch, getState, { diographClient }) => {
-    console.log('generateDiograph', address)
-    const { loading, loaded } = getState().diograph
-    if (!loading[address] && !loaded[address]) {
-      dispatch(generateDiographActions.begin({ address }))
+    const address = root + (path ? path.slice(1) : '')
+    console.log('generateDiograph', address, path)
+    const { loading } = getState().diograph
+    if (!loading[address]) {
+      dispatch(generateDiographActions.begin({ address, path }))
       try {
-        await diographClient.generateDiograph(address, saveInProd)
+        await diographClient.generateDiograph(root, path, { saveDiograph })
+        console.log(diographClient.diographs)
         dispatch(generateDiographActions.success({ address }))
         dispatch(updateDiograph(address))
       } catch (error) {

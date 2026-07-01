@@ -1,7 +1,8 @@
 import { mapDiographToDiories } from '../../../diograph/utils/diographUtils'
 import { startsWithPeriodId, isPeriodId } from '../periods/periodIdUtils'
 
-export const sortByDate = ({ date: date1 }, { date: date2 }) => (date1 < date2) ? -1 : (date1 > date2) ? 1 : 0
+export const sortByDate = ({ date: date1 }, { date: date2 }) =>
+  date1 < date2 ? -1 : date1 > date2 ? 1 : 0
 
 export const getDioriesInPeriod = (selectedPeriod, diograph) =>
   mapDiographToDiories(diograph)

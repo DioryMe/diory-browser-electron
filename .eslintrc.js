@@ -71,6 +71,6 @@ module.exports = {
     'object-curly-newline': ['off'], // prettier
     'function-paren-newline': ['off'], // prettier
     'implicit-arrow-linebreak': ['off'], // prettier
-    'prettier/prettier': ['error', { endOfLine: 'auto' }],
+    // 'prettier/prettier': ['error', { endOfLine: 'auto' }],
   },
 }
