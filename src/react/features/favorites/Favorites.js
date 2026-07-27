@@ -8,7 +8,6 @@ import { useLinkDiories } from '../tools/actions/linkDiories'
 
 import { FavoritesView } from './components/FavoritesView'
 
-// TODO add timeline etc. to sidebar
 export const Favorites = ({ diograph, createDiory }) => {
   const favoritesDiory = createDiory({
     id: 'favorites',

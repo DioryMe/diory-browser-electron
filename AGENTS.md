@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Pointers and conventions for working in this repo. For setup/run instructions and the feature list, see `README.md` — not duplicated here.
+Pointers and conventions for working in this repo. For setup/run instructions and the feature list, see `README.md` — not duplicated here. For a high-level architecture flow diagram (snapshot, may drift), see `docs/architecture-flow.md`. For the home/diory/folders domain model, see `docs/diograph-model.md`.
 
 ## Commands
 

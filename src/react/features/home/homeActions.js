@@ -126,7 +126,6 @@ export const addHomeFolder =
       diographClient.getDiograph('home').getDiory({ id: 'folders' }).addLink(diory)
 
       const diograph = diographClient.getDiograph('home').toObject()
-      console.log(diograph)
 
       await invokeChannel(channels.SAVE_HOME_DIOGRAPH, { diograph })
       dispatch(saveHomeDiographActions.success({ diograph }))
