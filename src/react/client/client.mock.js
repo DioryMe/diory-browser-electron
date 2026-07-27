@@ -18,7 +18,7 @@ const mockChannels = () => {
 
   return {
     //...channels,
-    // GET_HOME_DIOGRAPH,
+    GET_HOME_DIOGRAPH,
   }
 }
 
