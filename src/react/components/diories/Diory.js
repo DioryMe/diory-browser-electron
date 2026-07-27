@@ -24,6 +24,9 @@ const defaultStyle = {
   },
   topCorner: {
     position: 'absolute',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
     padding: '16px',
     color: 'rgba(255, 255, 255, 0.7)',
     fontWeight: 'bold',
@@ -56,7 +59,7 @@ SelectButton.propTypes = {
 }
 
 const Diory = ({ diory, isGridImage, onSelect, onClick, children, ...props }) => {
-  const { id, text, image, style: dioryStyle = {}, data, links, selected } = diory || {}
+  const { id, text, image, style: dioryStyle = {}, data, links, selected, amount } = diory || {}
   const {
     image: styleImage,
     text: styleText,
@@ -88,17 +91,13 @@ const Diory = ({ diory, isGridImage, onSelect, onClick, children, ...props }) =>
             <Icon key="icon" size={80} style={{ width: '100%', opacity: 0.8 }} {...data} />
           </Pane>
         )}
-        {selected == null && links && !!links.length && (
-          <Box {...defaultStyle.topCorner} {...styleLinks}>
-            {links.length}
-          </Box>
-        )}
-        {isGridImage && <GridImage image={image} style={styleImage} />}
-        {selected != null && (
-          <Box {...defaultStyle.topCorner} {...styleLinks}>
+        <Box {...defaultStyle.topCorner} {...styleLinks}>
+          {links && !!links.length && (amount || links.length)}
+          {selected != null && (
             <SelectButton diory={diory} onClick={() => onSelect && onSelect({ diory })} />
-          </Box>
-        )}
+          )}
+        </Box>
+        {isGridImage && <GridImage image={image} style={styleImage} />}
       </Box>
     </Box>
   )

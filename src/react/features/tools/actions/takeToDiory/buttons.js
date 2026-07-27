@@ -7,6 +7,7 @@ export const buttons = [
     data: {
       icon: 'upload',
       testid: 'take',
+      enableDioryClick: true,
     },
   },
 ]
