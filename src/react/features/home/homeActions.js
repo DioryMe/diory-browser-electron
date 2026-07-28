@@ -4,6 +4,23 @@ import { invokeChannel } from '../../client/client'
 import { channels } from '../../../shared/constants'
 import { getDiory } from '../diograph/utils/getDiory'
 
+const getDioryWithResolvedContentUrls = (diory, diographAddress) => {
+  const { data } = diory
+  if (!data) return diory
+
+  // strip the client prefix (e.g. "LocalClient/") - only the real filesystem
+  // path after it is meaningful for a file:// url
+  const path = diographAddress.slice(diographAddress.indexOf('/') + 1)
+  return {
+    ...diory,
+    data: data.map((item) =>
+      item.contentUrl && item.contentUrl.startsWith('/')
+        ? { ...item, contentUrl: `file://${path}${item.contentUrl}` }
+        : item
+    ),
+  }
+}
+
 export const setIsHome = (isHome) => ({
   type: SET_IS_HOME,
   payload: { isHome },
@@ -38,13 +55,14 @@ export const toggleHomeDiory =
   (diory) =>
   async (dispatch, getState, { diographClient }) => {
     const { diograph: homeDiograph } = getState().home
+    const { address } = getState().diograph
     const dioryDiograph = await fetchHomeDioryDiograph(diographClient, homeDiograph)
     if (!dioryDiograph) return
 
     if (isDioryInDiograph(diory.id, dioryDiograph.toObject())) {
       dioryDiograph.removeDiory({ id: diory.id })
     } else {
-      dioryDiograph.addDiory(diory)
+      dioryDiograph.addDiory(getDioryWithResolvedContentUrls(diory, address))
     }
   }
 

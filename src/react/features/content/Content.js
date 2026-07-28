@@ -16,12 +16,12 @@ const getAddressPath = (address = '') => {
 }
 
 const Content = () => {
-  const { diograph } = useSelector((state) => state.diograph)
+  const { diograph, address } = useSelector((state) => state.diograph)
   const { storyKey } = useSelector((state) => state.navigation)
   const { story = {} } = getStoryDiories(storyKey, diograph)
 
   const { data = [] } = story
-  const path = getAddressPath(story.key)
+  const path = getAddressPath(address)
   const { content, carousel } = useContentCarousel(data, path)
   const toggleContent = useToggleContent()
 
