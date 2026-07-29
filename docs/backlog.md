@@ -18,10 +18,6 @@ Known follow-ups and small issues not yet acted on. Not a spec — just a runnin
 
 ### Browse stories in Diory
 
-1. diograph navigation breadcrumb — fixed slots `Home / {root} / ... / {context} / {story}`, root diory always reachable regardless of nesting depth:
-   - `{root}`: hide if `context.key === root.key` or `story.key === root.key`
-   - `...`: show only if `context.key !== root.key` AND root does not directly link to context (i.e. `root.links` does not contain `context.id`)
-
 ## @diograph/diograph
 
 1. add a `displayImage` getter (or similar) to the `Diory` class — `this.image || getDefaultImage()` — so every consumer (this app, `@diograph/folder-generator`, anything else built on this model) gets a correct placeholder-or-real image without reimplementing the fallback. Centralizes the 3x-duplicated placeholder-color logic (this app's `getDefaultImage.js`, `folder-generator`'s `generateDiories/folderDiory/image.js` and `updateFolderDiories/folderDiory/image.js`).

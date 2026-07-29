@@ -112,7 +112,7 @@ export const getHomeDiograph =
 export const addHomeDiory =
   (address) =>
   async (dispatch, getState, { diographClient }) => {
-    const { saving, diograph: currentDiograph } = getState().home
+    const { saving, diograph: previousHomeDiograph } = getState().home
     if (!saving) {
       dispatch(saveHomeDiographActions.begin())
       try {
@@ -124,9 +124,9 @@ export const addHomeDiory =
 
         const home = diographClient.getDiograph(homeAddress)
 
-        const previousStory = getDiory('diory', currentDiograph || {})
-        if (previousStory && previousStory.key !== previousStory.id) {
-          home.removeDiory({ id: previousStory.key })
+        const previousDiory = getDiory('diory', previousHomeDiograph || {})
+        if (previousDiory && previousDiory.key !== previousDiory.id) {
+          home.removeDiory({ id: previousDiory.key })
         }
 
         home.getDiory({ id: 'diory' }).update({ text, image, links })

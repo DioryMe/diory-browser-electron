@@ -25,6 +25,7 @@ const useActions = (addHomeDiory) => {
       }
       dispatch(setIsHome(false))
       dispatch(setDiographAddress(diory.key, true))
+      dispatch(selectStory({ key: '/' }))
     },
     onMemoryClick: ({ diory }) => {
       dispatch(setIsHome(false))
