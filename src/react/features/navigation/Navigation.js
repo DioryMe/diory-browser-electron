@@ -8,52 +8,49 @@ import { useStoryContextDiories } from '../diograph/utils/useContextDiories'
 import { useDiograph } from '../diograph/utils/useDiograph'
 
 import { getStoryDiories } from '../diograph/utils/getStoryDiories'
+import { getDiory } from '../diograph/utils/getDiory'
 
 import { NavigationBar } from './components/NavigationBar'
 import { LensesButtons } from '../lenses/LensesButtons'
 import { NavigationContent } from './components/NavigationContent'
 import { MenuItem } from '../../components/menu/MenuItem'
-import { DiographAddress } from '../diograph/components/DiographAddress'
-import { useSidePanel } from '../sidePanel/useSidePanel'
+import { DiographAddress, fallbackText } from '../diograph/components/DiographAddress'
 import { NavigationDivider } from '../diograph/components/NavigationDivider'
+import { useSidePanel } from '../sidePanel/useSidePanel'
 
 const Navigation = ({ diograph }) => {
   const { rootKey } = useDiograph()
+  const root = getDiory(rootKey, diograph)
 
   const { storyKey } = useSelector((state) => state.navigation)
   const { story } = getStoryDiories(storyKey, diograph)
 
   const { context, stories, contexts } = useStoryContextDiories(diograph)
 
-  const { showSidePanel, toggleSidePanel } = useSidePanel('left')
+  const { toggleSidePanel } = useSidePanel('left')
 
   const returnToHome = useReturnToHome()
+  const onDioryClick = useOnDioryClick()
+
   return (
     <NavigationBar>
       <NavigationContent>
-        <MenuItem
-          diory={{ text: 'DIORY', key: rootKey }}
-          fontWeight="bold"
-          onClick={useOnDioryClick()}
-        />
-        <MenuItem
-          diory={{ icon: showSidePanel ? 'star' : 'star-empty' }}
-          onClick={toggleSidePanel}
-        />
-      </NavigationContent>
-      <NavigationContent>
-        {story && story.key === rootKey && (
+        <MenuItem diory={{ icon: 'menu' }} onClick={toggleSidePanel} />
+        <MenuItem diory={{ text: 'DIORY' }} fontWeight="bold" onClick={returnToHome} />
+        {root && (
           <>
-            <MenuItem diory={{ text: 'Home' }} onClick={returnToHome} />
             <NavigationDivider />
+            <MenuItem diory={fallbackText(root)} onClick={onDioryClick} />
           </>
         )}
+      </NavigationContent>
+      <NavigationContent>
         <DiographAddress
           story={story}
           stories={stories}
           context={context}
           contexts={contexts}
-          onClick={useOnDioryClick()}
+          onClick={onDioryClick}
         />
       </NavigationContent>
       <NavigationContent paddingRight={8}>

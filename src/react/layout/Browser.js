@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Panel } from 'react-resizable-panels'
 
 import { PanelContainer } from '../features/sidePanel/PanelContainer'
@@ -16,7 +17,14 @@ import { useGenerateDiographEffect } from '../features/diograph/useGenerateDiogr
 
 export const Browser = () => {
   useGenerateDiographEffect()
+  const { address, loaded } = useSelector((state) => state.diograph)
+
+  return loaded[address] ? <BrowserView /> : null
+}
+
+const BrowserView = () => {
   const { diograph, isDiory, createDiory } = useDiograph()
+
   return (
     <Fullscreen zIndex={0}>
       <PanelContainer direction="vertical" sidePanels={['', 'bottom']}>

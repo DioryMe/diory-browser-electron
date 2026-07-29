@@ -5,14 +5,14 @@ import { MenuDropdown } from '../../../components/menu/MenuDropdown'
 import { MenuItem } from '../../../components/menu/MenuItem'
 import { NavigationDivider } from './NavigationDivider'
 
-const fallbackText = (diory) => ({ ...diory, text: diory.text || diory.date || diory.id })
+export const fallbackText = (diory) => ({ ...diory, text: diory.text || diory.date || diory.id })
 
 const DiographAddress = ({ story, stories, context, contexts, onClick }) => (
   <>
     {context && (
       <>
-        <MenuItem diory={fallbackText(context)} onClick={onClick} />
         <MenuDropdown diory={context} diories={contexts} onClick={onClick} position="right" />
+        <MenuItem diory={fallbackText(context)} onClick={onClick} />
         <NavigationDivider />
       </>
     )}

@@ -7,7 +7,7 @@ const initialState = {
     right: 40,
     bottom: 20,
   },
-  showSidePanels: {},
+  showSidePanels: { left: true },
 }
 
 export const openSidePanel = (state, { payload }) => ({
