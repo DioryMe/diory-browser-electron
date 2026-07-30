@@ -11,7 +11,7 @@ const linkToDayDiory = (dioryDiograph, diory) => {
 
   dioryDiograph.addDiory({ id: day, text: day, image: diory.image }).addLink({ id: diory.id })
   dioryDiograph.addDiory({ id: month, text: month, image: diory.image }).addLink({ id: day })
-  dioryDiograph.addDiory({ id: year, text: year }).addLink({ id: month })
+  dioryDiograph.addDiory({ id: year, text: year, image: diory.image }).addLink({ id: month })
   dioryDiograph
     .addDiory({ id: 'timeline', text: 'timeline', image: diory.image })
     .addLink({ id: year })

@@ -57,6 +57,8 @@ export const promiseReducers = (
       {
         ...state,
         [progressKey]: true,
+        [successKey]: false,
+        [errorKey]: false,
       },
       {
         payload,

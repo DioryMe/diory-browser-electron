@@ -33,6 +33,10 @@ const getDiographBegin = (state, { payload: { address, path } }) => ({
     ...state.loading,
     [address]: true,
   },
+  loaded: {
+    ...state.loaded,
+    [address]: false,
+  },
 })
 
 const getDiographSuccess = (state, { payload: { address } }) => ({
