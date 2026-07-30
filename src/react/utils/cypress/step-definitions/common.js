@@ -61,6 +61,10 @@ Then('I see {word} button', (buttonName) => {
   cy.get(`[data-testid=${buttonName}-button]`).should('have.length', 1)
 })
 
+Then('I see {word} icon in {word} button', (iconName, buttonName) => {
+  cy.get(`[data-testid=${buttonName}-button] svg[data-icon=${iconName}]`).should('have.length', 1)
+})
+
 Then('I do not see {word} button', (buttonName) => {
   cy.get(`[data-testid=${buttonName}-button]`).should('have.length', 0)
 })

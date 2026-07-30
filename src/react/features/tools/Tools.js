@@ -4,6 +4,7 @@ import { CreateDioryTool } from './actions/createDiory/CreateDioryTool'
 import { UpdateDioryTool } from './actions/updateDiory/UpdateDioryTool'
 import { DeleteDioriesTool } from './actions/deleteDiories/DeleteDioriesTool'
 import { DeleteLinksTool } from './actions/deleteLinks/DeleteLinksTool'
+import { SelectImageTool } from './actions/selectImage/SelectImageTool'
 import { TakeToHomeTool } from './actions/takeToDiory/TakeToDioryTool'
 
 export const Tools = ({ isDiory }) =>
@@ -13,6 +14,7 @@ export const Tools = ({ isDiory }) =>
       <CreateDioryTool />
       <DeleteDioriesTool />
       <DeleteLinksTool />
+      <SelectImageTool />
     </>
   ) : (
     <TakeToHomeTool />
