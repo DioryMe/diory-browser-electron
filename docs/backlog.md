@@ -30,8 +30,6 @@ Known follow-ups and small issues not yet acted on. Not a spec — just a runnin
 
 ## @diograph/diograph
 
-1. move the year/month/timeline-linking logic currently in `homeActions.js`'s `linkToMonthDiory` (create year + month diories if missing, link timeline → year → month → diory) into the model itself, e.g. a `Diograph.addDioryToTimeline(diory)` method — so any consumer gets correct period-hierarchy linking without reimplementing it in app code. Note: `Diograph.getDiory` still throws if not found (unchanged) — only `Diory.addLink`/`removeLink` and `Diograph.removeDiory` were made idempotent so far (fixed in `0.5.0-rc1`).
-
 ## @diograph/folder-generator
 
 1. stop storing a random placeholder into a folder diory's `image` at generation time (`generateFolderDiory`) — leave it `undefined` when no real image is found directly in the folder, so "no image" is honestly represented in the data instead of faked.

@@ -54,7 +54,7 @@ describe('toggleHomeDiory', () => {
     expect(diographClient.getDiograph(HOME_ADDRESS).toObject()).toEqual({})
   })
 
-  it('adds a diory and links it to its month/year/timeline diories', async () => {
+  it('adds a diory and links it to its day/month/year/timeline diories', async () => {
     const diory = { id: 'photo1', text: 'Photo', date: '2026-07-15T10:00:00.000Z' }
 
     await toggleHomeDiory(diory)(dispatch, getState, { diographClient })
@@ -62,7 +62,8 @@ describe('toggleHomeDiory', () => {
     const result = diographClient.getDiograph(HOME_ADDRESS).toObject()
 
     expect(result.photo1).toBeDefined()
-    expect(result['2026-07'].links).toEqual([{ id: 'photo1' }])
+    expect(result['2026-07-15'].links).toEqual([{ id: 'photo1' }])
+    expect(result['2026-07'].links).toEqual([{ id: '2026-07-15' }])
     expect(result['2026'].links).toEqual([{ id: '2026-07' }])
     expect(result.timeline.links).toEqual([{ id: '2026' }])
   })

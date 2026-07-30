@@ -5,11 +5,12 @@ import { channels } from '../../../shared/constants'
 import { getDiory } from '../diograph/utils/getDiory'
 import { splitDateToPeriodIds } from '../lenses/timeline/periods/periodIdUtils'
 
-const linkToMonthDiory = (dioryDiograph, diory) => {
-  const [year, month] = splitDateToPeriodIds(diory.date)
-  if (!year || !month) return
+const linkToDayDiory = (dioryDiograph, diory) => {
+  const [year, month, day] = splitDateToPeriodIds(diory.date)
+  if (!year || !month || !day) return
 
-  dioryDiograph.addDiory({ id: month, text: month, image: diory.image }).addLink({ id: diory.id })
+  dioryDiograph.addDiory({ id: day, text: day, image: diory.image }).addLink({ id: diory.id })
+  dioryDiograph.addDiory({ id: month, text: month, image: diory.image }).addLink({ id: day })
   dioryDiograph.addDiory({ id: year, text: year }).addLink({ id: month })
   dioryDiograph
     .addDiory({ id: 'timeline', text: 'timeline', image: diory.image })
@@ -75,7 +76,7 @@ export const toggleHomeDiory =
       dioryDiograph.removeDiory({ id: diory.id })
     } else {
       const addedDiory = dioryDiograph.addDiory(getDioryWithResolvedContentUrls(diory, address))
-      linkToMonthDiory(dioryDiograph, addedDiory)
+      linkToDayDiory(dioryDiograph, addedDiory)
     }
   }
 
