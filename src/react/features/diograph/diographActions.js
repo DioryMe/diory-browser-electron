@@ -39,8 +39,8 @@ export const createDiory =
   (dispatch, getState, { diographClient }) => {
     console.log('createDiory', dioryData, alias)
     const { address } = getState().diograph
-    const diory = diographClient.getDiograph(dioryData.key || address).addDiory(dioryData, alias)
-    dispatch(updateDiograph(dioryData.key || address))
+    const diory = diographClient.getDiograph(address).addDiory(dioryData, alias)
+    dispatch(updateDiograph(address))
     return { diory: diory.toObject(), key: `${address}${diory.id}` }
   }
 
@@ -48,27 +48,26 @@ export const updateDiory =
   (dioryData) =>
   (dispatch, getState, { diographClient }) => {
     console.log('updateDiory', dioryData)
-    diographClient.getDiograph(dioryData.key).getDiory(dioryData).update(dioryData)
-    dispatch(updateDiograph(dioryData.key))
+    const { address } = getState().diograph
+    diographClient.getDiograph(address).getDiory(dioryData).update(dioryData)
+    dispatch(updateDiograph(address))
   }
 
 export const deleteDiory =
   (dioryData) =>
   (dispatch, getState, { diographClient }) => {
     console.log('deleteDiory', dioryData)
-    diographClient.getDiograph(dioryData.key).removeDiory(dioryData)
-    dispatch(updateDiograph(dioryData.key, dioryData))
+    const { address } = getState().diograph
+    diographClient.getDiograph(address).removeDiory(dioryData)
+    dispatch(updateDiograph(address, dioryData))
   }
 
 export const createLink =
   (dioryObject, linkedDioryObject) =>
   (dispatch, getState, { diographClient }) => {
     console.log('createLink', dioryObject, linkedDioryObject)
-    const address = dioryObject.key || getState().diograph.address
-    const id = diographClient.getDiograph(address).diograph[linkedDioryObject.id]
-      ? linkedDioryObject.id
-      : linkedDioryObject.key
-    diographClient.getDiograph(address).getDiory(dioryObject).addLink({ id })
+    const { address } = getState().diograph
+    diographClient.getDiograph(address).getDiory(dioryObject).addLink(linkedDioryObject)
     dispatch(updateDiograph(address))
   }
 
@@ -76,11 +75,8 @@ export const deleteLink =
   (dioryObject, linkedDioryObject) =>
   (dispatch, getState, { diographClient }) => {
     console.log('deleteLink', dioryObject, linkedDioryObject)
-    const address = dioryObject.key || getState().diograph.address
-    const id = diographClient.getDiograph(address).diograph[linkedDioryObject.id]
-      ? linkedDioryObject.id
-      : linkedDioryObject.key
-    diographClient.getDiograph(address).getDiory(dioryObject).removeLink({ id })
+    const { address } = getState().diograph
+    diographClient.getDiograph(address).getDiory(dioryObject).removeLink(linkedDioryObject)
     dispatch(updateDiograph(address))
   }
 
@@ -88,20 +84,12 @@ export const deleteLinks =
   (deletedLinks) =>
   (dispatch, getState, { diographClient }) => {
     console.log('deleteLinks', deletedLinks)
+    const { address } = getState().diograph
     deletedLinks.forEach(({ fromDiory, toDiory }) => {
-      const diory = diographClient.getDiograph(fromDiory.key).getDiory(fromDiory)
-      const links = [
-        toDiory.id,
-        `${toDiory.key.split('/').slice(0, -1).join('/')}/`,
-        `/${toDiory.key.split('/').at(-2)}/`,
-      ]
-      const linkedDiory = (diory.links || []).find(({ id }) => links.includes(id))
-      if (!linkedDiory) {
-        console.log('Link not found', diory.links)
-      }
-      diory.removeLink(linkedDiory)
+      const diory = diographClient.getDiograph(address).getDiory(fromDiory)
+      diory.removeLink(toDiory)
     })
-    dispatch(updateDiograph(deletedLinks[0].fromDiory.key))
+    dispatch(updateDiograph(address))
   }
 
 export const generateDiory =
@@ -126,7 +114,7 @@ export const resetDiograph =
 export const getDiograph =
   (address) =>
   async (dispatch, getState, { diographClient }) => {
-    console.log('getDiograph', address, 'huuuuuu')
+    console.log('getDiograph', address)
     const { loading, loaded } = getState().diograph
     if (!loading[address] && !loaded[address]) {
       dispatch(getDiographActions.begin({ address }))
