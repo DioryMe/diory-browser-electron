@@ -9,9 +9,11 @@ const linkToMonthDiory = (dioryDiograph, diory) => {
   const [year, month] = splitDateToPeriodIds(diory.date)
   if (!year || !month) return
 
-  dioryDiograph.addDiory({ id: month, text: month }).addLink({ id: diory.id })
+  dioryDiograph.addDiory({ id: month, text: month, image: diory.image }).addLink({ id: diory.id })
   dioryDiograph.addDiory({ id: year, text: year }).addLink({ id: month })
-  dioryDiograph.addDiory({ id: 'timeline', text: 'timeline' }).addLink({ id: year })
+  dioryDiograph
+    .addDiory({ id: 'timeline', text: 'timeline', image: diory.image })
+    .addLink({ id: year })
 }
 
 const getDioryWithResolvedContentUrls = (diory, diographAddress) => {

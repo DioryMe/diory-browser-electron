@@ -5,7 +5,7 @@ import { Pane, Icon } from 'evergreen-ui'
 
 import { Image } from './Image'
 import { GridImage } from './GridImage'
-import { isDefaultImage } from '../../features/diograph/utils/getDefaultImage'
+import { getDefaultImage, isDefaultImage } from '../../features/diograph/utils/getDefaultImage'
 import { Gradient } from './Gradient'
 
 const defaultStyle = {
@@ -59,7 +59,16 @@ SelectButton.propTypes = {
 }
 
 const Diory = ({ diory, isGridImage, onSelect, onClick, children, ...props }) => {
-  const { id, text, image, style: dioryStyle = {}, data, links, selected, amount } = diory || {}
+  const {
+    id,
+    text,
+    image = getDefaultImage(),
+    style: dioryStyle = {},
+    data,
+    links,
+    selected,
+    amount,
+  } = diory || {}
   const {
     image: styleImage,
     text: styleText,

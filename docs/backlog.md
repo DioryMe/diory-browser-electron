@@ -10,7 +10,7 @@ Known follow-ups and small issues not yet acted on. Not a spec — just a runnin
 2. component interfaces to `{ key, diograph }`
 3. make the hardcoded `favorites`/`timeline`/`map`/`graph`/`search`/`hand` diories real diories persisted in the folder's own diograph
 4. make components independent of the store (e.g. `Favorites.js`, `Lenses`, `Hand` currently take `createDiory` from the store via `Browser.js`/`useDiograph` — should be pure, per `AGENTS.md`'s "pure components, no direct store access" convention)
-5. once folder diories stop storing a placeholder image (see `@diograph/diograph` and `@diograph/folder-generator` sections below), read/display code here should rely on the shared default-image fallback instead of `getDefaultImage.js`'s own copy — drop the duplicate once the model-level one exists.
+5. add a display-image fallback used wherever a diory's image is shown: `this.image || findImage(linkedDiories) || getDefaultImage()` — try the diory's own image, then a linked diory's image, then the random placeholder color. Belongs in this app (not `@diograph/diograph` — resolving links needs diograph context a single `Diory` instance doesn't have), likely extending `getDefaultImage.js`. See `@diograph/folder-generator` section below for the related root cause of folder diories not getting a real image from their contents.
 
 ### Select diories from folders
 
@@ -18,10 +18,19 @@ Known follow-ups and small issues not yet acted on. Not a spec — just a runnin
 
 ### Browse stories in Diory
 
+1. add day-level period sub-headers within the timeline lens, shown between diories to visually group them by day (the year/month title rows already exist, e.g. "2026-07 (8)"). Nested under it, day sub-headers with a count, e.g.:
+   ```
+   2026-07 (8)
+     2026-07-02 (4)
+       - diory1...4
+     2026-07-03 (4)
+       - diory5...8
+   ```
+   Under every period (year/month/day), show at most a random 10 diories, not the full list — keeps each level scannable regardless of how many diories it actually contains.
+
 ## @diograph/diograph
 
-1. add a `displayImage` getter (or similar) to the `Diory` class — `this.image || getDefaultImage()` — so every consumer (this app, `@diograph/folder-generator`, anything else built on this model) gets a correct placeholder-or-real image without reimplementing the fallback. Centralizes the 3x-duplicated placeholder-color logic (this app's `getDefaultImage.js`, `folder-generator`'s `generateDiories/folderDiory/image.js` and `updateFolderDiories/folderDiory/image.js`).
-2. move the year/month/timeline-linking logic currently in `homeActions.js`'s `linkToMonthDiory` (create year + month diories if missing, link timeline → year → month → diory) into the model itself, e.g. a `Diograph.addDioryToTimeline(diory)` method — so any consumer gets correct period-hierarchy linking without reimplementing it in app code. Note: `Diograph.getDiory` still throws if not found (unchanged) — only `Diory.addLink`/`removeLink` and `Diograph.removeDiory` were made idempotent so far (fixed in `0.5.0-rc1`).
+1. move the year/month/timeline-linking logic currently in `homeActions.js`'s `linkToMonthDiory` (create year + month diories if missing, link timeline → year → month → diory) into the model itself, e.g. a `Diograph.addDioryToTimeline(diory)` method — so any consumer gets correct period-hierarchy linking without reimplementing it in app code. Note: `Diograph.getDiory` still throws if not found (unchanged) — only `Diory.addLink`/`removeLink` and `Diograph.removeDiory` were made idempotent so far (fixed in `0.5.0-rc1`).
 
 ## @diograph/folder-generator
 
